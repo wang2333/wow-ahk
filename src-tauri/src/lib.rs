@@ -9,12 +9,6 @@ struct ColorInfo {
     b: u8,
 }
 
-#[derive(Debug, Serialize)]
-struct Point {
-    x: i32,
-    y: i32,
-}
-
 #[tauri::command]
 fn get_pixel_color(x: i32, y: i32) -> Option<ColorInfo> {
     if let Some(screen) = Screen::all().unwrap().first() {
@@ -90,47 +84,23 @@ fn press_keys(keys: Vec<String>) {
 }
 
 #[tauri::command]
-fn move_mouse(path: String) -> Result<(), String> {
+fn move_mouse_to_point(x: f64, y: f64) -> Result<(), String> {
     let mut enigo = Enigo::new();
-
-    // 解析路径字符串
-    let points: Result<Vec<Point>, _> = path
-        .split(';')
-        .map(|point| {
-            let coords: Vec<&str> = point.split(',').collect();
-            if coords.len() != 2 {
-                return Err("Invalid path format".to_string());
-            }
-
-            let x = coords[0].trim().parse::<i32>()
-                .map_err(|_| "Invalid x coordinate".to_string())?;
-            let y = coords[1].trim().parse::<i32>()
-                .map_err(|_| "Invalid y coordinate".to_string())?;
-
-            Ok(Point { x, y })
-        })
-        .collect();
-
-    let points = points?;
-    if points.is_empty() {
-        return Err("Path is empty".to_string());
-    }
-
-    // 执行鼠标移动
-    for point in points {
-        enigo.mouse_move_to(point.x, point.y);
-        std::thread::sleep(std::time::Duration::from_millis(500));
-    }
-
+    enigo.mouse_move_to(x as i32, y as i32);
     Ok(())
 }
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
+        .plugin(tauri_plugin_fs::init())
         .plugin(tauri_plugin_global_shortcut::Builder::new().build())
         .plugin(tauri_plugin_opener::init())
-        .invoke_handler(tauri::generate_handler![get_pixel_color, press_keys, move_mouse])
+        .invoke_handler(tauri::generate_handler![
+            get_pixel_color,
+            press_keys,
+            move_mouse_to_point
+        ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
