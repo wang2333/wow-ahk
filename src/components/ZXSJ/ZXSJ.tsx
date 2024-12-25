@@ -82,7 +82,7 @@ function ZXSJ() {
 
   const loadConfig = async () => {
     try {
-      const content = await readTextFile(CONFIG_FILE, { baseDir: BaseDirectory.AppData });
+      const content = await readTextFile(CONFIG_FILE, { baseDir: BaseDirectory.Desktop });
       console.log('👻 ~ content:', content);
       const savedPoints = JSON.parse(content);
       if (Array.isArray(savedPoints)) {
@@ -96,7 +96,7 @@ function ZXSJ() {
   const saveConfig = async () => {
     try {
       await writeTextFile(CONFIG_FILE, JSON.stringify(points, null, 2), {
-        baseDir: BaseDirectory.AppData
+        baseDir: BaseDirectory.Desktop
       });
     } catch (error) {
       console.error('Failed to save config:', error);

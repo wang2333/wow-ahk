@@ -6,10 +6,8 @@
     "global-shortcut:allow-is-registered",
     "global-shortcut:allow-register",
     "global-shortcut:allow-unregister",
-    "fs:default",
-    {
-      "identifier": "fs:scope",
-      "allow": [{ "path": "$APPDATA/*" }]
-    }
+    "fs:allow-desktop-read",
+    "fs:allow-desktop-write",
+    "fs:allow-desktop-write-recursive"
   ]
 }
