@@ -1,11 +1,11 @@
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
-  line-height: 24px;
+  line-height: 1.5;
   font-weight: 400;
 
-  color: #0f0f0f;
-  background-color: #f6f6f6;
+  color: #1f2937;
+  background-color: #f3f4f6;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -15,105 +15,68 @@
 }
 
 .app-container {
-  padding: 12px;
-  max-width: 1200px;
+  padding: 20px;
+  max-width: 1000px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }
 
 .tab-container {
   display: flex;
   background: white;
-  border-radius: 6px;
-  padding: 6px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  padding: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
 }
 
 .tab-button {
   flex: 1;
-  padding: 8px 16px;
+  padding: 10px 20px;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   background: transparent;
-  color: #666;
-  font-size: 14px;
+  color: #4b5563;
+  font-size: 15px;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
 }
 
 .tab-button:hover {
-  background: #f0f0f0;
-  color: #333;
+  background: #f3f4f6;
+  color: #1f2937;
 }
 
 .tab-button.active {
   background: #3b82f6;
   color: white;
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.1);
 }
 
 .tab-content {
   background: white;
-  border-radius: 6px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  padding: 24px;
   flex: 1;
   overflow: auto;
+  animation: fadeIn 0.3s ease;
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(5px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    color: #f6f6f6;
-    background-color: #1a1a1a;
-  }
-
-  .tab-container,
-  .tab-content {
-    background: #262626;
-  }
-
-  .tab-button {
-    color: #9ca3af;
-  }
-
-  .tab-button:hover {
-    background: #333;
-    color: #e5e7eb;
-  }
-
-  .tab-button.active {
-    background: #3b82f6;
-    color: white;
-  }
-}
-
-/* 响应式布局 */
-@media (max-width: 640px) {
-  .app-container {
-    padding: 8px;
-    gap: 8px;
-  }
-
-  .tab-button {
-    padding: 6px 12px;
-    font-size: 13px;
-  }
-
-  .tab-content {
-    padding: 12px;
-  }
+button:disabled {
+  cursor: not-allowed;
+  background-color: #ccc;
 }

@@ -1,13 +1,20 @@
-import './index.css';
 import { useEffect, useState } from 'react';
+
 import { invoke } from '@tauri-apps/api/core';
-import { register, unregister } from '@tauri-apps/plugin-global-shortcut';
 import { BaseDirectory, readTextFile, writeTextFile } from '@tauri-apps/plugin-fs';
+import { register, unregister } from '@tauri-apps/plugin-global-shortcut';
+import styles from './index.module.css';
 
 interface ColorInfo {
   r: number;
   g: number;
   b: number;
+}
+
+interface PositionColorInfo {
+  x: number;
+  y: number;
+  color: ColorInfo;
 }
 
 interface MonitorPoint {
@@ -30,21 +37,12 @@ function ZXSJ() {
     targetColor: '#000000',
     keys: []
   });
+  const [isPicking, setIsPicking] = useState(false);
 
-  // 加载配置
   useEffect(() => {
+    // 加载配置
     loadConfig();
-  }, []);
-
-  // 保存配置
-  useEffect(() => {
-    if (points.length > 0) {
-      saveConfig();
-    }
-  }, [points]);
-
-  // 注册热键
-  useEffect(() => {
+    // 注册热键
     registerShortcuts();
     return () => {
       cleanup();
@@ -83,7 +81,6 @@ function ZXSJ() {
   const loadConfig = async () => {
     try {
       const content = await readTextFile(CONFIG_FILE, { baseDir: BaseDirectory.Desktop });
-      console.log('👻 ~ content:', content);
       const savedPoints = JSON.parse(content);
       if (Array.isArray(savedPoints)) {
         setPoints(savedPoints);
@@ -131,6 +128,31 @@ function ZXSJ() {
     return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
   };
 
+  const handlePickColor = async () => {
+    setIsPicking(true);
+    try {
+      await register('F2', async e => {
+        if (e.state === 'Pressed') {
+          const info = await invoke<PositionColorInfo>('get_current_position_color');
+          if (info) {
+            const hexColor = rgbToHex(info.color.r, info.color.g, info.color.b);
+            setEditingPoint(prev => ({
+              ...prev,
+              x: info.x,
+              y: info.y,
+              targetColor: hexColor
+            }));
+            setIsPicking(false);
+            await unregister('F2');
+          }
+        }
+      });
+    } catch (error) {
+      console.error('注册取色热键失败:', error);
+      setIsPicking(false);
+    }
+  };
+
   const handleAddPoint = async () => {
     if (editingPoint.id) {
       // 更新现有点位
@@ -163,6 +185,22 @@ function ZXSJ() {
     setPoints(points.filter(p => p.id !== id));
   };
 
+  const movePointUp = (index: number) => {
+    if (index > 0) {
+      const newPoints = [...points];
+      [newPoints[index - 1], newPoints[index]] = [newPoints[index], newPoints[index - 1]];
+      setPoints(newPoints);
+    }
+  };
+
+  const movePointDown = (index: number) => {
+    if (index < points.length - 1) {
+      const newPoints = [...points];
+      [newPoints[index], newPoints[index + 1]] = [newPoints[index + 1], newPoints[index]];
+      setPoints(newPoints);
+    }
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setEditingPoint(prev => ({
@@ -172,95 +210,152 @@ function ZXSJ() {
   };
 
   return (
-    <div className='zxsj-container'>
+    <div className={styles.container}>
       {/* 添加/编辑点位表单 */}
-      <div className='card'>
-        <div className='card-header'>
-          <h3 className='card-title'>{editingPoint.id ? '编辑点位' : '添加点位'}</h3>
-          <div className='card-actions'>
-            <button className='btn-icon' onClick={saveConfig}>
+      <div className={styles.card}>
+        <div className={styles.cardHeader}>
+          <h3 className={styles.cardTitle}>{editingPoint.id ? '编辑点位' : '添加点位'}</h3>
+          <div className={styles.cardActions}>
+            <button className={styles.btnPick} onClick={saveConfig}>
               保存配置
+            </button>
+            <button className={styles.btnPick} onClick={handlePickColor} disabled={isPicking}>
+              {isPicking ? '按F2拾取' : '拾取坐标和色值'}
+            </button>
+
+            <button className={styles.btnPrimary} onClick={handleAddPoint}>
+              {editingPoint.id ? '更新点位' : '添加点位'}
             </button>
           </div>
         </div>
-        <div className='form-content'>
-          <div className='form-row'>
-            <div className='input-group'>
-              <label>X 坐标</label>
-              <input type='number' name='x' value={editingPoint.x} onChange={handleInputChange} />
+        <div className={styles.formContent}>
+          <div className={styles.formRow}>
+            <div className={styles.inputGroup}>
+              <label className={styles.label}>X 坐标</label>
+              <input
+                type='number'
+                name='x'
+                value={editingPoint.x}
+                onChange={handleInputChange}
+                className={styles.input}
+              />
             </div>
-            <div className='input-group'>
-              <label>Y 坐标</label>
-              <input type='number' name='y' value={editingPoint.y} onChange={handleInputChange} />
+            <div className={styles.inputGroup}>
+              <label className={styles.label}>Y 坐标</label>
+              <input
+                type='number'
+                name='y'
+                value={editingPoint.y}
+                onChange={handleInputChange}
+                className={styles.input}
+              />
             </div>
           </div>
-          <div className='form-row'>
-            <div className='input-group'>
-              <label>目标色值</label>
-              <div className='color-input-group'>
+          <div className={styles.formRow}>
+            <div className={styles.inputGroup}>
+              <label className={styles.label}>色值</label>
+              <div className={styles.colorInputGroup}>
                 <input
                   type='color'
                   name='targetColor'
                   value={editingPoint.targetColor}
                   onChange={handleInputChange}
+                  className={styles.colorInput}
                 />
                 <input
                   type='text'
                   name='targetColor'
                   value={editingPoint.targetColor}
                   onChange={handleInputChange}
+                  className={styles.input}
                 />
               </div>
             </div>
-            <div className='input-group'>
-              <label>按键</label>
+            <div className={styles.inputGroup}>
+              <label className={styles.label}>按键</label>
               <input
                 type='text'
                 name='keys'
                 value={editingPoint.keys[0] || ''}
                 onChange={handleInputChange}
+                className={styles.input}
                 placeholder='例如: a'
               />
             </div>
           </div>
-          <button className='btn-primary' onClick={handleAddPoint}>
-            {editingPoint.id ? '更新' : '添加'}
-          </button>
         </div>
       </div>
 
       {/* 点位列表 */}
-      <div className='card'>
-        <div className='card-header'>
-          <h3 className='card-title'>监控点位</h3>
-          <div className='card-actions'>
-            <label className='status-label'>状态: {isRunning ? '运行中' : '已停止'}</label>
-            <div className={`status-dot ${isRunning ? 'active' : ''}`} />
+      <div className={styles.card}>
+        <div className={styles.cardHeader}>
+          <h3 className={styles.cardTitle}>监控点位</h3>
+          <div className={isRunning ? styles.statusRunning : styles.statusPaused}>
+            状态: {isRunning ? '运行中' : '已暂停'} (F1切换)
           </div>
         </div>
-        <div className='points-list'>
-          {points.map(point => (
-            <div key={point.id} className='point-item'>
-              <div className='point-info'>
-                <div className='point-location'>
-                  坐标: ({point.x}, {point.y})
-                </div>
-                <div className='point-color' style={{ backgroundColor: point.targetColor }}>
-                  {point.targetColor}
-                </div>
-                <div className='point-keys'>按键: {point.keys[0]}</div>
-              </div>
-              <div className='point-actions'>
-                <button className='btn-icon' onClick={() => handleEditPoint(point)}>
-                  编辑
-                </button>
-                <button className='btn-icon danger' onClick={() => handleDeletePoint(point.id)}>
-                  删除
-                </button>
-              </div>
-            </div>
-          ))}
-          {points.length === 0 && <div className='empty-state'>暂无监控点位，请添加新的点位</div>}
+        <div className={styles.pointsList}>
+          {points.length > 0 ? (
+            <table className={styles.pointsTable}>
+              <thead>
+                <tr>
+                  <th className={styles.pointsTableHeader}>优先级</th>
+                  <th className={styles.pointsTableHeader}>坐标</th>
+                  <th className={styles.pointsTableHeader}>色值</th>
+                  <th className={styles.pointsTableHeader}>按键</th>
+                  <th className={styles.pointsTableHeader}>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                {points.map((point, index) => (
+                  <tr key={point.id} className={styles.pointItem}>
+                    <td className={styles.pointPriority}>{index + 1}</td>
+                    <td className={styles.pointLocation}>
+                      {point.x}, {point.y}
+                    </td>
+                    <td className={styles.pointColorCell}>
+                      <div
+                        className={styles.pointColor}
+                        style={{ backgroundColor: point.targetColor }}
+                      >
+                        {point.targetColor}
+                      </div>
+                    </td>
+                    <td className={styles.pointKeys}>{point.keys.join(', ')}</td>
+                    <td className={styles.pointsTableCell}>
+                      <div className={styles.pointActions}>
+                        <button
+                          className={styles.btnIcon}
+                          onClick={() => movePointUp(index)}
+                          disabled={index === 0}
+                        >
+                          ↑
+                        </button>
+                        <button
+                          className={styles.btnIcon}
+                          onClick={() => movePointDown(index)}
+                          disabled={index === points.length - 1}
+                        >
+                          ↓
+                        </button>
+                        <button className={styles.btnIcon} onClick={() => handleEditPoint(point)}>
+                          编辑
+                        </button>
+                        <button
+                          className={styles.btnIconDanger}
+                          onClick={() => handleDeletePoint(point.id)}
+                        >
+                          删除
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ) : (
+            <div className={styles.emptyState}>暂无监控点位</div>
+          )}
         </div>
       </div>
     </div>

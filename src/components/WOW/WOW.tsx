@@ -1,13 +1,12 @@
-import './index.css';
-
 import { useEffect, useState } from 'react';
 
-import { invoke } from '@tauri-apps/api/core';
-import { register, unregister } from '@tauri-apps/plugin-global-shortcut';
 import mode1 from '@/assets/mode1.wav';
 import mode2 from '@/assets/mode2.wav';
 import pause from '@/assets/pause.wav';
+import { invoke } from '@tauri-apps/api/core';
+import { register, unregister } from '@tauri-apps/plugin-global-shortcut';
 import { color_mappings, rgbToHex } from './config';
+import styles from './index.module.css';
 
 interface ColorInfo {
   r: number;
@@ -157,85 +156,90 @@ function WOW() {
   };
 
   return (
-    <div className='wow-container'>
+    <div className={styles.container}>
       {/* 坐标设置区域 */}
-      <div className='card'>
-        <h3 className='card-title'>坐标设置</h3>
-        <div className='coordinate-inputs'>
-          <div className='input-group'>
-            <label>X1 坐标</label>
+      <div className={styles.card}>
+        <h3 className={styles.cardTitle}>坐标设置</h3>
+        <div className={styles.coordinateInputs}>
+          <div className={styles.inputGroup}>
+            <label className={styles.label}>X1 坐标</label>
             <input
               type='number'
               name='x1'
               value={coordinates.x1}
               onChange={handleCoordinateChange}
+              className={styles.input}
             />
           </div>
-          <div className='input-group'>
-            <label>X2 坐标</label>
+          <div className={styles.inputGroup}>
+            <label className={styles.label}>X2 坐标</label>
             <input
               type='number'
               name='x2'
               value={coordinates.x2}
               onChange={handleCoordinateChange}
+              className={styles.input}
             />
           </div>
-          <div className='input-group'>
-            <label>Y 坐标</label>
+          <div className={styles.inputGroup}>
+            <label className={styles.label}>Y 坐标</label>
             <input
               type='number'
               name='y'
               value={coordinates.y}
               onChange={handleCoordinateChange}
               min='0'
+              className={styles.input}
             />
           </div>
         </div>
       </div>
 
       {/* 鼠标移动控制区域 */}
-      <div className='card'>
-        <h3 className='card-title'>鼠标移动设置</h3>
-        <div className='control-section'>
-          <div className='control-group'>
-            <label className='toggle-switch'>
+      <div className={styles.card}>
+        <h3 className={styles.cardTitle}>鼠标移动设置</h3>
+        <div className={styles.controlSection}>
+          <div className={styles.controlGroup}>
+            <label className={styles.toggleSwitch}>
               <input
                 type='checkbox'
                 checked={autoMove}
                 onChange={e => setAutoMove(e.target.checked)}
+                className={styles.toggleInput}
               />
-              <span className='toggle-slider'></span>
+              <span className={styles.toggleSlider}></span>
             </label>
-            <span className='control-label'>自动移动</span>
+            <span className={styles.controlLabel}>自动移动</span>
           </div>
-          <div className='input-group compact'>
-            <label>移动间隔(ms)</label>
+          <div className={styles.inputGroupCompact}>
+            <label className={styles.label}>移动间隔(ms)</label>
             <input
               type='number'
               value={moveInterval}
               onChange={handleIntervalChange}
               min='100'
               step='100'
+              className={styles.input}
             />
           </div>
         </div>
       </div>
 
       {/* 状态显示区域 */}
-      <div className='card'>
-        <h3 className='card-title'>运行状态</h3>
-        <div className='status-section'>
-          <div className='status-group'>
-            <div className={`status-dot ${model !== 0 ? 'active' : ''}`}></div>
-            <span className='status-label'>
+      <div className={styles.card}>
+        <h3 className={styles.cardTitle}>运行状态</h3>
+        <div className={styles.statusSection}>
+          <div className={styles.statusGroup}>
+            <span
+              className={`${styles.statusLabel} ${
+                model === 1 ? styles.statusLabelMode1 : model === 2 ? styles.statusLabelMode2 : ''
+              }`}
+            >
               当前模式: {model === 0 ? '已暂停' : model === 1 ? '模式1' : '模式2'}
             </span>
+
+            {color && <span className={styles.statusLabel}>执行按键：{color_mappings[color]}</span>}
           </div>
-          {color && (
-            <div className='status-group' style={{ color: color }}>
-              <span className='status-label'>执行按键：{color}</span>
-            </div>
-          )}
         </div>
       </div>
     </div>

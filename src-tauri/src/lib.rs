@@ -9,6 +9,13 @@ struct ColorInfo {
     b: u8,
 }
 
+#[derive(Debug, Serialize)]
+struct PositionColorInfo {
+    x: i32,
+    y: i32,
+    color: ColorInfo,
+}
+
 #[tauri::command]
 fn get_pixel_color(x: i32, y: i32) -> Option<ColorInfo> {
     if let Some(screen) = Screen::all().unwrap().first() {
@@ -18,6 +25,28 @@ fn get_pixel_color(x: i32, y: i32) -> Option<ColorInfo> {
                 r: pixels[0],
                 g: pixels[1],
                 b: pixels[2],
+            });
+        }
+    }
+    None
+}
+
+#[tauri::command]
+fn get_current_position_color() -> Option<PositionColorInfo> {
+    let enigo = Enigo::new();
+    let (x, y) = enigo.mouse_location();
+
+    if let Some(screen) = Screen::all().unwrap().first() {
+        if let Ok(image) = screen.capture_area(x, y, 1, 1) {
+            let pixels = image.into_raw();
+            return Some(PositionColorInfo {
+                x,
+                y,
+                color: ColorInfo {
+                    r: pixels[0],
+                    g: pixels[1],
+                    b: pixels[2],
+                }
             });
         }
     }
@@ -98,6 +127,7 @@ pub fn run() {
         .plugin(tauri_plugin_opener::init())
         .invoke_handler(tauri::generate_handler![
             get_pixel_color,
+            get_current_position_color,
             press_keys,
             move_mouse_to_point
         ])

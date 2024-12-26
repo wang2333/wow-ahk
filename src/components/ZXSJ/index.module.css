@@ -1,0 +1,330 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card {
+  padding: 16px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  transition: all 0.2s ease;
+}
+
+.cardTitle {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 12px 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.cardHeader .cardTitle {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.cardActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 表单样式 */
+.formContent {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.formRow {
+  display: flex;
+  gap: 48px;
+}
+
+.formRow .inputGroup {
+  flex: 1;
+  min-width: 0;
+}
+
+.inputGroup {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.label {
+  font-size: 13px;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+.input {
+  flex: 1;
+  padding: 6px 8px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #1f2937;
+  transition: all 0.2s ease;
+  background: #f9fafb;
+}
+
+.input:hover {
+  border-color: #d1d5db;
+  background: white;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  background: white;
+}
+
+.colorInputGroup {
+  display: flex;
+  flex: 1;
+  gap: 10px;
+  align-items: center;
+}
+
+.colorInput {
+  padding: 0;
+  width: 36px;
+  height: 28px;
+  cursor: pointer;
+  border: 2px solid #e5e7eb;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.colorInput:hover {
+  border-color: #d1d5db;
+  transform: scale(1.05);
+}
+
+.colorTextInput {
+  flex: 1;
+}
+
+/* 按钮样式 */
+.btnPrimary {
+  padding: 6px 12px;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  align-self: flex-end;
+}
+
+.btnPrimary:hover {
+  background-color: #2563eb;
+}
+
+.btnIcon {
+  padding: 4px 8px;
+  background-color: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btnIcon:hover {
+  background-color: #e5e7eb;
+}
+
+.btnIconDanger {
+  padding: 4px 8px;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #dc2626;
+  background-color: #fef2f2;
+}
+
+.btnIconDanger:hover {
+  background-color: #fee2e2;
+}
+
+/* 点位列表样式 */
+.pointsList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pointsTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.pointsTableHeader {
+  text-align: left;
+  padding: 8px 0;
+  background-color: #f9fafb;
+  color: #374151;
+  font-weight: 600;
+}
+
+.pointsTableCell {
+  padding: 8px 0;
+  vertical-align: middle;
+}
+
+.pointItem {
+  transition: all 0.2s ease;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.pointItem:last-child .pointsTableCell {
+  border-bottom: none;
+}
+
+.pointItem:hover {
+  background-color: #f3f4f6;
+}
+
+.pointPriority {
+  width: 90px;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+.pointKeys {
+  width: 90px;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+.pointLocation {
+  width: 130px;
+  color: #1f2937;
+  font-weight: 500;
+}
+
+.pointColorCell {
+  width: 130px;
+}
+
+.pointColor {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: 4px;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.pointActions {
+  display: flex;
+  gap: 6px;
+}
+
+.emptyState {
+  padding: 24px;
+  text-align: center;
+  color: #6b7280;
+  font-size: 14px;
+  background-color: #f9fafb;
+  border-radius: 8px;
+  border: 1px dashed #e5e7eb;
+}
+
+.statusLabel {
+  font-size: 13px;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+.statusRunning {
+  color: #059669;
+  font-weight: 600;
+}
+
+.statusPaused {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #9ca3af;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 0 2px rgba(156, 163, 175, 0.1);
+}
+
+.statusDotActive {
+  background-color: #059669;
+  box-shadow: 0 0 0 2px rgba(5, 150, 105, 0.1);
+  animation: pulse 2s infinite;
+}
+
+.btnPick {
+  padding: 4px 8px;
+  background-color: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.btnPick:hover {
+  background-color: #e5e7eb;
+}
+
+.btnPickActive {
+  background-color: #3b82f6;
+  border-color: #3b82f6;
+  color: white;
+}
+
+.btnPick:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(5, 150, 105, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(5, 150, 105, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(5, 150, 105, 0);
+  }
+}
