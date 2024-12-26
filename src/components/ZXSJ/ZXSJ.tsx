@@ -59,8 +59,8 @@ function ZXSJ() {
       intervalId = window.setInterval(async () => {
         for (const point of points) {
           const color = await invoke<ColorInfo | null>('get_pixel_color', {
-            x: point.x,
-            y: point.y
+            x: Number(point.x),
+            y: Number(point.y)
           });
 
           if (color) {
