@@ -2,7 +2,14 @@ import { useEffect, useState } from 'react';
 
 import { invoke } from '@tauri-apps/api/core';
 import { message } from '@tauri-apps/plugin-dialog';
-import { BaseDirectory, readTextFile, writeTextFile } from '@tauri-apps/plugin-fs';
+import {
+  BaseDirectory,
+  create,
+  exists,
+  mkdir,
+  readTextFile,
+  writeTextFile
+} from '@tauri-apps/plugin-fs';
 import { register, unregister } from '@tauri-apps/plugin-global-shortcut';
 import styles from './index.module.css';
 
@@ -29,7 +36,7 @@ interface MonitorPoint {
   buffName?: string;
 }
 
-const CONFIG_FILE = 'zxsj-config.json';
+const CONFIG_FILE = 'autokeyBox\\autoboxzxsj-config.json';
 
 function ZXSJ() {
   const [isRunning, setIsRunning] = useState(false);
@@ -124,12 +131,17 @@ function ZXSJ() {
     try {
       // 合并两种点位保存
       const allPoints = [...keyPoints, ...buffPoints];
+      const hasConfigFile = await exists(CONFIG_FILE, { baseDir: BaseDirectory.Desktop });
+      if (!hasConfigFile) {
+        await mkdir('autokeyBox', { baseDir: BaseDirectory.Desktop });
+      }
       await writeTextFile(CONFIG_FILE, JSON.stringify(allPoints, null, 2), {
         baseDir: BaseDirectory.Desktop
       });
       await message('保存成功', { title: '提示', kind: 'info' });
     } catch (error) {
       console.error('Failed to save config:', error);
+      await message('保存失败: ' + error, { title: '错误', kind: 'info' });
     }
   };
 
@@ -270,7 +282,7 @@ function ZXSJ() {
 
   return (
     <div className={styles.container}>
-      {/* 添加/编辑点位表单 */}
+      {/* 添加/编辑点位表�� */}
       <div className={styles.card}>
         <div className={styles.cardHeader}>
           <h3 className={styles.cardTitle}>{editingPoint.id ? '编辑点位' : '添加点位'}</h3>
