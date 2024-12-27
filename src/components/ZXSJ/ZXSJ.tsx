@@ -245,6 +245,22 @@ function ZXSJ() {
     }));
   };
 
+  const movePointUp = (index: number) => {
+    if (index > 0) {
+      const newPoints = [...keyPoints];
+      [newPoints[index - 1], newPoints[index]] = [newPoints[index], newPoints[index - 1]];
+      setKeyPoints(newPoints);
+    }
+  };
+
+  const movePointDown = (index: number) => {
+    if (index < keyPoints.length - 1) {
+      const newPoints = [...keyPoints];
+      [newPoints[index], newPoints[index + 1]] = [newPoints[index + 1], newPoints[index]];
+      setKeyPoints(newPoints);
+    }
+  };
+
   const handleRelatedBuffChange = (pointId: string, buffId: string) => {
     setKeyPoints(points =>
       points.map(p =>
@@ -426,7 +442,7 @@ function ZXSJ() {
                 </tr>
               </thead>
               <tbody>
-                {keyPoints.map(point => (
+                {keyPoints.map((point, index) => (
                   <tr key={point.id} className={styles.pointItem}>
                     <td>{point.keys.join(', ')}</td>
                     <td>
@@ -454,6 +470,20 @@ function ZXSJ() {
                     </td>
 
                     <td className={styles.pointActions}>
+                      <button
+                        className={styles.btnIcon}
+                        onClick={() => movePointUp(index)}
+                        disabled={index === 0}
+                      >
+                        ↑
+                      </button>
+                      <button
+                        className={styles.btnIcon}
+                        onClick={() => movePointDown(index)}
+                        disabled={index === keyPoints.length - 1}
+                      >
+                        ↓
+                      </button>
                       <button className={styles.btnIcon} onClick={() => handleEditPoint(point)}>
                         编辑
                       </button>
