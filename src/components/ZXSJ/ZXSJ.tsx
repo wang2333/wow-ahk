@@ -4,9 +4,9 @@ import { invoke } from '@tauri-apps/api/core';
 import { message } from '@tauri-apps/plugin-dialog';
 import {
   BaseDirectory,
-  create,
   exists,
   mkdir,
+  readDir,
   readTextFile,
   writeTextFile
 } from '@tauri-apps/plugin-fs';
@@ -36,7 +36,7 @@ interface MonitorPoint {
   buffName?: string;
 }
 
-const CONFIG_FILE = 'autokeyBox\\autoboxzxsj-config.json';
+const CONFIG_FILE = 'autokeyBox\\fengxiang_yan.json';
 
 function ZXSJ() {
   const [isRunning, setIsRunning] = useState(false);
@@ -131,12 +131,13 @@ function ZXSJ() {
     try {
       // 合并两种点位保存
       const allPoints = [...keyPoints, ...buffPoints];
-      const hasConfigFile = await exists(CONFIG_FILE, { baseDir: BaseDirectory.Desktop });
-      if (!hasConfigFile) {
+      const entries = await readDir('autokeyBox', { baseDir: BaseDirectory.Desktop });
+      if (!entries.length) {
         await mkdir('autokeyBox', { baseDir: BaseDirectory.Desktop });
       }
       await writeTextFile(CONFIG_FILE, JSON.stringify(allPoints, null, 2), {
-        baseDir: BaseDirectory.Desktop
+        baseDir: BaseDirectory.Desktop,
+        create: true
       });
       await message('保存成功', { title: '提示', kind: 'info' });
     } catch (error) {
