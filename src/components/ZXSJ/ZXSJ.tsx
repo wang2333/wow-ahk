@@ -62,41 +62,35 @@ function ZXSJ() {
         // 处理按键点位
         for (const point of keyPoints) {
           // 检查按键点位颜色
-          const pointColor = await invoke<ColorInfo | null>('get_pixel_color', {
+          const pointColor = await invoke<ColorInfo>('get_pixel_color', {
             x: Number(point.x),
             y: Number(point.y)
           });
 
-          if (pointColor) {
-            const pointHexColor = rgbToHex(pointColor.r, pointColor.g, pointColor.b);
-            const pointColorMatched =
-              pointHexColor.toLowerCase() === point.targetColor.toLowerCase();
+          const pointHexColor = rgbToHex(pointColor.r, pointColor.g, pointColor.b);
+          const pointColorMatched = pointHexColor.toLowerCase() === point.targetColor.toLowerCase();
 
-            // 如果点位颜色匹配且有关联buff，则检查buff状态
-            if (pointColorMatched) {
-              if (point.relatedBuffId) {
-                const relatedBuff = buffPoints.find(b => b.id === point.relatedBuffId);
-                if (relatedBuff) {
-                  // 检查关联buff的颜色
-                  const buffColor = await invoke<ColorInfo | null>('get_pixel_color', {
-                    x: Number(relatedBuff.x),
-                    y: Number(relatedBuff.y)
-                  });
+          // 如果点位颜色匹配且有关联buff，则检查buff状态
+          if (pointColorMatched) {
+            if (point.relatedBuffId) {
+              const relatedBuff = buffPoints.find(b => b.id === point.relatedBuffId);
+              if (relatedBuff) {
+                // 检查关联buff的颜色
+                const buffColor = await invoke<ColorInfo>('get_pixel_color', {
+                  x: Number(relatedBuff.x),
+                  y: Number(relatedBuff.y)
+                });
+                const buffHexColor = rgbToHex(buffColor.r, buffColor.g, buffColor.b);
+                const buffActive =
+                  buffHexColor.toLowerCase() === relatedBuff.targetColor.toLowerCase();
 
-                  if (buffColor) {
-                    const buffHexColor = rgbToHex(buffColor.r, buffColor.g, buffColor.b);
-                    const buffActive =
-                      buffHexColor.toLowerCase() === relatedBuff.targetColor.toLowerCase();
-
-                    if (buffActive) {
-                      await invoke('press_keys', { keys: point.keys });
-                    }
-                  }
+                if (buffActive) {
+                  await invoke('press_keys', { keys: point.keys });
                 }
-              } else {
-                // 没有关联buff，直接执行按键
-                await invoke('press_keys', { keys: point.keys });
               }
+            } else {
+              // 没有关联buff，直接执行按键
+              await invoke('press_keys', { keys: point.keys });
             }
           }
         }
@@ -133,7 +127,7 @@ function ZXSJ() {
       await writeTextFile(CONFIG_FILE, JSON.stringify(allPoints, null, 2), {
         baseDir: BaseDirectory.Desktop
       });
-      await message('保存成功', { title: '提示', kind: 'success' });
+      await message('保存成功', { title: '提示', kind: 'info' });
     } catch (error) {
       console.error('Failed to save config:', error);
     }

@@ -64,21 +64,19 @@ function WOW() {
 
     if (model !== 0) {
       intervalId = window.setInterval(async () => {
-        const newColor = await invoke<ColorInfo | null>('get_pixel_color', {
+        const newColor = await invoke<ColorInfo>('get_pixel_color', {
           x: model === 1 ? coordinates.x1 : coordinates.x2,
           y: coordinates.y
         });
 
-        if (newColor) {
-          // 转换为十六进制格式
-          const hexColor = rgbToHex(newColor.r, newColor.g, newColor.b);
-          setColor(hexColor);
+        // 转换为十六进制格式
+        const hexColor = rgbToHex(newColor.r, newColor.g, newColor.b);
+        setColor(hexColor);
 
-          const keyCombo = color_mappings[hexColor];
-          // 检查颜色匹配并触发按键
-          if (keyCombo) {
-            await invoke('press_keys', { keys: keyCombo.split('-') });
-          }
+        const keyCombo = color_mappings[hexColor];
+        // 检查颜色匹配并触发按键
+        if (keyCombo) {
+          await invoke('press_keys', { keys: keyCombo.split('-') });
         }
       }, 100);
     }
