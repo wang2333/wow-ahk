@@ -46,7 +46,7 @@ fn get_current_position_color() -> Option<PositionColorInfo> {
                     r: pixels[0],
                     g: pixels[1],
                     b: pixels[2],
-                }
+                },
             });
         }
     }
@@ -122,6 +122,7 @@ fn move_mouse_to_point(x: f64, y: f64) -> Result<(), String> {
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
+        .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_fs::init())
         .plugin(tauri_plugin_global_shortcut::Builder::new().build())
         .plugin(tauri_plugin_opener::init())

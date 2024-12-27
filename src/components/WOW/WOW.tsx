@@ -109,23 +109,28 @@ function WOW() {
   const registerShortcuts = async () => {
     try {
       // 注册F1热键
-      await register('F1', async () => {
-        console.log('1 :>> ', 1);
-        setModel(1);
-        mode1Audio.play().catch(console.error);
+      await register('F1', async e => {
+        if (e.state === 'Pressed') {
+          setModel(1);
+          mode1Audio.play().catch(console.error);
+        }
       });
 
       // 注册F2热键
-      await register('F2', async () => {
-        setModel(2);
-        mode2Audio.play().catch(console.error);
+      await register('F2', async e => {
+        if (e.state === 'Pressed') {
+          setModel(2);
+          mode2Audio.play().catch(console.error);
+        }
       });
 
       // 注册F3热键
-      await register('F3', async () => {
-        setModel(0);
-        setColor(null);
-        pauseAudio.play().catch(console.error);
+      await register('F3', async e => {
+        if (e.state === 'Pressed') {
+          setModel(0);
+          setColor(null);
+          pauseAudio.play().catch(console.error);
+        }
       });
     } catch (error) {
       console.error('注册热键失败:', error);

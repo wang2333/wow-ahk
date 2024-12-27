@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { invoke } from '@tauri-apps/api/core';
+import { message } from '@tauri-apps/plugin-dialog';
 import { BaseDirectory, readTextFile, writeTextFile } from '@tauri-apps/plugin-fs';
 import { register, unregister } from '@tauri-apps/plugin-global-shortcut';
 import styles from './index.module.css';
@@ -26,7 +27,6 @@ interface MonitorPoint {
   type: 'key' | 'buff';
   relatedBuffId?: string;
   buffName?: string;
-  buffControl?: 'active' | 'inactive';
 }
 
 const CONFIG_FILE = 'zxsj-config.json';
@@ -88,10 +88,7 @@ function ZXSJ() {
                     const buffActive =
                       buffHexColor.toLowerCase() === relatedBuff.targetColor.toLowerCase();
 
-                    // 根据控制方式决定是否执行按键
-                    const shouldPressKey =
-                      point.buffControl === 'active' ? buffActive : !buffActive;
-                    if (shouldPressKey) {
+                    if (buffActive) {
                       await invoke('press_keys', { keys: point.keys });
                     }
                   }
@@ -136,6 +133,7 @@ function ZXSJ() {
       await writeTextFile(CONFIG_FILE, JSON.stringify(allPoints, null, 2), {
         baseDir: BaseDirectory.Desktop
       });
+      await message('保存成功', { title: '提示', kind: 'success' });
     } catch (error) {
       console.error('Failed to save config:', error);
     }
@@ -254,19 +252,6 @@ function ZXSJ() {
           ? {
               ...p,
               relatedBuffId: buffId || undefined
-            }
-          : p
-      )
-    );
-  };
-
-  const handleBuffControlChange = (pointId: string, control: 'active' | 'inactive' | '') => {
-    setKeyPoints(points =>
-      points.map(p =>
-        p.id === pointId
-          ? {
-              ...p,
-              buffControl: control || undefined
             }
           : p
       )
@@ -437,7 +422,6 @@ function ZXSJ() {
                   <th>坐标</th>
                   <th>颜色</th>
                   <th>关联Buff</th>
-                  <th>控制</th>
                   <th>操作</th>
                 </tr>
               </thead>
@@ -468,22 +452,7 @@ function ZXSJ() {
                         ))}
                       </select>
                     </td>
-                    <td>
-                      <select
-                        value={point.buffControl || ''}
-                        onChange={e =>
-                          handleBuffControlChange(
-                            point.id,
-                            e.target.value as 'active' | 'inactive' | ''
-                          )
-                        }
-                        className={styles.input}
-                        disabled={!point.relatedBuffId}
-                      >
-                        <option value='active'>Buff触发时</option>
-                        <option value='inactive'>Buff未触发时</option>
-                      </select>
-                    </td>
+
                     <td className={styles.pointActions}>
                       <button className={styles.btnIcon} onClick={() => handleEditPoint(point)}>
                         编辑
