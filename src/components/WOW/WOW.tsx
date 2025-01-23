@@ -44,9 +44,9 @@ function WOW() {
   const [autoMove, setAutoMove] = useState(false);
   const [moveInterval, setMoveInterval] = useState(500);
   const [coordinates, setCoordinates] = useState({
-    x1: 100,
-    x2: 200,
-    y: 100
+    x1: 1,
+    x2: 2550,
+    y: 25
   });
 
   // 注册全局热键

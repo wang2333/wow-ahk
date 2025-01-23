@@ -2,14 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { invoke } from '@tauri-apps/api/core';
 import { message } from '@tauri-apps/plugin-dialog';
-import {
-  BaseDirectory,
-  exists,
-  mkdir,
-  readDir,
-  readTextFile,
-  writeTextFile
-} from '@tauri-apps/plugin-fs';
+import { BaseDirectory, mkdir, readDir, readTextFile, writeTextFile } from '@tauri-apps/plugin-fs';
 import { register, unregister } from '@tauri-apps/plugin-global-shortcut';
 import styles from './index.module.css';
 
