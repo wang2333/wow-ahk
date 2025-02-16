@@ -7,6 +7,12 @@ interface ColorMappingObject {
   [key: string]: string;
 }
 
+export interface StopPosition {
+  x: number;
+  y: number;
+  color: string;
+}
+
 // RGB转十六进制
 export function rgbToHex(r: number, g: number, b: number): string {
   const toHex = (n: number) => {

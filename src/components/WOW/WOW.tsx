@@ -5,7 +5,7 @@ import mode2 from '@/assets/mode2.wav';
 import pause from '@/assets/pause.wav';
 import { invoke } from '@tauri-apps/api/core';
 import { register, unregister } from '@tauri-apps/plugin-global-shortcut';
-import { color_mappings, rgbToHex } from './config';
+import { color_mappings, rgbToHex, StopPosition } from './config';
 import styles from './index.module.css';
 
 interface ColorInfo {
@@ -42,7 +42,12 @@ function WOW() {
   const [color, setColor] = useState<string | null>(null);
   const [model, setModel] = useState(0);
   const [autoMove, setAutoMove] = useState(false);
-  const [moveInterval, setMoveInterval] = useState(500);
+  const [moveInterval, setMoveInterval] = useState(700);
+  const [stopPosition, setStopPosition] = useState<StopPosition>({
+    x: 2420,
+    y: 610,
+    color: '#121212'
+  });
   const [coordinates, setCoordinates] = useState({
     x1: 1,
     x2: 2550,
@@ -60,7 +65,7 @@ function WOW() {
 
   useEffect(() => {
     let intervalId: number | null = null;
-    let intervalId2: number | null = null;
+    let moveTimer: number | null = null;
 
     if (model !== 0) {
       intervalId = window.setInterval(async () => {
@@ -81,15 +86,25 @@ function WOW() {
       }, 100);
     }
 
+    // 自动移动鼠标拾取
     if (autoMove && model !== 0) {
       let currentIndex = 0;
-      intervalId2 = window.setInterval(async () => {
-        try {
-          const point = MOUSE_POSITIONS[currentIndex];
-          await invoke('move_mouse_to_point', { x: point.x, y: point.y });
-          currentIndex = (currentIndex + 1) % MOUSE_POSITIONS.length;
-        } catch (error) {
-          console.error('鼠标移动失败:', error);
+      moveTimer = window.setInterval(async () => {
+        const point = MOUSE_POSITIONS[currentIndex];
+        await invoke('move_mouse_to_point', { x: point.x, y: point.y });
+        currentIndex = (currentIndex + 1) % MOUSE_POSITIONS.length;
+        await invoke('press_keys', { keys: ['F12'] });
+
+        // 背包满自动停止
+        const colorInfo: ColorInfo = await invoke('get_pixel_color', {
+          x: stopPosition.x,
+          y: stopPosition.y
+        });
+        const currentColor = rgbToHex(colorInfo.r, colorInfo.g, colorInfo.b);
+        if (currentColor.toLowerCase() !== stopPosition.color.toLowerCase()) {
+          setAutoMove(false);
+          setModel(0);
+          pauseAudio.play().catch(console.error);
         }
       }, moveInterval);
     }
@@ -98,11 +113,11 @@ function WOW() {
       if (intervalId !== null) {
         clearInterval(intervalId);
       }
-      if (intervalId2 !== null) {
-        clearInterval(intervalId2);
+      if (moveTimer !== null) {
+        clearInterval(moveTimer);
       }
     };
-  }, [model, coordinates, autoMove, moveInterval]);
+  }, [model, coordinates, autoMove, moveInterval, stopPosition]);
 
   const registerShortcuts = async () => {
     try {
@@ -158,6 +173,14 @@ function WOW() {
     setMoveInterval(Math.max(100, value));
   };
 
+  const handleStopPositionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setStopPosition(prev => ({
+      ...prev,
+      [name]: name === 'color' ? value : parseInt(value)
+    }));
+  };
+
   return (
     <div className={styles.container}>
       {/* 坐标设置区域 */}
@@ -200,20 +223,20 @@ function WOW() {
 
       {/* 鼠标移动控制区域 */}
       <div className={styles.card}>
-        <h3 className={styles.cardTitle}>鼠标移动设置</h3>
+        <h3 className={styles.cardTitle}>
+          <span>自动拾取设置</span>
+          <label className={styles.toggleSwitch}>
+            <input
+              type='checkbox'
+              checked={autoMove}
+              onChange={e => setAutoMove(e.target.checked)}
+              className={styles.toggleInput}
+            />
+            <span className={styles.toggleSlider}></span>
+          </label>
+        </h3>
+
         <div className={styles.controlSection}>
-          <div className={styles.controlGroup}>
-            <label className={styles.toggleSwitch}>
-              <input
-                type='checkbox'
-                checked={autoMove}
-                onChange={e => setAutoMove(e.target.checked)}
-                className={styles.toggleInput}
-              />
-              <span className={styles.toggleSlider}></span>
-            </label>
-            <span className={styles.controlLabel}>自动移动</span>
-          </div>
           <div className={styles.inputGroupCompact}>
             <label className={styles.label}>移动间隔(ms)</label>
             <input
@@ -222,6 +245,33 @@ function WOW() {
               onChange={handleIntervalChange}
               min='100'
               step='100'
+              className={styles.input}
+            />
+          </div>
+          <div className={styles.inputGroupCompact}>
+            <label className={styles.label}>目标颜色：</label>
+            <input
+              type='text'
+              value={stopPosition.color}
+              onChange={handleStopPositionChange}
+              className={styles.input}
+            />
+          </div>
+          <div className={styles.inputGroupCompact}>
+            <label className={styles.label}>X坐标：</label>
+            <input
+              type='number'
+              value={stopPosition.x}
+              onChange={handleStopPositionChange}
+              className={styles.input}
+            />
+          </div>
+          <div className={styles.inputGroupCompact}>
+            <label className={styles.label}>Y坐标：</label>
+            <input
+              type='number'
+              value={stopPosition.y}
+              onChange={handleStopPositionChange}
               className={styles.input}
             />
           </div>

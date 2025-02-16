@@ -21,6 +21,9 @@
   margin: 0 0 12px 0;
   padding-bottom: 10px;
   border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
 .coordinateInputs {

@@ -22,9 +22,9 @@ fn get_pixel_color(x: i32, y: i32) -> Option<ColorInfo> {
         if let Ok(image) = screen.capture_area(x, y, 1, 1) {
             let pixels = image.into_raw();
             return Some(ColorInfo {
-                r: pixels[0],
-                g: pixels[1],
-                b: pixels[2],
+        r: pixels[0],
+        g: pixels[1],
+        b: pixels[2],
             });
         }
     }
