@@ -5,7 +5,7 @@ import mode2 from '@/assets/mode2.wav';
 import pause from '@/assets/pause.wav';
 import { invoke } from '@tauri-apps/api/core';
 import { register, unregister } from '@tauri-apps/plugin-global-shortcut';
-import { color_mappings, rgbToHex, StopPosition } from './config';
+import { color_mappings, rgbToHex } from './config';
 import styles from './index.module.css';
 
 interface ColorInfo {
@@ -43,11 +43,7 @@ function WOW() {
   const [model, setModel] = useState(0);
   const [autoMove, setAutoMove] = useState(false);
   const [moveInterval, setMoveInterval] = useState(700);
-  const [stopPosition, setStopPosition] = useState<StopPosition>({
-    x: 2420,
-    y: 610,
-    color: '#121212'
-  });
+
   const [coordinates, setCoordinates] = useState({
     x1: 1,
     x2: 2550,
@@ -80,6 +76,7 @@ function WOW() {
 
         const keyCombo = color_mappings[hexColor];
         // 检查颜色匹配并触发按键
+
         if (keyCombo) {
           await invoke('press_keys', { keys: keyCombo.split('-') });
         }
@@ -94,18 +91,6 @@ function WOW() {
         await invoke('move_mouse_to_point', { x: point.x, y: point.y });
         currentIndex = (currentIndex + 1) % MOUSE_POSITIONS.length;
         await invoke('press_keys', { keys: ['F12'] });
-
-        // 背包满自动停止
-        const colorInfo: ColorInfo = await invoke('get_pixel_color', {
-          x: stopPosition.x,
-          y: stopPosition.y
-        });
-        const currentColor = rgbToHex(colorInfo.r, colorInfo.g, colorInfo.b);
-        if (currentColor.toLowerCase() !== stopPosition.color.toLowerCase()) {
-          setAutoMove(false);
-          setModel(0);
-          pauseAudio.play().catch(console.error);
-        }
       }, moveInterval);
     }
 
@@ -117,7 +102,7 @@ function WOW() {
         clearInterval(moveTimer);
       }
     };
-  }, [model, coordinates, autoMove, moveInterval, stopPosition]);
+  }, [model, coordinates, autoMove, moveInterval]);
 
   const registerShortcuts = async () => {
     try {
@@ -171,14 +156,6 @@ function WOW() {
   const handleIntervalChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(e.target.value) || 500;
     setMoveInterval(Math.max(100, value));
-  };
-
-  const handleStopPositionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setStopPosition(prev => ({
-      ...prev,
-      [name]: name === 'color' ? value : parseInt(value)
-    }));
   };
 
   return (
@@ -245,33 +222,6 @@ function WOW() {
               onChange={handleIntervalChange}
               min='100'
               step='100'
-              className={styles.input}
-            />
-          </div>
-          <div className={styles.inputGroupCompact}>
-            <label className={styles.label}>目标颜色：</label>
-            <input
-              type='text'
-              value={stopPosition.color}
-              onChange={handleStopPositionChange}
-              className={styles.input}
-            />
-          </div>
-          <div className={styles.inputGroupCompact}>
-            <label className={styles.label}>X坐标：</label>
-            <input
-              type='number'
-              value={stopPosition.x}
-              onChange={handleStopPositionChange}
-              className={styles.input}
-            />
-          </div>
-          <div className={styles.inputGroupCompact}>
-            <label className={styles.label}>Y坐标：</label>
-            <input
-              type='number'
-              value={stopPosition.y}
-              onChange={handleStopPositionChange}
               className={styles.input}
             />
           </div>
