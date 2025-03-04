@@ -59,6 +59,7 @@ function WOW() {
     };
   }, []);
 
+  const [oldColor, setOldColor] = useState<string | null>(null);
   useEffect(() => {
     let intervalId: number | null = null;
     let moveTimer: number | null = null;
@@ -77,7 +78,10 @@ function WOW() {
         const keyCombo = color_mappings[hexColor];
         // 检查颜色匹配并触发按键
 
+        setOldColor(keyCombo);
+
         if (keyCombo) {
+          console.log('👻 ~ hexColor:', newColor, hexColor, keyCombo);
           await invoke('press_keys', { keys: keyCombo.split('-') });
         }
       }, 100);
@@ -90,7 +94,7 @@ function WOW() {
         const point = MOUSE_POSITIONS[currentIndex];
         await invoke('move_mouse_to_point', { x: point.x, y: point.y });
         currentIndex = (currentIndex + 1) % MOUSE_POSITIONS.length;
-        await invoke('press_keys', { keys: ['F12'] });
+        await invoke('press_keys', { keys: ['T'] });
       }, moveInterval);
     }
 
