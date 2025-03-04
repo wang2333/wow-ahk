@@ -162,8 +162,49 @@ function WOW() {
     setMoveInterval(Math.max(100, value));
   };
 
+  const handleTest = async () => {
+    const keys = [
+      'NUM1',
+      'NUM2',
+      'NUM3',
+      'CTRL-F1',
+      'ALT-F2',
+      'SHIFT-F3',
+      'CTRL-ALT-F4',
+      'CTRL-ALT-SHIFT-F5',
+      'TAB',
+      'MOUSEWHEELUP',
+      'MOUSEWHEELDOWN',
+      'HOME',
+      'UP',
+      'DOWN',
+      'LEFT',
+      'RIGHT',
+      'PAGEUP',
+      'PAGEDOWN',
+      'TAB',
+      'DELETE',
+      'INSERT',
+      'END',
+      'NUMPADDIVIDE',
+      'NUMPADMULTIPLY',
+      'NUMPADMINUS',
+      'NUMPADPLUS',
+      ',',
+      '.',
+      ';',
+      '[',
+      ']'
+    ];
+    for (const key of keys) {
+      await invoke('press_keys', { keys: key.split('-') });
+      await new Promise(resolve => setTimeout(resolve, 1000));
+    }
+  };
+
   return (
     <div className={styles.container}>
+      <button onClick={handleTest}>测试按键</button>
       {/* 坐标设置区域 */}
       <div className={styles.card}>
         <h3 className={styles.cardTitle}>坐标设置</h3>
