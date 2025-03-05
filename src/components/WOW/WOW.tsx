@@ -5,7 +5,12 @@ import mode2 from '@/assets/mode2.wav';
 import pause from '@/assets/pause.wav';
 import { invoke } from '@tauri-apps/api/core';
 import { register, unregister } from '@tauri-apps/plugin-global-shortcut';
-import { color_mappings, rgbToHex } from './config';
+import {
+  color_mappings_JIAJIA,
+  color_mappings_XIAOYI_SS,
+  color_mappings_XIAOYI_LR,
+  rgbToHex
+} from './config';
 import styles from './index.module.css';
 
 interface ColorInfo {
@@ -13,6 +18,7 @@ interface ColorInfo {
   g: number;
   b: number;
 }
+type ColorMapping = 'JIAJIA' | 'XIAOYI_SS' | 'XIAOYI_LR';
 
 // 创建音频对象
 const mode1Audio = new Audio(mode1);
@@ -43,6 +49,14 @@ function WOW() {
   const [model, setModel] = useState(0);
   const [autoMove, setAutoMove] = useState(false);
   const [moveInterval, setMoveInterval] = useState(700);
+  const [selectedMapping, setSelectedMapping] = useState<ColorMapping>('JIAJIA');
+
+  const colorMapDict = {
+    JIAJIA: color_mappings_JIAJIA,
+    XIAOYI_SS: color_mappings_XIAOYI_SS,
+    XIAOYI_LR: color_mappings_XIAOYI_LR
+  };
+  const color_mappings = colorMapDict[selectedMapping];
 
   const [coordinates, setCoordinates] = useState({
     x1: 1,
@@ -57,9 +71,8 @@ function WOW() {
     return () => {
       cleanup();
     };
-  }, []);
+  }, [selectedMapping]);
 
-  const [oldColor, setOldColor] = useState<string | null>(null);
   useEffect(() => {
     let intervalId: number | null = null;
     let moveTimer: number | null = null;
@@ -67,7 +80,7 @@ function WOW() {
     if (model !== 0) {
       intervalId = window.setInterval(async () => {
         const newColor = await invoke<ColorInfo>('get_pixel_color', {
-          x: model === 1 ? coordinates.x1 : coordinates.x2,
+          x: model === 1 || selectedMapping !== 'JIAJIA' ? coordinates.x1 : coordinates.x2,
           y: coordinates.y
         });
 
@@ -77,11 +90,7 @@ function WOW() {
 
         const keyCombo = color_mappings[hexColor];
         // 检查颜色匹配并触发按键
-
-        setOldColor(keyCombo);
-
         if (keyCombo) {
-          console.log('👻 ~ hexColor:', newColor, hexColor, keyCombo);
           await invoke('press_keys', { keys: keyCombo.split('-') });
         }
       }, 100);
@@ -113,6 +122,11 @@ function WOW() {
       // 注册F1热键
       await register('F1', async e => {
         if (e.state === 'Pressed') {
+          if (selectedMapping === 'XIAOYI_LR') {
+            await invoke('press_keys', { keys: ['SHIFT', 'F11'] });
+          } else if (selectedMapping === 'XIAOYI_SS') {
+            await invoke('press_keys', { keys: ['ALT', 'SHIFT', 'F11'] });
+          }
           setModel(1);
           mode1Audio.play().catch(console.error);
         }
@@ -121,6 +135,11 @@ function WOW() {
       // 注册F2热键
       await register('F2', async e => {
         if (e.state === 'Pressed') {
+          if (selectedMapping === 'XIAOYI_LR') {
+            await invoke('press_keys', { keys: ['ALT', 'CTRL', 'SHIFT', 'F11'] });
+          } else if (selectedMapping === 'XIAOYI_SS') {
+            await invoke('press_keys', { keys: ['ALT', 'CTRL', 'SHIFT', 'F11'] });
+          }
           setModel(2);
           mode2Audio.play().catch(console.error);
         }
@@ -162,83 +181,56 @@ function WOW() {
     setMoveInterval(Math.max(100, value));
   };
 
-  const handleTest = async () => {
-    const keys = [
-      'NUM1',
-      'NUM2',
-      'NUM3',
-      'CTRL-F1',
-      'ALT-F2',
-      'SHIFT-F3',
-      'CTRL-ALT-F4',
-      'CTRL-ALT-SHIFT-F5',
-      'TAB',
-      'MOUSEWHEELUP',
-      'MOUSEWHEELDOWN',
-      'HOME',
-      'UP',
-      'DOWN',
-      'LEFT',
-      'RIGHT',
-      'PAGEUP',
-      'PAGEDOWN',
-      'TAB',
-      'DELETE',
-      'INSERT',
-      'END',
-      'NUMPADDIVIDE',
-      'NUMPADMULTIPLY',
-      'NUMPADMINUS',
-      'NUMPADPLUS',
-      ',',
-      '.',
-      ';',
-      '[',
-      ']'
-    ];
-    for (const key of keys) {
-      await invoke('press_keys', { keys: key.split('-') });
-      await new Promise(resolve => setTimeout(resolve, 1000));
-    }
-  };
-
   return (
     <div className={styles.container}>
-      <button onClick={handleTest}>测试按键</button>
       {/* 坐标设置区域 */}
       <div className={styles.card}>
-        <h3 className={styles.cardTitle}>坐标设置</h3>
-        <div className={styles.coordinateInputs}>
-          <div className={styles.inputGroup}>
-            <label className={styles.label}>X1 坐标</label>
-            <input
-              type='number'
-              name='x1'
-              value={coordinates.x1}
-              onChange={handleCoordinateChange}
+        <h3 className={styles.cardTitle}>基础设置</h3>
+        <div className={styles.settingsContainer}>
+          <div className={styles.mappingSelection}>
+            <label className={styles.label}>配置选择</label>
+            <select
+              value={selectedMapping}
+              onChange={e => setSelectedMapping(e.target.value as ColorMapping)}
               className={styles.input}
-            />
+            >
+              <option value='JIAJIA'>佳佳配置</option>
+              <option value='XIAOYI_SS'>小易SS配置</option>
+              <option value='XIAOYI_LR'>小易LR配置</option>
+            </select>
           </div>
-          <div className={styles.inputGroup}>
-            <label className={styles.label}>X2 坐标</label>
-            <input
-              type='number'
-              name='x2'
-              value={coordinates.x2}
-              onChange={handleCoordinateChange}
-              className={styles.input}
-            />
-          </div>
-          <div className={styles.inputGroup}>
-            <label className={styles.label}>Y 坐标</label>
-            <input
-              type='number'
-              name='y'
-              value={coordinates.y}
-              onChange={handleCoordinateChange}
-              min='0'
-              className={styles.input}
-            />
+          <div className={styles.coordinateInputs}>
+            <div className={styles.inputGroup}>
+              <label className={styles.label}>X1 坐标</label>
+              <input
+                type='number'
+                name='x1'
+                value={coordinates.x1}
+                onChange={handleCoordinateChange}
+                className={styles.input}
+              />
+            </div>
+            <div className={styles.inputGroup}>
+              <label className={styles.label}>X2 坐标</label>
+              <input
+                type='number'
+                name='x2'
+                value={coordinates.x2}
+                onChange={handleCoordinateChange}
+                className={styles.input}
+              />
+            </div>
+            <div className={styles.inputGroup}>
+              <label className={styles.label}>Y 坐标</label>
+              <input
+                type='number'
+                name='y'
+                value={coordinates.y}
+                onChange={handleCoordinateChange}
+                min='0'
+                className={styles.input}
+              />
+            </div>
           </div>
         </div>
       </div>
