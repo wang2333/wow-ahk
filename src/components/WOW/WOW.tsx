@@ -18,7 +18,7 @@ interface ColorInfo {
   g: number;
   b: number;
 }
-type ColorMapping = 'JIAJIA' | 'XIAOYI_SS' | 'XIAOYI_LR';
+type ColorMapping = 'JIAJIA' | 'XIAOYI_SS' | 'XIAOYI_LR' | 'AH';
 
 // 创建音频对象
 const mode1Audio = new Audio(mode1);
@@ -44,24 +44,50 @@ for (let angle = 0; angle < 360; angle += 30) {
 }
 MOUSE_POSITIONS.push(MOUSE_CENTER);
 
+function getKeyNum(targetNum: number, actionNum: number) {
+  const keyMap = [
+    'NUMPAD1',
+    'NUMPAD2',
+    'NUMPAD3',
+    'NUMPAD4',
+    'NUMPAD5',
+    'NUMPAD6',
+    'NUMPAD7',
+    'NUMPAD8',
+    'NUMPAD9',
+    'F5',
+    'F6',
+    'F7',
+    'F8',
+    'F9'
+  ];
+  const keyNum1 = Math.floor(targetNum / 14);
+  const keyNum2 = targetNum % 14;
+  const keyNum3 = Math.floor(actionNum / 14);
+  const keyNum4 = actionNum % 14;
+  return [keyMap[keyNum1], keyMap[keyNum2], keyMap[keyNum3], keyMap[keyNum4]];
+}
+
 function WOW() {
   const [color, setColor] = useState<string | null>(null);
   const [model, setModel] = useState(0);
   const [autoMove, setAutoMove] = useState(false);
   const [moveInterval, setMoveInterval] = useState(700);
   const [selectedMapping, setSelectedMapping] = useState<ColorMapping>('JIAJIA');
+  const [oldColor, setOldColor] = useState<any>({ r: 0, g: 0, b: 0 });
 
   const colorMapDict = {
     JIAJIA: color_mappings_JIAJIA,
     XIAOYI_SS: color_mappings_XIAOYI_SS,
-    XIAOYI_LR: color_mappings_XIAOYI_LR
+    XIAOYI_LR: color_mappings_XIAOYI_LR,
+    AH: null
   };
   const color_mappings = colorMapDict[selectedMapping];
 
   const [coordinates, setCoordinates] = useState({
-    x1: 1,
+    x1: 2,
     x2: 2550,
-    y: 25
+    y: 30
   });
 
   // 注册全局热键
@@ -74,26 +100,49 @@ function WOW() {
   }, [selectedMapping]);
 
   useEffect(() => {
-    let intervalId: number | null = null;
+    let isRunning = true;
     let moveTimer: number | null = null;
 
-    if (model !== 0) {
-      intervalId = window.setInterval(async () => {
-        const newColor = await invoke<ColorInfo>('get_pixel_color', {
-          x: model === 1 || selectedMapping !== 'JIAJIA' ? coordinates.x1 : coordinates.x2,
-          y: coordinates.y
-        });
+    const checkColor = async () => {
+      if (!isRunning || model === 0) return;
 
-        // 转换为十六进制格式
-        const hexColor = rgbToHex(newColor.r, newColor.g, newColor.b);
-        setColor(hexColor);
+      const newColor = await invoke<ColorInfo>('get_pixel_color', {
+        x: model === 1 || selectedMapping !== 'JIAJIA' ? coordinates.x1 : coordinates.x2,
+        y: coordinates.y
+      });
 
-        const keyCombo = color_mappings[hexColor];
-        // 检查颜色匹配并触发按键
+      // 转换为十六进制格式
+      const hexColor = rgbToHex(newColor.r, newColor.g, newColor.b);
+      setColor(hexColor);
+      setOldColor(newColor);
+
+      if (
+        selectedMapping === 'AH' &&
+        newColor.r !== oldColor.r &&
+        newColor.g !== 0 &&
+        newColor.b !== 0
+      ) {
+        const keys = getKeyNum(newColor.g, newColor.b);
+
+        for (const key of keys) {
+          await invoke('press_keys', { keys: ['CTRL', key] });
+        }
+      } else {
+        const keyCombo = color_mappings?.[hexColor];
         if (keyCombo) {
           await invoke('press_keys', { keys: keyCombo.split('-') });
         }
-      }, 100);
+      }
+
+      // 递归调用，确保前一个操作完成后才开始下一个
+      if (isRunning) {
+        setTimeout(checkColor, 100);
+      }
+    };
+
+    // 启动检测
+    if (model !== 0) {
+      checkColor();
     }
 
     // 自动移动鼠标拾取
@@ -108,9 +157,7 @@ function WOW() {
     }
 
     return () => {
-      if (intervalId !== null) {
-        clearInterval(intervalId);
-      }
+      isRunning = false;
       if (moveTimer !== null) {
         clearInterval(moveTimer);
       }
@@ -195,6 +242,7 @@ function WOW() {
               className={styles.input}
             >
               <option value='JIAJIA'>佳佳配置</option>
+              <option value='AH'>AH配置</option>
               <option value='XIAOYI_SS'>小易SS配置</option>
               <option value='XIAOYI_LR'>小易LR配置</option>
             </select>
@@ -278,7 +326,9 @@ function WOW() {
               当前模式: {model === 0 ? '已暂停' : model === 1 ? '模式1' : '模式2'}
             </span>
 
-            {color && <span className={styles.statusLabel}>执行按键：{color_mappings[color]}</span>}
+            {color && (
+              <span className={styles.statusLabel}>执行按键：{color_mappings?.[color]}</span>
+            )}
           </div>
         </div>
       </div>
