@@ -180,6 +180,7 @@ export const color_mappings_JIAJIA: Record<string, string> = {
   '#1e1c68': 'F12'
 };
 
+
 const CONFIG_XIAOYI_SS: { [key: string]: { color: string; com: string } } = {
   immoraid7target: {
     color: '52,4,0',
@@ -1441,132 +1442,556 @@ const CONFIG_XIAOYI_SS: { [key: string]: { color: string; com: string } } = {
 /** 小易SS */
 export const color_mappings_XIAOYI_SS = transferConfig(CONFIG_XIAOYI_SS);
 
-export const color_mappings_XIAOYI_LR: Record<string, string> = {
-  '#090100': 'CTRL-F2',
-  '#640100': 'CTRL-SHIFT-F3',
-  '#290100': 'ALT-F3',
-  '#3f0000': 'TAB',
-  '#ef0100': 'ALT-DELETE',
-  '#a90300': 'CTRL-NUMPAD8',
-  '#590300': 'ALT-CTRL-]',
-  '#a90000': 'ALT-CTRL-F1',
-  '#a40300': 'CTRL-NUMPAD7',
-  '#490100': 'ALT-F2',
-  '#990000': 'ALT-CTRL-F2',
-  '#e90000': 'ALT-F1',
-  '#390200': 'CTRL-SHIFT-HOME',
-  '#cf0300': 'ALT-SHIFT-NUMPAD7',
-  '#490400': 'CTRL-SHIFT-F9',
-  '#d40300': 'SHIFT-NUMPAD9',
-  '#6f0000': 'CTRL-F10',
-  '#610000': 'CTRL-SHIFT-F1',
-  '#190300': 'CTRL-SHIFT-]',
-  '#410200': 'ALT-CTRL-SHIFT-PAGEDOWN',
-  '#310300': 'SHIFT-NUMPAD6',
-  '#990200': 'ALT-PAGEUP',
-  '#3f0300': 'ALT-SHIFT-]',
-  '#2f0400': 'CTRL-SHIFT-NUMPAD9',
-  '#df0200': 'CTRL-[',
-  '#d90100': 'ALT-SHIFT-INSERT',
-  '#510100': 'ALT-SHIFT-F2',
-  '#890100': 'SHIFT-INSERT',
-  '#290400': 'ALT-NUMPAD0',
-  '#910300': 'ALT-CTRL-NUMPAD6',
-  '#890200': 'ALT-CTRL-SHIFT-PAGEUP',
-  '#340400': 'ALT-CTRL-NUMPAD9',
-  '#190400': 'CTRL-NUMPAD9',
-  '#a10200': 'CTRL-]',
-  '#b40200': 'ALT-SHIFT-PAGEUP',
-  '#d10200': 'ALT-PAGEDOWN',
-  '#440000': 'ALT-SHIFT-F9',
-  '#690200': 'SHIFT-END',
-  '#390000': 'ALT-CTRL-SHIFT-NUMPAD0',
-  '#010300': 'ALT-SHIFT-NUMPAD6',
-  '#c40100': 'CTRL-SHIFT-INSERT',
-  '#340100': 'CTRL-F4',
-  '#890300': 'CTRL-SHIFT-NUMPAD6',
-  '#a40000': 'CTRL-SHIFT-NUMPAD0',
-  '#e10100': 'ALT-CTRL-END',
-  '#cf0000': 'CTRL-NUMPAD1',
-  '#190000': 'ALT-CTRL-SHIFT-F9',
-  '#690300': 'ALT-CTRL-SHIFT-NUMPAD7',
-  '#f90000': 'CTRL-F5',
-  '#c90200': 'CTRL-PAGEDOWN',
-  '#b90300': 'SHIFT-NUMPAD7',
-  '#ff0000': 'CTRL-SHIFT-F2',
-  '#790100': 'ALT-SHIFT-F3',
-  '#f90100': 'ALT-CTRL-SHIFT-HOME',
-  '#990100': 'ALT-CTRL-INSERT',
-  '#790200': 'ALT-[',
-  '#d90300': 'ALT-CTRL-SHIFT-NUMPAD8',
-  '#290200': 'ALT-END',
-  '#f10000': 'SHIFT-F1',
-  '#c90000': 'SHIFT-F3',
-  '#790300': 'ALT-NUMPAD7',
-  '#390400': 'ALT-CTRL-F9',
-  '#5f0100': 'ALT-CTRL-SHIFT-F3',
-  '#040100': 'ALT-SHIFT-F1',
-  '#490300': 'ALT-CTRL-SHIFT-NUMPAD6',
-  '#110200': 'ALT-SHIFT-DELETE',
-  '#e90100': 'CTRL-HOME',
-  '#b90100': 'ALT-SHIFT-HOME',
-  '#990300': 'ALT-CTRL-SHIFT-NUMPAD9',
-  '#190200': 'CTRL-SHIFT-PAGEUP',
-  '#0f0300': 'SHIFT-[',
-  '#390300': 'ALT-CTRL-NUMPAD7',
-  '#040400': 'ALT-SHIFT-NUMPAD8',
-  '#690000': 'SHIFT-NUMPAD0',
-  '#910000': 'CTRL-F1',
-  '#e90200': 'ALT-CTRL-[',
-  '#310000': 'SHIFT-F9',
-  '#190100': 'SHIFT-F2',
-  '#c90300': 'ALT-CTRL-NUMPAD8',
-  '#9f0000': 'ALT-SHIFT-NUMPAD0',
-  '#540200': 'CTRL-END',
-  '#740300': 'ALT-NUMPAD6',
-  '#f40100': 'SHIFT-DELETE',
-  '#840200': 'SHIFT-PAGEDOWN',
-  '#b90200': 'ALT-SHIFT-PAGEDOWN',
-  '#390100': 'ALT-CTRL-F3',
-  '#790000': 'ALT-CTRL-NUMPAD0',
-  '#240200': 'ALT-HOME',
-  '#2f0100': 'CTRL-F3',
-  '#b90000': 'CTRL-MOUSEWHEELDOWN',
-  '#b10100': 'CTRL-INSERT',
-  '#440300': 'SHIFT-]',
-  '#590000': 'CTRL-NUMPAD0',
-  '#090400': 'ALT-SHIFT-NUMPAD9',
-  '#c10000': 'ALT-CTRL-SHIFT-F2',
-  '#290300': 'ALT-SHIFT-NUMPAD5',
-  '#ff0300': 'ALT-NUMPAD9',
-  '#210100': 'ALT-INSERT',
-  '#1f0200': 'ALT-CTRL-HOME',
-  '#210400': 'ALT-F10',
-  '#610300': 'CTRL-SHIFT-NUMPAD8',
-  '#140300': 'CTRL-SHIFT-[',
-  '#a90100': 'ALT-CTRL-SHIFT-INSERT',
-  '#e90300': 'ALT-NUMPAD8',
-  '#6f0300': 'CTRL-NUMPAD6',
-  '#490200': 'ALT-SHIFT-END',
-  '#e40200': 'ALT-CTRL-PAGEDOWN',
-  '#590200': 'CTRL-PAGEUP',
-  '#690100': 'ALT-CTRL-SHIFT-F4',
-  '#090300': 'ALT-]',
-  '#a90200': 'CTRL-SHIFT-PAGEDOWN',
-  '#bf0100': 'SHIFT-HOME',
-  '#090200': 'ALT-CTRL-DELETE',
-  '#590100': 'CTRL-DELETE',
-  '#f10300': 'SHIFT-NUMPAD8',
-  '#af0200': 'ALT-CTRL-PAGEUP',
-  '#d90200': 'ALT-CTRL-SHIFT-]',
-  '#940100': 'ALT-CTRL-F4',
-  '#710200': 'CTRL-SHIFT-END',
-  '#d90000': 'ALT-CTRL-SHIFT-F1',
-  '#9f0300': 'CTRL-SHIFT-NUMPAD7',
-  '#4f0200': 'ALT-CTRL-SHIFT-END',
-  '#f90200': 'ALT-CTRL-SHIFT-[',
-  '#7f0200': 'SHIFT-PAGEUP',
-  '#810100': 'ALT-CTRL-SHIFT-DELETE',
-  '#c90100': 'CTRL-SHIFT-DELETE',
-  '#290000': 'ALT-F9'
+
+const CONFIG_XIAOYI_LR = {
+  stopCasting: {
+    color: '193,3,0',
+    com: ''
+  },
+  kologarnTarget3: {
+    color: '212,0,0',
+    com: ''
+  },
+  explosiveShot: {
+    color: '9,1,0',
+    com: 'CTRL-F2'
+  },
+  na: {
+    color: '0,0,0',
+    com: ''
+  },
+  backwardJump: {
+    color: '143,1,0',
+    com: ''
+  },
+  casting: {
+    color: '20,0,0',
+    com: ''
+  },
+  tab: {
+    color: '63,0,0',
+    com: 'TAB'
+  },
+  cd: {
+    color: '10,0,0',
+    com: ''
+  },
+  startMove: {
+    color: '249,3,0',
+    com: ''
+  },
+  stopMoveQE: {
+    color: '73,0,0',
+    com: ''
+  },
+  stopMove: {
+    color: '116,0,0',
+    com: ''
+  },
+  cancelStormPower: {
+    color: '137,0,0',
+    com: ''
+  },
+  chimera: {
+    color: '97,0,0',
+    com: 'CTRL-SHIFT-F1'
+  },
+  KillShotraid12target: {
+    color: '9,2,0',
+    com: 'ALT-CTRL-DELETE'
+  },
+  KillShotraid4target: {
+    color: '196,1,0',
+    com: 'CTRL-SHIFT-INSERT'
+  },
+  KillShot: {
+    color: '233,0,0',
+    com: 'ALT-F1'
+  },
+  Serpentraid14target: {
+    color: '65,2,0',
+    com: 'ALT-CTRL-SHIFT-PAGEDOWN'
+  },
+  Serpentraid1target: {
+    color: '89,2,0',
+    com: 'CTRL-PAGEUP'
+  },
+  Serpentraid22target: {
+    color: '161,2,0',
+    com: 'CTRL-]'
+  },
+  Serpentraid2target: {
+    color: '153,2,0',
+    com: 'ALT-PAGEUP'
+  },
+  Serpent: {
+    color: '241,0,0',
+    com: 'SHIFT-F1'
+  },
+  KillShotraid2target: {
+    color: '33,1,0',
+    com: 'ALT-INSERT'
+  },
+  KillShotraid22target: {
+    color: '84,2,0',
+    com: 'CTRL-END'
+  },
+  Esraid8target: {
+    color: '164,3,0',
+    com: 'CTRL-NUMPAD7'
+  },
+  Espet: {
+    color: '153,3,0',
+    com: 'ALT-CTRL-SHIFT-NUMPAD9'
+  },
+  tarBoss2: {
+    color: '41,4,0',
+    com: 'ALT-NUMPAD0'
+  },
+  autoshot: {
+    color: '52,1,0',
+    com: 'CTRL-F4'
+  },
+  launcher: {
+    color: '145,0,0',
+    com: 'CTRL-F1'
+  },
+  tarEnemy: {
+    color: '121,0,0',
+    com: 'ALT-CTRL-NUMPAD0'
+  },
+  burst2: {
+    color: '49,0,0',
+    com: 'SHIFT-F9'
+  },
+  KillShotraid23target: {
+    color: '41,2,0',
+    com: 'ALT-END'
+  },
+  Esraid25target: {
+    color: '47,4,0',
+    com: 'CTRL-SHIFT-NUMPAD9'
+  },
+  EsL3: {
+    color: '73,1,0',
+    com: 'ALT-F2'
+  },
+  aimedShot: {
+    color: '169,0,0',
+    com: 'ALT-CTRL-F1'
+  },
+  KillShotraid20target: {
+    color: '185,1,0',
+    com: 'ALT-SHIFT-HOME'
+  },
+  forwardJump: {
+    color: '95,1,0',
+    com: 'CTRL-SHIFT-F4'
+  },
+  Esraid18target: {
+    color: '97,3,0',
+    com: 'CTRL-SHIFT-NUMPAD8'
+  },
+  Serpentraid7target: {
+    color: '137,2,0',
+    com: 'ALT-CTRL-SHIFT-PAGEUP'
+  },
+  Esraid2target: {
+    color: '116,3,0',
+    com: 'ALT-NUMPAD6'
+  },
+  multiShot: {
+    color: '217,0,0',
+    com: 'ALT-CTRL-SHIFT-F1'
+  },
+  killCommand: {
+    color: '201,0,0',
+    com: 'SHIFT-F3'
+  },
+  snakeTrap: {
+    color: '249,0,0',
+    com: 'CTRL-F5'
+  },
+  KillShotraid6target: {
+    color: '217,1,0',
+    com: 'ALT-SHIFT-INSERT'
+  },
+  turn: {
+    color: '33,4,0',
+    com: 'ALT-F10'
+  },
+  KillShotraid7target: {
+    color: '169,1,0',
+    com: 'ALT-CTRL-SHIFT-INSERT'
+  },
+  Serpentraid8target: {
+    color: '201,2,0',
+    com: 'CTRL-PAGEDOWN'
+  },
+  Serpentraid25target: {
+    color: '25,3,0',
+    com: 'CTRL-SHIFT-]'
+  },
+  Serpentraid11target: {
+    color: '169,2,0',
+    com: 'CTRL-SHIFT-PAGEDOWN'
+  },
+  Esraid22target: {
+    color: '25,4,0',
+    com: 'CTRL-NUMPAD9'
+  },
+  KillShotraid11target: {
+    color: '201,1,0',
+    com: 'CTRL-SHIFT-DELETE'
+  },
+  Esraid12target: {
+    color: '57,3,0',
+    com: 'ALT-CTRL-NUMPAD7'
+  },
+  Serpentraid5target: {
+    color: '175,2,0',
+    com: 'ALT-CTRL-PAGEUP'
+  },
+  raptor: {
+    color: '57,1,0',
+    com: 'ALT-CTRL-F3'
+  },
+  KillShotraid25target: {
+    color: '113,2,0',
+    com: 'CTRL-SHIFT-END'
+  },
+  Esraid13target: {
+    color: '207,3,0',
+    com: 'ALT-SHIFT-NUMPAD7'
+  },
+  Esraid15target: {
+    color: '169,3,0',
+    com: 'CTRL-NUMPAD8'
+  },
+  volley: {
+    color: '193,0,0',
+    com: 'ALT-CTRL-SHIFT-F2'
+  },
+  KillShotraid24target: {
+    color: '105,2,0',
+    com: 'SHIFT-END'
+  },
+  Esraid11target: {
+    color: '159,3,0',
+    com: 'CTRL-SHIFT-NUMPAD7'
+  },
+  burst1: {
+    color: '41,0,0',
+    com: 'ALT-F9'
+  },
+  Serpentraid12target: {
+    color: '228,2,0',
+    com: 'ALT-CTRL-PAGEDOWN'
+  },
+  focusValkyr: {
+    color: '207,0,0',
+    com: 'CTRL-NUMPAD1'
+  },
+  Esraid7target: {
+    color: '73,3,0',
+    com: 'ALT-CTRL-SHIFT-NUMPAD6'
+  },
+  KillShotraid5target: {
+    color: '153,1,0',
+    com: 'ALT-CTRL-INSERT'
+  },
+  Esraid17target: {
+    color: '241,3,0',
+    com: 'SHIFT-NUMPAD8'
+  },
+  tarBoss3: {
+    color: '105,0,0',
+    com: 'SHIFT-NUMPAD0'
+  },
+  clearMirror: {
+    color: '164,0,0',
+    com: 'CTRL-SHIFT-NUMPAD0'
+  },
+  dragonhawk: {
+    color: '255,0,0',
+    com: 'CTRL-SHIFT-F2'
+  },
+  KillShotraid16target: {
+    color: '36,2,0',
+    com: 'ALT-HOME'
+  },
+  blackArrow: {
+    color: '81,1,0',
+    com: 'ALT-SHIFT-F2'
+  },
+  Esfocus: {
+    color: '52,4,0',
+    com: 'ALT-CTRL-NUMPAD9'
+  },
+  Serpentraid4target: {
+    color: '25,2,0',
+    com: 'CTRL-SHIFT-PAGEUP'
+  },
+  Esraid19target: {
+    color: '201,3,0',
+    com: 'ALT-CTRL-NUMPAD8'
+  },
+  Serpentraid15target: {
+    color: '223,2,0',
+    com: 'CTRL-['
+  },
+  Serpentraid6target: {
+    color: '180,2,0',
+    com: 'ALT-SHIFT-PAGEUP'
+  },
+  sapper: {
+    color: '57,4,0',
+    com: 'ALT-CTRL-F9'
+  },
+  Esraid10target: {
+    color: '185,3,0',
+    com: 'SHIFT-NUMPAD7'
+  },
+  Serpentraid13target: {
+    color: '185,2,0',
+    com: 'ALT-SHIFT-PAGEDOWN'
+  },
+  focusBloodBeast: {
+    color: '57,0,0',
+    com: 'ALT-CTRL-SHIFT-NUMPAD0'
+  },
+  Serpentraid24target: {
+    color: '68,3,0',
+    com: 'SHIFT-]'
+  },
+  Serpentraid10target: {
+    color: '132,2,0',
+    com: 'SHIFT-PAGEDOWN'
+  },
+  Esraid14target: {
+    color: '105,3,0',
+    com: 'ALT-CTRL-SHIFT-NUMPAD7'
+  },
+  KillShotraid17target: {
+    color: '191,1,0',
+    com: 'SHIFT-HOME'
+  },
+  viper: {
+    color: '25,1,0',
+    com: 'SHIFT-F2'
+  },
+  Serpentmouse: {
+    color: '63,3,0',
+    com: 'ALT-SHIFT-]'
+  },
+  Esraid3target: {
+    color: '49,3,0',
+    com: 'SHIFT-NUMPAD6'
+  },
+  saronite: {
+    color: '68,0,0',
+    com: 'ALT-SHIFT-F9'
+  },
+  Esraid9target: {
+    color: '121,3,0',
+    com: 'ALT-NUMPAD7'
+  },
+  Esraid20target: {
+    color: '4,4,0',
+    com: 'ALT-SHIFT-NUMPAD8'
+  },
+  Esraid5target: {
+    color: '145,3,0',
+    com: 'ALT-CTRL-NUMPAD6'
+  },
+  KillShotraid1target: {
+    color: '177,1,0',
+    com: 'CTRL-INSERT'
+  },
+  KillShotraid14target: {
+    color: '129,1,0',
+    com: 'ALT-CTRL-SHIFT-DELETE'
+  },
+  KillShotraid21target: {
+    color: '249,1,0',
+    com: 'ALT-CTRL-SHIFT-HOME'
+  },
+  Esraid24target: {
+    color: '212,3,0',
+    com: 'SHIFT-NUMPAD9'
+  },
+  feedPet: {
+    color: '148,1,0',
+    com: 'ALT-CTRL-F4'
+  },
+  Serpentraid20target: {
+    color: '41,3,0',
+    com: 'ALT-SHIFT-NUMPAD5'
+  },
+  tarBoss1: {
+    color: '89,0,0',
+    com: 'CTRL-NUMPAD0'
+  },
+  Esraid21target: {
+    color: '217,3,0',
+    com: 'ALT-CTRL-SHIFT-NUMPAD8'
+  },
+  KillShotfocus: {
+    color: '225,1,0',
+    com: 'ALT-CTRL-END'
+  },
+  tranqFocus: {
+    color: '41,1,0',
+    com: 'ALT-F3'
+  },
+  KillShotraid9target: {
+    color: '239,1,0',
+    com: 'ALT-DELETE'
+  },
+  Serpentfocus: {
+    color: '89,3,0',
+    com: 'ALT-CTRL-]'
+  },
+  burst3: {
+    color: '73,4,0',
+    com: 'CTRL-SHIFT-F9'
+  },
+  KillShotraid10target: {
+    color: '244,1,0',
+    com: 'SHIFT-DELETE'
+  },
+  rocketBoot: {
+    color: '111,0,0',
+    com: 'CTRL-F10'
+  },
+  Serpentraid21target: {
+    color: '249,2,0',
+    com: 'ALT-CTRL-SHIFT-['
+  },
+  Serpentraid17target: {
+    color: '15,3,0',
+    com: 'SHIFT-['
+  },
+  Serpentraid16target: {
+    color: '121,2,0',
+    com: 'ALT-['
+  },
+  Esraid16target: {
+    color: '233,3,0',
+    com: 'ALT-NUMPAD8'
+  },
+  Serpentpet: {
+    color: '217,2,0',
+    com: 'ALT-CTRL-SHIFT-]'
+  },
+  Serpentraid23target: {
+    color: '9,3,0',
+    com: 'ALT-]'
+  },
+  Esraid1target: {
+    color: '111,3,0',
+    com: 'CTRL-NUMPAD6'
+  },
+  KillShotmouse: {
+    color: '73,2,0',
+    com: 'ALT-SHIFT-END'
+  },
+  mark: {
+    color: '153,0,0',
+    com: 'ALT-CTRL-F2'
+  },
+  Serpentraid19target: {
+    color: '233,2,0',
+    com: 'ALT-CTRL-['
+  },
+  Esmouse: {
+    color: '9,4,0',
+    com: 'ALT-SHIFT-NUMPAD9'
+  },
+  Serpentraid18target: {
+    color: '20,3,0',
+    com: 'CTRL-SHIFT-['
+  },
+  KillShotraid15target: {
+    color: '233,1,0',
+    com: 'CTRL-HOME'
+  },
+  clearFocus: {
+    color: '185,0,0',
+    com: 'CTRL-MOUSEWHEELDOWN'
+  },
+  Esraid23target: {
+    color: '255,3,0',
+    com: 'ALT-NUMPAD9'
+  },
+  focusBoneSpike: {
+    color: '159,0,0',
+    com: 'ALT-SHIFT-NUMPAD0'
+  },
+  KillShotpet: {
+    color: '79,2,0',
+    com: 'ALT-CTRL-SHIFT-END'
+  },
+  frostTrap: {
+    color: '121,1,0',
+    com: 'ALT-SHIFT-F3'
+  },
+  KillShotraid8target: {
+    color: '89,1,0',
+    com: 'CTRL-DELETE'
+  },
+  Esraid4target: {
+    color: '137,3,0',
+    com: 'CTRL-SHIFT-NUMPAD6'
+  },
+  Serpentraid9target: {
+    color: '209,2,0',
+    com: 'ALT-PAGEDOWN'
+  },
+  missdFocus: {
+    color: '100,1,0',
+    com: 'CTRL-SHIFT-F3'
+  },
+  KillShotraid13target: {
+    color: '17,2,0',
+    com: 'ALT-SHIFT-DELETE'
+  },
+  Serpentraid3target: {
+    color: '127,2,0',
+    com: 'SHIFT-PAGEUP'
+  },
+  KillShotraid19target: {
+    color: '31,2,0',
+    com: 'ALT-CTRL-HOME'
+  },
+  feignDeath: {
+    color: '47,1,0',
+    com: 'CTRL-F3'
+  },
+  KillShotraid3target: {
+    color: '137,1,0',
+    com: 'SHIFT-INSERT'
+  },
+  healthStone: {
+    color: '25,0,0',
+    com: 'ALT-CTRL-SHIFT-F9'
+  },
+  mBite: {
+    color: '105,1,0',
+    com: 'ALT-CTRL-SHIFT-F4'
+  },
+  steadyShot: {
+    color: '4,1,0',
+    com: 'ALT-SHIFT-F1'
+  },
+  KillShotraid18target: {
+    color: '57,2,0',
+    com: 'CTRL-SHIFT-HOME'
+  },
+  Esraid6target: {
+    color: '1,3,0',
+    com: 'ALT-SHIFT-NUMPAD6'
+  }
 };
+/** 小易LR */
+export const color_mappings_XIAOYI_LR = transferConfig(CONFIG_XIAOYI_LR);

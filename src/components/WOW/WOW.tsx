@@ -18,7 +18,7 @@ interface ColorInfo {
   g: number;
   b: number;
 }
-type ColorMapping = 'JIAJIA' | 'XIAOYI_SS' | 'XIAOYI_LR' | 'AH';
+type ColorMapping = 'JIAJIA' | 'XIAOYI_SS' | 'XIAOYI_LR';
 
 // 创建音频对象
 const mode1Audio = new Audio(mode1);
@@ -44,43 +44,17 @@ for (let angle = 0; angle < 360; angle += 30) {
 }
 MOUSE_POSITIONS.push(MOUSE_CENTER);
 
-function getKeyNum(targetNum: number, actionNum: number) {
-  const keyMap = [
-    'NUMPAD1',
-    'NUMPAD2',
-    'NUMPAD3',
-    'NUMPAD4',
-    'NUMPAD5',
-    'NUMPAD6',
-    'NUMPAD7',
-    'NUMPAD8',
-    'NUMPAD9',
-    'F5',
-    'F6',
-    'F7',
-    'F8',
-    'F9'
-  ];
-  const keyNum1 = Math.floor(targetNum / 14);
-  const keyNum2 = targetNum % 14;
-  const keyNum3 = Math.floor(actionNum / 14);
-  const keyNum4 = actionNum % 14;
-  return [keyMap[keyNum1], keyMap[keyNum2], keyMap[keyNum3], keyMap[keyNum4]];
-}
-
 function WOW() {
   const [color, setColor] = useState<string | null>(null);
   const [model, setModel] = useState(0);
   const [autoMove, setAutoMove] = useState(false);
   const [moveInterval, setMoveInterval] = useState(700);
   const [selectedMapping, setSelectedMapping] = useState<ColorMapping>('JIAJIA');
-  const [oldColor, setOldColor] = useState<any>({ r: 0, g: 0, b: 0 });
 
   const colorMapDict = {
     JIAJIA: color_mappings_JIAJIA,
     XIAOYI_SS: color_mappings_XIAOYI_SS,
-    XIAOYI_LR: color_mappings_XIAOYI_LR,
-    AH: null
+    XIAOYI_LR: color_mappings_XIAOYI_LR
   };
   const color_mappings = colorMapDict[selectedMapping];
 
@@ -106,37 +80,37 @@ function WOW() {
     const checkColor = async () => {
       if (!isRunning || model === 0) return;
 
-      const newColor = await invoke<ColorInfo>('get_pixel_color', {
-        x: model === 1 || selectedMapping !== 'JIAJIA' ? coordinates.x1 : coordinates.x2,
-        y: coordinates.y
-      });
+      if (selectedMapping === 'XIAOYI_LR') {
+        const action2Color = await invoke<ColorInfo>('get_pixel_color', {
+          x: coordinates.x1 + 34,
+          y: coordinates.y
+        });
+        // 转换为十六进制格式
+        const hexColor = rgbToHex(action2Color.r, action2Color.g, action2Color.b);
+        setColor(hexColor);
 
-      // 转换为十六进制格式
-      const hexColor = rgbToHex(newColor.r, newColor.g, newColor.b);
-      setColor(hexColor);
-      setOldColor(newColor);
-
-      if (
-        selectedMapping === 'AH' &&
-        newColor.r !== oldColor.r &&
-        newColor.g !== 0 &&
-        newColor.b !== 0
-      ) {
-        const keys = getKeyNum(newColor.g, newColor.b);
-
-        for (const key of keys) {
-          await invoke('press_keys', { keys: ['CTRL', key] });
-        }
-      } else {
         const keyCombo = color_mappings?.[hexColor];
         if (keyCombo) {
           await invoke('press_keys', { keys: keyCombo.split('-') });
         }
       }
 
+      const newColor = await invoke<ColorInfo>('get_pixel_color', {
+        x: model === 1 || selectedMapping !== 'JIAJIA' ? coordinates.x1 : coordinates.x2,
+        y: coordinates.y
+      });
+      // 转换为十六进制格式
+      const hexColor = rgbToHex(newColor.r, newColor.g, newColor.b);
+      setColor(hexColor);
+
+      const keyCombo = color_mappings?.[hexColor];
+      if (keyCombo) {
+        await invoke('press_keys', { keys: keyCombo.split('-') });
+      }
+
       // 递归调用，确保前一个操作完成后才开始下一个
       if (isRunning) {
-        setTimeout(checkColor, 100);
+        setTimeout(checkColor, 20);
       }
     };
 
@@ -242,7 +216,6 @@ function WOW() {
               className={styles.input}
             >
               <option value='JIAJIA'>佳佳配置</option>
-              <option value='AH'>AH配置</option>
               <option value='XIAOYI_SS'>小易SS配置</option>
               <option value='XIAOYI_LR'>小易LR配置</option>
             </select>
