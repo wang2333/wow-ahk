@@ -23,18 +23,19 @@ export function hexToRgb(hex: string): [number, number, number] {
   return [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16)];
 }
 
-// const data: Record<string, { color: string; com: string }> =
+function transferConfig(data: Record<string, { color: string; com: string }>) {
+  const config = Object.keys(data).reduce((acc, key) => {
+    if (data[key].com) {
+      const color = data[key].color.split(',').map(Number);
+      const hex = rgbToHex(color[0], color[1], color[2]);
+      acc[hex] = data[key].com;
+    }
+    return acc;
+  }, {} as Record<string, string>);
+  return config;
+}
 
-// const config = Object.keys(data).reduce((acc, key) => {
-//   if (data[key].com) {
-//     const color = data[key].color.split(',').map(Number);
-//     const hex = rgbToHex(color[0], color[1], color[2]);
-//     acc[hex] = data[key].com;
-//   }
-//   return acc;
-// }, {} as Record<string, string>);
-// console.log('👻 ~ config:', config)
-
+/** 佳佳 */
 export const color_mappings_JIAJIA: Record<string, string> = {
   '#8cd6ee': 'ALT-CTRL-F1',
   '#8ca3ee': 'ALT-CTRL-F2',
@@ -179,282 +180,1266 @@ export const color_mappings_JIAJIA: Record<string, string> = {
   '#1e1c68': 'F12'
 };
 
-export const color_mappings_XIAOYI_SS: Record<string, string> = {
-  '#100800': 'TAB',
-  '#b00500': 'CTRL-NUMPADDIVIDE',
-  '#080100': 'SHIFT-F1',
-  '#6f0500': 'CTRL-SHIFT-NUMPADMINUS',
-  '#e30000': 'ALT-F1',
-  '#a10000': 'ALT-CTRL-NUMPAD0',
-  '#5c0000': 'ALT-NUMPAD1',
-  '#e80400': 'CTRL-M',
-  '#b90400': 'ALT-SHIFT-NUMPAD6',
-  '#970700': 'ALT-CTRL-,',
-  '#980000': 'ALT-SHIFT-NUMPAD1',
-  '#b70500': 'ALT-NUMPADMINUS',
-  '#3e0600': 'ALT-CTRL-SHIFT-M',
-  '#d20100': 'ALT-SHIFT-F5',
-  '#720500': 'ALT-CTRL-NUMPAD9',
-  '#5e0700': 'CTRL-SHIFT-;',
-  '#670600': 'CTRL-SHIFT-DOWN',
-  '#0e0500': 'ALT-SHIFT-NUMPAD8',
-  '#f30000': 'ALT-CTRL-F2',
-  '#530300': 'SHIFT-N',
-  '#480100': 'ALT-CTRL-SHIFT-F3',
-  '#6f0800': 'CTRL-SHIFT-F9',
-  '#670200': 'ALT-SHIFT-INSERT',
-  '#530100': 'CTRL-SHIFT-F4',
-  '#020300': 'ALT-HOME',
-  '#cb0600': 'ALT-SHIFT-DOWN',
-  '#980300': 'CTRL-[',
-  '#a60200': 'CTRL-SHIFT-INSERT',
-  '#930700': "CTRL-'",
-  '#550800': 'ALT-CTRL-.',
-  '#670400': 'ALT-CTRL-SHIFT-]',
-  '#bd0200': 'CTRL-DELETE',
-  '#3c0200': 'ALT-CTRL-F7',
-  '#f10100': 'ALT-SHIFT-F7',
-  '#410700': 'CTRL-7',
-  '#9d0500': 'ALT-CTRL-NUMPADMULTIPLY',
-  '#050300': 'CTRL-N',
-  '#050600': 'CTRL-SHIFT-NUMPADMULTIPLY',
-  '#fe0400': 'SHIFT-NUMPAD8',
-  '#f10200': 'SHIFT-DELETE',
-  '#360500': 'SHIFT-M',
-  '#750300': 'ALT-CTRL-SHIFT-END',
-  '#c90000': 'CTRL-NUMPAD1',
-  '#9a0700': 'ALT-SHIFT-;',
-  '#e10400': 'ALT-SHIFT-NUMPAD7',
-  '#910000': 'CTRL-SHIFT-NUMPAD0',
-  '#3f0000': 'ALT-NUMPAD0',
-  '#740200': 'ALT-CTRL-SHIFT-INSERT',
-  '#1b0300': 'ALT-N',
-  '#bd0500': 'ALT-CTRL-NUMPADMINUS',
-  '#360700': 'SHIFT-7',
-  '#0b0300': 'SHIFT-HOME',
-  '#d10300': 'ALT-CTRL-PAGEDOWN',
-  '#dd0300': 'SHIFT-PAGEDOWN',
-  '#dc0700': 'ALT-CTRL-SHIFT-,',
-  '#df0700': 'SHIFT-,',
-  '#700100': 'CTRL-F6',
-  '#a30500': 'CTRL-NUMPADMULTIPLY',
-  '#d80700': 'ALT-SHIFT-7',
-  '#c90400': 'ALT-NUMPAD7',
-  '#b50300': 'ALT-CTRL-PAGEUP',
-  '#430500': 'SHIFT-NUMPADPLUS',
-  '#160400': 'ALT-SHIFT-NUMPAD5',
-  '#890400': 'CTRL-SHIFT-NUMPAD6',
-  '#190500': 'CTRL-SHIFT-NUMPAD8',
-  '#fa0300': 'ALT-SHIFT-N',
-  '#3a0800': 'SHIFT-L',
-  '#b10600': 'ALT-CTRL-DOWN',
-  '#1f0100': 'ALT-SHIFT-F3',
-  '#1f0400': 'ALT-CTRL-SHIFT-[',
-  '#6b0500': 'ALT-CTRL-SHIFT-NUMPAD9',
-  '#4a0600': 'ALT-CTRL-SHIFT-NUMPADDIVIDE',
-  '#9c0600': 'CTRL-SHIFT-RIGHT',
-  '#670100': 'CTRL-SHIFT-F3',
-  '#e20500': 'ALT-NUMPADMULTIPLY',
-  '#840000': 'ALT-CTRL-NUMPAD1',
-  '#090700': 'ALT-CTRL-SHIFT-LEFT',
-  '#390000': 'CTRL-F10',
-  '#ea0100': 'ALT-CTRL-SHIFT-F5',
-  '#330200': 'ALT-K',
-  '#f70100': 'CTRL-SHIFT-F6',
-  '#070200': 'ALT-CTRL-SHIFT-F7',
-  '#e10600': 'ALT-CTRL-SHIFT-DOWN',
-  '#1b0100': 'ALT-F2',
-  '#f50500': 'SHIFT-NUMPADMULTIPLY',
-  '#3a0600': 'CTRL-SHIFT-NUMPADDIVIDE',
-  '#c50700': 'ALT-,',
-  '#c90200': 'ALT-SHIFT-DELETE',
-  '#a90100': 'ALT-F5',
-  '#ae0000': 'ALT-CTRL-SHIFT-NUMPAD0',
-  '#c00300': 'CTRL-SHIFT-[',
-  '#920100': 'ALT-CTRL-F4',
-  '#fe0200': 'ALT-SHIFT-HOME',
-  '#2a0500': 'SHIFT-NUMPAD9',
-  '#640400': 'CTRL-L',
-  '#440400': 'CTRL-]',
-  '#240000': 'CTRL-NUMPAD0',
-  '#980500': 'ALT-CTRL-NUMPADPLUS',
-  '#e80700': 'ALT-SHIFT-.',
-  '#dd0100': 'CTRL-SHIFT-F5',
-  '#300300': 'CTRL-SHIFT-HOME',
-  '#030100': 'ALT-SHIFT-F8',
-  '#ee0100': 'SHIFT-F6',
-  '#ba0300': 'CTRL-PAGEDOWN',
-  '#c60200': 'ALT-CTRL-HOME',
-  '#840200': 'CTRL-SHIFT-DELETE',
-  '#fc0600': 'ALT-CTRL-RIGHT',
-  '#7b0200': 'ALT-CTRL-SHIFT-F8',
-  '#b00700': 'CTRL-.',
-  '#210800': 'ALT-SHIFT-F9',
-  '#020600': 'ALT-SHIFT-NUMPADDIVIDE',
-  '#ac0600': 'ALT-DOWN',
-  '#570600': 'ALT-CTRL-SHIFT-UP',
-  '#a50100': 'ALT-CTRL-SHIFT-F4',
-  '#740400': 'SHIFT-NUMPAD7',
-  '#7e0000': 'SHIFT-NUMPAD0',
-  '#d40300': 'ALT-CTRL-[',
-  '#f90500': 'ALT-SHIFT-NUMPADMULTIPLY',
-  '#500000': 'ALT-CTRL-SHIFT-F10',
-  '#b90200': 'ALT-CTRL-INSERT',
-  '#780500': 'CTRL-NUMPADMINUS',
-  '#860700': 'ALT-CTRL-;',
-  '#2a0800': 'ALT-CTRL-F9',
-  '#a30400': 'ALT-CTRL-NUMPAD7',
-  '#100700': 'ALT-SHIFT-RIGHT',
-  '#e50700': 'ALT-SHIFT-,',
-  '#220100': 'ALT-CTRL-SHIFT-F2',
-  '#b20100': 'ALT-SHIFT-F6',
-  '#d60200': 'ALT-DELETE',
-  '#360300': 'ALT-CTRL-SHIFT-HOME',
-  '#ff0300': 'ALT-CTRL-]',
-  '#360200': 'ALT-F7',
-  '#050400': 'ALT-CTRL-SHIFT-PAGEDOWN',
-  '#190400': 'ALT-CTRL-NUMPAD6',
-  '#c00500': 'ALT-NUMPADDIVIDE',
-  '#a30700': "ALT-CTRL-'",
-  '#980100': 'CTRL-F7',
-  '#2f0400': 'ALT-SHIFT-]',
-  '#6b0700': "ALT-CTRL-SHIFT-'",
-  '#2d0600': 'ALT-L',
-  '#720600': 'CTRL-UP',
-  '#220400': 'SHIFT-]',
-  '#660800': 'SHIFT-F9',
-  '#8f0300': 'CTRL-PAGEUP',
-  '#690800': 'ALT-CTRL-F10',
-  '#470600': 'CTRL-SHIFT-UP',
-  '#d10600': 'ALT-LEFT',
-  '#520700': "CTRL-SHIFT-'",
-  '#550700': "SHIFT-'",
-  '#1c0200': 'ALT-CTRL-F6',
-  '#580500': 'CTRL-NUMPADPLUS',
-  '#9c0400': 'CTRL-NUMPAD8',
-  '#3f0200': 'SHIFT-INSERT',
-  '#160700': 'SHIFT-;',
-  '#780200': 'CTRL-SHIFT-F8',
-  '#5b0700': 'CTRL-;',
-  '#b40500': 'ALT-SHIFT-NUMPADPLUS',
-  '#240800': 'ALT-F9',
-  '#950000': 'CTRL-SHIFT-F1',
-  '#700300': 'CTRL-SHIFT-N',
-  '#d40400': 'CTRL-NUMPAD9',
-  '#260700': 'ALT-CTRL-SHIFT-RIGHT',
-  '#d70100': 'SHIFT-F7',
-  '#be0000': 'SHIFT-NUMPAD1',
-  '#4c0000': 'CTRL-MOUSEWHEELDOWN',
-  '#c00700': "ALT-SHIFT-'",
-  '#130500': 'ALT-SHIFT-NUMPAD9',
-  '#2f0200': 'CTRL-SHIFT-F7',
-  '#e80500': 'ALT-CTRL-M',
-  '#9e0000': 'ALT-CTRL-SHIFT-F1',
-  '#a50300': 'ALT-PAGEDOWN',
-  '#fc0500': 'ALT-SHIFT-M',
-  '#5e0400': 'ALT-CTRL-N',
-  '#910200': 'CTRL-K',
-  '#3b0700': 'ALT-CTRL-SHIFT-;',
-  '#c40600': 'ALT-RIGHT',
-  '#dd0000': 'CTRL-SHIFT-F2',
-  '#470300': 'SHIFT-PAGEUP',
-  '#640100': 'CTRL-F3',
-  '#600100': 'CTRL-F5',
-  '#430300': 'SHIFT-END',
-  '#120400': 'SHIFT-[',
-  '#f60600': 'ALT-SHIFT-LEFT',
-  '#a00400': 'ALT-NUMPAD6',
-  '#a90400': 'CTRL-NUMPAD7',
-  '#a00700': "ALT-'",
-  '#950300': 'CTRL-SHIFT-PAGEUP',
-  '#7d0100': 'ALT-CTRL-F3',
-  '#810200': 'SHIFT-K',
-  '#6d0100': 'ALT-CTRL-F5',
-  '#b70600': 'ALT-CTRL-LEFT',
-  '#f10600': 'SHIFT-LEFT',
-  '#530500': 'ALT-CTRL-SHIFT-NUMPADPLUS',
-  '#e60000': 'ALT-CTRL-F1',
-  '#7f0600': 'CTRL-LEFT',
-  '#8f0400': 'CTRL-SHIFT-NUMPAD7',
-  '#0a0800': 'SHIFT-.',
-  '#530000': 'SHIFT-F10',
-  '#4a0300': 'CTRL-END',
-  '#e60200': 'ALT-CTRL-DELETE',
-  '#fa0100': 'ALT-CTRL-SHIFT-F6',
-  '#4a0800': 'ALT-CTRL-SHIFT-.',
-  '#f10400': 'ALT-CTRL-SHIFT-NUMPAD7',
-  '#c80600': 'SHIFT-DOWN',
-  '#880300': 'CTRL-SHIFT-PAGEDOWN',
-  '#380100': 'SHIFT-F4',
-  '#c30000': 'CTRL-F2',
-  '#0d0700': 'SHIFT-RIGHT',
-  '#b50100': 'CTRL-F8',
-  '#410600': 'ALT-SHIFT-UP',
-  '#7b0700': 'CTRL-,',
-  '#5b0400': 'ALT-CTRL-SHIFT-NUMPAD6',
-  '#eb0200': 'ALT-END',
-  '#2d0800': 'ALT-CTRL-7',
-  '#ac0200': 'ALT-CTRL-SHIFT-DELETE',
-  '#ee0400': 'ALT-M',
-  '#c20100': 'SHIFT-F5',
-  '#600300': 'ALT-SHIFT-PAGEUP',
-  '#ac0400': 'ALT-CTRL-NUMPAD8',
-  '#050800': 'ALT-CTRL-SHIFT-7',
-  '#8c0600': 'ALT-CTRL-UP',
-  '#270600': 'SHIFT-UP',
-  '#0e0100': 'ALT-SHIFT-F1',
-  '#830600': 'CTRL-SHIFT-LEFT',
-  '#f50700': 'CTRL-SHIFT-,',
-  '#6c0600': 'ALT-CTRL-NUMPADDIVIDE',
-  '#7b0500': 'CTRL-SHIFT-NUMPADPLUS',
-  '#2b0100': 'ALT-SHIFT-F2',
-  '#7b0300': 'ALT-CTRL-SHIFT-PAGEUP',
-  '#8c0300': 'ALT-CTRL-END',
-  '#da0300': 'ALT-]',
-  '#4e0700': 'CTRL-SHIFT-7',
-  '#4d0100': 'SHIFT-F3',
-  '#2b0300': 'ALT-PAGEUP',
-  '#500300': 'CTRL-SHIFT-END',
-  '#0e0300': 'ALT-SHIFT-END',
-  '#570400': 'ALT-CTRL-SHIFT-N',
-  '#cd0500': 'SHIFT-NUMPADMINUS',
-  '#590000': 'ALT-SHIFT-F10',
-  '#220600': 'SHIFT-NUMPADDIVIDE',
-  '#ac0100': 'ALT-F6',
-  '#da0000': 'CTRL-F1',
-  '#cd0300': 'ALT-[',
-  '#120600': 'ALT-CTRL-SHIFT-NUMPADMULTIPLY',
-  '#e50400': 'ALT-NUMPAD8',
-  '#ea0300': 'ALT-SHIFT-PAGEDOWN',
-  '#880500': 'ALT-CTRL-SHIFT-NUMPADMINUS',
-  '#190700': 'CTRL-RIGHT',
-  '#4a0400': 'CTRL-SHIFT-]',
-  '#3f0400': 'SHIFT-NUMPAD6',
-  '#8d0100': 'CTRL-F4',
-  '#dd0500': 'ALT-SHIFT-NUMPADMINUS',
-  '#cb0700': 'ALT-.',
-  '#4f0800': 'ALT-F10',
-  '#8f0600': 'CTRL-DOWN',
-  '#5e0500': 'CTRL-SHIFT-M',
-  '#800700': 'ALT-;',
-  '#170000': 'ALT-CTRL-SHIFT-F9',
-  '#a10200': 'CTRL-INSERT',
-  '#5c0200': 'SHIFT-F8',
-  '#620800': 'CTRL-F9',
-  '#260500': 'ALT-CTRL-SHIFT-NUMPAD8',
-  '#170200': 'ALT-CTRL-F8',
-  '#d40600': 'ALT-7',
-  '#ce0400': 'ALT-NUMPAD9',
-  '#330500': 'CTRL-SHIFT-NUMPAD9',
-  '#4c0200': 'ALT-INSERT',
-  '#860600': 'ALT-UP',
-  '#c00200': 'CTRL-HOME',
-  '#790000': 'ALT-SHIFT-NUMPAD0',
-  '#280100': 'SHIFT-F2',
-  '#1d0800': 'CTRL-SHIFT-.',
-  '#840400': 'CTRL-NUMPAD6',
-  '#2d0500': 'ALT-NUMPADPLUS'
+const CONFIG_XIAOYI_SS: { [key: string]: { color: string; com: string } } = {
+  immoraid7target: {
+    color: '52,4,0',
+    com: ''
+  },
+  immoraid11target: {
+    color: '65,4,0',
+    com: ''
+  },
+  shadowBite: {
+    color: '253,1,0',
+    com: ''
+  },
+  immopet: {
+    color: '88,5,0',
+    com: ''
+  },
+  immoraid20target: {
+    color: '243,4,0',
+    com: ''
+  },
+  immoparty2target: {
+    color: '11,4,0',
+    com: ''
+  },
+  cancelStormPower: {
+    color: '133,0,0',
+    com: ''
+  },
+  immoraid25target: {
+    color: '195,4,0',
+    com: ''
+  },
+  immoraid1target: {
+    color: '49,4,0',
+    com: ''
+  },
+  immoraid2target: {
+    color: '208,3,0',
+    com: ''
+  },
+  immoraid23target: {
+    color: '173,4,0',
+    com: ''
+  },
+  immoraid19target: {
+    color: '167,4,0',
+    com: ''
+  },
+  startMove: {
+    color: '57,0,0',
+    com: ''
+  },
+  immoraid12target: {
+    color: '0,4,0',
+    com: ''
+  },
+  immoraid9target: {
+    color: '143,3,0',
+    com: ''
+  },
+  immomouse: {
+    color: '16,5,0',
+    com: ''
+  },
+  kologarnTarget3: {
+    color: '243,0,0',
+    com: ''
+  },
+  immoraid16target: {
+    color: '110,4,0',
+    com: ''
+  },
+  immoraid6target: {
+    color: '29,4,0',
+    com: ''
+  },
+  immofocus: {
+    color: '211,4,0',
+    com: ''
+  },
+  casting: {
+    color: '20,0,0',
+    com: ''
+  },
+  immoraid17target: {
+    color: '191,4,0',
+    com: ''
+  },
+  immoraid18target: {
+    color: '81,4,0',
+    com: ''
+  },
+  shadowFlame: {
+    color: '199,2,0',
+    com: ''
+  },
+  immoraid5target: {
+    color: '86,4,0',
+    com: ''
+  },
+  immoparty1target: {
+    color: '36,5,0',
+    com: ''
+  },
+  immoparty4target: {
+    color: '39,5,0',
+    com: ''
+  },
+  na: {
+    color: '0,0,0',
+    com: ''
+  },
+  immoraid21target: {
+    color: '214,4,0',
+    com: ''
+  },
+  cd: {
+    color: '10,0,0',
+    com: ''
+  },
+  immoraid15target: {
+    color: '101,4,0',
+    com: ''
+  },
+  immoraid3target: {
+    color: '123,3,0',
+    com: ''
+  },
+  immoraid4target: {
+    color: '92,4,0',
+    com: ''
+  },
+  immoparty3target: {
+    color: '52,5,0',
+    com: ''
+  },
+  immoraid24target: {
+    color: '227,4,0',
+    com: ''
+  },
+  immoraid8target: {
+    color: '130,4,0',
+    com: ''
+  },
+  immoraid13target: {
+    color: '162,4,0',
+    com: ''
+  },
+  tab: {
+    color: '149,9,0',
+    com: 'TAB'
+  },
+  immoraid10target: {
+    color: '146,4,0',
+    com: ''
+  },
+  immoraid22target: {
+    color: '254,4,0',
+    com: ''
+  },
+  immoraid14target: {
+    color: '182,4,0',
+    com: ''
+  },
+  drainSoulraid12target: {
+    color: '228,6,0',
+    com: 'ALT-CTRL-NUMPADMINUS'
+  },
+  corruptionmouse: {
+    color: '159,3,0',
+    com: 'ALT-SHIFT-END'
+  },
+  corruptionraid19target: {
+    color: '105,3,0',
+    com: 'ALT-CTRL-HOME'
+  },
+  sbL1raid7target: {
+    color: '159,8,0',
+    com: 'ALT-CTRL-SHIFT-;'
+  },
+  sbL1raid1target: {
+    color: '162,8,0',
+    com: 'CTRL-;'
+  },
+  sear: {
+    color: '153,1,0',
+    com: 'CTRL-F3'
+  },
+  sbraid5target: {
+    color: '175,7,0',
+    com: 'ALT-CTRL-UP'
+  },
+  sbL1raid23target: {
+    color: '68,9,0',
+    com: 'ALT-.'
+  },
+  unAffparty2target: {
+    color: '11,4,0',
+    com: 'ALT-SHIFT-N'
+  },
+  sbL1raid2target: {
+    color: '202,8,0',
+    com: 'ALT-;'
+  },
+  shoot: {
+    color: '101,0,0',
+    com: 'SHIFT-F10'
+  },
+  sbfocus: {
+    color: '81,8,0',
+    com: 'ALT-CTRL-RIGHT'
+  },
+  burst1agony: {
+    color: '23,1,0',
+    com: 'ALT-CTRL-F5'
+  },
+  unAffraid14target: {
+    color: '182,4,0',
+    com: 'ALT-CTRL-SHIFT-PAGEDOWN'
+  },
+  focusXe321: {
+    color: '247,0,0',
+    com: 'SHIFT-NUMPAD1'
+  },
+  unAffraid1target: {
+    color: '49,4,0',
+    com: 'CTRL-PAGEUP'
+  },
+  unAffraid15target: {
+    color: '101,4,0',
+    com: 'CTRL-['
+  },
+  shadowWard: {
+    color: '193,2,0',
+    com: 'SHIFT-F8'
+  },
+  drainSoulraid14target: {
+    color: '165,6,0',
+    com: 'ALT-CTRL-SHIFT-NUMPADMINUS'
+  },
+  demonicEmpowerment: {
+    color: '7,1,0',
+    com: 'SHIFT-F3'
+  },
+  unAffraid19target: {
+    color: '167,4,0',
+    com: 'ALT-CTRL-['
+  },
+  sbL1raid14target: {
+    color: '220,8,0',
+    com: "ALT-CTRL-SHIFT-'"
+  },
+  agonyraid23target: {
+    color: '7,5,0',
+    com: 'ALT-NUMPAD9'
+  },
+  sbL1raid25target: {
+    color: '126,9,0',
+    com: 'CTRL-SHIFT-.'
+  },
+  tarBoss2: {
+    color: '104,0,0',
+    com: 'ALT-NUMPAD0'
+  },
+  drainSoulraid3target: {
+    color: '84,6,0',
+    com: 'SHIFT-NUMPADPLUS'
+  },
+  burst3lifeTap: {
+    color: '112,2,0',
+    com: 'ALT-SHIFT-F7'
+  },
+  focusBoneSpike: {
+    color: '227,9,0',
+    com: 'ALT-SHIFT-NUMPAD0'
+  },
+  unAfffocus: {
+    color: '211,4,0',
+    com: 'ALT-CTRL-]'
+  },
+  sbparty4target: {
+    color: '139,8,0',
+    com: 'CTRL-SHIFT-7'
+  },
+  corruptionraid7target: {
+    color: '127,2,0',
+    com: 'ALT-CTRL-SHIFT-INSERT'
+  },
+  burst3drainSoul: {
+    color: '136,2,0',
+    com: 'ALT-CTRL-SHIFT-F7'
+  },
+  tarEnemy: {
+    color: '198,0,0',
+    com: 'ALT-CTRL-NUMPAD0'
+  },
+  corruptionpet: {
+    color: '204,3,0',
+    com: 'ALT-CTRL-SHIFT-END'
+  },
+  corruptionraid8target: {
+    color: '46,3,0',
+    com: 'CTRL-DELETE'
+  },
+  sbL1raid3target: {
+    color: '58,8,0',
+    com: 'SHIFT-;'
+  },
+  burst2drainSoul: {
+    color: '91,2,0',
+    com: 'ALT-CTRL-SHIFT-F6'
+  },
+  agonyraid22target: {
+    color: '201,5,0',
+    com: 'CTRL-NUMPAD9'
+  },
+  sbL1focus: {
+    color: '198,9,0',
+    com: 'ALT-CTRL-.'
+  },
+  haunt: {
+    color: '10,1,0',
+    com: 'ALT-F1'
+  },
+  sbraid4target: {
+    color: '94,7,0',
+    com: 'CTRL-SHIFT-UP'
+  },
+  burst2unAff: {
+    color: '107,2,0',
+    com: 'SHIFT-F6'
+  },
+  sbL1raid11target: {
+    color: '253,7,0',
+    com: "CTRL-SHIFT-'"
+  },
+  agonyraid18target: {
+    color: '250,5,0',
+    com: 'CTRL-SHIFT-NUMPAD8'
+  },
+  agonyraid3target: {
+    color: '20,5,0',
+    com: 'SHIFT-NUMPAD6'
+  },
+  sbL1raid13target: {
+    color: '21,9,0',
+    com: "ALT-SHIFT-'"
+  },
+  seedfocus: {
+    color: '250,1,0',
+    com: 'ALT-CTRL-F4'
+  },
+  drainSoulraid1target: {
+    color: '133,5,0',
+    com: 'CTRL-NUMPADPLUS'
+  },
+  sbraid13target: {
+    color: '188,7,0',
+    com: 'ALT-SHIFT-DOWN'
+  },
+  sbL1raid12target: {
+    color: '36,9,0',
+    com: "ALT-CTRL-'"
+  },
+  corruptionLL9: {
+    color: '237,2,0',
+    com: 'ALT-CTRL-SHIFT-F8'
+  },
+  corruptionfocus: {
+    color: '33,4,0',
+    com: 'ALT-CTRL-END'
+  },
+  agonyparty2target: {
+    color: '117,5,0',
+    com: 'ALT-M'
+  },
+  healthStone: {
+    color: '72,0,0',
+    com: 'ALT-CTRL-SHIFT-F9'
+  },
+  focusLivingEmber: {
+    color: '214,0,0',
+    com: 'ALT-CTRL-SHIFT-NUMPAD0'
+  },
+  corruptionraid13target: {
+    color: '140,2,0',
+    com: 'ALT-SHIFT-DELETE'
+  },
+  drainSoulraid11target: {
+    color: '66,6,0',
+    com: 'CTRL-SHIFT-NUMPADMINUS'
+  },
+  chaosBolt: {
+    color: '153,0,0',
+    com: 'ALT-CTRL-SHIFT-F2'
+  },
+  burst3corruption: {
+    color: '156,2,0',
+    com: 'ALT-F7'
+  },
+  agonyraid14target: {
+    color: '214,5,0',
+    com: 'ALT-CTRL-SHIFT-NUMPAD7'
+  },
+  corruptionraid9target: {
+    color: '94,3,0',
+    com: 'ALT-DELETE'
+  },
+  sbraid17target: {
+    color: '34,8,0',
+    com: 'SHIFT-LEFT'
+  },
+  drainSoulmouse: {
+    color: '53,7,0',
+    com: 'ALT-SHIFT-NUMPADDIVIDE'
+  },
+  drainSoulparty3target: {
+    color: '123,7,0',
+    com: 'ALT-CTRL-SHIFT-M'
+  },
+  cancelHealthBuff: {
+    color: '117,9,0',
+    com: 'ALT-CTRL-SHIFT-F10'
+  },
+  sbraid3target: {
+    color: '91,7,0',
+    com: 'SHIFT-UP'
+  },
+  turn: {
+    color: '102,9,0',
+    com: 'ALT-F10'
+  },
+  eqSetSp: {
+    color: '52,0,0',
+    com: 'ALT-CTRL-F10'
+  },
+  corruptionraid2target: {
+    color: '217,2,0',
+    com: 'ALT-INSERT'
+  },
+  drainSoulraid17target: {
+    color: '246,6,0',
+    com: 'SHIFT-NUMPADMULTIPLY'
+  },
+  clearMirror: {
+    color: '162,0,0',
+    com: 'CTRL-SHIFT-NUMPAD0'
+  },
+  sbL1raid9target: {
+    color: '191,8,0',
+    com: "ALT-'"
+  },
+  corruptionraid20target: {
+    color: '253,2,0',
+    com: 'ALT-SHIFT-HOME'
+  },
+  agonyraid7target: {
+    color: '68,5,0',
+    com: 'ALT-CTRL-SHIFT-NUMPAD6'
+  },
+  burst3sb: {
+    color: '131,1,0',
+    com: 'CTRL-F7'
+  },
+  sbL1raid16target: {
+    color: '27,9,0',
+    com: 'ALT-,'
+  },
+  sbL1party1target: {
+    color: '162,9,0',
+    com: 'ALT-CTRL-7'
+  },
+  sbL1raid24target: {
+    color: '146,9,0',
+    com: 'SHIFT-.'
+  },
+  drainSoulraid4target: {
+    color: '156,6,0',
+    com: 'CTRL-SHIFT-NUMPADPLUS'
+  },
+  agonyraid25target: {
+    color: '26,6,0',
+    com: 'CTRL-SHIFT-NUMPAD9'
+  },
+  unAffraid20target: {
+    color: '243,4,0',
+    com: 'ALT-SHIFT-NUMPAD5'
+  },
+  corruptionparty4target: {
+    color: '5,4,0',
+    com: 'CTRL-SHIFT-N'
+  },
+  drainSoulraid13target: {
+    color: '222,6,0',
+    com: 'ALT-SHIFT-NUMPADMINUS'
+  },
+  drainSoulraid20target: {
+    color: '188,6,0',
+    com: 'ALT-SHIFT-NUMPADMULTIPLY'
+  },
+  seedmouseover: {
+    color: '172,1,0',
+    com: 'CTRL-SHIFT-F4'
+  },
+  lifeTap: {
+    color: '225,0,0',
+    com: 'ALT-CTRL-SHIFT-F1'
+  },
+  corruptionraid16target: {
+    color: '175,3,0',
+    com: 'ALT-HOME'
+  },
+  burst2agony: {
+    color: '118,2,0',
+    com: 'ALT-CTRL-F6'
+  },
+  shadowfury: {
+    color: '72,1,0',
+    com: 'ALT-F3'
+  },
+  sbL1raid17target: {
+    color: '65,9,0',
+    com: 'SHIFT-,'
+  },
+  corruptionraid25target: {
+    color: '227,3,0',
+    com: 'CTRL-SHIFT-END'
+  },
+  teleport: {
+    color: '201,1,0',
+    com: 'ALT-CTRL-F3'
+  },
+  agonyparty3target: {
+    color: '39,6,0',
+    com: 'SHIFT-M'
+  },
+  agonyraid9target: {
+    color: '154,5,0',
+    com: 'ALT-NUMPAD7'
+  },
+  sbraid14target: {
+    color: '29,8,0',
+    com: 'ALT-CTRL-SHIFT-DOWN'
+  },
+  gate: {
+    color: '206,1,0',
+    com: 'CTRL-F4'
+  },
+  tarBoss3: {
+    color: '182,0,0',
+    com: 'SHIFT-NUMPAD0'
+  },
+  corruptionparty3target: {
+    color: '20,4,0',
+    com: 'SHIFT-N'
+  },
+  drainSoulraid25target: {
+    color: '71,7,0',
+    com: 'CTRL-SHIFT-NUMPADDIVIDE'
+  },
+  burst1unAff: {
+    color: '212,1,0',
+    com: 'SHIFT-F5'
+  },
+  drainSoulfocus: {
+    color: '134,7,0',
+    com: 'ALT-CTRL-NUMPADDIVIDE'
+  },
+  agonymouse: {
+    color: '23,6,0',
+    com: 'ALT-SHIFT-NUMPAD9'
+  },
+  unAffraid9target: {
+    color: '143,3,0',
+    com: 'ALT-PAGEDOWN'
+  },
+  unAffraid24target: {
+    color: '227,4,0',
+    com: 'SHIFT-]'
+  },
+  burst2: {
+    color: '36,0,0',
+    com: 'SHIFT-F9'
+  },
+  stopCasting: {
+    color: '207,9,0',
+    com: 'CTRL-F9'
+  },
+  drainSoulraid22target: {
+    color: '201,6,0',
+    com: 'CTRL-NUMPADDIVIDE'
+  },
+  immoAura: {
+    color: '125,1,0',
+    com: 'ALT-CTRL-SHIFT-F3'
+  },
+  sbL1raid18target: {
+    color: '97,9,0',
+    com: 'CTRL-SHIFT-,'
+  },
+  agonyraid20target: {
+    color: '7,6,0',
+    com: 'ALT-SHIFT-NUMPAD8'
+  },
+  unAffpet: {
+    color: '88,5,0',
+    com: 'ALT-CTRL-SHIFT-]'
+  },
+  corruptionraid12target: {
+    color: '127,3,0',
+    com: 'ALT-CTRL-DELETE'
+  },
+  agonyraid6target: {
+    color: '149,5,0',
+    com: 'ALT-SHIFT-NUMPAD6'
+  },
+  agonypet: {
+    color: '120,6,0',
+    com: 'ALT-CTRL-SHIFT-NUMPAD9'
+  },
+  agonyparty4target: {
+    color: '75,6,0',
+    com: 'CTRL-SHIFT-M'
+  },
+  agonyraid17target: {
+    color: '230,5,0',
+    com: 'SHIFT-NUMPAD8'
+  },
+  corruptionraid22target: {
+    color: '224,3,0',
+    com: 'CTRL-END'
+  },
+  burst1haunt: {
+    color: '46,2,0',
+    com: 'CTRL-SHIFT-F5'
+  },
+  feedPet: {
+    color: '88,1,0',
+    com: 'SHIFT-F4'
+  },
+  saronite: {
+    color: '130,9,0',
+    com: 'ALT-SHIFT-F9'
+  },
+  drainSoulraid7target: {
+    color: '88,6,0',
+    com: 'ALT-CTRL-SHIFT-NUMPADPLUS'
+  },
+  doom: {
+    color: '104,1,0',
+    com: 'ALT-F2'
+  },
+  sbraid21target: {
+    color: '128,7,0',
+    com: 'ALT-CTRL-SHIFT-LEFT'
+  },
+  unAffraid8target: {
+    color: '130,4,0',
+    com: 'CTRL-PAGEDOWN'
+  },
+  unAffraid10target: {
+    color: '146,4,0',
+    com: 'SHIFT-PAGEDOWN'
+  },
+  drainSoulraid21target: {
+    color: '42,7,0',
+    com: 'ALT-CTRL-SHIFT-NUMPADMULTIPLY'
+  },
+  incinerate: {
+    color: '68,1,0',
+    com: 'ALT-CTRL-F2'
+  },
+  drainSoulraid19target: {
+    color: '147,6,0',
+    com: 'ALT-CTRL-NUMPADMULTIPLY'
+  },
+  rocketBoot: {
+    color: '63,0,0',
+    com: 'CTRL-F10'
+  },
+  sbraid7target: {
+    color: '152,7,0',
+    com: 'ALT-CTRL-SHIFT-UP'
+  },
+  unAffraid17target: {
+    color: '191,4,0',
+    com: 'SHIFT-['
+  },
+  sbL1party3target: {
+    color: '224,8,0',
+    com: 'ALT-CTRL-SHIFT-7'
+  },
+  burst2sb: {
+    color: '221,1,0',
+    com: 'CTRL-F6'
+  },
+  drainSoulraid16target: {
+    color: '10,7,0',
+    com: 'ALT-NUMPADMULTIPLY'
+  },
+  unAffraid4target: {
+    color: '92,4,0',
+    com: 'CTRL-SHIFT-PAGEUP'
+  },
+  corruptionraid11target: {
+    color: '33,3,0',
+    com: 'CTRL-SHIFT-DELETE'
+  },
+  drainSoulraid10target: {
+    color: '217,6,0',
+    com: 'SHIFT-NUMPADMINUS'
+  },
+  sbL1raid6target: {
+    color: '240,8,0',
+    com: 'ALT-SHIFT-;'
+  },
+  agonyraid19target: {
+    color: '169,5,0',
+    com: 'ALT-CTRL-NUMPAD8'
+  },
+  sbL1raid20target: {
+    color: '108,9,0',
+    com: 'ALT-SHIFT-,'
+  },
+  unAff: {
+    color: '166,0,0',
+    com: 'CTRL-SHIFT-F1'
+  },
+  tarLight: {
+    color: '185,0,0',
+    com: 'ALT-CTRL-NUMPAD1'
+  },
+  sbraid2target: {
+    color: '172,7,0',
+    com: 'ALT-UP'
+  },
+  burst2lifeTap: {
+    color: '37,2,0',
+    com: 'ALT-SHIFT-F6'
+  },
+  burst1corruption: {
+    color: '234,1,0',
+    com: 'ALT-F5'
+  },
+  drainSoulparty1target: {
+    color: '13,7,0',
+    com: 'ALT-CTRL-M'
+  },
+  sbraid23target: {
+    color: '13,8,0',
+    com: 'ALT-RIGHT'
+  },
+  sbraid24target: {
+    color: '62,8,0',
+    com: 'SHIFT-RIGHT'
+  },
+  sbraid6target: {
+    color: '62,7,0',
+    com: 'ALT-SHIFT-UP'
+  },
+  sbraid8target: {
+    color: '224,7,0',
+    com: 'CTRL-DOWN'
+  },
+  unAffraid3target: {
+    color: '123,3,0',
+    com: 'SHIFT-PAGEUP'
+  },
+  sbraid22target: {
+    color: '94,8,0',
+    com: 'CTRL-RIGHT'
+  },
+  doomfocus: {
+    color: '10,2,0',
+    com: 'CTRL-F8'
+  },
+  willToSurvive: {
+    color: '144,0,0',
+    com: 'ALT-SHIFT-F10'
+  },
+  sbmouse: {
+    color: '115,8,0',
+    com: 'ALT-SHIFT-RIGHT'
+  },
+  agonyraid11target: {
+    color: '120,5,0',
+    com: 'CTRL-SHIFT-NUMPAD7'
+  },
+  corruptionraid6target: {
+    color: '240,2,0',
+    com: 'ALT-SHIFT-INSERT'
+  },
+  drainSoulparty4target: {
+    color: '136,6,0',
+    com: 'ALT-L'
+  },
+  corruptionraid5target: {
+    color: '42,3,0',
+    com: 'ALT-CTRL-INSERT'
+  },
+  sbraid19target: {
+    color: '0,8,0',
+    com: 'ALT-CTRL-LEFT'
+  },
+  drainSoulraid5target: {
+    color: '141,6,0',
+    com: 'ALT-CTRL-NUMPADPLUS'
+  },
+  sbraid20target: {
+    color: '78,8,0',
+    com: 'ALT-SHIFT-LEFT'
+  },
+  unAffraid12target: {
+    color: '0,4,0',
+    com: 'ALT-CTRL-PAGEDOWN'
+  },
+  corruptionraid14target: {
+    color: '65,3,0',
+    com: 'ALT-CTRL-SHIFT-DELETE'
+  },
+  corruptionraid1target: {
+    color: '208,2,0',
+    com: 'CTRL-INSERT'
+  },
+  conflagrate: {
+    color: '140,1,0',
+    com: 'ALT-SHIFT-F2'
+  },
+  doommouseover: {
+    color: '230,1,0',
+    com: 'ALT-CTRL-SHIFT-F4'
+  },
+  burst2corruption: {
+    color: '31,2,0',
+    com: 'ALT-F6'
+  },
+  sbpet: {
+    color: '233,7,0',
+    com: 'ALT-CTRL-SHIFT-RIGHT'
+  },
+  clearFocus: {
+    color: '117,0,0',
+    com: 'CTRL-MOUSEWHEELDOWN'
+  },
+  lifeTapL4: {
+    color: '24,3,0',
+    com: 'SHIFT-K'
+  },
+  unAffparty4target: {
+    color: '39,5,0',
+    com: 'CTRL-L'
+  },
+  unAffparty1target: {
+    color: '36,5,0',
+    com: 'ALT-CTRL-N'
+  },
+  agonyraid1target: {
+    color: '133,4,0',
+    com: 'CTRL-NUMPAD6'
+  },
+  sbL1mouse: {
+    color: '49,9,0',
+    com: 'ALT-SHIFT-.'
+  },
+  burst3haunt: {
+    color: '172,2,0',
+    com: 'CTRL-SHIFT-F7'
+  },
+  corruptionraid15target: {
+    color: '99,3,0',
+    com: 'CTRL-HOME'
+  },
+  drainSoul: {
+    color: '59,1,0',
+    com: 'ALT-SHIFT-F1'
+  },
+  unAffraid22target: {
+    color: '254,4,0',
+    com: 'CTRL-]'
+  },
+  agonyraid4target: {
+    color: '79,5,0',
+    com: 'CTRL-SHIFT-NUMPAD6'
+  },
+  tarDark: {
+    color: '23,0,0',
+    com: 'ALT-SHIFT-NUMPAD1'
+  },
+  corruptionraid10target: {
+    color: '114,3,0',
+    com: 'SHIFT-DELETE'
+  },
+  inferno: {
+    color: '120,1,0',
+    com: 'ALT-SHIFT-F3'
+  },
+  unAffraid13target: {
+    color: '162,4,0',
+    com: 'ALT-SHIFT-PAGEDOWN'
+  },
+  burst1drainSoul: {
+    color: '55,2,0',
+    com: 'ALT-CTRL-SHIFT-F5'
+  },
+  corruptionraid17target: {
+    color: '146,3,0',
+    com: 'SHIFT-HOME'
+  },
+  agonyraid16target: {
+    color: '182,5,0',
+    com: 'ALT-NUMPAD8'
+  },
+  cancelToT: {
+    color: '188,2,0',
+    com: 'ALT-K'
+  },
+  agonyraid2target: {
+    color: '101,5,0',
+    com: 'ALT-NUMPAD6'
+  },
+  tarBoss1: {
+    color: '81,0,0',
+    com: 'CTRL-NUMPAD0'
+  },
+  burst2haunt: {
+    color: '149,1,0',
+    com: 'CTRL-SHIFT-F6'
+  },
+  corruptionraid4target: {
+    color: '62,3,0',
+    com: 'CTRL-SHIFT-INSERT'
+  },
+  corruptionraid24target: {
+    color: '240,3,0',
+    com: 'SHIFT-END'
+  },
+  agonyraid5target: {
+    color: '114,4,0',
+    com: 'ALT-CTRL-NUMPAD6'
+  },
+  agony: {
+    color: '219,0,0',
+    com: 'ALT-CTRL-F1'
+  },
+  immo: {
+    color: '91,1,0',
+    com: 'SHIFT-F2'
+  },
+  unAffraid23target: {
+    color: '173,4,0',
+    com: 'ALT-]'
+  },
+  sbparty2target: {
+    color: '49,8,0',
+    com: 'ALT-7'
+  },
+  sbL1raid22target: {
+    color: '45,9,0',
+    com: 'CTRL-.'
+  },
+  unAffparty3target: {
+    color: '52,5,0',
+    com: 'ALT-CTRL-SHIFT-N'
+  },
+  sbL1raid8target: {
+    color: '0,9,0',
+    com: "CTRL-'"
+  },
+  burst1: {
+    color: '243,8,0',
+    com: 'ALT-F9'
+  },
+  sbL1raid15target: {
+    color: '110,8,0',
+    com: 'CTRL-,'
+  },
+  burst2Critical: {
+    color: '13,3,0',
+    com: 'CTRL-K'
+  },
+  agonyraid8target: {
+    color: '160,5,0',
+    com: 'CTRL-NUMPAD7'
+  },
+  searLL8: {
+    color: '221,2,0',
+    com: 'CTRL-SHIFT-F8'
+  },
+  drainSoulparty2target: {
+    color: '47,7,0',
+    com: 'ALT-SHIFT-M'
+  },
+  sbL1raid5target: {
+    color: '211,8,0',
+    com: 'ALT-CTRL-;'
+  },
+  unAffraid7target: {
+    color: '52,4,0',
+    com: 'ALT-CTRL-SHIFT-PAGEUP'
+  },
+  soulFire: {
+    color: '44,1,0',
+    com: 'CTRL-SHIFT-F2'
+  },
+  sbparty1target: {
+    color: '130,8,0',
+    com: 'CTRL-7'
+  },
+  deathCoil: {
+    color: '78,2,0',
+    com: 'ALT-CTRL-F8'
+  },
+  sbraid11target: {
+    color: '156,7,0',
+    com: 'CTRL-SHIFT-DOWN'
+  },
+  sbraid12target: {
+    color: '215,7,0',
+    com: 'ALT-CTRL-DOWN'
+  },
+  agonyraid12target: {
+    color: '248,4,0',
+    com: 'ALT-CTRL-NUMPAD7'
+  },
+  sbraid10target: {
+    color: '237,7,0',
+    com: 'SHIFT-DOWN'
+  },
+  seed: {
+    color: '138,0,0',
+    com: 'CTRL-F2'
+  },
+  burst3unAff: {
+    color: '75,2,0',
+    com: 'SHIFT-F7'
+  },
+  unAffraid16target: {
+    color: '110,4,0',
+    com: 'ALT-['
+  },
+  unAffraid11target: {
+    color: '65,4,0',
+    com: 'CTRL-SHIFT-PAGEDOWN'
+  },
+  corruptionraid21target: {
+    color: '195,3,0',
+    com: 'ALT-CTRL-SHIFT-HOME'
+  },
+  sbraid18target: {
+    color: '204,7,0',
+    com: 'CTRL-SHIFT-LEFT'
+  },
+  unAffraid6target: {
+    color: '29,4,0',
+    com: 'ALT-SHIFT-PAGEUP'
+  },
+  unAffraid25target: {
+    color: '195,4,0',
+    com: 'CTRL-SHIFT-]'
+  },
+  agonyraid13target: {
+    color: '178,5,0',
+    com: 'ALT-SHIFT-NUMPAD7'
+  },
+  unAffraid21target: {
+    color: '214,4,0',
+    com: 'ALT-CTRL-SHIFT-['
+  },
+  sbL1raid4target: {
+    color: '175,8,0',
+    com: 'CTRL-SHIFT-;'
+  },
+  drainSoulraid23target: {
+    color: '107,6,0',
+    com: 'ALT-NUMPADDIVIDE'
+  },
+  drainSoulraid8target: {
+    color: '241,5,0',
+    com: 'CTRL-NUMPADMINUS'
+  },
+  sbL1raid19target: {
+    color: '16,9,0',
+    com: 'ALT-CTRL-,'
+  },
+  agonyfocus: {
+    color: '104,6,0',
+    com: 'ALT-CTRL-NUMPAD9'
+  },
+  sbraid1target: {
+    color: '143,7,0',
+    com: 'CTRL-UP'
+  },
+  sbL1party2target: {
+    color: '81,9,0',
+    com: 'ALT-SHIFT-7'
+  },
+  drainSoulraid24target: {
+    color: '75,7,0',
+    com: 'SHIFT-NUMPADDIVIDE'
+  },
+  unAffraid5target: {
+    color: '86,4,0',
+    com: 'ALT-CTRL-PAGEUP'
+  },
+  drainSoulraid18target: {
+    color: '26,7,0',
+    com: 'CTRL-SHIFT-NUMPADMULTIPLY'
+  },
+  sbparty3target: {
+    color: '143,8,0',
+    com: 'SHIFT-7'
+  },
+  agonyraid24target: {
+    color: '55,6,0',
+    com: 'SHIFT-NUMPAD9'
+  },
+  drainSoulraid15target: {
+    color: '3,6,0',
+    com: 'CTRL-NUMPADMULTIPLY'
+  },
+  sbL1party4target: {
+    color: '178,9,0',
+    com: 'SHIFT-L'
+  },
+  sapper: {
+    color: '189,9,0',
+    com: 'ALT-CTRL-F9'
+  },
+  sbL1raid10target: {
+    color: '196,8,0',
+    com: "SHIFT-'"
+  },
+  unAffmouse: {
+    color: '16,5,0',
+    com: 'ALT-SHIFT-]'
+  },
+  agonyraid21target: {
+    color: '198,5,0',
+    com: 'ALT-CTRL-SHIFT-NUMPAD8'
+  },
+  agonyraid10target: {
+    color: '97,5,0',
+    com: 'SHIFT-NUMPAD7'
+  },
+  drainSoulraid9target: {
+    color: '185,6,0',
+    com: 'ALT-NUMPADMINUS'
+  },
+  burst3: {
+    color: '183,9,0',
+    com: 'CTRL-SHIFT-F9'
+  },
+  corruptionraid3target: {
+    color: '26,2,0',
+    com: 'SHIFT-INSERT'
+  },
+  burst1sb: {
+    color: '185,1,0',
+    com: 'CTRL-F5'
+  },
+  corruptionraid23target: {
+    color: '78,3,0',
+    com: 'ALT-END'
+  },
+  drainSoulraid6target: {
+    color: '169,6,0',
+    com: 'ALT-SHIFT-NUMPADPLUS'
+  },
+  burst3agony: {
+    color: '159,2,0',
+    com: 'ALT-CTRL-F7'
+  },
+  shatter: {
+    color: '169,1,0',
+    com: 'CTRL-SHIFT-F3'
+  },
+  sbL1pet: {
+    color: '211,9,0',
+    com: 'ALT-CTRL-SHIFT-.'
+  },
+  drainSoulraid2target: {
+    color: '60,6,0',
+    com: 'ALT-NUMPADPLUS'
+  },
+  corruptionparty2target: {
+    color: '18,3,0',
+    com: 'ALT-N'
+  },
+  sbraid25target: {
+    color: '107,7,0',
+    com: 'CTRL-SHIFT-RIGHT'
+  },
+  focusValkyr: {
+    color: '234,0,0',
+    com: 'CTRL-NUMPAD1'
+  },
+  sbraid16target: {
+    color: '40,8,0',
+    com: 'ALT-LEFT'
+  },
+  corruption: {
+    color: '50,1,0',
+    com: 'SHIFT-F1'
+  },
+  agonyraid15target: {
+    color: '73,5,0',
+    com: 'CTRL-NUMPAD8'
+  },
+  sb: {
+    color: '39,1,0',
+    com: 'CTRL-F1'
+  },
+  unAffraid18target: {
+    color: '81,4,0',
+    com: 'CTRL-SHIFT-['
+  },
+  corruptionraid18target: {
+    color: '186,3,0',
+    com: 'CTRL-SHIFT-HOME'
+  },
+  sbL1raid21target: {
+    color: '121,8,0',
+    com: 'ALT-CTRL-SHIFT-,'
+  },
+  sbraid15target: {
+    color: '250,6,0',
+    com: 'CTRL-LEFT'
+  },
+  unAffraid2target: {
+    color: '208,3,0',
+    com: 'ALT-PAGEUP'
+  },
+  sbraid9target: {
+    color: '209,7,0',
+    com: 'ALT-DOWN'
+  },
+  corruptionparty1target: {
+    color: '180,3,0',
+    com: 'CTRL-N'
+  },
+  tarFlyGhost: {
+    color: '85,0,0',
+    com: 'ALT-NUMPAD1'
+  },
+  drainSoulpet: {
+    color: '237,6,0',
+    com: 'ALT-CTRL-SHIFT-NUMPADDIVIDE'
+  },
+  agonyparty1target: {
+    color: '235,5,0',
+    com: 'CTRL-M'
+  },
+  burst1lifeTap: {
+    color: '59,2,0',
+    com: 'ALT-SHIFT-F5'
+  }
 };
+/** 小易SS */
+export const color_mappings_XIAOYI_SS = transferConfig(CONFIG_XIAOYI_SS);
 
 export const color_mappings_XIAOYI_LR: Record<string, string> = {
   '#090100': 'CTRL-F2',
@@ -585,4 +1570,3 @@ export const color_mappings_XIAOYI_LR: Record<string, string> = {
   '#c90100': 'CTRL-SHIFT-DELETE',
   '#290000': 'ALT-F9'
 };
-
