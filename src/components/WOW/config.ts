@@ -180,171 +180,170 @@ export const color_mappings_JIAJIA: Record<string, string> = {
   '#1e1c68': 'F12'
 };
 
-
 const CONFIG_XIAOYI_SS: { [key: string]: { color: string; com: string } } = {
-  immoraid7target: {
-    color: '52,4,0',
-    com: ''
-  },
-  immoraid11target: {
-    color: '65,4,0',
-    com: ''
+  tab: {
+    color: '149,9,0',
+    com: 'TAB'
   },
   shadowBite: {
     color: '253,1,0',
-    com: ''
-  },
-  immopet: {
-    color: '88,5,0',
-    com: ''
-  },
-  immoraid20target: {
-    color: '243,4,0',
-    com: ''
-  },
-  immoparty2target: {
-    color: '11,4,0',
-    com: ''
-  },
-  cancelStormPower: {
-    color: '133,0,0',
-    com: ''
-  },
-  immoraid25target: {
-    color: '195,4,0',
-    com: ''
-  },
-  immoraid1target: {
-    color: '49,4,0',
-    com: ''
-  },
-  immoraid2target: {
-    color: '208,3,0',
-    com: ''
-  },
-  immoraid23target: {
-    color: '173,4,0',
-    com: ''
-  },
-  immoraid19target: {
-    color: '167,4,0',
-    com: ''
-  },
-  startMove: {
-    color: '57,0,0',
-    com: ''
-  },
-  immoraid12target: {
-    color: '0,4,0',
-    com: ''
-  },
-  immoraid9target: {
-    color: '143,3,0',
-    com: ''
-  },
-  immomouse: {
-    color: '16,5,0',
     com: ''
   },
   kologarnTarget3: {
     color: '243,0,0',
     com: ''
   },
-  immoraid16target: {
-    color: '110,4,0',
+  cancelStormPower: {
+    color: '133,0,0',
     com: ''
   },
-  immoraid6target: {
-    color: '29,4,0',
-    com: ''
-  },
-  immofocus: {
-    color: '211,4,0',
+  startMove: {
+    color: '57,0,0',
     com: ''
   },
   casting: {
     color: '20,0,0',
     com: ''
   },
-  immoraid17target: {
-    color: '191,4,0',
-    com: ''
-  },
-  immoraid18target: {
-    color: '81,4,0',
-    com: ''
-  },
   shadowFlame: {
     color: '199,2,0',
-    com: ''
-  },
-  immoraid5target: {
-    color: '86,4,0',
-    com: ''
-  },
-  immoparty1target: {
-    color: '36,5,0',
-    com: ''
-  },
-  immoparty4target: {
-    color: '39,5,0',
     com: ''
   },
   na: {
     color: '0,0,0',
     com: ''
   },
-  immoraid21target: {
-    color: '214,4,0',
-    com: ''
-  },
   cd: {
     color: '10,0,0',
     com: ''
   },
-  immoraid15target: {
-    color: '101,4,0',
-    com: ''
+  immofocus: {
+    color: '211,4,0',
+    com: 'ALT-CTRL-]'
   },
-  immoraid3target: {
-    color: '123,3,0',
-    com: ''
+  immomouse: {
+    color: '16,5,0',
+    com: 'ALT-SHIFT-]'
   },
-  immoraid4target: {
-    color: '92,4,0',
-    com: ''
+  immopet: {
+    color: '88,5,0',
+    com: 'ALT-CTRL-SHIFT-]'
+  },
+  immoparty1target: {
+    color: '36,5,0',
+    com: 'ALT-CTRL-N'
+  },
+  immoparty2target: {
+    color: '11,4,0',
+    com: 'ALT-SHIFT-N'
   },
   immoparty3target: {
     color: '52,5,0',
-    com: ''
+    com: 'ALT-CTRL-SHIFT-N'
   },
-  immoraid24target: {
-    color: '227,4,0',
-    com: ''
+  immoparty4target: {
+    color: '39,5,0',
+    com: 'CTRL-L'
+  },
+  immoraid1target: {
+    color: '49,4,0',
+    com: 'CTRL-PAGEUP'
+  },
+  immoraid2target: {
+    color: '208,3,0',
+    com: 'ALT-PAGEUP'
+  },
+  immoraid3target: {
+    color: '123,3,0',
+    com: 'SHIFT-PAGEUP'
+  },
+  immoraid4target: {
+    color: '92,4,0',
+    com: 'CTRL-SHIFT-PAGEUP'
+  },
+  immoraid5target: {
+    color: '86,4,0',
+    com: 'ALT-CTRL-PAGEUP'
+  },
+  immoraid6target: {
+    color: '29,4,0',
+    com: 'ALT-SHIFT-PAGEUP'
+  },
+  immoraid7target: {
+    color: '52,4,0',
+    com: 'ALT-CTRL-SHIFT-PAGEUP'
   },
   immoraid8target: {
     color: '130,4,0',
-    com: ''
+    com: 'CTRL-PAGEDOWN'
   },
-  immoraid13target: {
-    color: '162,4,0',
-    com: ''
-  },
-  tab: {
-    color: '149,9,0',
-    com: 'TAB'
+  immoraid9target: {
+    color: '143,3,0',
+    com: 'ALT-PAGEDOWN'
   },
   immoraid10target: {
     color: '146,4,0',
-    com: ''
+    com: 'SHIFT-PAGEDOWN'
   },
-  immoraid22target: {
-    color: '254,4,0',
-    com: ''
+  immoraid11target: {
+    color: '65,4,0',
+    com: 'CTRL-SHIFT-PAGEDOWN'
+  },
+  immoraid12target: {
+    color: '0,4,0',
+    com: 'ALT-CTRL-PAGEDOWN'
+  },
+  immoraid13target: {
+    color: '162,4,0',
+    com: 'ALT-SHIFT-PAGEDOWN'
   },
   immoraid14target: {
     color: '182,4,0',
-    com: ''
+    com: 'ALT-CTRL-SHIFT-PAGEDOWN'
+  },
+  immoraid15target: {
+    color: '101,4,0',
+    com: 'CTRL-['
+  },
+  immoraid16target: {
+    color: '110,4,0',
+    com: 'ALT-['
+  },
+  immoraid17target: {
+    color: '191,4,0',
+    com: 'SHIFT-['
+  },
+  immoraid18target: {
+    color: '81,4,0',
+    com: 'CTRL-SHIFT-['
+  },
+  immoraid19target: {
+    color: '167,4,0',
+    com: 'ALT-CTRL-['
+  },
+  immoraid20target: {
+    color: '243,4,0',
+    com: 'ALT-SHIFT-NUMPAD5'
+  },
+  immoraid21target: {
+    color: '214,4,0',
+    com: 'ALT-CTRL-SHIFT-['
+  },
+  immoraid22target: {
+    color: '254,4,0',
+    com: 'CTRL-]'
+  },
+  immoraid23target: {
+    color: '173,4,0',
+    com: 'ALT-]'
+  },
+  immoraid24target: {
+    color: '227,4,0',
+    com: 'SHIFT-]'
+  },
+  immoraid25target: {
+    color: '195,4,0',
+    com: 'CTRL-SHIFT-]'
   },
   drainSoulraid12target: {
     color: '228,6,0',
@@ -1441,7 +1440,6 @@ const CONFIG_XIAOYI_SS: { [key: string]: { color: string; com: string } } = {
 };
 /** 小易SS */
 export const color_mappings_XIAOYI_SS = transferConfig(CONFIG_XIAOYI_SS);
-
 
 const CONFIG_XIAOYI_LR = {
   stopCasting: {
