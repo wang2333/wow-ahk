@@ -1,6 +1,8 @@
 use enigo::{Enigo, Key, KeyboardControllable, MouseControllable};
 use screenshots::Screen;
 use serde::Serialize;
+use std::thread;
+use std::time::Duration;
 
 #[derive(Debug, Serialize)]
 struct ColorInfo {
@@ -56,6 +58,7 @@ fn get_current_position_color() -> Option<PositionColorInfo> {
 #[tauri::command]
 fn press_keys(keys: Vec<String>) {
     let mut enigo = Enigo::new();
+    let delay = Duration::from_millis(50);
 
     // 按下所有修饰键
     for key in &keys {
@@ -65,6 +68,7 @@ fn press_keys(keys: Vec<String>) {
             "SHIFT" => enigo.key_down(Key::Shift),
             _ => {}
         }
+        thread::sleep(delay);
     }
 
     // 按下主键
@@ -132,6 +136,7 @@ fn press_keys(keys: Vec<String>) {
             }
             _ => {}
         }
+        thread::sleep(delay);
     }
 
     // 释放所有修饰键
@@ -142,6 +147,7 @@ fn press_keys(keys: Vec<String>) {
             "SHIFT" => enigo.key_up(Key::Shift),
             _ => {}
         }
+        thread::sleep(delay);
     }
 }
 

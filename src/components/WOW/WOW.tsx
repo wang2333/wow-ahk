@@ -80,7 +80,20 @@ function WOW() {
     const checkColor = async () => {
       if (!isRunning || model === 0) return;
 
-      if (selectedMapping === 'XIAOYI_LR') {
+      const newColor = await invoke<ColorInfo>('get_pixel_color', {
+        x: model === 1 || selectedMapping !== 'JIAJIA' ? coordinates.x1 : coordinates.x2,
+        y: coordinates.y
+      });
+      // 转换为十六进制格式
+      const hexColor = rgbToHex(newColor.r, newColor.g, newColor.b);
+      setColor(hexColor);
+
+      const keyCombo = color_mappings?.[hexColor];
+      if (keyCombo) {
+        await invoke('press_keys', { keys: keyCombo.split('-') });
+      }
+
+      if (selectedMapping === 'XIAOYI_LR' || selectedMapping === 'XIAOYI_SS') {
         const action2Color = await invoke<ColorInfo>('get_pixel_color', {
           x: coordinates.x1 + 34,
           y: coordinates.y
@@ -95,22 +108,9 @@ function WOW() {
         }
       }
 
-      const newColor = await invoke<ColorInfo>('get_pixel_color', {
-        x: model === 1 || selectedMapping !== 'JIAJIA' ? coordinates.x1 : coordinates.x2,
-        y: coordinates.y
-      });
-      // 转换为十六进制格式
-      const hexColor = rgbToHex(newColor.r, newColor.g, newColor.b);
-      setColor(hexColor);
-
-      const keyCombo = color_mappings?.[hexColor];
-      if (keyCombo) {
-        await invoke('press_keys', { keys: keyCombo.split('-') });
-      }
-
       // 递归调用，确保前一个操作完成后才开始下一个
       if (isRunning) {
-        setTimeout(checkColor, 20);
+        setTimeout(checkColor, 100);
       }
     };
 
