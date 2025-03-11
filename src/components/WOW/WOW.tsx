@@ -201,7 +201,17 @@ function WOW() {
     <div className={styles.container}>
       {/* 坐标设置区域 */}
       <div className={styles.card}>
-        <h3 className={styles.cardTitle}>基础设置</h3>
+        <h3 className={styles.cardTitle}>
+          基础设置
+          <span
+            className={`${styles.statusLabel} ${
+              model === 1 ? styles.statusLabelMode1 : model === 2 ? styles.statusLabelMode2 : ''
+            }`}
+          >
+            当前模式: {model === 0 ? '已暂停' : model === 1 ? '模式1' : '模式2'}
+          </span>
+          {color && <span className={styles.statusLabel}>执行按键：{color_mappings?.[color]}</span>}
+        </h3>
         <div className={styles.settingsContainer}>
           <div className={styles.mappingSelection}>
             <label className={styles.label}>配置选择</label>
@@ -277,26 +287,6 @@ function WOW() {
               step='100'
               className={styles.input}
             />
-          </div>
-        </div>
-      </div>
-
-      {/* 状态显示区域 */}
-      <div className={styles.card}>
-        <h3 className={styles.cardTitle}>运行状态</h3>
-        <div className={styles.statusSection}>
-          <div className={styles.statusGroup}>
-            <span
-              className={`${styles.statusLabel} ${
-                model === 1 ? styles.statusLabelMode1 : model === 2 ? styles.statusLabelMode2 : ''
-              }`}
-            >
-              当前模式: {model === 0 ? '已暂停' : model === 1 ? '模式1' : '模式2'}
-            </span>
-
-            {color && (
-              <span className={styles.statusLabel}>执行按键：{color_mappings?.[color]}</span>
-            )}
           </div>
         </div>
       </div>
