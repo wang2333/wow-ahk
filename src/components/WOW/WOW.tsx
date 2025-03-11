@@ -91,13 +91,13 @@ function WOW() {
 
     const checkColor = async () => {
       if (!isRunning || model === 0) return;
-      autokey({
+      await autokey({
         x: model === 1 || selectedMapping !== 'JIAJIA' ? coordinates.x1 : coordinates.x2,
         y: coordinates.y
       });
 
       if (selectedMapping === 'XIAOYI_LR' || selectedMapping === 'XIAOYI_SS') {
-        autokey({
+        await autokey({
           x: coordinates.x1 + 34,
           y: coordinates.y
         });
