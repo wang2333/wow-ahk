@@ -35,7 +35,7 @@ function transferConfig(data: Record<string, { color: string; com: string }>) {
   return config;
 }
 
-/** 佳佳 */
+/** 佳佳一键宏 */
 export const color_mappings_JIAJIA: Record<string, string> = {
   '#8cd6ee': 'ALT-CTRL-F1',
   '#8ca3ee': 'ALT-CTRL-F2',
@@ -180,6 +180,81 @@ export const color_mappings_JIAJIA: Record<string, string> = {
   '#1e1c68': 'F12'
 };
 
+// '#9571e8': 'SHIFT-F4',
+// '#ef8fbd': 'SHIFT-F9',
+// SHIFT-j
+// SHIFT-m
+// SHIFT-n
+// CTRL-"
+// CTRL--
+// CTRL-p
+// CTRL-o
+// CTRL-i
+// CTRL-l
+// CTRL-k
+// CTRL-j
+// CTRL-m
+// CTRL-n
+
+export const color_mappings_ZHUZHU: Record<string, string> = {
+  '#6dfa45': 'SHIFT-F1',
+  '#58b474': 'SHIFT-F2',
+  '#dfe244': 'SHIFT-F3',
+  '#eda08d': 'SHIFT-F5',
+  '#9ebe5c': 'SHIFT-F6',
+  '#9b8cee': 'SHIFT-F7',
+  '#887788': 'SHIFT-F8',
+  '#dbdd18': 'SHIFT-F10',
+  '#f7aeae': 'CTRL-F1',
+  '#884488': 'CTRL-F2',
+  '#885588': 'CTRL-F3',
+  '#886688': 'CTRL-F4',
+  '#2d1b7b': 'CTRL-F5',
+  '#31deed': 'CTRL-F6',
+  '#34e76f': 'CTRL-F7',
+  '#3f25b0': 'CTRL-F8',
+  '#5933ff': 'CTRL-F9',
+  '#6cd533': 'CTRL-F10',
+  '#882288': 'ALT-NUMPAD1',
+  '#919439': 'ALT-NUMPAD2',
+  '#a1a440': 'ALT-NUMPAD3',
+  '#adb046': 'ALT-NUMPAD4',
+  '#4476fb': 'ALT-NUMPAD5',
+  '#f744fb': 'ALT-NUMPAD6',
+  '#d2ed8d': 'ALT-NUMPAD7',
+  '#d4d746': 'ALT-NUMPAD8',
+  '#883388': 'ALT-NUMPAD9',
+  '#ef8fbd': 'ALT-NUMPAD0',
+  '#4552ab': 'CTRL-NUMPAD1',
+  '#9571e8': 'CTRL-NUMPAD2',
+  '#881188': 'CTRL-NUMPAD3',
+  '#9fd599': 'CTRL-NUMPAD4',
+  '#9644fb': 'CTRL-NUMPAD5',
+  '#8c4aac': 'CTRL-NUMPAD6',
+  '#81bcc5': 'CTRL-NUMPAD7',
+  '#8c76c7': 'CTRL-NUMPAD8',
+  '#e48cee': 'CTRL-NUMPAD9',
+  '#8e4065': 'CTRL-NUMPAD0',
+  '#989138': 'NUMPAD1',
+  '#edda8d': 'NUMPAD2',
+  '#a6ed8d': 'NUMPAD3',
+  '#fb4496': 'NUMPAD4',
+  '#f9e746': 'NUMPAD5',
+  '#88aa88': 'NUMPAD6',
+  '#bd8ded': 'NUMPAD7',
+  '#f9ddb7': 'NUMPAD8',
+  '#f5f9b7': 'NUMPAD9',
+  '#ee8cdb': 'NUMPAD0',
+  '#c477b6': 'SHIFT-=',
+  '#27a5b0': 'SHIFT--',
+  '#28ac53': 'SHIFT-P',
+  '#f7c2ae': 'SHIFT-O',
+  '#ef8f92': 'SHIFT-I',
+  '#e673c4': 'SHIFT-L',
+  '#f78a48': 'SHIFT-K'
+};
+
+/** 猪猪一键宏 */
 const CONFIG_XIAOYI_SS: { [key: string]: { color: string; com: string } } = {
   tab: {
     color: '149,9,0',
@@ -1438,7 +1513,7 @@ const CONFIG_XIAOYI_SS: { [key: string]: { color: string; com: string } } = {
     com: 'ALT-SHIFT-F5'
   }
 };
-/** 小易SS */
+/** 小易SS一键宏 */
 export const color_mappings_XIAOYI_SS = transferConfig(CONFIG_XIAOYI_SS);
 
 const CONFIG_XIAOYI_LR = {
@@ -1991,5 +2066,5 @@ const CONFIG_XIAOYI_LR = {
     com: 'ALT-SHIFT-NUMPAD6'
   }
 };
-/** 小易LR */
+/** 小易LR一键宏 */
 export const color_mappings_XIAOYI_LR = transferConfig(CONFIG_XIAOYI_LR);

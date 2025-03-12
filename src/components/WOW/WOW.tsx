@@ -7,6 +7,7 @@ import { invoke } from '@tauri-apps/api/core';
 import { register, unregister } from '@tauri-apps/plugin-global-shortcut';
 import {
   color_mappings_JIAJIA,
+  color_mappings_ZHUZHU,
   color_mappings_XIAOYI_SS,
   color_mappings_XIAOYI_LR,
   rgbToHex
@@ -18,7 +19,7 @@ interface ColorInfo {
   g: number;
   b: number;
 }
-type ColorMapping = 'JIAJIA' | 'XIAOYI_SS' | 'XIAOYI_LR';
+type ColorMapping = 'JIAJIA' | 'ZHUZHU' | 'XIAOYI_SS' | 'XIAOYI_LR';
 
 // 创建音频对象
 const mode1Audio = new Audio(mode1);
@@ -53,6 +54,7 @@ function WOW() {
 
   const colorMapDict = {
     JIAJIA: color_mappings_JIAJIA,
+    ZHUZHU: color_mappings_ZHUZHU,
     XIAOYI_SS: color_mappings_XIAOYI_SS,
     XIAOYI_LR: color_mappings_XIAOYI_LR
   };
@@ -220,9 +222,10 @@ function WOW() {
               onChange={e => setSelectedMapping(e.target.value as ColorMapping)}
               className={styles.input}
             >
-              <option value='JIAJIA'>佳佳配置</option>
-              <option value='XIAOYI_SS'>小易SS配置</option>
-              <option value='XIAOYI_LR'>小易LR配置</option>
+              <option value='JIAJIA'>佳佳一键宏</option>
+              <option value='ZHUZHU'>猪猪一键宏</option>
+              <option value='XIAOYI_SS'>小易SS一键宏</option>
+              <option value='XIAOYI_LR'>小易LR一键宏</option>
             </select>
           </div>
           <div className={styles.coordinateInputs}>

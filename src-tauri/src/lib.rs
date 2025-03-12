@@ -129,6 +129,8 @@ fn press_keys(keys: Vec<String>) {
             ";" => enigo.key_click(Key::Layout(';')),
             "[" => enigo.key_click(Key::Layout('[')),
             "]" => enigo.key_click(Key::Layout(']')),
+            "=" => enigo.key_click(Key::Layout('=')),
+            "-" => enigo.key_click(Key::Layout('-')),
             key if key.len() == 1 => {
                 if let Some(c) = key.chars().next() {
                     enigo.key_click(Key::Layout(c.to_ascii_lowercase()));
