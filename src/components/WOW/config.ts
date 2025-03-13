@@ -180,26 +180,11 @@ export const color_mappings_JIAJIA: Record<string, string> = {
   '#1e1c68': 'F12'
 };
 
-// '#9571e8': 'SHIFT-F4',
-// '#ef8fbd': 'SHIFT-F9',
-// SHIFT-j
-// SHIFT-m
-// SHIFT-n
-// CTRL-"
-// CTRL--
-// CTRL-p
-// CTRL-o
-// CTRL-i
-// CTRL-l
-// CTRL-k
-// CTRL-j
-// CTRL-m
-// CTRL-n
-
 export const color_mappings_ZHUZHU: Record<string, string> = {
   '#6dfa45': 'SHIFT-F1',
   '#58b474': 'SHIFT-F2',
   '#dfe244': 'SHIFT-F3',
+  '#e6e93e': 'SHIFT-F4',
   '#eda08d': 'SHIFT-F5',
   '#9ebe5c': 'SHIFT-F6',
   '#9b8cee': 'SHIFT-F7',
@@ -251,7 +236,21 @@ export const color_mappings_ZHUZHU: Record<string, string> = {
   '#f7c2ae': 'SHIFT-O',
   '#ef8f92': 'SHIFT-I',
   '#e673c4': 'SHIFT-L',
-  '#f78a48': 'SHIFT-K'
+  '#f78a48': 'SHIFT-K',
+  // '#f7aeae': 'SHIFT-F9',
+  // SHIFT-j
+  // SHIFT-m
+  // SHIFT-n
+  // CTRL-=
+  // CTRL--
+  // CTRL-p
+  // CTRL-o
+  // CTRL-i
+  // CTRL-l
+  // CTRL-k
+  // CTRL-j
+  // CTRL-m
+  // CTRL-n
 };
 
 /** 猪猪一键宏 */

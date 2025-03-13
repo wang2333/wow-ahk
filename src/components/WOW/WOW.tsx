@@ -107,7 +107,8 @@ function WOW() {
 
       // 递归调用，确保前一个操作完成后才开始下一个
       if (isRunning) {
-        setTimeout(checkColor, 100);
+        checkColor()
+        // setTimeout(checkColor, 100);
       }
     };
 
