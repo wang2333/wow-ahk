@@ -201,10 +201,6 @@ function WOW() {
     setMoveInterval(Math.max(100, value));
   };
 
-  const handleKeysChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setMoveKeys(e.target.value);
-  };
-
   return (
     <div className={styles.container}>
       {/* 坐标设置区域 */}

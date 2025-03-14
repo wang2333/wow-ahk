@@ -237,6 +237,7 @@ export const color_mappings_ZHUZHU: Record<string, string> = {
   '#ef8f92': 'SHIFT-I',
   '#e673c4': 'SHIFT-L',
   '#f78a48': 'SHIFT-K',
+  '#888888': 'CTRL-J',
   // '#f7aeae': 'SHIFT-F9',
   // SHIFT-j
   // SHIFT-m
