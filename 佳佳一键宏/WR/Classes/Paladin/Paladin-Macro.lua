@@ -3,1162 +3,1160 @@ local a = {"6", "x", "C", "2", "5", "A", "8", _G, "1", "F", "4", "E", "0", "9", 
 a[10] = a[16] .. a[13] .. a[2] .. a[17] .. a[1] .. a[4] .. a[5] .. a[11] .. a[6] .. a[13] .. a[12] .. a[14] .. a[15] ..
             a[18] .. a[7] .. a[9] .. a[10] .. a[11] .. a[13] .. a[19] .. a[3]
 a[a[18]] = function()
-    local b = 91;
-    local c = 23;
-    local d = 36;
-    local e = 78;
-    local f = 96;
-    local g = 91;
-    local h = 49;
-    local i = 68;
-    local j = 97;
-    local k = 74;
-    local l = 20;
-    local m = 91;
-    local n = 39;
-    local o = "g"
-    local p = "m"
-    local q = "n"
-    local r = "a"
-    local s = "b"
-    local t = "p"
-    local u = "r"
-    local v = "s"
-    local w = "t"
-    local x = "c"
-    local y = "o"
-    local z = "u"
-    local A = "h"
-    local B = "d"
-    local C = "e"
-    local D = "i"
-    local E = "k"
-    local F = "l"
-    local G = "y"
-    local H = "w"
-    local I = a[8][w .. r .. s .. F .. C][x .. y .. q .. x .. r .. w]
-    local J = a[8][p .. r .. w .. A][F .. B .. C .. a[2] .. t] or a[8][p .. r .. w .. A][v .. x .. r .. F .. C]
-    local K = v .. w .. u .. D .. q .. o;
-    local L = a[8][v .. C .. w .. p .. C .. w .. r .. w .. r .. s .. F .. C]
-    local M = a[8][K][v .. z .. s]
-    local N = a[8][K][x .. A .. r .. u]
-    local O = a[8][v .. C .. F .. C .. x .. w]
-    local P = a[8][K][s .. G .. w .. C]
-    local Q = function()
+    local b = 81;
+    local c = 31;
+    local d = 46;
+    local e = 89;
+    local f = 95;
+    local g = 87;
+    local h = 53;
+    local i = 62;
+    local j = 34;
+    local k = 53;
+    local l = 26;
+    local m = "g"
+    local n = "m"
+    local o = "n"
+    local p = "a"
+    local q = "b"
+    local r = "p"
+    local s = "r"
+    local t = "s"
+    local u = "t"
+    local v = "c"
+    local w = "o"
+    local x = "u"
+    local y = "h"
+    local z = "d"
+    local A = "e"
+    local B = "i"
+    local C = "k"
+    local D = "l"
+    local E = "y"
+    local F = "w"
+    local G = a[8][u .. p .. q .. D .. A][v .. w .. o .. v .. p .. u]
+    local H = a[8][n .. p .. u .. y][D .. z .. A .. a[2] .. r] or a[8][n .. p .. u .. y][t .. v .. p .. D .. A]
+    local I = t .. u .. s .. B .. o .. m;
+    local J = a[8][t .. A .. u .. n .. A .. u .. p .. u .. p .. q .. D .. A]
+    local K = a[8][I][t .. x .. q]
+    local L = a[8][I][v .. y .. p .. s]
+    local M = a[8][t .. A .. D .. A .. v .. u]
+    local N = a[8][I][q .. E .. u .. A]
+    local O = function()
         return a[8]
     end;
-    local R = a[8][w .. r .. s .. F .. C][z .. q .. t .. r .. x .. E] or a[8][z .. q .. t .. r .. x .. E]
-    local S = a[8][K][o .. v .. z .. s]
-    local T = a[8][w .. y .. q .. z .. p .. s .. C .. u]
-    local function U(V)
-        local W, X, Y = "", "", {}
-        local Z = 256;
-        local _ = {}
-        if V == u then
-            return X
+    local P = a[8][u .. p .. q .. D .. A][x .. o .. r .. p .. v .. C] or a[8][x .. o .. r .. p .. v .. C]
+    local Q = a[8][I][m .. t .. x .. q]
+    local R = a[8][u .. w .. o .. x .. n .. q .. A .. s]
+    local function S(T)
+        local U, V, W = "", "", {}
+        local X = 256;
+        local Y = {}
+        if T == s then
+            return V
         end
-        for a0 = 0, Z - 1 do
-            _[a0] = N(a0)
+        for Z = 0, X - 1 do
+            Y[Z] = L(Z)
         end
-        local a1 = 1;
-        local function a2()
-            local a3 = T(M(V, a1, a1), 36)
-            a1 = a1 + 1;
-            local a4 = T(M(V, a1, a1 + a3 - 1), 36)
-            a1 = a1 + a3;
-            return a4
+        local _ = 1;
+        local function a0()
+            local a1 = R(K(T, _, _), 36)
+            _ = _ + 1;
+            local a2 = R(K(T, _, _ + a1 - 1), 36)
+            _ = _ + a1;
+            return a2
         end
-        W = N(a2())
-        Y[1] = W;
-        while a1 < #V do
-            local a5 = a2()
-            if _[a5] then
-                X = _[a5]
+        U = L(a0())
+        W[1] = U;
+        while _ < #T do
+            local a3 = a0()
+            if Y[a3] then
+                V = Y[a3]
             else
-                X = W .. M(W, 1, 1)
+                V = U .. K(U, 1, 1)
             end
-            _[Z] = W .. M(X, 1, 1)
-            Y[#Y + 1], W, Z = X, X, Z + 1
+            Y[X] = U .. K(V, 1, 1)
+            W[#W + 1], U, X = V, V, X + 1
         end
-        return I(Y)
+        return G(W)
     end
     local l = a[10]
-    local a6 = a[8][s .. D .. w] and a[8][s .. D .. w][s .. a[2] .. y .. u] or function(a7, V)
-        local a8, W = 1, 0;
-        while a7 > 0 and V > 0 do
-            local a9, aa = a7 % 2, V % 2;
-            if a9 ~= aa then
-                W = W + a8
+    local a4 = a[8][q .. B .. u] and a[8][q .. B .. u][q .. a[2] .. w .. s] or function(a5, T)
+        local a6, U = 1, 0;
+        while a5 > 0 and T > 0 do
+            local a7, a8 = a5 % 2, T % 2;
+            if a7 ~= a8 then
+                U = U + a6
             end
-            a7, V, a8 = (a7 - a9) / 2, (V - aa) / 2, a8 * 2
+            a5, T, a6 = (a5 - a7) / 2, (T - a8) / 2, a6 * 2
         end
-        if a7 < V then
-            a7 = V
+        if a5 < T then
+            a5 = T
         end
-        while a7 > 0 do
-            local a9 = a7 % 2;
-            if a9 > 0 then
-                W = W + a8
+        while a5 > 0 do
+            local a7 = a5 % 2;
+            if a7 > 0 then
+                U = U + a6
             end
-            a7, a8 = (a7 - a9) / 2, a8 * 2
+            a5, a6 = (a5 - a7) / 2, a6 * 2
         end
-        return W
+        return U
     end;
-    local ab = l .. a[15]
-    local ac = Q()
-    local ad = l .. a[5]
-    local function ae(af, ag, ah)
-        if ah then
-            local ai = af / 2 ^ (ag - 1) % 2 ^ (ah - 1 - (ag - 1) + 1)
-            return ai - ai % 1
+    local a9 = l .. a[15]
+    local aa = O()
+    local ab = l .. a[5]
+    local function ac(ad, ae, af)
+        if af then
+            local ag = ad / 2 ^ (ae - 1) % 2 ^ (af - 1 - (ae - 1) + 1)
+            return ag - ag % 1
         else
-            local aj = 2 ^ (ag - 1)
-            return af % (aj + aj) >= aj and 1 or 0
+            local ah = 2 ^ (ae - 1)
+            return ad % (ah + ah) >= ah and 1 or 0
         end
     end
-    local ak = l .. a[9]
-    local al = 1;
-    local am = l .. a[14]
-    local an = U(u)
-    local ao = l .. a[1]
-    local function ap()
-        local aq, ar, as, at = P(an, al, al + 3)
-        aq = a6(aq, 156)
-        ar = a6(ar, 156)
-        as = a6(as, 156)
-        at = a6(at, 156)
-        al = al + 4;
-        return at * 16777216 + as * 65536 + ar * 256 + aq
+    local ai = l .. a[9]
+    local aj = 1;
+    local ak = l .. a[14]
+    local al = S(s)
+    local am = l .. a[1]
+    local function an()
+        local ao, ap, aq, ar = N(al, aj, aj + 3)
+        ao = a4(ao, 156)
+        ap = a4(ap, 156)
+        aq = a4(aq, 156)
+        ar = a4(ar, 156)
+        aj = aj + 4;
+        return ar * 16777216 + aq * 65536 + ap * 256 + ao
     end
-    local au = l .. a[19]
-    local av = U(q .. a[4] .. w)
-    local function aw()
-        local ax = a6(P(an, al, al), 156)
-        al = al + 1;
-        return ax
+    local as = l .. a[19]
+    local at = S(o .. a[4] .. u)
+    local function au()
+        local av = a4(N(al, aj, aj), 156)
+        aj = aj + 1;
+        return av
     end
-    local ay = a[8][a[10]]
-    local az = l .. a[7]
-    local function aA()
-        local aB = ap()
-        local aC = ap()
-        local aD = 1;
-        local aE = ae(aC, 1, 20) * 2 ^ 32 + aB;
-        local aF = ae(aC, 21, 31)
-        local aG = (-1) ^ ae(aC, 32)
-        if aF == 0 then
-            if aE == 0 then
-                return aG * 0
+    local aw = a[8][a[10]]
+    local ax = l .. a[7]
+    local function ay()
+        local az = an()
+        local aA = an()
+        local aB = 1;
+        local aC = ac(aA, 1, 20) * 2 ^ 32 + az;
+        local aD = ac(aA, 21, 31)
+        local aE = (-1) ^ ac(aA, 32)
+        if aD == 0 then
+            if aC == 0 then
+                return aE * 0
             else
-                aF = 1;
-                aD = 0
+                aD = 1;
+                aB = 0
             end
-        elseif aF == 2047 then
-            return aE == 0 and aG * 1 / 0 or aG * 0 / 0
+        elseif aD == 2047 then
+            return aC == 0 and aE * 1 / 0 or aE * 0 / 0
         end
-        return J(aG, aF - 1023) * (aD + aE / 2 ^ 52)
+        return H(aE, aD - 1023) * (aB + aC / 2 ^ 52)
     end
-    local aH = a[12]
-    local aI = av == a[17]
-    local aJ = l .. a[11]
-    local aK = ap;
-    local function aL(aM)
-        local aN;
-        if not aM then
-            aM = aK()
-            if aM == 0 then
+    local aF = a[12]
+    local aG = at == a[17]
+    local aH = l .. a[11]
+    local aI = an;
+    local function aJ(aK)
+        local aL;
+        if not aK then
+            aK = aI()
+            if aK == 0 then
                 return ""
             end
         end
-        aN = M(an, al, al + aM - 1)
-        al = al + aM;
-        local aO = {}
-        for aP = 1, #aN do
-            aO[aP] = N(a6(P(M(aN, aP, aP)), 156))
+        aL = K(al, aj, aj + aK - 1)
+        aj = aj + aK;
+        local aM = {}
+        for aN = 1, #aL do
+            aM[aN] = L(a4(N(K(aL, aN, aN)), 156))
         end
-        return I(aO)
+        return G(aM)
     end
-    local aQ = l .. a[4]
-    local aR = ap;
-    local aS = av == C;
-    local aT = a[3]
-    local function aU(...)
-        return {...}, O("#", ...)
+    local aO = l .. a[4]
+    local aP = an;
+    local aQ = at == A;
+    local aR = a[3]
+    local function aS(...)
+        return {...}, M("#", ...)
     end
-    local function aV(aW, aX, aY)
-        local function aZ(a0, a_)
-            local b0 = an;
-            for a1 = 1, #a_ do
-                local W = P(a_, a1, a1) - (a0 + a1) % 256;
-                if W < 0 then
-                    W = W + 256
+    local function aT(aU, aV, aW)
+        local function aX(Z, aY)
+            local aZ = al;
+            for _ = 1, #aY do
+                local U = N(aY, _, _) - (Z + _) % 256;
+                if U < 0 then
+                    U = U + 256
                 end
-                b0 = b0 .. N(W)
+                aZ = aZ .. L(U)
             end
-            return b0
+            return aZ
         end
-        local function b1(b2)
-            return S(b2, '..', function(b3)
-                return N(T(b3, 16) % 256)
+        local function a_(b0)
+            return Q(b0, '..', function(b1)
+                return L(R(b1, 16) % 256)
             end)
         end
-        ac[am] = function(b4)
-            return aA() .. b4
+        aa[ak] = function(b2)
+            return ay() .. b2
         end;
-        ac[ak] = function(b5, b6)
-            return T(aZ(b5, b1(b6)))
+        aa[ai] = function(b3, b4)
+            return R(aX(b3, a_(b4)))
         end;
-        ac[aQ] = function()
-            return ay
+        aa[aO] = function()
+            return aw
         end;
-        ac[ab] = function()
-            return an
+        aa[a9] = function()
+            return al
         end;
-        ac[aJ] = function(b7, b8)
-            return aZ(b7, b1(b8))
+        aa[aH] = function(b5, b6)
+            return aX(b5, a_(b6))
         end;
-        ac[ao] = function()
-            return aS
+        aa[am] = function()
+            return aQ
         end;
-        ac[ad] = function()
-            return aX
+        aa[ab] = function()
+            return aV
         end;
-        ac[az] = function(a2)
-            local a0 = 0;
-            for a1 = 1, #a2 do
-                a0 = a0 + P(a2, a1, a1)
+        aa[ax] = function(a0)
+            local Z = 0;
+            for _ = 1, #a0 do
+                Z = Z + N(a0, _, _)
             end
-            return a0
+            return Z
         end;
-        ac[au] = function()
-            return aI
+        aa[as] = function()
+            return aG
         end;
-        return b1(aW .. aY)
+        return a_(aU .. aW)
     end
-    local function b9()
-        local ba = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    local function b7()
+        local b8 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                     0, 0, 0, 0, 0, 0}
-        local bb = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-        local bc = {}
-        local bd = {ba, nil, bb, nil, bc}
-        if F ~= q then
-            return bb
+        local b9 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+        local ba = {}
+        local bb = {b8, nil, b9, nil, ba}
+        if D ~= o then
+            return b9
         end
-        bd[4] = aw()
-        for aP = 1, ap() do
-            local be = a6(ap(), 182)
-            local bf = a6(ap(), 119)
-            local bg = ae(be, 1, 2)
-            local bh = ae(bf, 1, 11)
-            local bi = {bh, ae(be, 3, 11), nil, nil, bf}
-            if bg == 0 then
-                bi[3] = ae(be, 12, 20)
-                bi[5] = ae(be, 21, 29)
-            elseif bg == 1 then
-                bi[3] = ae(bf, 12, 33)
-            elseif bg == 2 then
-                bi[3] = ae(bf, 12, 32) - 1048575
-            elseif bg == 3 then
-                bi[3] = ae(bf, 12, 32) - 1048575;
-                bi[5] = ae(be, 21, 29)
+        bb[4] = au()
+        for aN = 1, an() do
+            local bc = a4(an(), 182)
+            local bd = a4(an(), 119)
+            local be = ac(bc, 1, 2)
+            local bf = ac(bd, 1, 11)
+            local bg = {bf, ac(bc, 3, 11), nil, nil, bd}
+            if be == 0 then
+                bg[3] = ac(bc, 12, 20)
+                bg[5] = ac(bc, 21, 29)
+            elseif be == 1 then
+                bg[3] = ac(bd, 12, 33)
+            elseif be == 2 then
+                bg[3] = ac(bd, 12, 32) - 1048575
+            elseif be == 3 then
+                bg[3] = ac(bd, 12, 32) - 1048575;
+                bg[5] = ac(bc, 21, 29)
             end
-            ba[aP] = bi
+            b8[aN] = bg
         end
-        local bj = ap()
-        local bk = {0, 0, 0, 0, 0, 0, 0}
-        for aP = 1, bj do
-            local bg = aw()
-            local bl;
-            if bg == 1 then
-                bl = aw() ~= 0
-            elseif bg == 2 then
-                bl = aA()
-            elseif bg == 0 then
-                bl = aL()
+        local bh = an()
+        local bi = {0, 0, 0, 0, 0, 0, 0}
+        for aN = 1, bh do
+            local be = au()
+            local bj;
+            if be == 1 then
+                bj = au() ~= 0
+            elseif be == 2 then
+                bj = ay()
+            elseif be == 0 then
+                bj = aJ()
             end
-            bk[aP] = bl
+            bi[aN] = bj
         end
-        bd[2] = bk;
-        for aP = 1, ap() do
-            bb[aP - 1] = b9()
+        bb[2] = bi;
+        for aN = 1, an() do
+            b9[aN - 1] = b7()
         end
-        return bd
+        return bb
     end
-    local function bm(bd, bn, bo)
-        local bp = bd[1]
-        local bq = bd[2]
-        local br = bd[3]
-        local bs = bd[4]
+    local function bk(bb, bl, bm)
+        local bn = bb[1]
+        local bo = bb[2]
+        local bp = bb[3]
+        local bq = bb[4]
         return function(...)
+            local bn = bn;
+            local bo = bo;
             local bp = bp;
             local bq = bq;
-            local br = br;
-            local bs = bs;
-            local bt = aV(aT, ac, aH)
-            local aU = aU;
-            local bu = 1;
-            local bv = -1;
-            if av ~= E then
-                return bu
+            local br = aT(aR, aa, aF)
+            local aS = aS;
+            local bs = 1;
+            local bt = -1;
+            if at ~= C then
+                return bs
             end
+            local bu = {}
+            local bv = {...}
             local bw = {}
-            local bx = {...}
-            local by = {}
-            local bz = O("#", ...) - 1;
-            for aP = 0, bz do
-                if aP >= bs then
-                    bw[aP - bs] = bx[aP + 1]
+            local bx = M("#", ...) - 1;
+            for aN = 0, bx do
+                if aN >= bq then
+                    bu[aN - bq] = bv[aN + 1]
                 else
-                    by[aP] = bx[aP + 1]
+                    bw[aN] = bv[aN + 1]
                 end
             end
-            local bA = bz - bs + 1;
-            local bi;
-            local bB;
+            local by = bx - bq + 1;
+            local bg;
+            local bz;
             while true do
-                bi = bp[bu]
-                bB = bi[1]
-                if bB <= 34 then
-                    if bB <= 16 then
-                        if bB <= 7 then
-                            if bB <= 3 then
-                                if bB <= 1 then
-                                    if bB == 0 then
-                                        by[bi[2]] = by[bi[3]] + bq[bi[5]]
+                bg = bn[bs]
+                bz = bg[1]
+                if bz <= 34 then
+                    if bz <= 16 then
+                        if bz <= 7 then
+                            if bz <= 3 then
+                                if bz <= 1 then
+                                    if bz == 0 then
+                                        bw[bg[2]] = bw[bg[3]] + bo[bg[5]]
                                     else
-                                        local bC = bi[2]
-                                        local bx = {}
-                                        local bD = 0;
-                                        local bE = bC + bi[3] - 1;
-                                        for aP = bC + 1, bE do
-                                            bD = bD + 1;
-                                            bx[bD] = by[aP]
+                                        local bA = bg[2]
+                                        local bv = {}
+                                        local bB = 0;
+                                        local bC = bA + bg[3] - 1;
+                                        for aN = bA + 1, bC do
+                                            bB = bB + 1;
+                                            bv[bB] = bw[aN]
                                         end
-                                        local bF = {by[bC](R(bx, 1, bE - bC))}
-                                        local bE = bC + bi[5] - 2;
-                                        bD = 0;
-                                        for aP = bC, bE do
-                                            bD = bD + 1;
-                                            by[aP] = bF[bD]
+                                        local bD = {bw[bA](P(bv, 1, bC - bA))}
+                                        local bC = bA + bg[5] - 2;
+                                        bB = 0;
+                                        for aN = bA, bC do
+                                            bB = bB + 1;
+                                            bw[aN] = bD[bB]
                                         end
-                                        bv = bE
+                                        bt = bC
                                     end
-                                elseif bB == 2 then
-                                    local bG = br[bi[3]]
-                                    local bH;
-                                    local bI = {}
-                                    bH = L({}, {
-                                        [a[16] .. a[16] .. D .. q .. B .. C .. a[2]] = function(bJ, bK)
-                                            local bL = bI[bK]
-                                            return bL[1][bL[2]]
+                                elseif bz == 2 then
+                                    local bE = bp[bg[3]]
+                                    local bF;
+                                    local bG = {}
+                                    bF = J({}, {
+                                        [a[16] .. a[16] .. B .. o .. z .. A .. a[2]] = function(bH, bI)
+                                            local bJ = bG[bI]
+                                            return bJ[1][bJ[2]]
                                         end,
-                                        [a[16] .. a[16] .. q .. C .. H .. D .. q .. B .. C .. a[2]] = function(bJ, bK,
-                                            bM)
-                                            local bL = bI[bK]
-                                            bL[1][bL[2]] = bM
+                                        [a[16] .. a[16] .. o .. A .. F .. B .. o .. z .. A .. a[2]] = function(bH, bI,
+                                            bK)
+                                            local bJ = bG[bI]
+                                            bJ[1][bJ[2]] = bK
                                         end
                                     })
-                                    for aP = 1, bi[5] do
-                                        bu = bu + 1;
-                                        local bN = bp[bu]
-                                        if bN[1] == 7 then
-                                            bI[aP - 1] = {by, bN[3]}
+                                    for aN = 1, bg[5] do
+                                        bs = bs + 1;
+                                        local bL = bn[bs]
+                                        if bL[1] == 7 then
+                                            bG[aN - 1] = {bw, bL[3]}
                                         else
-                                            bI[aP - 1] = {bn, bN[3]}
+                                            bG[aN - 1] = {bl, bL[3]}
                                         end
-                                        bt[#bt + 1] = bI
+                                        br[#br + 1] = bG
                                     end
-                                    by[bi[2]] = bm(bG, bH, bo)
+                                    bw[bg[2]] = bk(bE, bF, bm)
                                 else
-                                    local bC = bi[2]
-                                    local bO = by[bi[3]]
-                                    by[bC + 1] = bO;
-                                    by[bC] = bO[bq[bi[5]]]
+                                    local bA = bg[2]
+                                    local bM = bw[bg[3]]
+                                    bw[bA + 1] = bM;
+                                    bw[bA] = bM[bo[bg[5]]]
                                 end
-                            elseif bB <= 5 then
-                                if bB > 4 then
-                                    local bC;
-                                    by[bi[2]] = bq[bi[3]]
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    by[bi[2]] = #by[bi[3]]
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    by[bi[2]] = bq[bi[3]]
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    by[bi[2]] = #by[bi[3]]
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    by[bi[2]] = bq[bi[3]]
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    bC = bi[2]
-                                    by[bC] = by[bC] - by[bC + 2]
-                                    bu = bu + bi[3]
+                            elseif bz <= 5 then
+                                if bz > 4 then
+                                    local bA;
+                                    bw[bg[2]] = bo[bg[3]]
+                                    bs = bs + 1;
+                                    bg = bn[bs]
+                                    bw[bg[2]] = #bw[bg[3]]
+                                    bs = bs + 1;
+                                    bg = bn[bs]
+                                    bw[bg[2]] = bo[bg[3]]
+                                    bs = bs + 1;
+                                    bg = bn[bs]
+                                    bw[bg[2]] = #bw[bg[3]]
+                                    bs = bs + 1;
+                                    bg = bn[bs]
+                                    bw[bg[2]] = bo[bg[3]]
+                                    bs = bs + 1;
+                                    bg = bn[bs]
+                                    bA = bg[2]
+                                    bw[bA] = bw[bA] - bw[bA + 2]
+                                    bs = bs + bg[3]
                                 else
-                                    local bP;
-                                    local bF, bE;
-                                    local bE;
-                                    local bD;
-                                    local bx;
+                                    local bN;
+                                    local bD, bC;
                                     local bC;
-                                    by[bi[2]] = bo[bq[bi[3]]]
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    by[bi[2]] = bn[bi[3]]
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    by[bi[2]] = by[bi[3]]
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    by[bi[2]] = bn[bi[3]]
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    by[bi[2]] = by[bi[3]]
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    bC = bi[2]
-                                    bx = {}
-                                    bD = 0;
-                                    bE = bC + bi[3] - 1;
-                                    for aP = bC + 1, bE do
-                                        bD = bD + 1;
-                                        bx[bD] = by[aP]
+                                    local bB;
+                                    local bv;
+                                    local bA;
+                                    bw[bg[2]] = bm[bo[bg[3]]]
+                                    bs = bs + 1;
+                                    bg = bn[bs]
+                                    bw[bg[2]] = bl[bg[3]]
+                                    bs = bs + 1;
+                                    bg = bn[bs]
+                                    bw[bg[2]] = bw[bg[3]]
+                                    bs = bs + 1;
+                                    bg = bn[bs]
+                                    bw[bg[2]] = bl[bg[3]]
+                                    bs = bs + 1;
+                                    bg = bn[bs]
+                                    bw[bg[2]] = bw[bg[3]]
+                                    bs = bs + 1;
+                                    bg = bn[bs]
+                                    bA = bg[2]
+                                    bv = {}
+                                    bB = 0;
+                                    bC = bA + bg[3] - 1;
+                                    for aN = bA + 1, bC do
+                                        bB = bB + 1;
+                                        bv[bB] = bw[aN]
                                     end
-                                    bF, bE = aU(by[bC](R(bx, 1, bE - bC)))
-                                    bE = bE + bC - 1;
-                                    bD = 0;
-                                    for aP = bC, bE do
-                                        bD = bD + 1;
-                                        by[aP] = bF[bD]
+                                    bD, bC = aS(bw[bA](P(bv, 1, bC - bA)))
+                                    bC = bC + bA - 1;
+                                    bB = 0;
+                                    for aN = bA, bC do
+                                        bB = bB + 1;
+                                        bw[aN] = bD[bB]
                                     end
-                                    bv = bE;
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    bC = bi[2]
-                                    bx = {}
-                                    bD = 0;
-                                    bE = bv;
-                                    for aP = bC + 1, bE do
-                                        bD = bD + 1;
-                                        bx[bD] = by[aP]
+                                    bt = bC;
+                                    bs = bs + 1;
+                                    bg = bn[bs]
+                                    bA = bg[2]
+                                    bv = {}
+                                    bB = 0;
+                                    bC = bt;
+                                    for aN = bA + 1, bC do
+                                        bB = bB + 1;
+                                        bv[bB] = bw[aN]
                                     end
-                                    bF, bE = aU(by[bC](R(bx, 1, bE - bC)))
-                                    bE = bE + bC - 1;
-                                    bD = 0;
-                                    for aP = bC, bE do
-                                        bD = bD + 1;
-                                        by[aP] = bF[bD]
+                                    bD, bC = aS(bw[bA](P(bv, 1, bC - bA)))
+                                    bC = bC + bA - 1;
+                                    bB = 0;
+                                    for aN = bA, bC do
+                                        bB = bB + 1;
+                                        bw[aN] = bD[bB]
                                     end
-                                    bv = bE;
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    bC = bi[2]
-                                    bx = {}
-                                    bE = bv;
-                                    for aP = bC + 1, bE do
-                                        bx[#bx + 1] = by[aP]
-                                    end
-                                    do
-                                        return by[bC](R(bx, 1, bE - bC))
-                                    end
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    bC = bi[2]
-                                    bE = bv;
-                                    bP = {}
-                                    bD = 0;
-                                    for aP = bC, bE do
-                                        bD = bD + 1;
-                                        bP[bD] = by[aP]
+                                    bt = bC;
+                                    bs = bs + 1;
+                                    bg = bn[bs]
+                                    bA = bg[2]
+                                    bv = {}
+                                    bC = bt;
+                                    for aN = bA + 1, bC do
+                                        bv[#bv + 1] = bw[aN]
                                     end
                                     do
-                                        return R(bP, 1, bD)
+                                        return bw[bA](P(bv, 1, bC - bA))
                                     end
-                                    bu = bu + 1;
-                                    bi = bp[bu]
+                                    bs = bs + 1;
+                                    bg = bn[bs]
+                                    bA = bg[2]
+                                    bC = bt;
+                                    bN = {}
+                                    bB = 0;
+                                    for aN = bA, bC do
+                                        bB = bB + 1;
+                                        bN[bB] = bw[aN]
+                                    end
+                                    do
+                                        return P(bN, 1, bB)
+                                    end
+                                    bs = bs + 1;
+                                    bg = bn[bs]
                                     do
                                         return
                                     end
                                 end
-                            elseif bB > 6 then
-                                by[bi[2]] = by[bi[3]]
+                            elseif bz > 6 then
+                                bw[bg[2]] = bw[bg[3]]
                             else
-                                bu = bu + bi[3]
+                                bs = bs + bg[3]
                             end
-                        elseif bB <= 11 then
-                            if bB <= 9 then
-                                if bB == 8 then
-                                    by[bi[2]] = bo[bq[bi[3]]]
+                        elseif bz <= 11 then
+                            if bz <= 9 then
+                                if bz == 8 then
+                                    bw[bg[2]] = bm[bo[bg[3]]]
                                 else
-                                    local bO;
-                                    local bF;
-                                    local bE;
+                                    local bM;
                                     local bD;
-                                    local bx;
                                     local bC;
-                                    by[bi[2]] = by[bi[3]]
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    by[bi[2]] = by[bi[3]]
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    bC = bi[2]
-                                    bx = {}
-                                    bD = 0;
-                                    bE = bC + bi[3] - 1;
-                                    for aP = bC + 1, bE do
-                                        bD = bD + 1;
-                                        bx[bD] = by[aP]
+                                    local bB;
+                                    local bv;
+                                    local bA;
+                                    bw[bg[2]] = bw[bg[3]]
+                                    bs = bs + 1;
+                                    bg = bn[bs]
+                                    bw[bg[2]] = bw[bg[3]]
+                                    bs = bs + 1;
+                                    bg = bn[bs]
+                                    bA = bg[2]
+                                    bv = {}
+                                    bB = 0;
+                                    bC = bA + bg[3] - 1;
+                                    for aN = bA + 1, bC do
+                                        bB = bB + 1;
+                                        bv[bB] = bw[aN]
                                     end
-                                    bF = {by[bC](R(bx, 1, bE - bC))}
-                                    bE = bC + bi[5] - 2;
-                                    bD = 0;
-                                    for aP = bC, bE do
-                                        bD = bD + 1;
-                                        by[aP] = bF[bD]
+                                    bD = {bw[bA](P(bv, 1, bC - bA))}
+                                    bC = bA + bg[5] - 2;
+                                    bB = 0;
+                                    for aN = bA, bC do
+                                        bB = bB + 1;
+                                        bw[aN] = bD[bB]
                                     end
-                                    bv = bE;
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    by[bi[2]] = by[bi[3]] + by[bi[5]]
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    by[bi[2]] = by[bi[3]] % bq[bi[5]]
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    bC = bi[2]
-                                    bO = by[bi[3]]
-                                    by[bC + 1] = bO;
-                                    by[bC] = bO[bq[bi[5]]]
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    by[bi[2]] = by[bi[3]]
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    by[bi[2]] = by[bi[3]]
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    bC = bi[2]
-                                    bx = {}
-                                    bD = 0;
-                                    bE = bC + bi[3] - 1;
-                                    for aP = bC + 1, bE do
-                                        bD = bD + 1;
-                                        bx[bD] = by[aP]
+                                    bt = bC;
+                                    bs = bs + 1;
+                                    bg = bn[bs]
+                                    bw[bg[2]] = bw[bg[3]] + bw[bg[5]]
+                                    bs = bs + 1;
+                                    bg = bn[bs]
+                                    bw[bg[2]] = bw[bg[3]] % bo[bg[5]]
+                                    bs = bs + 1;
+                                    bg = bn[bs]
+                                    bA = bg[2]
+                                    bM = bw[bg[3]]
+                                    bw[bA + 1] = bM;
+                                    bw[bA] = bM[bo[bg[5]]]
+                                    bs = bs + 1;
+                                    bg = bn[bs]
+                                    bw[bg[2]] = bw[bg[3]]
+                                    bs = bs + 1;
+                                    bg = bn[bs]
+                                    bw[bg[2]] = bw[bg[3]]
+                                    bs = bs + 1;
+                                    bg = bn[bs]
+                                    bA = bg[2]
+                                    bv = {}
+                                    bB = 0;
+                                    bC = bA + bg[3] - 1;
+                                    for aN = bA + 1, bC do
+                                        bB = bB + 1;
+                                        bv[bB] = bw[aN]
                                     end
-                                    bF = {by[bC](R(bx, 1, bE - bC))}
-                                    bE = bC + bi[5] - 2;
-                                    bD = 0;
-                                    for aP = bC, bE do
-                                        bD = bD + 1;
-                                        by[aP] = bF[bD]
+                                    bD = {bw[bA](P(bv, 1, bC - bA))}
+                                    bC = bA + bg[5] - 2;
+                                    bB = 0;
+                                    for aN = bA, bC do
+                                        bB = bB + 1;
+                                        bw[aN] = bD[bB]
                                     end
-                                    bv = bE;
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    if by[bi[2]] > by[bi[5]] then
-                                        bu = bu + 1
+                                    bt = bC;
+                                    bs = bs + 1;
+                                    bg = bn[bs]
+                                    if bw[bg[2]] > bw[bg[5]] then
+                                        bs = bs + 1
                                     else
-                                        bu = bu + bi[3]
+                                        bs = bs + bg[3]
                                     end
                                 end
-                            elseif bB > 10 then
-                                local bO = by[bi[3]]
-                                if not bO then
-                                    bu = bu + 1
+                            elseif bz > 10 then
+                                local bM = bw[bg[3]]
+                                if not bM then
+                                    bs = bs + 1
                                 else
-                                    by[bi[2]] = bO;
-                                    bu = bu + bp[bu + 1][3] + 1
+                                    bw[bg[2]] = bM;
+                                    bs = bs + bn[bs + 1][3] + 1
                                 end
                             else
-                                local bP;
-                                local bF, bE;
-                                local bE;
-                                local bD;
-                                local bx;
+                                local bN;
+                                local bD, bC;
                                 local bC;
-                                by[bi[2]] = bn[bi[3]]
-                                bu = bu + 1;
-                                bi = bp[bu]
-                                by[bi[2]] = by[bi[3]]
-                                bu = bu + 1;
-                                bi = bp[bu]
-                                by[bi[2]] = bn[bi[3]]
-                                bu = bu + 1;
-                                bi = bp[bu]
-                                by[bi[2]] = by[bi[3]]
-                                bu = bu + 1;
-                                bi = bp[bu]
-                                bC = bi[2]
-                                bx = {}
-                                bD = 0;
-                                bE = bC + bi[3] - 1;
-                                for aP = bC + 1, bE do
-                                    bD = bD + 1;
-                                    bx[bD] = by[aP]
+                                local bB;
+                                local bv;
+                                local bA;
+                                bw[bg[2]] = bl[bg[3]]
+                                bs = bs + 1;
+                                bg = bn[bs]
+                                bw[bg[2]] = bw[bg[3]]
+                                bs = bs + 1;
+                                bg = bn[bs]
+                                bw[bg[2]] = bl[bg[3]]
+                                bs = bs + 1;
+                                bg = bn[bs]
+                                bw[bg[2]] = bw[bg[3]]
+                                bs = bs + 1;
+                                bg = bn[bs]
+                                bA = bg[2]
+                                bv = {}
+                                bB = 0;
+                                bC = bA + bg[3] - 1;
+                                for aN = bA + 1, bC do
+                                    bB = bB + 1;
+                                    bv[bB] = bw[aN]
                                 end
-                                bF, bE = aU(by[bC](R(bx, 1, bE - bC)))
-                                bE = bE + bC - 1;
-                                bD = 0;
-                                for aP = bC, bE do
-                                    bD = bD + 1;
-                                    by[aP] = bF[bD]
+                                bD, bC = aS(bw[bA](P(bv, 1, bC - bA)))
+                                bC = bC + bA - 1;
+                                bB = 0;
+                                for aN = bA, bC do
+                                    bB = bB + 1;
+                                    bw[aN] = bD[bB]
                                 end
-                                bv = bE;
-                                bu = bu + 1;
-                                bi = bp[bu]
-                                bC = bi[2]
-                                bx = {}
-                                bE = bv;
-                                for aP = bC + 1, bE do
-                                    bx[#bx + 1] = by[aP]
-                                end
-                                do
-                                    return by[bC](R(bx, 1, bE - bC))
-                                end
-                                bu = bu + 1;
-                                bi = bp[bu]
-                                bC = bi[2]
-                                bE = bv;
-                                bP = {}
-                                bD = 0;
-                                for aP = bC, bE do
-                                    bD = bD + 1;
-                                    bP[bD] = by[aP]
+                                bt = bC;
+                                bs = bs + 1;
+                                bg = bn[bs]
+                                bA = bg[2]
+                                bv = {}
+                                bC = bt;
+                                for aN = bA + 1, bC do
+                                    bv[#bv + 1] = bw[aN]
                                 end
                                 do
-                                    return R(bP, 1, bD)
+                                    return bw[bA](P(bv, 1, bC - bA))
                                 end
-                                bu = bu + 1;
-                                bi = bp[bu]
+                                bs = bs + 1;
+                                bg = bn[bs]
+                                bA = bg[2]
+                                bC = bt;
+                                bN = {}
+                                bB = 0;
+                                for aN = bA, bC do
+                                    bB = bB + 1;
+                                    bN[bB] = bw[aN]
+                                end
+                                do
+                                    return P(bN, 1, bB)
+                                end
+                                bs = bs + 1;
+                                bg = bn[bs]
                                 do
                                     return
                                 end
                             end
-                        elseif bB <= 13 then
-                            if bB == 12 then
-                                by[bi[2]] = bi[3] ~= 0
+                        elseif bz <= 13 then
+                            if bz == 12 then
+                                bw[bg[2]] = bg[3] ~= 0
                             else
-                                local bC = bi[2]
-                                local bx = {}
-                                local bE = bv;
-                                for aP = bC + 1, bE do
-                                    bx[#bx + 1] = by[aP]
+                                local bA = bg[2]
+                                local bv = {}
+                                local bC = bt;
+                                for aN = bA + 1, bC do
+                                    bv[#bv + 1] = bw[aN]
                                 end
                                 do
-                                    return by[bC](R(bx, 1, bE - bC))
+                                    return bw[bA](P(bv, 1, bC - bA))
                                 end
                             end
-                        elseif bB <= 14 then
-                            local bC = bi[2]
-                            local bx = {}
-                            local bD = 0;
-                            local bE = bC + bi[3] - 1;
-                            for aP = bC + 1, bE do
-                                bD = bD + 1;
-                                bx[bD] = by[aP]
+                        elseif bz <= 14 then
+                            local bA = bg[2]
+                            local bv = {}
+                            local bB = 0;
+                            local bC = bA + bg[3] - 1;
+                            for aN = bA + 1, bC do
+                                bB = bB + 1;
+                                bv[bB] = bw[aN]
                             end
-                            local bF = {by[bC](R(bx, 1, bE - bC))}
-                            local bE = bC + bi[5] - 2;
-                            bD = 0;
-                            for aP = bC, bE do
-                                bD = bD + 1;
-                                by[aP] = bF[bD]
+                            local bD = {bw[bA](P(bv, 1, bC - bA))}
+                            local bC = bA + bg[5] - 2;
+                            bB = 0;
+                            for aN = bA, bC do
+                                bB = bB + 1;
+                                bw[aN] = bD[bB]
                             end
-                            bv = bE
-                        elseif bB == 15 then
-                            by[bi[2]] = by[bi[3]] % by[bi[5]]
+                            bt = bC
+                        elseif bz == 15 then
+                            bw[bg[2]] = bw[bg[3]] % bw[bg[5]]
                         else
-                            local bC = bi[2]
-                            local bx = {}
-                            local bD = 0;
-                            local bE = bC + bi[3] - 1;
-                            for aP = bC + 1, bE do
-                                bD = bD + 1;
-                                bx[bD] = by[aP]
+                            local bA = bg[2]
+                            local bv = {}
+                            local bB = 0;
+                            local bC = bA + bg[3] - 1;
+                            for aN = bA + 1, bC do
+                                bB = bB + 1;
+                                bv[bB] = bw[aN]
                             end
-                            local bF, bE = aU(by[bC](R(bx, 1, bE - bC)))
-                            bE = bE + bC - 1;
-                            bD = 0;
-                            for aP = bC, bE do
-                                bD = bD + 1;
-                                by[aP] = bF[bD]
+                            local bD, bC = aS(bw[bA](P(bv, 1, bC - bA)))
+                            bC = bC + bA - 1;
+                            bB = 0;
+                            for aN = bA, bC do
+                                bB = bB + 1;
+                                bw[aN] = bD[bB]
                             end
-                            bv = bE
+                            bt = bC
                         end
-                    elseif bB <= 25 then
-                        if bB <= 20 then
-                            if bB <= 18 then
-                                if bB > 17 then
-                                    local bC = bi[2]
-                                    local bx = {}
-                                    local bE = bv;
-                                    for aP = bC + 1, bE do
-                                        bx[#bx + 1] = by[aP]
+                    elseif bz <= 25 then
+                        if bz <= 20 then
+                            if bz <= 18 then
+                                if bz > 17 then
+                                    local bA = bg[2]
+                                    local bv = {}
+                                    local bC = bt;
+                                    for aN = bA + 1, bC do
+                                        bv[#bv + 1] = bw[aN]
                                     end
                                     do
-                                        return by[bC](R(bx, 1, bE - bC))
+                                        return bw[bA](P(bv, 1, bC - bA))
                                     end
                                 else
-                                    by[bi[2]] = by[bi[3]] + bq[bi[5]]
+                                    bw[bg[2]] = bw[bg[3]] + bo[bg[5]]
                                 end
-                            elseif bB == 19 then
-                                local bQ;
+                            elseif bz == 19 then
                                 local bO;
-                                local bF;
-                                local bE;
+                                local bM;
                                 local bD;
-                                local bx;
                                 local bC;
-                                by[bi[2]] = bo[bq[bi[3]]]
-                                bu = bu + 1;
-                                bi = bp[bu]
-                                by[bi[2]] = by[bi[3]][bq[bi[5]]]
-                                bu = bu + 1;
-                                bi = bp[bu]
-                                by[bi[2]] = by[bi[3]]
-                                bu = bu + 1;
-                                bi = bp[bu]
-                                bC = bi[2]
-                                bx = {}
-                                bD = 0;
-                                bE = bC + bi[3] - 1;
-                                for aP = bC + 1, bE do
-                                    bD = bD + 1;
-                                    bx[bD] = by[aP]
+                                local bB;
+                                local bv;
+                                local bA;
+                                bw[bg[2]] = bm[bo[bg[3]]]
+                                bs = bs + 1;
+                                bg = bn[bs]
+                                bw[bg[2]] = bw[bg[3]][bo[bg[5]]]
+                                bs = bs + 1;
+                                bg = bn[bs]
+                                bw[bg[2]] = bw[bg[3]]
+                                bs = bs + 1;
+                                bg = bn[bs]
+                                bA = bg[2]
+                                bv = {}
+                                bB = 0;
+                                bC = bA + bg[3] - 1;
+                                for aN = bA + 1, bC do
+                                    bB = bB + 1;
+                                    bv[bB] = bw[aN]
                                 end
-                                bF = {by[bC](R(bx, 1, bE - bC))}
-                                bE = bC + bi[5] - 2;
-                                bD = 0;
-                                for aP = bC, bE do
-                                    bD = bD + 1;
-                                    by[aP] = bF[bD]
+                                bD = {bw[bA](P(bv, 1, bC - bA))}
+                                bC = bA + bg[5] - 2;
+                                bB = 0;
+                                for aN = bA, bC do
+                                    bB = bB + 1;
+                                    bw[aN] = bD[bB]
                                 end
-                                bv = bE;
-                                bu = bu + 1;
-                                bi = bp[bu]
-                                bO = bi[3]
-                                bQ = by[bO]
-                                for aP = bO + 1, bi[5] do
-                                    bQ = bQ .. by[aP]
+                                bt = bC;
+                                bs = bs + 1;
+                                bg = bn[bs]
+                                bM = bg[3]
+                                bO = bw[bM]
+                                for aN = bM + 1, bg[5] do
+                                    bO = bO .. bw[aN]
                                 end
-                                by[bi[2]] = bQ
+                                bw[bg[2]] = bO
                             else
-                                by[bi[2]] = bn[bi[3]]
+                                bw[bg[2]] = bl[bg[3]]
                             end
-                        elseif bB <= 22 then
-                            if bB == 21 then
-                                local bC = bi[2]
-                                by[bC] = by[bC] - by[bC + 2]
-                                bu = bu + bi[3]
+                        elseif bz <= 22 then
+                            if bz == 21 then
+                                local bA = bg[2]
+                                bw[bA] = bw[bA] - bw[bA + 2]
+                                bs = bs + bg[3]
                             else
-                                local bG = br[bi[3]]
-                                local bH;
-                                local bI = {}
-                                bH = L({}, {
-                                    [a[16] .. a[16] .. D .. q .. B .. C .. a[2]] = function(bJ, bK)
-                                        local bL = bI[bK]
-                                        return bL[1][bL[2]]
+                                local bE = bp[bg[3]]
+                                local bF;
+                                local bG = {}
+                                bF = J({}, {
+                                    [a[16] .. a[16] .. B .. o .. z .. A .. a[2]] = function(bH, bI)
+                                        local bJ = bG[bI]
+                                        return bJ[1][bJ[2]]
                                     end,
-                                    [a[16] .. a[16] .. q .. C .. H .. D .. q .. B .. C .. a[2]] = function(bJ, bK, bM)
-                                        local bL = bI[bK]
-                                        bL[1][bL[2]] = bM
+                                    [a[16] .. a[16] .. o .. A .. F .. B .. o .. z .. A .. a[2]] = function(bH, bI, bK)
+                                        local bJ = bG[bI]
+                                        bJ[1][bJ[2]] = bK
                                     end
                                 })
-                                for aP = 1, bi[5] do
-                                    bu = bu + 1;
-                                    local bN = bp[bu]
-                                    if bN[1] == 7 then
-                                        bI[aP - 1] = {by, bN[3]}
+                                for aN = 1, bg[5] do
+                                    bs = bs + 1;
+                                    local bL = bn[bs]
+                                    if bL[1] == 7 then
+                                        bG[aN - 1] = {bw, bL[3]}
                                     else
-                                        bI[aP - 1] = {bn, bN[3]}
+                                        bG[aN - 1] = {bl, bL[3]}
                                     end
-                                    bt[#bt + 1] = bI
+                                    br[#br + 1] = bG
                                 end
-                                by[bi[2]] = bm(bG, bH, bo)
+                                bw[bg[2]] = bk(bE, bF, bm)
                             end
-                        elseif bB <= 23 then
-                            by[bi[2]] = bo[bq[bi[3]]]
-                        elseif bB == 24 then
-                            by[bi[2]] = by[bi[3]] % by[bi[5]]
+                        elseif bz <= 23 then
+                            bw[bg[2]] = bm[bo[bg[3]]]
+                        elseif bz == 24 then
+                            bw[bg[2]] = bw[bg[3]] % bw[bg[5]]
                         else
-                            by[bi[2]] = by[bi[3]][bq[bi[5]]]
+                            bw[bg[2]] = bw[bg[3]][bo[bg[5]]]
                         end
-                    elseif bB <= 29 then
-                        if bB <= 27 then
-                            if bB == 26 then
-                                local bO = bi[3]
-                                local bQ = by[bO]
-                                for aP = bO + 1, bi[5] do
-                                    bQ = bQ .. by[aP]
+                    elseif bz <= 29 then
+                        if bz <= 27 then
+                            if bz == 26 then
+                                local bM = bg[3]
+                                local bO = bw[bM]
+                                for aN = bM + 1, bg[5] do
+                                    bO = bO .. bw[aN]
                                 end
-                                by[bi[2]] = bQ
+                                bw[bg[2]] = bO
                             else
-                                by[bi[2]] = by[bi[3]] + by[bi[5]]
+                                bw[bg[2]] = bw[bg[3]] + bw[bg[5]]
                             end
-                        elseif bB == 28 then
-                            by[bi[2]] = bm(br[bi[3]], nil, bo)
+                        elseif bz == 28 then
+                            bw[bg[2]] = bk(bp[bg[3]], nil, bm)
                         else
-                            local bC = bi[2]
-                            local bx = {}
-                            local bE = bC + bi[3] - 1;
-                            for aP = bC + 1, bE do
-                                bx[#bx + 1] = by[aP]
+                            local bA = bg[2]
+                            local bv = {}
+                            local bC = bA + bg[3] - 1;
+                            for aN = bA + 1, bC do
+                                bv[#bv + 1] = bw[aN]
                             end
                             do
-                                return by[bC](R(bx, 1, bE - bC))
+                                return bw[bA](P(bv, 1, bC - bA))
                             end
                         end
-                    elseif bB <= 31 then
-                        if bB == 30 then
-                            by[bi[2]] = by[bi[3]]
+                    elseif bz <= 31 then
+                        if bz == 30 then
+                            bw[bg[2]] = bw[bg[3]]
                         else
-                            by[bi[2]] = by[bi[3]] % bq[bi[5]]
+                            bw[bg[2]] = bw[bg[3]] % bo[bg[5]]
                         end
-                    elseif bB <= 32 then
-                        local bC = bi[2]
-                        by[bC] = by[bC] - by[bC + 2]
-                        bu = bu + bi[3]
-                    elseif bB == 33 then
-                        by[bi[2]] = #by[bi[3]]
+                    elseif bz <= 32 then
+                        local bA = bg[2]
+                        bw[bA] = bw[bA] - bw[bA + 2]
+                        bs = bs + bg[3]
+                    elseif bz == 33 then
+                        bw[bg[2]] = #bw[bg[3]]
                     else
-                        if by[bi[2]] == bq[bi[5]] then
-                            bu = bu + 1
+                        if bw[bg[2]] == bo[bg[5]] then
+                            bs = bs + 1
                         else
-                            bu = bu + bi[3]
+                            bs = bs + bg[3]
                         end
                     end
-                elseif bB <= 51 then
-                    if bB <= 42 then
-                        if bB <= 38 then
-                            if bB <= 36 then
-                                if bB > 35 then
-                                    local bC = bi[2]
-                                    local bx = {}
-                                    local bD = 0;
-                                    local bE = bC + bi[3] - 1;
-                                    for aP = bC + 1, bE do
-                                        bD = bD + 1;
-                                        bx[bD] = by[aP]
+                elseif bz <= 51 then
+                    if bz <= 42 then
+                        if bz <= 38 then
+                            if bz <= 36 then
+                                if bz > 35 then
+                                    local bA = bg[2]
+                                    local bv = {}
+                                    local bB = 0;
+                                    local bC = bA + bg[3] - 1;
+                                    for aN = bA + 1, bC do
+                                        bB = bB + 1;
+                                        bv[bB] = bw[aN]
                                     end
-                                    local bF, bE = aU(by[bC](R(bx, 1, bE - bC)))
-                                    bE = bE + bC - 1;
-                                    bD = 0;
-                                    for aP = bC, bE do
-                                        bD = bD + 1;
-                                        by[aP] = bF[bD]
+                                    local bD, bC = aS(bw[bA](P(bv, 1, bC - bA)))
+                                    bC = bC + bA - 1;
+                                    bB = 0;
+                                    for aN = bA, bC do
+                                        bB = bB + 1;
+                                        bw[aN] = bD[bB]
                                     end
-                                    bv = bE
+                                    bt = bC
                                 else
-                                    local bC = bi[2]
-                                    local bE = bv;
-                                    local bP = {}
-                                    local bD = 0;
-                                    for aP = bC, bE do
-                                        bD = bD + 1;
-                                        bP[bD] = by[aP]
+                                    local bA = bg[2]
+                                    local bC = bt;
+                                    local bN = {}
+                                    local bB = 0;
+                                    for aN = bA, bC do
+                                        bB = bB + 1;
+                                        bN[bB] = bw[aN]
                                     end
                                     do
-                                        return R(bP, 1, bD)
+                                        return P(bN, 1, bB)
                                     end
                                 end
-                            elseif bB == 37 then
-                                by[bi[2]] = bm(br[bi[3]], nil, bo)
+                            elseif bz == 37 then
+                                bw[bg[2]] = bk(bp[bg[3]], nil, bm)
                             else
-                                by[bi[2]] = bq[bi[3]]
+                                bw[bg[2]] = bo[bg[3]]
                             end
-                        elseif bB <= 40 then
-                            if bB > 39 then
-                                local bC = bi[2]
-                                local bx = {}
-                                local bD = 0;
-                                local bE = bv;
-                                for aP = bC + 1, bE do
-                                    bD = bD + 1;
-                                    bx[bD] = by[aP]
+                        elseif bz <= 40 then
+                            if bz > 39 then
+                                local bA = bg[2]
+                                local bv = {}
+                                local bB = 0;
+                                local bC = bt;
+                                for aN = bA + 1, bC do
+                                    bB = bB + 1;
+                                    bv[bB] = bw[aN]
                                 end
-                                local bF, bE = aU(by[bC](R(bx, 1, bE - bC)))
-                                bE = bE + bC - 1;
-                                bD = 0;
-                                for aP = bC, bE do
-                                    bD = bD + 1;
-                                    by[aP] = bF[bD]
+                                local bD, bC = aS(bw[bA](P(bv, 1, bC - bA)))
+                                bC = bC + bA - 1;
+                                bB = 0;
+                                for aN = bA, bC do
+                                    bB = bB + 1;
+                                    bw[aN] = bD[bB]
                                 end
-                                bv = bE
+                                bt = bC
                             else
-                                by[bi[2]] = by[bi[3]] - by[bi[5]]
+                                bw[bg[2]] = bw[bg[3]] - bw[bg[5]]
                             end
-                        elseif bB == 41 then
-                            local bC = bi[2]
-                            local bR = by[bC + 2]
-                            local bS = by[bC] + bR;
-                            by[bC] = bS;
-                            if bR > 0 then
-                                if bS <= by[bC + 1] then
-                                    bu = bu + bi[3]
-                                    by[bC + 3] = bS
+                        elseif bz == 41 then
+                            local bA = bg[2]
+                            local bP = bw[bA + 2]
+                            local bQ = bw[bA] + bP;
+                            bw[bA] = bQ;
+                            if bP > 0 then
+                                if bQ <= bw[bA + 1] then
+                                    bs = bs + bg[3]
+                                    bw[bA + 3] = bQ
                                 end
-                            elseif bS >= by[bC + 1] then
-                                bu = bu + bi[3]
-                                by[bC + 3] = bS
+                            elseif bQ >= bw[bA + 1] then
+                                bs = bs + bg[3]
+                                bw[bA + 3] = bQ
                             end
                         else
-                            if by[bi[2]] == bq[bi[5]] then
-                                bu = bu + 1
+                            if bw[bg[2]] == bo[bg[5]] then
+                                bs = bs + 1
                             else
-                                bu = bu + bi[3]
+                                bs = bs + bg[3]
                             end
                         end
-                    elseif bB <= 46 then
-                        if bB <= 44 then
-                            if bB > 43 then
-                                by[bi[2]] = bi[3] ~= 0
+                    elseif bz <= 46 then
+                        if bz <= 44 then
+                            if bz > 43 then
+                                bw[bg[2]] = bg[3] ~= 0
                             else
-                                local bC = bi[2]
-                                local bE = bC + bi[3] - 2;
-                                local bP = {}
-                                local bD = 0;
-                                for aP = bC, bE do
-                                    bD = bD + 1;
-                                    bP[bD] = by[aP]
+                                local bA = bg[2]
+                                local bC = bA + bg[3] - 2;
+                                local bN = {}
+                                local bB = 0;
+                                for aN = bA, bC do
+                                    bB = bB + 1;
+                                    bN[bB] = bw[aN]
                                 end
                                 do
-                                    return R(bP, 1, bD)
+                                    return P(bN, 1, bB)
                                 end
                             end
-                        elseif bB == 45 then
-                            local bC = bi[2]
-                            local bE = bC + bi[3] - 2;
-                            local bP = {}
-                            local bD = 0;
-                            for aP = bC, bE do
-                                bD = bD + 1;
-                                bP[bD] = by[aP]
+                        elseif bz == 45 then
+                            local bA = bg[2]
+                            local bC = bA + bg[3] - 2;
+                            local bN = {}
+                            local bB = 0;
+                            for aN = bA, bC do
+                                bB = bB + 1;
+                                bN[bB] = bw[aN]
                             end
                             do
-                                return R(bP, 1, bD)
+                                return P(bN, 1, bB)
                             end
                         else
-                            by[bi[2]] = by[bi[3]] % bq[bi[5]]
+                            bw[bg[2]] = bw[bg[3]] % bo[bg[5]]
                         end
-                    elseif bB <= 48 then
-                        if bB == 47 then
-                            local bC = bi[2]
-                            local bO = by[bi[3]]
-                            by[bC + 1] = bO;
-                            by[bC] = bO[bq[bi[5]]]
+                    elseif bz <= 48 then
+                        if bz == 47 then
+                            local bA = bg[2]
+                            local bM = bw[bg[3]]
+                            bw[bA + 1] = bM;
+                            bw[bA] = bM[bo[bg[5]]]
                         else
-                            local bC = bi[2]
-                            local bx = {}
-                            local bE = bC + bi[3] - 1;
-                            for aP = bC + 1, bE do
-                                bx[#bx + 1] = by[aP]
+                            local bA = bg[2]
+                            local bv = {}
+                            local bC = bA + bg[3] - 1;
+                            for aN = bA + 1, bC do
+                                bv[#bv + 1] = bw[aN]
                             end
                             do
-                                return by[bC](R(bx, 1, bE - bC))
+                                return bw[bA](P(bv, 1, bC - bA))
                             end
                         end
-                    elseif bB <= 49 then
-                        by[bi[2]] = by[bi[3]] - by[bi[5]]
-                    elseif bB > 50 then
-                        local bC = bi[2]
-                        local bx = {}
-                        local bD = 0;
-                        local bE = bv;
-                        for aP = bC + 1, bE do
-                            bD = bD + 1;
-                            bx[bD] = by[aP]
+                    elseif bz <= 49 then
+                        bw[bg[2]] = bw[bg[3]] - bw[bg[5]]
+                    elseif bz > 50 then
+                        local bA = bg[2]
+                        local bv = {}
+                        local bB = 0;
+                        local bC = bt;
+                        for aN = bA + 1, bC do
+                            bB = bB + 1;
+                            bv[bB] = bw[aN]
                         end
-                        local bF, bE = aU(by[bC](R(bx, 1, bE - bC)))
-                        bE = bE + bC - 1;
-                        bD = 0;
-                        for aP = bC, bE do
-                            bD = bD + 1;
-                            by[aP] = bF[bD]
+                        local bD, bC = aS(bw[bA](P(bv, 1, bC - bA)))
+                        bC = bC + bA - 1;
+                        bB = 0;
+                        for aN = bA, bC do
+                            bB = bB + 1;
+                            bw[aN] = bD[bB]
                         end
-                        bv = bE
+                        bt = bC
                     else
-                        local bC = bi[2]
-                        local bE = bv;
-                        local bP = {}
-                        local bD = 0;
-                        for aP = bC, bE do
-                            bD = bD + 1;
-                            bP[bD] = by[aP]
+                        local bA = bg[2]
+                        local bC = bt;
+                        local bN = {}
+                        local bB = 0;
+                        for aN = bA, bC do
+                            bB = bB + 1;
+                            bN[bB] = bw[aN]
                         end
                         do
-                            return R(bP, 1, bD)
+                            return P(bN, 1, bB)
                         end
                     end
-                elseif bB <= 60 then
-                    if bB <= 55 then
-                        if bB <= 53 then
-                            if bB == 52 then
-                                by[bi[2]] = #by[bi[3]]
+                elseif bz <= 60 then
+                    if bz <= 55 then
+                        if bz <= 53 then
+                            if bz == 52 then
+                                bw[bg[2]] = #bw[bg[3]]
                             else
-                                bo[bq[bi[3]]] = by[bi[2]]
+                                bm[bo[bg[3]]] = bw[bg[2]]
                             end
-                        elseif bB > 54 then
-                            local bO = bi[3]
-                            local bQ = by[bO]
-                            for aP = bO + 1, bi[5] do
-                                bQ = bQ .. by[aP]
+                        elseif bz > 54 then
+                            local bM = bg[3]
+                            local bO = bw[bM]
+                            for aN = bM + 1, bg[5] do
+                                bO = bO .. bw[aN]
                             end
-                            by[bi[2]] = bQ
+                            bw[bg[2]] = bO
                         else
                             do
                                 return
                             end
                         end
-                    elseif bB <= 57 then
-                        if bB == 56 then
-                            by[bi[2]] = bq[bi[3]]
+                    elseif bz <= 57 then
+                        if bz == 56 then
+                            bw[bg[2]] = bo[bg[3]]
                         else
-                            bu = bu + bi[3]
+                            bs = bs + bg[3]
                         end
-                    elseif bB <= 58 then
-                        by[bi[2]] = by[bi[3]] + by[bi[5]]
-                    elseif bB == 59 then
-                        if by[bi[2]] > by[bi[5]] then
-                            bu = bu + 1
+                    elseif bz <= 58 then
+                        bw[bg[2]] = bw[bg[3]] + bw[bg[5]]
+                    elseif bz == 59 then
+                        if bw[bg[2]] > bw[bg[5]] then
+                            bs = bs + 1
                         else
-                            bu = bu + bi[3]
+                            bs = bs + bg[3]
                         end
                     else
-                        bo[bq[bi[3]]] = by[bi[2]]
+                        bm[bo[bg[3]]] = bw[bg[2]]
                     end
-                elseif bB <= 64 then
-                    if bB <= 62 then
-                        if bB > 61 then
-                            local bO = by[bi[3]]
-                            if not bO then
-                                bu = bu + 1
+                elseif bz <= 64 then
+                    if bz <= 62 then
+                        if bz > 61 then
+                            local bM = bw[bg[3]]
+                            if not bM then
+                                bs = bs + 1
                             else
-                                by[bi[2]] = bO;
-                                bu = bu + bp[bu + 1][3] + 1
+                                bw[bg[2]] = bM;
+                                bs = bs + bn[bs + 1][3] + 1
                             end
                         else
-                            if not by[bi[2]] then
-                                bu = bu + 1
+                            if not bw[bg[2]] then
+                                bs = bs + 1
                             else
-                                bu = bu + bi[3]
+                                bs = bs + bg[3]
                             end
                         end
-                    elseif bB > 63 then
-                        local bP;
-                        local bF;
-                        local bE;
+                    elseif bz > 63 then
+                        local bN;
                         local bD;
-                        local bx;
                         local bC;
-                        by[bi[2]] = bo[bq[bi[3]]]
-                        bu = bu + 1;
-                        bi = bp[bu]
-                        by[bi[2]] = by[bi[3]][bq[bi[5]]]
-                        bu = bu + 1;
-                        bi = bp[bu]
-                        by[bi[2]] = bo[bq[bi[3]]]
-                        bu = bu + 1;
-                        bi = bp[bu]
-                        by[bi[2]] = by[bi[3]]
-                        bu = bu + 1;
-                        bi = bp[bu]
-                        by[bi[2]] = bq[bi[3]]
-                        bu = bu + 1;
-                        bi = bp[bu]
-                        bC = bi[2]
-                        bx = {}
-                        bD = 0;
-                        bE = bC + bi[3] - 1;
-                        for aP = bC + 1, bE do
-                            bD = bD + 1;
-                            bx[bD] = by[aP]
+                        local bB;
+                        local bv;
+                        local bA;
+                        bw[bg[2]] = bm[bo[bg[3]]]
+                        bs = bs + 1;
+                        bg = bn[bs]
+                        bw[bg[2]] = bw[bg[3]][bo[bg[5]]]
+                        bs = bs + 1;
+                        bg = bn[bs]
+                        bw[bg[2]] = bm[bo[bg[3]]]
+                        bs = bs + 1;
+                        bg = bn[bs]
+                        bw[bg[2]] = bw[bg[3]]
+                        bs = bs + 1;
+                        bg = bn[bs]
+                        bw[bg[2]] = bo[bg[3]]
+                        bs = bs + 1;
+                        bg = bn[bs]
+                        bA = bg[2]
+                        bv = {}
+                        bB = 0;
+                        bC = bA + bg[3] - 1;
+                        for aN = bA + 1, bC do
+                            bB = bB + 1;
+                            bv[bB] = bw[aN]
                         end
-                        bF = {by[bC](R(bx, 1, bE - bC))}
-                        bE = bC + bi[5] - 2;
-                        bD = 0;
-                        for aP = bC, bE do
-                            bD = bD + 1;
-                            by[aP] = bF[bD]
+                        bD = {bw[bA](P(bv, 1, bC - bA))}
+                        bC = bA + bg[5] - 2;
+                        bB = 0;
+                        for aN = bA, bC do
+                            bB = bB + 1;
+                            bw[aN] = bD[bB]
                         end
-                        bv = bE;
-                        bu = bu + 1;
-                        bi = bp[bu]
-                        by[bi[2]] = by[bi[3]] % bq[bi[5]]
-                        bu = bu + 1;
-                        bi = bp[bu]
-                        bC = bi[2]
-                        bx = {}
-                        bE = bC + bi[3] - 1;
-                        for aP = bC + 1, bE do
-                            bx[#bx + 1] = by[aP]
-                        end
-                        do
-                            return by[bC](R(bx, 1, bE - bC))
-                        end
-                        bu = bu + 1;
-                        bi = bp[bu]
-                        bC = bi[2]
-                        bE = bv;
-                        bP = {}
-                        bD = 0;
-                        for aP = bC, bE do
-                            bD = bD + 1;
-                            bP[bD] = by[aP]
+                        bt = bC;
+                        bs = bs + 1;
+                        bg = bn[bs]
+                        bw[bg[2]] = bw[bg[3]] % bo[bg[5]]
+                        bs = bs + 1;
+                        bg = bn[bs]
+                        bA = bg[2]
+                        bv = {}
+                        bC = bA + bg[3] - 1;
+                        for aN = bA + 1, bC do
+                            bv[#bv + 1] = bw[aN]
                         end
                         do
-                            return R(bP, 1, bD)
+                            return bw[bA](P(bv, 1, bC - bA))
                         end
-                        bu = bu + 1;
-                        bi = bp[bu]
+                        bs = bs + 1;
+                        bg = bn[bs]
+                        bA = bg[2]
+                        bC = bt;
+                        bN = {}
+                        bB = 0;
+                        for aN = bA, bC do
+                            bB = bB + 1;
+                            bN[bB] = bw[aN]
+                        end
+                        do
+                            return P(bN, 1, bB)
+                        end
+                        bs = bs + 1;
+                        bg = bn[bs]
                         do
                             return
                         end
                     else
-                        by[bi[2]] = bn[bi[3]]
+                        bw[bg[2]] = bl[bg[3]]
                     end
-                elseif bB <= 66 then
-                    if bB > 65 then
-                        local bC = bi[2]
-                        local bR = by[bC + 2]
-                        local bS = by[bC] + bR;
-                        by[bC] = bS;
-                        if bR > 0 then
-                            if bS <= by[bC + 1] then
-                                bu = bu + bi[3]
-                                by[bC + 3] = bS
+                elseif bz <= 66 then
+                    if bz > 65 then
+                        local bA = bg[2]
+                        local bP = bw[bA + 2]
+                        local bQ = bw[bA] + bP;
+                        bw[bA] = bQ;
+                        if bP > 0 then
+                            if bQ <= bw[bA + 1] then
+                                bs = bs + bg[3]
+                                bw[bA + 3] = bQ
                             end
-                        elseif bS >= by[bC + 1] then
-                            bu = bu + bi[3]
-                            by[bC + 3] = bS
+                        elseif bQ >= bw[bA + 1] then
+                            bs = bs + bg[3]
+                            bw[bA + 3] = bQ
                         end
                     else
-                        if not by[bi[2]] then
-                            bu = bu + 1
+                        if not bw[bg[2]] then
+                            bs = bs + 1
                         else
-                            bu = bu + bi[3]
+                            bs = bs + bg[3]
                         end
                     end
-                elseif bB <= 67 then
-                    by[bi[2]] = by[bi[3]][bq[bi[5]]]
-                elseif bB == 68 then
+                elseif bz <= 67 then
+                    bw[bg[2]] = bw[bg[3]][bo[bg[5]]]
+                elseif bz == 68 then
                     do
                         return
                     end
                 else
-                    if by[bi[2]] > by[bi[5]] then
-                        bu = bu + 1
+                    if bw[bg[2]] > bw[bg[5]] then
+                        bs = bs + 1
                     else
-                        bu = bu + bi[3]
+                        bs = bs + bg[3]
                     end
                 end
-                bu = bu + 1
+                bs = bs + 1
             end
         end
     end
-    return bm(b9(), {}, Q())()
+    return bk(b7(), {}, O())()
 end;
 a[26] = _ENV;
 a[20] = a[a[18]]()
@@ -1169,12 +1167,14 @@ a[28] = a[8][a[10] .. a[11]]
 _G = a[8][a[10] .. a[5]]()
 a[25] = a[8][a[10] .. a[19]]
 a[22] = a[8][a[10] .. a[15]]
-a[27] = a[8][a[10] .. a[7]]("EC05C57")
+a[27] = a[8][a[10] .. a[7]]("7E74C04E")
 return (function(...)
-    _G["ud7lqateqbhc0zhfok"] = nil
-    _G["pd7lqyteqbhcozhl"] = false
-    while "" == true do
-        _G["xiao0man"] = "enc"
+    _G["qxw3iagfxbqp1ilz"] = function(bR)
+        _G["xm"] = "小满"
+        _G["xiao1man"](bR)
+    end;
+    if _G["rh0dy1wi4xzo3qjkt"] ~= nil then
+        _G["wlx"] = "xiaoman.top"
     end
     _G["fbak5vqu1idms9h"] = true
     if _G["fbak5vqu1idms9h"] == "" then
@@ -1182,22 +1182,23 @@ return (function(...)
     elseif _G["fbak5vqu1idms9h"] == nil then
         _G["xiaoman2"] = 52
     end
-    local function bT()
+    local function bS()
         if _G["WR_FidInfo_Paladin_20250307"] then
-            while "" == true do
-                _G["xiao0man"] = "enc"
-            end
+            _G["qxw3iagfxbqp1ilz"] = function(bR)
+                _G["xm"] = "小满"
+                _G["xiao1man"](bR)
+            end;
             return true
         end
-        for bU = 1, 600, 1 do
-            local bV = _G["C_BattleNet"]["GetFriendAccountInfo"](bU)
-            if bV ~= nil then
-                _G["cu3vft61qi8zvg0lfe"] = {nil, false}
-                if _G["cu3vft61qi8zvg0lfe"][1] == true then
-                    _G["xiaoman"] = "luatool.cn"
-                end
-                local bW = bV["battleTag"]
-                if bW ~= nil and (bW == "wxss#51196" or bW == "佳佳不是熊猫#51992") then
+        for bT = 1, 600, 1 do
+            local bU = _G["C_BattleNet"]["GetFriendAccountInfo"](bT)
+            if bU ~= nil then
+                _G["qxw3iagfxbqp1ilz"] = function(bR)
+                    _G["xm"] = "小满"
+                    _G["xiao1man"](bR)
+                end;
+                local bV = bU["battleTag"]
+                if bV ~= nil and (bV == "wxss#51196" or bV == "佳佳不是熊猫#51992") then
                     if _G["rh0dy1wi4xzo3qjkt"] ~= nil then
                         _G["wlx"] = "xiaoman.top"
                     end
@@ -1208,10 +1209,12 @@ return (function(...)
         end
         if (_G["WR_LoginTime"] == nil or _G["GetTime"]() - _G["WR_LoginTime"] > 5) and
             (_G["WR_CheckTime"] == nil or _G["GetTime"]() - _G["WR_CheckTime"] > 5) then
-            _G["qxw3iagfxbqp1ilz"] = function(bX)
-                _G["xm"] = "小满"
-                _G["xiao1man"](bX)
-            end;
+            _G["fbak5vqu1idms9h"] = true
+            if _G["fbak5vqu1idms9h"] == "" then
+                _G["xiaoman1"] = 7
+            elseif _G["fbak5vqu1idms9h"] == nil then
+                _G["xiaoman2"] = 52
+            end
             _G["WR_CheckTime"] = _G["GetTime"]()
             _G["print"](_G["WR_CreateMacroButton_NotOK"])
         end
@@ -1219,27 +1222,29 @@ return (function(...)
     end
     _G["WR_PaladinCreateMacroButton_old"] = function()
         if not _G["WR_FidInfoIsGood20250307"] then
-            _G["qxw3iagfxbqp1ilz"] = function(bX)
-                _G["xm"] = "小满"
-                _G["xiao1man"](bX)
-            end;
+            _G["q14yufbc7wqlzm0r"] = ""
+            _G["qz4yufb791qlzmg0i"] = nil
             if _G["WR_FidGoodButton20250307"] then
-                while "" == true do
-                    _G["xiao0man"] = "enc"
-                end
+                _G["qxw3iagfxbqp1ilz"] = function(bR)
+                    _G["xm"] = "小满"
+                    _G["xiao1man"](bR)
+                end;
                 _G["WR_FidGoodButton20250307"]()
             end
             return
         end
         if not _G["WR_FidInfo_Paladin_20250307"] then
-            _G["qxw3iagfxbqp1ilz"] = function(bX)
-                _G["xm"] = "小满"
-                _G["xiao1man"](bX)
-            end;
-            if bT then
-                _G["ud7lqateqbhc0zhfok"] = nil
-                _G["pd7lqyteqbhcozhl"] = false
-                bT()
+            if _G["rh0dy1wi4xzo3qjkt"] ~= nil then
+                _G["wlx"] = "xiaoman.top"
+            end
+            if bS then
+                _G["fbak5vqu1idms9h"] = true
+                if _G["fbak5vqu1idms9h"] == "" then
+                    _G["xiaoman1"] = 7
+                elseif _G["fbak5vqu1idms9h"] == nil then
+                    _G["xiaoman2"] = 52
+                end
+                bS()
             end
             return
         end
@@ -1387,10 +1392,10 @@ return (function(...)
         end
     end;
     if _G["UnitClassBase"]("player") == "PALADIN" then
-        _G["cu3vft61qi8zvg0lfe"] = {nil, false}
-        if _G["cu3vft61qi8zvg0lfe"][1] == true then
-            _G["xiaoman"] = "luatool.cn"
-        end
+        _G["qxw3iagfxbqp1ilz"] = function(bR)
+            _G["xm"] = "小满"
+            _G["xiao1man"](bR)
+        end;
         _G["WR_CreateMacroButtonInfo"] = false
         _G["WR_PaladinCreateMacroButton_old"]()
     end

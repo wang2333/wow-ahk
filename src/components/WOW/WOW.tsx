@@ -49,7 +49,8 @@ function WOW() {
   const [color, setColor] = useState<string | null>(null);
   const [model, setModel] = useState(0);
   const [autoMove, setAutoMove] = useState(false);
-  const [moveInterval, setMoveInterval] = useState(700);
+  const [moveInterval, setMoveInterval] = useState(500);
+  const [moveKeys, setMoveKeys] = useState('T');
   const [selectedMapping, setSelectedMapping] = useState<ColorMapping>('JIAJIA');
 
   const colorMapDict = {
@@ -107,7 +108,7 @@ function WOW() {
 
       // 递归调用，确保前一个操作完成后才开始下一个
       if (isRunning) {
-        checkColor()
+        checkColor();
         // setTimeout(checkColor, 100);
       }
     };
@@ -124,7 +125,7 @@ function WOW() {
         const point = MOUSE_POSITIONS[currentIndex];
         await invoke('move_mouse_to_point', { x: point.x, y: point.y });
         currentIndex = (currentIndex + 1) % MOUSE_POSITIONS.length;
-        await invoke('press_keys', { keys: ['T'] });
+        await invoke('press_keys', { keys: [moveKeys] });
       }, moveInterval);
     }
 
@@ -198,6 +199,10 @@ function WOW() {
   const handleIntervalChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(e.target.value) || 500;
     setMoveInterval(Math.max(100, value));
+  };
+
+  const handleKeysChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setMoveKeys(e.target.value);
   };
 
   return (
@@ -291,6 +296,17 @@ function WOW() {
               step='100'
               className={styles.input}
             />
+          </div>
+          <div className={styles.inputGroupCompact}>
+            <label className={styles.label}>拾取按键</label>
+            <select
+              value={moveKeys}
+              onChange={e => setMoveKeys(e.target.value)}
+              className={styles.input}
+            >
+              <option value='T'>T</option>
+              <option value='Q'>Q</option>
+            </select>
           </div>
         </div>
       </div>
