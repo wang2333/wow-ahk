@@ -74,7 +74,7 @@ function WOW() {
     return () => {
       cleanup();
     };
-  }, [selectedMapping]);
+  }, []);
 
   const autokey = async (params: { x: number; y: number }) => {
     const newColor = await invoke<ColorInfo>('get_pixel_color', params);
@@ -89,15 +89,10 @@ function WOW() {
   };
 
   useEffect(() => {
-    let isRunning = true;
-    let moveTimer: number | null = null;
+    let currentIndex = 0;
 
-    const checkColor = async () => {
-      if (!isRunning || model === 0) return;
-      await autokey({
-        x: model === 1 || selectedMapping !== 'JIAJIA' ? coordinates.x1 : coordinates.x2,
-        y: coordinates.y
-      });
+    const handleCheckColor = async () => {
+      if (model === 0) return;
 
       if (selectedMapping === 'XIAOYI_LR' || selectedMapping === 'XIAOYI_SS') {
         await autokey({
@@ -106,36 +101,35 @@ function WOW() {
         });
       }
 
+      await autokey({
+        x: model === 1 || selectedMapping !== 'JIAJIA' ? coordinates.x1 : coordinates.x2,
+        y: coordinates.y
+      });
+
       // 递归调用，确保前一个操作完成后才开始下一个
-      if (isRunning) {
-        checkColor();
-        // setTimeout(checkColor, 100);
-      }
+      handleCheckColor();
+    };
+
+    const handleMove = async () => {
+      if (model === 0) return;
+
+      const point = MOUSE_POSITIONS[currentIndex];
+      await invoke('move_mouse_to_point', { x: point.x, y: point.y });
+      currentIndex = (currentIndex + 1) % MOUSE_POSITIONS.length;
+      await invoke('press_keys', { keys: [moveKeys] });
+
+      setTimeout(handleMove, moveInterval);
     };
 
     // 启动检测
     if (model !== 0) {
-      checkColor();
-    }
-
-    // 自动移动鼠标拾取
-    if (autoMove && model !== 0) {
-      let currentIndex = 0;
-      moveTimer = window.setInterval(async () => {
-        const point = MOUSE_POSITIONS[currentIndex];
-        await invoke('move_mouse_to_point', { x: point.x, y: point.y });
-        currentIndex = (currentIndex + 1) % MOUSE_POSITIONS.length;
-        await invoke('press_keys', { keys: [moveKeys] });
-      }, moveInterval);
-    }
-
-    return () => {
-      isRunning = false;
-      if (moveTimer !== null) {
-        clearInterval(moveTimer);
+      handleCheckColor();
+      // 自动移动鼠标拾取
+      if (autoMove) {
+        handleMove();
       }
-    };
-  }, [model, coordinates, autoMove, moveInterval]);
+    }
+  }, [model, coordinates, autoMove, moveInterval, selectedMapping]);
 
   const registerShortcuts = async () => {
     try {
