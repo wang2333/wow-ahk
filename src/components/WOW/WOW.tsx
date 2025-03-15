@@ -89,10 +89,11 @@ function WOW() {
   };
 
   useEffect(() => {
+    let isRunning = true;
     let currentIndex = 0;
 
     const handleCheckColor = async () => {
-      if (model === 0) return;
+      if (!isRunning) return;
 
       if (selectedMapping === 'XIAOYI_LR' || selectedMapping === 'XIAOYI_SS') {
         await autokey({
@@ -111,7 +112,7 @@ function WOW() {
     };
 
     const handleMove = async () => {
-      if (model === 0) return;
+      if (!isRunning) return;
 
       const point = MOUSE_POSITIONS[currentIndex];
       await invoke('move_mouse_to_point', { x: point.x, y: point.y });
@@ -129,6 +130,9 @@ function WOW() {
         handleMove();
       }
     }
+    return () => {
+      isRunning = false;
+    };
   }, [model, coordinates, autoMove, moveInterval, selectedMapping]);
 
   const registerShortcuts = async () => {
