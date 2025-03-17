@@ -5,6 +5,7 @@ import mode2 from '@/assets/mode2.wav';
 import pause from '@/assets/pause.wav';
 import { invoke } from '@tauri-apps/api/core';
 import { register, unregister } from '@tauri-apps/plugin-global-shortcut';
+import { useAuth } from '@/contexts/AuthContext';
 import {
   color_mappings_JIAJIA,
   color_mappings_ZHUZHU,
@@ -46,6 +47,7 @@ for (let angle = 0; angle < 360; angle += 30) {
 MOUSE_POSITIONS.push(MOUSE_CENTER);
 
 function WOW() {
+  const { user, updateWowCoordinates } = useAuth();
   const [color, setColor] = useState<string | null>(null);
   const [model, setModel] = useState(0);
   const [autoMove, setAutoMove] = useState(false);
@@ -61,11 +63,25 @@ function WOW() {
   };
   const color_mappings = colorMapDict[selectedMapping];
 
+  // 从用户设置中获取坐标，如果没有则使用默认值
   const [coordinates, setCoordinates] = useState({
-    x1: 2,
-    x2: 2550,
-    y: 30
+    x1: user?.settings?.wowCoordinates?.x1 || 2,
+    x2: user?.settings?.wowCoordinates?.x2 || 2550,
+    y: user?.settings?.wowCoordinates?.y || 30
   });
+
+  // 当用户或用户设置变化时，更新坐标
+  useEffect(() => {
+    console.log('👻 ~ user:', user);
+    if (user?.settings?.wowCoordinates) {
+      setCoordinates(prev => ({
+        ...prev,
+        x1: user.settings.wowCoordinates.x1,
+        x2: user.settings.wowCoordinates.x2,
+        y: user.settings.wowCoordinates.y
+      }));
+    }
+  }, [user, user?.settings]);
 
   // 注册全局热键
   useEffect(() => {
@@ -74,7 +90,7 @@ function WOW() {
     return () => {
       cleanup();
     };
-  }, [selectedMapping]);
+  }, []);
 
   const autokey = async (params: { x: number; y: number }) => {
     const newColor = await invoke<ColorInfo>('get_pixel_color', params);
@@ -173,6 +189,22 @@ function WOW() {
           pauseAudio.play().catch(console.error);
         }
       });
+
+      await register('F8', async e => {
+        if (e.state === 'Pressed') {
+          const info = await invoke<{ x: number; y: number }>('get_current_position_color');
+          if (info) {
+            const newCoordinates = {
+              ...coordinates,
+              x1: info.x,
+              y: info.y
+            };
+            setCoordinates(newCoordinates);
+            // 更新用户设置中的坐标
+            updateWowCoordinates(newCoordinates);
+          }
+        }
+      });
     } catch (error) {
       console.error('注册热键失败:', error);
     }
@@ -183,6 +215,7 @@ function WOW() {
       await unregister('F1');
       await unregister('F2');
       await unregister('F3');
+      await unregister('F8');
     } catch (error) {
       console.error('注销热键失败:', error);
     }
@@ -190,19 +223,20 @@ function WOW() {
 
   const handleCoordinateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setCoordinates(prev => ({
-      ...prev,
-      [name]: parseInt(value) || 0
-    }));
+    const newValue = parseInt(value) || 0;
+    const newCoordinates = {
+      ...coordinates,
+      [name]: newValue
+    };
+
+    setCoordinates(newCoordinates);
+    // 更新用户设置中的坐标
+    updateWowCoordinates(newCoordinates);
   };
 
   const handleIntervalChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(e.target.value) || 500;
     setMoveInterval(Math.max(100, value));
-  };
-
-  const handleKeysChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setMoveKeys(e.target.value);
   };
 
   return (
@@ -236,21 +270,11 @@ function WOW() {
           </div>
           <div className={styles.coordinateInputs}>
             <div className={styles.inputGroup}>
-              <label className={styles.label}>X1 坐标</label>
+              <label className={styles.label}>X坐标</label>
               <input
                 type='number'
                 name='x1'
                 value={coordinates.x1}
-                onChange={handleCoordinateChange}
-                className={styles.input}
-              />
-            </div>
-            <div className={styles.inputGroup}>
-              <label className={styles.label}>X2 坐标</label>
-              <input
-                type='number'
-                name='x2'
-                value={coordinates.x2}
                 onChange={handleCoordinateChange}
                 className={styles.input}
               />
@@ -263,6 +287,16 @@ function WOW() {
                 value={coordinates.y}
                 onChange={handleCoordinateChange}
                 min='0'
+                className={styles.input}
+              />
+            </div>
+            <div className={styles.inputGroup}>
+              <label className={styles.label}>X2 坐标</label>
+              <input
+                type='number'
+                name='x2'
+                value={coordinates.x2}
+                onChange={handleCoordinateChange}
                 className={styles.input}
               />
             </div>

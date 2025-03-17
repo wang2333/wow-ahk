@@ -13,8 +13,8 @@
     "windows": [
       {
         "title": "autobox",
-        "width": 800,
-        "height": 600
+        "width": 730,
+        "height": 500
       }
     ],
     "security": {
