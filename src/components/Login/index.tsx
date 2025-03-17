@@ -27,6 +27,7 @@ const Login = ({ onLogin, isLoading }: LoginProps) => {
       }
     } catch (err) {
       setError('登录过程中发生错误，请重试');
+      console.error(err);
     }
   };
 

@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { Store } from '@tauri-apps/plugin-store';
+import request from '@/Utils/axios';
 
 // 坐标接口
 interface Coordinates {
@@ -37,29 +38,29 @@ const DEFAULT_USER_SETTINGS: UserSettings = {
 };
 
 // 模拟用户数据，实际应用中应该从服务器获取或使用更安全的方式存储
-const MOCK_USERS = [
-  { username: 'wxs', password: '123' },
-  { username: '031701', password: '031701' }, // 西凉凉果
-  { username: '031702', password: '031702' },
-  { username: '031703', password: '031703' },
-  { username: '031704', password: '031704' },
-  { username: '031705', password: '031705' },
-  { username: '031706', password: '031706' },
-  { username: '031707', password: '031707' },
-  { username: '031708', password: '031708' },
-  { username: '031709', password: '031709' },
-  { username: '031710', password: '031710' },
-  { username: '031711', password: '031711' },
-  { username: '031712', password: '031712' },
-  { username: '031713', password: '031713' },
-  { username: '031714', password: '031714' },
-  { username: '031715', password: '031715' },
-  { username: '031716', password: '031716' },
-  { username: '031717', password: '031717' },
-  { username: '031718', password: '031718' },
-  { username: '031719', password: '031719' },
-  { username: '031720', password: '031720' }
-];
+// const MOCK_USERS = [
+//   { username: 'wxs', password: '123' },
+//   { username: '031701', password: '031701' }, // 西凉凉果
+//   { username: '031702', password: '031702' },
+//   { username: '031703', password: '031703' },
+//   { username: '031704', password: '031704' },
+//   { username: '031705', password: '031705' },
+//   { username: '031706', password: '031706' },
+//   { username: '031707', password: '031707' },
+//   { username: '031708', password: '031708' },
+//   { username: '031709', password: '031709' },
+//   { username: '031710', password: '031710' },
+//   { username: '031711', password: '031711' },
+//   { username: '031712', password: '031712' },
+//   { username: '031713', password: '031713' },
+//   { username: '031714', password: '031714' },
+//   { username: '031715', password: '031715' },
+//   { username: '031716', password: '031716' },
+//   { username: '031717', password: '031717' },
+//   { username: '031718', password: '031718' },
+//   { username: '031719', password: '031719' },
+//   { username: '031720', password: '031720' }
+// ];
 
 // 创建存储实例
 const storePromise = Store.load('user-data.json');
@@ -131,32 +132,45 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setIsLoading(true);
 
     try {
-      // 模拟API调用延迟
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // 使用axios获取所有用户
+      try {
+        interface UserResponse {
+          success: boolean;
+          data: Array<{ UserName: string; Password: string }>;
+          message: string;
+        }
 
-      // 验证用户
-      const foundUser = MOCK_USERS.find(u => u.username === username && u.password === password);
+        // 注意：这里使用完整的API路径
+        const succsess = await request<UserResponse>('/api/verifyUser', {
+          method: 'GET',
+          params: {
+            username,
+            password
+          }
+        });
+        if (succsess) {
+          const userData: User = {
+            username: username,
+            isLoggedIn: true,
+            settings: DEFAULT_USER_SETTINGS
+          };
 
-      if (foundUser) {
-        const userData: User = {
-          username: foundUser.username,
-          isLoggedIn: true,
-          settings: DEFAULT_USER_SETTINGS
-        };
+          setUser(userData);
 
-        setUser(userData);
+          // 保存用户数据到存储
+          const store = await storePromise;
+          await store.set('user', userData);
+          await store.save();
 
-        // 保存用户数据到存储
-        const store = await storePromise;
-        await store.set('user', userData);
-        await store.save();
-
-        return true;
+          return true;
+        }
+      } catch (error) {
+        console.error('获取用户列表失败:', error);
       }
 
       return false;
     } catch (error) {
-      console.error('Login error:', error);
+      console.error('登录总体错误:', error);
       return false;
     } finally {
       setIsLoading(false);
