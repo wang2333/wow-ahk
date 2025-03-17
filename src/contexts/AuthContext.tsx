@@ -39,7 +39,7 @@ const DEFAULT_USER_SETTINGS: UserSettings = {
 // 模拟用户数据，实际应用中应该从服务器获取或使用更安全的方式存储
 const MOCK_USERS = [
   { username: 'wxs', password: '123' },
-  { username: '031701', password: '031701' },
+  { username: '031701', password: '031701' }, // 西凉凉果
   { username: '031702', password: '031702' },
   { username: '031703', password: '031703' },
   { username: '031704', password: '031704' },
