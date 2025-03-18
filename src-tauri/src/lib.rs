@@ -106,6 +106,11 @@ fn press_keys(keys: Vec<String>) {
             "NUMPAD7" => enigo.key_click(Key::Numpad7),
             "NUMPAD8" => enigo.key_click(Key::Numpad8),
             "NUMPAD9" => enigo.key_click(Key::Numpad9),
+            "6" => enigo.key_click(Key::Raw(54)),
+            "7" => enigo.key_click(Key::Raw(55)),
+            "8" => enigo.key_click(Key::Raw(56)),
+            "9" => enigo.key_click(Key::Raw(57)),
+            "0" => enigo.key_click(Key::Raw(48)),
 
             "MOUSEWHEELUP" => enigo.mouse_scroll_y(1),
             "MOUSEWHEELDOWN" => enigo.mouse_scroll_y(-1),

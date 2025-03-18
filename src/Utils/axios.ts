@@ -8,7 +8,7 @@ export interface ApiResponse {
 }
 
 const instance = axios.create({
-  baseURL: 'https://wow-electron-worker.syoooo.workers.dev',
+  baseURL: 'https://wow.syoooo.top',
   timeout: 5000,
   headers: {
     'Content-Type': 'application/json'

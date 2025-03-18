@@ -98,9 +98,15 @@ function WOW() {
     const hexColor = rgbToHex(newColor.r, newColor.g, newColor.b);
     setColor(hexColor);
 
-    const keyCombo = color_mappings?.[hexColor];
-    if (keyCombo) {
-      await invoke('press_keys', { keys: keyCombo.split('-') });
+    const keyCombo1 = color_mappings?.[hexColor.toLowerCase()];
+    if (keyCombo1) {
+      await invoke('press_keys', { keys: keyCombo1.split('-') });
+      return;
+    }
+    const keyCombo2 = color_mappings?.[hexColor.toUpperCase()];
+    if (keyCombo2) {
+      await invoke('press_keys', { keys: keyCombo2.split('-') });
+      return;
     }
   };
 
