@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useContext, useState, ReactNode } from 'react';
 import { Store } from '@tauri-apps/plugin-store';
 import request from '@/Utils/axios';
 
@@ -34,33 +34,8 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 // 默认用户设置
 const DEFAULT_USER_SETTINGS: UserSettings = {
-  wowCoordinates: { x1: 0, x2: 0, y: 0 }
+  wowCoordinates: { x1: 15, x2: 2550, y: 15 }
 };
-
-// 模拟用户数据，实际应用中应该从服务器获取或使用更安全的方式存储
-// const MOCK_USERS = [
-//   { username: 'wxs', password: '123' },
-//   { username: '031701', password: '031701' }, // 西凉凉果
-//   { username: '031702', password: '031702' },
-//   { username: '031703', password: '031703' },
-//   { username: '031704', password: '031704' },
-//   { username: '031705', password: '031705' },
-//   { username: '031706', password: '031706' },
-//   { username: '031707', password: '031707' },
-//   { username: '031708', password: '031708' },
-//   { username: '031709', password: '031709' },
-//   { username: '031710', password: '031710' },
-//   { username: '031711', password: '031711' },
-//   { username: '031712', password: '031712' },
-//   { username: '031713', password: '031713' },
-//   { username: '031714', password: '031714' },
-//   { username: '031715', password: '031715' },
-//   { username: '031716', password: '031716' },
-//   { username: '031717', password: '031717' },
-//   { username: '031718', password: '031718' },
-//   { username: '031719', password: '031719' },
-//   { username: '031720', password: '031720' }
-// ];
 
 // 创建存储实例
 const storePromise = Store.load('user-data.json');
@@ -69,33 +44,42 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const checkSavedUser = async () => {
-    try {
-      const store = await storePromise;
-      const savedUser = await store.get<User>('user');
+  // const checkSavedUser = async () => {
+  //   try {
+  //     const store = await storePromise;
+  //     const savedUser = await store.get<User>('user');
 
-      if (savedUser && savedUser.isLoggedIn) {
-        // 确保用户有设置对象
-        if (!savedUser.settings) {
-          savedUser.settings = DEFAULT_USER_SETTINGS;
-        } else if (!savedUser.settings.wowCoordinates) {
-          // 确保有坐标设置
-          savedUser.settings.wowCoordinates = DEFAULT_USER_SETTINGS.wowCoordinates;
-        }
+  //     if (savedUser && savedUser.isLoggedIn) {
+  //       // 检查是否过期
+  //       const currentTime = Date.now();
+  //       if (currentTime > savedUser.expireTime) {
+  //         // 已过期，清除用户数据
+  //         await store.set('user', null);
+  //         await store.save();
+  //         setUser(null);
+  //         return;
+  //       }
 
-        setUser(savedUser);
-      }
-    } catch (error) {
-      console.error('Failed to load user data:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  //       // 确保用户有设置对象
+  //       if (!savedUser.settings) {
+  //         savedUser.settings = DEFAULT_USER_SETTINGS;
+  //       } else if (!savedUser.settings.wowCoordinates) {
+  //         savedUser.settings.wowCoordinates = DEFAULT_USER_SETTINGS.wowCoordinates;
+  //       }
 
-  // 初始化时检查是否有保存的用户会话
-  useEffect(() => {
-    checkSavedUser();
-  }, []);
+  //       setUser(savedUser);
+  //     }
+  //   } catch (error) {
+  //     console.error('Failed to load user data:', error);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
+
+  // // 初始化时检查是否有保存的用户会话
+  // useEffect(() => {
+  //   checkSavedUser();
+  // }, []);
 
   // 更新用户设置
   const updateUserSettings = async (newSettings: Partial<UserSettings>): Promise<void> => {
