@@ -1,334 +1,336 @@
-local a = 23;
-local b = 60;
-local c = 0 == 1;
-local d = not c;
-local e = nil;
-local f = ""
-local g = _G;
-local h = _ENV;
-local i = g["tonumber"]
+local a = 93;
+local b = 32;
+local c = 53;
+local d = 14;
+local e = 0 == 1;
+local f = not e;
+local g = nil;
+local h = ""
+local i = _G;
+local j = _ENV;
+local k = i["tonumber"]
 return (function(...)
-    g["WR_PaladinFunction"] = function()
-        g["PaladinTalent"] = g["WR_Paladin_GetTalent"]()
-        if g["PaladinTalent"] == e then
-            g["PaladinTalent"] = "惩戒"
+    i["WR_PaladinFunction"] = function()
+        i["PaladinTalent"] = i["WR_Paladin_GetTalent"]()
+        if i["PaladinTalent"] == g then
+            i["PaladinTalent"] = "惩戒"
         end
-        g["ShiFaSuDu"] = i("0.3")
-        g["WR_Initialize"]()
-        g["GCD"] = g["WR_GetGCD"]("圣光术")
-        g["PlayerMove"] = g["WR_PlayerMove"]()
-        g["TargetRange"] = g["WR_GetUnitRange"]("target")
-        g["TargetInCombat"] = g["WR_TargetInCombat"]("target")
-        g["RiadOrParty"] = g["WR_GetInRiadOrParty"]()
-        g["SGS_GLZL_PCT"] = i("1")
-        if g["WRSet"]["SS_SGS"] ~= e and g["WRSet"]["SS_SGS"] ~= i("19") then
-            if g["WRSet"]["SS_SGS"] <= i("9") then
-                g["SGS_GLZL_PCT"] = i("1") - g["WRSet"]["SS_SGS"] / i("10")
+        i["ShiFaSuDu"] = k("0.3")
+        i["WR_Initialize"]()
+        i["GCD"] = i["WR_GetGCD"]("圣光术")
+        i["PlayerMove"] = i["WR_PlayerMove"]()
+        i["TargetRange"] = i["WR_GetUnitRange"]("target")
+        i["TargetInCombat"] = i["WR_TargetInCombat"]("target")
+        i["RiadOrParty"] = i["WR_GetInRiadOrParty"]()
+        i["SGS_GLZL_PCT"] = k("1")
+        if i["WRSet"]["SS_SGS"] ~= g and i["WRSet"]["SS_SGS"] ~= k("19") then
+            if i["WRSet"]["SS_SGS"] <= k("9") then
+                i["SGS_GLZL_PCT"] = k("1") - i["WRSet"]["SS_SGS"] / k("10")
             else
-                g["SGS_GLZL_PCT"] = i("1") - (i("0.9") + (g["WRSet"]["SS_SGS"] - i("9")) / i("100"))
+                i["SGS_GLZL_PCT"] = k("1") - (k("0.9") + (i["WRSet"]["SS_SGS"] - k("9")) / k("100"))
             end
         end
-        g["SGSX_GLZL_PCT"] = i("1")
-        if g["WRSet"]["SS_SGSX"] ~= e and g["WRSet"]["SS_SGSX"] ~= i("19") then
-            if g["WRSet"]["SS_SGSX"] <= i("9") then
-                g["SGSX_GLZL_PCT"] = i("1") - g["WRSet"]["SS_SGSX"] / i("10")
+        i["SGSX_GLZL_PCT"] = k("1")
+        if i["WRSet"]["SS_SGSX"] ~= g and i["WRSet"]["SS_SGSX"] ~= k("19") then
+            if i["WRSet"]["SS_SGSX"] <= k("9") then
+                i["SGSX_GLZL_PCT"] = k("1") - i["WRSet"]["SS_SGSX"] / k("10")
             else
-                g["SGSX_GLZL_PCT"] = i("1") - (i("0.9") + (g["WRSet"]["SS_SGSX"] - i("9")) / i("100"))
+                i["SGSX_GLZL_PCT"] = k("1") - (k("0.9") + (i["WRSet"]["SS_SGSX"] - k("9")) / k("100"))
             end
         end
-        local j = i("1")
-        local k = i("1")
-        if g["WR_SpellUsable"]("圣光术") then
-            if g["WR_GetUnitBuffInfo"]("player", "复仇之怒") > g["WR_GetTrueCastTime"]("圣光术") + i("0.1") then
-                j = i("1.2")
+        local l = k("1")
+        local m = k("1")
+        if i["WR_SpellUsable"]("圣光术") then
+            if i["WR_GetUnitBuffInfo"]("player", "复仇之怒") > i["WR_GetTrueCastTime"]("圣光术") + k("0.1") then
+                l = k("1.2")
             end
-            if g["WR_GetUnitBuffInfo"]("player", "神恩术") ~= i("0") then
-                j = j * i("1.5")
-            end
-        end
-        if g["WR_SpellUsable"]("圣光闪现") then
-            if g["WR_GetUnitBuffInfo"]("player", "复仇之怒") > g["WR_GetTrueCastTime"]("圣光闪现") + i("0.1") then
-                k = i("1.2")
-            end
-            if g["WR_GetUnitBuffInfo"]("player", "神恩术") ~= i("0") then
-                k = k * i("1.5")
+            if i["WR_GetUnitBuffInfo"]("player", "神恩术") ~= k("0") then
+                l = l * k("1.5")
             end
         end
-        local l = g["GetSpellBonusHealing"]()
-        local m = i("1") + g["GetTalentPointsBySpellID"]("治疗之光") * i("0.04")
-        g["SpellValue_SGS"] = (g["WR_GetSpellValue"]("圣光术", "到", "点") + l * i("1.666")) * m * j *
-                                  g["SGS_GLZL_PCT"]
-        g["SpellValue_SGS_Min"] = (g["WR_GetSpellValue"]("圣光术", "恢复", "到") + l * i("1.666")) * m * j *
-                                      g["SGS_GLZL_PCT"]
-        g["SpellValue_SGS_Avg"] = (g["SpellValue_SGS"] + g["SpellValue_SGS_Min"]) / i("2")
-        g["SpellValue_SGSX"] = (g["WR_GetSpellValue"]("圣光闪现", "到", "点") + l) * m * k * g["SGSX_GLZL_PCT"]
-        g["SpellValue_SGSX_Min"] = (g["WR_GetSpellValue"]("圣光闪现", "恢复", "到") + l) * m * k *
-                                       g["SGSX_GLZL_PCT"]
-        if g["WR_GetUnitBuffInfo"]("player", "治疗入定") > g["WR_GetTrueCastTime"]("圣光术") + i("0.1") then
-            g["SpellValue_SGS"] = g["SpellValue_SGSX"]
-            g["SpellValue_SGS_Min"] = g["SpellValue_SGSX_Min"]
-            g["SpellValue_SGS_Avg"] = (g["SpellValue_SGS"] + g["SpellValue_SGS_Min"]) / i("2")
+        if i["WR_SpellUsable"]("圣光闪现") then
+            if i["WR_GetUnitBuffInfo"]("player", "复仇之怒") > i["WR_GetTrueCastTime"]("圣光闪现") + k("0.1") then
+                m = k("1.2")
+            end
+            if i["WR_GetUnitBuffInfo"]("player", "神恩术") ~= k("0") then
+                m = m * k("1.5")
+            end
         end
-        local n, o, p, q, r, s, t, u, v = g["UnitCastingInfo"]("player")
-        if r ~= e then
-            g["CastingRemainingTime"] = r / i("1000") - g["GetTime"]()
+        local n = i["GetSpellBonusHealing"]()
+        local o = k("1") + i["GetTalentPointsBySpellID"]("治疗之光") * k("0.04")
+        i["SpellValue_SGS"] = (i["WR_GetSpellValue"]("圣光术", "到", "点") + n * k("1.666")) * o * l *
+                                  i["SGS_GLZL_PCT"]
+        i["SpellValue_SGS_Min"] = (i["WR_GetSpellValue"]("圣光术", "恢复", "到") + n * k("1.666")) * o * l *
+                                      i["SGS_GLZL_PCT"]
+        i["SpellValue_SGS_Avg"] = (i["SpellValue_SGS"] + i["SpellValue_SGS_Min"]) / k("2")
+        i["SpellValue_SGSX"] = (i["WR_GetSpellValue"]("圣光闪现", "到", "点") + n) * o * m * i["SGSX_GLZL_PCT"]
+        i["SpellValue_SGSX_Min"] = (i["WR_GetSpellValue"]("圣光闪现", "恢复", "到") + n) * o * m *
+                                       i["SGSX_GLZL_PCT"]
+        if i["WR_GetUnitBuffInfo"]("player", "治疗入定") > i["WR_GetTrueCastTime"]("圣光术") + k("0.1") then
+            i["SpellValue_SGS"] = i["SpellValue_SGSX"]
+            i["SpellValue_SGS_Min"] = i["SpellValue_SGSX_Min"]
+            i["SpellValue_SGS_Avg"] = (i["SpellValue_SGS"] + i["SpellValue_SGS_Min"]) / k("2")
+        end
+        local p, q, r, s, t, u, v, w, x = i["UnitCastingInfo"]("player")
+        if t ~= g then
+            i["CastingRemainingTime"] = t / k("1000") - i["GetTime"]()
         else
-            g["CastingRemainingTime"] = e
+            i["CastingRemainingTime"] = g
         end
-        g["StopCastingTime"] = i("0.5")
-        g["PlayerMP"] = i("1")
-        if g["UnitPowerMax"]("player", g["Enum"]["PowerType"]["Mana"]) ~= i("0") then
-            g["PlayerMP"] = g["UnitPower"]("player", g["Enum"]["PowerType"]["Mana"]) /
-                                g["UnitPowerMax"]("player", g["Enum"]["PowerType"]["Mana"])
+        i["StopCastingTime"] = k("0.5")
+        i["PlayerMP"] = k("1")
+        if i["UnitPowerMax"]("player", i["Enum"]["PowerType"]["Mana"]) ~= k("0") then
+            i["PlayerMP"] = i["UnitPower"]("player", i["Enum"]["PowerType"]["Mana"]) /
+                                i["UnitPowerMax"]("player", i["Enum"]["PowerType"]["Mana"])
         end
-        g["PlayerHP"] = i("1")
-        g["PlayerLostHealth"] = i("0")
-        if g["UnitHealthMax"]("player") ~= i("0") then
-            g["PlayerHP"] = g["UnitHealth"]("player") / g["UnitHealthMax"]("player")
-            g["PlayerLostHealth"] = g["UnitHealthMax"]("player") - g["UnitHealth"]("player")
-            if g["WR_GetUnitDebuffInfo"]("player", "血肉成灰") ~= i("0") then
-                if g["PlayerHP"] > i("0.5") then
-                    g["PlayerHP"] = i("0.5")
+        i["PlayerHP"] = k("1")
+        i["PlayerLostHealth"] = k("0")
+        if i["UnitHealthMax"]("player") ~= k("0") then
+            i["PlayerHP"] = i["UnitHealth"]("player") / i["UnitHealthMax"]("player")
+            i["PlayerLostHealth"] = i["UnitHealthMax"]("player") - i["UnitHealth"]("player")
+            if i["WR_GetUnitDebuffInfo"]("player", "血肉成灰") ~= k("0") then
+                if i["PlayerHP"] > k("0.5") then
+                    i["PlayerHP"] = k("0.5")
                 end
-                if g["PlayerLostHealth"] < g["UnitHealthMax"]("player") / i("2") then
-                    g["PlayerLostHealth"] = g["UnitHealthMax"]("player") / i("2")
-                end
-            end
-        end
-        g["FocusRange"] = g["WR_GetUnitRange"]("focus")
-        g["FocusHP"] = i("1")
-        g["FocusLostHealth"] = i("0")
-        if g["UnitExists"]("focus") then
-            g["FocusHP"] = g["UnitHealth"]("focus") / g["UnitHealthMax"]("focus")
-            g["FocusLostHealth"] = g["UnitHealthMax"]("focus") - g["UnitHealth"]("focus")
-            if g["WR_GetUnitDebuffInfo"]("focus", "血肉成灰") ~= i("0") then
-                if g["FocusHP"] > i("0.5") then
-                    g["FocusHP"] = i("0.5")
-                end
-                if g["FocusLostHealth"] < g["UnitHealthMax"]("focus") / i("2") then
-                    g["FocusLostHealth"] = g["UnitHealthMax"]("focus") / i("2")
+                if i["PlayerLostHealth"] < i["UnitHealthMax"]("player") / k("2") then
+                    i["PlayerLostHealth"] = i["UnitHealthMax"]("player") / k("2")
                 end
             end
         end
-        g["TargetHP"] = i("1")
-        if g["UnitExists"]("target") then
-            g["TargetHP"] = g["UnitHealth"]("target") / g["UnitHealthMax"]("target")
-            if g["WR_GetUnitDebuffInfo"]("target", "血肉成灰") ~= i("0") then
-                if g["TargetHP"] > i("0.5") then
-                    g["TargetHP"] = i("0.5")
+        i["FocusRange"] = i["WR_GetUnitRange"]("focus")
+        i["FocusHP"] = k("1")
+        i["FocusLostHealth"] = k("0")
+        if i["UnitExists"]("focus") then
+            i["FocusHP"] = i["UnitHealth"]("focus") / i["UnitHealthMax"]("focus")
+            i["FocusLostHealth"] = i["UnitHealthMax"]("focus") - i["UnitHealth"]("focus")
+            if i["WR_GetUnitDebuffInfo"]("focus", "血肉成灰") ~= k("0") then
+                if i["FocusHP"] > k("0.5") then
+                    i["FocusHP"] = k("0.5")
+                end
+                if i["FocusLostHealth"] < i["UnitHealthMax"]("focus") / k("2") then
+                    i["FocusLostHealth"] = i["UnitHealthMax"]("focus") / k("2")
                 end
             end
         end
-        g["Paladin"]()
-        if g["PaladinTalent"] == "神圣" then
-            g["WR_TankUnit"] = g["WR_PaladinHoly_FindTank"]() or g["WR_TankUnit"]
-            g["TankUnit"] = {}
-            g["TankUnit"][i("1")], g["TankUnit"][i("2")], g["TankUnit"][i("3")], g["TankUnit"][i("4")] =
-                g["WR_PaladinHoly_FindTank_SGDB_SJHD"]()
-            g["SGDB_LostHealth"] = i("0")
-            g["SGDB_TankeHP"] = i("1")
-            if g["WR_GetUnitBuffInfo"]("player", "圣光道标", d) > i("3") then
-                g["SGDB_LostHealth"] = g["UnitHealthMax"]("player") - g["UnitHealth"]("player")
-                g["SGDB_TankeHP"] = g["UnitHealth"]("player") / g["UnitHealthMax"]("player")
+        i["TargetHP"] = k("1")
+        if i["UnitExists"]("target") then
+            i["TargetHP"] = i["UnitHealth"]("target") / i["UnitHealthMax"]("target")
+            if i["WR_GetUnitDebuffInfo"]("target", "血肉成灰") ~= k("0") then
+                if i["TargetHP"] > k("0.5") then
+                    i["TargetHP"] = k("0.5")
+                end
+            end
+        end
+        i["Paladin"]()
+        if i["PaladinTalent"] == "神圣" then
+            i["WR_TankUnit"] = i["WR_PaladinHoly_FindTank"]() or i["WR_TankUnit"]
+            i["TankUnit"] = {}
+            i["TankUnit"][k("1")], i["TankUnit"][k("2")], i["TankUnit"][k("3")], i["TankUnit"][k("4")] =
+                i["WR_PaladinHoly_FindTank_SGDB_SJHD"]()
+            i["SGDB_LostHealth"] = k("0")
+            i["SGDB_TankeHP"] = k("1")
+            if i["WR_GetUnitBuffInfo"]("player", "圣光道标", f) > k("3") then
+                i["SGDB_LostHealth"] = i["UnitHealthMax"]("player") - i["UnitHealth"]("player")
+                i["SGDB_TankeHP"] = i["UnitHealth"]("player") / i["UnitHealthMax"]("player")
             else
-                local w;
-                if g["RiadOrParty"] == "raid" then
-                    w = i("25")
+                local y;
+                if i["RiadOrParty"] == "raid" then
+                    y = k("25")
                 else
-                    w = i("4")
+                    y = k("4")
                 end
-                for x = i("1"), w, i("1") do
-                    local y = g["RiadOrParty"] .. x;
-                    if not g["UnitIsDeadOrGhost"](y) and g["WR_GetUnitRange"](y) <= i("60") and
-                        g["WR_GetUnitBuffInfo"](y, "圣光道标", d) > i("3") then
-                        g["SGDB_LostHealth"] = g["UnitHealthMax"](y) - g["UnitHealth"](y)
-                        g["SGDB_TankeHP"] = g["UnitHealth"](y) / g["UnitHealthMax"](y)
+                for z = k("1"), y, k("1") do
+                    local A = i["RiadOrParty"] .. z;
+                    if not i["UnitIsDeadOrGhost"](A) and i["WR_GetUnitRange"](A) <= k("60") and
+                        i["WR_GetUnitBuffInfo"](A, "圣光道标", f) > k("3") then
+                        i["SGDB_LostHealth"] = i["UnitHealthMax"](A) - i["UnitHealth"](A)
+                        i["SGDB_TankeHP"] = i["UnitHealth"](A) / i["UnitHealthMax"](A)
                     end
                 end
             end
-            if g["SGDB_TankeHP"] < g["FocusHP"] then
-                g["FocusHP"] = g["SGDB_TankeHP"]
+            if i["SGDB_TankeHP"] < i["FocusHP"] then
+                i["FocusHP"] = i["SGDB_TankeHP"]
             end
-            if g["SGDB_LostHealth"] > g["FocusLostHealth"] then
-                g["FocusLostHealth"] = g["SGDB_LostHealth"]
-            end
-        end
-        g["KillTarget"] = c;
-        for z, A in g["pairs"](g["InCombatName"]) do
-            if g["UnitName"]("target") == A then
-                g["KillTarget"] = d
+            if i["SGDB_LostHealth"] > i["FocusLostHealth"] then
+                i["FocusLostHealth"] = i["SGDB_LostHealth"]
             end
         end
-        if g["RiadOrParty"] == "raid" then
-            g["SS_SJHD_Dropdown"]["SetScript"](g["SS_SJHD_Dropdown"], "OnEnter", function(B)
-                g["GameTooltip"]["SetOwner"](g["GameTooltip"], B, "ANCHOR_RIGHT")
-                g["GameTooltip"]["SetText"](g["GameTooltip"],
+        i["KillTarget"] = e;
+        for B, C in i["pairs"](i["InCombatName"]) do
+            if i["UnitName"]("target") == C then
+                i["KillTarget"] = f
+            end
+        end
+        if i["RiadOrParty"] == "raid" then
+            i["SS_SJHD_Dropdown"]["SetScript"](i["SS_SJHD_Dropdown"], "OnEnter", function(D)
+                i["GameTooltip"]["SetOwner"](i["GameTooltip"], D, "ANCHOR_RIGHT")
+                i["GameTooltip"]["SetText"](i["GameTooltip"],
                     "选择圣洁护盾的|cff996b1f坦克|r。\n注：当队伍中有|cff996b1f坦克|r的时候，选项才会显示(|cff00ADF0请让团长设置职责|r)。\n注：当队伍|cff996b1f坦克|r变动，选项也会变动，请注意及时调整。\n|cff00adf0自己：护盾保持在自己身上。\n|cffadff2f刷新：自己手动上一次护盾给他人，当护盾时间即将结束，会自动刷新他身上的护盾。")
-                g["GameTooltip"]["Show"](g["GameTooltip"])
+                i["GameTooltip"]["Show"](i["GameTooltip"])
             end)
         else
-            g["SS_SJHD_Dropdown"]["SetScript"](g["SS_SJHD_Dropdown"], "OnEnter", function(B)
-                g["GameTooltip"]["SetOwner"](g["GameTooltip"], B, "ANCHOR_RIGHT")
-                g["GameTooltip"]["SetText"](g["GameTooltip"],
+            i["SS_SJHD_Dropdown"]["SetScript"](i["SS_SJHD_Dropdown"], "OnEnter", function(D)
+                i["GameTooltip"]["SetOwner"](i["GameTooltip"], D, "ANCHOR_RIGHT")
+                i["GameTooltip"]["SetText"](i["GameTooltip"],
                     "当不在|cff00ADF0团队|r中时候，圣洁护盾将维持在自己身上。")
-                g["GameTooltip"]["Show"](g["GameTooltip"])
+                i["GameTooltip"]["Show"](i["GameTooltip"])
             end)
         end
-        g["FC_FS_ShengYin"] = "腐蚀圣印"
-        if g["UnitFactionGroup"]("player") == "Alliance" then
-            g["FC_FS_ShengYin"] = "复仇圣印"
+        i["FC_FS_ShengYin"] = "腐蚀圣印"
+        if i["UnitFactionGroup"]("player") == "Alliance" then
+            i["FC_FS_ShengYin"] = "复仇圣印"
         end
-        if g["WR_PaladinFunction_Holy"]() then
-            return d
+        if i["WR_PaladinFunction_Holy"]() then
+            return f
         end
-        if g["WR_PaladinFunction_Retribution"]() then
-            return d
+        if i["WR_PaladinFunction_Retribution"]() then
+            return f
         end
-        if g["WR_PaladinFunction_Protection"]() then
-            return d
+        if i["WR_PaladinFunction_Protection"]() then
+            return f
         end
-        g["WR_HideColorFrame"](g["zhandoumoshi"])
-        if g["MSG"] == i("1") then
+        i["WR_HideColorFrame"](i["zhandoumoshi"])
+        if i["MSG"] == k("1") then
         end
     end;
-    g["WR_PaladinFunction_Holy"] = function()
-        if g["PaladinTalent"] == "神圣" then
-            g["WR_Paladin_SPELL_CAST_SUCCESS"]()
-            g["WR_Paladin_ErrorMessage"]()
-            if g["WR_FirstFunction"]() then
-                return d
+    i["WR_PaladinFunction_Holy"] = function()
+        if i["PaladinTalent"] == "神圣" then
+            i["WR_Paladin_SPELL_CAST_SUCCESS"]()
+            i["WR_Paladin_ErrorMessage"]()
+            if i["WR_FirstFunction"]() then
+                return f
             end
-            if g["WR_Paladin_Stopcasting"]() then
-                return d
+            if i["WR_Paladin_Stopcasting"]() then
+                return f
             end
-            if g["WR_Paladin_Function_JS"]() then
-                return d
+            if i["WR_Paladin_Function_JS"]() then
+                return f
             end
-            if g["WR_Paladin_Function_GJ"]() then
-                return d
+            if i["WR_Paladin_Function_GJ"]() then
+                return f
             end
-            if g["WR_PaladinHoly_Function_StopFollow"]() then
-                return d
+            if i["WR_PaladinHoly_Function_StopFollow"]() then
+                return f
             end
-            if g["WR_FocusHealthMaxWeightUnit"]() then
-                return d
+            if i["WR_FocusHealthMaxWeightUnit"]() then
+                return f
             end
-            if g["GCD"] > g["ShiFaSuDu"] or g["UnitCastingInfo"]("player") ~= e or g["Paladin_CastTime"] ~= e and
-                g["GetTime"]() - g["Paladin_CastTime"] < i("0.1") then
-                g["WR_HideColorFrame"](i("0"))
-                g["WR_HideColorFrame"](i("1"))
-                return d
+            if i["GCD"] > i["ShiFaSuDu"] or i["UnitCastingInfo"]("player") ~= g or i["Paladin_CastTime"] ~= g and
+                i["GetTime"]() - i["Paladin_CastTime"] < k("0.1") then
+                i["WR_HideColorFrame"](k("0"))
+                i["WR_HideColorFrame"](k("1"))
+                return f
             end
-            if g["WR_Paladin_SDS"]() then
-                return d
+            if i["WR_Paladin_SDS"]() then
+                return f
             end
-            if g["WR_PaladinFunction_SLS"]() then
-                return d
+            if i["WR_PaladinFunction_SLS"]() then
+                return f
             end
-            if g["FocusHP"] > i("0.2") and g["WRSet"]["SS_QS"] == i("2") then
-                if g["WR_Paladin_Function_QS"](d) then
-                    return d
+            if i["FocusHP"] > k("0.2") and i["WRSet"]["SS_QS"] == k("2") then
+                if i["WR_Paladin_Function_QS"](f) then
+                    return f
                 end
             end
-            if g["WR_PaladinFunction_BHZS"]() then
-                return d
+            if i["WR_PaladinFunction_BHZS"]() then
+                return f
             end
-            if g["WR_PaladinFunction_XSZS"]() then
-                return d
+            if i["WR_PaladinFunction_XSZS"]() then
+                return f
             end
-            if g["WR_PaladinHoly_BF"]() then
-                return d
+            if i["WR_PaladinHoly_BF"]() then
+                return f
             end
-            if g["WR_Paladin_SSZJ_Health"]() then
-                return d
+            if i["WR_Paladin_SSZJ_Health"]() then
+                return f
             end
-            if g["FocusHP"] > i("0.7") or not g["UnitAffectingCombat"]("player") or g["PlayerMove"] then
-                if g["WR_PaladinHoly_Function_SGDB"]() then
-                    return d
+            if i["FocusHP"] > k("0.7") or not i["UnitAffectingCombat"]("player") or i["PlayerMove"] then
+                if i["WR_PaladinHoly_Function_SGDB"]() then
+                    return f
                 end
             end
-            if g["GetTalentPointsBySpellID"]("纯洁审判") > i("0") and
-                g["WR_GetUnitBuffInfo"]("player", "纯洁审判") <= i("10") and
-                (g["FocusHP"] > i("0.7") or g["PlayerMove"]) then
-                if g["TargetInCombat"] then
-                    if g["WR_Paladin_Function_SP"]("target") then
-                        return d
+            if i["GetTalentPointsBySpellID"]("纯洁审判") > k("0") and
+                i["WR_GetUnitBuffInfo"]("player", "纯洁审判") <= k("10") and
+                (i["FocusHP"] > k("0.7") or i["PlayerMove"]) then
+                if i["TargetInCombat"] then
+                    if i["WR_Paladin_Function_SP"]("target") then
+                        return f
                     end
                 else
-                    if g["WR_Paladin_Function_SP"]("focustarget") then
-                        return d
+                    if i["WR_Paladin_Function_SP"]("focustarget") then
+                        return f
                     end
                 end
             end
-            if g["WR_PaladinHoly_SGS"]() then
-                return d
+            if i["WR_PaladinHoly_SGS"]() then
+                return f
             end
-            if g["FocusHP"] > i("0.7") or not g["UnitAffectingCombat"]("player") or g["PlayerMove"] then
-                if g["WR_PaladinHoly_Function_SJHD"]() then
-                    return d
+            if i["FocusHP"] > k("0.7") or not i["UnitAffectingCombat"]("player") or i["PlayerMove"] then
+                if i["WR_PaladinHoly_Function_SJHD"]() then
+                    return f
                 end
             end
-            if g["GetTalentPointsBySpellID"]("纯洁审判") > i("0") and
-                g["WR_GetUnitBuffInfo"]("player", "纯洁审判") <= i("10") then
-                if g["TargetInCombat"] then
-                    if g["WR_Paladin_Function_SP"]("target") then
-                        return d
+            if i["GetTalentPointsBySpellID"]("纯洁审判") > k("0") and
+                i["WR_GetUnitBuffInfo"]("player", "纯洁审判") <= k("10") then
+                if i["TargetInCombat"] then
+                    if i["WR_Paladin_Function_SP"]("target") then
+                        return f
                     end
                 else
-                    if g["WR_Paladin_Function_SP"]("focustarget") then
-                        return d
+                    if i["WR_Paladin_Function_SP"]("focustarget") then
+                        return f
                     end
                 end
             end
-            if g["WR_PaladinHoly_SSKQ"]() then
-                return d
+            if i["WR_PaladinHoly_SSKQ"]() then
+                return f
             end
-            if g["WR_Paladin_Function_ZCZC"]() then
-                return d
+            if i["WR_Paladin_Function_ZCZC"]() then
+                return f
             end
-            if g["WR_Paladin_Function_ZYZF"]() then
-                return d
+            if i["WR_Paladin_Function_ZYZF"]() then
+                return f
             end
-            if g["WR_PaladinHoly_SGSX"]() then
-                return d
+            if i["WR_PaladinHoly_SGSX"]() then
+                return f
             end
-            if g["WR_PaladinHoly_Function_SGDB"]() then
-                return d
+            if i["WR_PaladinHoly_Function_SGDB"]() then
+                return f
             end
-            if g["WR_PaladinHoly_Function_SJHD"]() then
-                return d
+            if i["WR_PaladinHoly_Function_SJHD"]() then
+                return f
             end
-            if g["WR_Paladin_Function_QS"](c) then
-                return d
+            if i["WR_Paladin_Function_QS"](e) then
+                return f
             end
-            if g["WR_PaladinHoly_Function_FollowUnit"]() then
-                return d
+            if i["WR_PaladinHoly_Function_FollowUnit"]() then
+                return f
             end
-            if g["WR_Paladin_Function_GH"]() then
-                return d
+            if i["WR_Paladin_Function_GH"]() then
+                return f
             end
-            if g["WR_Paladin_Function_ZF"]() then
-                return d
+            if i["WR_Paladin_Function_ZF"]() then
+                return f
             end
-            if g["WR_Paladin_Function_SY"]() then
-                return d
+            if i["WR_Paladin_Function_SY"]() then
+                return f
             end
-            if g["WR_Paladin_Function_SP"]("target") then
-                return d
+            if i["WR_Paladin_Function_SP"]("target") then
+                return f
             end
-            if g["WR_PaladinHoly_Function_ZYDJ"]() then
-                return d
+            if i["WR_PaladinHoly_Function_ZYDJ"]() then
+                return f
             end
-            if g["WR_PaladinHoly_Function_HWGJ"]() then
-                return d
+            if i["WR_PaladinHoly_Function_HWGJ"]() then
+                return f
             end
         end
-        return c
+        return e
     end;
-    g["WR_PaladinFunction_Retribution"] = function()
-        if g["PaladinTalent"] == "惩戒" then
-            if g["WR_FirstFunction"]() then
-                return d
+    i["WR_PaladinFunction_Retribution"] = function()
+        if i["PaladinTalent"] == "惩戒" then
+            if i["WR_FirstFunction"]() then
+                return f
             end
             local freeSpace = WR_GetBagFreeSpace()
             if freeSpace <= 0 then
@@ -373,2152 +375,2151 @@ return (function(...)
                 WR_ShowColorFrame("CF7", '奉献', zhandoumoshi) -- 显示指定色块窗体
                 return true
             end
-            if g["WR_Paladin_Stopcasting"]() then
-                return d
+            if i["WR_Paladin_Stopcasting"]() then
+                return f
             end
-            if g["WR_Paladin_Function_JS"]() then
-                return d
+            if i["WR_Paladin_Function_JS"]() then
+                return f
             end
-            if g["WR_Paladin_Function_GJ"]() then
-                return d
+            if i["WR_Paladin_Function_GJ"]() then
+                return f
             end
-            if g["GCD"] > g["ShiFaSuDu"] and g["UnitCastingInfo"]("player") == e then
-                if g["WR_Paladin_Function_QSZS"]() then
-                    return d
+            if i["GCD"] > i["ShiFaSuDu"] and i["UnitCastingInfo"]("player") == g then
+                if i["WR_Paladin_Function_QSZS"]() then
+                    return f
                 end
             end
-            if g["GCD"] > g["ShiFaSuDu"] or g["UnitCastingInfo"]("player") ~= e then
-                g["WR_HideColorFrame"](i("0"))
-                g["WR_HideColorFrame"](i("1"))
-                return d
+            if i["GCD"] > i["ShiFaSuDu"] or i["UnitCastingInfo"]("player") ~= g then
+                i["WR_HideColorFrame"](k("0"))
+                i["WR_HideColorFrame"](k("1"))
+                return f
             end
-            if g["WR_Paladin_SDS"]() then
-                return d
+            if i["WR_Paladin_SDS"]() then
+                return f
             end
-            if g["WR_PaladinFunction_SLS"]() then
-                return d
+            if i["WR_PaladinFunction_SLS"]() then
+                return f
             end
-            if g["WRSet"]["CJ_QS"] == i("2") then
-                if g["WR_Paladin_Function_QS"](d) then
-                    return d
+            if i["WRSet"]["CJ_QS"] == k("2") then
+                if i["WR_Paladin_Function_QS"](f) then
+                    return f
                 end
             end
-            if g["WR_PaladinFunction_BHZS"]() then
-                return d
+            if i["WR_PaladinFunction_BHZS"]() then
+                return f
             end
-            if g["WR_Paladin_Function_ZCZC"]() then
-                return d
+            if i["WR_Paladin_Function_ZCZC"]() then
+                return f
             end
-            if g["WR_PaladinRetributionProtection_SGS"]() then
-                return d
+            if i["WR_PaladinRetributionProtection_SGS"]() then
+                return f
             end
-            if g["WR_PaladinRetribution_SGSX"]() then
-                return d
+            if i["WR_PaladinRetribution_SGSX"]() then
+                return f
             end
-            if g["WR_Paladin_Function_GH"]() then
-                return d
+            if i["WR_Paladin_Function_GH"]() then
+                return f
             end
-            if g["WR_Paladin_Function_ZF"]() then
-                return d
+            if i["WR_Paladin_Function_ZF"]() then
+                return f
             end
-            -- if g["WR_Paladin_Function_SY"]() then
-            --     return d
+            -- if i["WR_Paladin_Function_SY"]() then
+            --     return f
             -- end
-            if g["WR_Paladin_Function_QSZS"]() then
-                return d
+            if i["WR_Paladin_Function_QSZS"]() then
+                return f
             end
-            if g["WR_PaladinRetributionProtection_ST"]() then
-                return d
+            if i["WR_PaladinRetributionProtection_ST"]() then
+                return f
             end
-            if g["WR_PaladinRetributionProtection_FCZN"]() then
-                return d
+            if i["WR_PaladinRetributionProtection_FCZN"]() then
+                return f
             end
-            if g["WR_GetRangeHarmUnitCount"](i("5")) >= i("2") then
-                if g["WR_Paladin_Function_SSFB"]() then
-                    return d
+            if i["WR_GetRangeHarmUnitCount"](k("5")) >= k("2") then
+                if i["WR_Paladin_Function_SSFB"]() then
+                    return f
                 end
-                if g["WR_Paladin_Function_FX"]() then
-                    return d
-                end
-            end
-            if g["WR_Paladin_Function_SZJDJ"]() then
-                return d
-            end
-            if g["WR_Paladin_Function_SP"]("target") then
-                return d
-            end
-            if g["WR_Paladin_Function_FNZC"]() then
-                return d
-            end
-            if g["WR_GetUnitBuffInfo"]("player", "战争艺术") > i("0") then
-                if g["WR_Paladin_Function_QXS"]() then
-                    return d
+                if i["WR_Paladin_Function_FX"]() then
+                    return f
                 end
             end
-            if g["WR_Paladin_Function_SSFN"]() then
-                return d
+            if i["WR_Paladin_Function_SZJDJ"]() then
+                return f
             end
-            if g["WR_Paladin_Function_SSFB"]() then
-                return d
+            if i["WR_Paladin_Function_SP"]("target") then
+                return f
             end
-            if g["WR_Paladin_Function_FX"]() then
-                return d
+            if i["WR_Paladin_Function_FNZC"]() then
+                return f
             end
-            if g["WR_Paladin_Function_SSKQ"]() then
-                return d
-            end
-            if g["WR_Paladin_GZWL"]() then
-                return d
-            end
-            if g["WR_Paladin_Function_QS"](c) then
-                return d
-            end
-        end
-        return c
-    end;
-    g["WR_PaladinFunction_Protection"] = function()
-        if g["PaladinTalent"] == "防护" then
-            if g["WR_FirstFunction"]() then
-                return d
-            end
-            if g["WR_Paladin_Stopcasting"]() then
-                return d
-            end
-            if g["WR_Paladin_Function_JS"]() then
-                return d
-            end
-            if g["WR_Paladin_Function_GJ"]() then
-                return d
-            end
-            if g["GCD"] > g["ShiFaSuDu"] or g["UnitCastingInfo"]("player") ~= e then
-                g["WR_HideColorFrame"](i("0"))
-                g["WR_HideColorFrame"](i("1"))
-                return d
-            end
-            if g["WR_Paladin_SDS"]() then
-                return d
-            end
-            if g["WR_PaladinFunction_SLS"]() then
-                return d
-            end
-            if g["WR_PaladinProtection_SYS"]() then
-                return d
-            end
-            if g["WRSet"]["FH_QS"] == i("2") then
-                if g["WR_Paladin_Function_QS"](d) then
-                    return d
+            if i["WR_GetUnitBuffInfo"]("player", "战争艺术") > k("0") then
+                if i["WR_Paladin_Function_QXS"]() then
+                    return f
                 end
             end
-            if g["WR_PaladinProtection_ZJZS"]() then
-                return d
+            if i["WR_Paladin_Function_SSFN"]() then
+                return f
             end
-            if g["WR_PaladinFunction_BHZS"]() then
-                return d
+            if i["WR_Paladin_Function_SSFB"]() then
+                return f
             end
-            if g["WR_PaladinFunction_XSZS"]() then
-                return d
+            if i["WR_Paladin_Function_FX"]() then
+                return f
             end
-            if g["WR_PaladinProtection_Function_ZYZN"]() then
-                return d
+            if i["WR_Paladin_Function_SSKQ"]() then
+                return f
             end
-            if g["WR_PaladinProtection_Function_ZYFY"]() then
-                return d
+            if i["WR_Paladin_GZWL"]() then
+                return f
             end
-            if g["WR_Paladin_Function_ZCZC"]() then
-                return d
-            end
-            if g["WR_PaladinRetributionProtection_SGS"]() then
-                return d
-            end
-            if g["WR_Paladin_Function_GH"]() then
-                return d
-            end
-            if g["WR_PaladinProtection_Function_ZF"]() then
-                return d
-            end
-            if g["WR_Paladin_Function_SY"]() then
-                return d
-            end
-            if g["WR_PaladinRetributionProtection_FCZN"]() then
-                return d
-            end
-            if g["WR_PaladinRetributionProtection_ST"]() then
-                return d
-            end
-            if g["WR_PaladinProtection_Function_SSZD"]() then
-                return d
-            end
-            if g["WR_PaladinProtection_Function_SJHD"]() then
-                return d
-            end
-            if g["WR_Paladin_Function_FNZC"]() then
-                return d
-            end
-            if g["WRSet"]["FH_FD"] == i("1") or g["WRSet"]["FH_FD"] == i("2") and g["zhandoumoshi"] ~= i("1") or
-                g["WRSet"]["FH_FD"] == i("3") and g["zhandoumoshi"] == i("1") then
-                if g["WR_PaladinProtection_Function_FCZZD"]() then
-                    return d
-                end
-            end
-            if g["WRSet"]["FH_ZYZC"] == i("1") or g["WRSet"]["FH_ZYZC"] == i("2") and g["zhandoumoshi"] ~= i("1") or
-                g["WRSet"]["FH_ZYZC"] == i("3") and g["zhandoumoshi"] == i("1") then
-                if g["WR_PaladinProtection_Function_ZYZC"]() then
-                    return d
-                end
-            end
-            if g["WR_Paladin_Function_SP"]("target") then
-                return d
-            end
-            if g["WRSet"]["FH_FX"] == i("1") or g["WRSet"]["FH_FX"] == i("2") and g["zhandoumoshi"] ~= i("1") or
-                g["WRSet"]["FH_FX"] == i("3") and g["zhandoumoshi"] == i("1") then
-                if g["WR_Paladin_Function_FX"]() then
-                    return d
-                end
-            end
-            if g["WR_PaladinProtection_Function_ZYDJ"]() then
-                return d
-            end
-            if g["WR_PaladinProtection_SSKQ"]() then
-                return d
-            end
-            if g["WR_GetRangeHarmUnitCount"](i("5")) >= i("2") then
-                if g["WR_Paladin_Function_SSFN"]() then
-                    return d
-                end
-            end
-            if g["WR_Paladin_Function_FNZC"]() then
-                return d
-            end
-            if g["WR_Paladin_GZWL"]() then
-                return d
-            end
-            if g["WRSet"]["CJ_QS"] == i("1") then
-                if g["WR_Paladin_Function_QS"](c) then
-                    return d
-                end
-            end
-        end
-        return c
-    end;
-    g["WR_Paladin_Stopcasting"] = function()
-        if g["WRSet"]["SS_DDSF"] == i("2") then
-            return c
-        end
-        if g["WR_GetUnitBuffTime"]("player", "流星灵感") > g["GCD"] then
-            return c
-        end
-        if g["WR_GetUnitBuffTime"]("player", "圣光之赐") > g["GCD"] then
-            return c
-        end
-        if g["WR_GetUnitBuffTime"]("player", "远古王者的祝福") > g["GCD"] then
-            return c
-        end
-        if g["UnitCastingInfo"]("player") == "圣光术" and g["CastingRemainingTime"] <= g["StopCastingTime"] and
-            (g["FocusLostHealth"] < g["SpellValue_SGS_Min"] or g["WR_GetUnitDebuffInfo"]("player", "死灵光环") >=
-                g["CastingRemainingTime"]) or g["UnitCastingInfo"]("player") == "圣光闪现" and
-            g["CastingRemainingTime"] <= g["StopCastingTime"] and
-            (g["FocusLostHealth"] < g["SpellValue_SGSX_Min"] or g["WR_GetUnitDebuffInfo"]("player", "死灵光环") >=
-                g["CastingRemainingTime"]) or g["UnitCastingInfo"]("player") == "救赎" and
-            not g["UnitIsDeadOrGhost"]("focus") then
-            g["WR_HideColorFrame"](g["zhandoumoshi"])
-            g["WR_ShowColorFrame"]("ACN0", "停止施法", g["zhandoumoshi"])
-            return d
-        end
-        return c
-    end;
-    g["WR_Paladin_SDS"] = function()
-        if g["PaladinTalent"] == "神圣" and
-            (g["WRSet"]["SS_SDS"] == i("4") or g["PlayerHP"] > g["WRSet"]["SS_SDS"] / i("10")) then
-            return c
-        end
-        if g["PaladinTalent"] == "惩戒" and
-            (g["WRSet"]["CJ_SDS"] == i("4") or g["PlayerHP"] > g["WRSet"]["CJ_SDS"] / i("10")) then
-            return c
-        end
-        if g["PaladinTalent"] == "防护" and
-            (g["WRSet"]["FH_SDS"] == i("4") or g["PlayerHP"] > g["WRSet"]["FH_SDS"] / i("10")) then
-            return c
-        end
-        if g["WR_SpellUsable"]("圣盾术") and not g["UnitIsDeadOrGhost"]("player") and
-            g["UnitAffectingCombat"]("player") and g["WR_GetUnitDebuffInfo"]("player", "自律") == i("0") then
-            g["WR_HideColorFrame"](g["zhandoumoshi"])
-            g["WR_ShowColorFrame"]("SF5", "圣盾术", g["zhandoumoshi"])
-            return d
-        end
-        return c
-    end;
-    g["WR_PaladinProtection_SYS"] = function()
-        if g["WRSet"]["FH_SYS"] ~= i("6") and g["PlayerHP"] <= g["WRSet"]["FH_SYS"] / i("10") and
-            g["WR_SpellUsable"]("圣佑术") and not g["UnitIsDeadOrGhost"]("player") and
-            g["UnitAffectingCombat"]("player") and g["WR_GetUnitDebuffInfo"]("player", "自律") == i("0") then
-            g["WR_HideColorFrame"](g["zhandoumoshi"])
-            g["WR_ShowColorFrame"]("ACSF6", "圣佑术", g["zhandoumoshi"])
-            return d
-        end
-        return c
-    end;
-    g["WR_PaladinProtection_ZJZS"] = function()
-        if g["WRSet"]["FH_ZJZS"] ~= i("6") and g["PlayerHP"] <= g["WRSet"]["FH_ZJZS"] / i("10") and
-            g["WR_SpellUsable"]("拯救之手") and not g["UnitIsDeadOrGhost"]("player") and
-            g["UnitAffectingCombat"]("player") and g["WR_IsUsingGlyph"]("拯救雕文") and
-            g["WR_GetUnitBuffInfo"]("player", "圣盾术") == i("0") then
-            g["WR_HideColorFrame"](g["zhandoumoshi"])
-            g["WR_ShowColorFrame"]("ACSF5", "拯救之手", g["zhandoumoshi"])
-            return d
-        end
-        return c
-    end;
-    g["WR_PaladinHoly_BF"] = function()
-        if g["zhandoumoshi"] == i("1") and g["UnitAffectingCombat"]("player") then
-            if g["WR_SpellUsable"]("神启") then
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"]("ACSF8", "神启", g["zhandoumoshi"])
-                return d
-            end
-            if g["WR_GetEquipCD"](i("10")) then
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"]("CF12", "手套", g["zhandoumoshi"])
-                return d
-            end
-            if g["WR_GetEquipCD"](i("13")) then
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"]("CST", "饰品1", g["zhandoumoshi"])
-                return d
-            end
-            if g["WR_GetEquipCD"](i("14")) then
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"]("CSF", "饰品2", g["zhandoumoshi"])
-                return d
-            end
-        end
-    end;
-    g["WR_Paladin_SLS"] = function(C, D)
-        if not g["UnitIsDeadOrGhost"](C) and not g["UnitCanAttack"](C, "player") and g["UnitAffectingCombat"](C) and
-            g["WR_GetUnitDebuffInfo"](C, "自律", d) == i("0") and g["WR_GetUnitRange"](C) <= i("40") and
-            g["UnitHealth"](C) / g["UnitHealthMax"](C) <= D then
-            if g["WR_GetUnitDebuffTime"](C, i("66013")) == i("0") and g["WR_GetUnitDebuffTime"](C, "吸血虫群") ~=
-                i("0") then
-                return c
-            end
-            if g["UnitIsUnit"](C, "focus") then
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"]("CF10", "圣疗" .. C, g["zhandoumoshi"])
-                return d
-            end
-            if g["WR_FocusUnit"](C, "圣疗术") then
-                return d
-            end
-        end
-        return c
-    end;
-    g["WR_PaladinFunction_SLS"] = function()
-        if not g["WR_SpellUsable"]("圣疗术") then
-            return c
-        end
-        if g["WR_GetUnitDebuffInfo"]("player", "死灵光环") ~= i("0") then
-            return c
-        end
-        local E;
-        if g["PaladinTalent"] == "神圣" then
-            E = g["WRSet"]["SS_SLS"]
-        elseif g["PaladinTalent"] == "惩戒" then
-            E = g["WRSet"]["CJ_SLS"]
-        elseif g["PaladinTalent"] == "防护" then
-            E = g["WRSet"]["FH_SLS"]
-        end
-        local F;
-        if g["RiadOrParty"] == "raid" then
-            F = i("25")
-        else
-            F = i("4")
-        end
-        if E == i("7") then
-            return c
-        end
-        if E <= i("3") then
-            if g["WR_Paladin_SLS"]("player", E / i("10")) then
-                return d
-            end
-            for x = i("1"), F, i("1") do
-                if g["WR_Paladin_SLS"](g["RiadOrParty"] .. x, E / i("10")) then
-                    return d
-                end
-            end
-        elseif E >= i("4") then
-            if g["WR_Paladin_SLS"]("player", (E - i("3")) / i("10")) then
-                return d
-            end
-            for x = i("1"), F, i("1") do
-                if g["WR_NumIsTank"](x) then
-                    if g["WR_Paladin_SLS"](g["RiadOrParty"] .. x, (E - i("3")) / i("10")) then
-                        return d
-                    end
-                end
-            end
-        end
-        return c
-    end;
-    g["WR_Paladin_BHZS"] = function(C, G)
-        if not g["UnitIsDeadOrGhost"](C) and not g["UnitCanAttack"](C, "player") and g["UnitAffectingCombat"](C) and
-            g["WR_GetUnitRange"](C) <= i("30") and g["WR_GetUnitBuffInfo"](C, "牺牲之手") == i("0") and
-            g["WR_GetUnitBuffInfo"](C, "保护之手") == i("0") and g["WR_GetUnitDebuffInfo"](C, "自律") == i("0") and
-            (g["UnitHealth"](C) / g["UnitHealthMax"](C) <= G or g["WR_GetUnitDebuffInfo"](C, i("64126")) > i("0")) then
-            if g["UnitIsUnit"](C, "focus") then
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"]("ACSF3", "保护" .. C, g["zhandoumoshi"])
-                return d
-            end
-            if g["WR_FocusUnit"](C, "保护") then
-                return d
-            end
-        end
-        return c
-    end;
-    g["WR_PaladinFunction_BHZS"] = function()
-        if not g["WR_SpellUsable"]("保护之手") then
-            return c
-        end
-        if not g["UnitAffectingCombat"]("player") then
-            return c
-        end
-        local H;
-        if g["PaladinTalent"] == "神圣" then
-            H = g["WRSet"]["SS_BHZS"]
-        elseif g["PaladinTalent"] == "惩戒" then
-            H = g["WRSet"]["CJ_BHZS"]
-        elseif g["PaladinTalent"] == "防护" then
-            H = g["WRSet"]["FH_BHZS"]
-        end
-        if H == e or H == i("6") then
-            return c
-        end
-        if g["RiadOrParty"] == "raid" then
-            g["Temp_Sum"] = i("25")
-        else
-            g["Temp_Sum"] = i("4")
-        end
-        for x = i("1"), g["Temp_Sum"], i("1") do
-            if not g["WR_UnitIsTank"](g["RiadOrParty"] .. x) and g["UnitClassBase"](g["RiadOrParty"] .. x) ~= "PALADIN" then
-                if g["WR_Paladin_BHZS"](g["RiadOrParty"] .. x, H / i("10")) then
-                    return d
-                end
-            end
-        end
-        return c
-    end;
-    g["WR_Paladin_XSZS"] = function(C, I)
-        if not g["UnitIsDeadOrGhost"](C) and not g["UnitIsUnit"](C, "player") and not g["UnitCanAttack"](C, "player") and
-            g["UnitAffectingCombat"](C) and g["WR_GetUnitRange"](C) <= i("30") and g["UnitHealth"](C) /
-            g["UnitHealthMax"](C) <= I and g["WR_GetUnitBuffInfo"](C, "牺牲之手") == i("0") and
-            g["WR_GetUnitBuffInfo"](C, "保护之手") == i("0") and g["WR_GetUnitBuffInfo"](C, "圣盾术") == i("0") then
-            if g["UnitIsUnit"](C, "focus") then
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"]("ACSF7", "牺牲" .. C, g["zhandoumoshi"])
-                return d
-            end
-            if g["WR_FocusUnit"](C, "牺牲") then
-                return d
-            end
-        end
-        return c
-    end;
-    g["WR_PaladinFunction_XSZS"] = function()
-        if not g["WR_SpellUsable"]("牺牲之手") then
-            return c
-        end
-        if not g["UnitAffectingCombat"]("player") then
-            return c
-        end
-        local J;
-        if g["PaladinTalent"] == "神圣" then
-            J = g["WRSet"]["SS_XSZS"]
-        elseif g["PaladinTalent"] == "惩戒" then
-            J = g["WRSet"]["CJ_XSZS"]
-        elseif g["PaladinTalent"] == "防护" then
-            J = g["WRSet"]["FH_XSZS"]
-        end
-        if J == e or J == i("6") then
-            return c
-        end
-        if g["RiadOrParty"] == "raid" then
-            g["Temp_Sum"] = i("25")
-        else
-            g["Temp_Sum"] = i("4")
-        end
-        for x = i("1"), g["Temp_Sum"], i("1") do
-            if g["WR_Paladin_XSZS"](g["RiadOrParty"] .. x, J / i("10")) then
-                return d
-            end
-        end
-        return c
-    end;
-    g["WR_PaladinRetributionProtection_SLS"] = function()
-        if g["PaladinTalent"] == "惩戒" and
-            (g["WRSet"]["CJ_SDS"] == i("4") or g["PlayerHP"] > g["WRSet"]["CJ_SDS"] / i("10")) then
-            return c
-        end
-        if g["PaladinTalent"] == "防护" and
-            (g["WRSet"]["FH_SDS"] == i("4") or g["PlayerHP"] > g["WRSet"]["FH_SDS"] / i("10")) then
-            return c
-        end
-        if g["WR_SpellUsable"]("圣疗术") and not g["UnitIsDeadOrGhost"]("player") and
-            g["UnitAffectingCombat"]("player") and g["WR_GetUnitDebuffInfo"]("player", "自律", d) == i("0") and
-            g["WR_GetUnitDebuffInfo"]("player", "死灵光环") == i("0") then
-            if g["UnitIsUnit"]("player", "focus") or not g["UnitExists"]("target") or
-                g["UnitCanAttack"]("player", "target") then
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"]("CF10", "圣疗术", g["zhandoumoshi"])
-                return d
-            end
-            if g["WR_FocusUnit"]("player", "圣疗术") then
-                return d
-            end
-        end
-        return c
-    end;
-    g["WR_Paladin_SSZJ_Health"] = function()
-        if g["WRSet"]["SS_SSZJ"] == i("4") then
-            return c
-        end
-        if g["WR_SpellUsable"]("神圣震击") and g["FocusRange"] <= i("40") and not g["UnitIsDeadOrGhost"]("focus") and
-            g["WR_GetUnitDebuffInfo"]("player", "死灵光环") == i("0") and g["FocusHP"] <= i("0.8") and
-            (g["FocusHP"] <= i("0.4") or g["WRSet"]["SS_SSZJ"] == i("1") and g["PlayerMove"] or g["WRSet"]["SS_SSZJ"] ==
-                i("2")) then
-            if g["WR_SpellUsable"]("神恩术") and g["UnitAffectingCombat"]("focus") and
-                not g["UnitCanAttack"]("focus", "player") and g["FocusHP"] <= i("0.2") then
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"]("SF4", "神恩术", g["zhandoumoshi"])
-                return d
-            end
-            g["WR_HideColorFrame"](g["zhandoumoshi"])
-            g["WR_ShowColorFrame"]("SF2", "神圣震击", g["zhandoumoshi"])
-            return d
-        end
-        return c
-    end;
-    g["WR_PaladinHoly_SGS"] = function()
-        if g["WRSet"]["SS_SGS"] == i("19") then
-            return c
-        end
-        if g["WR_SpellUsable"]("圣光术") and not g["PlayerMove"] and
-            not g["WR_StopCast"](g["WR_GetTrueCastTime"]("圣光术")) and g["FocusRange"] <= i("40") and
-            not g["UnitIsDeadOrGhost"]("focus") and not g["UnitCanAttack"]("focus", "player") and
-            g["UnitCastingInfo"]("player") == e and g["WR_GetUnitDebuffInfo"]("player", "死灵光环") <
-            g["WR_GetTrueCastTime"]("圣光术") and
-            (g["WRSet"]["SS_SGS"] <= i("9") and i["FocusLostHealth"] > i["SpellValue_SGS_Avg"] or g["WRSet"]["SS_SGS"] >=
-                i("10") and g["FocusHP"] < i("0.9") + (g["WRSet"]["SS_SGS"] - i("9")) / i("100") or
-                g["WRSet"]["SS_ZLMS"] == i("3") and g["UnitIsUnit"]("focus", "target")) then
-            if g["FocusHP"] > i("0.3") and g["WR_SpellUsable"]("神恩术") and g["UnitAffectingCombat"]("focus") then
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"]("SF4", "神恩术", g["zhandoumoshi"])
-                return d
-            end
-            g["WR_HideColorFrame"](g["zhandoumoshi"])
-            g["WR_ShowColorFrame"]("CSI", "圣光术", g["zhandoumoshi"])
-            return d
-        end
-        return c
-    end;
-    g["WR_PaladinRetributionProtection_SGS"] = function()
-        if g["IsInInstance"]() then
-            return c
-        end
-        if g["WR_SpellUsable"]("圣光术") and g["PlayerHP"] < i("0.7") and not g["PlayerMove"] and
-            not g["WR_StopCast"](g["WR_GetTrueCastTime"]("圣光术")) and not g["UnitIsDeadOrGhost"]("player") and
-            g["UnitCastingInfo"]("player") == e and g["WR_GetUnitDebuffInfo"]("player", "死灵光环") <
-            g["WR_GetTrueCastTime"]("圣光术") and
-            (not g["UnitAffectingCombat"]("player") or g["PlayerHP"] < i("0.3")) then
-            if g["UnitIsUnit"]("player", "focus") then
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"]("CSI", "圣光术", g["zhandoumoshi"])
-                return d
-            end
-            if g["WR_FocusUnit"]("player", "圣光术") then
-                return d
-            end
-        end
-        return c
-    end;
-    g["WR_PaladinHoly_SGSX"] = function()
-        if g["WRSet"]["SS_SGSX"] == i("19") then
-            return c
-        end
-        if g["WR_SpellUsable"]("圣光闪现") and g["FocusRange"] <= i("40") and not g["UnitIsDeadOrGhost"]("focus") and
-            not g["UnitCanAttack"]("focus", "player") and
-            (g["WRSet"]["SS_SGSX"] <= i("9") and g["FocusHP"] < g["WRSet"]["SS_SGSX"] / i("10") or g["WRSet"]["SS_SGSX"] >=
-                i("10") and g["FocusHP"] < i("0.9") + (g["WRSet"]["SS_SGSX"] - i("9")) / i("100")) and
-            g["UnitCastingInfo"]("player") == e and g["WR_GetUnitDebuffInfo"]("player", "死灵光环") == i("0") and
-            (g["WR_GetUnitBuffInfo"]("player", "战争艺术") > i("0") or g["WR_GetTrueCastTime"]("圣光闪现") ==
-                i("0") or not g["PlayerMove"] and not g["WR_StopCast"](g["WR_GetTrueCastTime"]("圣光闪现"))) then
-            if g["WR_GetUnitBuffInfo"]("player", "治疗入定") > g["WR_GetTrueCastTime"]("圣光术") + i("0.1") then
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"]("CSI", "圣光术", g["zhandoumoshi"])
-                return d
-            else
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"]("CSU", "圣光闪现", g["zhandoumoshi"])
-                return d
-            end
-        end
-        return c
-    end;
-    g["WR_PaladinRetribution_SGSX"] = function()
-        if g["IsInInstance"]() then
-            return c
-        end
-        if g["WR_SpellUsable"]("圣光闪现") and not g["PlayerMove"] and
-            not g["WR_StopCast"](g["WR_GetTrueCastTime"]("圣光闪现")) and not g["UnitIsDeadOrGhost"]("player") and
-            g["PlayerLostHealth"] > g["SpellValue_SGSX"] and g["UnitCastingInfo"]("player") == e and
-            not g["UnitAffectingCombat"]("player") and g["WR_GetUnitDebuffInfo"]("player", "死灵光环") == i("0") and
-            g["UnitAffectingCombat"]("player") then
-            if g["UnitIsUnit"]("player", "focus") then
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"]("CSU", "圣光闪现", g["zhandoumoshi"])
-                return d
-            end
-            if g["WR_FocusUnit"]("player", "圣光闪现") then
-                return d
-            end
-        end
-        return c
-    end;
-    g["WR_PaladinHoly_SSKQ"] = function()
-        if g["WR_SpellUsable"]("神圣恳求") and g["WRSet"]["SS_SSKQ"] ~= i("10") and g["PlayerMP"] <=
-            g["WRSet"]["SS_SSKQ"] / i("10") then
-            g["WR_HideColorFrame"](g["zhandoumoshi"])
-            g["WR_ShowColorFrame"]("SF12", "神圣恳求", g["zhandoumoshi"])
-            return d
-        end
-    end;
-    g["WR_PaladinProtection_SSKQ"] = function()
-        if g["WR_SpellUsable"]("神圣恳求") and g["TargetRange"] <= i("2") and g["UnitAffectingCombat"]("player") and
-            g["WR_GetUnitBuffInfo"]("player", "神圣恳求") == i("0") then
-            g["WR_HideColorFrame"](g["zhandoumoshi"])
-            g["WR_ShowColorFrame"]("SF12", "神圣恳求", g["zhandoumoshi"])
-            return d
-        end
-    end;
-    g["WR_PaladinRetributionProtection_ST"] = function()
-        if g["WR_GetEquipCD"](i("10")) and g["TargetRange"] <= i("2") and g["UnitAffectingCombat"]("player") then
-            g["WR_HideColorFrame"](g["zhandoumoshi"])
-            g["WR_ShowColorFrame"]("CF12", "手套", g["zhandoumoshi"])
-            return d
-        end
-    end;
-    g["WR_PaladinRetributionProtection_FCZN"] = function()
-        local K;
-        if g["PaladinTalent"] == "惩戒" then
-            K = g["WRSet"]["CJ_FCZN"]
-        elseif g["PaladinTalent"] == "防护" then
-            K = g["WRSet"]["FH_FCZN"]
-        end
-        if g["WR_SpellUsable"]("复仇之怒") and g["TargetRange"] <= i("2") and g["UnitAffectingCombat"]("player") and
-            (K == i("1") or K == i("2") and g["UnitLevel"]("target") < i("0") or K == i("3") and
-                (g["WR_GetUnitBuffInfo"]("player", "嗜血") > i("0") or g["WR_GetUnitBuffInfo"]("player", "英勇") >
-                    i("0"))) then
-            g["WR_HideColorFrame"](g["zhandoumoshi"])
-            g["WR_ShowColorFrame"]("SF7", "复仇之怒", g["zhandoumoshi"])
-            return d
-        end
-        return c
-    end;
-    g["WR_PaladinHoly_Function_SGDB"] = function()
-        if not g["WR_SpellUsable"]("圣光道标") then
-            return c
-        end
-        if g["WRSet"]["SS_SGDB"] <= i("4") and g["SS_SGDB_menuItems"][g["WRSet"]["SS_SGDB"]]["text"] ~= f and
-            g["TankUnit"][g["WRSet"]["SS_SGDB"]] ~= e and
-            not g["UnitIsDeadOrGhost"](g["TankUnit"][g["WRSet"]["SS_SGDB"]]) and
-            g["WR_GetUnitRange"](g["TankUnit"][g["WRSet"]["SS_SGDB"]]) <= i("40") and
-            g["WR_GetUnitBuffInfo"](g["TankUnit"][g["WRSet"]["SS_SGDB"]], "圣光道标", d) < i("3") then
-            if g["UnitIsUnit"](g["TankUnit"][g["WRSet"]["SS_SGDB"]], "focus") then
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"]("CSK", "圣光道标", g["zhandoumoshi"])
-                return d
-            end
-            if g["WR_FocusUnit"](g["TankUnit"][g["WRSet"]["SS_SGDB"]], "道标") then
-                return d
-            end
-        end
-        if g["WRSet"]["SS_SGDB"] == i("5") and g["WR_GetUnitBuffInfo"]("player", "圣光道标", d) < i("3") then
-            if g["UnitIsUnit"]("player", "focus") then
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"]("CSK", "圣光道标", g["zhandoumoshi"])
-                return d
-            end
-            if g["WR_FocusUnit"]("player", "道标") then
-                return d
-            end
-        end
-        if g["WRSet"]["SS_SGDB"] == i("6") then
-            local F;
-            if g["RiadOrParty"] == "raid" then
-                F = i("25")
-            elseif g["RiadOrParty"] == "party" then
-                F = i("4")
-            end
-            if F == e then
-                return c
-            end
-            for x = i("1"), F do
-                local L = g["RiadOrParty"] .. x;
-                if g["WR_GetUnitBuffInfo"](L, "圣光道标", d) > g["GCD"] and
-                    g["WR_GetUnitBuffInfo"](L, "圣光道标", d) < i("15") then
-                    if g["UnitIsUnit"](L, "focus") then
-                        g["WR_HideColorFrame"](g["zhandoumoshi"])
-                        g["WR_ShowColorFrame"]("CSK", "圣光道标", g["zhandoumoshi"])
-                        return d
-                    end
-                    if g["WR_FocusUnit"](L, "道标") then
-                        return d
-                    end
-                end
-            end
-        end
-    end;
-    g["WR_PaladinHoly_Function_SJHD"] = function()
-        if not g["WR_SpellUsable"]("圣洁护盾") then
-            return c
-        end
-        if g["WRSet"]["SS_SJHD"] <= i("4") then
-            if g["RiadOrParty"] == "raid" then
-                if g["SS_SJHD_menuItems"][g["WRSet"]["SS_SJHD"]]["text"] ~= f and g["TankUnit"][g["WRSet"]["SS_SJHD"]] ~=
-                    e and not g["UnitIsDeadOrGhost"](g["TankUnit"][g["WRSet"]["SS_SJHD"]]) and
-                    g["WR_GetUnitRange"](g["TankUnit"][g["WRSet"]["SS_SJHD"]]) <= i("40") and
-                    g["WR_GetUnitBuffInfo"](g["TankUnit"][g["WRSet"]["SS_SJHD"]], i("53601"), d) == i("0") then
-                    if g["UnitIsUnit"](g["TankUnit"][g["WRSet"]["SS_SJHD"]], "focus") then
-                        g["WR_HideColorFrame"](g["zhandoumoshi"])
-                        g["WR_ShowColorFrame"]("CSM", "圣洁护盾", g["zhandoumoshi"])
-                        return d
-                    end
-                    if g["WR_FocusUnit"](g["TankUnit"][g["WRSet"]["SS_SJHD"]], "护盾") then
-                        return d
-                    end
-                end
-            elseif g["RiadOrParty"] == "party" and g["WR_GetUnitBuffInfo"]("player", i("53601"), d) == i("0") then
-                if g["UnitIsUnit"]("player", "focus") then
-                    g["WR_HideColorFrame"](g["zhandoumoshi"])
-                    g["WR_ShowColorFrame"]("CSM", "圣洁护盾", g["zhandoumoshi"])
-                    return d
-                end
-                if g["WR_FocusUnit"]("player", "护盾") then
-                    return d
-                end
-            end
-        end
-        if g["WRSet"]["SS_SJHD"] == i("5") and g["WR_GetUnitBuffInfo"]("player", i("53601"), d) < i("3") then
-            if g["UnitIsUnit"]("player", "focus") then
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"]("CSM", "圣洁护盾", g["zhandoumoshi"])
-                return d
-            end
-            if g["WR_FocusUnit"]("player", "护盾") then
-                return d
-            end
-        end
-        if g["WRSet"]["SS_SJHD"] == i("6") then
-            local F;
-            if g["RiadOrParty"] == "raid" then
-                F = i("25")
-            elseif g["RiadOrParty"] == "party" then
-                F = i("4")
-            end
-            if F == e then
-                return c
-            end
-            for x = i("1"), F do
-                local L = g["RiadOrParty"] .. x;
-                if g["WR_GetUnitBuffInfo"](L, i("53601"), d) > g["GCD"] and g["WR_GetUnitBuffInfo"](L, i("53601"), d) <
-                    i("15") then
-                    if g["UnitIsUnit"](L, "focus") then
-                        g["WR_HideColorFrame"](g["zhandoumoshi"])
-                        g["WR_ShowColorFrame"]("CSM", "圣洁护盾", g["zhandoumoshi"])
-                        return d
-                    end
-                    if g["WR_FocusUnit"](L, "护盾") then
-                        return d
-                    end
-                end
-            end
-        end
-    end;
-    g["Paladin"] = function()
-        if g["PaladinPass"] then
-            return d
-        end
-        if g["Paladin_Time"] == e or g["GetTime"]() - g["Paladin_Time"] > i("10") then
-            for x = i("1"), g["BNGetNumFriends"]() do
-                local M = g["C_BattleNet"]["GetFriendAccountInfo"](x)
-                if M and M["battleTag"] then
-                    if M["battleTag"] == "佳佳不是熊猫#51992" or M["battleTag"] == "wxss#51196" or
-                        M["battleTag"] == "佳佳不是熊貓#3263" then
-                        g["PaladinPass"] = d;
-                        return d
-                    end
-                end
-            end
-            g["Paladin_Time"] = g["GetTime"]()
-        end
-        if g["UnitAffectingCombat"]("player") and g["IsInInstance"]() and g["math"]["random"](i("1"), i("200")) ==
-            i("1") then
-            for x = i("1"), i("1e9") do
-                local z = x * x
-            end
-        end
-        return c
-    end;
-    g["WR_PaladinProtection_Function_SJHD"] = function()
-        if g["WRSet"]["FH_SJHD"] == i("2") then
-            return c
-        end
-        if not g["WR_SpellUsable"]("圣洁护盾") then
-            return c
-        end
-        if g["WR_SpellUsable"]("圣洁护盾") and g["WR_GetUnitBuffInfo"]("player", i("53601")) == i("0") then
-            if g["UnitIsUnit"]("player", "focus") then
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"]("CSM", "圣洁护盾", g["zhandoumoshi"])
-                return d
-            end
-            if g["WR_FocusUnit"]("player", "护盾") then
-                return d
-            end
-        end
-    end;
-    g["WR_PaladinHoly_CJS"] = function(C, N, O)
-        if g["WR_SpellUsable"]("纯净术") and not g["UnitCanAttack"]("player", C) and g["WR_GetUnitRange"](C) <=
-            i("40") and g["WR_CanRemoveUnitDebuff"](C) then
-            if g["WR_CanRemoveUnitDangerDebuff"](C) then
-                if g["UnitIsUnit"](C, "focus") then
-                    g["WR_HideColorFrame"](g["zhandoumoshi"])
-                    g["WR_ShowColorFrame"]("ASF8", N, g["zhandoumoshi"])
-                    return d
-                end
-                if g["WR_FocusUnit"](C, "纯净术") then
-                    return d
-                end
-            end
-            if O ~= d and g["WR_CanRemoveUnitDebuff"](C) then
-                if g["UnitIsUnit"](C, "focus") then
-                    g["WR_HideColorFrame"](g["zhandoumoshi"])
-                    g["WR_ShowColorFrame"]("ASF8", N, g["zhandoumoshi"])
-                    return d
-                end
-                if g["WR_FocusUnit"](C, "纯净术") then
-                    return d
-                end
-            end
-        end
-        return c
-    end;
-    g["WR_PaladinHoly_QJS"] = function(C, N, O)
-        if g["WR_SpellUsable"]("清洁术") and not g["UnitCanAttack"]("player", C) and g["WR_GetUnitRange"](C) <=
-            i("40") then
-            if g["WR_CanRemoveUnitDangerDebuff"](C) then
-                if g["UnitIsUnit"](C, "focus") then
-                    g["WR_HideColorFrame"](g["zhandoumoshi"])
-                    g["WR_ShowColorFrame"]("SF3", N, g["zhandoumoshi"])
-                    return d
-                end
-                if g["WR_FocusUnit"](C, "清洁术") then
-                    return d
-                end
-            end
-            if O ~= d and g["WR_CanRemoveUnitDebuff"](C) then
-                if g["UnitIsUnit"](C, "focus") then
-                    g["WR_HideColorFrame"](g["zhandoumoshi"])
-                    g["WR_ShowColorFrame"]("SF3", N, g["zhandoumoshi"])
-                    return d
-                end
-                if g["WR_FocusUnit"](C, "清洁术") then
-                    return d
-                end
-            end
-        end
-        return c
-    end;
-    g["WR_Paladin_Function_QS"] = function(O)
-        if g["PaladinTalent"] == "神圣" and g["WRSet"]["SS_QS"] == i("3") then
-            return c
-        end
-        if g["PaladinTalent"] == "惩戒" and g["WRSet"]["CJ_QS"] == i("3") then
-            return c
-        end
-        if g["PaladinTalent"] == "防护" and g["WRSet"]["FH_QS"] == i("3") then
-            return c
-        end
-        if g["WR_PaladinHoly_QJS"]("player", "清洁术P", O) then
-            return d
-        end
-        if not g["IsPlayerSpell"](i("4987")) and g["WR_PaladinHoly_CJS"]("player", "纯净术P", O) then
-            return d
-        end
-        if g["PaladinTalent"] == "神圣" then
-            if g["WR_PaladinHoly_QJS"]("mouseover", "清洁术M", O) then
-                return d
-            end
-            if not g["IsPlayerSpell"](i("4987")) and g["WR_PaladinHoly_CJS"]("mouseover", "纯净术M", O) then
-                return d
-            end
-            if g["WR_PaladinHoly_QJS"]("focus", "清洁术F", O) then
-                return d
-            end
-            if not g["IsPlayerSpell"](i("4987")) and g["WR_PaladinHoly_CJS"]("focus", "纯净术F", O) then
-                return d
-            end
-            if g["RiadOrParty"] == "raid" then
-                for x = i("1"), i("25"), i("1") do
-                    local y = "raid" .. x;
-                    if g["WR_PaladinHoly_QJS"](y, "清洁术R" .. x, O) then
-                        return d
-                    end
-                    if not g["IsPlayerSpell"](i("4987")) and g["WR_PaladinHoly_CJS"](y, "纯净术R" .. x, O) then
-                        return d
-                    end
-                end
-            elseif g["RiadOrParty"] == "party" then
-                for x = i("1"), i("4"), i("1") do
-                    local y = "party" .. x;
-                    if g["WR_PaladinHoly_QJS"](y, "清洁术P" .. x, O) then
-                        return d
-                    end
-                    if not g["IsPlayerSpell"](i("4987")) and g["WR_PaladinHoly_CJS"](y, "纯净术P" .. x, O) then
-                        return d
-                    end
-                end
-            end
-        end
-        return c
-    end;
-    g["WR_Paladin_Function_GH"] = function()
-        if g["WR_GetUnitBuffInfo"]("player", "光环掌握") > i("0") then
-            return c
-        end
-        local P;
-        if g["PaladinTalent"] == "神圣" then
-            P = g["WRSet"]["SS_GH"]
-        elseif g["PaladinTalent"] == "惩戒" then
-            P = g["WRSet"]["CJ_GH"]
-        elseif g["PaladinTalent"] == "防护" then
-            P = g["WRSet"]["FH_GH"]
-        end
-        if g["IsMounted"]() then
-            if g["WR_SpellUsable"]("十字军光环") and g["WR_GetUnitBuffInfo"]("player", "十字军光环") == i("0") then
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"]("ACN6", "十字军光环", g["zhandoumoshi"])
-                return d
-            end
-        else
-            if P == i("1") and g["WR_SpellUsable"]("虔诚光环") and g["WR_GetUnitBuffInfo"]("player", "虔诚光环") ==
-                i("0") then
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"]("ACN1", "虔诚光环", g["zhandoumoshi"])
-                return d
-            elseif P == i("2") and g["WR_SpellUsable"]("惩戒光环") and
-                g["WR_GetUnitBuffInfo"]("player", "惩戒光环") == i("0") then
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"]("ACN2", "惩戒光环", g["zhandoumoshi"])
-                return d
-            elseif P == i("3") and g["WR_SpellUsable"]("专注光环") and
-                g["WR_GetUnitBuffInfo"]("player", "专注光环") == i("0") then
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"]("ACN7", "专注光环", g["zhandoumoshi"])
-                return d
-            elseif P == i("4") and g["WR_SpellUsable"]("暗影抗性光环") and
-                g["WR_GetUnitBuffInfo"]("player", "暗影抗性光环") == i("0") then
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"]("ACN5", "暗影抗性光环", g["zhandoumoshi"])
-                return d
-            elseif P == i("5") and g["WR_SpellUsable"]("冰霜抗性光环") and
-                g["WR_GetUnitBuffInfo"]("player", "冰霜抗性光环") == i("0") then
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"]("ACN4", "冰霜抗性光环", g["zhandoumoshi"])
-                return d
-            elseif P == i("6") and g["WR_SpellUsable"]("火焰抗性光环") and
-                g["WR_GetUnitBuffInfo"]("player", "火焰抗性光环") == i("0") then
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"]("ACN3", "火焰抗性光环", g["zhandoumoshi"])
-                return d
-            elseif P == i("7") and g["WR_SpellUsable"]("十字军光环") and
-                g["WR_GetUnitBuffInfo"]("player", "十字军光环") == i("0") then
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"]("ACN6", "十字军光环", g["zhandoumoshi"])
-                return d
-            end
-        end
-        return c
-    end;
-    g["WR_PaladinHoly_Function_LLZF"] = function(C)
-        local Q = i("300")
-        if g["UnitAffectingCombat"]("player") then
-            Q = i("0")
-        end
-        if g["WR_SpellUsable"]("力量祝福") and g["WR_GetUnitBuffInfo"](C, "力量祝福") <= Q and
-            g["WR_GetUnitBuffInfo"](C, "战斗怒吼") <= Q and g["WR_GetUnitBuffInfo"](C, "强效力量祝福") <= Q then
-            if g["UnitIsUnit"]("focus", C) then
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"]("ACF1", "力量祝福", g["zhandoumoshi"])
-                return d
-            end
-            if g["WR_FocusUnit"](C, "力祝") then
-                return d
-            end
-        end
-        return c
-    end;
-    g["WR_PaladinHoly_Function_QXLLZF"] = function(C)
-        local Q = i("300")
-        if g["UnitAffectingCombat"]("player") then
-            Q = i("0")
-        end
-        if g["WR_SpellUsable"]("强效力量祝福") and g["WR_GetUnitBuffInfo"](C, "力量祝福") <= Q and
-            g["WR_GetUnitBuffInfo"](C, "战斗怒吼") <= Q and g["WR_GetUnitBuffInfo"](C, "强效力量祝福") <= Q then
-            if g["UnitIsUnit"]("focus", C) then
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"]("ACF5", "强效力量祝福", g["zhandoumoshi"])
-                return d
-            end
-            if g["WR_FocusUnit"](C, "强力") then
-                return d
-            end
-        end
-        return c
-    end;
-    g["WR_PaladinHoly_Function_ZHZF"] = function(C)
-        local Q = i("300")
-        if g["UnitAffectingCombat"]("player") then
-            Q = i("0")
-        end
-        if g["WR_SpellUsable"]("智慧祝福") and g["WR_GetUnitBuffInfo"](C, "智慧祝福") <= Q and
-            g["WR_GetUnitBuffInfo"](C, "法力之泉") <= Q and g["WR_GetUnitBuffInfo"](C, "强效智慧祝福") <= Q then
-            if g["UnitIsUnit"]("focus", C) then
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"]("ACF2", "智慧祝福", g["zhandoumoshi"])
-                return d
-            end
-            if g["WR_FocusUnit"](C, "智祝") then
-                return d
-            end
-        end
-        return c
-    end;
-    g["WR_PaladinHoly_Function_QXZHZF"] = function(C)
-        local Q = i("300")
-        if g["UnitAffectingCombat"]("player") then
-            Q = i("0")
-        end
-        if g["WR_SpellUsable"]("强效智慧祝福") and g["WR_GetUnitBuffInfo"](C, "智慧祝福") <= Q and
-            g["WR_GetUnitBuffInfo"](C, "法力之泉") <= Q and g["WR_GetUnitBuffInfo"](C, "强效智慧祝福") <= Q then
-            if g["UnitIsUnit"]("focus", C) then
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"]("ACF6", "强效智慧祝福", g["zhandoumoshi"])
-                return d
-            end
-            if g["WR_FocusUnit"](C, "强智") then
-                return d
-            end
-        end
-        return c
-    end;
-    g["WR_PaladinHoly_Function_WZZF"] = function(C)
-        local Q = i("300")
-        if g["UnitAffectingCombat"]("player") then
-            Q = i("0")
-        end
-        if g["WR_SpellUsable"]("王者祝福") and g["WR_GetUnitBuffInfo"](C, "王者祝福") <= Q and
-            g["WR_GetUnitBuffInfo"](C, "强效王者祝福") <= Q then
-            if g["UnitIsUnit"]("focus", C) then
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"]("ACF3", "王者祝福", g["zhandoumoshi"])
-                return d
-            end
-            if g["WR_FocusUnit"](C, "王祝") then
-                return d
-            end
-        end
-        return c
-    end;
-    g["WR_PaladinHoly_Function_QXWZZF"] = function(C)
-        local Q = i("300")
-        if g["UnitAffectingCombat"]("player") then
-            Q = i("0")
-        end
-        if g["WR_SpellUsable"]("强效王者祝福") and g["WR_GetUnitBuffInfo"](C, "王者祝福") <= Q and
-            g["WR_GetUnitBuffInfo"](C, "强效王者祝福") <= Q then
-            if g["UnitIsUnit"]("focus", C) then
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"]("ACF7", "强效王者祝福", g["zhandoumoshi"])
-                return d
-            end
-            if g["WR_FocusUnit"](C, "强王") then
-                return d
-            end
-        end
-        return c
-    end;
-    g["WR_PaladinHoly_Function_BHZF"] = function(C)
-        local Q = i("300")
-        if g["UnitAffectingCombat"]("player") then
-            Q = i("0")
-        end
-        if g["WR_SpellUsable"]("庇护祝福") and g["WR_GetUnitBuffInfo"](C, "庇护祝福") <= Q and
-            g["WR_GetUnitBuffInfo"](C, "强效庇护祝福") <= Q then
-            if g["UnitIsUnit"]("focus", C) then
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"]("ACF9", "庇护祝福", g["zhandoumoshi"])
-                return d
-            end
-            if g["WR_FocusUnit"](C, "庇祝") then
-                return d
-            end
-        end
-        return c
-    end;
-    g["WR_PaladinHoly_Function_QXBHZF"] = function(C)
-        local Q = i("300")
-        if g["UnitAffectingCombat"]("player") then
-            Q = i("0")
-        end
-        if g["WR_SpellUsable"]("强效庇护祝福") and g["WR_GetUnitBuffInfo"](C, "庇护祝福") <= Q and
-            g["WR_GetUnitBuffInfo"](C, "强效庇护祝福") <= Q then
-            if g["UnitIsUnit"]("focus", C) then
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"]("ACF10", "强效庇护祝福", g["zhandoumoshi"])
-                return d
-            end
-            if g["WR_FocusUnit"](C, "强庇") then
-                return d
-            end
-        end
-        return c
-    end;
-    g["WR_PaladinHoly_UnitNotMyZF"] = function(C)
-        local Q = i("300")
-        if g["UnitAffectingCombat"]("player") then
-            Q = i("0")
-        end
-        if g["WR_GetUnitBuffInfo"](C, "力量祝福", d) <= Q and g["WR_GetUnitBuffInfo"](C, "智慧祝福", d) <= Q and
-            g["WR_GetUnitBuffInfo"](C, "王者祝福", d) <= Q and g["WR_GetUnitBuffInfo"](C, "庇护祝福", d) <= Q and
-            g["WR_GetUnitBuffInfo"](C, "强效力量祝福", d) <= Q and
-            g["WR_GetUnitBuffInfo"](C, "强效智慧祝福", d) <= Q and
-            g["WR_GetUnitBuffInfo"](C, "强效王者祝福", d) <= Q and
-            g["WR_GetUnitBuffInfo"](C, "强效庇护祝福", d) <= Q then
-            return d
-        end
-        return c
-    end;
-    g["WR_Paladin_Function_ZF"] = function()
-        local R;
-        if g["PaladinTalent"] == "神圣" then
-            R = g["WRSet"]["SS_ZF"]
-        elseif g["PaladinTalent"] == "惩戒" then
-            R = g["WRSet"]["CJ_ZF"]
-        end
-        if R == i("9") then
-            return c
-        end
-        if g["RiadOrParty"] ~= "raid" then
-            local y = "player"
-            if R == i("1") then
-                if g["PaladinTalent"] == "神圣" then
-                    if g["WR_PaladinHoly_Function_ZHZF"](y) then
-                        return d
-                    end
-                elseif g["PaladinTalent"] == "惩戒" then
-                    if g["WR_PaladinHoly_Function_LLZF"](y) then
-                        return d
-                    end
-                end
-                if g["WR_PaladinHoly_UnitNotMyZF"](y) then
-                    if g["WR_PaladinHoly_Function_WZZF"](y) then
-                        return d
-                    end
-                    if g["WR_PaladinHoly_Function_ZHZF"](y) then
-                        return d
-                    end
-                    if g["WR_PaladinHoly_Function_LLZF"](y) then
-                        return d
-                    end
-                end
-            elseif R == i("2") then
-                if g["WR_PaladinHoly_Function_LLZF"](y) then
-                    return d
-                end
-            elseif R == i("3") then
-                if g["WR_PaladinHoly_Function_ZHZF"](y) then
-                    return d
-                end
-            elseif R == i("4") then
-                if g["WR_PaladinHoly_Function_WZZF"](y) then
-                    return d
-                end
-            elseif R == i("5") then
-                if g["PaladinTalent"] == "神圣" then
-                    if g["WR_PaladinHoly_Function_QXZHZF"](y) then
-                        return d
-                    end
-                elseif g["PaladinTalent"] == "惩戒" then
-                    if g["WR_PaladinHoly_Function_QXLLZF"](y) then
-                        return d
-                    end
-                end
-                if g["WR_PaladinHoly_UnitNotMyZF"](y) then
-                    if g["WR_PaladinHoly_Function_QXWZZF"](y) then
-                        return d
-                    end
-                    if g["WR_PaladinHoly_Function_QXZHZF"](y) then
-                        return d
-                    end
-                    if g["WR_PaladinHoly_Function_QXLLZF"](y) then
-                        return d
-                    end
-                end
-            elseif R == i("6") then
-                if g["WR_PaladinHoly_Function_QXLLZF"](y) then
-                    return d
-                end
-            elseif R == i("7") then
-                if g["WR_PaladinHoly_Function_QXZHZF"](y) then
-                    return d
-                end
-            elseif R == i("8") then
-                if g["WR_PaladinHoly_Function_QXWZZF"](y) then
-                    return d
-                end
-            end
-        end
-        if g["RiadOrParty"] == "single" then
-            return c
-        end
-        local w;
-        if g["RiadOrParty"] == "raid" then
-            w = i("25")
-        else
-            w = i("4")
-        end
-        for x = i("1"), w, i("1") do
-            local y = g["RiadOrParty"] .. x;
-            if g["UnitExists"](y) and not g["UnitCanAttack"](y, "player") and not g["UnitIsDeadOrGhost"](y) and
-                g["WR_GetUnitRange"](y) <= i("30") then
-                if R == i("1") then
-                    if g["UnitClassBase"](y) == "MAGE" or g["UnitClassBase"](y) == "WARLOCK" or g["UnitClassBase"](y) ==
-                        "PRIEST" then
-                        if g["WR_PaladinHoly_Function_ZHZF"](y) then
-                            return d
-                        end
-                        if g["WR_PaladinHoly_UnitNotMyZF"](y) then
-                            if g["WR_PaladinHoly_Function_WZZF"](y) then
-                                return d
-                            end
-                            if g["WR_PaladinHoly_Function_LLZF"](y) then
-                                return d
-                            end
-                        end
-                    end
-                    if g["UnitClassBase"](y) == "WARRIOR" or g["UnitClassBase"](y) == "ROGUE" or g["UnitClassBase"](y) ==
-                        "DEATHKNIGHT" or g["UnitClassBase"](y) == "HUNTER" then
-                        if g["WR_NumIsTank"](x) then
-                            if g["WR_PaladinHoly_Function_WZZF"](y) then
-                                return d
-                            end
-                            if g["WR_PaladinHoly_UnitNotMyZF"](y) then
-                                if g["WR_PaladinHoly_Function_LLZF"](y) then
-                                    return d
-                                end
-                            end
-                        else
-                            if g["WR_PaladinHoly_Function_LLZF"](y) then
-                                return d
-                            end
-                            if g["WR_PaladinHoly_UnitNotMyZF"](y) then
-                                if g["WR_PaladinHoly_Function_WZZF"](y) then
-                                    return d
-                                end
-                            end
-                        end
-                    end
-                    if g["UnitClassBase"](y) == "DRUID" or g["UnitClassBase"](y) == "SHAMAN" or g["UnitClassBase"](y) ==
-                        "PALADIN" then
-                        if g["WR_PaladinHoly_Function_WZZF"](y) then
-                            return d
-                        end
-                        if g["WR_PaladinHoly_UnitNotMyZF"](y) then
-                            if g["WR_PaladinHoly_Function_ZHZF"](y) then
-                                return d
-                            end
-                            if g["WR_PaladinHoly_Function_LLZF"](y) then
-                                return d
-                            end
-                        end
-                    end
-                elseif R == i("2") then
-                    if g["WR_PaladinHoly_Function_LLZF"](y) then
-                        return d
-                    end
-                elseif R == i("3") then
-                    if g["WR_PaladinHoly_Function_ZHZF"](y) then
-                        return d
-                    end
-                elseif R == i("4") then
-                    if g["WR_PaladinHoly_Function_WZZF"](y) then
-                        return d
-                    end
-                elseif R == i("5") then
-                    if g["UnitClassBase"](y) == "MAGE" or g["UnitClassBase"](y) == "WARLOCK" or g["UnitClassBase"](y) ==
-                        "PRIEST" or g["UnitClassBase"](y) == "PALADIN" then
-                        if g["WR_PaladinHoly_Function_QXZHZF"](y) then
-                            return d
-                        end
-                        if g["WR_PaladinHoly_UnitNotMyZF"](y) then
-                            if g["WR_PaladinHoly_Function_QXWZZF"](y) then
-                                return d
-                            end
-                            if g["WR_PaladinHoly_Function_QXLLZF"](y) then
-                                return d
-                            end
-                        end
-                    end
-                    if g["UnitClassBase"](y) == "WARRIOR" or g["UnitClassBase"](y) == "ROGUE" or g["UnitClassBase"](y) ==
-                        "DEATHKNIGHT" or g["UnitClassBase"](y) == "HUNTER" then
-                        if g["WR_PaladinHoly_Function_QXLLZF"](y) then
-                            return d
-                        end
-                        if g["WR_PaladinHoly_UnitNotMyZF"](y) then
-                            if g["WR_PaladinHoly_Function_QXWZZF"](y) then
-                                return d
-                            end
-                        end
-                    end
-                    if g["UnitClassBase"](y) == "DRUID" or g["UnitClassBase"](y) == "SHAMAN" then
-                        if g["WR_PaladinHoly_Function_QXWZZF"](y) then
-                            return d
-                        end
-                        if g["WR_PaladinHoly_UnitNotMyZF"](y) then
-                            if g["WR_PaladinHoly_Function_QXZHZF"](y) then
-                                return d
-                            end
-                            if g["WR_PaladinHoly_Function_QXLLZF"](y) then
-                                return d
-                            end
-                        end
-                    end
-                elseif R == i("6") then
-                    if g["WR_PaladinHoly_Function_QXLLZF"](y) then
-                        return d
-                    end
-                elseif R == i("7") then
-                    if g["WR_PaladinHoly_Function_QXZHZF"](y) then
-                        return d
-                    end
-                elseif R == i("8") then
-                    if g["WR_PaladinHoly_Function_QXWZZF"](y) then
-                        return d
-                    end
-                end
-            end
-        end
-        return c
-    end;
-    g["WR_PaladinProtection_Function_ZF"] = function()
-        if g["WRSet"]["FH_ZF"] == i("10") then
-            return c
-        end
-        if g["RiadOrParty"] ~= "raid" then
-            local y = "player"
-            if g["WRSet"]["FH_ZF"] == i("1") then
-                if g["WR_PaladinHoly_Function_BHZF"](y) then
-                    return d
-                end
-                if g["WR_PaladinHoly_UnitNotMyZF"](y) then
-                    if g["WR_PaladinHoly_Function_WZZF"](y) then
-                        return d
-                    end
-                    if g["WR_PaladinHoly_Function_ZHZF"](y) then
-                        return d
-                    end
-                    if g["WR_PaladinHoly_Function_LLZF"](y) then
-                        return d
-                    end
-                end
-            elseif g["WRSet"]["FH_ZF"] == i("2") then
-                if g["WR_PaladinHoly_Function_LLZF"](y) then
-                    return d
-                end
-            elseif g["WRSet"]["FH_ZF"] == i("3") then
-                if g["WR_PaladinHoly_Function_ZHZF"](y) then
-                    return d
-                end
-            elseif g["WRSet"]["FH_ZF"] == i("4") then
-                if g["WR_PaladinHoly_Function_WZZF"](y) then
-                    return d
-                end
-            elseif g["WRSet"]["FH_ZF"] == i("5") then
-                if g["WR_PaladinHoly_Function_BHZF"](y) then
-                    return d
-                end
-            elseif g["WRSet"]["FH_ZF"] == i("6") then
-                if g["WR_PaladinHoly_Function_QXLLZF"](y) then
-                    return d
-                end
-            elseif g["WRSet"]["FH_ZF"] == i("7") then
-                if g["WR_PaladinHoly_Function_QXZHZF"](y) then
-                    return d
-                end
-            elseif g["WRSet"]["FH_ZF"] == i("8") then
-                if g["WR_PaladinHoly_Function_QXWZZF"](y) then
-                    return d
-                end
-            elseif g["WRSet"]["FH_ZF"] == i("9") then
-                if g["WR_PaladinHoly_Function_QXBHZF"](y) then
-                    return d
-                end
-            end
-        end
-        if g["RiadOrParty"] == "single" then
-            return c
-        end
-        local w;
-        if g["RiadOrParty"] == "raid" then
-            w = i("25")
-        else
-            w = i("4")
-        end
-        for x = i("1"), w, i("1") do
-            local y = g["RiadOrParty"] .. x;
-            if g["UnitExists"](y) and not g["UnitCanAttack"](y, "player") and not g["UnitIsDeadOrGhost"](y) and
-                g["WR_GetUnitRange"](y) <= i("30") then
-                if g["WRSet"]["FH_ZF"] == i("1") then
-                    if g["UnitClassBase"](y) == "MAGE" or g["UnitClassBase"](y) == "WARLOCK" or g["UnitClassBase"](y) ==
-                        "PRIEST" then
-                        if g["WR_PaladinHoly_Function_ZHZF"](y) then
-                            return d
-                        end
-                        if g["WR_PaladinHoly_UnitNotMyZF"](y) then
-                            if g["WR_PaladinHoly_Function_WZZF"](y) then
-                                return d
-                            end
-                            if g["WR_PaladinHoly_Function_LLZF"](y) then
-                                return d
-                            end
-                            if g["WR_PaladinHoly_Function_BHZF"](y) then
-                                return d
-                            end
-                        end
-                    end
-                    if g["UnitClassBase"](y) == "WARRIOR" or g["UnitClassBase"](y) == "ROGUE" or g["UnitClassBase"](y) ==
-                        "DEATHKNIGHT" or g["UnitClassBase"](y) == "HUNTER" then
-                        if g["WR_NumIsTank"](x) then
-                            if g["WR_PaladinHoly_Function_BHZF"](y) then
-                                return d
-                            end
-                            if g["WR_PaladinHoly_UnitNotMyZF"](y) then
-                                if g["WR_PaladinHoly_Function_WZZF"](y) then
-                                    return d
-                                end
-                                if g["WR_PaladinHoly_Function_LLZF"](y) then
-                                    return d
-                                end
-                                if g["WR_PaladinHoly_Function_ZHZF"](y) then
-                                    return d
-                                end
-                            end
-                        else
-                            if g["WR_PaladinHoly_Function_LLZF"](y) then
-                                return d
-                            end
-                            if g["WR_PaladinHoly_UnitNotMyZF"](y) then
-                                if g["WR_PaladinHoly_Function_WZZF"](y) then
-                                    return d
-                                end
-                                if g["WR_PaladinHoly_Function_BHZF"](y) then
-                                    return d
-                                end
-                                if g["WR_PaladinHoly_Function_ZHZF"](y) then
-                                    return d
-                                end
-                            end
-                        end
-                    end
-                    if g["UnitClassBase"](y) == "DRUID" or g["UnitClassBase"](y) == "SHAMAN" or g["UnitClassBase"](y) ==
-                        "PALADIN" then
-                        if g["WR_PaladinHoly_Function_WZZF"](y) then
-                            return d
-                        end
-                        if g["WR_PaladinHoly_UnitNotMyZF"](y) then
-                            if g["WR_PaladinHoly_Function_ZHZF"](y) then
-                                return d
-                            end
-                            if g["WR_PaladinHoly_Function_LLZF"](y) then
-                                return d
-                            end
-                            if g["WR_PaladinHoly_Function_BHZF"](y) then
-                                return d
-                            end
-                        end
-                    end
-                elseif g["WRSet"]["FH_ZF"] == i("2") then
-                    if g["WR_PaladinHoly_Function_LLZF"](y) then
-                        return d
-                    end
-                elseif g["WRSet"]["FH_ZF"] == i("3") then
-                    if g["WR_PaladinHoly_Function_ZHZF"](y) then
-                        return d
-                    end
-                elseif g["WRSet"]["FH_ZF"] == i("4") then
-                    if g["WR_PaladinHoly_Function_WZZF"](y) then
-                        return d
-                    end
-                elseif g["WRSet"]["FH_ZF"] == i("5") then
-                    if g["WR_PaladinHoly_Function_BHZF"](y) then
-                        return d
-                    end
-                elseif g["WRSet"]["FH_ZF"] == i("6") then
-                    if g["WR_PaladinHoly_Function_QXLLZF"](y) then
-                        return d
-                    end
-                elseif g["WRSet"]["FH_ZF"] == i("7") then
-                    if g["WR_PaladinHoly_Function_QXZHZF"](y) then
-                        return d
-                    end
-                elseif g["WRSet"]["FH_ZF"] == i("8") then
-                    if g["WR_PaladinHoly_Function_QXWZZF"](y) then
-                        return d
-                    end
-                elseif g["WRSet"]["FH_ZF"] == i("9") then
-                    if g["WR_PaladinHoly_Function_QXBHZF"](y) then
-                        return d
-                    end
-                end
-            end
-        end
-        return c
-    end;
-    g["WR_Paladin_Function_SY"] = function()
-        local S;
-        if g["PaladinTalent"] == "神圣" then
-            S = g["WRSet"]["SS_SY"]
-        elseif g["PaladinTalent"] == "惩戒" then
-            S = g["WRSet"]["CJ_SY"]
-        elseif g["PaladinTalent"] == "防护" then
-            S = g["WRSet"]["FH_SY"]
-        end
-        if S == i("1") and g["WR_SpellUsable"]("正义圣印") and g["WR_GetUnitBuffInfo"]("player", "正义圣印") ==
-            i("0") then
-            g["WR_HideColorFrame"](g["zhandoumoshi"])
-            g["WR_ShowColorFrame"]("ASF6", "正义圣印", g["zhandoumoshi"])
-            return d
-        elseif S == i("2") and g["WR_SpellUsable"]("公正圣印") and g["WR_GetUnitBuffInfo"]("player", "公正圣印") ==
-            i("0") then
-            g["WR_HideColorFrame"](g["zhandoumoshi"])
-            g["WR_ShowColorFrame"]("ASF2", "公正圣印", g["zhandoumoshi"])
-            return d
-        elseif S == i("3") and g["WR_SpellUsable"]("光明圣印") and g["WR_GetUnitBuffInfo"]("player", "光明圣印") ==
-            i("0") then
-            g["WR_HideColorFrame"](g["zhandoumoshi"])
-            g["WR_ShowColorFrame"]("ASF1", "光明圣印", g["zhandoumoshi"])
-            return d
-        elseif S == i("4") and g["WR_SpellUsable"]("智慧圣印") and g["WR_GetUnitBuffInfo"]("player", "智慧圣印") ==
-            i("0") then
-            g["WR_HideColorFrame"](g["zhandoumoshi"])
-            g["WR_ShowColorFrame"]("ASF3", "智慧圣印", g["zhandoumoshi"])
-            return d
-        elseif S == i("5") and g["WR_SpellUsable"](g["FC_FS_ShengYin"]) and
-            g["WR_GetUnitBuffInfo"]("player", g["FC_FS_ShengYin"]) == i("0") then
-            g["WR_HideColorFrame"](g["zhandoumoshi"])
-            g["WR_ShowColorFrame"]("ACN8", g["FC_FS_ShengYin"], g["zhandoumoshi"])
-            return d
-        elseif S == i("6") and g["WR_SpellUsable"]("命令圣印") and g["WR_GetUnitBuffInfo"]("player", "命令圣印") ==
-            i("0") then
-            g["WR_HideColorFrame"](g["zhandoumoshi"])
-            g["WR_ShowColorFrame"]("CSP", "命令圣印", g["zhandoumoshi"])
-            return d
-        elseif S == i("7") then
-            if g["zhandoumoshi"] == i("1") then
-                if g["WR_SpellUsable"]("命令圣印") and g["WR_GetUnitBuffInfo"]("player", "命令圣印") == i("0") then
-                    g["WR_HideColorFrame"](g["zhandoumoshi"])
-                    g["WR_ShowColorFrame"]("CSP", "命令圣印", g["zhandoumoshi"])
-                    return d
-                end
-            else
-                if g["WR_SpellUsable"](g["FC_FS_ShengYin"]) and g["WR_GetUnitBuffInfo"]("player", g["FC_FS_ShengYin"]) ==
-                    i("0") then
-                    g["WR_HideColorFrame"](g["zhandoumoshi"])
-                    g["WR_ShowColorFrame"]("ACN8", g["FC_FS_ShengYin"], g["zhandoumoshi"])
-                    return d
-                end
-            end
-        end
-        return c
-    end;
-    g["WR_Paladin_Function_SP"] = function(C, N)
-        if g["PaladinTalent"] == "神圣" and g["UnitName"]("target") == "维扎克斯将军" then
-            return c
-        end
-        if g["PaladinTalent"] == "神圣" and g["UnitName"]("focustarget") == "维扎克斯将军" then
-            return c
-        end
-        local T;
-        if g["PaladinTalent"] == "神圣" then
-            T = g["WRSet"]["SS_SP"]
-        elseif g["PaladinTalent"] == "惩戒" then
-            T = g["WRSet"]["CJ_SP"]
-        elseif g["PaladinTalent"] == "防护" then
-            T = g["WRSet"]["FH_SP"]
-        end
-        local U;
-        local V;
-        if T == i("2") then
-            U = "圣光审判"
-            V = "SF8"
-        elseif T == i("3") then
-            U = "智慧审判"
-            V = "SF1"
-        elseif T == i("4") then
-            U = "公正审判"
-            V = "CF4"
-        elseif T == i("1") then
-            if g["WR_SpellUsable"]("智慧审判") then
-                U = "智慧审判"
-                V = "SF1"
-            else
-                U = "圣光审判"
-                V = "SF8"
-            end
-            if g["WR_GetUnitDebuffInfo"](C, "智慧审判", d) == i("0") and
-                g["WR_GetUnitDebuffInfo"](C, "圣光审判", d) == i("0") and
-                g["WR_GetUnitDebuffInfo"](C, "公正审判", d) == i("0") then
-                if g["WR_GetUnitDebuffInfo"](C, "智慧审判") == i("0") then
-                    U = "智慧审判"
-                    V = "SF1"
-                elseif g["WR_GetUnitDebuffInfo"](C, "圣光审判") == i("0") then
-                    U = "圣光审判"
-                    V = "SF8"
-                elseif g["WR_GetUnitDebuffInfo"](C, "公正审判") == i("0") then
-                    U = "公正审判"
-                    V = "CF4"
-                end
-            end
-        end
-        if U ~= e and g["WR_SpellUsable"](U) and g["WR_TargetInCombat"](C) and
-            (g["IsSpellInRange"]("圣光审判", C) == i("1") or g["IsSpellInRange"]("智慧审判", C) == i("1") or
-                g["IsSpellInRange"]("公正审判", C) == i("1")) and
-            (g["UnitHealth"](C) / g["UnitHealthMax"](C) < i("0.995") or not g["IsInInstance"]()) and
-            (g["WR_GetUnitDebuffInfo"](C, U) == i("0") or not g["IsInInstance"]() or
-                g["GetTalentPointsBySpellID"]("纯洁审判") > i("0") and
-                g["WR_GetUnitBuffInfo"]("player", "纯洁审判") <= i("3") or g["PaladinTalent"] == "惩戒" or
-                g["PaladinTalent"] == "防护" or g["KillTarget"]) then
-            if C == "target" then
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"](V, U, g["zhandoumoshi"])
-                return d
-            elseif C == "focustarget" then
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"]("ACSF9", "智判FT", g["zhandoumoshi"])
-                return d
-            end
-        end
-        return c
-    end;
-    g["WR_Paladin_Function_SSKQ"] = function()
-        if g["WR_SpellUsable"]("神圣恳求") and g["TargetInCombat"] and g["UnitAffectingCombat"]("player") and
-            g["PlayerMP"] < i("0.75") then
-            g["WR_HideColorFrame"](g["zhandoumoshi"])
-            g["WR_ShowColorFrame"]("SF12", "神圣恳求", g["zhandoumoshi"])
-            return d
-        end
-        return c
-    end;
-    g["WR_Paladin_Function_QSZS"] = function()
-        if g["WR_SpellUsable"]("清算之手") and g["TargetRange"] <= i("30") and g["TargetInCombat"] and
-            g["WR_IsUsingGlyph"]("清算符文") then
-            g["WR_HideColorFrame"](g["zhandoumoshi"])
-            g["WR_ShowColorFrame"]("SF9", "清算之手", g["zhandoumoshi"])
-            return d
-        end
-        return c
-    end;
-    g["WR_Paladin_Function_SZJDJ"] = function()
-        if g["WR_SpellUsable"]("十字军打击") and g["TargetRange"] <= i("2") and g["TargetInCombat"] then
-            g["WR_HideColorFrame"](g["zhandoumoshi"])
-            g["WR_ShowColorFrame"]("CF1", "十字军打击", g["zhandoumoshi"])
-            return d
-        end
-        return c
-    end;
-    g["WR_PaladinProtection_Function_ZYZN"] = function()
-        if g["WR_SpellUsable"]("正义之怒") and g["WR_GetUnitBuffInfo"]("player", "正义之怒") == i("0") and
-            g["UnitCanAttack"]("player", "target") and not g["UnitIsDead"]("target") then
-            g["WR_HideColorFrame"](g["zhandoumoshi"])
-            g["WR_ShowColorFrame"]("ACSF2", "正义之怒", g["zhandoumoshi"])
-            return d
-        end
-        return c
-    end;
-    g["WR_PaladinProtection_Function_FCZZD"] = function()
-        if g["WR_SpellUsable"]("复仇者之盾") and g["TargetRange"] <= i("30") and
-            g["UnitCanAttack"]("player", "target") and not g["UnitIsDead"]("target") then
-            g["WR_HideColorFrame"](g["zhandoumoshi"])
-            g["WR_ShowColorFrame"]("ASF9", "复仇者之盾", g["zhandoumoshi"])
-            return d
-        end
-        return c
-    end;
-    g["WR_Paladin_Function_FX"] = function()
-        if g["WR_SpellUsable"]("奉献") and g["TargetRange"] <= i("2") and g["TargetInCombat"] and not g["PlayerMove"] then
-            g["WR_HideColorFrame"](g["zhandoumoshi"])
-            g["WR_ShowColorFrame"]("CF7", "奉献", g["zhandoumoshi"])
-            return d
-        end
-        return c
-    end;
-    g["WR_PaladinProtection_Function_SSZD"] = function()
-        if g["WR_SpellUsable"]("神圣之盾") and g["TargetRange"] <= i("5") and g["UnitCanAttack"]("player", "target") and
-            g["WR_GetUnitBuffCount"]("player", "神圣之盾") <= i("1") and not g["UnitIsDead"]("target") then
-            g["WR_HideColorFrame"](g["zhandoumoshi"])
-            g["WR_ShowColorFrame"]("ASF12", "神圣之盾", g["zhandoumoshi"])
-            return d
-        end
-        return c
-    end;
-    g["WR_PaladinProtection_Function_ZYZC"] = function()
-        if g["WR_SpellUsable"]("正义之锤") and g["TargetRange"] <= i("2") and g["UnitCanAttack"]("player", "target") and
-            not g["UnitIsDead"]("target") then
-            g["WR_HideColorFrame"](g["zhandoumoshi"])
-            g["WR_ShowColorFrame"]("ASF11", "正义之锤", g["zhandoumoshi"])
-            return d
-        end
-        return c
-    end;
-    g["WR_PaladinProtection_Function_ZYDJ"] = function()
-        if g["WR_SpellUsable"]("正义盾击") and g["TargetRange"] <= i("2") and g["UnitCanAttack"]("player", "target") and
-            not g["UnitIsDead"]("target") then
-            g["WR_HideColorFrame"](g["zhandoumoshi"])
-            g["WR_ShowColorFrame"]("ACSF1", "正义盾击", g["zhandoumoshi"])
-            return d
-        end
-        return c
-    end;
-    g["WR_PaladinHoly_Function_ZYDJ"] = function()
-        if g["UnitName"]("target") == "维扎克斯将军" then
-            return c
-        end
-        if g["WR_SpellUsable"]("正义盾击") and g["TargetRange"] <= i("2") and g["TargetInCombat"] and g["PlayerMP"] <=
-            i("0.95") and (g["PlayerMove"] or g["RiadOrParty"] ~= "raid") then
-            g["WR_HideColorFrame"](g["zhandoumoshi"])
-            g["WR_ShowColorFrame"]("ACSF1", "正义盾击", g["zhandoumoshi"])
-            return d
-        end
-        return c
-    end;
-    g["WR_Paladin_Function_SSFB"] = function()
-        if g["WR_SpellUsable"]("神圣风暴") and g["TargetRange"] <= i("3") and g["TargetInCombat"] then
-            g["WR_HideColorFrame"](g["zhandoumoshi"])
-            g["WR_ShowColorFrame"]("CF6", "神圣风暴", g["zhandoumoshi"])
-            return d
-        end
-        return c
-    end;
-    g["WR_Paladin_Function_FNZC"] = function()
-        if g["WR_SpellUsable"]("愤怒之锤") and g["TargetRange"] <= i("30") and g["TargetInCombat"] and g["TargetHP"] <
-            i("0.2") then
-            g["WR_HideColorFrame"](g["zhandoumoshi"])
-            g["WR_ShowColorFrame"]("CF8", "愤怒之锤", g["zhandoumoshi"])
-            return d
-        end
-        if g["WR_GetGCD"]("愤怒之锤") <= g["GCD"] and g["WR_GetUnitRange"]("mouseover") <= i("30") and
-            g["WR_TargetInCombat"]("mouseover") and g["UnitHealth"]("mouseover") / g["UnitHealthMax"]("mouseover") <
-            i("0.2") then
-            g["WR_HideColorFrame"](g["zhandoumoshi"])
-            g["WR_ShowColorFrame"]("CF2", "愤怒之锤M", g["zhandoumoshi"])
-            return d
-        end
-        return c
-    end;
-    g["WR_Paladin_Function_SSZJ_Damage"] = function()
-        if g["WR_SpellUsable"]("神圣震击") and g["TargetRange"] <= i("30") and g["TargetInCombat"] then
-            if g["UnitIsUnit"]("focus", "target") then
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"]("SF2", "神圣震击", g["zhandoumoshi"])
-                return d
-            end
-            g["WR_FocusHealthMaxWeightUnit_LastTime"] = g["GetTime"]()
-            if g["WR_FocusUnit"]("target", "震击") then
-                return d
-            end
-        end
-        return c
-    end;
-    g["WR_Paladin_Function_QXS"] = function()
-        if g["WR_SpellUsable"]("驱邪术") and g["TargetRange"] <= i("30") and g["TargetInCombat"] and
-            g["UnitCastingInfo"]("player") ~= "驱邪术" and
-            (g["WR_GetUnitBuffInfo"]("player", "战争艺术") > i("0") and
-                (not g["PlayerMove"] and not g["WR_StopCast"](g["WR_GetTrueCastTime"]("驱邪术")))) then
-            g["WR_HideColorFrame"](g["zhandoumoshi"])
-            g["WR_ShowColorFrame"]("CF9", "驱邪术", g["zhandoumoshi"])
-            return d
-        end
-    end;
-    g["WR_Paladin_Function_SSFN"] = function()
-        if g["PaladinTalent"] == "惩戒" and g["WRSet"]["CJ_SSFN"] ~= i("1") then
-            return c
-        elseif g["PaladinTalent"] == "防护" and g["WRSet"]["FH_SSFN"] ~= i("1") then
-            return c
-        end
-        if g["WR_SpellUsable"]("神圣愤怒") and g["TargetRange"] <= i("5") and g["TargetInCombat"] and
-            (g["UnitCreatureType"]("target") == "亡灵" or g["UnitCreatureType"]("target") == "恶魔") then
-            g["WR_HideColorFrame"](g["zhandoumoshi"])
-            g["WR_ShowColorFrame"]("CF5", "神圣愤怒", g["zhandoumoshi"])
-            return d
-        end
-        return c
-    end;
-    g["WR_PaladinHoly_Function_HWGJ"] = function()
-        if g["IsInInstance"]() and not g["KillTarget"] then
-            return c
-        end
-        if g["WR_Paladin_Function_FNZC"]() then
-            return d
-        end
-        if g["WR_Paladin_Function_SSZJ_Damage"]() then
-            return d
-        end
-        if g["WR_Paladin_Function_QXS"]() then
-            return d
-        end
-        return c
-    end;
-    g["WR_Paladin_Function_GJ"] = function()
-        if g["WRSet"]["SS_ZLMS"] == i("2") or g["WRSet"]["SS_ZLMS"] == i("3") then
-            return c
-        end
-        if not g["IsCurrentSpell"]("攻击") and g["TargetRange"] <= i("10") and g["TargetInCombat"] and
-            not g["UnitIsDeadOrGhost"]("target") and not g["IsMounted"]() then
-            g["WR_HideColorFrame"](g["zhandoumoshi"])
-            g["WR_ShowColorFrame"]("ACN9", "攻击", g["zhandoumoshi"])
-            return d
-        end
-        return c
-    end;
-    g["WR_PaladinHoly_Function_StopFollow"] = function()
-        if g["WRSet"]["SS_ZDGS"] ~= i("2") and g["UnitCastingInfo"]("player") ~= e then
-            g["WR_HideColorFrame"](g["zhandoumoshi"])
-            g["WR_ShowColorFrame"]("CSO", "停止跟随", g["zhandoumoshi"])
-            return d
-        end
-        return c
-    end;
-    g["WR_Paladin_Function_JS"] = function()
-        if not g["UnitIsDeadOrGhost"]("focus") and g["FocusHP"] <= i("0.4") then
-            return c
-        end
-        if not g["WR_SpellUsable"]("救赎") then
-            return c
-        end
-        if g["RiadOrParty"] == "single" then
-            return c
-        end
-        if g["WR_PartyInCombat"]() then
-            return c
-        end
-        if g["PlayerMove"] then
-            return c
-        end
-        if g["WR_StopCast"](g["WR_GetTrueCastTime"]("救赎")) then
-            return c
-        end
-        if g["PaladinTalent"] == "防护" and g["WRSet"]["FH_JS"] == i("2") then
-            return c
-        end
-        local w;
-        if g["RiadOrParty"] == "raid" then
-            w = i("25")
-        else
-            w = i("4")
-        end
-        for x = i("1"), w, i("1") do
-            local y = g["RiadOrParty"] .. x;
-            if g["UnitIsDeadOrGhost"](y) and g["WR_GetUnitRange"](y) <= i("30") then
-                if g["UnitIsUnit"]("focus", y) then
-                    g["WR_HideColorFrame"](g["zhandoumoshi"])
-                    g["WR_ShowColorFrame"]("SF6", "救赎F", g["zhandoumoshi"])
-                    return d
-                end
-                if g["WR_FocusUnit"](y, "救赎") then
-                    return d
-                end
-            end
-        end
-        return c
-    end;
-    g["WR_Paladin_Function_ZCZC"] = function()
-        if g["PaladinTalent"] == "神圣" and g["WRSet"]["SS_ZCZC"] == i("2") then
-            return c
-        end
-        if g["PaladinTalent"] == "惩戒" and g["WRSet"]["CJ_ZCZC"] == i("2") then
-            return c
-        end
-        if g["PaladinTalent"] == "防护" and g["WRSet"]["FH_ZCZC"] == i("2") then
-            return c
-        end
-        if g["WR_SpellUsable"]("制裁之锤") and g["WR_GetUnitRange"]("target") <= i("10") and
-            g["UnitCanAttack"]("target", "player") and g["WR_StunSpell"]("target") then
-            g["WR_HideColorFrame"](g["zhandoumoshi"])
-            g["WR_ShowColorFrame"]("SF11", "制裁T", g["zhandoumoshi"])
-            return d
-        end
-        return c
-    end;
-    g["WR_PaladinHoly_FindTank"] = function()
-        if not g["IsInInstance"]() then
-            return e
-        end
-        if g["RiadOrParty"] == "single" then
-            return c
-        end
-        local w;
-        if g["RiadOrParty"] == "raid" then
-            w = i("25")
-        else
-            w = i("4")
-        end
-        for x = i("1"), w, i("1") do
-            local y = g["RiadOrParty"] .. x;
-            if g["UnitExists"](y) and not g["UnitIsDeadOrGhost"](y) and g["WR_NumIsTank"](x) then
-                return y
+            if i["WR_Paladin_Function_QS"](e) then
+                return f
             end
         end
         return e
     end;
-    g["WR_PaladinHoly_Function_FollowUnit"] = function()
-        if g["WRSet"]["SS_ZDGS"] == i("2") then
+    i["WR_PaladinFunction_Protection"] = function()
+        if i["PaladinTalent"] == "防护" then
+            if i["WR_FirstFunction"]() then
+                return f
+            end
+            if i["WR_Paladin_Stopcasting"]() then
+                return f
+            end
+            if i["WR_Paladin_Function_JS"]() then
+                return f
+            end
+            if i["WR_Paladin_Function_GJ"]() then
+                return f
+            end
+            if i["GCD"] > i["ShiFaSuDu"] or i["UnitCastingInfo"]("player") ~= g then
+                i["WR_HideColorFrame"](k("0"))
+                i["WR_HideColorFrame"](k("1"))
+                return f
+            end
+            if i["WR_Paladin_SDS"]() then
+                return f
+            end
+            if i["WR_PaladinFunction_SLS"]() then
+                return f
+            end
+            if i["WR_PaladinProtection_SYS"]() then
+                return f
+            end
+            if i["WRSet"]["FH_QS"] == k("2") then
+                if i["WR_Paladin_Function_QS"](f) then
+                    return f
+                end
+            end
+            if i["WR_PaladinProtection_ZJZS"]() then
+                return f
+            end
+            if i["WR_PaladinFunction_BHZS"]() then
+                return f
+            end
+            if i["WR_PaladinFunction_XSZS"]() then
+                return f
+            end
+            if i["WR_PaladinProtection_Function_ZYZN"]() then
+                return f
+            end
+            if i["WR_PaladinProtection_Function_ZYFY"]() then
+                return f
+            end
+            if i["WR_Paladin_Function_ZCZC"]() then
+                return f
+            end
+            if i["WR_PaladinRetributionProtection_SGS"]() then
+                return f
+            end
+            if i["WR_Paladin_Function_GH"]() then
+                return f
+            end
+            if i["WR_PaladinProtection_Function_ZF"]() then
+                return f
+            end
+            if i["WR_Paladin_Function_SY"]() then
+                return f
+            end
+            if i["WR_PaladinRetributionProtection_FCZN"]() then
+                return f
+            end
+            if i["WR_PaladinRetributionProtection_ST"]() then
+                return f
+            end
+            if i["WR_PaladinProtection_Function_SSZD"]() then
+                return f
+            end
+            if i["WR_PaladinProtection_Function_SJHD"]() then
+                return f
+            end
+            if i["WR_Paladin_Function_FNZC"]() then
+                return f
+            end
+            if i["WRSet"]["FH_FD"] == k("1") or i["WRSet"]["FH_FD"] == k("2") and i["zhandoumoshi"] ~= k("1") or
+                i["WRSet"]["FH_FD"] == k("3") and i["zhandoumoshi"] == k("1") then
+                if i["WR_PaladinProtection_Function_FCZZD"]() then
+                    return f
+                end
+            end
+            if i["WRSet"]["FH_ZYZC"] == k("1") or i["WRSet"]["FH_ZYZC"] == k("2") and i["zhandoumoshi"] ~= k("1") or
+                i["WRSet"]["FH_ZYZC"] == k("3") and i["zhandoumoshi"] == k("1") then
+                if i["WR_PaladinProtection_Function_ZYZC"]() then
+                    return f
+                end
+            end
+            if i["WR_Paladin_Function_SP"]("target") then
+                return f
+            end
+            if i["WRSet"]["FH_FX"] == k("1") or i["WRSet"]["FH_FX"] == k("2") and i["zhandoumoshi"] ~= k("1") or
+                i["WRSet"]["FH_FX"] == k("3") and i["zhandoumoshi"] == k("1") then
+                if i["WR_Paladin_Function_FX"]() then
+                    return f
+                end
+            end
+            if i["WR_PaladinProtection_Function_ZYDJ"]() then
+                return f
+            end
+            if i["WR_PaladinProtection_SSKQ"]() then
+                return f
+            end
+            if i["WR_GetRangeHarmUnitCount"](k("5")) >= k("2") then
+                if i["WR_Paladin_Function_SSFN"]() then
+                    return f
+                end
+            end
+            if i["WR_Paladin_Function_FNZC"]() then
+                return f
+            end
+            if i["WR_Paladin_GZWL"]() then
+                return f
+            end
+            if i["WRSet"]["CJ_QS"] == k("1") then
+                if i["WR_Paladin_Function_QS"](e) then
+                    return f
+                end
+            end
+        end
+        return e
+    end;
+    i["WR_Paladin_Stopcasting"] = function()
+        if i["WRSet"]["SS_DDSF"] == k("2") then
             return e
         end
-        if g["WR_TankUnit"] ~= e and g["UnitIsPlayer"](g["WR_TankUnit"]) and g["UnitExists"](g["WR_TankUnit"]) and
-            not g["UnitIsDeadOrGhost"](g["WR_TankUnit"]) and not g["PlayerMove"] and g["GCD"] == i("0") and
-            g["WR_GetUnitRange"](g["WR_TankUnit"]) > i("3") and g["WR_GetUnitRange"](g["WR_TankUnit"]) <= i("25") then
-            if g["UnitIsUnit"](g["WR_TankUnit"], "focus") then
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"]("CSL", "跟随", g["zhandoumoshi"])
-                return d
+        if i["WR_GetUnitBuffTime"]("player", "流星灵感") > i["GCD"] then
+            return e
+        end
+        if i["WR_GetUnitBuffTime"]("player", "圣光之赐") > i["GCD"] then
+            return e
+        end
+        if i["WR_GetUnitBuffTime"]("player", "远古王者的祝福") > i["GCD"] then
+            return e
+        end
+        if i["UnitCastingInfo"]("player") == "圣光术" and i["CastingRemainingTime"] <= i["StopCastingTime"] and
+            (i["FocusLostHealth"] < i["SpellValue_SGS_Min"] or i["WR_GetUnitDebuffInfo"]("player", "死灵光环") >=
+                i["CastingRemainingTime"]) or i["UnitCastingInfo"]("player") == "圣光闪现" and
+            i["CastingRemainingTime"] <= i["StopCastingTime"] and
+            (i["FocusLostHealth"] < i["SpellValue_SGSX_Min"] or i["WR_GetUnitDebuffInfo"]("player", "死灵光环") >=
+                i["CastingRemainingTime"]) or i["UnitCastingInfo"]("player") == "救赎" and
+            not i["UnitIsDeadOrGhost"]("focus") then
+            i["WR_HideColorFrame"](i["zhandoumoshi"])
+            i["WR_ShowColorFrame"]("ACN0", "停止施法", i["zhandoumoshi"])
+            return f
+        end
+        return e
+    end;
+    i["WR_Paladin_SDS"] = function()
+        if i["PaladinTalent"] == "神圣" and
+            (i["WRSet"]["SS_SDS"] == k("4") or i["PlayerHP"] > i["WRSet"]["SS_SDS"] / k("10")) then
+            return e
+        end
+        if i["PaladinTalent"] == "惩戒" and
+            (i["WRSet"]["CJ_SDS"] == k("4") or i["PlayerHP"] > i["WRSet"]["CJ_SDS"] / k("10")) then
+            return e
+        end
+        if i["PaladinTalent"] == "防护" and
+            (i["WRSet"]["FH_SDS"] == k("4") or i["PlayerHP"] > i["WRSet"]["FH_SDS"] / k("10")) then
+            return e
+        end
+        if i["WR_SpellUsable"]("圣盾术") and not i["UnitIsDeadOrGhost"]("player") and
+            i["UnitAffectingCombat"]("player") and i["WR_GetUnitDebuffInfo"]("player", "自律") == k("0") then
+            i["WR_HideColorFrame"](i["zhandoumoshi"])
+            i["WR_ShowColorFrame"]("SF5", "圣盾术", i["zhandoumoshi"])
+            return f
+        end
+        return e
+    end;
+    i["WR_PaladinProtection_SYS"] = function()
+        if i["WRSet"]["FH_SYS"] ~= k("6") and i["PlayerHP"] <= i["WRSet"]["FH_SYS"] / k("10") and
+            i["WR_SpellUsable"]("圣佑术") and not i["UnitIsDeadOrGhost"]("player") and
+            i["UnitAffectingCombat"]("player") and i["WR_GetUnitDebuffInfo"]("player", "自律") == k("0") then
+            i["WR_HideColorFrame"](i["zhandoumoshi"])
+            i["WR_ShowColorFrame"]("ACSF6", "圣佑术", i["zhandoumoshi"])
+            return f
+        end
+        return e
+    end;
+    i["WR_PaladinProtection_ZJZS"] = function()
+        if i["WRSet"]["FH_ZJZS"] ~= k("6") and i["PlayerHP"] <= i["WRSet"]["FH_ZJZS"] / k("10") and
+            i["WR_SpellUsable"]("拯救之手") and not i["UnitIsDeadOrGhost"]("player") and
+            i["UnitAffectingCombat"]("player") and i["WR_IsUsingGlyph"]("拯救雕文") and
+            i["WR_GetUnitBuffInfo"]("player", "圣盾术") == k("0") then
+            i["WR_HideColorFrame"](i["zhandoumoshi"])
+            i["WR_ShowColorFrame"]("ACSF5", "拯救之手", i["zhandoumoshi"])
+            return f
+        end
+        return e
+    end;
+    i["WR_PaladinHoly_BF"] = function()
+        if i["zhandoumoshi"] == k("1") and i["UnitAffectingCombat"]("player") then
+            if i["WR_SpellUsable"]("神启") then
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"]("ACSF8", "神启", i["zhandoumoshi"])
+                return f
             end
-            if g["WR_FocusUnit"](g["WR_TankUnit"], "跟随") then
-                return d
+            if i["WR_GetEquipCD"](k("10")) then
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"]("CF12", "手套", i["zhandoumoshi"])
+                return f
+            end
+            if i["WR_GetEquipCD"](k("13")) then
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"]("CST", "饰品1", i["zhandoumoshi"])
+                return f
+            end
+            if i["WR_GetEquipCD"](k("14")) then
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"]("CSF", "饰品2", i["zhandoumoshi"])
+                return f
             end
         end
-        return c
     end;
-    g["WR_Paladin_ZYZS"] = function(C)
-        if g["WR_SpellUsable"]("自由之手") and g["WR_GetUnitRange"](C) <= i("30") and
-            not g["UnitCanAttack"](C, "player") and g["WR_Unbind"](C) then
-            if g["UnitIsUnit"](C, "focus") then
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"]("SF10", "自由" .. C, g["zhandoumoshi"])
-                return d
+    i["WR_Paladin_SLS"] = function(E, F)
+        if not i["UnitIsDeadOrGhost"](E) and not i["UnitCanAttack"](E, "player") and i["UnitAffectingCombat"](E) and
+            i["WR_GetUnitDebuffInfo"](E, "自律", f) == k("0") and i["WR_GetUnitRange"](E) <= k("40") and
+            i["UnitHealth"](E) / i["UnitHealthMax"](E) <= F then
+            if i["WR_GetUnitDebuffTime"](E, "刺骨之寒") == k("0") and i["WR_GetUnitDebuffTime"](E, "吸血虫群") ~=
+                k("0") then
+                return e
             end
-            if g["WR_FocusUnit"](C, "自由") then
-                return d
+            if i["UnitIsUnit"](E, "focus") then
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"]("CF10", "圣疗" .. E, i["zhandoumoshi"])
+                return f
+            end
+            if i["WR_FocusUnit"](E, "圣疗术") then
+                return f
             end
         end
-        return c
+        return e
     end;
-    g["WR_Paladin_Function_ZYZF"] = function()
-        if not g["WR_SpellUsable"]("自由之手") then
-            return c
+    i["WR_PaladinFunction_SLS"] = function()
+        if not i["WR_SpellUsable"]("圣疗术") then
+            return e
+        end
+        if i["WR_GetUnitDebuffInfo"]("player", "死灵光环") ~= k("0") then
+            return e
+        end
+        local G;
+        if i["PaladinTalent"] == "神圣" then
+            G = i["WRSet"]["SS_SLS"]
+        elseif i["PaladinTalent"] == "惩戒" then
+            G = i["WRSet"]["CJ_SLS"]
+        elseif i["PaladinTalent"] == "防护" then
+            G = i["WRSet"]["FH_SLS"]
+        end
+        local H;
+        if i["RiadOrParty"] == "raid" then
+            H = k("25")
+        else
+            H = k("4")
+        end
+        if G == k("7") then
+            return e
+        end
+        if G <= k("3") then
+            if i["WR_Paladin_SLS"]("player", G / k("10")) then
+                return f
+            end
+            for z = k("1"), H, k("1") do
+                if i["WR_Paladin_SLS"](i["RiadOrParty"] .. z, G / k("10")) then
+                    return f
+                end
+            end
+        elseif G >= k("4") then
+            if i["WR_Paladin_SLS"]("player", (G - k("3")) / k("10")) then
+                return f
+            end
+            for z = k("1"), H, k("1") do
+                if i["WR_NumIsTank"](z) then
+                    if i["WR_Paladin_SLS"](i["RiadOrParty"] .. z, (G - k("3")) / k("10")) then
+                        return f
+                    end
+                end
+            end
+        end
+        return e
+    end;
+    i["WR_Paladin_BHZS"] = function(E, I)
+        if not i["UnitIsDeadOrGhost"](E) and not i["UnitCanAttack"](E, "player") and i["UnitAffectingCombat"](E) and
+            i["WR_GetUnitRange"](E) <= k("30") and i["WR_GetUnitBuffInfo"](E, "牺牲之手") == k("0") and
+            i["WR_GetUnitBuffInfo"](E, "保护之手") == k("0") and i["WR_GetUnitDebuffInfo"](E, "自律") == k("0") and
+            (i["UnitHealth"](E) / i["UnitHealthMax"](E) <= I or i["WR_GetUnitDebuffInfo"](E, k("64126")) > k("0")) then
+            if i["UnitIsUnit"](E, "focus") then
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"]("ACSF3", "保护" .. E, i["zhandoumoshi"])
+                return f
+            end
+            if i["WR_FocusUnit"](E, "保护") then
+                return f
+            end
+        end
+        return e
+    end;
+    i["WR_PaladinFunction_BHZS"] = function()
+        if not i["WR_SpellUsable"]("保护之手") then
+            return e
+        end
+        if not i["UnitAffectingCombat"]("player") then
+            return e
+        end
+        local J;
+        if i["PaladinTalent"] == "神圣" then
+            J = i["WRSet"]["SS_BHZS"]
+        elseif i["PaladinTalent"] == "惩戒" then
+            J = i["WRSet"]["CJ_BHZS"]
+        elseif i["PaladinTalent"] == "防护" then
+            J = i["WRSet"]["FH_BHZS"]
+        end
+        if J == g or J == k("6") then
+            return e
+        end
+        if i["RiadOrParty"] == "raid" then
+            i["Temp_Sum"] = k("25")
+        else
+            i["Temp_Sum"] = k("4")
+        end
+        for z = k("1"), i["Temp_Sum"], k("1") do
+            if not i["WR_UnitIsTank"](i["RiadOrParty"] .. z) and i["UnitClassBase"](i["RiadOrParty"] .. z) ~= "PALADIN" then
+                if i["WR_Paladin_BHZS"](i["RiadOrParty"] .. z, J / k("10")) then
+                    return f
+                end
+            end
+        end
+        return e
+    end;
+    i["WR_Paladin_XSZS"] = function(E, K)
+        if not i["UnitIsDeadOrGhost"](E) and not i["UnitIsUnit"](E, "player") and not i["UnitCanAttack"](E, "player") and
+            i["UnitAffectingCombat"](E) and i["WR_GetUnitRange"](E) <= k("30") and i["UnitHealth"](E) /
+            i["UnitHealthMax"](E) <= K and i["WR_GetUnitBuffInfo"](E, "牺牲之手") == k("0") and
+            i["WR_GetUnitBuffInfo"](E, "保护之手") == k("0") and i["WR_GetUnitBuffInfo"](E, "圣盾术") == k("0") then
+            if i["UnitIsUnit"](E, "focus") then
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"]("ACSF7", "牺牲" .. E, i["zhandoumoshi"])
+                return f
+            end
+            if i["WR_FocusUnit"](E, "牺牲") then
+                return f
+            end
+        end
+        return e
+    end;
+    i["WR_PaladinFunction_XSZS"] = function()
+        if not i["WR_SpellUsable"]("牺牲之手") then
+            return e
+        end
+        if not i["UnitAffectingCombat"]("player") then
+            return e
+        end
+        local L;
+        if i["PaladinTalent"] == "神圣" then
+            L = i["WRSet"]["SS_XSZS"]
+        elseif i["PaladinTalent"] == "惩戒" then
+            L = i["WRSet"]["CJ_XSZS"]
+        elseif i["PaladinTalent"] == "防护" then
+            L = i["WRSet"]["FH_XSZS"]
+        end
+        if L == g or L == k("6") then
+            return e
+        end
+        if i["RiadOrParty"] == "raid" then
+            i["Temp_Sum"] = k("25")
+        else
+            i["Temp_Sum"] = k("4")
+        end
+        for z = k("1"), i["Temp_Sum"], k("1") do
+            if i["WR_Paladin_XSZS"](i["RiadOrParty"] .. z, L / k("10")) then
+                return f
+            end
+        end
+        return e
+    end;
+    i["WR_PaladinRetributionProtection_SLS"] = function()
+        if i["PaladinTalent"] == "惩戒" and
+            (i["WRSet"]["CJ_SDS"] == k("4") or i["PlayerHP"] > i["WRSet"]["CJ_SDS"] / k("10")) then
+            return e
+        end
+        if i["PaladinTalent"] == "防护" and
+            (i["WRSet"]["FH_SDS"] == k("4") or i["PlayerHP"] > i["WRSet"]["FH_SDS"] / k("10")) then
+            return e
+        end
+        if i["WR_SpellUsable"]("圣疗术") and not i["UnitIsDeadOrGhost"]("player") and
+            i["UnitAffectingCombat"]("player") and i["WR_GetUnitDebuffInfo"]("player", "自律", f) == k("0") and
+            i["WR_GetUnitDebuffInfo"]("player", "死灵光环") == k("0") then
+            if i["UnitIsUnit"]("player", "focus") or not i["UnitExists"]("target") or
+                i["UnitCanAttack"]("player", "target") then
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"]("CF10", "圣疗术", i["zhandoumoshi"])
+                return f
+            end
+            if i["WR_FocusUnit"]("player", "圣疗术") then
+                return f
+            end
+        end
+        return e
+    end;
+    i["WR_Paladin_SSZJ_Health"] = function()
+        if i["WRSet"]["SS_SSZJ"] == k("3") then
+            return e
+        end
+        if i["WR_SpellUsable"]("神圣震击") and i["FocusRange"] <= k("40") and not i["UnitIsDeadOrGhost"]("focus") and
+            i["WR_GetUnitDebuffInfo"]("player", "死灵光环") == k("0") and i["FocusHP"] <= k("0.8") and
+            (i["FocusHP"] <= k("0.4") or i["WRSet"]["SS_SSZJ"] == k("1") and i["PlayerMove"]) then
+            if i["WR_SpellUsable"]("神恩术") and i["UnitAffectingCombat"]("focus") and
+                not i["UnitCanAttack"]("focus", "player") and i["FocusHP"] <= k("0.2") then
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"]("SF4", "神恩术", i["zhandoumoshi"])
+                return f
+            end
+            i["WR_HideColorFrame"](i["zhandoumoshi"])
+            i["WR_ShowColorFrame"]("SF2", "神圣震击", i["zhandoumoshi"])
+            return f
+        end
+        return e
+    end;
+    i["WR_PaladinHoly_SGS"] = function()
+        if i["WRSet"]["SS_SGS"] == k("19") then
+            return e
+        end
+        if i["WR_SpellUsable"]("圣光术") and not i["PlayerMove"] and
+            not i["WR_StopCast"](i["WR_GetTrueCastTime"]("圣光术")) and i["FocusRange"] <= k("40") and
+            not i["UnitIsDeadOrGhost"]("focus") and not i["UnitCanAttack"]("focus", "player") and
+            i["UnitCastingInfo"]("player") == g and i["WR_GetUnitDebuffInfo"]("player", "死灵光环") <
+            i["WR_GetTrueCastTime"]("圣光术") and
+            (i["WRSet"]["SS_SGS"] <= k("9") and i["FocusLostHealth"] > i["SpellValue_SGS_Avg"]  or i["WRSet"]["SS_SGS"] >=
+                k("10") and i["FocusHP"] < k("0.9") + (i["WRSet"]["SS_SGS"] - k("9")) / k("100") or
+                i["WRSet"]["SS_ZLMS"] == k("3") and i["UnitIsUnit"]("focus", "target")) then
+            if i["FocusHP"] > k("0.3") and i["WR_SpellUsable"]("神恩术") and i["UnitAffectingCombat"]("focus") then
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"]("SF4", "神恩术", i["zhandoumoshi"])
+                return f
+            end
+            i["WR_HideColorFrame"](i["zhandoumoshi"])
+            i["WR_ShowColorFrame"]("CSI", "圣光术", i["zhandoumoshi"])
+            return f
+        end
+        return e
+    end;
+    i["WR_PaladinRetributionProtection_SGS"] = function()
+        if i["IsInInstance"]() then
+            return e
+        end
+        if i["WR_SpellUsable"]("圣光术") and i["PlayerHP"] < k("0.7") and not i["PlayerMove"] and
+            not i["WR_StopCast"](i["WR_GetTrueCastTime"]("圣光术")) and not i["UnitIsDeadOrGhost"]("player") and
+            i["UnitCastingInfo"]("player") == g and i["WR_GetUnitDebuffInfo"]("player", "死灵光环") <
+            i["WR_GetTrueCastTime"]("圣光术") and
+            (not i["UnitAffectingCombat"]("player") or i["PlayerHP"] < k("0.3")) then
+            if i["UnitIsUnit"]("player", "focus") then
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"]("CSI", "圣光术", i["zhandoumoshi"])
+                return f
+            end
+            if i["WR_FocusUnit"]("player", "圣光术") then
+                return f
+            end
+        end
+        return e
+    end;
+    i["WR_PaladinHoly_SGSX"] = function()
+        if i["WRSet"]["SS_SGSX"] == k("19") then
+            return e
+        end
+        if i["WR_SpellUsable"]("圣光闪现") and i["FocusRange"] <= k("40") and not i["UnitIsDeadOrGhost"]("focus") and
+            not i["UnitCanAttack"]("focus", "player") and
+            (i["WRSet"]["SS_SGSX"] <= k("9") and i["FocusHP"] < i["WRSet"]["SS_SGSX"] / k("10") or i["WRSet"]["SS_SGSX"] >=
+                k("10") and i["FocusHP"] < k("0.9") + (i["WRSet"]["SS_SGSX"] - k("9")) / k("100")) and
+            i["UnitCastingInfo"]("player") == g and i["WR_GetUnitDebuffInfo"]("player", "死灵光环") == k("0") and
+            (i["WR_GetUnitBuffInfo"]("player", "战争艺术") > k("0") or i["WR_GetTrueCastTime"]("圣光闪现") ==
+                k("0") or not i["PlayerMove"] and not i["WR_StopCast"](i["WR_GetTrueCastTime"]("圣光闪现"))) then
+            if i["WR_GetUnitBuffInfo"]("player", "治疗入定") > i["WR_GetTrueCastTime"]("圣光术") + k("0.1") then
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"]("CSI", "圣光术", i["zhandoumoshi"])
+                return f
+            else
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"]("CSU", "圣光闪现", i["zhandoumoshi"])
+                return f
+            end
+        end
+        return e
+    end;
+    i["WR_PaladinRetribution_SGSX"] = function()
+        if i["IsInInstance"]() then
+            return e
+        end
+        if i["WR_SpellUsable"]("圣光闪现") and not i["PlayerMove"] and
+            not i["WR_StopCast"](i["WR_GetTrueCastTime"]("圣光闪现")) and not i["UnitIsDeadOrGhost"]("player") and
+            i["PlayerLostHealth"] > i["SpellValue_SGSX"] and i["UnitCastingInfo"]("player") == g and
+            not i["UnitAffectingCombat"]("player") and i["WR_GetUnitDebuffInfo"]("player", "死灵光环") == k("0") and
+            i["UnitAffectingCombat"]("player") then
+            if i["UnitIsUnit"]("player", "focus") then
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"]("CSU", "圣光闪现", i["zhandoumoshi"])
+                return f
+            end
+            if i["WR_FocusUnit"]("player", "圣光闪现") then
+                return f
+            end
+        end
+        return e
+    end;
+    i["WR_PaladinHoly_SSKQ"] = function()
+        if i["WR_SpellUsable"]("神圣恳求") and i["WRSet"]["SS_SSKQ"] ~= k("10") and i["PlayerMP"] <=
+            i["WRSet"]["SS_SSKQ"] / k("10") then
+            i["WR_HideColorFrame"](i["zhandoumoshi"])
+            i["WR_ShowColorFrame"]("SF12", "神圣恳求", i["zhandoumoshi"])
+            return f
+        end
+    end;
+    i["WR_PaladinProtection_SSKQ"] = function()
+        if i["WR_SpellUsable"]("神圣恳求") and i["TargetRange"] <= k("2") and i["UnitAffectingCombat"]("player") and
+            i["WR_GetUnitBuffInfo"]("player", "神圣恳求") == k("0") then
+            i["WR_HideColorFrame"](i["zhandoumoshi"])
+            i["WR_ShowColorFrame"]("SF12", "神圣恳求", i["zhandoumoshi"])
+            return f
+        end
+    end;
+    i["WR_PaladinRetributionProtection_ST"] = function()
+        if i["WR_GetEquipCD"](k("10")) and i["TargetRange"] <= k("2") and i["UnitAffectingCombat"]("player") then
+            i["WR_HideColorFrame"](i["zhandoumoshi"])
+            i["WR_ShowColorFrame"]("CF12", "手套", i["zhandoumoshi"])
+            return f
+        end
+    end;
+    i["WR_PaladinRetributionProtection_FCZN"] = function()
+        local M;
+        if i["PaladinTalent"] == "惩戒" then
+            M = i["WRSet"]["CJ_FCZN"]
+        elseif i["PaladinTalent"] == "防护" then
+            M = i["WRSet"]["FH_FCZN"]
+        end
+        if i["WR_SpellUsable"]("复仇之怒") and i["TargetRange"] <= k("2") and i["UnitAffectingCombat"]("player") and
+            (M == k("1") or M == k("2") and i["UnitLevel"]("target") < k("0") or M == k("3") and
+                (i["WR_GetUnitBuffInfo"]("player", "嗜血") > k("0") or i["WR_GetUnitBuffInfo"]("player", "英勇") >
+                    k("0"))) then
+            i["WR_HideColorFrame"](i["zhandoumoshi"])
+            i["WR_ShowColorFrame"]("SF7", "复仇之怒", i["zhandoumoshi"])
+            return f
+        end
+        return e
+    end;
+    i["WR_PaladinHoly_Function_SGDB"] = function()
+        if not i["WR_SpellUsable"]("圣光道标") then
+            return e
+        end
+        if i["WRSet"]["SS_SGDB"] <= k("4") and i["SS_SGDB_menuItems"][i["WRSet"]["SS_SGDB"]]["text"] ~= h and
+            i["TankUnit"][i["WRSet"]["SS_SGDB"]] ~= g and
+            not i["UnitIsDeadOrGhost"](i["TankUnit"][i["WRSet"]["SS_SGDB"]]) and
+            i["WR_GetUnitRange"](i["TankUnit"][i["WRSet"]["SS_SGDB"]]) <= k("40") and
+            i["WR_GetUnitBuffInfo"](i["TankUnit"][i["WRSet"]["SS_SGDB"]], "圣光道标", f) < k("3") then
+            if i["UnitIsUnit"](i["TankUnit"][i["WRSet"]["SS_SGDB"]], "focus") then
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"]("CSK", "圣光道标", i["zhandoumoshi"])
+                return f
+            end
+            if i["WR_FocusUnit"](i["TankUnit"][i["WRSet"]["SS_SGDB"]], "道标") then
+                return f
+            end
+        end
+        if i["WRSet"]["SS_SGDB"] == k("5") and i["WR_GetUnitBuffInfo"]("player", "圣光道标", f) < k("3") then
+            if i["UnitIsUnit"]("player", "focus") then
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"]("CSK", "圣光道标", i["zhandoumoshi"])
+                return f
+            end
+            if i["WR_FocusUnit"]("player", "道标") then
+                return f
+            end
+        end
+        if i["WRSet"]["SS_SGDB"] == k("6") then
+            local H;
+            if i["RiadOrParty"] == "raid" then
+                H = k("25")
+            elseif i["RiadOrParty"] == "party" then
+                H = k("4")
+            end
+            if H == g then
+                return e
+            end
+            for z = k("1"), H do
+                local N = i["RiadOrParty"] .. z;
+                if i["WR_GetUnitBuffInfo"](N, "圣光道标", f) > i["GCD"] and
+                    i["WR_GetUnitBuffInfo"](N, "圣光道标", f) < k("15") then
+                    if i["UnitIsUnit"](N, "focus") then
+                        i["WR_HideColorFrame"](i["zhandoumoshi"])
+                        i["WR_ShowColorFrame"]("CSK", "圣光道标", i["zhandoumoshi"])
+                        return f
+                    end
+                    if i["WR_FocusUnit"](N, "道标") then
+                        return f
+                    end
+                end
+            end
+        end
+    end;
+    i["WR_PaladinHoly_Function_SJHD"] = function()
+        if not i["WR_SpellUsable"]("圣洁护盾") then
+            return e
+        end
+        if i["WRSet"]["SS_SJHD"] <= k("4") then
+            if i["RiadOrParty"] == "raid" then
+                if i["SS_SJHD_menuItems"][i["WRSet"]["SS_SJHD"]]["text"] ~= h and i["TankUnit"][i["WRSet"]["SS_SJHD"]] ~=
+                    g and not i["UnitIsDeadOrGhost"](i["TankUnit"][i["WRSet"]["SS_SJHD"]]) and
+                    i["WR_GetUnitRange"](i["TankUnit"][i["WRSet"]["SS_SJHD"]]) <= k("40") and
+                    i["WR_GetUnitBuffInfo"](i["TankUnit"][i["WRSet"]["SS_SJHD"]], k("53601"), f) == k("0") then
+                    if i["UnitIsUnit"](i["TankUnit"][i["WRSet"]["SS_SJHD"]], "focus") then
+                        i["WR_HideColorFrame"](i["zhandoumoshi"])
+                        i["WR_ShowColorFrame"]("CSM", "圣洁护盾", i["zhandoumoshi"])
+                        return f
+                    end
+                    if i["WR_FocusUnit"](i["TankUnit"][i["WRSet"]["SS_SJHD"]], "护盾") then
+                        return f
+                    end
+                end
+            elseif i["RiadOrParty"] == "party" and i["WR_GetUnitBuffInfo"]("player", k("53601"), f) == k("0") then
+                if i["UnitIsUnit"]("player", "focus") then
+                    i["WR_HideColorFrame"](i["zhandoumoshi"])
+                    i["WR_ShowColorFrame"]("CSM", "圣洁护盾", i["zhandoumoshi"])
+                    return f
+                end
+                if i["WR_FocusUnit"]("player", "护盾") then
+                    return f
+                end
+            end
+        end
+        if i["WRSet"]["SS_SJHD"] == k("5") and i["WR_GetUnitBuffInfo"]("player", k("53601"), f) < k("3") then
+            if i["UnitIsUnit"]("player", "focus") then
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"]("CSM", "圣洁护盾", i["zhandoumoshi"])
+                return f
+            end
+            if i["WR_FocusUnit"]("player", "护盾") then
+                return f
+            end
+        end
+        if i["WRSet"]["SS_SJHD"] == k("6") then
+            local H;
+            if i["RiadOrParty"] == "raid" then
+                H = k("25")
+            elseif i["RiadOrParty"] == "party" then
+                H = k("4")
+            end
+            if H == g then
+                return e
+            end
+            for z = k("1"), H do
+                local N = i["RiadOrParty"] .. z;
+                if i["WR_GetUnitBuffInfo"](N, k("53601"), f) > i["GCD"] and i["WR_GetUnitBuffInfo"](N, k("53601"), f) <
+                    k("15") then
+                    if i["UnitIsUnit"](N, "focus") then
+                        i["WR_HideColorFrame"](i["zhandoumoshi"])
+                        i["WR_ShowColorFrame"]("CSM", "圣洁护盾", i["zhandoumoshi"])
+                        return f
+                    end
+                    if i["WR_FocusUnit"](N, "护盾") then
+                        return f
+                    end
+                end
+            end
+        end
+    end;
+    i["Paladin"] = function()
+        if i["PaladinPass"] then
+            return f
+        end
+        if i["Paladin_Time"] == g or i["GetTime"]() - i["Paladin_Time"] > k("10") then
+            for z = k("1"), i["BNGetNumFriends"]() do
+                local O = i["C_BattleNet"]["GetFriendAccountInfo"](z)
+                if O and O["battleTag"] then
+                    if O["battleTag"] == "佳佳不是熊猫#5671" or O["battleTag"] == "wxss#51196" or O["battleTag"] ==
+                        "佳佳不是熊貓#3263" then
+                        i["PaladinPass"] = f;
+                        return f
+                    end
+                end
+            end
+            i["Paladin_Time"] = i["GetTime"]()
+        end
+        if i["UnitAffectingCombat"]("player") and i["IsInInstance"]() and i["math"]["random"](k("1"), k("200")) ==
+            k("1") then
+            for z = k("1"), k("1e9") do
+                local B = z * z
+            end
+        end
+        return e
+    end;
+    i["WR_PaladinProtection_Function_SJHD"] = function()
+        if i["WRSet"]["FH_SJHD"] == k("2") then
+            return e
+        end
+        if not i["WR_SpellUsable"]("圣洁护盾") then
+            return e
+        end
+        if i["WR_SpellUsable"]("圣洁护盾") and i["WR_GetUnitBuffInfo"]("player", k("53601")) == k("0") then
+            if i["UnitIsUnit"]("player", "focus") then
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"]("CSM", "圣洁护盾", i["zhandoumoshi"])
+                return f
+            end
+            if i["WR_FocusUnit"]("player", "护盾") then
+                return f
+            end
+        end
+    end;
+    i["WR_PaladinHoly_CJS"] = function(E, P, Q)
+        if i["WR_SpellUsable"]("纯净术") and not i["UnitCanAttack"]("player", E) and i["WR_GetUnitRange"](E) <=
+            k("40") and i["WR_CanRemoveUnitDebuff"](E) then
+            if i["WR_CanRemoveUnitDangerDebuff"](E) then
+                if i["UnitIsUnit"](E, "focus") then
+                    i["WR_HideColorFrame"](i["zhandoumoshi"])
+                    i["WR_ShowColorFrame"]("ASF8", P, i["zhandoumoshi"])
+                    return f
+                end
+                if i["WR_FocusUnit"](E, "纯净术") then
+                    return f
+                end
+            end
+            if Q ~= f and i["WR_CanRemoveUnitDebuff"](E) then
+                if i["UnitIsUnit"](E, "focus") then
+                    i["WR_HideColorFrame"](i["zhandoumoshi"])
+                    i["WR_ShowColorFrame"]("ASF8", P, i["zhandoumoshi"])
+                    return f
+                end
+                if i["WR_FocusUnit"](E, "纯净术") then
+                    return f
+                end
+            end
+        end
+        return e
+    end;
+    i["WR_PaladinHoly_QJS"] = function(E, P, Q)
+        if i["WR_SpellUsable"]("清洁术") and not i["UnitCanAttack"]("player", E) and i["WR_GetUnitRange"](E) <=
+            k("40") then
+            if i["WR_CanRemoveUnitDangerDebuff"](E) then
+                if i["UnitIsUnit"](E, "focus") then
+                    i["WR_HideColorFrame"](i["zhandoumoshi"])
+                    i["WR_ShowColorFrame"]("SF3", P, i["zhandoumoshi"])
+                    return f
+                end
+                if i["WR_FocusUnit"](E, "清洁术") then
+                    return f
+                end
+            end
+            if Q ~= f and i["WR_CanRemoveUnitDebuff"](E) then
+                if i["UnitIsUnit"](E, "focus") then
+                    i["WR_HideColorFrame"](i["zhandoumoshi"])
+                    i["WR_ShowColorFrame"]("SF3", P, i["zhandoumoshi"])
+                    return f
+                end
+                if i["WR_FocusUnit"](E, "清洁术") then
+                    return f
+                end
+            end
+        end
+        return e
+    end;
+    i["WR_Paladin_Function_QS"] = function(Q)
+        if i["PaladinTalent"] == "神圣" and i["WRSet"]["SS_QS"] == k("3") then
+            return e
+        end
+        if i["PaladinTalent"] == "惩戒" and i["WRSet"]["CJ_QS"] == k("3") then
+            return e
+        end
+        if i["PaladinTalent"] == "防护" and i["WRSet"]["FH_QS"] == k("3") then
+            return e
+        end
+        if i["WR_PaladinHoly_QJS"]("player", "清洁术P", Q) then
+            return f
+        end
+        if not i["IsPlayerSpell"](k("4987")) and i["WR_PaladinHoly_CJS"]("player", "纯净术P", Q) then
+            return f
+        end
+        if i["PaladinTalent"] == "神圣" then
+            if i["WR_PaladinHoly_QJS"]("mouseover", "清洁术M", Q) then
+                return f
+            end
+            if not i["IsPlayerSpell"](k("4987")) and i["WR_PaladinHoly_CJS"]("mouseover", "纯净术M", Q) then
+                return f
+            end
+            if i["WR_PaladinHoly_QJS"]("focus", "清洁术F", Q) then
+                return f
+            end
+            if not i["IsPlayerSpell"](k("4987")) and i["WR_PaladinHoly_CJS"]("focus", "纯净术F", Q) then
+                return f
+            end
+            if i["RiadOrParty"] == "raid" then
+                for z = k("1"), k("25"), k("1") do
+                    local A = "raid" .. z;
+                    if i["WR_PaladinHoly_QJS"](A, "清洁术R" .. z, Q) then
+                        return f
+                    end
+                    if not i["IsPlayerSpell"](k("4987")) and i["WR_PaladinHoly_CJS"](A, "纯净术R" .. z, Q) then
+                        return f
+                    end
+                end
+            elseif i["RiadOrParty"] == "party" then
+                for z = k("1"), k("4"), k("1") do
+                    local A = "party" .. z;
+                    if i["WR_PaladinHoly_QJS"](A, "清洁术P" .. z, Q) then
+                        return f
+                    end
+                    if not i["IsPlayerSpell"](k("4987")) and i["WR_PaladinHoly_CJS"](A, "纯净术P" .. z, Q) then
+                        return f
+                    end
+                end
+            end
+        end
+        return e
+    end;
+    i["WR_Paladin_Function_GH"] = function()
+        if i["WR_GetUnitBuffInfo"]("player", "光环掌握") > k("0") then
+            return e
+        end
+        local R;
+        if i["PaladinTalent"] == "神圣" then
+            R = i["WRSet"]["SS_GH"]
+        elseif i["PaladinTalent"] == "惩戒" then
+            R = i["WRSet"]["CJ_GH"]
+        elseif i["PaladinTalent"] == "防护" then
+            R = i["WRSet"]["FH_GH"]
+        end
+        if i["IsMounted"]() then
+            if i["WR_SpellUsable"]("十字军光环") and i["WR_GetUnitBuffInfo"]("player", "十字军光环") == k("0") then
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"]("ACN6", "十字军光环", i["zhandoumoshi"])
+                return f
+            end
+        else
+            if R == k("1") and i["WR_SpellUsable"]("虔诚光环") and i["WR_GetUnitBuffInfo"]("player", "虔诚光环") ==
+                k("0") then
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"]("ACN1", "虔诚光环", i["zhandoumoshi"])
+                return f
+            elseif R == k("2") and i["WR_SpellUsable"]("惩戒光环") and
+                i["WR_GetUnitBuffInfo"]("player", "惩戒光环") == k("0") then
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"]("ACN2", "惩戒光环", i["zhandoumoshi"])
+                return f
+            elseif R == k("3") and i["WR_SpellUsable"]("专注光环") and
+                i["WR_GetUnitBuffInfo"]("player", "专注光环") == k("0") then
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"]("ACN7", "专注光环", i["zhandoumoshi"])
+                return f
+            elseif R == k("4") and i["WR_SpellUsable"]("暗影抗性光环") and
+                i["WR_GetUnitBuffInfo"]("player", "暗影抗性光环") == k("0") then
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"]("ACN5", "暗影抗性光环", i["zhandoumoshi"])
+                return f
+            elseif R == k("5") and i["WR_SpellUsable"]("冰霜抗性光环") and
+                i["WR_GetUnitBuffInfo"]("player", "冰霜抗性光环") == k("0") then
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"]("ACN4", "冰霜抗性光环", i["zhandoumoshi"])
+                return f
+            elseif R == k("6") and i["WR_SpellUsable"]("火焰抗性光环") and
+                i["WR_GetUnitBuffInfo"]("player", "火焰抗性光环") == k("0") then
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"]("ACN3", "火焰抗性光环", i["zhandoumoshi"])
+                return f
+            elseif R == k("7") and i["WR_SpellUsable"]("十字军光环") and
+                i["WR_GetUnitBuffInfo"]("player", "十字军光环") == k("0") then
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"]("ACN6", "十字军光环", i["zhandoumoshi"])
+                return f
+            end
+        end
+        return e
+    end;
+    i["WR_PaladinHoly_Function_LLZF"] = function(E)
+        local S = k("300")
+        if i["UnitAffectingCombat"]("player") then
+            S = k("0")
+        end
+        if i["WR_SpellUsable"]("力量祝福") and i["WR_GetUnitBuffInfo"](E, "力量祝福") <= S and
+            i["WR_GetUnitBuffInfo"](E, "战斗怒吼") <= S and i["WR_GetUnitBuffInfo"](E, "强效力量祝福") <= S then
+            if i["UnitIsUnit"]("focus", E) then
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"]("ACF1", "力量祝福", i["zhandoumoshi"])
+                return f
+            end
+            if i["WR_FocusUnit"](E, "力祝") then
+                return f
+            end
+        end
+        return e
+    end;
+    i["WR_PaladinHoly_Function_QXLLZF"] = function(E)
+        local S = k("300")
+        if i["UnitAffectingCombat"]("player") then
+            S = k("0")
+        end
+        if i["WR_SpellUsable"]("强效力量祝福") and i["WR_GetUnitBuffInfo"](E, "力量祝福") <= S and
+            i["WR_GetUnitBuffInfo"](E, "战斗怒吼") <= S and i["WR_GetUnitBuffInfo"](E, "强效力量祝福") <= S then
+            if i["UnitIsUnit"]("focus", E) then
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"]("ACF5", "强效力量祝福", i["zhandoumoshi"])
+                return f
+            end
+            if i["WR_FocusUnit"](E, "强力") then
+                return f
+            end
+        end
+        return e
+    end;
+    i["WR_PaladinHoly_Function_ZHZF"] = function(E)
+        local S = k("300")
+        if i["UnitAffectingCombat"]("player") then
+            S = k("0")
+        end
+        if i["WR_SpellUsable"]("智慧祝福") and i["WR_GetUnitBuffInfo"](E, "智慧祝福") <= S and
+            i["WR_GetUnitBuffInfo"](E, "法力之泉") <= S and i["WR_GetUnitBuffInfo"](E, "强效智慧祝福") <= S then
+            if i["UnitIsUnit"]("focus", E) then
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"]("ACF2", "智慧祝福", i["zhandoumoshi"])
+                return f
+            end
+            if i["WR_FocusUnit"](E, "智祝") then
+                return f
+            end
+        end
+        return e
+    end;
+    i["WR_PaladinHoly_Function_QXZHZF"] = function(E)
+        local S = k("300")
+        if i["UnitAffectingCombat"]("player") then
+            S = k("0")
+        end
+        if i["WR_SpellUsable"]("强效智慧祝福") and i["WR_GetUnitBuffInfo"](E, "智慧祝福") <= S and
+            i["WR_GetUnitBuffInfo"](E, "法力之泉") <= S and i["WR_GetUnitBuffInfo"](E, "强效智慧祝福") <= S then
+            if i["UnitIsUnit"]("focus", E) then
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"]("ACF6", "强效智慧祝福", i["zhandoumoshi"])
+                return f
+            end
+            if i["WR_FocusUnit"](E, "强智") then
+                return f
+            end
+        end
+        return e
+    end;
+    i["WR_PaladinHoly_Function_WZZF"] = function(E)
+        local S = k("300")
+        if i["UnitAffectingCombat"]("player") then
+            S = k("0")
+        end
+        if i["WR_SpellUsable"]("王者祝福") and i["WR_GetUnitBuffInfo"](E, "王者祝福") <= S and
+            i["WR_GetUnitBuffInfo"](E, "强效王者祝福") <= S then
+            if i["UnitIsUnit"]("focus", E) then
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"]("ACF3", "王者祝福", i["zhandoumoshi"])
+                return f
+            end
+            if i["WR_FocusUnit"](E, "王祝") then
+                return f
+            end
+        end
+        return e
+    end;
+    i["WR_PaladinHoly_Function_QXWZZF"] = function(E)
+        local S = k("300")
+        if i["UnitAffectingCombat"]("player") then
+            S = k("0")
+        end
+        if i["WR_SpellUsable"]("强效王者祝福") and i["WR_GetUnitBuffInfo"](E, "王者祝福") <= S and
+            i["WR_GetUnitBuffInfo"](E, "强效王者祝福") <= S then
+            if i["UnitIsUnit"]("focus", E) then
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"]("ACF7", "强效王者祝福", i["zhandoumoshi"])
+                return f
+            end
+            if i["WR_FocusUnit"](E, "强王") then
+                return f
+            end
+        end
+        return e
+    end;
+    i["WR_PaladinHoly_Function_BHZF"] = function(E)
+        local S = k("300")
+        if i["UnitAffectingCombat"]("player") then
+            S = k("0")
+        end
+        if i["WR_SpellUsable"]("庇护祝福") and i["WR_GetUnitBuffInfo"](E, "庇护祝福") <= S and
+            i["WR_GetUnitBuffInfo"](E, "强效庇护祝福") <= S then
+            if i["UnitIsUnit"]("focus", E) then
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"]("ACF9", "庇护祝福", i["zhandoumoshi"])
+                return f
+            end
+            if i["WR_FocusUnit"](E, "庇祝") then
+                return f
+            end
+        end
+        return e
+    end;
+    i["WR_PaladinHoly_Function_QXBHZF"] = function(E)
+        local S = k("300")
+        if i["UnitAffectingCombat"]("player") then
+            S = k("0")
+        end
+        if i["WR_SpellUsable"]("强效庇护祝福") and i["WR_GetUnitBuffInfo"](E, "庇护祝福") <= S and
+            i["WR_GetUnitBuffInfo"](E, "强效庇护祝福") <= S then
+            if i["UnitIsUnit"]("focus", E) then
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"]("ACF10", "强效庇护祝福", i["zhandoumoshi"])
+                return f
+            end
+            if i["WR_FocusUnit"](E, "强庇") then
+                return f
+            end
+        end
+        return e
+    end;
+    i["WR_PaladinHoly_UnitNotMyZF"] = function(E)
+        local S = k("300")
+        if i["UnitAffectingCombat"]("player") then
+            S = k("0")
+        end
+        if i["WR_GetUnitBuffInfo"](E, "力量祝福", f) <= S and i["WR_GetUnitBuffInfo"](E, "智慧祝福", f) <= S and
+            i["WR_GetUnitBuffInfo"](E, "王者祝福", f) <= S and i["WR_GetUnitBuffInfo"](E, "庇护祝福", f) <= S and
+            i["WR_GetUnitBuffInfo"](E, "强效力量祝福", f) <= S and
+            i["WR_GetUnitBuffInfo"](E, "强效智慧祝福", f) <= S and
+            i["WR_GetUnitBuffInfo"](E, "强效王者祝福", f) <= S and
+            i["WR_GetUnitBuffInfo"](E, "强效庇护祝福", f) <= S then
+            return f
+        end
+        return e
+    end;
+    i["WR_Paladin_Function_ZF"] = function()
+        local T;
+        if i["PaladinTalent"] == "神圣" then
+            T = i["WRSet"]["SS_ZF"]
+        elseif i["PaladinTalent"] == "惩戒" then
+            T = i["WRSet"]["CJ_ZF"]
+        end
+        if T == k("9") then
+            return e
+        end
+        if i["RiadOrParty"] ~= "raid" then
+            local A = "player"
+            if T == k("1") then
+                if i["PaladinTalent"] == "神圣" then
+                    if i["WR_PaladinHoly_Function_ZHZF"](A) then
+                        return f
+                    end
+                elseif i["PaladinTalent"] == "惩戒" then
+                    if i["WR_PaladinHoly_Function_LLZF"](A) then
+                        return f
+                    end
+                end
+                if i["WR_PaladinHoly_UnitNotMyZF"](A) then
+                    if i["WR_PaladinHoly_Function_WZZF"](A) then
+                        return f
+                    end
+                    if i["WR_PaladinHoly_Function_ZHZF"](A) then
+                        return f
+                    end
+                    if i["WR_PaladinHoly_Function_LLZF"](A) then
+                        return f
+                    end
+                end
+            elseif T == k("2") then
+                if i["WR_PaladinHoly_Function_LLZF"](A) then
+                    return f
+                end
+            elseif T == k("3") then
+                if i["WR_PaladinHoly_Function_ZHZF"](A) then
+                    return f
+                end
+            elseif T == k("4") then
+                if i["WR_PaladinHoly_Function_WZZF"](A) then
+                    return f
+                end
+            elseif T == k("5") then
+                if i["PaladinTalent"] == "神圣" then
+                    if i["WR_PaladinHoly_Function_QXZHZF"](A) then
+                        return f
+                    end
+                elseif i["PaladinTalent"] == "惩戒" then
+                    if i["WR_PaladinHoly_Function_QXLLZF"](A) then
+                        return f
+                    end
+                end
+                if i["WR_PaladinHoly_UnitNotMyZF"](A) then
+                    if i["WR_PaladinHoly_Function_QXWZZF"](A) then
+                        return f
+                    end
+                    if i["WR_PaladinHoly_Function_QXZHZF"](A) then
+                        return f
+                    end
+                    if i["WR_PaladinHoly_Function_QXLLZF"](A) then
+                        return f
+                    end
+                end
+            elseif T == k("6") then
+                if i["WR_PaladinHoly_Function_QXLLZF"](A) then
+                    return f
+                end
+            elseif T == k("7") then
+                if i["WR_PaladinHoly_Function_QXZHZF"](A) then
+                    return f
+                end
+            elseif T == k("8") then
+                if i["WR_PaladinHoly_Function_QXWZZF"](A) then
+                    return f
+                end
+            end
+        end
+        if i["RiadOrParty"] == "single" then
+            return e
+        end
+        local y;
+        if i["RiadOrParty"] == "raid" then
+            y = k("25")
+        else
+            y = k("4")
+        end
+        for z = k("1"), y, k("1") do
+            local A = i["RiadOrParty"] .. z;
+            if i["UnitExists"](A) and not i["UnitCanAttack"](A, "player") and not i["UnitIsDeadOrGhost"](A) and
+                i["WR_GetUnitRange"](A) <= k("30") then
+                if T == k("1") then
+                    if i["UnitClassBase"](A) == "MAGE" or i["UnitClassBase"](A) == "WARLOCK" or i["UnitClassBase"](A) ==
+                        "PRIEST" then
+                        if i["WR_PaladinHoly_Function_ZHZF"](A) then
+                            return f
+                        end
+                        if i["WR_PaladinHoly_UnitNotMyZF"](A) then
+                            if i["WR_PaladinHoly_Function_WZZF"](A) then
+                                return f
+                            end
+                            if i["WR_PaladinHoly_Function_LLZF"](A) then
+                                return f
+                            end
+                        end
+                    end
+                    if i["UnitClassBase"](A) == "WARRIOR" or i["UnitClassBase"](A) == "ROGUE" or i["UnitClassBase"](A) ==
+                        "DEATHKNIGHT" or i["UnitClassBase"](A) == "HUNTER" then
+                        if i["WR_NumIsTank"](z) then
+                            if i["WR_PaladinHoly_Function_WZZF"](A) then
+                                return f
+                            end
+                            if i["WR_PaladinHoly_UnitNotMyZF"](A) then
+                                if i["WR_PaladinHoly_Function_LLZF"](A) then
+                                    return f
+                                end
+                            end
+                        else
+                            if i["WR_PaladinHoly_Function_LLZF"](A) then
+                                return f
+                            end
+                            if i["WR_PaladinHoly_UnitNotMyZF"](A) then
+                                if i["WR_PaladinHoly_Function_WZZF"](A) then
+                                    return f
+                                end
+                            end
+                        end
+                    end
+                    if i["UnitClassBase"](A) == "DRUID" or i["UnitClassBase"](A) == "SHAMAN" or i["UnitClassBase"](A) ==
+                        "PALADIN" then
+                        if i["WR_PaladinHoly_Function_WZZF"](A) then
+                            return f
+                        end
+                        if i["WR_PaladinHoly_UnitNotMyZF"](A) then
+                            if i["WR_PaladinHoly_Function_ZHZF"](A) then
+                                return f
+                            end
+                            if i["WR_PaladinHoly_Function_LLZF"](A) then
+                                return f
+                            end
+                        end
+                    end
+                elseif T == k("2") then
+                    if i["WR_PaladinHoly_Function_LLZF"](A) then
+                        return f
+                    end
+                elseif T == k("3") then
+                    if i["WR_PaladinHoly_Function_ZHZF"](A) then
+                        return f
+                    end
+                elseif T == k("4") then
+                    if i["WR_PaladinHoly_Function_WZZF"](A) then
+                        return f
+                    end
+                elseif T == k("5") then
+                    if i["UnitClassBase"](A) == "MAGE" or i["UnitClassBase"](A) == "WARLOCK" or i["UnitClassBase"](A) ==
+                        "PRIEST" or i["UnitClassBase"](A) == "PALADIN" then
+                        if i["WR_PaladinHoly_Function_QXZHZF"](A) then
+                            return f
+                        end
+                        if i["WR_PaladinHoly_UnitNotMyZF"](A) then
+                            if i["WR_PaladinHoly_Function_QXWZZF"](A) then
+                                return f
+                            end
+                            if i["WR_PaladinHoly_Function_QXLLZF"](A) then
+                                return f
+                            end
+                        end
+                    end
+                    if i["UnitClassBase"](A) == "WARRIOR" or i["UnitClassBase"](A) == "ROGUE" or i["UnitClassBase"](A) ==
+                        "DEATHKNIGHT" or i["UnitClassBase"](A) == "HUNTER" then
+                        if i["WR_PaladinHoly_Function_QXLLZF"](A) then
+                            return f
+                        end
+                        if i["WR_PaladinHoly_UnitNotMyZF"](A) then
+                            if i["WR_PaladinHoly_Function_QXWZZF"](A) then
+                                return f
+                            end
+                        end
+                    end
+                    if i["UnitClassBase"](A) == "DRUID" or i["UnitClassBase"](A) == "SHAMAN" then
+                        if i["WR_PaladinHoly_Function_QXWZZF"](A) then
+                            return f
+                        end
+                        if i["WR_PaladinHoly_UnitNotMyZF"](A) then
+                            if i["WR_PaladinHoly_Function_QXZHZF"](A) then
+                                return f
+                            end
+                            if i["WR_PaladinHoly_Function_QXLLZF"](A) then
+                                return f
+                            end
+                        end
+                    end
+                elseif T == k("6") then
+                    if i["WR_PaladinHoly_Function_QXLLZF"](A) then
+                        return f
+                    end
+                elseif T == k("7") then
+                    if i["WR_PaladinHoly_Function_QXZHZF"](A) then
+                        return f
+                    end
+                elseif T == k("8") then
+                    if i["WR_PaladinHoly_Function_QXWZZF"](A) then
+                        return f
+                    end
+                end
+            end
+        end
+        return e
+    end;
+    i["WR_PaladinProtection_Function_ZF"] = function()
+        if i["WRSet"]["FH_ZF"] == k("10") then
+            return e
+        end
+        if i["RiadOrParty"] ~= "raid" then
+            local A = "player"
+            if i["WRSet"]["FH_ZF"] == k("1") then
+                if i["WR_PaladinHoly_Function_BHZF"](A) then
+                    return f
+                end
+                if i["WR_PaladinHoly_UnitNotMyZF"](A) then
+                    if i["WR_PaladinHoly_Function_WZZF"](A) then
+                        return f
+                    end
+                    if i["WR_PaladinHoly_Function_ZHZF"](A) then
+                        return f
+                    end
+                    if i["WR_PaladinHoly_Function_LLZF"](A) then
+                        return f
+                    end
+                end
+            elseif i["WRSet"]["FH_ZF"] == k("2") then
+                if i["WR_PaladinHoly_Function_LLZF"](A) then
+                    return f
+                end
+            elseif i["WRSet"]["FH_ZF"] == k("3") then
+                if i["WR_PaladinHoly_Function_ZHZF"](A) then
+                    return f
+                end
+            elseif i["WRSet"]["FH_ZF"] == k("4") then
+                if i["WR_PaladinHoly_Function_WZZF"](A) then
+                    return f
+                end
+            elseif i["WRSet"]["FH_ZF"] == k("5") then
+                if i["WR_PaladinHoly_Function_BHZF"](A) then
+                    return f
+                end
+            elseif i["WRSet"]["FH_ZF"] == k("6") then
+                if i["WR_PaladinHoly_Function_QXLLZF"](A) then
+                    return f
+                end
+            elseif i["WRSet"]["FH_ZF"] == k("7") then
+                if i["WR_PaladinHoly_Function_QXZHZF"](A) then
+                    return f
+                end
+            elseif i["WRSet"]["FH_ZF"] == k("8") then
+                if i["WR_PaladinHoly_Function_QXWZZF"](A) then
+                    return f
+                end
+            elseif i["WRSet"]["FH_ZF"] == k("9") then
+                if i["WR_PaladinHoly_Function_QXBHZF"](A) then
+                    return f
+                end
+            end
+        end
+        if i["RiadOrParty"] == "single" then
+            return e
+        end
+        local y;
+        if i["RiadOrParty"] == "raid" then
+            y = k("25")
+        else
+            y = k("4")
+        end
+        for z = k("1"), y, k("1") do
+            local A = i["RiadOrParty"] .. z;
+            if i["UnitExists"](A) and not i["UnitCanAttack"](A, "player") and not i["UnitIsDeadOrGhost"](A) and
+                i["WR_GetUnitRange"](A) <= k("30") then
+                if i["WRSet"]["FH_ZF"] == k("1") then
+                    if i["UnitClassBase"](A) == "MAGE" or i["UnitClassBase"](A) == "WARLOCK" or i["UnitClassBase"](A) ==
+                        "PRIEST" then
+                        if i["WR_PaladinHoly_Function_ZHZF"](A) then
+                            return f
+                        end
+                        if i["WR_PaladinHoly_UnitNotMyZF"](A) then
+                            if i["WR_PaladinHoly_Function_WZZF"](A) then
+                                return f
+                            end
+                            if i["WR_PaladinHoly_Function_LLZF"](A) then
+                                return f
+                            end
+                            if i["WR_PaladinHoly_Function_BHZF"](A) then
+                                return f
+                            end
+                        end
+                    end
+                    if i["UnitClassBase"](A) == "WARRIOR" or i["UnitClassBase"](A) == "ROGUE" or i["UnitClassBase"](A) ==
+                        "DEATHKNIGHT" or i["UnitClassBase"](A) == "HUNTER" then
+                        if i["WR_NumIsTank"](z) then
+                            if i["WR_PaladinHoly_Function_BHZF"](A) then
+                                return f
+                            end
+                            if i["WR_PaladinHoly_UnitNotMyZF"](A) then
+                                if i["WR_PaladinHoly_Function_WZZF"](A) then
+                                    return f
+                                end
+                                if i["WR_PaladinHoly_Function_LLZF"](A) then
+                                    return f
+                                end
+                                if i["WR_PaladinHoly_Function_ZHZF"](A) then
+                                    return f
+                                end
+                            end
+                        else
+                            if i["WR_PaladinHoly_Function_LLZF"](A) then
+                                return f
+                            end
+                            if i["WR_PaladinHoly_UnitNotMyZF"](A) then
+                                if i["WR_PaladinHoly_Function_WZZF"](A) then
+                                    return f
+                                end
+                                if i["WR_PaladinHoly_Function_BHZF"](A) then
+                                    return f
+                                end
+                                if i["WR_PaladinHoly_Function_ZHZF"](A) then
+                                    return f
+                                end
+                            end
+                        end
+                    end
+                    if i["UnitClassBase"](A) == "DRUID" or i["UnitClassBase"](A) == "SHAMAN" or i["UnitClassBase"](A) ==
+                        "PALADIN" then
+                        if i["WR_PaladinHoly_Function_WZZF"](A) then
+                            return f
+                        end
+                        if i["WR_PaladinHoly_UnitNotMyZF"](A) then
+                            if i["WR_PaladinHoly_Function_ZHZF"](A) then
+                                return f
+                            end
+                            if i["WR_PaladinHoly_Function_LLZF"](A) then
+                                return f
+                            end
+                            if i["WR_PaladinHoly_Function_BHZF"](A) then
+                                return f
+                            end
+                        end
+                    end
+                elseif i["WRSet"]["FH_ZF"] == k("2") then
+                    if i["WR_PaladinHoly_Function_LLZF"](A) then
+                        return f
+                    end
+                elseif i["WRSet"]["FH_ZF"] == k("3") then
+                    if i["WR_PaladinHoly_Function_ZHZF"](A) then
+                        return f
+                    end
+                elseif i["WRSet"]["FH_ZF"] == k("4") then
+                    if i["WR_PaladinHoly_Function_WZZF"](A) then
+                        return f
+                    end
+                elseif i["WRSet"]["FH_ZF"] == k("5") then
+                    if i["WR_PaladinHoly_Function_BHZF"](A) then
+                        return f
+                    end
+                elseif i["WRSet"]["FH_ZF"] == k("6") then
+                    if i["WR_PaladinHoly_Function_QXLLZF"](A) then
+                        return f
+                    end
+                elseif i["WRSet"]["FH_ZF"] == k("7") then
+                    if i["WR_PaladinHoly_Function_QXZHZF"](A) then
+                        return f
+                    end
+                elseif i["WRSet"]["FH_ZF"] == k("8") then
+                    if i["WR_PaladinHoly_Function_QXWZZF"](A) then
+                        return f
+                    end
+                elseif i["WRSet"]["FH_ZF"] == k("9") then
+                    if i["WR_PaladinHoly_Function_QXBHZF"](A) then
+                        return f
+                    end
+                end
+            end
+        end
+        return e
+    end;
+    i["WR_Paladin_Function_SY"] = function()
+        local U;
+        if i["PaladinTalent"] == "神圣" then
+            U = i["WRSet"]["SS_SY"]
+        elseif i["PaladinTalent"] == "惩戒" then
+            U = i["WRSet"]["CJ_SY"]
+        elseif i["PaladinTalent"] == "防护" then
+            U = i["WRSet"]["FH_SY"]
+        end
+        if U == k("1") and i["WR_SpellUsable"]("正义圣印") and i["WR_GetUnitBuffInfo"]("player", "正义圣印") ==
+            k("0") then
+            i["WR_HideColorFrame"](i["zhandoumoshi"])
+            i["WR_ShowColorFrame"]("ASF6", "正义圣印", i["zhandoumoshi"])
+            return f
+        elseif U == k("2") and i["WR_SpellUsable"]("公正圣印") and i["WR_GetUnitBuffInfo"]("player", "公正圣印") ==
+            k("0") then
+            i["WR_HideColorFrame"](i["zhandoumoshi"])
+            i["WR_ShowColorFrame"]("ASF2", "公正圣印", i["zhandoumoshi"])
+            return f
+        elseif U == k("3") and i["WR_SpellUsable"]("光明圣印") and i["WR_GetUnitBuffInfo"]("player", "光明圣印") ==
+            k("0") then
+            i["WR_HideColorFrame"](i["zhandoumoshi"])
+            i["WR_ShowColorFrame"]("ASF1", "光明圣印", i["zhandoumoshi"])
+            return f
+        elseif U == k("4") and i["WR_SpellUsable"]("智慧圣印") and i["WR_GetUnitBuffInfo"]("player", "智慧圣印") ==
+            k("0") then
+            i["WR_HideColorFrame"](i["zhandoumoshi"])
+            i["WR_ShowColorFrame"]("ASF3", "智慧圣印", i["zhandoumoshi"])
+            return f
+        elseif U == k("5") and i["WR_SpellUsable"](i["FC_FS_ShengYin"]) and
+            i["WR_GetUnitBuffInfo"]("player", i["FC_FS_ShengYin"]) == k("0") then
+            i["WR_HideColorFrame"](i["zhandoumoshi"])
+            i["WR_ShowColorFrame"]("ACN8", i["FC_FS_ShengYin"], i["zhandoumoshi"])
+            return f
+        elseif U == k("6") and i["WR_SpellUsable"]("命令圣印") and i["WR_GetUnitBuffInfo"]("player", "命令圣印") ==
+            k("0") then
+            i["WR_HideColorFrame"](i["zhandoumoshi"])
+            i["WR_ShowColorFrame"]("CSP", "命令圣印", i["zhandoumoshi"])
+            return f
+        elseif U == k("7") then
+            if i["zhandoumoshi"] == k("1") then
+                if i["WR_SpellUsable"]("命令圣印") and i["WR_GetUnitBuffInfo"]("player", "命令圣印") == k("0") then
+                    i["WR_HideColorFrame"](i["zhandoumoshi"])
+                    i["WR_ShowColorFrame"]("CSP", "命令圣印", i["zhandoumoshi"])
+                    return f
+                end
+            else
+                if i["WR_SpellUsable"](i["FC_FS_ShengYin"]) and i["WR_GetUnitBuffInfo"]("player", i["FC_FS_ShengYin"]) ==
+                    k("0") then
+                    i["WR_HideColorFrame"](i["zhandoumoshi"])
+                    i["WR_ShowColorFrame"]("ACN8", i["FC_FS_ShengYin"], i["zhandoumoshi"])
+                    return f
+                end
+            end
+        end
+        return e
+    end;
+    i["WR_Paladin_Function_SP"] = function(E, P)
+        if i["PaladinTalent"] == "神圣" and i["UnitName"]("target") == "维扎克斯将军" then
+            return e
+        end
+        if i["PaladinTalent"] == "神圣" and i["UnitName"]("focustarget") == "维扎克斯将军" then
+            return e
+        end
+        local V;
+        if i["PaladinTalent"] == "神圣" then
+            V = i["WRSet"]["SS_SP"]
+        elseif i["PaladinTalent"] == "惩戒" then
+            V = i["WRSet"]["CJ_SP"]
+        elseif i["PaladinTalent"] == "防护" then
+            V = i["WRSet"]["FH_SP"]
         end
         local W;
-        if g["PaladinTalent"] == "神圣" then
-            W = g["WRSet"]["SS_ZYZS"]
-        elseif g["PaladinTalent"] == "惩戒" then
-            W = g["WRSet"]["CJ_ZYZS"]
-        elseif g["PaladinTalent"] == "防护" then
-            W = g["WRSet"]["FH_ZYZS"]
-        end
-        if W == e or W == i("3") then
-            return c
-        end
-        if W == i("1") then
-            if g["WR_Paladin_ZYZS"]("mouseover") then
-                return d
-            end
-            if g["WR_TankUnit"] ~= e and g["WR_Paladin_ZYZS"](g["WR_TankUnit"]) then
-                return d
-            end
-            if g["WR_Paladin_ZYZS"]("player") then
-                return d
-            end
-            if g["RiadOrParty"] == "single" then
-                return c
-            end
-            local w;
-            if g["RiadOrParty"] == "raid" then
-                w = i("25")
+        local X;
+        if V == k("2") then
+            W = "圣光审判"
+            X = "SF8"
+        elseif V == k("3") then
+            W = "智慧审判"
+            X = "SF1"
+        elseif V == k("4") then
+            W = "公正审判"
+            X = "CF4"
+        elseif V == k("1") then
+            if i["WR_SpellUsable"]("智慧审判") then
+                W = "智慧审判"
+                X = "SF1"
             else
-                w = i("4")
+                W = "圣光审判"
+                X = "SF8"
             end
-            for x = i("1"), w, i("1") do
-                local y = g["RiadOrParty"]
-                if g["WR_Paladin_ZYZS"](y) then
-                    return d
+            if i["WR_GetUnitDebuffInfo"](E, "智慧审判", f) == k("0") and
+                i["WR_GetUnitDebuffInfo"](E, "圣光审判", f) == k("0") and
+                i["WR_GetUnitDebuffInfo"](E, "公正审判", f) == k("0") then
+                if i["WR_GetUnitDebuffInfo"](E, "智慧审判") == k("0") then
+                    W = "智慧审判"
+                    X = "SF1"
+                elseif i["WR_GetUnitDebuffInfo"](E, "圣光审判") == k("0") then
+                    W = "圣光审判"
+                    X = "SF8"
+                elseif i["WR_GetUnitDebuffInfo"](E, "公正审判") == k("0") then
+                    W = "公正审判"
+                    X = "CF4"
                 end
             end
         end
-        if W == i("2") and g["WR_Paladin_ZYZS"]("player") then
-            return d
+        if W ~= g and i["WR_SpellUsable"](W) and i["WR_TargetInCombat"](E) and
+            (i["IsSpellInRange"]("圣光审判", E) == k("1") or i["IsSpellInRange"]("智慧审判", E) == k("1") or
+                i["IsSpellInRange"]("公正审判", E) == k("1")) and
+            (i["UnitHealth"](E) / i["UnitHealthMax"](E) < k("0.995") or not i["IsInInstance"]()) and
+            (i["WR_GetUnitDebuffInfo"](E, W) == k("0") or not i["IsInInstance"]() or
+                i["GetTalentPointsBySpellID"]("纯洁审判") > k("0") and
+                i["WR_GetUnitBuffInfo"]("player", "纯洁审判") <= k("3") or i["PaladinTalent"] == "惩戒" or
+                i["PaladinTalent"] == "防护" or i["KillTarget"]) then
+            if E == "target" then
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"](X, W, i["zhandoumoshi"])
+                return f
+            elseif E == "focustarget" then
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"]("ACSF9", "智判FT", i["zhandoumoshi"])
+                return f
+            end
         end
-        return c
+        return e
     end;
-    g["WR_PaladinHoly_FindTank_SGDB_SJHD"] = function()
-        local X = {}
-        if g["RiadOrParty"] == "party" then
-            local Y = i("1")
-            for x = i("1"), i("4"), i("1") do
-                local y = "party" .. x;
-                if g["UnitExists"](y) and g["WR_NumIsTank"](x) and Y <= i("4") then
-                    if g["UnitName"](y) ~= e and g["SS_SGDB_menuItems"][Y]["text"] ~= g["UnitName"](y) then
-                        g["SS_SGDB_UpdateMenuItemText"](Y, g["UnitName"](y))
+    i["WR_Paladin_Function_SSKQ"] = function()
+        if i["WR_SpellUsable"]("神圣恳求") and i["TargetInCombat"] and i["UnitAffectingCombat"]("player") and
+            i["PlayerMP"] < k("0.75") then
+            i["WR_HideColorFrame"](i["zhandoumoshi"])
+            i["WR_ShowColorFrame"]("SF12", "神圣恳求", i["zhandoumoshi"])
+            return f
+        end
+        return e
+    end;
+    i["WR_Paladin_Function_QSZS"] = function()
+        if i["WR_SpellUsable"]("清算之手") and i["TargetRange"] <= k("30") and i["TargetInCombat"] and
+            i["WR_IsUsingGlyph"]("清算符文") then
+            i["WR_HideColorFrame"](i["zhandoumoshi"])
+            i["WR_ShowColorFrame"]("SF9", "清算之手", i["zhandoumoshi"])
+            return f
+        end
+        return e
+    end;
+    i["WR_Paladin_Function_SZJDJ"] = function()
+        if i["WR_SpellUsable"]("十字军打击") and i["TargetRange"] <= k("2") and i["TargetInCombat"] then
+            i["WR_HideColorFrame"](i["zhandoumoshi"])
+            i["WR_ShowColorFrame"]("CF1", "十字军打击", i["zhandoumoshi"])
+            return f
+        end
+        return e
+    end;
+    i["WR_PaladinProtection_Function_ZYZN"] = function()
+        if i["WR_SpellUsable"]("正义之怒") and i["WR_GetUnitBuffInfo"]("player", "正义之怒") == k("0") and
+            i["UnitCanAttack"]("player", "target") and not i["UnitIsDead"]("target") then
+            i["WR_HideColorFrame"](i["zhandoumoshi"])
+            i["WR_ShowColorFrame"]("ACSF2", "正义之怒", i["zhandoumoshi"])
+            return f
+        end
+        return e
+    end;
+    i["WR_PaladinProtection_Function_FCZZD"] = function()
+        if i["WR_SpellUsable"]("复仇者之盾") and i["TargetRange"] <= k("30") and
+            i["UnitCanAttack"]("player", "target") and not i["UnitIsDead"]("target") then
+            i["WR_HideColorFrame"](i["zhandoumoshi"])
+            i["WR_ShowColorFrame"]("ASF9", "复仇者之盾", i["zhandoumoshi"])
+            return f
+        end
+        return e
+    end;
+    i["WR_Paladin_Function_FX"] = function()
+        if i["WR_SpellUsable"]("奉献") and i["TargetRange"] <= k("2") and i["TargetInCombat"] and not i["PlayerMove"] then
+            i["WR_HideColorFrame"](i["zhandoumoshi"])
+            i["WR_ShowColorFrame"]("CF7", "奉献", i["zhandoumoshi"])
+            return f
+        end
+        return e
+    end;
+    i["WR_PaladinProtection_Function_SSZD"] = function()
+        if i["WR_SpellUsable"]("神圣之盾") and i["TargetRange"] <= k("5") and i["UnitCanAttack"]("player", "target") and
+            i["WR_GetUnitBuffCount"]("player", "神圣之盾") <= k("1") and not i["UnitIsDead"]("target") then
+            i["WR_HideColorFrame"](i["zhandoumoshi"])
+            i["WR_ShowColorFrame"]("ASF12", "神圣之盾", i["zhandoumoshi"])
+            return f
+        end
+        return e
+    end;
+    i["WR_PaladinProtection_Function_ZYZC"] = function()
+        if i["WR_SpellUsable"]("正义之锤") and i["TargetRange"] <= k("2") and i["UnitCanAttack"]("player", "target") and
+            not i["UnitIsDead"]("target") then
+            i["WR_HideColorFrame"](i["zhandoumoshi"])
+            i["WR_ShowColorFrame"]("ASF11", "正义之锤", i["zhandoumoshi"])
+            return f
+        end
+        return e
+    end;
+    i["WR_PaladinProtection_Function_ZYDJ"] = function()
+        if i["WR_SpellUsable"]("正义盾击") and i["TargetRange"] <= k("2") and i["UnitCanAttack"]("player", "target") and
+            not i["UnitIsDead"]("target") then
+            i["WR_HideColorFrame"](i["zhandoumoshi"])
+            i["WR_ShowColorFrame"]("ACSF1", "正义盾击", i["zhandoumoshi"])
+            return f
+        end
+        return e
+    end;
+    i["WR_PaladinHoly_Function_ZYDJ"] = function()
+        if i["UnitName"]("target") == "维扎克斯将军" then
+            return e
+        end
+        if i["WR_SpellUsable"]("正义盾击") and i["TargetRange"] <= k("2") and i["TargetInCombat"] and i["PlayerMP"] <=
+            k("0.95") and (i["PlayerMove"] or i["RiadOrParty"] ~= "raid") then
+            i["WR_HideColorFrame"](i["zhandoumoshi"])
+            i["WR_ShowColorFrame"]("ACSF1", "正义盾击", i["zhandoumoshi"])
+            return f
+        end
+        return e
+    end;
+    i["WR_Paladin_Function_SSFB"] = function()
+        if i["WR_SpellUsable"]("神圣风暴") and i["TargetRange"] <= k("3") and i["TargetInCombat"] then
+            i["WR_HideColorFrame"](i["zhandoumoshi"])
+            i["WR_ShowColorFrame"]("CF6", "神圣风暴", i["zhandoumoshi"])
+            return f
+        end
+        return e
+    end;
+    i["WR_Paladin_Function_FNZC"] = function()
+        if i["WR_SpellUsable"]("愤怒之锤") and i["TargetRange"] <= k("30") and i["TargetInCombat"] and i["TargetHP"] <
+            k("0.2") then
+            i["WR_HideColorFrame"](i["zhandoumoshi"])
+            i["WR_ShowColorFrame"]("CF8", "愤怒之锤", i["zhandoumoshi"])
+            return f
+        end
+        if i["WR_GetGCD"]("愤怒之锤") <= i["GCD"] and i["WR_GetUnitRange"]("mouseover") <= k("30") and
+            i["WR_TargetInCombat"]("mouseover") and i["UnitHealth"]("mouseover") / i["UnitHealthMax"]("mouseover") <
+            k("0.2") then
+            i["WR_HideColorFrame"](i["zhandoumoshi"])
+            i["WR_ShowColorFrame"]("CF2", "愤怒之锤M", i["zhandoumoshi"])
+            return f
+        end
+        return e
+    end;
+    i["WR_Paladin_Function_SSZJ_Damage"] = function()
+        if i["WR_SpellUsable"]("神圣震击") and i["TargetRange"] <= k("30") and i["TargetInCombat"] then
+            if i["UnitIsUnit"]("focus", "target") then
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"]("SF2", "神圣震击", i["zhandoumoshi"])
+                return f
+            end
+            i["WR_FocusHealthMaxWeightUnit_LastTime"] = i["GetTime"]()
+            if i["WR_FocusUnit"]("target", "震击") then
+                return f
+            end
+        end
+        return e
+    end;
+    i["WR_Paladin_Function_QXS"] = function()
+        if i["WR_SpellUsable"]("驱邪术") and i["TargetRange"] <= k("30") and i["TargetInCombat"] and
+            i["UnitCastingInfo"]("player") ~= "驱邪术" and
+            (i["WR_GetUnitBuffInfo"]("player", "战争艺术") > k("0") and
+                (not i["PlayerMove"] and not i["WR_StopCast"](i["WR_GetTrueCastTime"]("驱邪术")))) then
+            i["WR_HideColorFrame"](i["zhandoumoshi"])
+            i["WR_ShowColorFrame"]("CF9", "驱邪术", i["zhandoumoshi"])
+            return f
+        end
+    end;
+    i["WR_Paladin_Function_SSFN"] = function()
+        if i["PaladinTalent"] == "惩戒" and i["WRSet"]["CJ_SSFN"] ~= k("1") then
+            return e
+        elseif i["PaladinTalent"] == "防护" and i["WRSet"]["FH_SSFN"] ~= k("1") then
+            return e
+        end
+        if i["WR_SpellUsable"]("神圣愤怒") and i["TargetRange"] <= k("5") and i["TargetInCombat"] and
+            (i["UnitCreatureType"]("target") == "亡灵" or i["UnitCreatureType"]("target") == "恶魔") then
+            i["WR_HideColorFrame"](i["zhandoumoshi"])
+            i["WR_ShowColorFrame"]("CF5", "神圣愤怒", i["zhandoumoshi"])
+            return f
+        end
+        return e
+    end;
+    i["WR_PaladinHoly_Function_HWGJ"] = function()
+        if i["IsInInstance"]() and not i["KillTarget"] then
+            return e
+        end
+        if i["WR_Paladin_Function_FNZC"]() then
+            return f
+        end
+        if i["WR_Paladin_Function_SSZJ_Damage"]() then
+            return f
+        end
+        if i["WR_Paladin_Function_QXS"]() then
+            return f
+        end
+        return e
+    end;
+    i["WR_Paladin_Function_GJ"] = function()
+        if i["WRSet"]["SS_ZLMS"] == k("2") or i["WRSet"]["SS_ZLMS"] == k("3") then
+            return e
+        end
+        if not i["IsCurrentSpell"]("攻击") and i["TargetRange"] <= k("10") and i["TargetInCombat"] and
+            not i["UnitIsDeadOrGhost"]("target") and not i["IsMounted"]() then
+            i["WR_HideColorFrame"](i["zhandoumoshi"])
+            i["WR_ShowColorFrame"]("ACN9", "攻击", i["zhandoumoshi"])
+            return f
+        end
+        return e
+    end;
+    i["WR_PaladinHoly_Function_StopFollow"] = function()
+        if i["WRSet"]["SS_ZDGS"] ~= k("2") and i["UnitCastingInfo"]("player") ~= g then
+            i["WR_HideColorFrame"](i["zhandoumoshi"])
+            i["WR_ShowColorFrame"]("CSO", "停止跟随", i["zhandoumoshi"])
+            return f
+        end
+        return e
+    end;
+    i["WR_Paladin_Function_JS"] = function()
+        if not i["UnitIsDeadOrGhost"]("focus") and i["FocusHP"] <= k("0.4") then
+            return e
+        end
+        if not i["WR_SpellUsable"]("救赎") then
+            return e
+        end
+        if i["RiadOrParty"] == "single" then
+            return e
+        end
+        if i["WR_PartyInCombat"]() then
+            return e
+        end
+        if i["PlayerMove"] then
+            return e
+        end
+        if i["WR_StopCast"](i["WR_GetTrueCastTime"]("救赎")) then
+            return e
+        end
+        if i["PaladinTalent"] == "防护" and i["WRSet"]["FH_JS"] == k("2") then
+            return e
+        end
+        local y;
+        if i["RiadOrParty"] == "raid" then
+            y = k("25")
+        else
+            y = k("4")
+        end
+        for z = k("1"), y, k("1") do
+            local A = i["RiadOrParty"] .. z;
+            if i["UnitIsDeadOrGhost"](A) and i["WR_GetUnitRange"](A) <= k("30") then
+                if i["UnitIsUnit"]("focus", A) then
+                    i["WR_HideColorFrame"](i["zhandoumoshi"])
+                    i["WR_ShowColorFrame"]("SF6", "救赎F", i["zhandoumoshi"])
+                    return f
+                end
+                if i["WR_FocusUnit"](A, "救赎") then
+                    return f
+                end
+            end
+        end
+        return e
+    end;
+    i["WR_Paladin_Function_ZCZC"] = function()
+        if i["PaladinTalent"] == "神圣" and i["WRSet"]["SS_ZCZC"] == k("2") then
+            return e
+        end
+        if i["PaladinTalent"] == "惩戒" and i["WRSet"]["CJ_ZCZC"] == k("2") then
+            return e
+        end
+        if i["PaladinTalent"] == "防护" and i["WRSet"]["FH_ZCZC"] == k("2") then
+            return e
+        end
+        if i["WR_SpellUsable"]("制裁之锤") and i["WR_GetUnitRange"]("target") <= k("10") and
+            i["UnitCanAttack"]("target", "player") and i["WR_StunSpell"]("target") then
+            i["WR_HideColorFrame"](i["zhandoumoshi"])
+            i["WR_ShowColorFrame"]("SF11", "制裁T", i["zhandoumoshi"])
+            return f
+        end
+        return e
+    end;
+    i["WR_PaladinHoly_FindTank"] = function()
+        if not i["IsInInstance"]() then
+            return g
+        end
+        if i["RiadOrParty"] == "single" then
+            return e
+        end
+        local y;
+        if i["RiadOrParty"] == "raid" then
+            y = k("25")
+        else
+            y = k("4")
+        end
+        for z = k("1"), y, k("1") do
+            local A = i["RiadOrParty"] .. z;
+            if i["UnitExists"](A) and not i["UnitIsDeadOrGhost"](A) and i["WR_NumIsTank"](z) then
+                return A
+            end
+        end
+        return g
+    end;
+    i["WR_PaladinHoly_Function_FollowUnit"] = function()
+        if i["WRSet"]["SS_ZDGS"] == k("2") then
+            return g
+        end
+        if i["WR_TankUnit"] ~= g and i["UnitIsPlayer"](i["WR_TankUnit"]) and i["UnitExists"](i["WR_TankUnit"]) and
+            not i["UnitIsDeadOrGhost"](i["WR_TankUnit"]) and not i["PlayerMove"] and i["GCD"] == k("0") and
+            i["WR_GetUnitRange"](i["WR_TankUnit"]) > k("3") and i["WR_GetUnitRange"](i["WR_TankUnit"]) <= k("25") then
+            if i["UnitIsUnit"](i["WR_TankUnit"], "focus") then
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"]("CSL", "跟随", i["zhandoumoshi"])
+                return f
+            end
+            if i["WR_FocusUnit"](i["WR_TankUnit"], "跟随") then
+                return f
+            end
+        end
+        return e
+    end;
+    i["WR_Paladin_ZYZS"] = function(E)
+        if i["WR_SpellUsable"]("自由之手") and i["WR_GetUnitRange"](E) <= k("30") and
+            not i["UnitCanAttack"](E, "player") and i["WR_Unbind"](E) then
+            if i["UnitIsUnit"](E, "focus") then
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"]("SF10", "自由" .. E, i["zhandoumoshi"])
+                return f
+            end
+            if i["WR_FocusUnit"](E, "自由") then
+                return f
+            end
+        end
+        return e
+    end;
+    i["WR_Paladin_Function_ZYZF"] = function()
+        if not i["WR_SpellUsable"]("自由之手") then
+            return e
+        end
+        local Y;
+        if i["PaladinTalent"] == "神圣" then
+            Y = i["WRSet"]["SS_ZYZS"]
+        elseif i["PaladinTalent"] == "惩戒" then
+            Y = i["WRSet"]["CJ_ZYZS"]
+        elseif i["PaladinTalent"] == "防护" then
+            Y = i["WRSet"]["FH_ZYZS"]
+        end
+        if Y == g or Y == k("3") then
+            return e
+        end
+        if Y == k("1") then
+            if i["WR_Paladin_ZYZS"]("mouseover") then
+                return f
+            end
+            if i["WR_TankUnit"] ~= g and i["WR_Paladin_ZYZS"](i["WR_TankUnit"]) then
+                return f
+            end
+            if i["WR_Paladin_ZYZS"]("player") then
+                return f
+            end
+            if i["RiadOrParty"] == "single" then
+                return e
+            end
+            local y;
+            if i["RiadOrParty"] == "raid" then
+                y = k("25")
+            else
+                y = k("4")
+            end
+            for z = k("1"), y, k("1") do
+                local A = i["RiadOrParty"]
+                if i["WR_Paladin_ZYZS"](A) then
+                    return f
+                end
+            end
+        end
+        if Y == k("2") and i["WR_Paladin_ZYZS"]("player") then
+            return f
+        end
+        return e
+    end;
+    i["WR_PaladinHoly_FindTank_SGDB_SJHD"] = function()
+        local Z = {}
+        if i["RiadOrParty"] == "party" then
+            local _ = k("1")
+            for z = k("1"), k("4"), k("1") do
+                local A = "party" .. z;
+                if i["UnitExists"](A) and i["WR_NumIsTank"](z) and _ <= k("4") then
+                    if i["UnitName"](A) ~= g and i["SS_SGDB_menuItems"][_]["text"] ~= i["UnitName"](A) then
+                        i["SS_SGDB_UpdateMenuItemText"](_, i["UnitName"](A))
                     end
-                    X[Y] = y;
-                    Y = Y + i("1")
+                    Z[_] = A;
+                    _ = _ + k("1")
                 end
-                if g["SS_SJHD_menuItems"][x]["text"] ~= f then
-                    g["SS_SJHD_UpdateMenuItemText"](x, f)
+                if i["SS_SJHD_menuItems"][z]["text"] ~= h then
+                    i["SS_SJHD_UpdateMenuItemText"](z, h)
                 end
             end
-        elseif g["RiadOrParty"] == "raid" then
-            local Y = i("1")
-            for x = i("1"), i("25"), i("1") do
-                local y = "raid" .. x;
-                if g["UnitExists"](y) and g["WR_NumIsTank"](x) and Y <= i("4") then
-                    if g["UnitName"](y) ~= e and g["SS_SGDB_menuItems"][Y]["text"] ~= g["UnitName"](y) then
-                        g["SS_SGDB_UpdateMenuItemText"](Y, g["UnitName"](y))
+        elseif i["RiadOrParty"] == "raid" then
+            local _ = k("1")
+            for z = k("1"), k("25"), k("1") do
+                local A = "raid" .. z;
+                if i["UnitExists"](A) and i["WR_NumIsTank"](z) and _ <= k("4") then
+                    if i["UnitName"](A) ~= g and i["SS_SGDB_menuItems"][_]["text"] ~= i["UnitName"](A) then
+                        i["SS_SGDB_UpdateMenuItemText"](_, i["UnitName"](A))
                     end
-                    if g["UnitName"](y) ~= e and g["SS_SJHD_menuItems"][Y]["text"] ~= g["UnitName"](y) then
-                        g["SS_SJHD_UpdateMenuItemText"](Y, g["UnitName"](y))
+                    if i["UnitName"](A) ~= g and i["SS_SJHD_menuItems"][_]["text"] ~= i["UnitName"](A) then
+                        i["SS_SJHD_UpdateMenuItemText"](_, i["UnitName"](A))
                     end
-                    X[Y] = y;
-                    Y = Y + i("1")
+                    Z[_] = A;
+                    _ = _ + k("1")
                 end
             end
         end
-        for x = i("1"), i("4"), i("1") do
-            if g["SS_SGDB_menuItems"][x]["text"] ~= f and X[x] == e then
-                g["SS_SGDB_UpdateMenuItemText"](x, f)
+        for z = k("1"), k("4"), k("1") do
+            if i["SS_SGDB_menuItems"][z]["text"] ~= h and Z[z] == g then
+                i["SS_SGDB_UpdateMenuItemText"](z, h)
             end
         end
-        return X[i("1")], X[i("2")], X[i("3")], X[i("4")]
+        return Z[k("1")], Z[k("2")], Z[k("3")], Z[k("4")]
     end;
-    g["WR_IsTracking"] = function(Z)
-        for x = i("1"), g["C_Minimap"]["GetNumTrackingTypes"]() do
-            local n, _, a0, a1, a2, a3 = g["C_Minimap"]["GetTrackingInfo"](x)
-            if n == Z and a0 then
-                return d
+    i["WR_IsTracking"] = function(a0)
+        for z = k("1"), i["C_Minimap"]["GetNumTrackingTypes"]() do
+            local p, a1, a2, a3, a4, a5 = i["C_Minimap"]["GetTrackingInfo"](z)
+            if p == a0 and a2 then
+                return f
             end
         end
-        return c
+        return e
     end;
-    g["WR_Paladin_GZWL"] = function()
-        if g["WR_IsUsingGlyph"]("感知亡灵雕文") and not g["WR_IsTracking"]("感知亡灵") then
-            g["WR_HideColorFrame"](g["zhandoumoshi"])
-            g["WR_ShowColorFrame"]("ASF7", "感知亡灵", g["zhandoumoshi"])
-            return d
+    i["WR_Paladin_GZWL"] = function()
+        if i["WR_IsUsingGlyph"]("感知亡灵雕文") and not i["WR_IsTracking"]("感知亡灵") then
+            i["WR_HideColorFrame"](i["zhandoumoshi"])
+            i["WR_ShowColorFrame"]("ASF7", "感知亡灵", i["zhandoumoshi"])
+            return f
         end
-        return c
+        return e
     end;
-    g["WR_Paladin_SPELL_CAST_SUCCESS"] = function()
-        if g["WR_Paladin_SPELL_CAST_SUCCESS_Open"] == d then
+    i["WR_Paladin_SPELL_CAST_SUCCESS"] = function()
+        if i["WR_Paladin_SPELL_CAST_SUCCESS_Open"] == f then
             return
         end
-        local a4 = g["CreateFrame"]("Frame")
-        a4["RegisterEvent"](a4, "COMBAT_LOG_EVENT_UNFILTERED")
-        a4["SetScript"](a4, "OnEvent", function()
-            if g["select"](i("4"), g["CombatLogGetCurrentEventInfo"]()) == g["UnitGUID"]("player") then
-                if g["select"](i("2"), g["CombatLogGetCurrentEventInfo"]()) == "SPELL_CAST_SUCCESS" then
-                    local a5 = g["select"](i("13"), g["CombatLogGetCurrentEventInfo"]())
-                    if a5 == "圣光术" or a5 == "圣光闪现" then
-                        g["Paladin_CastTime"] = g["GetTime"]()
+        local a6 = i["CreateFrame"]("Frame")
+        a6["RegisterEvent"](a6, "COMBAT_LOG_EVENT_UNFILTERED")
+        a6["SetScript"](a6, "OnEvent", function()
+            if i["select"](k("4"), i["CombatLogGetCurrentEventInfo"]()) == i["UnitGUID"]("player") then
+                if i["select"](k("2"), i["CombatLogGetCurrentEventInfo"]()) == "SPELL_CAST_SUCCESS" then
+                    local a7 = i["select"](k("13"), i["CombatLogGetCurrentEventInfo"]())
+                    if a7 == "圣光术" or a7 == "圣光闪现" then
+                        i["Paladin_CastTime"] = i["GetTime"]()
                     end
                 end
             end
         end)
-        g["WR_Paladin_SPELL_CAST_SUCCESS_Open"] = d
+        i["WR_Paladin_SPELL_CAST_SUCCESS_Open"] = f
     end;
-    g["WR_Paladin_ErrorMessage"] = function()
-        if g["WR_Paladin_ErrorMessageInfo"] ~= d then
-            local a6 = g["CreateFrame"]("Frame")
-            a6["RegisterEvent"](a6, "UI_ERROR_MESSAGE")
-            a6["SetScript"](a6, "OnEvent", function(B, a7, a8, a9)
-                if g["string"]["find"](a9, "目标不在视野中") then
-                    g["OutOfSight_ErrorMessageTime"] = g["GetTime"]()
-                    g["OutOfSight_FocusID"] = g["UnitGUID"]("focus")
+    i["WR_Paladin_ErrorMessage"] = function()
+        if i["WR_Paladin_ErrorMessageInfo"] ~= f then
+            local a8 = i["CreateFrame"]("Frame")
+            a8["RegisterEvent"](a8, "UI_ERROR_MESSAGE")
+            a8["SetScript"](a8, "OnEvent", function(D, a9, aa, ab)
+                if i["string"]["find"](ab, "目标不在视野中") then
+                    i["OutOfSight_ErrorMessageTime"] = i["GetTime"]()
+                    i["OutOfSight_FocusID"] = i["UnitGUID"]("focus")
                     return
                 end
             end)
-            g["WR_Paladin_ErrorMessageInfo"] = d
+            i["WR_Paladin_ErrorMessageInfo"] = f
         end
     end;
-    g["WR_PaladinProtection_ZYFY"] = function(C)
-        if g["UnitCanAttack"]("player", C) then
-            return c
+    i["WR_PaladinProtection_ZYFY"] = function(E)
+        if i["UnitCanAttack"]("player", E) then
+            return e
         end
-        if g["WR_UnitIsTank"](C) then
-            return c
+        if i["WR_UnitIsTank"](E) then
+            return e
         end
-        if g["WR_GetUnitRange"](C) > i("40") then
-            return c
+        if i["WR_GetUnitRange"](E) > k("40") then
+            return e
         end
-        if g["UnitIsUnit"]("player", C) then
-            return c
+        if i["UnitIsUnit"]("player", E) then
+            return e
         end
-        local aa = i("0")
-        for x = i("1"), i("40") do
-            if g["UnitIsUnit"]("nameplate" .. x .. "target", C) and not g["UnitIsPlayer"]("nameplate") then
-                aa = aa + i("1")
+        local ac = k("0")
+        for z = k("1"), k("40") do
+            if i["UnitIsUnit"]("nameplate" .. z .. "target", E) and not i["UnitIsPlayer"]("nameplate") then
+                ac = ac + k("1")
             end
         end
-        if aa >= g["WRSet"]["FH_ZYFY"] then
-            if g["UnitIsUnit"](C, "focus") then
-                g["WR_HideColorFrame"](g["zhandoumoshi"])
-                g["WR_ShowColorFrame"]("ACSF10", "正义防御" .. C, g["zhandoumoshi"])
-                return d
+        if ac >= i["WRSet"]["FH_ZYFY"] then
+            if i["UnitIsUnit"](E, "focus") then
+                i["WR_HideColorFrame"](i["zhandoumoshi"])
+                i["WR_ShowColorFrame"]("ACSF10", "正义防御" .. E, i["zhandoumoshi"])
+                return f
             end
-            if g["WR_FocusUnit"](C, "正义防御") then
-                return d
+            if i["WR_FocusUnit"](E, "正义防御") then
+                return f
             end
         end
-        return c
+        return e
     end;
-    g["WR_PaladinProtection_Function_ZYFY"] = function()
-        if g["WRSet"]["FH_ZYFY"] == i("6") then
-            return c
+    i["WR_PaladinProtection_Function_ZYFY"] = function()
+        if i["WRSet"]["FH_ZYFY"] == k("6") then
+            return e
         end
-        local F;
-        if g["RiadOrParty"] == "raid" then
-            F = i("25")
-        elseif g["RiadOrParty"] == "party" then
-            F = i("4")
+        local H;
+        if i["RiadOrParty"] == "raid" then
+            H = k("25")
+        elseif i["RiadOrParty"] == "party" then
+            H = k("4")
         end
-        if F == e then
-            return c
+        if H == g then
+            return e
         end
-        for x = i("1"), F do
-            if g["WR_PaladinProtection_ZYFY"](g["RiadOrParty"] .. x) then
-                return d
+        for z = k("1"), H do
+            if i["WR_PaladinProtection_ZYFY"](i["RiadOrParty"] .. z) then
+                return f
             end
         end
-        return c
+        return e
     end;
-    g["WR_Paladin_ZLS"] = function()
-        local ab = i("5")
-        if g["PaladinTalent"] == "神圣" then
-            ab = g["WRSet"]["SS_ZLS"]
-        elseif g["PaladinTalent"] == "惩戒" then
-        elseif g["PaladinTalent"] == "防护" then
+    i["WR_Paladin_ZLS"] = function()
+        local ad = k("5")
+        if i["PaladinTalent"] == "神圣" then
+            ad = i["WRSet"]["SS_ZLS"]
+        elseif i["PaladinTalent"] == "惩戒" then
+        elseif i["PaladinTalent"] == "防护" then
         end
-        if ab ~= i("5") and g["UnitAffectingCombat"]("player") and g["PlayerHP"] < ab / i("10") and g["WR_Use_ZLS"]() then
-            if g["WR_ColorFrame_Show"]("ACSF12", "治疗石") then
-                return d
+        if ad ~= k("5") and i["UnitAffectingCombat"]("player") and i["PlayerHP"] < ad / k("10") and i["WR_Use_ZLS"]() then
+            if i["WR_ColorFrame_Show"]("ACSF12", "治疗石") then
+                return f
             end
         end
-        return c
+        return e
     end
 end)()

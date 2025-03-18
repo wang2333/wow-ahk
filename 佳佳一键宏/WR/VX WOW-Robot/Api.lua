@@ -1,8 +1,8 @@
-local a = 21;
-local b = 80;
-local c = 58;
-local d = 44;
-local e = 91;
+local a = 59;
+local b = 37;
+local c = 77;
+local d = 84;
+local e = 34;
 local f = 0 == 1;
 local g = not f;
 local h = nil;
@@ -2034,7 +2034,7 @@ return (function(...)
                         end
                         if (j["WR_GetUnitDebuffTime"](aw, l("66118")) ~= l("0") or
                             j["WR_GetUnitDebuffTime"](aw, "吸血虫群") ~= l("0")) and
-                            j["WR_GetUnitDebuffTime"](aw, l("66013")) == l("0") and not j["WR_NumIsTank"](r) then
+                            j["WR_GetUnitDebuffTime"](aw, "刺骨之寒") == l("0") and not j["WR_NumIsTank"](r) then
                             ax[r] = ax[r] - l("1000")
                         end
                     end
@@ -2056,7 +2056,7 @@ return (function(...)
                         if j["CiGuUnit"] ~= h then
                             for aB = l("1"), l("5"), l("1") do
                                 if (j["WRSet"]["JL_CGZH"][aB] or j["JL_CGZH_selectedItems"][aB]) and j["CiGuUnit"][aB] ==
-                                    aw and j["WR_GetUnitDebuffTime"](aw, l("66013")) ~= l("0") then
+                                    aw and j["WR_GetUnitDebuffTime"](aw, "刺骨之寒") ~= l("0") then
                                     if j["WR_Priest_XXCQ"] then
                                         ax[r] = ax[r] + l("1000")
                                     else
@@ -2067,7 +2067,7 @@ return (function(...)
                         end
                         if (j["WR_GetUnitDebuffTime"](aw, l("66118")) ~= l("0") or
                             j["WR_GetUnitDebuffTime"](aw, "吸血虫群") ~= l("0")) and
-                            j["WR_GetUnitDebuffTime"](aw, l("66013")) == l("0") then
+                            j["WR_GetUnitDebuffTime"](aw, "刺骨之寒") == l("0") then
                             ax[r] = ax[r] - l("1000")
                         end
                         if j["OutOfSight_ErrorMessageTime"] ~= h and j["OutOfSight_FocusID"] ~= h and j["GetTime"]() -
