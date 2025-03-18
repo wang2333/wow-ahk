@@ -1,5 +1,5 @@
 ﻿## Interface: 30403
-## Title: |cFFFFA500 W|r|cFFFFAB0AO|r|cFFFFB114W|r|cFFFFB71E-|r|cFFFFBD28R|r|cFFFFC332o|r|cFFFFC93Cb|r|cFFFFCF46o|r|cFFFFD550t|r |cffe677000|cfff08c003|cfff59f00-|cfffab0051|cfffcc4192(1)
+## Title: |cFFFFA500 W|r|cFFFFAB0AO|r|cFFFFB114W|r|cFFFFB71E-|r|cFFFFBD28R|r|cFFFFC332o|r|cFFFFC93Cb|r|cFFFFCF46o|r|cFFFFD550t|r |cffe677000|cfff08c003|cfff59f00-|cfffab0051|cfffcc4196
 ## Author: 佳佳不是熊猫
 ## IconTexture: Interface\AddOns\WR\Color\WOW-Robot.tga
 ## Notes: |cffffdf00微信:|cff00ff00WOW-Robot
@@ -11,8 +11,8 @@ VX WOW-Robot\Libs\LibRangeCheck\LibRangeCheck.lua
 VX WOW-Robot\Libs\LibRangeCheck\LibRangeCheck-2.0.lua
 VX WOW-Robot\Libs\LibRangeCheck\LibRangeCheck-3.0.lua
 VX WOW-Robot\libs\Ace3\AceAddon-3.0\AceAddon-3.0.xml
+VX WOW-Robot\Welcome.lua
 VX WOW-Robot\Api.lua
-
 VX WOW-Robot\Frame.lua
 
 Classes\Paladin\Paladin.lua
@@ -29,18 +29,5 @@ Classes\Priest\Priest.lua
 Classes\Priest\Priest-Frame.lua
 Classes\Priest\Priest-Macro.lua
 Classes\Priest\Priest-Function.lua
-
-Classes\DeathKnight\DeathKnight.lua
-Classes\DeathKnight\DeathKnight-Frame.lua
-Classes\DeathKnight\DeathKnight-Macro.lua
-Classes\DeathKnight\WA\V109-Action.lua
-Classes\DeathKnight\WA\V109-Trigger2.lua
-Classes\DeathKnight\WA\V109-Trigger3.lua
-Classes\DeathKnight\WA\V109-Trigger5.lua
-Classes\DeathKnight\WA\V109-Trigger6.lua
-Classes\DeathKnight\WA\V109-Trigger7.lua
-Classes\DeathKnight\WA\V109-Trigger8.lua
-Classes\DeathKnight\WA\V109-Trigger9.lua
-Classes\DeathKnight\DeathKnight-Function.lua
 
 VX WOW-Robot\Startup.lua
