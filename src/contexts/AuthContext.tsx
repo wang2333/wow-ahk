@@ -42,7 +42,7 @@ const storePromise = Store.load('user-data.json');
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   // const checkSavedUser = async () => {
   //   try {
