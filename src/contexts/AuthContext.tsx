@@ -10,9 +10,17 @@ interface Coordinates {
   y: number;
 }
 
+// 热键设置接口
+interface HotkeySettings {
+  mode1Key: string;
+  mode2Key: string;
+  pauseKey: string;
+}
+
 // 用户设置接口
 interface UserSettings {
   wowCoordinates: Coordinates;
+  hotkeySettings?: HotkeySettings; // 新增热键设置
   // 可以在这里添加更多游戏设置
 }
 
@@ -29,13 +37,15 @@ interface AuthContextType {
   logout: () => Promise<void>;
   updateUserSettings: (settings: Partial<UserSettings>) => Promise<void>;
   updateWowCoordinates: (coordinates: Coordinates) => Promise<void>;
+  updateHotkeySettings: (hotkeys: HotkeySettings) => Promise<void>; // 新增更新热键设置方法
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 // 默认用户设置
 const DEFAULT_USER_SETTINGS: UserSettings = {
-  wowCoordinates: { x1: 15, x2: 2550, y: 15 }
+  wowCoordinates: { x1: 15, x2: 2550, y: 15 },
+  hotkeySettings: { mode1Key: 'F1', mode2Key: 'F2', pauseKey: 'F3' }
 };
 
 // 创建存储实例
@@ -134,6 +144,28 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  // 更新热键设置
+  const updateHotkeySettings = async (hotkeys: HotkeySettings): Promise<void> => {
+    if (!user) return;
+
+    try {
+      const store = await storePromise;
+      const newSettings = {
+        ...user.settings,
+        hotkeySettings: hotkeys
+      };
+
+      await store.set('user', {
+        ...user,
+        settings: newSettings
+      });
+
+      setUser(prev => (prev ? { ...prev, settings: newSettings } : null));
+    } catch (error) {
+      console.error('更新热键设置失败:', error);
+    }
+  };
+
   // 更新WOW坐标的便捷方法
   const updateWowCoordinates = async (coordinates: Coordinates): Promise<void> => {
     await updateUserSettings({
@@ -204,7 +236,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         login,
         logout,
         updateUserSettings,
-        updateWowCoordinates
+        updateWowCoordinates,
+        updateHotkeySettings
       }}
     >
       {children}

@@ -47,13 +47,20 @@ for (let angle = 0; angle < 360; angle += 30) {
 MOUSE_POSITIONS.push(MOUSE_CENTER);
 
 function WOW() {
-  const { user, updateWowCoordinates } = useAuth();
+  const { user, updateWowCoordinates, updateHotkeySettings } = useAuth();
   const [color, setColor] = useState<string | null>(null);
   const [model, setModel] = useState(0);
   const [autoMove, setAutoMove] = useState(false);
   const [moveInterval, setMoveInterval] = useState(500);
   const [moveKeys, setMoveKeys] = useState('T');
   const [selectedMapping, setSelectedMapping] = useState<ColorMapping>('JIAJIA');
+
+  // 添加自定义热键状态，从用户设置中加载或使用默认值
+  const [hotkeys, setHotkeys] = useState({
+    mode1Key: user?.settings?.hotkeySettings?.mode1Key || 'F1',
+    mode2Key: user?.settings?.hotkeySettings?.mode2Key || 'F2',
+    pauseKey: user?.settings?.hotkeySettings?.pauseKey || 'F3',
+  });
 
   const colorMapDict = {
     JIAJIA: color_mappings_JIAJIA,
@@ -82,6 +89,18 @@ function WOW() {
     }
   }, [user, user?.settings]);
 
+  // 当用户或用户设置变化时，更新热键设置
+  useEffect(() => {
+    if (user?.settings?.hotkeySettings) {
+      setHotkeys(prev => ({
+        ...prev,
+        mode1Key: user.settings.hotkeySettings?.mode1Key || prev.mode1Key,
+        mode2Key: user.settings.hotkeySettings?.mode2Key || prev.mode2Key,
+        pauseKey: user.settings.hotkeySettings?.pauseKey || prev.pauseKey,
+      }));
+    }
+  }, [user, user?.settings]);
+
   // 注册全局热键
   useEffect(() => {
     registerShortcuts();
@@ -89,7 +108,7 @@ function WOW() {
     return () => {
       cleanup();
     };
-  }, []);
+  }, [hotkeys]); // 添加hotkeys作为依赖项，当热键改变时重新注册
 
   const autokey = async (params: { x: number; y: number }) => {
     const newColor = await invoke<ColorInfo>('get_pixel_color', params);
@@ -161,8 +180,9 @@ function WOW() {
     try {
       // 在注册前先尝试注销所有热键，防止重复注册
       await cleanup();
-      // 注册F1热键
-      await register('F1', async e => {
+
+      // 注册模式1热键
+      await register(hotkeys.mode1Key, async e => {
         if (e.state === 'Pressed') {
           if (selectedMapping === 'XIAOYI_LR') {
             await invoke('press_keys', { keys: ['SHIFT', 'F11'] });
@@ -174,8 +194,8 @@ function WOW() {
         }
       });
 
-      // 注册F2热键
-      await register('F2', async e => {
+      // 注册模式2热键
+      await register(hotkeys.mode2Key, async e => {
         if (e.state === 'Pressed') {
           if (selectedMapping === 'XIAOYI_LR') {
             await invoke('press_keys', { keys: ['ALT', 'CTRL', 'SHIFT', 'F11'] });
@@ -187,8 +207,8 @@ function WOW() {
         }
       });
 
-      // 注册F3热键
-      await register('F3', async e => {
+      // 注册暂停热键
+      await register(hotkeys.pauseKey, async e => {
         if (e.state === 'Pressed') {
           setModel(0);
           setColor(null);
@@ -196,6 +216,7 @@ function WOW() {
         }
       });
 
+      // 注册坐标获取热键
       await register('F8', async e => {
         if (e.state === 'Pressed') {
           const info = await invoke<{ x: number; y: number }>('get_current_position_color');
@@ -219,13 +240,41 @@ function WOW() {
   const cleanup = async () => {
     try {
       // 使用try-catch分别处理每个热键的注销，确保一个失败不影响其他热键
-      try { await unregister('F1'); } catch (e) { console.log('F1热键注销：', e); }
-      try { await unregister('F2'); } catch (e) { console.log('F2热键注销：', e); }
-      try { await unregister('F3'); } catch (e) { console.log('F3热键注销：', e); }
-      try { await unregister('F8'); } catch (e) { console.log('F8热键注销：', e); }
+      try {
+        await unregister(hotkeys.mode1Key);
+      } catch (e) {
+        console.log(`${hotkeys.mode1Key}热键注销:`, e);
+      }
+      try {
+        await unregister(hotkeys.mode2Key);
+      } catch (e) {
+        console.log(`${hotkeys.mode2Key}热键注销:`, e);
+      }
+      try {
+        await unregister(hotkeys.pauseKey);
+      } catch (e) {
+        console.log(`${hotkeys.pauseKey}热键注销:`, e);
+      }
+      try {
+        await unregister('F8');
+      } catch (e) {
+        console.log(`F8热键注销:`, e);
+      }
     } catch (error) {
       console.error('注销热键失败:', error);
     }
+  };
+
+  const handleHotkeyChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    const newHotkeys = {
+      ...hotkeys,
+      [name]: value
+    };
+
+    setHotkeys(newHotkeys);
+    // 更新用户设置中的热键
+    updateHotkeySettings(newHotkeys);
   };
 
   const handleCoordinateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -245,6 +294,9 @@ function WOW() {
     const value = parseInt(e.target.value) || 500;
     setMoveInterval(Math.max(100, value));
   };
+
+  // 创建可用热键选项列表
+  const availableHotkeys = ['F1', 'F2', 'F3', '1', '2', '3', 'Q', 'W', 'E', 'R', 'T'];
 
   return (
     <div className={styles.container}>
@@ -307,6 +359,58 @@ function WOW() {
                 className={styles.input}
               />
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* 新增热键设置区域 */}
+      <div className={styles.card}>
+        <h3 className={styles.cardTitle}>热键设置</h3>
+        <div className={styles.controlSection}>
+          <div className={styles.inputGroupCompact}>
+            <label className={styles.label}>模式1热键</label>
+            <select
+              name='mode1Key'
+              value={hotkeys.mode1Key}
+              onChange={handleHotkeyChange}
+              className={styles.input}
+            >
+              {availableHotkeys.map(key => (
+                <option key={key} value={key}>
+                  {key}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className={styles.inputGroupCompact}>
+            <label className={styles.label}>模式2热键</label>
+            <select
+              name='mode2Key'
+              value={hotkeys.mode2Key}
+              onChange={handleHotkeyChange}
+              className={styles.input}
+            >
+              {availableHotkeys.map(key => (
+                <option key={key} value={key}>
+                  {key}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className={styles.inputGroupCompact}>
+            <label className={styles.label}>暂停热键</label>
+            <select
+              name='pauseKey'
+              value={hotkeys.pauseKey}
+              onChange={handleHotkeyChange}
+              className={styles.input}
+            >
+              {availableHotkeys.map(key => (
+                <option key={key} value={key}>
+                  {key}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
       </div>
