@@ -1,5 +1,6 @@
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 import { Store } from '@tauri-apps/plugin-store';
+import { getCurrentWindow } from '@tauri-apps/api/window';
 import request from '@/Utils/axios';
 
 // 坐标接口
@@ -44,42 +45,70 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  // const checkSavedUser = async () => {
-  //   try {
-  //     const store = await storePromise;
-  //     const savedUser = await store.get<User>('user');
+  const checkSavedUser = async () => {
+    try {
+      const store = await storePromise;
+      const savedUser = await store.get<User>('user');
 
-  //     if (savedUser && savedUser.isLoggedIn) {
-  //       // 检查是否过期
-  //       const currentTime = Date.now();
-  //       if (currentTime > savedUser.expireTime) {
-  //         // 已过期，清除用户数据
-  //         await store.set('user', null);
-  //         await store.save();
-  //         setUser(null);
-  //         return;
-  //       }
+      if (savedUser && savedUser.isLoggedIn) {
+        // 确保用户有设置对象
+        if (!savedUser.settings) {
+          savedUser.settings = DEFAULT_USER_SETTINGS;
+        } else if (!savedUser.settings.wowCoordinates) {
+          savedUser.settings.wowCoordinates = DEFAULT_USER_SETTINGS.wowCoordinates;
+        }
 
-  //       // 确保用户有设置对象
-  //       if (!savedUser.settings) {
-  //         savedUser.settings = DEFAULT_USER_SETTINGS;
-  //       } else if (!savedUser.settings.wowCoordinates) {
-  //         savedUser.settings.wowCoordinates = DEFAULT_USER_SETTINGS.wowCoordinates;
-  //       }
+        setUser(savedUser);
+      }
+    } catch (error) {
+      console.error('Failed to load user data:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-  //       setUser(savedUser);
-  //     }
-  //   } catch (error) {
-  //     console.error('Failed to load user data:', error);
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // };
+  // 清空用户状态的函数
+  const clearUserState = async (): Promise<void> => {
+    setUser(null);
+    // 通过 Store API 清除用户数据
+    const store = await storePromise;
+    await store.set('user', null);
+    await store.save();
+    console.log('用户状态已清空');
+    return;
+  };
 
-  // // 初始化时检查是否有保存的用户会话
-  // useEffect(() => {
-  //   checkSavedUser();
-  // }, []);
+  // 初始化时检查是否有保存的用户会话并设置应用关闭事件监听
+  useEffect(() => {
+    // 加载保存的用户数据
+    checkSavedUser();
+
+    // 设置应用关闭事件监听器
+    let unlistenFn: (() => void) | undefined;
+    const setupCloseHandler = async () => {
+      try {
+        const appWindow = await getCurrentWindow();
+
+        // 在窗口关闭请求时执行清理操作
+        unlistenFn = await appWindow.onCloseRequested(async () => {
+          // 阻止默认关闭行为，以便先执行清理操作
+          // event.preventDefault();
+          // 清空用户状态
+          await clearUserState();
+          appWindow.close();
+        });
+      } catch (error) {
+        console.error('设置窗口关闭事件监听器失败:', error);
+      }
+    };
+    setupCloseHandler();
+    // 组件卸载时移除事件监听器
+    return () => {
+      if (unlistenFn) {
+        unlistenFn();
+      }
+    };
+  }, []);
 
   // 更新用户设置
   const updateUserSettings = async (newSettings: Partial<UserSettings>): Promise<void> => {
@@ -163,19 +192,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const logout = async (): Promise<void> => {
     setIsLoading(true);
-
-    try {
-      setUser(null);
-
-      // 清除存储的用户数据
-      const store = await storePromise;
-      await store.set('user', null);
-      await store.save();
-    } catch (error) {
-      console.error('Logout error:', error);
-    } finally {
-      setIsLoading(false);
-    }
+    await clearUserState();
+    setIsLoading(false);
   };
 
   return (

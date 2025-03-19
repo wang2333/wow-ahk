@@ -72,7 +72,6 @@ function WOW() {
 
   // 当用户或用户设置变化时，更新坐标
   useEffect(() => {
-    console.log('👻 ~ user:', user);
     if (user?.settings?.wowCoordinates) {
       setCoordinates(prev => ({
         ...prev,
@@ -94,6 +93,7 @@ function WOW() {
 
   const autokey = async (params: { x: number; y: number }) => {
     const newColor = await invoke<ColorInfo>('get_pixel_color', params);
+    if (!newColor) return;
     // 转换为十六进制格式
     const hexColor = rgbToHex(newColor.r, newColor.g, newColor.b);
     setColor(hexColor);
@@ -159,6 +159,8 @@ function WOW() {
 
   const registerShortcuts = async () => {
     try {
+      // 在注册前先尝试注销所有热键，防止重复注册
+      await cleanup();
       // 注册F1热键
       await register('F1', async e => {
         if (e.state === 'Pressed') {
@@ -216,10 +218,11 @@ function WOW() {
 
   const cleanup = async () => {
     try {
-      await unregister('F1');
-      await unregister('F2');
-      await unregister('F3');
-      await unregister('F8');
+      // 使用try-catch分别处理每个热键的注销，确保一个失败不影响其他热键
+      try { await unregister('F1'); } catch (e) { console.log('F1热键注销：', e); }
+      try { await unregister('F2'); } catch (e) { console.log('F2热键注销：', e); }
+      try { await unregister('F3'); } catch (e) { console.log('F3热键注销：', e); }
+      try { await unregister('F8'); } catch (e) { console.log('F8热键注销：', e); }
     } catch (error) {
       console.error('注销热键失败:', error);
     }

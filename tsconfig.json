@@ -27,7 +27,7 @@
     },
 
     /* Node.js support */
-    "types": ["node"]
+    "types": ["node", "@tauri-apps/api"]
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
