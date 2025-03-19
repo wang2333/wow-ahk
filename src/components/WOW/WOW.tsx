@@ -8,6 +8,7 @@ import { register, unregister } from '@tauri-apps/plugin-global-shortcut';
 import { useAuth } from '@/contexts/AuthContext';
 import {
   color_mappings_JIAJIA,
+  color_mappings_JIAJIA_REAL,
   color_mappings_ZHUZHU,
   color_mappings_XIAOYI_SS,
   color_mappings_XIAOYI_LR,
@@ -20,7 +21,7 @@ interface ColorInfo {
   g: number;
   b: number;
 }
-type ColorMapping = 'JIAJIA' | 'ZHUZHU' | 'XIAOYI_SS' | 'XIAOYI_LR';
+type ColorMapping = 'JIAJIA' | 'JIAJIA_REAL' | 'ZHUZHU' | 'XIAOYI_SS' | 'XIAOYI_LR';
 
 // 创建音频对象
 const mode1Audio = new Audio(mode1);
@@ -59,11 +60,12 @@ function WOW() {
   const [hotkeys, setHotkeys] = useState({
     mode1Key: user?.settings?.hotkeySettings?.mode1Key || 'F1',
     mode2Key: user?.settings?.hotkeySettings?.mode2Key || 'F2',
-    pauseKey: user?.settings?.hotkeySettings?.pauseKey || 'F3',
+    pauseKey: user?.settings?.hotkeySettings?.pauseKey || 'F3'
   });
 
   const colorMapDict = {
     JIAJIA: color_mappings_JIAJIA,
+    JIAJIA_REAL: color_mappings_JIAJIA_REAL,
     ZHUZHU: color_mappings_ZHUZHU,
     XIAOYI_SS: color_mappings_XIAOYI_SS,
     XIAOYI_LR: color_mappings_XIAOYI_LR
@@ -96,7 +98,7 @@ function WOW() {
         ...prev,
         mode1Key: user.settings.hotkeySettings?.mode1Key || prev.mode1Key,
         mode2Key: user.settings.hotkeySettings?.mode2Key || prev.mode2Key,
-        pauseKey: user.settings.hotkeySettings?.pauseKey || prev.pauseKey,
+        pauseKey: user.settings.hotkeySettings?.pauseKey || prev.pauseKey
       }));
     }
   }, [user, user?.settings]);
@@ -113,8 +115,13 @@ function WOW() {
   const autokey = async (params: { x: number; y: number }) => {
     const newColor = await invoke<ColorInfo>('get_pixel_color', params);
     if (!newColor) return;
+    let hexColor = '';
     // 转换为十六进制格式
-    const hexColor = rgbToHex(newColor.r, newColor.g, newColor.b);
+    if (selectedMapping === 'JIAJIA_REAL' && model === 1) {
+      hexColor = rgbToHex(newColor.b, newColor.g, newColor.r);
+    } else {
+      hexColor = rgbToHex(newColor.r, newColor.g, newColor.b);
+    }
     setColor(hexColor);
 
     const keyCombo1 = color_mappings?.[hexColor.toLowerCase()];
@@ -321,8 +328,9 @@ function WOW() {
               onChange={e => setSelectedMapping(e.target.value as ColorMapping)}
               className={styles.input}
             >
-              <option value='JIAJIA'>佳佳一键宏</option>
               <option value='ZHUZHU'>猪猪一键宏</option>
+              <option value='JIAJIA'>佳佳一键宏</option>
+              <option value='JIAJIA_REAL'>佳佳正式服一键宏</option>
               <option value='XIAOYI_SS'>小易SS一键宏</option>
               <option value='XIAOYI_LR'>小易LR一键宏</option>
             </select>
