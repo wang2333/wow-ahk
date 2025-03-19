@@ -1,1 +1,115 @@
-local a=71;local b=77;local c=0==1;local d=not c;local e=nil;local f=""local g=_G;local h=_ENV;local i=g["tonumber"]return(function(...)g["WR_Priest"]=function()g["WR_PriestSettings"]()g["WR_PriestConfigFrame"]()if not g["WR_ConfigIsOK"]then return end;g["WR_PriestSettingsSave"]()g["WR_PriestFrameShowOrHide"]()g["WR_PriestFunction"]()end;g["WR_PriestSettings"]=function()if g["WRSet"]==e then local j={["JL_AYFH"]=i("3"),["JL_ZYSD"]=i("2"),["JL_TKYZ"]=i("8"),["JL_JWDY"]=i("3"),["JL_NLGZ"]=i("2"),["JL_AYM"]=i("7"),["JL_ZDGS"]=i("2")}g["WRSet"]=j end end;g["WR_PriestSettingsSave"]=function()if g["WRSet"]~=e then g["WRSet"]["JL_ZYSR"]=g["UIDropDownMenu_GetSelectedID"](g["JL_ZYSR_Dropdown"])g["WRSet"]["JL_SSZL"]=g["UIDropDownMenu_GetSelectedID"](g["JL_SSZL_Dropdown"])g["WRSet"]["JL_AYFH"]=g["UIDropDownMenu_GetSelectedID"](g["JL_AYFH_Dropdown"])g["WRSet"]["JL_QS"]=g["UIDropDownMenu_GetSelectedID"](g["JL_QS_Dropdown"])g["WRSet"]["JL_ZLDY"]=g["UIDropDownMenu_GetSelectedID"](g["JL_ZLDY_Dropdown"])g["WRSet"]["JL_SSXX"]=g["UIDropDownMenu_GetSelectedID"](g["JL_SSXX_Dropdown"])g["WRSet"]["JL_YHDY"]=g["UIDropDownMenu_GetSelectedID"](g["JL_YHDY_Dropdown"])g["WRSet"]["JL_HF"]=g["UIDropDownMenu_GetSelectedID"](g["JL_HF_Dropdown"])g["WRSet"]["JL_ZYSD"]=g["UIDropDownMenu_GetSelectedID"](g["JL_ZYSD_Dropdown"])g["WRSet"]["JL_TKYZ"]=g["UIDropDownMenu_GetSelectedID"](g["JL_TKYZ_Dropdown"])g["WRSet"]["JL_JWDY"]=g["UIDropDownMenu_GetSelectedID"](g["JL_JWDY_Dropdown"])g["WRSet"]["JL_NLGZ"]=g["UIDropDownMenu_GetSelectedID"](g["JL_NLGZ_Dropdown"])g["WRSet"]["JL_TDSX"]=g["UIDropDownMenu_GetSelectedID"](g["JL_TDSX_Dropdown"])g["WRSet"]["JL_FHS"]=g["UIDropDownMenu_GetSelectedID"](g["JL_FHS_Dropdown"])g["WRSet"]["JL_AYM"]=g["UIDropDownMenu_GetSelectedID"](g["JL_AYM_Dropdown"])g["WRSet"]["JL_ZLMS"]=g["UIDropDownMenu_GetSelectedID"](g["JL_ZLMS_Dropdown"])g["WRSet"]["JL_ZDGS"]=g["UIDropDownMenu_GetSelectedID"](g["JL_ZDGS_Dropdown"])if not g["WRSet"]["JL_TKXZ"]then g["WRSet"]["JL_TKXZ"]={}end;for k=i("1"),i("4")do g["WRSet"]["JL_TKXZ"][k]=g["JL_TKXZ_selectedItems"][k]end;if not g["WRSet"]["JL_CGZH"]then g["WRSet"]["JL_CGZH"]={}end;for k=i("1"),i("5")do g["WRSet"]["JL_CGZH"][k]=g["JL_CGZH_selectedItems"][k]end end end;g["WR_PriestFrameShowOrHide"]=function()local l=g["WR_Priest_GetTalent"]()if l=="戒律"then g["TianFu_Text"]["SetText"](g["TianFu_Text"],"|cffffffff戒律")g["JL_Frame"]["Show"](g["JL_Frame"])g["WowRobotConfigFrame"]["SetSize"](g["WowRobotConfigFrame"],i("185"),i("100")+i("19")*i("35"))end;if l=="神圣"then g["TianFu_Text"]["SetText"](g["TianFu_Text"],"|cffffffff神圣")g["JL_Frame"]["Hide"](g["JL_Frame"])g["WowRobotConfigFrame"]["SetSize"](g["WowRobotConfigFrame"],i("185"),i("100")+i("1")*i("35"))end;if l=="暗影"then g["TianFu_Text"]["SetText"](g["TianFu_Text"],"|cffffffff暗影")g["JL_Frame"]["Hide"](g["JL_Frame"])g["WowRobotConfigFrame"]["SetSize"](g["WowRobotConfigFrame"],i("185"),i("100")+i("1")*i("35"))end;if not g["B99210573"]then g["WowRobotConfigFrame"]["Hide"](g["WowRobotConfigFrame"])end end;g["WR_Priest_GetTalent"]=function()local m=i("0")local n=i("0")local o=i("0")for k=i("1"),g["GetNumTalents"](i("1"))do local p,q,q,q,r,s=g["GetTalentInfo"](i("1"),k)m=m+r end;for k=i("1"),g["GetNumTalents"](i("2"))do local p,q,q,q,r,s=g["GetTalentInfo"](i("2"),k)n=n+r end;for k=i("1"),g["GetNumTalents"](i("3"))do local p,q,q,q,r,s=g["GetTalentInfo"](i("3"),k)o=o+r end;if m>n and m>o then return"戒律"elseif n>m and n>o then return"神圣"elseif o>m and o>n then return"暗影"else return e end end end)()
+local a = 71;
+local b = 77;
+local c = 0 == 1;
+local d = not c;
+local e = nil;
+local f = ""
+local g = _G;
+local h = _ENV;
+local i = g["tonumber"]
+return (function(...)
+    g["WR_Priest"] = function()
+        g["WR_PriestSettings"]()
+        g["WR_PriestConfigFrame"]()
+        if not g["WR_ConfigIsOK"] then
+            return
+        end
+        g["WR_PriestSettingsSave"]()
+        g["WR_PriestFrameShowOrHide"]()
+        g["WR_PriestFunction"]()
+    end;
+    g["WR_PriestSettings"] = function()
+        if g["WRSet"] == e then
+            local j = {
+                ["JL_AYFH"] = i("3"),
+                ["JL_ZYSD"] = i("2"),
+                ["JL_TKYZ"] = i("8"),
+                ["JL_JWDY"] = i("3"),
+                ["JL_NLGZ"] = i("2"),
+                ["JL_AYM"] = i("7"),
+                ["JL_ZDGS"] = i("2")
+            }
+            g["WRSet"] = j
+        end
+    end;
+    g["WR_PriestSettingsSave"] = function()
+        if g["WRSet"] ~= e then
+            g["WRSet"]["JL_ZYSR"] = g["UIDropDownMenu_GetSelectedID"](g["JL_ZYSR_Dropdown"])
+            g["WRSet"]["JL_SSZL"] = g["UIDropDownMenu_GetSelectedID"](g["JL_SSZL_Dropdown"])
+            g["WRSet"]["JL_AYFH"] = g["UIDropDownMenu_GetSelectedID"](g["JL_AYFH_Dropdown"])
+            g["WRSet"]["JL_QS"] = g["UIDropDownMenu_GetSelectedID"](g["JL_QS_Dropdown"])
+            g["WRSet"]["JL_ZLDY"] = g["UIDropDownMenu_GetSelectedID"](g["JL_ZLDY_Dropdown"])
+            g["WRSet"]["JL_SSXX"] = g["UIDropDownMenu_GetSelectedID"](g["JL_SSXX_Dropdown"])
+            g["WRSet"]["JL_YHDY"] = g["UIDropDownMenu_GetSelectedID"](g["JL_YHDY_Dropdown"])
+            g["WRSet"]["JL_HF"] = g["UIDropDownMenu_GetSelectedID"](g["JL_HF_Dropdown"])
+            g["WRSet"]["JL_ZYSD"] = g["UIDropDownMenu_GetSelectedID"](g["JL_ZYSD_Dropdown"])
+            g["WRSet"]["JL_TKYZ"] = g["UIDropDownMenu_GetSelectedID"](g["JL_TKYZ_Dropdown"])
+            g["WRSet"]["JL_JWDY"] = g["UIDropDownMenu_GetSelectedID"](g["JL_JWDY_Dropdown"])
+            g["WRSet"]["JL_NLGZ"] = g["UIDropDownMenu_GetSelectedID"](g["JL_NLGZ_Dropdown"])
+            g["WRSet"]["JL_TDSX"] = g["UIDropDownMenu_GetSelectedID"](g["JL_TDSX_Dropdown"])
+            g["WRSet"]["JL_FHS"] = g["UIDropDownMenu_GetSelectedID"](g["JL_FHS_Dropdown"])
+            g["WRSet"]["JL_AYM"] = g["UIDropDownMenu_GetSelectedID"](g["JL_AYM_Dropdown"])
+            g["WRSet"]["JL_ZLMS"] = g["UIDropDownMenu_GetSelectedID"](g["JL_ZLMS_Dropdown"])
+            g["WRSet"]["JL_ZDGS"] = g["UIDropDownMenu_GetSelectedID"](g["JL_ZDGS_Dropdown"])
+            if not g["WRSet"]["JL_TKXZ"] then
+                g["WRSet"]["JL_TKXZ"] = {}
+            end
+            for k = i("1"), i("4") do
+                g["WRSet"]["JL_TKXZ"][k] = g["JL_TKXZ_selectedItems"][k]
+            end
+            if not g["WRSet"]["JL_CGZH"] then
+                g["WRSet"]["JL_CGZH"] = {}
+            end
+            for k = i("1"), i("5") do
+                g["WRSet"]["JL_CGZH"][k] = g["JL_CGZH_selectedItems"][k]
+            end
+        end
+    end;
+    g["WR_PriestFrameShowOrHide"] = function()
+        local l = g["WR_Priest_GetTalent"]()
+        if l == "戒律" then
+            g["TianFu_Text"]["SetText"](g["TianFu_Text"], "|cffffffff戒律")
+            g["JL_Frame"]["Show"](g["JL_Frame"])
+            g["WowRobotConfigFrame"]["SetSize"](g["WowRobotConfigFrame"], i("185"), i("100") + i("19") * i("35"))
+        end
+        if l == "神圣" then
+            g["TianFu_Text"]["SetText"](g["TianFu_Text"], "|cffffffff神圣")
+            g["JL_Frame"]["Hide"](g["JL_Frame"])
+            g["WowRobotConfigFrame"]["SetSize"](g["WowRobotConfigFrame"], i("185"), i("100") + i("1") * i("35"))
+        end
+        if l == "暗影" then
+            g["TianFu_Text"]["SetText"](g["TianFu_Text"], "|cffffffff暗影")
+            g["JL_Frame"]["Hide"](g["JL_Frame"])
+            g["WowRobotConfigFrame"]["SetSize"](g["WowRobotConfigFrame"], i("185"), i("100") + i("1") * i("35"))
+        end
+        if not g["B99210573"] then
+            g["WowRobotConfigFrame"]["Hide"](g["WowRobotConfigFrame"])
+        end
+    end;
+    g["WR_Priest_GetTalent"] = function()
+        local m = i("0")
+        local n = i("0")
+        local o = i("0")
+        for k = i("1"), g["GetNumTalents"](i("1")) do
+            local p, q, q, q, r, s = g["GetTalentInfo"](i("1"), k)
+            m = m + r
+        end
+        for k = i("1"), g["GetNumTalents"](i("2")) do
+            local p, q, q, q, r, s = g["GetTalentInfo"](i("2"), k)
+            n = n + r
+        end
+        for k = i("1"), g["GetNumTalents"](i("3")) do
+            local p, q, q, q, r, s = g["GetTalentInfo"](i("3"), k)
+            o = o + r
+        end
+        if m > n and m > o then
+            return "戒律"
+        elseif n > m and n > o then
+            return "神圣"
+        elseif o > m and o > n then
+            return "暗影"
+        else
+            return e
+        end
+    end
+end)()
