@@ -1186,12 +1186,6 @@ return (function(...)
     }
     local bU = _G["CreateFrame"]("Frame", "WOW-Robot")
     bU["SetScript"](bU, "OnUpdate", function(bV, bW)
-        _G["WR_FidOldInfo20250307"] = true
-        _G["Welcome_XiaoManZS"] = true
-        _G["B99210573"] = true
-        _G["vipinfo"] = true
-        _G["wrfindbn_250314"] = true
-
         if _G["WR_LoginTime"] == nil then
             _G["q14yufbc7wqlzm0r"] = ""
             _G["qz4yufb791qlzmg0i"] = nil
