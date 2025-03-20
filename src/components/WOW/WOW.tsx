@@ -83,7 +83,7 @@ function WOW() {
 
   useEffect(() => {
     let configs = [];
-    if (userInfo?.userType === '0') {
+    if (userInfo?.userType === '0' || userInfo?.userType === '99') {
       configs.push({ value: 'ZHUZHU', label: '猪猪一键宏' });
       configs.push({ value: 'JIAJIA', label: '佳佳一键宏' });
       configs.push({ value: 'JIAJIA_REAL', label: '佳佳正式服一键宏' });
@@ -476,45 +476,47 @@ function WOW() {
       </div>
 
       {/* 鼠标移动控制区域 */}
-      <div className={styles.card}>
-        <h3 className={styles.cardTitle}>
-          <span>自动拾取设置</span>
-          <label className={styles.toggleSwitch}>
-            <input
-              type='checkbox'
-              checked={autoMove}
-              onChange={e => setAutoMove(e.target.checked)}
-              className={styles.toggleInput}
-            />
-            <span className={styles.toggleSlider}></span>
-          </label>
-        </h3>
+      {userInfo?.userType === '99' && (
+        <div className={styles.card}>
+          <h3 className={styles.cardTitle}>
+            <span>自动拾取设置</span>
+            <label className={styles.toggleSwitch}>
+              <input
+                type='checkbox'
+                checked={autoMove}
+                onChange={e => setAutoMove(e.target.checked)}
+                className={styles.toggleInput}
+              />
+              <span className={styles.toggleSlider}></span>
+            </label>
+          </h3>
 
-        <div className={styles.controlSection}>
-          <div className={styles.inputGroupCompact}>
-            <label className={styles.label}>移动间隔(ms)</label>
-            <input
-              type='number'
-              value={moveInterval}
-              onChange={handleIntervalChange}
-              min='100'
-              step='100'
-              className={styles.input}
-            />
-          </div>
-          <div className={styles.inputGroupCompact}>
-            <label className={styles.label}>拾取按键</label>
-            <select
-              value={moveKeys}
-              onChange={e => setMoveKeys(e.target.value)}
-              className={styles.input}
-            >
-              <option value='T'>T</option>
-              <option value='Q'>Q</option>
-            </select>
+          <div className={styles.controlSection}>
+            <div className={styles.inputGroupCompact}>
+              <label className={styles.label}>移动间隔(ms)</label>
+              <input
+                type='number'
+                value={moveInterval}
+                onChange={handleIntervalChange}
+                min='100'
+                step='100'
+                className={styles.input}
+              />
+            </div>
+            <div className={styles.inputGroupCompact}>
+              <label className={styles.label}>拾取按键</label>
+              <select
+                value={moveKeys}
+                onChange={e => setMoveKeys(e.target.value)}
+                className={styles.input}
+              >
+                <option value='T'>T</option>
+                <option value='Q'>Q</option>
+              </select>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
