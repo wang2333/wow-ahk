@@ -1,16 +1,12 @@
-﻿## Interface: 30403
-## Title: |cFFFFA500 W|r|cFFFFAB0AO|r|cFFFFB114W|r|cFFFFB71E-|r|cFFFFBD28R|r|cFFFFC332o|r|cFFFFC93Cb|r|cFFFFCF46o|r|cFFFFD550t|r |cffe677000|cfff08c003|cfff59f00-|cfffab0051|cfffcc4199
+﻿## Interface: 30403,30404
+## Title: |cFFFFA500 W|r|cFFFFAB0AO|r|cFFFFB114W|r|cFFFFB71E-|r|cFFFFBD28R|r|cFFFFC332o|r|cFFFFC93Cb|r|cFFFFCF46o|r|cFFFFD550t|r |cffe677000|cfff08c003|cfff59f00-|cfffab0052|cfffcc4190
 ## Author: 佳佳不是熊猫
 ## IconTexture: Interface\AddOns\WR\Color\WOW-Robot.tga
 ## Notes: |cffffdf00微信:|cff00ff00WOW-Robot
 
 ## SavedVariablesPerCharacter: WRSet
 
-VX WOW-Robot\Libs\LibStub\LibStub.lua
-VX WOW-Robot\Libs\LibRangeCheck\LibRangeCheck.lua
-VX WOW-Robot\Libs\LibRangeCheck\LibRangeCheck-2.0.lua
-VX WOW-Robot\Libs\LibRangeCheck\LibRangeCheck-3.0.lua
-VX WOW-Robot\libs\Ace3\AceAddon-3.0\AceAddon-3.0.xml
+VX WOW-Robot\Libs\LibRangeCheck-3.0.lua
 VX WOW-Robot\Api.lua
 VX WOW-Robot\Frame.lua
 

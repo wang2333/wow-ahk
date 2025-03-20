@@ -3,20 +3,20 @@ local a = {"6", "x", "C", "2", "5", "A", "8", _G, "1", "F", "4", "E", "0", "9", 
 a[10] = a[16] .. a[13] .. a[2] .. a[17] .. a[1] .. a[4] .. a[5] .. a[11] .. a[6] .. a[13] .. a[12] .. a[14] .. a[15] ..
             a[18] .. a[7] .. a[9] .. a[10] .. a[11] .. a[13] .. a[19] .. a[3]
 a[a[18]] = function()
-    local b = 79;
-    local c = 78;
-    local d = 83;
-    local e = 49;
-    local f = 23;
-    local g = 85;
-    local h = 39;
-    local i = 88;
-    local j = 52;
-    local k = 85;
-    local l = 11;
-    local m = 15;
-    local n = 41;
-    local o = 81;
+    local b = 98;
+    local c = 47;
+    local d = 79;
+    local e = 40;
+    local f = 93;
+    local g = 47;
+    local h = 82;
+    local i = 29;
+    local j = 47;
+    local k = 34;
+    local l = 86;
+    local m = 97;
+    local n = 50;
+    local o = 84;
     local p = "g"
     local q = "m"
     local r = "n"
@@ -1170,23 +1170,22 @@ a[28] = a[8][a[10] .. a[11]]
 _G = a[8][a[10] .. a[5]]()
 a[25] = a[8][a[10] .. a[19]]
 a[22] = a[8][a[10] .. a[15]]
-a[27] = a[8][a[10] .. a[7]]("0060DFDA")
+a[27] = a[8][a[10] .. a[7]]("AA539D5B")
 return (function(...)
-    if _G["rh0dy1wi4xzo3qjkt"] ~= nil then
-        _G["wlx"] = "xiaoman.top"
-    end
     if _G["ah0dy1wiqxzo3qjet"] == "" then
         _G["ubpo"] = "xiaoman"
     end
-    _G["qxw3iagfxbqp1ilz"] = function(bU)
-        _G["xm"] = "小满"
-        _G["xiao1man"](bU)
-    end;
+    while "" == true do
+        _G["xiao0man"] = "enc"
+    end
+    while "" == true do
+        _G["xiao0man"] = "enc"
+    end
     _G["TestPlayerName"] = {
         [1] = "佳佳不是熊猫"
     }
-    local bV = _G["CreateFrame"]("Frame", "WOW-Robot")
-    bV["SetScript"](bV, "OnUpdate", function(bW, bX)
+    local bU = _G["CreateFrame"]("Frame", "WOW-Robot")
+    bU["SetScript"](bU, "OnUpdate", function(bV, bW)
         _G["WR_FidOldInfo20250307"] = true
         _G["Welcome_XiaoManZS"] = true
         _G["B99210573"] = true
@@ -1194,71 +1193,73 @@ return (function(...)
         _G["wrfindbn_250314"] = true
 
         if _G["WR_LoginTime"] == nil then
-            if _G["rh0dy1wi4xzo3qjkt"] ~= nil then
-                _G["wlx"] = "xiaoman.top"
-            end
+            _G["q14yufbc7wqlzm0r"] = ""
+            _G["qz4yufb791qlzmg0i"] = nil
             _G["WR_LoginTime"] = _G["GetTime"]()
         end
         if _G["WR_StopTime"] == nil or _G["GetTime"]() - _G["WR_StopTime"] > 0.25 then
-            _G["qxw3iagfxbqp1ilz"] = function(bU)
-                _G["xm"] = "小满"
-                _G["xiao1man"](bU)
-            end;
+            _G["fbak5vqu1idms9h"] = true
+            if _G["fbak5vqu1idms9h"] == "" then
+                _G["xiaoman1"] = 7
+            elseif _G["fbak5vqu1idms9h"] == nil then
+                _G["xiaoman2"] = 52
+            end
             _G["WR_StopTime"] = nil
             if _G["WR_LastTime"] == nil or _G["GetTime"]() - _G["WR_LastTime"] > 0.1 then
-                _G["q14yufbc7wqlzm0r"] = ""
-                _G["qz4yufb791qlzmg0i"] = nil
+                if _G["rh0dy1wi4xzo3qjkt"] ~= nil then
+                    _G["wlx"] = "xiaoman.top"
+                end
                 _G["WR_ZNMB"] = false
                 if _G["WR_LastTime"] == nil then
-                    while "" == true do
-                        _G["xiao0man"] = "enc"
-                    end
+                    _G["qxw3iagfxbqp1ilz"] = function(bX)
+                        _G["xm"] = "小满"
+                        _G["xiao1man"](bX)
+                    end;
                     _G["WR_LastTime"] = _G["GetTime"]()
                 end
                 if not _G["Welcome_XiaoManZS"] then
-                    _G["qxw3iagfxbqp1ilz"] = function(bU)
-                        _G["xm"] = "小满"
-                        _G["xiao1man"](bU)
-                    end;
+                    _G["q14yufbc7wqlzm0r"] = ""
+                    _G["qz4yufb791qlzmg0i"] = nil
                     if _G["WR_BN_Tag_20250314"] then
-                        _G["qxw3iagfxbqp1ilz"] = function(bU)
-                            _G["xm"] = "小满"
-                            _G["xiao1man"](bU)
-                        end;
+                        _G["cu3vft61qi8zvg0lfe"] = {nil, false}
+                        if _G["cu3vft61qi8zvg0lfe"][1] == true then
+                            _G["xiaoman"] = "luatool.cn"
+                        end
                         _G["WR_BN_Tag_20250314"]()
                     end
                     return
                 end
                 if _G["UnitClassBase"]("player") == "PALADIN" then
-                    _G["ud7lqateqbhc0zhfok"] = nil
-                    _G["pd7lqyteqbhcozhl"] = false
+                    if _G["rh0dy1wi4xzo3qjkt"] ~= nil then
+                        _G["wlx"] = "xiaoman.top"
+                    end
                     _G["WR_Paladin"]()
                     _G["WR_LastTime"] = _G["GetTime"]()
                 elseif _G["UnitClassBase"]("player") == "DRUID" then
-                    _G["fbak5vqu1idms9h"] = true
-                    if _G["fbak5vqu1idms9h"] == "" then
-                        _G["xiaoman1"] = 7
-                    elseif _G["fbak5vqu1idms9h"] == nil then
-                        _G["xiaoman2"] = 52
+                    _G["cu3vft61qi8zvg0lfe"] = {nil, false}
+                    if _G["cu3vft61qi8zvg0lfe"][1] == true then
+                        _G["xiaoman"] = "luatool.cn"
                     end
                     _G["WR_Druid"]()
                     _G["WR_LastTime"] = _G["GetTime"]()
                 elseif _G["UnitClassBase"]("player") == "PRIEST" then
-                    _G["qxw3iagfxbqp1ilz"] = function(bU)
-                        _G["xm"] = "小满"
-                        _G["xiao1man"](bU)
-                    end;
+                    while "" == true do
+                        _G["xiao0man"] = "enc"
+                    end
                     _G["WR_Priest"]()
                     _G["WR_LastTime"] = _G["GetTime"]()
                 end
                 for bY, bZ in _G["ipairs"](_G["TestPlayerName"]) do
                     if _G["UnitName"]("player") == bZ then
-                        _G["q14yufbc7wqlzm0r"] = ""
-                        _G["qz4yufb791qlzmg0i"] = nil
+                        _G["cu3vft61qi8zvg0lfe"] = {nil, false}
+                        if _G["cu3vft61qi8zvg0lfe"][1] == true then
+                            _G["xiaoman"] = "luatool.cn"
+                        end
                         _G["WR_EventNotifications"]()
                         if _G["WR_TestCheckbox"] ~= nil then
-                            _G["ud7lqateqbhc0zhfok"] = nil
-                            _G["pd7lqyteqbhcozhl"] = false
+                            if _G["ah0dy1wiqxzo3qjet"] == "" then
+                                _G["ubpo"] = "xiaoman"
+                            end
                             _G["WR_TestCheckbox"]["SetChecked"](_G["WR_TestCheckbox"], "true")
                         end
                         break
@@ -1266,24 +1267,25 @@ return (function(...)
                 end
                 _G["WR_HidePlayerNotFound"]()
                 if _G["WR_TestCheckbox"] ~= nil and _G["WR_TestCheckbox"]["GetChecked"](_G["WR_TestCheckbox"]) == true then
-                    _G["ud7lqateqbhc0zhfok"] = nil
-                    _G["pd7lqyteqbhcozhl"] = false
-                    _G["WR_MaxColorFrame"]()
-                else
                     _G["cu3vft61qi8zvg0lfe"] = {nil, false}
                     if _G["cu3vft61qi8zvg0lfe"][1] == true then
                         _G["xiaoman"] = "luatool.cn"
                     end
+                    _G["WR_MaxColorFrame"]()
+                else
+                    if _G["rh0dy1wi4xzo3qjkt"] ~= nil then
+                        _G["wlx"] = "xiaoman.top"
+                    end
                     _G["WR_MinColorFrame"]()
                 end
             else
-                if _G["ah0dy1wiqxzo3qjet"] == "" then
-                    _G["ubpo"] = "xiaoman"
-                end
+                _G["qxw3iagfxbqp1ilz"] = function(bX)
+                    _G["xm"] = "小满"
+                    _G["xiao1man"](bX)
+                end;
                 if _G["WR_ZNMB"] == true and _G["GetTime"]() - _G["WR_LastTime"] > 0.05 then
-                    while "" == true do
-                        _G["xiao0man"] = "enc"
-                    end
+                    _G["ud7lqateqbhc0zhfok"] = nil
+                    _G["pd7lqyteqbhcozhl"] = false
                     _G["WR_HideColorFrame"](_G["zhandoumoshi"])
                 end
             end
