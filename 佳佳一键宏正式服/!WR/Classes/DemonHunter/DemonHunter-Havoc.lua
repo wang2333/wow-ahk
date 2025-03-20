@@ -1,0 +1,1 @@
+local a=36;local b=16;local c=68;local d=25;local e=0==1;local f=not e;local g=nil;local h=""local i=_G;local j=_ENV;local k=i["tonumber"]return(function(...)end)()

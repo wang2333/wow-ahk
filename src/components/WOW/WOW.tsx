@@ -117,7 +117,7 @@ function WOW() {
     if (!newColor) return;
     let hexColor = '';
     // 转换为十六进制格式
-    if (selectedMapping === 'JIAJIA_REAL' && model === 1) {
+    if (selectedMapping === 'JIAJIA_REAL') {
       hexColor = rgbToHex(newColor.b, newColor.g, newColor.r);
     } else {
       hexColor = rgbToHex(newColor.r, newColor.g, newColor.b);
@@ -151,7 +151,10 @@ function WOW() {
       }
 
       await autokey({
-        x: model === 1 || selectedMapping !== 'JIAJIA' ? coordinates.x1 : coordinates.x2,
+        x:
+          model === 1 || (selectedMapping !== 'JIAJIA' && selectedMapping !== 'JIAJIA_REAL')
+            ? coordinates.x1
+            : coordinates.x2,
         y: coordinates.y
       });
 
@@ -318,7 +321,12 @@ function WOW() {
           >
             当前模式: {model === 0 ? '已暂停' : model === 1 ? '模式1' : '模式2'}
           </span>
-          {color && <span className={styles.statusLabel}>执行按键：{color_mappings?.[color]}</span>}
+          {color && (
+            <span className={styles.statusLabel}>
+              执行按键：
+              {color_mappings?.[color.toLowerCase()] || color_mappings?.[color.toUpperCase()]}
+            </span>
+          )}
         </h3>
         <div className={styles.settingsContainer}>
           <div className={styles.mappingSelection}>
