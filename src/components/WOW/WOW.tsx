@@ -3,15 +3,15 @@ import { useEffect, useState } from 'react';
 import mode1 from '@/assets/mode1.wav';
 import mode2 from '@/assets/mode2.wav';
 import pause from '@/assets/pause.wav';
+import { useAuth } from '@/contexts/AuthContext';
 import { invoke } from '@tauri-apps/api/core';
 import { register, unregister } from '@tauri-apps/plugin-global-shortcut';
-import { useAuth } from '@/contexts/AuthContext';
 import {
   color_mappings_JIAJIA,
   color_mappings_JIAJIA_REAL,
-  color_mappings_ZHUZHU,
-  color_mappings_XIAOYI_SS,
   color_mappings_XIAOYI_LR,
+  color_mappings_XIAOYI_SS,
+  color_mappings_ZHUZHU,
   rgbToHex
 } from './config';
 import styles from './index.module.css';
@@ -266,6 +266,21 @@ function WOW() {
           }
         }
       });
+      await register('F9', async e => {
+        if (e.state === 'Pressed') {
+          const info = await invoke<{ x: number; y: number }>('get_current_position_color');
+          if (info) {
+            const newCoordinates = {
+              ...coordinates,
+              x2: info.x,
+              y: info.y
+            };
+            setCoordinates(newCoordinates);
+            // 更新用户设置中的坐标
+            updateWowCoordinates(newCoordinates);
+          }
+        }
+      });
     } catch (error) {
       console.error('注册热键失败:', error);
     }
@@ -293,6 +308,11 @@ function WOW() {
         await unregister('F8');
       } catch (e) {
         console.log(`F8热键注销:`, e);
+      }
+      try {
+        await unregister('F9');
+      } catch (e) {
+        console.log(`F9热键注销:`, e);
       }
     } catch (error) {
       console.error('注销热键失败:', error);

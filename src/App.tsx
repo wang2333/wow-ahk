@@ -2,9 +2,9 @@ import './App.css';
 
 import { useState } from 'react';
 
+import Login from '@/components/Login';
 import WOW from '@/components/WOW';
 import ZXSJ from '@/components/ZXSJ';
-import Login from '@/components/Login';
 import { useAuth } from './contexts/AuthContext';
 
 function App() {

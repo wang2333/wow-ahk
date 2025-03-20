@@ -1,5 +1,6 @@
-import { useState } from 'react';
 import './styles.css';
+import { useEffect, useState } from 'react';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface LoginProps {
   onLogin: (keyCode: string) => Promise<boolean>;
@@ -9,6 +10,13 @@ interface LoginProps {
 const Login = ({ onLogin, isLoading }: LoginProps) => {
   const [keyCode, setKeyCode] = useState('');
   const [error, setError] = useState('');
+  const { userAccount } = useAuth();
+
+  useEffect(() => {
+    if (userAccount) {
+      setKeyCode(userAccount);
+    }
+  }, [userAccount]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

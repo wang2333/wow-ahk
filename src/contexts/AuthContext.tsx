@@ -31,6 +31,7 @@ interface User {
 }
 
 interface AuthContextType {
+  userAccount: string | null;
   userInfo: User | null;
   gameSettings: GameSettings;
   isLoading: boolean;
@@ -49,10 +50,12 @@ const DEFAULT_GAME_SETTINGS: GameSettings = {
 };
 
 // 创建存储实例
+const userAccountStorePromise = Store.load('user-account.json');
 const userStorePromise = Store.load('user-data.json');
 const gameSettingsStorePromise = Store.load('game-settings.json');
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const [userAccount, setUserAccount] = useState<string | null>(null);
   const [userInfo, setUserInfo] = useState<User | null>(null);
   const [gameSettings, setGameSettings] = useState<GameSettings>(DEFAULT_GAME_SETTINGS);
   const [isLoading, setIsLoading] = useState(false);
@@ -90,9 +93,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   // 检查保存的用户数据
   const checkSavedUser = async () => {
     try {
+      const userAccountStore = await userAccountStorePromise;
+      const savedUserAccount = await userAccountStore.get<string>('userAccount');
+      if (savedUserAccount) {
+        setUserAccount(savedUserAccount);
+      }
+
       const store = await userStorePromise;
       const savedUser = await store.get<User>('user');
-
       if (savedUser) {
         setUserInfo(savedUser);
       }
@@ -177,7 +185,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           keyCode
         }
       });
-      console.log('👻 ~ response:', response)
       const userData = {
         keyCode,
         userType: response.user_type
@@ -187,6 +194,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const store = await userStorePromise;
       await store.set('user', userData);
       await store.save();
+
+      const userAccountStore = await userAccountStorePromise;
+      await userAccountStore.set('userAccount', keyCode);
+      await userAccountStore.save();
       return true;
     } catch (error) {
       console.error('登录总体错误:', error);
@@ -205,6 +216,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   return (
     <AuthContext.Provider
       value={{
+        userAccount,
         userInfo,
         gameSettings,
         isLoading,
