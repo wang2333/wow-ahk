@@ -6,9 +6,10 @@ import Login from '@/components/Login';
 import WOW from '@/components/WOW';
 import ZXSJ from '@/components/ZXSJ';
 import { useAuth } from './contexts/AuthContext';
+import Help from './components/Help';
 
 function App() {
-  const [activeTab, setActiveTab] = useState<'wow' | 'zxsj'>('wow');
+  const [activeTab, setActiveTab] = useState<'wow' | 'zxsj' | 'help'>('wow');
   const { userInfo, isLoading, login, logout } = useAuth();
 
   // 如果用户未登录，显示登录页面
@@ -28,12 +29,18 @@ function App() {
             魔兽世界
           </button>
           <button
+            className={`tab-button ${activeTab === 'help' ? 'active' : ''}`}
+            onClick={() => setActiveTab('help')}
+          >
+            使用说明
+          </button>
+          {/* <button
             className={`tab-button ${activeTab === 'zxsj' ? 'active' : ''}`}
             onClick={() => setActiveTab('zxsj')}
             disabled={true}
           >
             诛仙世界
-          </button>
+          </button> */}
         </div>
         <div className='user-info'>
           <button className='logout-button' onClick={logout}>
@@ -42,7 +49,10 @@ function App() {
         </div>
       </div>
 
-      <div className='tab-content'>{activeTab === 'wow' ? <WOW /> : <ZXSJ />}</div>
+      <div className='tab-content'>
+        {activeTab === 'wow' && <WOW />}
+        {activeTab === 'help' && <Help />}
+      </div>
     </div>
   );
 }
