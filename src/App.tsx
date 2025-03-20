@@ -9,10 +9,10 @@ import { useAuth } from './contexts/AuthContext';
 
 function App() {
   const [activeTab, setActiveTab] = useState<'wow' | 'zxsj'>('wow');
-  const { user, isLoading, login, logout } = useAuth();
+  const { userInfo, isLoading, login, logout } = useAuth();
 
   // 如果用户未登录，显示登录页面
-  if (!user) {
+  if (!userInfo) {
     return <Login onLogin={login} isLoading={isLoading} />;
   }
 
@@ -36,7 +36,6 @@ function App() {
           </button>
         </div>
         <div className='user-info'>
-          <span>欢迎, {user.username}</span>
           <button className='logout-button' onClick={logout}>
             退出登录
           </button>

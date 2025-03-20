@@ -17,81 +17,109 @@ interface HotkeySettings {
   pauseKey: string;
 }
 
-// 用户设置接口
-interface UserSettings {
+// 游戏设置接口
+interface GameSettings {
   wowCoordinates: Coordinates;
-  hotkeySettings?: HotkeySettings; // 新增热键设置
+  hotkeySettings: HotkeySettings;
   // 可以在这里添加更多游戏设置
 }
 
+// 用户接口
 interface User {
-  username: string;
-  isLoggedIn: boolean;
-  settings: UserSettings;
+  keyCode: string;
+  userType: string;
 }
 
 interface AuthContextType {
-  user: User | null;
+  userInfo: User | null;
+  gameSettings: GameSettings;
   isLoading: boolean;
-  login: (username: string, password: string) => Promise<boolean>;
+  login: (keyCode: string) => Promise<boolean>;
   logout: () => Promise<void>;
-  updateUserSettings: (settings: Partial<UserSettings>) => Promise<void>;
   updateWowCoordinates: (coordinates: Coordinates) => Promise<void>;
-  updateHotkeySettings: (hotkeys: HotkeySettings) => Promise<void>; // 新增更新热键设置方法
+  updateHotkeySettings: (hotkeys: HotkeySettings) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// 默认用户设置
-const DEFAULT_USER_SETTINGS: UserSettings = {
-  wowCoordinates: { x1: 15, x2: 2550, y: 15 },
+// 默认游戏设置
+const DEFAULT_GAME_SETTINGS: GameSettings = {
+  wowCoordinates: { x1: 10, x2: 2550, y: 10 },
   hotkeySettings: { mode1Key: 'F1', mode2Key: 'F2', pauseKey: 'F3' }
 };
 
 // 创建存储实例
-const storePromise = Store.load('user-data.json');
+const userStorePromise = Store.load('user-data.json');
+const gameSettingsStorePromise = Store.load('game-settings.json');
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [userInfo, setUserInfo] = useState<User | null>(null);
+  const [gameSettings, setGameSettings] = useState<GameSettings>(DEFAULT_GAME_SETTINGS);
   const [isLoading, setIsLoading] = useState(false);
 
-  const checkSavedUser = async () => {
+  // 加载游戏设置
+  const loadGameSettings = async () => {
     try {
-      const store = await storePromise;
-      const savedUser = await store.get<User>('user');
+      const store = await gameSettingsStorePromise;
+      const savedSettings = await store.get<GameSettings>('gameSettings');
 
-      if (savedUser && savedUser.isLoggedIn) {
-        // 确保用户有设置对象
-        if (!savedUser.settings) {
-          savedUser.settings = DEFAULT_USER_SETTINGS;
-        } else if (!savedUser.settings.wowCoordinates) {
-          savedUser.settings.wowCoordinates = DEFAULT_USER_SETTINGS.wowCoordinates;
-        }
-
-        setUser(savedUser);
+      if (savedSettings) {
+        setGameSettings(savedSettings);
+      } else {
+        // 如果没有保存的设置，使用默认设置并保存
+        await saveGameSettings(DEFAULT_GAME_SETTINGS);
       }
     } catch (error) {
-      console.error('Failed to load user data:', error);
+      console.error('加载游戏设置失败:', error);
+      // 出错时使用默认设置
+      setGameSettings(DEFAULT_GAME_SETTINGS);
+    }
+  };
+
+  // 保存游戏设置
+  const saveGameSettings = async (settings: GameSettings) => {
+    try {
+      const store = await gameSettingsStorePromise;
+      await store.set('gameSettings', settings);
+      await store.save();
+    } catch (error) {
+      console.error('保存游戏设置失败:', error);
+    }
+  };
+
+  // 检查保存的用户数据
+  const checkSavedUser = async () => {
+    try {
+      const store = await userStorePromise;
+      const savedUser = await store.get<User>('user');
+
+      if (savedUser) {
+        setUserInfo(savedUser);
+      }
+    } catch (error) {
+      console.error('加载用户数据失败:', error);
     } finally {
       setIsLoading(false);
     }
   };
 
-  // 清空用户状态的函数
+  // 清空用户状态的函数，只清除用户登录信息，不清除游戏设置
   const clearUserState = async (): Promise<void> => {
-    setUser(null);
-    // 通过 Store API 清除用户数据
-    const store = await storePromise;
+    setUserInfo(null);
+    // 只清除用户数据，不清除游戏设置
+    const store = await userStorePromise;
     await store.set('user', null);
     await store.save();
     console.log('用户状态已清空');
     return;
   };
 
-  // 初始化时检查是否有保存的用户会话并设置应用关闭事件监听
+  // 初始化时加载用户和游戏设置，并设置应用关闭事件监听
   useEffect(() => {
     // 加载保存的用户数据
     checkSavedUser();
+    // 加载游戏设置
+    loadGameSettings();
 
     // 设置应用关闭事件监听器
     let unlistenFn: (() => void) | undefined;
@@ -101,9 +129,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
         // 在窗口关闭请求时执行清理操作
         unlistenFn = await appWindow.onCloseRequested(async () => {
-          // 阻止默认关闭行为，以便先执行清理操作
-          // event.preventDefault();
-          // 清空用户状态
+          // 只清空用户状态，不清空游戏设置
           await clearUserState();
           appWindow.close();
         });
@@ -120,100 +146,48 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     };
   }, []);
 
-  // 更新用户设置
-  const updateUserSettings = async (newSettings: Partial<UserSettings>): Promise<void> => {
-    if (!user) return;
-
-    try {
-      const updatedUser = {
-        ...user,
-        settings: {
-          ...user.settings,
-          ...newSettings
-        }
-      };
-
-      setUser(updatedUser);
-
-      // 保存到存储
-      const store = await storePromise;
-      await store.set('user', updatedUser);
-      await store.save();
-    } catch (error) {
-      console.error('Failed to update user settings:', error);
-    }
+  // 更新WOW坐标
+  const updateWowCoordinates = async (coordinates: Coordinates): Promise<void> => {
+    const newSettings = {
+      ...gameSettings,
+      wowCoordinates: coordinates
+    };
+    setGameSettings(newSettings);
+    await saveGameSettings(newSettings);
   };
 
   // 更新热键设置
   const updateHotkeySettings = async (hotkeys: HotkeySettings): Promise<void> => {
-    if (!user) return;
-
-    try {
-      const store = await storePromise;
-      const newSettings = {
-        ...user.settings,
-        hotkeySettings: hotkeys
-      };
-
-      await store.set('user', {
-        ...user,
-        settings: newSettings
-      });
-
-      setUser(prev => (prev ? { ...prev, settings: newSettings } : null));
-    } catch (error) {
-      console.error('更新热键设置失败:', error);
-    }
+    const newSettings = {
+      ...gameSettings,
+      hotkeySettings: hotkeys
+    };
+    setGameSettings(newSettings);
+    await saveGameSettings(newSettings);
   };
 
-  // 更新WOW坐标的便捷方法
-  const updateWowCoordinates = async (coordinates: Coordinates): Promise<void> => {
-    await updateUserSettings({
-      wowCoordinates: coordinates
-    });
-  };
-
-  const login = async (username: string, password: string): Promise<boolean> => {
+  const login = async (keyCode: string): Promise<boolean> => {
     setIsLoading(true);
 
     try {
-      // 使用axios获取所有用户
-      try {
-        interface UserResponse {
-          success: boolean;
-          data: Array<{ UserName: string; Password: string }>;
-          message: string;
+      // 注意：这里使用完整的API路径
+      const response = await request<{ user_type: string }>('/api/verifyCard', {
+        method: 'GET',
+        params: {
+          keyCode
         }
-
-        // 注意：这里使用完整的API路径
-        const succsess = await request<UserResponse>('/api/verifyUser', {
-          method: 'GET',
-          params: {
-            username,
-            password
-          }
-        });
-        if (succsess) {
-          const userData: User = {
-            username: username,
-            isLoggedIn: true,
-            settings: DEFAULT_USER_SETTINGS
-          };
-
-          setUser(userData);
-
-          // 保存用户数据到存储
-          const store = await storePromise;
-          await store.set('user', userData);
-          await store.save();
-
-          return true;
-        }
-      } catch (error) {
-        console.error('获取用户列表失败:', error);
-      }
-
-      return false;
+      });
+      console.log('👻 ~ response:', response)
+      const userData = {
+        keyCode,
+        userType: response.user_type
+      };
+      setUserInfo(userData);
+      // 保存用户数据到存储
+      const store = await userStorePromise;
+      await store.set('user', userData);
+      await store.save();
+      return true;
     } catch (error) {
       console.error('登录总体错误:', error);
       return false;
@@ -231,11 +205,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   return (
     <AuthContext.Provider
       value={{
-        user,
+        userInfo,
+        gameSettings,
         isLoading,
         login,
         logout,
-        updateUserSettings,
         updateWowCoordinates,
         updateHotkeySettings
       }}

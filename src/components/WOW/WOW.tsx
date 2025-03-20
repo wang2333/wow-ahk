@@ -47,61 +47,85 @@ for (let angle = 0; angle < 360; angle += 30) {
 }
 MOUSE_POSITIONS.push(MOUSE_CENTER);
 
+const colorMapDict = {
+  JIAJIA: color_mappings_JIAJIA,
+  JIAJIA_REAL: color_mappings_JIAJIA_REAL,
+  ZHUZHU: color_mappings_ZHUZHU,
+  XIAOYI_SS: color_mappings_XIAOYI_SS,
+  XIAOYI_LR: color_mappings_XIAOYI_LR
+};
+
 function WOW() {
-  const { user, updateWowCoordinates, updateHotkeySettings } = useAuth();
+  const { userInfo, gameSettings, updateWowCoordinates, updateHotkeySettings } = useAuth();
   const [color, setColor] = useState<string | null>(null);
   const [model, setModel] = useState(0);
   const [autoMove, setAutoMove] = useState(false);
   const [moveInterval, setMoveInterval] = useState(500);
   const [moveKeys, setMoveKeys] = useState('T');
+  const [configs, setConfigs] = useState<{ value: string; label: string }[]>([]);
   const [selectedMapping, setSelectedMapping] = useState<ColorMapping>('JIAJIA');
 
-  // 添加自定义热键状态，从用户设置中加载或使用默认值
+  // 添加自定义热键状态，从游戏设置中加载
   const [hotkeys, setHotkeys] = useState({
-    mode1Key: user?.settings?.hotkeySettings?.mode1Key || 'F1',
-    mode2Key: user?.settings?.hotkeySettings?.mode2Key || 'F2',
-    pauseKey: user?.settings?.hotkeySettings?.pauseKey || 'F3'
+    mode1Key: gameSettings?.hotkeySettings?.mode1Key || 'F1',
+    mode2Key: gameSettings?.hotkeySettings?.mode2Key || 'F2',
+    pauseKey: gameSettings?.hotkeySettings?.pauseKey || 'F3'
   });
 
-  const colorMapDict = {
-    JIAJIA: color_mappings_JIAJIA,
-    JIAJIA_REAL: color_mappings_JIAJIA_REAL,
-    ZHUZHU: color_mappings_ZHUZHU,
-    XIAOYI_SS: color_mappings_XIAOYI_SS,
-    XIAOYI_LR: color_mappings_XIAOYI_LR
-  };
+  // 从游戏设置中获取坐标
+  const [coordinates, setCoordinates] = useState({
+    x1: gameSettings?.wowCoordinates?.x1 || 2,
+    x2: gameSettings?.wowCoordinates?.x2 || 2550,
+    y: gameSettings?.wowCoordinates?.y || 30
+  });
+
   const color_mappings = colorMapDict[selectedMapping];
 
-  // 从用户设置中获取坐标，如果没有则使用默认值
-  const [coordinates, setCoordinates] = useState({
-    x1: user?.settings?.wowCoordinates?.x1 || 2,
-    x2: user?.settings?.wowCoordinates?.x2 || 2550,
-    y: user?.settings?.wowCoordinates?.y || 30
-  });
-
-  // 当用户或用户设置变化时，更新坐标
   useEffect(() => {
-    if (user?.settings?.wowCoordinates) {
+    let configs = [];
+    if (userInfo?.userType === '0') {
+      configs.push({ value: 'ZHUZHU', label: '猪猪一键宏' });
+      configs.push({ value: 'JIAJIA', label: '佳佳一键宏' });
+      configs.push({ value: 'JIAJIA_REAL', label: '佳佳正式服一键宏' });
+      configs.push({ value: 'XIAOYI_SS', label: '小易SS一键宏' });
+      configs.push({ value: 'XIAOYI_LR', label: '小易LR一键宏' });
+      setSelectedMapping('ZHUZHU');
+    } else if (userInfo?.userType.includes('1')) {
+      configs.push({ value: 'ZHUZHU', label: '猪猪一键宏' });
+      setSelectedMapping('ZHUZHU');
+    } else if (userInfo?.userType.includes('2')) {
+      configs.push({ value: 'JIAJIA', label: '佳佳一键宏' });
+      setSelectedMapping('JIAJIA');
+    } else if (userInfo?.userType.includes('3')) {
+      configs.push({ value: 'JIAJIA_REAL', label: '佳佳正式服一键宏' });
+      setSelectedMapping('JIAJIA_REAL');
+    } else if (userInfo?.userType.includes('4')) {
+      configs.push({ value: 'XIAOYI_SS', label: '小易SS一键宏' });
+      configs.push({ value: 'XIAOYI_LR', label: '小易LR一键宏' });
+      setSelectedMapping('XIAOYI_SS');
+    }
+    setConfigs(configs);
+  }, [userInfo]);
+
+  // 当游戏设置变化时，更新坐标和热键设置
+  useEffect(() => {
+    if (gameSettings?.wowCoordinates) {
       setCoordinates(prev => ({
         ...prev,
-        x1: user.settings.wowCoordinates.x1,
-        x2: user.settings.wowCoordinates.x2,
-        y: user.settings.wowCoordinates.y
+        x1: gameSettings.wowCoordinates.x1,
+        x2: gameSettings.wowCoordinates.x2,
+        y: gameSettings.wowCoordinates.y
       }));
     }
-  }, [user, user?.settings]);
-
-  // 当用户或用户设置变化时，更新热键设置
-  useEffect(() => {
-    if (user?.settings?.hotkeySettings) {
+    if (gameSettings?.hotkeySettings) {
       setHotkeys(prev => ({
         ...prev,
-        mode1Key: user.settings.hotkeySettings?.mode1Key || prev.mode1Key,
-        mode2Key: user.settings.hotkeySettings?.mode2Key || prev.mode2Key,
-        pauseKey: user.settings.hotkeySettings?.pauseKey || prev.pauseKey
+        mode1Key: gameSettings.hotkeySettings.mode1Key || prev.mode1Key,
+        mode2Key: gameSettings.hotkeySettings.mode2Key || prev.mode2Key,
+        pauseKey: gameSettings.hotkeySettings.pauseKey || prev.pauseKey
       }));
     }
-  }, [user, user?.settings]);
+  }, [gameSettings]);
 
   // 注册全局热键
   useEffect(() => {
@@ -336,11 +360,11 @@ function WOW() {
               onChange={e => setSelectedMapping(e.target.value as ColorMapping)}
               className={styles.input}
             >
-              <option value='ZHUZHU'>猪猪一键宏</option>
-              <option value='JIAJIA'>佳佳一键宏</option>
-              <option value='JIAJIA_REAL'>佳佳正式服一键宏</option>
-              <option value='XIAOYI_SS'>小易SS一键宏</option>
-              <option value='XIAOYI_LR'>小易LR一键宏</option>
+              {configs.map(config => (
+                <option key={config.value} value={config.value}>
+                  {config.label}
+                </option>
+              ))}
             </select>
           </div>
           <div className={styles.coordinateInputs}>
