@@ -58,7 +58,7 @@ fn get_current_position_color() -> Option<PositionColorInfo> {
 #[tauri::command]
 fn press_keys(keys: Vec<String>) {
     let mut enigo = Enigo::new();
-    let delay = Duration::from_millis(50);
+    let delay = Duration::from_millis(10);
 
     // 按下所有修饰键
     for key in &keys {
