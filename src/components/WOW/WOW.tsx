@@ -83,26 +83,28 @@ function WOW() {
 
   useEffect(() => {
     let configs = [];
-    if (userInfo?.userType === '0' || userInfo?.userType === '99') {
-      configs.push({ value: 'ZHUZHU', label: '猪猪一键宏' });
-      configs.push({ value: 'JIAJIA', label: '佳佳一键宏' });
-      configs.push({ value: 'JIAJIA_REAL', label: '佳佳正式服一键宏' });
-      configs.push({ value: 'XIAOYI_SS', label: '小易SS一键宏' });
-      configs.push({ value: 'XIAOYI_LR', label: '小易LR一键宏' });
-      setSelectedMapping('ZHUZHU');
-    } else if (userInfo?.userType.includes('1')) {
-      configs.push({ value: 'ZHUZHU', label: '猪猪一键宏' });
-      setSelectedMapping('ZHUZHU');
-    } else if (userInfo?.userType.includes('2')) {
-      configs.push({ value: 'JIAJIA', label: '佳佳一键宏' });
-      setSelectedMapping('JIAJIA');
-    } else if (userInfo?.userType.includes('3')) {
-      configs.push({ value: 'JIAJIA_REAL', label: '佳佳正式服一键宏' });
-      setSelectedMapping('JIAJIA_REAL');
-    } else if (userInfo?.userType.includes('4')) {
-      configs.push({ value: 'XIAOYI_SS', label: '小易SS一键宏' });
-      configs.push({ value: 'XIAOYI_LR', label: '小易LR一键宏' });
-      setSelectedMapping('XIAOYI_SS');
+    if (userInfo && userInfo.userType) {
+      if (userInfo.userType === '0' || userInfo.userType === '99') {
+        configs.push({ value: 'ZHUZHU', label: '猪猪一键宏' });
+        configs.push({ value: 'JIAJIA', label: '佳佳一键宏' });
+        configs.push({ value: 'JIAJIA_REAL', label: '佳佳正式服一键宏' });
+        configs.push({ value: 'XIAOYI_SS', label: '小易SS一键宏' });
+        configs.push({ value: 'XIAOYI_LR', label: '小易LR一键宏' });
+        setSelectedMapping('ZHUZHU');
+      } else if (userInfo.userType.includes('1')) {
+        configs.push({ value: 'ZHUZHU', label: '猪猪一键宏' });
+        setSelectedMapping('ZHUZHU');
+      } else if (userInfo.userType.includes('2')) {
+        configs.push({ value: 'JIAJIA', label: '佳佳一键宏' });
+        setSelectedMapping('JIAJIA');
+      } else if (userInfo.userType.includes('3')) {
+        configs.push({ value: 'JIAJIA_REAL', label: '佳佳正式服一键宏' });
+        setSelectedMapping('JIAJIA_REAL');
+      } else if (userInfo.userType.includes('4')) {
+        configs.push({ value: 'XIAOYI_SS', label: '小易SS一键宏' });
+        configs.push({ value: 'XIAOYI_LR', label: '小易LR一键宏' });
+        setSelectedMapping('XIAOYI_SS');
+      }
     }
     setConfigs(configs);
   }, [userInfo]);
