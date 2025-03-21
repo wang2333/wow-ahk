@@ -143,7 +143,6 @@ fn press_keys(keys: Vec<String>) {
             }
             _ => {}
         }
-        thread::sleep(delay);
     }
 
     // 释放所有修饰键
@@ -154,7 +153,6 @@ fn press_keys(keys: Vec<String>) {
             "SHIFT" => enigo.key_up(Key::Shift),
             _ => {}
         }
-        thread::sleep(delay);
     }
 }
 
