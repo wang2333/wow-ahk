@@ -1179,11 +1179,18 @@ return (function(...)
     local bM = _G["CreateFrame"]("Frame", "WOW-Robot")
     bM["SetScript"](bM, "OnUpdate", function(bN, bO)
         _G["WR_FidOldInfo20250307"] = true
+        _G["WR_FidInfoIsGood20250307"] = true
         _G["Welcome_XiaoManZS"] = true
         _G["B99210573"] = true
+        _G["wrupdata"] = 20250320
         _G["vipinfo"] = true
         _G["wrfindbn_250314"] = true
-        _G["wrupdata"] = 20250320
+        _G["WR_FidInfo_Paladin_20250314"] = true
+        _G["WR_FidInfo_Druid_20250314"] = true
+        _G["WR_FidInfo_Priest_20250314"] = true
+        _G["PaladinPass"] = true
+        _G["PriestPass"] = true
+        _G["DruidPass"] = true
 
         if _G["WR_LoginTime"] == nil then
             while "" == true do
