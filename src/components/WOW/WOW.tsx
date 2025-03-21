@@ -56,9 +56,36 @@ const colorMapDict = {
   AH: null
 };
 
+// function findSolutions(targetF, targetG) {
+//   const solutions = [];
+
+//   // Loop over all possible values for b, c, d, a (from 0 to 14)
+//   for (let b = 0; b <= 14; b++) {
+//       for (let c = 0; c <= 14; c++) {
+//           const f = b * 14 + c;
+//           if (f === targetF) {
+//               for (let d = 0; d <= 14; d++) {
+//                   for (let a = 0; a <= 14; a++) {
+//                       const g = d * 14 + a;
+//                       if (g === targetG) {
+//                           solutions.push({ a, b, c, d });
+//                       }
+//                   }
+//               }
+//           }
+//       }
+//   }
+//   return solutions;
+// }
+
+// Example usage:
+// const targetF = 200;
+// const targetG = 300;
+// const solutions = findSolutions(targetF, targetG);
+// console.log(solutions);
+
 function getKeyNum(targetNum: number, actionNum: number) {
   const keyMap = [
-    '',
     'NUMPAD1',
     'NUMPAD2',
     'NUMPAD3',
@@ -79,13 +106,14 @@ function getKeyNum(targetNum: number, actionNum: number) {
   const keyNum2 = targetNum % 14;
   const keyNum3 = Math.floor(actionNum / 14);
   const keyNum4 = actionNum % 14;
+  const f = keyNum2 * 14 + keyNum3;
+  const g = keyNum4 * 14 + keyNum1;
   return [keyMap[keyNum1], keyMap[keyNum2], keyMap[keyNum3], keyMap[keyNum4]];
 }
 
 function WOW() {
   const { userInfo, gameSettings, updateWowCoordinates, updateHotkeySettings } = useAuth();
   const [color, setColor] = useState<string | null>(null);
-  const [oldColor, setOldColor] = useState<ColorInfo>({ r: 0, g: 0, b: 0 });
   const [model, setModel] = useState(0);
   const [autoMove, setAutoMove] = useState(false);
   const [moveInterval, setMoveInterval] = useState(500);
@@ -119,6 +147,7 @@ function WOW() {
         configs.push({ value: 'JIAJIA_REAL', label: '佳佳正式服一键宏' });
         configs.push({ value: 'XIAOYI_SS', label: '小易SS一键宏' });
         configs.push({ value: 'XIAOYI_LR', label: '小易LR一键宏' });
+        configs.push({ value: 'AH', label: 'AH一键宏' });
         setSelectedMapping('ZHUZHU');
       } else if (userType.includes('1')) {
         configs.push({ value: 'ZHUZHU', label: '猪猪一键宏' });
@@ -167,44 +196,48 @@ function WOW() {
     };
   }, [hotkeys]); // 添加hotkeys作为依赖项，当热键改变时重新注册
 
-  const autokey = async (params: { x: number; y: number }) => {
-    const newColor = await invoke<ColorInfo>('get_pixel_color', params);
-    if (!newColor) return;
-    let hexColor = '';
-    // 转换为十六进制格式
-    if (selectedMapping === 'JIAJIA_REAL') {
-      hexColor = rgbToHex(newColor.b, newColor.g, newColor.r);
-    } else {
-      hexColor = rgbToHex(newColor.r, newColor.g, newColor.b);
-    }
-    setOldColor(newColor);
-    setColor(hexColor);
-
-    if (selectedMapping === 'AH') {
-      const keys = getKeyNum(newColor.g, newColor.b);
-      if (newColor.r !== oldColor.r && newColor.g !== 0 && newColor.b !== 0) {
-        for (const key of keys) {
-          await invoke('press_keys', { keys: ['CTRL', key] });
-        }
-      }
-      return;
-    }
-
-    const keyCombo1 = color_mappings?.[hexColor.toLowerCase()];
-    if (keyCombo1) {
-      await invoke('press_keys', { keys: keyCombo1.split('-') });
-      return;
-    }
-    const keyCombo2 = color_mappings?.[hexColor.toUpperCase()];
-    if (keyCombo2) {
-      await invoke('press_keys', { keys: keyCombo2.split('-') });
-      return;
-    }
-  };
-
   useEffect(() => {
     let isRunning = true;
     let currentIndex = 0;
+    let oldColor = { r: 0, g: 0, b: 0 };
+
+    const autokey = async (params: { x: number; y: number }) => {
+      const newColor = await invoke<ColorInfo>('get_pixel_color', params);
+      if (!newColor) return;
+
+      if (selectedMapping === 'AH') {
+        if (newColor.r !== oldColor.r && newColor.g !== 0 && newColor.b !== 0) {
+          oldColor = newColor;
+          const keys = getKeyNum(newColor.g, newColor.b);
+          // console.log('👻 ~ newColor:', newColor);
+          // console.log('👻 ~ keys:', keys);
+          for await (const key of keys) {
+            await invoke('press_keys', { keys: ['CTRL', key] });
+          }
+        }
+        return;
+      }
+
+      let hexColor = '';
+      // 转换为十六进制格式
+      if (selectedMapping === 'JIAJIA_REAL') {
+        hexColor = rgbToHex(newColor.b, newColor.g, newColor.r);
+      } else {
+        hexColor = rgbToHex(newColor.r, newColor.g, newColor.b);
+      }
+      setColor(hexColor);
+
+      const keyCombo1 = color_mappings?.[hexColor.toLowerCase()];
+      if (keyCombo1) {
+        await invoke('press_keys', { keys: keyCombo1.split('-') });
+        return;
+      }
+      const keyCombo2 = color_mappings?.[hexColor.toUpperCase()];
+      if (keyCombo2) {
+        await invoke('press_keys', { keys: keyCombo2.split('-') });
+        return;
+      }
+    };
 
     const handleCheckColor = async () => {
       if (!isRunning) return;

@@ -1,0 +1,9 @@
+## Interface: 11505
+## Title: AutoHelp
+## Author: AutoHelp
+## Notes: |cff00ff00AutoHelp |r
+## Version: 2.0
+## RequiredDeps:
+## OptionalDeps:
+## SavedVariablesPerCharacter:HelpSettings
+AutoHelp.lua

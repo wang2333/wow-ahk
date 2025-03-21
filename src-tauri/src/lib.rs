@@ -154,6 +154,7 @@ fn press_keys(keys: Vec<String>) {
             "SHIFT" => enigo.key_up(Key::Shift),
             _ => {}
         }
+        thread::sleep(delay);
     }
 }
 

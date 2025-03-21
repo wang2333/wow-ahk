@@ -1,0 +1,9 @@
+## Interface: 30403
+## Title: AutoHelp
+## Author: AutoHelp
+## Notes: |cff00ff00AutoHelp |r
+## Version: 3.0
+## RequiredDeps:
+## OptionalDeps:
+## SavedVariablesPerCharacter:HelpSettings
+AutoHelp.lua
