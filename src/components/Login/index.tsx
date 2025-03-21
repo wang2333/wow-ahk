@@ -3,7 +3,10 @@ import { useEffect, useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 
 interface LoginProps {
-  onLogin: (keyCode: string) => Promise<boolean>;
+  onLogin: (keyCode: string) => Promise<{
+    success: boolean;
+    message: string;
+  }>;
   isLoading: boolean;
 }
 
@@ -29,8 +32,8 @@ const Login = ({ onLogin, isLoading }: LoginProps) => {
 
     try {
       const success = await onLogin(keyCode);
-      if (!success) {
-        setError('卡密错误');
+      if (!success.success) {
+        setError(success.message);
       }
     } catch (err) {
       setError('登录过程中发生错误，请重试');

@@ -1,6 +1,5 @@
 import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 import { Store } from '@tauri-apps/plugin-store';
-import { getCurrentWindow } from '@tauri-apps/api/window';
 import request from '@/Utils/axios';
 
 // 坐标接口
@@ -35,7 +34,7 @@ interface AuthContextType {
   userInfo: User | null;
   gameSettings: GameSettings;
   isLoading: boolean;
-  login: (keyCode: string) => Promise<boolean>;
+  login: (keyCode: string) => Promise<{ success: boolean; message: string }>;
   logout: () => Promise<void>;
   updateWowCoordinates: (coordinates: Coordinates) => Promise<void>;
   updateHotkeySettings: (hotkeys: HotkeySettings) => Promise<void>;
@@ -91,7 +90,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   // 检查保存的用户数据
-  const checkSavedUser = async () => {
+  const loadSavedUser = async () => {
     try {
       const userAccountStore = await userAccountStorePromise;
       const savedUserAccount = await userAccountStore.get<string>('userAccount');
@@ -125,33 +124,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   // 初始化时加载用户和游戏设置，并设置应用关闭事件监听
   useEffect(() => {
     // 加载保存的用户数据
-    checkSavedUser();
+    loadSavedUser();
     // 加载游戏设置
     loadGameSettings();
-
-    // 设置应用关闭事件监听器
-    let unlistenFn: (() => void) | undefined;
-    const setupCloseHandler = async () => {
-      try {
-        const appWindow = await getCurrentWindow();
-
-        // 在窗口关闭请求时执行清理操作
-        unlistenFn = await appWindow.onCloseRequested(async () => {
-          // 只清空用户状态，不清空游戏设置
-          await clearUserState();
-          appWindow.close();
-        });
-      } catch (error) {
-        console.error('设置窗口关闭事件监听器失败:', error);
-      }
-    };
-    setupCloseHandler();
-    // 组件卸载时移除事件监听器
-    return () => {
-      if (unlistenFn) {
-        unlistenFn();
-      }
-    };
   }, []);
 
   // 更新WOW坐标
@@ -174,20 +149,32 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     await saveGameSettings(newSettings);
   };
 
-  const login = async (keyCode: string): Promise<boolean> => {
+  const login = async (keyCode: string): Promise<{ success: boolean; message: string }> => {
     setIsLoading(true);
 
     try {
       // 注意：这里使用完整的API路径
-      const response = await request<{ user_type: string }>('/api/verifyCard', {
+      const response = await request<{
+        success: boolean;
+        message: string;
+        data: {
+          user_type: string;
+        };
+      }>('/api/verifyCard', {
         method: 'GET',
         params: {
           keyCode
         }
       });
+      if (!response.success) {
+        return {
+          success: false,
+          message: response.message
+        };
+      }
       const userData = {
         keyCode,
-        userType: response.user_type
+        userType: response.data.user_type.toString()
       };
       setUserInfo(userData);
       // 保存用户数据到存储
@@ -198,10 +185,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const userAccountStore = await userAccountStorePromise;
       await userAccountStore.set('userAccount', keyCode);
       await userAccountStore.save();
-      return true;
+      return {
+        success: true,
+        message: '登录成功'
+      };
     } catch (error) {
+      console.log('👻 ~ error:', error);
       console.error('登录总体错误:', error);
-      return false;
+      return {
+        success: false,
+        message: '登录失败'
+      };
     } finally {
       setIsLoading(false);
     }
@@ -209,8 +203,21 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const logout = async (): Promise<void> => {
     setIsLoading(true);
-    await clearUserState();
-    setIsLoading(false);
+
+    try {
+      // 注意：这里使用完整的API路径
+      const response = await request<{ success: boolean }>('/api/logout', {
+        method: 'GET',
+        params: {
+          keyCode: userAccount
+        }
+      });
+      if (!response.success) return;
+      await clearUserState();
+    } catch (error) {
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
