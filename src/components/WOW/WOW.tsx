@@ -161,6 +161,9 @@ function WOW() {
         configs.push({ value: 'XIAOYI_SS', label: '小易SS一键宏' });
         configs.push({ value: 'XIAOYI_LR', label: '小易LR一键宏' });
         setSelectedMapping('XIAOYI_SS');
+      }else if (userType.includes('5')) {
+        configs.push({ value: 'AH', label: 'AH一键宏' });
+        setSelectedMapping('AH');
       }
     }
     setConfigs(configs);
