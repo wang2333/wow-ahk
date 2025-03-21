@@ -1,6 +1,8 @@
-import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
-import { Store } from '@tauri-apps/plugin-store';
+import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
+
 import request from '@/Utils/axios';
+import { message } from '@tauri-apps/plugin-dialog';
+import { Store } from '@tauri-apps/plugin-store';
 
 // 坐标接口
 interface Coordinates {
@@ -34,7 +36,7 @@ interface AuthContextType {
   userInfo: User | null;
   gameSettings: GameSettings;
   isLoading: boolean;
-  login: (keyCode: string) => Promise<{ success: boolean; message: string }>;
+  login: (keyCode: string) => Promise<boolean>;
   logout: () => Promise<void>;
   updateWowCoordinates: (coordinates: Coordinates) => Promise<void>;
   updateHotkeySettings: (hotkeys: HotkeySettings) => Promise<void>;
@@ -149,7 +151,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     await saveGameSettings(newSettings);
   };
 
-  const login = async (keyCode: string): Promise<{ success: boolean; message: string }> => {
+  const login = async (keyCode: string): Promise<boolean> => {
     setIsLoading(true);
 
     try {
@@ -167,10 +169,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         }
       });
       if (!response.success) {
-        return {
-          success: false,
-          message: response.message
-        };
+        await message(response.message, '登录失败');
+        return false;
       }
       const userData = {
         keyCode,
@@ -185,17 +185,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const userAccountStore = await userAccountStorePromise;
       await userAccountStore.set('userAccount', keyCode);
       await userAccountStore.save();
-      return {
-        success: true,
-        message: '登录成功'
-      };
+      return true;
     } catch (error) {
-      console.log('👻 ~ error:', error);
       console.error('登录总体错误:', error);
-      return {
-        success: false,
-        message: '登录失败'
-      };
+      await message('登录失败，请重新尝试', '登录失败');
+      return false;
     } finally {
       setIsLoading(false);
     }
@@ -212,9 +206,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           keyCode: userAccount
         }
       });
-      if (!response.success) return;
+      if (!response.success) {
+        await message('退出失败，请重新尝试', '退出失败');
+        return;
+      }
+      await message('退出成功', '退出成功');
       await clearUserState();
     } catch (error) {
+      await message('退出失败，请重新尝试', '退出失败');
     } finally {
       setIsLoading(false);
     }

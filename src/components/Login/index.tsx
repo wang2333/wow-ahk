@@ -3,10 +3,7 @@ import { useEffect, useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 
 interface LoginProps {
-  onLogin: (keyCode: string) => Promise<{
-    success: boolean;
-    message: string;
-  }>;
+  onLogin: (keyCode: string) => Promise<boolean>;
   isLoading: boolean;
 }
 
@@ -23,7 +20,6 @@ const Login = ({ onLogin, isLoading }: LoginProps) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
 
     if (!keyCode.trim()) {
       setError('卡密不能为空');
@@ -31,12 +27,8 @@ const Login = ({ onLogin, isLoading }: LoginProps) => {
     }
 
     try {
-      const success = await onLogin(keyCode);
-      if (!success.success) {
-        setError(success.message);
-      }
+      await onLogin(keyCode);
     } catch (err) {
-      setError('登录过程中发生错误，请重试');
       console.error(err);
     }
   };
