@@ -1,1116 +1,1114 @@
-local a = 43;
-local b = 27;
-local c = 11;
-local d = 32;
-local e = 0 == 1;
-local f = not e;
-local g = nil;
-local h = ""
-local i = _G;
-local j = _ENV;
-local k = i["tonumber"]
+local a = 75;
+local b = 87;
+local c = 0 == 1;
+local d = not c;
+local e = nil;
+local f = ""
+local g = _G;
+local h = _ENV;
+local i = g["tonumber"]
 return (function(...)
-	if not i["IsSpellInRange"] then
-		i["IsSpellInRange"] = i["C_Spell"]["IsSpellInRange"]
+	if not g["IsSpellInRange"] then
+		g["IsSpellInRange"] = g["C_Spell"]["IsSpellInRange"]
 	end;
-	if not i["GetSpellCount"] then
-		i["GetSpellCount"] = i["C_Spell"]["GetSpellCastCount"]
+	if not g["GetSpellCount"] then
+		g["GetSpellCount"] = g["C_Spell"]["GetSpellCastCount"]
 	end;
-	if not i["GetSpellLink"] then
-		i["GetSpellLink"] = i["C_Spell"]["GetSpellLink"]
+	if not g["GetSpellLink"] then
+		g["GetSpellLink"] = g["C_Spell"]["GetSpellLink"]
 	end;
-	if not i["IsUsableSpell"] then
-		i["IsUsableSpell"] = i["C_Spell"]["IsSpellUsable"]
+	if not g["IsUsableSpell"] then
+		g["IsUsableSpell"] = g["C_Spell"]["IsSpellUsable"]
 	end;
-	if not i["GetSpellInfo"] then
-		i["GetSpellInfo"] = function(l)
-			if not l then
-				return g
+	if not g["GetSpellInfo"] then
+		g["GetSpellInfo"] = function(j)
+			if not j then
+				return e
 			end;
-			local m = i["C_Spell"]["GetSpellInfo"](l)
-			if m then
-				return m["name"], g, m["iconID"], m["castTime"], m["minRange"], m["maxRange"], m["spellID"], m["originalIconID"]
+			local k = g["C_Spell"]["GetSpellInfo"](j)
+			if k then
+				return k["name"], e, k["iconID"], k["castTime"], k["minRange"], k["maxRange"], k["spellID"], k["originalIconID"]
 			end
 		end
 	end;
-	if not i["GetSpellCooldown"] then
-		i["GetSpellCooldown"] = function(l)
-			local n = i["C_Spell"]["GetSpellCooldown"](l)
-			if n then
-				return n["startTime"], n["duration"], n["isEnabled"], n["modRate"]
+	if not g["GetSpellCooldown"] then
+		g["GetSpellCooldown"] = function(j)
+			local l = g["C_Spell"]["GetSpellCooldown"](j)
+			if l then
+				return l["startTime"], l["duration"], l["isEnabled"], l["modRate"]
 			end
 		end
 	end;
-	i["PartyRange"] = {}
-	i["RiadRange"] = {}
-	i["PartyLostHealth"] = {}
-	i["RiadLostHealth"] = {}
-	i["PlayerLostHealth"] = k("0")
-	i["WR_CreateMacroButton"] = function(o, p, q)
-		i["MacroButton"] = i["CreateFrame"]("Button", o, i["UIParent"], "SecureActionButtonTemplate")
-		i["MacroButton"]["RegisterForClicks"](i["MacroButton"], "AnyDown", "AnyUp")
-		i["MacroButton"]["SetAttribute"](i["MacroButton"], "type", "macro")
-		i["MacroButton"]["SetAttribute"](i["MacroButton"], "macrotext", q)
-		i["SetBinding"](p, "CLICK " .. o .. ":LeftButton")
+	g["PartyRange"] = {}
+	g["RiadRange"] = {}
+	g["PartyLostHealth"] = {}
+	g["RiadLostHealth"] = {}
+	g["PlayerLostHealth"] = i("0")
+	g["WR_CreateMacroButton"] = function(m, n, o)
+		g["MacroButton"] = g["CreateFrame"]("Button", m, g["UIParent"], "SecureActionButtonTemplate")
+		g["MacroButton"]["RegisterForClicks"](g["MacroButton"], "AnyDown", "AnyUp")
+		g["MacroButton"]["SetAttribute"](g["MacroButton"], "type", "macro")
+		g["MacroButton"]["SetAttribute"](g["MacroButton"], "macrotext", o)
+		g["SetBinding"](n, "CLICK " .. m .. ":LeftButton")
 	end;
-	i["WR_MyPower"] = function()
-		if i["WR_GetInRaidOrParty"]() ~= "raid" then
+	g["WR_MyPower"] = function()
+		if g["WR_GetInRaidOrParty"]() ~= "raid" then
 			return
 		end;
-		local r = i["date"]("*t")
-		local s = r["hour"]
-		local t = r["min"]
-		if i["MyGIDTime"] == g or i["GetTime"]() - i["MyGIDTime"] >= k("900") then
-			if s == k("20") and t == k("0") then
-				i["SendChatMessage"]("■■■■■■■■■■■■", "RAID")
-				i["MyGIDTime"] = i["GetTime"]()
-			elseif s == k("20") and t == k("15") then
-				i["SendChatMessage"]("□■■■■■■■■■■■", "RAID")
-				i["MyGIDTime"] = i["GetTime"]()
-			elseif s == k("20") and t == k("30") then
-				i["SendChatMessage"]("□□■■■■■■■■■■", "RAID")
-				i["MyGIDTime"] = i["GetTime"]()
-			elseif s == k("20") and t == k("45") then
-				i["SendChatMessage"]("□□□■■■■■■■■■", "RAID")
-				i["MyGIDTime"] = i["GetTime"]()
-			elseif s == k("21") and t == k("0") then
-				i["SendChatMessage"]("□□□□■■■■■■■■", "RAID")
-				i["MyGIDTime"] = i["GetTime"]()
-			elseif s == k("21") and t == k("15") then
-				i["SendChatMessage"]("□□□□□■■■■■■■", "RAID")
-				i["MyGIDTime"] = i["GetTime"]()
-			elseif s == k("21") and t == k("30") then
-				i["SendChatMessage"]("□□□□□□■■■■■■", "RAID")
-				i["MyGIDTime"] = i["GetTime"]()
-			elseif s == k("21") and t == k("45") then
-				i["SendChatMessage"]("□□□□□□□■■■■■", "RAID")
-				i["MyGIDTime"] = i["GetTime"]()
-			elseif s == k("22") and t == k("0") then
-				i["SendChatMessage"]("□□□□□□□□■■■■", "RAID")
-				i["MyGIDTime"] = i["GetTime"]()
-			elseif s == k("22") and t == k("15") then
-				i["SendChatMessage"]("□□□□□□□□□■■■", "RAID")
-				i["MyGIDTime"] = i["GetTime"]()
-			elseif s == k("22") and t == k("30") then
-				i["SendChatMessage"]("□□□□□□□□□□■■", "RAID")
-				i["MyGIDTime"] = i["GetTime"]()
-			elseif s == k("22") and t == k("45") then
-				i["SendChatMessage"]("□□□□□□□□□□□■", "RAID")
-				i["MyGIDTime"] = i["GetTime"]()
-			elseif s == k("23") and t == k("00") then
-				i["SendChatMessage"]("□□□□□□□□□□□□", "RAID")
-				i["MyGIDTime"] = i["GetTime"]()
-			elseif s == k("23") and t == k("15") then
-				i["SendChatMessage"]("□□□□□□□□□□□□ □■■■", "RAID")
-				i["MyGIDTime"] = i["GetTime"]()
-			elseif s == k("23") and t == k("30") then
-				i["SendChatMessage"]("□□□□□□□□□□□□ □□■■", "RAID")
-				i["MyGIDTime"] = i["GetTime"]()
-			elseif s == k("23") and t == k("45") then
-				i["SendChatMessage"]("□□□□□□□□□□□□ □□□■", "RAID")
-				i["MyGIDTime"] = i["GetTime"]()
-			elseif s == k("00") and t == k("00") then
-				i["SendChatMessage"]("□□□□□□□□□□□□ □□□□", "RAID")
-				i["MyGIDTime"] = i["GetTime"]()
+		local p = g["date"]("*t")
+		local q = p["hour"]
+		local r = p["min"]
+		if g["MyGIDTime"] == e or g["GetTime"]() - g["MyGIDTime"] >= i("900") then
+			if q == i("20") and r == i("0") then
+				g["SendChatMessage"]("■■■■■■■■■■■■", "RAID")
+				g["MyGIDTime"] = g["GetTime"]()
+			elseif q == i("20") and r == i("15") then
+				g["SendChatMessage"]("□■■■■■■■■■■■", "RAID")
+				g["MyGIDTime"] = g["GetTime"]()
+			elseif q == i("20") and r == i("30") then
+				g["SendChatMessage"]("□□■■■■■■■■■■", "RAID")
+				g["MyGIDTime"] = g["GetTime"]()
+			elseif q == i("20") and r == i("45") then
+				g["SendChatMessage"]("□□□■■■■■■■■■", "RAID")
+				g["MyGIDTime"] = g["GetTime"]()
+			elseif q == i("21") and r == i("0") then
+				g["SendChatMessage"]("□□□□■■■■■■■■", "RAID")
+				g["MyGIDTime"] = g["GetTime"]()
+			elseif q == i("21") and r == i("15") then
+				g["SendChatMessage"]("□□□□□■■■■■■■", "RAID")
+				g["MyGIDTime"] = g["GetTime"]()
+			elseif q == i("21") and r == i("30") then
+				g["SendChatMessage"]("□□□□□□■■■■■■", "RAID")
+				g["MyGIDTime"] = g["GetTime"]()
+			elseif q == i("21") and r == i("45") then
+				g["SendChatMessage"]("□□□□□□□■■■■■", "RAID")
+				g["MyGIDTime"] = g["GetTime"]()
+			elseif q == i("22") and r == i("0") then
+				g["SendChatMessage"]("□□□□□□□□■■■■", "RAID")
+				g["MyGIDTime"] = g["GetTime"]()
+			elseif q == i("22") and r == i("15") then
+				g["SendChatMessage"]("□□□□□□□□□■■■", "RAID")
+				g["MyGIDTime"] = g["GetTime"]()
+			elseif q == i("22") and r == i("30") then
+				g["SendChatMessage"]("□□□□□□□□□□■■", "RAID")
+				g["MyGIDTime"] = g["GetTime"]()
+			elseif q == i("22") and r == i("45") then
+				g["SendChatMessage"]("□□□□□□□□□□□■", "RAID")
+				g["MyGIDTime"] = g["GetTime"]()
+			elseif q == i("23") and r == i("00") then
+				g["SendChatMessage"]("□□□□□□□□□□□□", "RAID")
+				g["MyGIDTime"] = g["GetTime"]()
+			elseif q == i("23") and r == i("15") then
+				g["SendChatMessage"]("□□□□□□□□□□□□ □■■■", "RAID")
+				g["MyGIDTime"] = g["GetTime"]()
+			elseif q == i("23") and r == i("30") then
+				g["SendChatMessage"]("□□□□□□□□□□□□ □□■■", "RAID")
+				g["MyGIDTime"] = g["GetTime"]()
+			elseif q == i("23") and r == i("45") then
+				g["SendChatMessage"]("□□□□□□□□□□□□ □□□■", "RAID")
+				g["MyGIDTime"] = g["GetTime"]()
+			elseif q == i("00") and r == i("00") then
+				g["SendChatMessage"]("□□□□□□□□□□□□ □□□□", "RAID")
+				g["MyGIDTime"] = g["GetTime"]()
 			end
 		end
 	end;
-	i["WR_GetGCD"] = function(u)
-		local v = k("0")
-		if i["C_Spell"]["GetSpellCooldown"](u) then
-			local w = i["C_Spell"]["GetSpellCooldown"](u)["startTime"]
-			local x = i["C_Spell"]["GetSpellCooldown"](u)["duration"]
-			if w + x > i["GetTime"]() then
-				v = w + x - i["GetTime"]()
+	g["WR_GetGCD"] = function(s)
+		local t = i("0")
+		if g["C_Spell"]["GetSpellCooldown"](s) then
+			local u = g["C_Spell"]["GetSpellCooldown"](s)["startTime"]
+			local v = g["C_Spell"]["GetSpellCooldown"](s)["duration"]
+			if u + v > g["GetTime"]() then
+				t = u + v - g["GetTime"]()
 			end
 		end;
-		local y, y, y, y, z, y, y, y, y = i["UnitCastingInfo"]("player")
-		if z ~= g and z / k("1000") - i["GetTime"]() > v then
-			return z / k("1000") - i["GetTime"]()
+		local w, w, w, w, x, w, w, w, w = g["UnitCastingInfo"]("player")
+		if x ~= e and x / i("1000") - g["GetTime"]() > t then
+			return x / i("1000") - g["GetTime"]()
 		else
-			return v
+			return t
 		end
 	end;
-	i["WR_SpellUsable"] = function(A)
-		if i["WR_GetGCD"](A) <= i["GCD"] and i["C_Spell"]["IsSpellUsable"](A) then
-			return f
+	g["WR_SpellUsable"] = function(y)
+		if g["WR_GetGCD"](y) <= g["GCD"] and g["C_Spell"]["IsSpellUsable"](y) then
+			return d
 		end;
-		return e
+		return c
 	end;
-	i["WR_GetMaxLatency"] = function()
-		local B, C, D, E = i["GetNetStats"]()
-		if D > E then
-			return D / k("1000")
+	g["WR_GetMaxLatency"] = function()
+		local z, A, B, C = g["GetNetStats"]()
+		if B > C then
+			return B / i("1000")
 		else
-			return E / k("1000")
+			return C / i("1000")
 		end
 	end;
-	i["WR_GetMaxGCD"] = function(F)
-		return F / (k("1") + i["GetHaste"]() / k("100"))
+	g["WR_GetMaxGCD"] = function(D)
+		return D / (i("1") + g["GetHaste"]() / i("100"))
 	end;
-	i["WR_GetSpellValue"] = function(u, G, H)
-		local I = "([%d,%.]+)"
-		if G ~= g then
-			I = G .. I
+	g["WR_GetSpellValue"] = function(s, E, F)
+		local G = "([%d,%.]+)"
+		if E ~= e then
+			G = E .. G
 		end;
-		if H ~= g then
-			I = I .. H
+		if F ~= e then
+			G = G .. F
 		end;
-		local J = i["C_Spell"]["GetSpellDescription"](u)
-		if J ~= g then
-			J = J["match"](J, I)
+		local H = g["C_Spell"]["GetSpellDescription"](s)
+		if H ~= e then
+			H = H["match"](H, G)
 		end;
-		if J ~= g then
-			J = J["gsub"](J, ",", h)
+		if H ~= e then
+			H = H["gsub"](H, ",", f)
 		end;
-		if J ~= g then
-			J = J["gsub"](J, " 万", "0000")
+		if H ~= e then
+			H = H["gsub"](H, " 万", "0000")
 		end;
-		if J ~= g then
-			local K = i["tonumber"](J)
-			if i["type"](K) == "number" then
-				return K
+		if H ~= e then
+			local I = g["tonumber"](H)
+			if g["type"](I) == "number" then
+				return I
 			end
 		end;
-		local I = "([%d,%.]+ 万)"
-		if G ~= g then
-			I = G .. I
+		local G = "([%d,%.]+ 万)"
+		if E ~= e then
+			G = E .. G
 		end;
-		if H ~= g then
-			I = I .. H
+		if F ~= e then
+			G = G .. F
 		end;
-		local J = i["C_Spell"]["GetSpellDescription"](u)
-		if J ~= g then
-			J = J["match"](J, I)
+		local H = g["C_Spell"]["GetSpellDescription"](s)
+		if H ~= e then
+			H = H["match"](H, G)
 		end;
-		if J ~= g then
-			J = J["gsub"](J, ",", h)
+		if H ~= e then
+			H = H["gsub"](H, ",", f)
 		end;
-		if J ~= g then
-			J = J["gsub"](J, " 万", "0000")
+		if H ~= e then
+			H = H["gsub"](H, " 万", "0000")
 		end;
-		if J ~= g then
-			local K = i["tonumber"](J)
-			if i["type"](K) == "number" then
-				return K
+		if H ~= e then
+			local I = g["tonumber"](H)
+			if g["type"](I) == "number" then
+				return I
 			end
 		end;
-		return k("0")
+		return i("0")
 	end;
-	i["WR_InTraining"] = function()
-		for y, L in i["pairs"](i["TrainingName"]) do
-			if i["UnitName"]("target") == L then
-				return f
+	g["WR_InTraining"] = function()
+		for w, J in g["pairs"](g["TrainingName"]) do
+			if g["UnitName"]("target") == J then
+				return d
 			end
 		end;
-		return e
+		return c
 	end;
-	i["WR_PartyIsDeath"] = function()
-		for M = k("1"), k("4"), k("1") do
-			if i["UnitExists"]("party" .. M) and i["UnitIsDead"]("party" .. M) then
-				return f
+	g["WR_PartyIsDeath"] = function()
+		for K = i("1"), i("4"), i("1") do
+			if g["UnitExists"]("party" .. K) and g["UnitIsDead"]("party" .. K) then
+				return d
 			end
 		end;
-		for M = k("1"), k("40"), k("1") do
-			if i["UnitExists"]("raid" .. M) and i["UnitIsDead"]("raid" .. M) then
-				return f
+		for K = i("1"), i("40"), i("1") do
+			if g["UnitExists"]("raid" .. K) and g["UnitIsDead"]("raid" .. K) then
+				return d
 			end
 		end;
-		return e
+		return c
 	end;
-	i["WR_Unbind"] = function(N)
-		if i["UnitCastingInfo"]("boss1") == "宇宙奇点" then
-			return e
+	g["WR_Unbind"] = function(L)
+		if g["UnitCastingInfo"]("boss1") == "宇宙奇点" then
+			return c
 		end;
-		if i["UnitClassBase"]("player") == "DRUID" and i["WR_GetUnitDebuffTime"](N, "晦幽纺纱") > k("0") and i["WR_GetUnitDebuffTime"](N, "晦幽纺纱") < k("11") then
-			return e
+		if g["UnitClassBase"]("player") == "DRUID" and g["WR_GetUnitDebuffTime"](L, "晦幽纺纱") > i("0") and g["WR_GetUnitDebuffTime"](L, "晦幽纺纱") < i("11") then
+			return c
 		end;
-		if i["WR_GetUnitDebuffCount"](N, "恐瓣花粉") >= k("6") then
-			return f
+		if g["WR_GetUnitDebuffCount"](L, "恐瓣花粉") >= i("6") then
+			return d
 		end;
-		if i["WR_GetUnitDebuffTime"](N, i["BindName"]) > k("0") then
-			return f
+		if g["WR_GetUnitDebuffTime"](L, g["BindName"]) > i("0") then
+			return d
 		end;
-		return e
+		return c
 	end;
-	i["WR_YuFangDingShen"] = function(N)
-		if i["WR_GetRangeSpellTime"](k("40"), i["YuFangDingShenSpell"]) < k("2") then
-			return f
+	g["WR_YuFangDingShen"] = function(L)
+		if g["WR_GetRangeSpellTime"](i("40"), g["YuFangDingShenSpell"]) < i("2") then
+			return d
 		end;
-		if N == g or N == "player" then
-			if i["WR_GetRangeSpellTime"](k("40"), i["YuFangDingShenSpellToUnit"], "player") < k("2") then
-				return f
+		if L == e or L == "player" then
+			if g["WR_GetRangeSpellTime"](i("40"), g["YuFangDingShenSpellToUnit"], "player") < i("2") then
+				return d
 			end
 		else
-			if i["WR_GetRangeSpellTime"](k("40"), i["YuFangDingShenSpellToUnit"], N) < k("2") then
-				return f
+			if g["WR_GetRangeSpellTime"](i("40"), g["YuFangDingShenSpellToUnit"], L) < i("2") then
+				return d
 			end
 		end;
-		return e
+		return c
 	end;
-	i["WR_UnitAssistDebuff"] = function(N)
-		return i["WR_GetUnitDebuffTime"](N, i["AssistDebuffName"]) > k("0") or i["WR_GetUnitDebuffTime"](N, i["DangerDebuff"]) > k("0")
+	g["WR_UnitAssistDebuff"] = function(L)
+		return g["WR_GetUnitDebuffTime"](L, g["AssistDebuffName"]) > i("0") or g["WR_GetUnitDebuffTime"](L, g["DangerDebuff"]) > i("0")
 	end;
-	i["WR_Mustheal"] = function(N)
-		local O = k("1")
-		if i["WR_GetUnitDebuffTime"](N, i["MustHealSpellName"]) > k("0") or i["WR_UnitAssistDebuff"](N) then
-			if i["UnitHealth"](N) / i["UnitHealthMax"](N) < k("0.9") then
-				return f
+	g["WR_Mustheal"] = function(L)
+		local M = i("1")
+		if g["WR_GetUnitDebuffTime"](L, g["MustHealSpellName"]) > i("0") or g["WR_UnitAssistDebuff"](L) then
+			if g["UnitHealth"](L) / g["UnitHealthMax"](L) < i("0.9") then
+				return d
 			end
 		end;
-		local P, y = i["UnitName"](N)
-		if P == "卡多雷精魂" or P == "焦化树人" then
-			if i["UnitHealth"](N) / i["UnitHealthMax"](N) < k("0.9") then
-				return f
+		local N, w = g["UnitName"](L)
+		if N == "卡多雷精魂" or N == "焦化树人" then
+			if g["UnitHealth"](L) / g["UnitHealthMax"](L) < i("0.9") then
+				return d
 			end
 		end;
-		return e
+		return c
 	end;
-	i["WR_GetUnitBuffType"] = function(N, Q)
-		local M;
-		for M = k("1"), k("255"), k("1") do
-			local R = i["C_UnitAuras"]["GetAuraDataByIndex"](N, M, "HELPFUL")
-			if R == g then
+	g["WR_GetUnitBuffType"] = function(L, O)
+		local K;
+		for K = i("1"), i("255"), i("1") do
+			local P = g["C_UnitAuras"]["GetAuraDataByIndex"](L, K, "HELPFUL")
+			if P == e then
 				break
 			end;
-			local S = R["name"]
-			local T = R["applications"]
-			local U = R["dispelName"]
-			if S == g then
+			local Q = P["name"]
+			local R = P["applications"]
+			local S = P["dispelName"]
+			if Q == e then
 				break
 			end;
-			if S == "无穷饥渴" and T < k("6") then
-				return e
+			if Q == "无穷饥渴" and R < i("6") then
+				return c
 			end;
-			if S == "窃取时间" then
-				return e
+			if Q == "窃取时间" then
+				return c
 			end;
-			if U == Q then
-				return f
+			if S == O then
+				return d
 			end
 		end;
-		return e
+		return c
 	end;
-	i["WR_UnitDebuffType"] = function(N, V)
-		local M;
-		for M = k("1"), k("255"), k("1") do
-			local W = f;
-			local X = i["C_UnitAuras"]["GetAuraDataByIndex"](N, M, "HARMFUL")
-			if X == g then
+	g["WR_UnitDebuffType"] = function(L, T)
+		local K;
+		for K = i("1"), i("255"), i("1") do
+			local U = d;
+			local V = g["C_UnitAuras"]["GetAuraDataByIndex"](L, K, "HARMFUL")
+			if V == e then
 				break
 			end;
-			local S = X["name"]
-			local T = X["applications"]
-			local U = X["dispelName"]
-			local Y = X["expirationTime"]
-			if S == g then
+			local Q = V["name"]
+			local R = V["applications"]
+			local S = V["dispelName"]
+			local W = V["expirationTime"]
+			if Q == e then
 				break
 			end;
-			if S == "虚空裂隙" then
-				return f, k("1")
+			if Q == "虚空裂隙" then
+				return d, i("1")
 			end;
-			if S == "烈焰撕咬" and i["WR_RangeCountPR"](k("40"), k("0.70")) >= k("1") then
-				W = e
+			if Q == "烈焰撕咬" and g["WR_RangeCountPR"](i("40"), i("0.70")) >= i("1") then
+				U = c
 			end;
-			if S == "灵魂毒液" and T < k("7") then
-				W = e
+			if Q == "灵魂毒液" and R < i("7") then
+				U = c
 			end;
-			if (S == "爆裂" or S == "巨口蛙毒" or S == "腐蚀波") and T < k("5") then
-				W = e
+			if (Q == "爆裂" or Q == "巨口蛙毒" or Q == "腐蚀波") and R < i("5") then
+				U = c
 			end;
-			if S == "窃取时间" and T < k("3") then
-				W = e
+			if Q == "窃取时间" and R < i("3") then
+				U = c
 			end;
-			if S == "腐败之血" and T < k("2") then
-				W = e
+			if Q == "腐败之血" and R < i("2") then
+				U = c
 			end;
-			if S == "时光爆发" and (Y - i["GetTime"]() > k("4.5") or i["WR_GetUnitHP"](N) < k("0.8")) then
-				W = e
+			if Q == "时光爆发" and (W - g["GetTime"]() > i("4.5") or g["WR_GetUnitHP"](L) < i("0.8")) then
+				U = c
 			end;
-			if S == "古怪生长" and Y - i["GetTime"]() > k("4") then
-				W = e
+			if Q == "古怪生长" and W - g["GetTime"]() > i("4") then
+				U = c
 			end;
-			if S == "提尔之火" and (Y - i["GetTime"]() > k("16") or i["WR_GetUnitHP"](N) < k("0.8") or i["UnitCastingInfo"]("boss1") == "裂地打击") then
-				W = e
+			if Q == "提尔之火" and (W - g["GetTime"]() > i("16") or g["WR_GetUnitHP"](L) < i("0.8") or g["UnitCastingInfo"]("boss1") == "裂地打击") then
+				U = c
 			end;
-			if S == "震地回响" and i["WR_GetRangeSpellTime"](k("45"), "震地猛击") >= k("3") then
-				W = e
+			if Q == "震地回响" and g["WR_GetRangeSpellTime"](i("45"), "震地猛击") >= i("3") then
+				U = c
 			end;
-			if S == "冰冻" then
-				W = e
+			if Q == "冰冻" then
+				U = c
 			end;
-			if U == V and W == f then
-				return f, T
+			if S == T and U == d then
+				return d, R
 			end
 		end;
-		return e
+		return c
 	end;
-	i["WR_GetUnitBuffInfo"] = function(N, Z, _, a0)
-		local a1 = k("0")
-		local a2 = k("0")
-		local a3 = k("0")
-		for M = k("1"), k("255"), k("1") do
-			local R = i["C_UnitAuras"]["GetAuraDataByIndex"](N, M, "HELPFUL")
-			if R == g then
+	g["WR_GetUnitBuffInfo"] = function(L, X, Y, Z)
+		local _ = i("0")
+		local a0 = i("0")
+		local a1 = i("0")
+		for K = i("1"), i("255"), i("1") do
+			local P = g["C_UnitAuras"]["GetAuraDataByIndex"](L, K, "HELPFUL")
+			if P == e then
 				break
 			end;
-			if R then
-				if _ ~= f or _ == f and R["sourceUnit"] == "player" then
-					if i["type"](Z) == "table" then
-						for a4, a5 in i["pairs"](Z) do
-							if a0 == g and (R["name"] == a5 or R["spellId"] == a4) or a0 == "NAME" and R["name"] == a5 or a0 == "ID" and R["spellId"] == a4 then
-								if R["expirationTime"] > i["GetTime"]() then
-									a1 = R["expirationTime"] - i["GetTime"]()
+			if P then
+				if Y ~= d or Y == d and P["sourceUnit"] == "player" then
+					if g["type"](X) == "table" then
+						for a2, a3 in g["pairs"](X) do
+							if Z == e and (P["name"] == a3 or P["spellId"] == a2) or Z == "NAME" and P["name"] == a3 or Z == "ID" and P["spellId"] == a2 then
+								if P["expirationTime"] > g["GetTime"]() then
+									_ = P["expirationTime"] - g["GetTime"]()
 								else
-									a1 = k("999")
+									_ = i("999")
 								end;
-								if R["applications"] > k("0") then
-									a2 = R["applications"]
+								if P["applications"] > i("0") then
+									a0 = P["applications"]
 								else
-									a2 = k("1")
+									a0 = i("1")
 								end;
-								a3 = a3 + k("1")
+								a1 = a1 + i("1")
 							end
 						end
 					else
-						if R["name"] == Z or R["spellId"] == Z then
-							if R["expirationTime"] > i["GetTime"]() then
-								a1 = R["expirationTime"] - i["GetTime"]()
+						if P["name"] == X or P["spellId"] == X then
+							if P["expirationTime"] > g["GetTime"]() then
+								_ = P["expirationTime"] - g["GetTime"]()
 							else
-								a1 = k("999")
+								_ = i("999")
 							end;
-							if R["applications"] > k("0") then
-								a2 = R["applications"]
+							if P["applications"] > i("0") then
+								a0 = P["applications"]
 							else
-								a2 = k("1")
+								a0 = i("1")
 							end;
-							a3 = a3 + k("1")
+							a1 = a1 + i("1")
 						end
 					end
 				end
 			else
 			end
 		end;
-		return a1, a2, a3
+		return _, a0, a1
 	end;
-	i["WR_GetUnitDebuffInfo"] = function(N, a6, _, a0)
-		local a7 = k("0")
-		local a8 = k("0")
-		for M = k("1"), k("255"), k("1") do
-			local X = i["C_UnitAuras"]["GetAuraDataByIndex"](N, M, "HARMFUL")
-			if X == g then
+	g["WR_GetUnitDebuffInfo"] = function(L, a4, Y, Z)
+		local a5 = i("0")
+		local a6 = i("0")
+		for K = i("1"), i("255"), i("1") do
+			local V = g["C_UnitAuras"]["GetAuraDataByIndex"](L, K, "HARMFUL")
+			if V == e then
 				break
 			end;
-			if X then
-				if _ ~= f or _ == f and X["sourceUnit"] == "player" then
-					if i["type"](a6) == "table" then
-						for a9, aa in i["pairs"](a6) do
-							if a0 == g and (X["name"] == aa or X["spellId"] == a9) or a0 == "NAME" and X["name"] == aa or a0 == "ID" and X["spellId"] == a9 then
-								if X["expirationTime"] > i["GetTime"]() then
-									a7 = X["expirationTime"] - i["GetTime"]()
+			if V then
+				if Y ~= d or Y == d and V["sourceUnit"] == "player" then
+					if g["type"](a4) == "table" then
+						for a7, a8 in g["pairs"](a4) do
+							if Z == e and (V["name"] == a8 or V["spellId"] == a7) or Z == "NAME" and V["name"] == a8 or Z == "ID" and V["spellId"] == a7 then
+								if V["expirationTime"] > g["GetTime"]() then
+									a5 = V["expirationTime"] - g["GetTime"]()
 								else
-									a7 = k("999")
+									a5 = i("999")
 								end;
-								if X["applications"] > k("0") then
-									a8 = X["applications"]
+								if V["applications"] > i("0") then
+									a6 = V["applications"]
 								else
-									a8 = k("1")
+									a6 = i("1")
 								end;
-								return a7, a8
+								return a5, a6
 							end
 						end
 					else
-						if X["name"] == a6 or X["spellId"] == a6 then
-							if X["expirationTime"] > i["GetTime"]() then
-								a7 = X["expirationTime"] - i["GetTime"]()
+						if V["name"] == a4 or V["spellId"] == a4 then
+							if V["expirationTime"] > g["GetTime"]() then
+								a5 = V["expirationTime"] - g["GetTime"]()
 							else
-								a7 = k("999")
+								a5 = i("999")
 							end;
-							if X["applications"] > k("0") then
-								a8 = X["applications"]
+							if V["applications"] > i("0") then
+								a6 = V["applications"]
 							else
-								a8 = k("1")
+								a6 = i("1")
 							end;
-							return a7, a8
+							return a5, a6
 						end
 					end
 				end
 			else
-				return a7, a8
+				return a5, a6
 			end
 		end;
-		return a7, a8
+		return a5, a6
 	end;
-	i["WR_GetUnitBuffTime"] = function(N, Z, _, a0)
-		return i["select"](k("1"), i["WR_GetUnitBuffInfo"](N, Z, _, a0))
+	g["WR_GetUnitBuffTime"] = function(L, X, Y, Z)
+		return g["select"](i("1"), g["WR_GetUnitBuffInfo"](L, X, Y, Z))
 	end;
-	i["WR_GetUnitBuffCount"] = function(N, Z, _, a0)
-		return i["select"](k("2"), i["WR_GetUnitBuffInfo"](N, Z, _, a0))
+	g["WR_GetUnitBuffCount"] = function(L, X, Y, Z)
+		return g["select"](i("2"), g["WR_GetUnitBuffInfo"](L, X, Y, Z))
 	end;
-	i["WR_GetUnitBuffSum"] = function(N, Z, _, a0)
-		return i["select"](k("3"), i["WR_GetUnitBuffInfo"](N, Z, _, a0))
+	g["WR_GetUnitBuffSum"] = function(L, X, Y, Z)
+		return g["select"](i("3"), g["WR_GetUnitBuffInfo"](L, X, Y, Z))
 	end;
-	i["WR_GetUnitDebuffTime"] = function(N, a6, _, a0)
-		return i["select"](k("1"), i["WR_GetUnitDebuffInfo"](N, a6, _, a0))
+	g["WR_GetUnitDebuffTime"] = function(L, a4, Y, Z)
+		return g["select"](i("1"), g["WR_GetUnitDebuffInfo"](L, a4, Y, Z))
 	end;
-	i["WR_GetUnitDebuffCount"] = function(N, a6, _, a0)
-		return i["select"](k("2"), i["WR_GetUnitDebuffInfo"](N, a6, _, a0))
+	g["WR_GetUnitDebuffCount"] = function(L, a4, Y, Z)
+		return g["select"](i("2"), g["WR_GetUnitDebuffInfo"](L, a4, Y, Z))
 	end;
-	i["WR_GetHealthMaxWeightUnit"] = function()
-		local ab = {
-			[k("1")] = "圣光道标",
-			[k("2")] = "美德道标",
-			[k("3")] = "信仰道标",
-			[k("4")] = "复苏之雾",
-			[k("5")] = "愈合祷言",
-			[k("6")] = "恢复",
-			[k("7")] = "圣光回响",
-			[k("8")] = k("102352"),
-			[k("9")] = "生命绽放",
-			[k("10")] = "野性成长",
-			[k("11")] = "愈合",
-			[k("12")] = "回春术",
-			[k("13")] = "林地护理",
-			[k("14")] = "激变蜂群",
-			[k("15")] = "栽培",
-			[k("16")] = "春暖花开"
+	g["WR_GetHealthMaxWeightUnit"] = function()
+		local a9 = {
+			[i("1")] = "圣光道标",
+			[i("2")] = "美德道标",
+			[i("3")] = "信仰道标",
+			[i("4")] = "复苏之雾",
+			[i("5")] = "愈合祷言",
+			[i("6")] = "恢复",
+			[i("7")] = "圣光回响",
+			[i("8")] = i("102352"),
+			[i("9")] = "生命绽放",
+			[i("10")] = "野性成长",
+			[i("11")] = "愈合",
+			[i("12")] = "回春术",
+			[i("13")] = "林地护理",
+			[i("14")] = "激变蜂群",
+			[i("15")] = "栽培",
+			[i("16")] = "春暖花开"
 		}
-		local u = "Nothing"
-		local ac = e;
-		local ad = e;
-		local ae = e;
-		local af = e;
-		if i["IsPlayerSpell"](k("527")) == f then
-			u = "纯净术"
-			ac = f
+		local s = "Nothing"
+		local aa = c;
+		local ab = c;
+		local ac = c;
+		local ad = c;
+		if g["IsPlayerSpell"](i("527")) == d then
+			s = "纯净术"
+			aa = d
 		end;
-		if i["IsPlayerSpell"](k("77130")) == f then
-			u = "净化灵魂"
-			ac = f
+		if g["IsPlayerSpell"](i("77130")) == d then
+			s = "净化灵魂"
+			aa = d
 		end;
-		if i["IsPlayerSpell"](k("4987")) == f then
-			u = "清洁术"
-			ac = f
+		if g["IsPlayerSpell"](i("4987")) == d then
+			s = "清洁术"
+			aa = d
 		end;
-		if i["IsPlayerSpell"](k("115450")) == f then
-			u = "清创生血"
-			ac = f
+		if g["IsPlayerSpell"](i("115450")) == d then
+			s = "清创生血"
+			aa = d
 		end;
-		if i["IsPlayerSpell"](k("88423")) == f then
-			u = "自然之愈"
-			ac = f
+		if g["IsPlayerSpell"](i("88423")) == d then
+			s = "自然之愈"
+			aa = d
 		end;
-		if i["IsPlayerSpell"](k("390632")) == f then
-			ae = f
+		if g["IsPlayerSpell"](i("390632")) == d then
+			ac = d
 		end;
-		if i["IsPlayerSpell"](k("383016")) == f then
-			ad = f
+		if g["IsPlayerSpell"](i("383016")) == d then
+			ab = d
 		end;
-		if i["IsPlayerSpell"](k("393024")) == f then
-			af = f;
-			ae = f
+		if g["IsPlayerSpell"](i("393024")) == d then
+			ad = d;
+			ac = d
 		end;
-		if i["IsPlayerSpell"](k("388874")) == f then
-			af = f;
-			ae = f
+		if g["IsPlayerSpell"](i("388874")) == d then
+			ad = d;
+			ac = d
 		end;
-		if i["IsPlayerSpell"](k("392378")) == f then
-			af = f;
-			ae = f
+		if g["IsPlayerSpell"](i("392378")) == d then
+			ad = d;
+			ac = d
 		end;
-		if u == "Nothing" then
+		if s == "Nothing" then
 			return "Nothing"
 		else
-			if i["HealthMaxWeightUnitload"] ~= f then
-				local ag = "本职业驱散法术为: |cff0cbd0c" .. u .. "|cffffffff，当前天赋可驱散: "
-				if ac == f then
-					ag = ag .. "|cff00adf0魔法 "
+			if g["HealthMaxWeightUnitload"] ~= d then
+				local ae = "本职业驱散法术为: |cff0cbd0c" .. s .. "|cffffffff，当前天赋可驱散: "
+				if aa == d then
+					ae = ae .. "|cff00adf0魔法 "
 				end;
-				if ad == f then
-					ag = ag .. "|cffffdf00诅咒 "
+				if ab == d then
+					ae = ae .. "|cffffdf00诅咒 "
 				end;
-				if ae == f then
-					ag = ag .. "|cffff5040疾病 "
+				if ac == d then
+					ae = ae .. "|cffff5040疾病 "
 				end;
-				if af == f then
-					ag = ag .. "|cff0cbd0c中毒 "
+				if ad == d then
+					ae = ae .. "|cff0cbd0c中毒 "
 				end;
-				i["HealthMaxWeightUnitload"] = f
+				g["HealthMaxWeightUnitload"] = d
 			end
 		end;
-		local ah, ai;
-		local aj = k("0")
-		local ak = k("0")
-		local al = {}
-		local am = "Nothing"
-		local an = - k("999")
-		local ao;
-		for M = k("1"), k("4"), k("1") do
-			al[M] = k("0")
+		local af, ag;
+		local ah = i("0")
+		local ai = i("0")
+		local aj = {}
+		local ak = "Nothing"
+		local al = - i("999")
+		local am;
+		for K = i("1"), i("4"), i("1") do
+			aj[K] = i("0")
 		end;
-		local ap = {}
-		for M = k("1"), k("40"), k("1") do
-			ap[M] = k("0")
+		local an = {}
+		for K = i("1"), i("40"), i("1") do
+			an[K] = i("0")
 		end;
-		i["QSCooldown"] = i["WR_GetGCD"](u)
-		for M = k("2"), k("5"), k("1") do
-			local aq = k("0")
-			local ar = "boss" .. M;
-			if i["UnitExists"](ar) == f and (i["UnitName"](ar) == "克罗米" or i["UnitName"](ar) == "焦化树人" or i["UnitName"](ar) == "焦灼刺藤") then
-				aq = (i["UnitHealthMax"](ar) - i["UnitHealth"](ar)) / i["UnitHealthMax"](ar) * k("100")
+		g["QSCooldown"] = g["WR_GetGCD"](s)
+		for K = i("2"), i("5"), i("1") do
+			local ao = i("0")
+			local ap = "boss" .. K;
+			if g["UnitExists"](ap) == d and (g["UnitName"](ap) == "克罗米" or g["UnitName"](ap) == "焦化树人" or g["UnitName"](ap) == "焦灼刺藤") then
+				ao = (g["UnitHealthMax"](ap) - g["UnitHealth"](ap)) / g["UnitHealthMax"](ap) * i("100")
 			end;
-			if aq ~= k("0") and an < aq then
-				an = aq;
-				am = ar
+			if ao ~= i("0") and al < ao then
+				al = ao;
+				ak = ap
 			end
 		end;
-		local as = k("0")
-		if i["UnitExists"]("mouseover") == f and (i["UnitName"]("mouseover") == "克罗米" or i["UnitName"]("mouseover") == "卡多雷精魂") then
-			as = (i["UnitHealthMax"]("mouseover") - i["UnitHealth"]("mouseover")) / i["UnitHealthMax"]("mouseover") * k("100")
+		local aq = i("0")
+		if g["UnitExists"]("mouseover") == d and (g["UnitName"]("mouseover") == "克罗米" or g["UnitName"]("mouseover") == "卡多雷精魂") then
+			aq = (g["UnitHealthMax"]("mouseover") - g["UnitHealth"]("mouseover")) / g["UnitHealthMax"]("mouseover") * i("100")
 		end;
-		if as ~= k("0") and an < as then
-			an = as;
-			am = "mouseover"
+		if aq ~= i("0") and al < aq then
+			al = aq;
+			ak = "mouseover"
 		end;
-		if i["WR_GetInRaidOrParty"]() ~= "raid" then
-			ao = "player"
-			if i["UnitExists"](ao) == f and i["UnitIsDead"](ao) == e and i["UnitIsCharmed"](ao) == e and i["UnitIsFriend"](ao, ao) == f and i["WR_GetUnitRange"](ao) <= k("46") then
-				ak = (i["UnitHealth"](ao) + i["UnitGetIncomingHeals"](ao) + i["UnitGetTotalAbsorbs"](ao) - i["UnitGetTotalHealAbsorbs"](ao) / k("1.5")) / i["UnitHealthMax"](ao) * k("100")
-				if ak > k("100") then
-					ak = k("100")
+		if g["WR_GetInRaidOrParty"]() ~= "raid" then
+			am = "player"
+			if g["UnitExists"](am) == d and g["UnitIsDead"](am) == c and g["UnitIsCharmed"](am) == c and g["UnitIsFriend"](am, am) == d and g["WR_GetUnitRange"](am) <= i("46") then
+				ai = (g["UnitHealth"](am) + g["UnitGetIncomingHeals"](am) + g["UnitGetTotalAbsorbs"](am) - g["UnitGetTotalHealAbsorbs"](am) / i("1.5")) / g["UnitHealthMax"](am) * i("100")
+				if ai > i("100") then
+					ai = i("100")
 				end;
-				ak = k("100") - ak;
-				if ak == k("0") and i["UnitGetTotalAbsorbs"](ao) > k("0") then
-					ak = ak - k("5")
+				ai = i("100") - ai;
+				if ai == i("0") and g["UnitGetTotalAbsorbs"](am) > i("0") then
+					ai = ai - i("5")
 				end;
-				local at = (i["UnitHealth"](ao) + i["UnitGetIncomingHeals"](ao) - i["UnitGetTotalHealAbsorbs"](ao)) / i["UnitHealthMax"](ao)
-				if at < k("0.70") then
-					ak = ak + (k("70") - at * k("100")) / k("2")
+				local ar = (g["UnitHealth"](am) + g["UnitGetIncomingHeals"](am) - g["UnitGetTotalHealAbsorbs"](am)) / g["UnitHealthMax"](am)
+				if ar < i("0.70") then
+					ai = ai + (i("70") - ar * i("100")) / i("2")
 				end;
-				if i["UnitClassBase"]("player") == "PRIEST" and i["GetSpecialization"]() == k("1") then
-					if i["UnitAffectingCombat"]("player") and i["WR_GetUnitBuffTime"](ao, "救赎", f) > k("0") then
-						ak = ak - k("20")
-					elseif not i["UnitAffectingCombat"]("player") and i["WR_GetUnitBuffTime"](ao, "恢复", f) > k("0") then
-						ak = ak - k("20")
+				if g["UnitClassBase"]("player") == "PRIEST" and g["GetSpecialization"]() == i("1") then
+					if g["UnitAffectingCombat"]("player") and g["WR_GetUnitBuffTime"](am, "救赎", d) > i("0") then
+						ai = ai - i("20")
+					elseif not g["UnitAffectingCombat"]("player") and g["WR_GetUnitBuffTime"](am, "恢复", d) > i("0") then
+						ai = ai - i("20")
 					end
 				end;
-				if i["WR_Mustheal"](ao) then
-					ak = ak + k("60")
+				if g["WR_Mustheal"](am) then
+					ai = ai + i("60")
 				end;
-				if i["WR_GetUnitBuffTime"](ao, ab, f) > k("0") then
-					ak = ak - k("10")
+				if g["WR_GetUnitBuffTime"](am, a9, d) > i("0") then
+					ai = ai - i("10")
 				end;
-				if i["UnitClassBase"]("player") == "MONK" and i["WR_GetUnitBuffTime"](ao, "抚慰之雾", f) > k("0") and at < k("0.9") then
-					ak = ak + k("30")
+				if g["UnitClassBase"]("player") == "MONK" and g["WR_GetUnitBuffTime"](am, "抚慰之雾", d) > i("0") and ar < i("0.9") then
+					ai = ai + i("30")
 				end;
-				ak = i["math"]["ceil"](ak)
-				if an < ak then
-					an = ak;
-					am = "player"
+				ai = g["math"]["ceil"](ai)
+				if al < ai then
+					al = ai;
+					ak = "player"
 				end
 			end
 		end;
-		if i["WR_GetInRaidOrParty"]() == "party" then
-			for M = k("1"), k("4"), k("1") do
-				ao = "party" .. M;
-				if i["UnitExists"](ao) == f and i["UnitIsDead"](ao) == e and i["UnitIsCharmed"](ao) == e and i["UnitIsFriend"](ao, ao) == f and (i["WR_GetUnitRange"](ao) <= k("46") or i["WR_GetUnitBuffTime"]("player", "救赎之魂") > i["GCD"] and i["WR_GetUnitRange"](ao) <= k("69")) then
-					al[M] = (i["UnitHealth"](ao) + (i["UnitGetIncomingHeals"](ao) or k("0")) + i["UnitGetTotalAbsorbs"](ao) / k("2") - i["UnitGetTotalHealAbsorbs"](ao) / k("1.5")) / i["UnitHealthMax"](ao) * k("100")
-					if al[M] > k("100") then
-						al[M] = k("100")
+		if g["WR_GetInRaidOrParty"]() == "party" then
+			for K = i("1"), i("4"), i("1") do
+				am = "party" .. K;
+				if g["UnitExists"](am) == d and g["UnitIsDead"](am) == c and g["UnitIsCharmed"](am) == c and g["UnitIsFriend"](am, am) == d and (g["WR_GetUnitRange"](am) <= i("46") or g["WR_GetUnitBuffTime"]("player", "救赎之魂") > g["GCD"] and g["WR_GetUnitRange"](am) <= i("69")) then
+					aj[K] = (g["UnitHealth"](am) + (g["UnitGetIncomingHeals"](am) or i("0")) + g["UnitGetTotalAbsorbs"](am) / i("2") - g["UnitGetTotalHealAbsorbs"](am) / i("1.5")) / g["UnitHealthMax"](am) * i("100")
+					if aj[K] > i("100") then
+						aj[K] = i("100")
 					end;
-					al[M] = k("100") - al[M]
-					if al[M] == k("0") and i["UnitGetTotalAbsorbs"](ao) > k("0") then
-						al[M] = al[M] - k("5")
+					aj[K] = i("100") - aj[K]
+					if aj[K] == i("0") and g["UnitGetTotalAbsorbs"](am) > i("0") then
+						aj[K] = aj[K] - i("5")
 					end;
-					if i["UnitGroupRolesAssigned"](ao) == "TANK" then
-						if not i["UnitAffectingCombat"](ao) then
-							al[M] = al[M] + k("5")
+					if g["UnitGroupRolesAssigned"](am) == "TANK" then
+						if not g["UnitAffectingCombat"](am) then
+							aj[K] = aj[K] + i("5")
 						end;
-						if i["UnitName"]("boss1") == "不屈者卡金" then
-							al[M] = al[M] - k("50")
+						if g["UnitName"]("boss1") == "不屈者卡金" then
+							aj[K] = aj[K] - i("50")
 						end
 					end;
-					local au = (i["UnitHealth"](ao) + (i["UnitGetIncomingHeals"](ao) or k("0")) - i["UnitGetTotalHealAbsorbs"](ao)) / i["UnitHealthMax"](ao)
-					local av = f;
-					if i["UnitClass"]("player") == "牧师" and i["GetSpecialization"]() == k("1") then
-						if i["WR_GetUnitBuffTime"](ao, "救赎", f) == k("0") then
-							av = e
+					local as = (g["UnitHealth"](am) + (g["UnitGetIncomingHeals"](am) or i("0")) - g["UnitGetTotalHealAbsorbs"](am)) / g["UnitHealthMax"](am)
+					local at = d;
+					if g["UnitClass"]("player") == "牧师" and g["GetSpecialization"]() == i("1") then
+						if g["WR_GetUnitBuffTime"](am, "救赎", d) == i("0") then
+							at = c
 						end
 					end;
-					if av and i["UnitGroupRolesAssigned"](ao) == "TANK" and i["UnitAffectingCombat"](ao) then
-						if i["classFilename"] == "DEATHKNIGHT" then
-							if i["UnitPower"](ao) >= k("40") then
-								al[M] = al[M] - k("40")
+					if at and g["UnitGroupRolesAssigned"](am) == "TANK" and g["UnitAffectingCombat"](am) then
+						if g["classFilename"] == "DEATHKNIGHT" then
+							if g["UnitPower"](am) >= i("40") then
+								aj[K] = aj[K] - i("40")
 							else
-								al[M] = al[M] - k("20")
+								aj[K] = aj[K] - i("20")
 							end
 						end;
-						if au > k("0.4") then
-							if i["classFilename"] == "PALADIN" then
-								al[M] = al[M] - k("20")
+						if as > i("0.4") then
+							if g["classFilename"] == "PALADIN" then
+								aj[K] = aj[K] - i("20")
 							end;
-							if i["classFilename"] == "DEMONHUNTER" then
-								al[M] = al[M] - k("20")
+							if g["classFilename"] == "DEMONHUNTER" then
+								aj[K] = aj[K] - i("20")
 							end;
-							if i["classFilename"] == "DRUID" then
-								al[M] = al[M] - k("20")
+							if g["classFilename"] == "DRUID" then
+								aj[K] = aj[K] - i("20")
 							end
 						end
 					end;
-					if i["UnitClassBase"]("player") == "PRIEST" and i["GetSpecialization"]() == k("1") then
-						if i["UnitAffectingCombat"]("player") and i["WR_GetUnitBuffTime"](ao, "救赎", f) > k("0") then
-							al[M] = al[M] - k("20")
-						elseif not i["UnitAffectingCombat"]("player") and i["WR_GetUnitBuffTime"](ao, "恢复", f) > k("0") then
-							al[M] = al[M] - k("20")
+					if g["UnitClassBase"]("player") == "PRIEST" and g["GetSpecialization"]() == i("1") then
+						if g["UnitAffectingCombat"]("player") and g["WR_GetUnitBuffTime"](am, "救赎", d) > i("0") then
+							aj[K] = aj[K] - i("20")
+						elseif not g["UnitAffectingCombat"]("player") and g["WR_GetUnitBuffTime"](am, "恢复", d) > i("0") then
+							aj[K] = aj[K] - i("20")
 						end
 					end;
-					if i["UnitClassBase"]("player") == "PALADIN" and i["WR_GetUnitBuffTime"](ao, "圣光闪烁", f) > k("0") then
-						al[M] = al[M] - k("20")
+					if g["UnitClassBase"]("player") == "PALADIN" and g["WR_GetUnitBuffTime"](am, "圣光闪烁", d) > i("0") then
+						aj[K] = aj[K] - i("20")
 					end;
-					if i["WR_Mustheal"](ao) then
-						al[M] = al[M] + k("50")
+					if g["WR_Mustheal"](am) then
+						aj[K] = aj[K] + i("50")
 					end;
-					if i["WR_GetUnitBuffTime"](ao, ab, f) > k("0") then
-						al[M] = al[M] - k("10")
+					if g["WR_GetUnitBuffTime"](am, a9, d) > i("0") then
+						aj[K] = aj[K] - i("10")
 					end;
-					if i["UnitClassBase"]("player") == "MONK" and i["UnitChannelInfo"]("player") == "抚慰之雾" and i["WR_GetUnitBuffTime"](ao, "抚慰之雾", f) > k("0") and au < k("0.9") then
-						al[M] = al[M] + k("30")
+					if g["UnitClassBase"]("player") == "MONK" and g["UnitChannelInfo"]("player") == "抚慰之雾" and g["WR_GetUnitBuffTime"](am, "抚慰之雾", d) > i("0") and as < i("0.9") then
+						aj[K] = aj[K] + i("30")
 					end;
-					al[M] = i["math"]["ceil"](al[M])
-					if an < al[M] then
-						an = al[M]
-						am = "party" .. M
+					aj[K] = g["math"]["ceil"](aj[K])
+					if al < aj[K] then
+						al = aj[K]
+						ak = "party" .. K
 					end
 				end
 			end
 		end;
-		if i["WR_GetInRaidOrParty"]() == "raid" then
-			for M = k("1"), k("40"), k("1") do
-				ao = "raid" .. M;
-				if i["UnitExists"](ao) == f and i["UnitIsDead"](ao) == e and i["UnitIsCharmed"](ao) == e and i["UnitIsFriend"](ao, ao) == f and (i["WR_GetUnitRange"](ao) <= k("46") or i["WR_GetUnitBuffTime"]("player", "救赎之魂") > i["GCD"] and i["WR_GetUnitRange"](ao) <= k("69")) then
-					ap[M] = (i["UnitHealth"](ao) + (i["UnitGetIncomingHeals"](ao) or k("0")) + i["UnitGetTotalAbsorbs"](ao) / k("2") - i["UnitGetTotalHealAbsorbs"](ao) / k("1.5")) / i["UnitHealthMax"](ao) * k("100")
-					if ap[M] > k("100") then
-						ap[M] = k("100")
+		if g["WR_GetInRaidOrParty"]() == "raid" then
+			for K = i("1"), i("40"), i("1") do
+				am = "raid" .. K;
+				if g["UnitExists"](am) == d and g["UnitIsDead"](am) == c and g["UnitIsCharmed"](am) == c and g["UnitIsFriend"](am, am) == d and (g["WR_GetUnitRange"](am) <= i("46") or g["WR_GetUnitBuffTime"]("player", "救赎之魂") > g["GCD"] and g["WR_GetUnitRange"](am) <= i("69")) then
+					an[K] = (g["UnitHealth"](am) + (g["UnitGetIncomingHeals"](am) or i("0")) + g["UnitGetTotalAbsorbs"](am) / i("2") - g["UnitGetTotalHealAbsorbs"](am) / i("1.5")) / g["UnitHealthMax"](am) * i("100")
+					if an[K] > i("100") then
+						an[K] = i("100")
 					end;
-					ap[M] = k("100") - ap[M]
-					if ap[M] == k("0") and i["UnitGetTotalAbsorbs"](ao) > k("0") then
-						ap[M] = ap[M] - k("5")
+					an[K] = i("100") - an[K]
+					if an[K] == i("0") and g["UnitGetTotalAbsorbs"](am) > i("0") then
+						an[K] = an[K] - i("5")
 					end;
-					if i["UnitGroupRolesAssigned"](ao) == "TANK" and not i["UnitAffectingCombat"](ao) then
-						ap[M] = ap[M] + k("5")
+					if g["UnitGroupRolesAssigned"](am) == "TANK" and not g["UnitAffectingCombat"](am) then
+						an[K] = an[K] + i("5")
 					end;
-					local aw = (i["UnitHealth"](ao) + (i["UnitGetIncomingHeals"](ao) or k("0")) - i["UnitGetTotalHealAbsorbs"](ao)) / i["UnitHealthMax"](ao)
-					if i["WR_GetUnitBuffTime"](ao, ab, f) > k("0") then
-						ap[M] = ap[M] - k("10")
+					local au = (g["UnitHealth"](am) + (g["UnitGetIncomingHeals"](am) or i("0")) - g["UnitGetTotalHealAbsorbs"](am)) / g["UnitHealthMax"](am)
+					if g["WR_GetUnitBuffTime"](am, a9, d) > i("0") then
+						an[K] = an[K] - i("10")
 					end;
-					if i["UnitClassBase"]("player") == "MONK" and i["UnitChannelInfo"]("player") == "抚慰之雾" and i["WR_GetUnitBuffTime"](ao, "抚慰之雾", f) > k("0") and aw < k("0.9") then
-						ap[M] = ap[M] + k("30")
+					if g["UnitClassBase"]("player") == "MONK" and g["UnitChannelInfo"]("player") == "抚慰之雾" and g["WR_GetUnitBuffTime"](am, "抚慰之雾", d) > i("0") and au < i("0.9") then
+						an[K] = an[K] + i("30")
 					end;
-					ap[M] = i["math"]["ceil"](ap[M])
-					if an < ap[M] then
-						an = ap[M]
-						am = "raid" .. M
+					an[K] = g["math"]["ceil"](an[K])
+					if al < an[K] then
+						al = an[K]
+						ak = "raid" .. K
 					end
 				end
 			end
 		end;
-		if i["MSG"] == k("1") then
-			i["print"]("--权重列表--")
-			local ax = "player:" .. ak .. "  "
-			for M = k("1"), k("4"), k("1") do
-				if i["UnitExists"]("party" .. M) == f then
-					ax = ax .. "party" .. M .. ":" .. al[M] .. "  "
+		if g["MSG"] == i("1") then
+			g["print"]("--权重列表--")
+			local av = "player:" .. ai .. "  "
+			for K = i("1"), i("4"), i("1") do
+				if g["UnitExists"]("party" .. K) == d then
+					av = av .. "party" .. K .. ":" .. aj[K] .. "  "
 				end
 			end;
-			if ax ~= h then
-				i["print"](ax)
+			if av ~= f then
+				g["print"](av)
 			end;
-			ax = h;
-			for M = k("1"), k("5"), k("1") do
-				if i["UnitExists"]("raid" .. M) == f then
-					ax = ax .. "raid" .. M .. ":" .. ap[M] .. "  "
+			av = f;
+			for K = i("1"), i("5"), i("1") do
+				if g["UnitExists"]("raid" .. K) == d then
+					av = av .. "raid" .. K .. ":" .. an[K] .. "  "
 				end
 			end;
-			if ax ~= h then
-				i["print"](ax)
+			if av ~= f then
+				g["print"](av)
 			end;
-			ax = h;
-			for M = k("6"), k("10"), k("1") do
-				if i["UnitExists"]("raid" .. M) == f then
-					ax = ax .. "raid" .. M .. ":" .. ap[M] .. "  "
+			av = f;
+			for K = i("6"), i("10"), i("1") do
+				if g["UnitExists"]("raid" .. K) == d then
+					av = av .. "raid" .. K .. ":" .. an[K] .. "  "
 				end
 			end;
-			if ax ~= h then
-				i["print"](ax)
+			if av ~= f then
+				g["print"](av)
 			end;
-			ax = h;
-			for M = k("11"), k("15"), k("1") do
-				if i["UnitExists"]("raid" .. M) == f then
-					ax = ax .. "raid" .. M .. ":" .. ap[M] .. "  "
+			av = f;
+			for K = i("11"), i("15"), i("1") do
+				if g["UnitExists"]("raid" .. K) == d then
+					av = av .. "raid" .. K .. ":" .. an[K] .. "  "
 				end
 			end;
-			if ax ~= h then
-				i["print"](ax)
+			if av ~= f then
+				g["print"](av)
 			end;
-			ax = h;
-			for M = k("16"), k("20"), k("1") do
-				if i["UnitExists"]("raid" .. M) == f then
-					ax = ax .. "raid" .. M .. ":" .. ap[M] .. "  "
+			av = f;
+			for K = i("16"), i("20"), i("1") do
+				if g["UnitExists"]("raid" .. K) == d then
+					av = av .. "raid" .. K .. ":" .. an[K] .. "  "
 				end
 			end;
-			if ax ~= h then
-				i["print"](ax)
+			if av ~= f then
+				g["print"](av)
 			end;
-			ax = h;
-			for M = k("21"), k("25"), k("1") do
-				if i["UnitExists"]("raid" .. M) == f then
-					ax = ax .. "raid" .. M .. ":" .. ap[M] .. "  "
+			av = f;
+			for K = i("21"), i("25"), i("1") do
+				if g["UnitExists"]("raid" .. K) == d then
+					av = av .. "raid" .. K .. ":" .. an[K] .. "  "
 				end
 			end;
-			if ax ~= h then
-				i["print"](ax)
+			if av ~= f then
+				g["print"](av)
 			end;
-			ax = h;
-			for M = k("26"), k("30"), k("1") do
-				if i["UnitExists"]("raid" .. M) == f then
-					ax = ax .. "raid" .. M .. ":" .. ap[M] .. "  "
+			av = f;
+			for K = i("26"), i("30"), i("1") do
+				if g["UnitExists"]("raid" .. K) == d then
+					av = av .. "raid" .. K .. ":" .. an[K] .. "  "
 				end
 			end;
-			if ax ~= h then
-				i["print"](ax)
+			if av ~= f then
+				g["print"](av)
 			end;
-			ax = h;
-			for M = k("31"), k("35"), k("1") do
-				if i["UnitExists"]("raid" .. M) == f then
-					ax = ax .. "raid" .. M .. ":" .. ap[M] .. "  "
+			av = f;
+			for K = i("31"), i("35"), i("1") do
+				if g["UnitExists"]("raid" .. K) == d then
+					av = av .. "raid" .. K .. ":" .. an[K] .. "  "
 				end
 			end;
-			if ax ~= h then
-				i["print"](ax)
+			if av ~= f then
+				g["print"](av)
 			end;
-			ax = h;
-			for M = k("36"), k("40"), k("1") do
-				if i["UnitExists"]("raid" .. M) == f then
-					ax = ax .. "raid" .. M .. ":" .. ap[M] .. "  "
+			av = f;
+			for K = i("36"), i("40"), i("1") do
+				if g["UnitExists"]("raid" .. K) == d then
+					av = av .. "raid" .. K .. ":" .. an[K] .. "  "
 				end
 			end;
-			if ax ~= h then
-				i["print"](ax)
+			if av ~= f then
+				g["print"](av)
 			end;
-			i["print"]("最大权重单位:", am, ":", an, h)
+			g["print"]("最大权重单位:", ak, ":", al, f)
 		end;
-		return am, an
+		return ak, al
 	end;
-	i["NPGUID"] = {}
-	i["NPLevel"] = {}
-	i["NPHP"] = {}
-	i["NPMaxHealth"] = {}
-	i["NPHealth"] = {}
-	i["NPbegintime"] = {}
-	i["NPdeathtime"] = {}
-	i["WR_GetNPDeathTime"] = function()
-		if i["LastTime_WR_GetNPDeathTime"] ~= g and i["GetTime"]() - i["LastTime_WR_GetNPDeathTime"] <= k("0.1") then
+	g["NPGUID"] = {}
+	g["NPLevel"] = {}
+	g["NPHP"] = {}
+	g["NPMaxHealth"] = {}
+	g["NPHealth"] = {}
+	g["NPbegintime"] = {}
+	g["NPdeathtime"] = {}
+	g["WR_GetNPDeathTime"] = function()
+		if g["LastTime_WR_GetNPDeathTime"] ~= e and g["GetTime"]() - g["LastTime_WR_GetNPDeathTime"] <= i("0.1") then
 			return
 		end;
-		i["LastTime_WR_GetNPDeathTime"] = i["GetTime"]()
-		for M = k("1"), k("40"), k("1") do
-			if i["UnitGUID"]("nameplate" .. M) == g or i["UnitAffectingCombat"]("nameplate" .. M) == e or i["UnitHealth"]("nameplate" .. M) == i["UnitHealthMax"]("nameplate" .. M) then
-				i["NPGUID"][M] = g;
-				i["NPLevel"][M] = g;
-				i["NPHP"][M] = g;
-				i["NPMaxHealth"][M] = g;
-				i["NPHealth"][M] = g;
-				i["NPbegintime"][M] = g;
-				i["NPdeathtime"][M] = k("999")
+		g["LastTime_WR_GetNPDeathTime"] = g["GetTime"]()
+		for K = i("1"), i("40"), i("1") do
+			if g["UnitGUID"]("nameplate" .. K) == e or g["UnitAffectingCombat"]("nameplate" .. K) == c or g["UnitHealth"]("nameplate" .. K) == g["UnitHealthMax"]("nameplate" .. K) then
+				g["NPGUID"][K] = e;
+				g["NPLevel"][K] = e;
+				g["NPHP"][K] = e;
+				g["NPMaxHealth"][K] = e;
+				g["NPHealth"][K] = e;
+				g["NPbegintime"][K] = e;
+				g["NPdeathtime"][K] = i("999")
 			else
-				if i["UnitGUID"]("nameplate" .. M) ~= g then
-					i["NPGUID"][M] = i["UnitGUID"]("nameplate" .. M)
+				if g["UnitGUID"]("nameplate" .. K) ~= e then
+					g["NPGUID"][K] = g["UnitGUID"]("nameplate" .. K)
 				end;
-				if i["UnitLevel"]("nameplate" .. M) ~= g and i["UnitLevel"]("nameplate" .. M) ~= k("0") then
-					i["NPLevel"][M] = i["UnitLevel"]("nameplate" .. M)
+				if g["UnitLevel"]("nameplate" .. K) ~= e and g["UnitLevel"]("nameplate" .. K) ~= i("0") then
+					g["NPLevel"][K] = g["UnitLevel"]("nameplate" .. K)
 				end;
-				if i["NPLevel"][M] ~= g and i["NPLevel"][M] > k("0") then
-					local ay = i["UnitClassification"]("nameplate" .. M)
-					if ay == "normal" or ay == "trivial" or ay == "minus" then
-						i["NPHP"][M] = k("0.9999")
-					elseif i["UnitGUID"]("nameplate" .. M) == i["UnitGUID"]("boss1") or i["UnitGUID"]("nameplate" .. M) == i["UnitGUID"]("boss2") or i["UnitGUID"]("nameplate" .. M) == i["UnitGUID"]("boss3") or i["UnitGUID"]("nameplate" .. M) == i["UnitGUID"]("boss4") or i["UnitGUID"]("nameplate" .. M) == i["UnitGUID"]("boss5") then
-						i["NPHP"][M] = k("0.9999")
+				if g["NPLevel"][K] ~= e and g["NPLevel"][K] > i("0") then
+					local aw = g["UnitClassification"]("nameplate" .. K)
+					if aw == "normal" or aw == "trivial" or aw == "minus" then
+						g["NPHP"][K] = i("0.9999")
+					elseif g["UnitGUID"]("nameplate" .. K) == g["UnitGUID"]("boss1") or g["UnitGUID"]("nameplate" .. K) == g["UnitGUID"]("boss2") or g["UnitGUID"]("nameplate" .. K) == g["UnitGUID"]("boss3") or g["UnitGUID"]("nameplate" .. K) == g["UnitGUID"]("boss4") or g["UnitGUID"]("nameplate" .. K) == g["UnitGUID"]("boss5") then
+						g["NPHP"][K] = i("0.9999")
 					else
-						i["NPHP"][M] = k("0.9999")
+						g["NPHP"][K] = i("0.9999")
 					end
-				elseif i["NPLevel"][M] ~= g and i["NPLevel"][M] < k("0") then
-					i["NPHP"][M] = k("0.9999")
+				elseif g["NPLevel"][K] ~= e and g["NPLevel"][K] < i("0") then
+					g["NPHP"][K] = i("0.9999")
 				end;
-				if i["UnitHealthMax"]("nameplate" .. M) ~= g then
-					i["NPMaxHealth"][M] = i["UnitHealthMax"]("nameplate" .. M)
+				if g["UnitHealthMax"]("nameplate" .. K) ~= e then
+					g["NPMaxHealth"][K] = g["UnitHealthMax"]("nameplate" .. K)
 				end;
-				if i["UnitHealthMax"]("nameplate" .. M) ~= g and i["NPHP"][M] ~= g and i["UnitHealth"]("nameplate" .. M) ~= g and i["UnitHealthMax"]("nameplate" .. M) * i["NPHP"][M] > i["UnitHealth"]("nameplate" .. M) then
-					if i["NPbegintime"][M] == g then
-						i["NPbegintime"][M] = i["GetTime"]()
+				if g["UnitHealthMax"]("nameplate" .. K) ~= e and g["NPHP"][K] ~= e and g["UnitHealth"]("nameplate" .. K) ~= e and g["UnitHealthMax"]("nameplate" .. K) * g["NPHP"][K] > g["UnitHealth"]("nameplate" .. K) then
+					if g["NPbegintime"][K] == e then
+						g["NPbegintime"][K] = g["GetTime"]()
 					end;
-					if i["NPHealth"][M] == g then
-						i["NPHealth"][M] = i["UnitHealth"]("nameplate" .. M) + i["UnitGetTotalAbsorbs"]("nameplate" .. M)
+					if g["NPHealth"][K] == e then
+						g["NPHealth"][K] = g["UnitHealth"]("nameplate" .. K) + g["UnitGetTotalAbsorbs"]("nameplate" .. K)
 					end
 				end;
-				local az = i["UnitHealth"]("nameplate" .. M) + i["UnitGetTotalAbsorbs"]("nameplate" .. M)
-				if i["NPGUID"][M] ~= g and i["NPbegintime"][M] ~= g and i["NPHealth"][M] ~= g and i["NPHealth"][M] > az and i["NPbegintime"][M] < i["GetTime"]() then
-					i["NPdeathtime"][M] = az / ((i["NPHealth"][M] - az) / (i["GetTime"]() - i["NPbegintime"][M]))
+				local ax = g["UnitHealth"]("nameplate" .. K) + g["UnitGetTotalAbsorbs"]("nameplate" .. K)
+				if g["NPGUID"][K] ~= e and g["NPbegintime"][K] ~= e and g["NPHealth"][K] ~= e and g["NPHealth"][K] > ax and g["NPbegintime"][K] < g["GetTime"]() then
+					g["NPdeathtime"][K] = ax / ((g["NPHealth"][K] - ax) / (g["GetTime"]() - g["NPbegintime"][K]))
 				end
 			end
 		end
 	end;
-	i["WR_GetUnitDeathTime"] = function(N)
-		i["WR_GetNPDeathTime"]()
-		local aA = k("0")
-		if i["UnitGUID"](N) == g then
-			aA = k("0")
+	g["WR_GetUnitDeathTime"] = function(L)
+		g["WR_GetNPDeathTime"]()
+		local ay = i("0")
+		if g["UnitGUID"](L) == e then
+			ay = i("0")
 		end;
-		for M = k("1"), k("40"), k("1") do
-			if i["UnitGUID"](N) ~= g and i["UnitGUID"]("nameplate" .. M) ~= g and i["UnitGUID"](N) == i["UnitGUID"]("nameplate" .. M) and i["NPdeathtime"][M] ~= g then
-				aA = i["NPdeathtime"][M]
+		for K = i("1"), i("40"), i("1") do
+			if g["UnitGUID"](L) ~= e and g["UnitGUID"]("nameplate" .. K) ~= e and g["UnitGUID"](L) == g["UnitGUID"]("nameplate" .. K) and g["NPdeathtime"][K] ~= e then
+				ay = g["NPdeathtime"][K]
 			end
 		end;
-		if i["MSG"] == k("1") then
+		if g["MSG"] == i("1") then
 		end;
-		if aA ~= g then
-			return aA
+		if ay ~= e then
+			return ay
 		else
-			return k("0")
+			return i("0")
 		end
 	end;
-	i["WR_GetRangeAvgDeathTime"] = function(aB)
-		if i["WR_InTraining"]() then
-			return k("999")
+	g["WR_GetRangeAvgDeathTime"] = function(az)
+		if g["WR_InTraining"]() then
+			return i("999")
 		end;
-		i["WR_GetNPDeathTime"]()
-		local aC, S, aD, aE, aF;
-		local aG = k("0")
-		local T = k("0")
-		local aH = k("0")
-		for M = k("1"), k("40"), k("1") do
-			S, aD = i["UnitName"]("nameplate" .. M)
-			aF = i["WR_GetUnitRange"]("nameplate" .. M)
-			aC = i["UnitAffectingCombat"]("nameplate" .. M)
-			if aF ~= g and aC == f and i["NPdeathtime"][M] ~= g and S ~= g then
-				if aF <= aB and i["NPdeathtime"][M] > k("0") and i["NPdeathtime"][M] < k("999") and S ~= "爆炸物" then
-					aG = aG + i["NPdeathtime"][M]
-					T = T + k("1")
+		g["WR_GetNPDeathTime"]()
+		local aA, Q, aB, aC, aD;
+		local aE = i("0")
+		local R = i("0")
+		local aF = i("0")
+		for K = i("1"), i("40"), i("1") do
+			Q, aB = g["UnitName"]("nameplate" .. K)
+			aD = g["WR_GetUnitRange"]("nameplate" .. K)
+			aA = g["UnitAffectingCombat"]("nameplate" .. K)
+			if aD ~= e and aA == d and g["NPdeathtime"][K] ~= e and Q ~= e then
+				if aD <= az and g["NPdeathtime"][K] > i("0") and g["NPdeathtime"][K] < i("999") and Q ~= "爆炸物" then
+					aE = aE + g["NPdeathtime"][K]
+					R = R + i("1")
 				end
 			end
 		end;
-		if T ~= k("0") then
-			aH = aG / T
+		if R ~= i("0") then
+			aF = aE / R
 		end;
-		if i["MSG"] == k("1") then
-			i["print"]("预计战斗结束时间:|cffffdf00", i["math"]["ceil"](aH), "|cffffffff秒")
+		if g["MSG"] == i("1") then
+			g["print"]("预计战斗结束时间:|cffffdf00", g["math"]["ceil"](aF), "|cffffffff秒")
 		end;
-		return aH
+		return aF
 	end;
-	i["WR_GetUnitHP"] = function(N)
-		if i["UnitExists"](N) == f then
-			return (i["UnitHealth"](N) + i["UnitGetTotalAbsorbs"](N) + (i["UnitGetIncomingHeals"](N) or k("0")) - i["UnitGetTotalHealAbsorbs"](N)) / i["UnitHealthMax"](N)
+	g["WR_GetUnitHP"] = function(L)
+		if g["UnitExists"](L) == d then
+			return (g["UnitHealth"](L) + g["UnitGetTotalAbsorbs"](L) + (g["UnitGetIncomingHeals"](L) or i("0")) - g["UnitGetTotalHealAbsorbs"](L)) / g["UnitHealthMax"](L)
 		else
-			return k("1")
+			return i("1")
 		end
 	end;
-	i["WR_GetUnitMP"] = function(N)
-		if i["UnitPowerMax"](N, k("0")) ~= k("0") then
-			return i["UnitPower"](N, k("0")) / i["UnitPowerMax"](N, k("0"))
+	g["WR_GetUnitMP"] = function(L)
+		if g["UnitPowerMax"](L, i("0")) ~= i("0") then
+			return g["UnitPower"](L, i("0")) / g["UnitPowerMax"](L, i("0"))
 		else
-			return k("0")
+			return i("0")
 		end
 	end;
-	i["WR_GetUnitLostHealth"] = function(N)
-		if i["UnitExists"](N) and not i["UnitIsDead"](N) then
-			local aI = i["UnitHealthMax"](N) - i["UnitHealth"](N) - (i["UnitGetIncomingHeals"](N) or k("0")) + i["UnitGetTotalHealAbsorbs"](N)
-			return aI > k("0") and aI or k("0")
+	g["WR_GetUnitLostHealth"] = function(L)
+		if g["UnitExists"](L) and not g["UnitIsDead"](L) then
+			local aG = g["UnitHealthMax"](L) - g["UnitHealth"](L) - (g["UnitGetIncomingHeals"](L) or i("0")) + g["UnitGetTotalHealAbsorbs"](L)
+			return aG > i("0") and aG or i("0")
 		else
-			return k("0")
+			return i("0")
 		end
 	end;
-	i["WR_PartyLostHP"] = function()
-		local aJ;
-		local aK = k("0")
-		local aG = k("0")
-		aJ = "player"
-		if i["UnitExists"](aJ) == f and i["UnitIsDead"](aJ) == e and i["WR_GetUnitRange"](aJ) <= k("46") then
-			aK = aK + (i["UnitHealthMax"](aJ) - i["UnitHealth"](aJ)) / i["UnitHealthMax"](aJ)
-			aG = aG + k("1")
+	g["WR_PartyLostHP"] = function()
+		local aH;
+		local aI = i("0")
+		local aE = i("0")
+		aH = "player"
+		if g["UnitExists"](aH) == d and g["UnitIsDead"](aH) == c and g["WR_GetUnitRange"](aH) <= i("46") then
+			aI = aI + (g["UnitHealthMax"](aH) - g["UnitHealth"](aH)) / g["UnitHealthMax"](aH)
+			aE = aE + i("1")
 		end;
-		if i["WR_GetInRaidOrParty"]() == "party" then
-			for M = k("1"), k("4"), k("1") do
-				aJ = "party" .. M;
-				if i["UnitExists"](aJ) == f and i["UnitIsDead"](aJ) == e and i["WR_GetUnitRange"](aJ) <= k("46") then
-					aK = aK + (i["UnitHealthMax"](aJ) - i["UnitHealth"](aJ)) / i["UnitHealthMax"](aJ)
-					aG = aG + k("1")
+		if g["WR_GetInRaidOrParty"]() == "party" then
+			for K = i("1"), i("4"), i("1") do
+				aH = "party" .. K;
+				if g["UnitExists"](aH) == d and g["UnitIsDead"](aH) == c and g["WR_GetUnitRange"](aH) <= i("46") then
+					aI = aI + (g["UnitHealthMax"](aH) - g["UnitHealth"](aH)) / g["UnitHealthMax"](aH)
+					aE = aE + i("1")
 				end
 			end
 		end;
-		if i["WR_GetInRaidOrParty"]() == "raid" then
-			for M = k("1"), k("20"), k("1") do
-				aJ = "raid" .. M;
-				if i["UnitExists"](aJ) == f and i["UnitIsDead"](aJ) == e and i["WR_GetUnitRange"](aJ) <= k("46") then
-					aK = aK + (i["UnitHealthMax"](aJ) - i["UnitHealth"](aJ)) / i["UnitHealthMax"](aJ)
-					aG = aG + k("1")
+		if g["WR_GetInRaidOrParty"]() == "raid" then
+			for K = i("1"), i("20"), i("1") do
+				aH = "raid" .. K;
+				if g["UnitExists"](aH) == d and g["UnitIsDead"](aH) == c and g["WR_GetUnitRange"](aH) <= i("46") then
+					aI = aI + (g["UnitHealthMax"](aH) - g["UnitHealth"](aH)) / g["UnitHealthMax"](aH)
+					aE = aE + i("1")
 				end
 			end
 		end;
-		if aG == k("0") then
-			aK = k("0")
+		if aE == i("0") then
+			aI = i("0")
 		else
-			aK = i["math"]["ceil"](aK / aG * k("100")) / k("100")
+			aI = g["math"]["ceil"](aI / aE * i("100")) / i("100")
 		end;
-		if i["MSG"] == k("1") then
+		if g["MSG"] == i("1") then
+		end;
+		return aI
+	end;
+	g["WR_PlayerMove"] = function()
+		if g["IsPlayerSpell"](i("108839")) and g["WR_GetUnitBuffTime"]("player", i("108839")) > g["GCD"] then
+			return c
+		end;
+		local aJ, w, w, w = g["GetUnitSpeed"]("player")
+		if g["IsFlying"]() == c and g["IsFalling"]() == c and aJ == i("0") then
+			return c
+		else
+			return d
+		end
+	end;
+	g["WR_GetUnitRange"] = function(L)
+		local aK = g["select"](i("2"), g["WR_LibRangeCheck3"]["GetRange"](g["WR_LibRangeCheck3"], L))
+		if aK == e then
+			return i("999")
 		end;
 		return aK
 	end;
-	i["WR_PlayerMove"] = function()
-		if i["IsPlayerSpell"](k("108839")) and i["WR_GetUnitBuffTime"]("player", k("108839")) > i["GCD"] then
-			return e
+	g["WR_Invincible"] = function(L)
+		local Q, aL, aM, aN = g["GetInstanceInfo"]()
+		if aL == "raid" then
+			return c
 		end;
-		local aL, y, y, y = i["GetUnitSpeed"]("player")
-		if i["IsFlying"]() == e and i["IsFalling"]() == e and aL == k("0") then
-			return e
-		else
-			return f
-		end
-	end;
-	i["WR_GetUnitRange"] = function(N)
-		local aM = i["select"](k("2"), i["WR_LibRangeCheck3"]["GetRange"](i["WR_LibRangeCheck3"], N))
-		if aM == g then
-			return k("999")
-		end;
-		return aM
-	end;
-	i["WR_Invincible"] = function(N)
-		local S, aN, aO, aP = i["GetInstanceInfo"]()
-		if aN == "raid" then
-			return e
-		end;
-		for y, S in i["pairs"](i["InvincibleUnitName"]) do
-			if i["UnitName"](N) == S then
-				return f
+		for w, Q in g["pairs"](g["InvincibleUnitName"]) do
+			if g["UnitName"](L) == Q then
+				return d
 			end
 		end;
-		if i["UnitClassification"](N) == "normal" or i["UnitClassification"](N) == "trivial" or i["UnitClassification"](N) == "minus" then
-			return e
+		if g["UnitClassification"](L) == "normal" or g["UnitClassification"](L) == "trivial" or g["UnitClassification"](L) == "minus" then
+			return c
 		end;
-		if not i["UnitExists"](N) then
-			return e
+		if not g["UnitExists"](L) then
+			return c
 		end;
-		if i["WR_GetUnitBuffCount"](N, i["InvincibleBuffName"]) > k("0") or i["WR_GetUnitDebuffCount"](N, i["InvincibleBuffName"]) > k("0") then
-			return f
+		if g["WR_GetUnitBuffCount"](L, g["InvincibleBuffName"]) > i("0") or g["WR_GetUnitDebuffCount"](L, g["InvincibleBuffName"]) > i("0") then
+			return d
 		end;
-		return e
+		return c
 	end;
-	i["WR_GetRangeHarmUnitCount"] = function(aB, aQ)
-		local aR = k("0")
-		for M = k("1"), k("40"), k("1") do
-			local N = "nameplate" .. M;
-			if i["UnitCanAttack"]("player", N) and not i["WR_Invincible"](N) and (aQ ~= f or i["UnitAffectingCombat"](N) == aQ) and i["UnitCreatureType"](N) ~= "图腾" and i["UnitCreatureType"](N) ~= "气体云雾" and i["WR_GetUnitRange"](N) <= aB and i["UnitName"](N) ~= "复酌之桶" then
-				aR = aR + k("1")
+	g["WR_GetRangeHarmUnitCount"] = function(az, aO)
+		local aP = i("0")
+		for K = i("1"), i("40"), i("1") do
+			local L = "nameplate" .. K;
+			if g["UnitCanAttack"]("player", L) and not g["WR_Invincible"](L) and (aO ~= d or g["UnitAffectingCombat"](L) == aO) and g["UnitCreatureType"](L) ~= "图腾" and g["UnitCreatureType"](L) ~= "气体云雾" and g["WR_GetUnitRange"](L) <= az and g["UnitName"](L) ~= "复酌之桶" then
+				aP = aP + i("1")
 			end
 		end;
-		return aR
+		return aP
 	end;
-	i["WR_GetSpellRangeHarmUnitCount"] = function(u, aQ)
-		local aR = k("0")
-		for M = k("1"), k("40"), k("1") do
-			local N = "nameplate" .. M;
-			if i["C_Spell"]["IsSpellInRange"](u, N) and i["UnitCanAttack"]("player", N) and not i["WR_Invincible"](N) and (aQ ~= f or i["UnitAffectingCombat"](N) == aQ) and i["UnitCreatureType"](N) ~= "图腾" and i["UnitCreatureType"](N) ~= "气体云雾" then
-				aR = aR + k("1")
+	g["WR_GetSpellRangeHarmUnitCount"] = function(s, aO)
+		local aP = i("0")
+		for K = i("1"), i("40"), i("1") do
+			local L = "nameplate" .. K;
+			if g["C_Spell"]["IsSpellInRange"](s, L) and g["UnitCanAttack"]("player", L) and not g["WR_Invincible"](L) and (aO ~= d or g["UnitAffectingCombat"](L) == aO) and g["UnitCreatureType"](L) ~= "图腾" and g["UnitCreatureType"](L) ~= "气体云雾" then
+				aP = aP + i("1")
 			end
 		end;
-		return aR
+		return aP
 	end;
-	i["WR_PartyInCombat"] = function()
-		if i["UnitAffectingCombat"]("player") then
-			return f
+	g["WR_PartyInCombat"] = function()
+		if g["UnitAffectingCombat"]("player") then
+			return d
 		end;
-		for M = k("1"), k("4") do
-			local ao = "party" .. M;
-			if i["UnitAffectingCombat"](ao) then
-				return f
+		for K = i("1"), i("4") do
+			local am = "party" .. K;
+			if g["UnitAffectingCombat"](am) then
+				return d
 			end
 		end;
-		return e
+		return c
 	end;
-	i["WR_TargetInCombat"] = function(N)
-		local P;
-		P, i["_"] = i["UnitName"](N)
-		if P == "虚体生物" or not i["UnitExists"](N) or i["UnitIsDead"](N) or not i["UnitCanAttack"]("player", N) or i["WR_Invincible"](N) then
-			return e
+	g["WR_TargetInCombat"] = function(L)
+		local N;
+		N, g["_"] = g["UnitName"](L)
+		if N == "虚体生物" or not g["UnitExists"](L) or g["UnitIsDead"](L) or not g["UnitCanAttack"]("player", L) or g["WR_Invincible"](L) then
+			return c
 		end;
-		if not i["UnitIsPlayer"](N) and i["UnitIsPlayer"](N .. "target") then
-			return f
+		if not g["UnitIsPlayer"](L) and g["UnitIsPlayer"](L .. "target") then
+			return d
 		end;
-		if i["UnitAffectingCombat"](N) and i["WR_PartyInCombat"]() then
-			return f
+		if g["UnitAffectingCombat"](L) and g["WR_PartyInCombat"]() then
+			return d
 		end;
-		if i["WR_InBossCombat"]() then
-			return f
+		if g["WR_InBossCombat"]() then
+			return d
 		end;
-		local M = k("1")
-		while i["InCombatName"][M] ~= g and i["InCombatName"][M] ~= h do
-			if P == i["InCombatName"][M] then
-				return f
+		local K = i("1")
+		while g["InCombatName"][K] ~= e and g["InCombatName"][K] ~= f do
+			if N == g["InCombatName"][K] then
+				return d
 			end;
-			M = M + k("1")
+			K = K + i("1")
 		end;
-		local aS, aN = i["IsInInstance"]()
-		if not aS then
-			return f
+		local aQ, aL = g["IsInInstance"]()
+		if not aQ then
+			return d
 		end;
-		if i["UnitThreatSituation"]("player", "target") ~= g then
-			return f
+		if g["UnitThreatSituation"]("player", "target") ~= e then
+			return d
 		end;
-		local S, aN, aO, aP = i["GetInstanceInfo"]()
-		if aO == k("208") or aO == k("12") then
-			return f
+		local Q, aL, aM, aN = g["GetInstanceInfo"]()
+		if aM == i("208") or aM == i("12") then
+			return d
 		end;
-		return e
+		return c
 	end;
-	i["WR_InBossCombat"] = function()
-		if i["UnitGUID"]("boss1") == g and i["UnitGUID"]("boss2") == g and i["UnitGUID"]("boss3") == g and i["UnitGUID"]("boss4") == g and i["UnitGUID"]("boss5") == g then
-			return e
+	g["WR_InBossCombat"] = function()
+		if g["UnitGUID"]("boss1") == e and g["UnitGUID"]("boss2") == e and g["UnitGUID"]("boss3") == e and g["UnitGUID"]("boss4") == e and g["UnitGUID"]("boss5") == e then
+			return c
 		else
-			return f
+			return d
 		end
 	end;
-	i["WR_TargetIsBoss"] = function()
-		local M;
-		for M = k("1"), k("5"), k("1") do
-			if i["UnitGUID"]("boss" .. M) ~= g and i["UnitGUID"]("target") ~= g and i["UnitGUID"]("boss" .. M) == i["UnitGUID"]("target") then
-				return f
+	g["WR_TargetIsBoss"] = function()
+		local K;
+		for K = i("1"), i("5"), i("1") do
+			if g["UnitGUID"]("boss" .. K) ~= e and g["UnitGUID"]("target") ~= e and g["UnitGUID"]("boss" .. K) == g["UnitGUID"]("target") then
+				return d
 			end
 		end;
-		return e
+		return c
 	end;
-	i["WR_GetRangeSpellTime"] = function(aB, u, N)
-		local aT = k("999")
-		for M = k("1"), k("40"), k("1") do
-			if i["UnitExists"]("nameplate" .. M) then
-				local aM = i["WR_GetUnitRange"]("nameplate" .. M)
-				if aM ~= g and aM <= aB and (N == g or i["UnitIsUnit"]("nameplate" .. M .. "target", N)) then
-					local S, aU, aV, aW, z, aX, aY, aZ, a_ = i["UnitCastingInfo"]("nameplate" .. M)
-					if S == g then
-						S, aU, aV, aW, z, aX, aZ, a_ = i["UnitChannelInfo"]("nameplate" .. M)
+	g["WR_GetRangeSpellTime"] = function(az, s, L)
+		local aR = i("999")
+		for K = i("1"), i("40"), i("1") do
+			if g["UnitExists"]("nameplate" .. K) then
+				local aK = g["WR_GetUnitRange"]("nameplate" .. K)
+				if aK ~= e and aK <= az and (L == e or g["UnitIsUnit"]("nameplate" .. K .. "target", L)) then
+					local Q, aS, aT, aU, x, aV, aW, aX, aY = g["UnitCastingInfo"]("nameplate" .. K)
+					if Q == e then
+						Q, aS, aT, aU, x, aV, aX, aY = g["UnitChannelInfo"]("nameplate" .. K)
 					end;
-					if S ~= g then
-						local b0 = z / k("1000") - i["GetTime"]()
-						if b0 > k("999") then
-							b0 = k("998")
+					if Q ~= e then
+						local aZ = x / i("1000") - g["GetTime"]()
+						if aZ > i("999") then
+							aZ = i("998")
 						end;
-						if b0 < aT then
-							if i["type"](u) == "table" then
-								for b1, b2 in i["pairs"](u) do
-									if S == b2 or a_ == b1 then
-										aT = b0
+						if aZ < aR then
+							if g["type"](s) == "table" then
+								for a_, b0 in g["pairs"](s) do
+									if Q == b0 or aY == a_ then
+										aR = aZ
 									end
 								end
 							else
-								if u == g or S == u or a_ == u then
-									aT = b0
+								if s == e or Q == s or aY == s then
+									aR = aZ
 								end
 							end
 						end
@@ -1118,2181 +1116,2181 @@ return (function(...)
 				end
 			end
 		end;
-		return aT
+		return aR
 	end;
-	i["WR_GetUnitOutburstDebuffTime"] = function(N)
-		for y, aa in i["pairs"](i["OutburstDebuff"]) do
-			local a7 = i["WR_GetUnitDebuffTime"](N, aa)
-			if a7 ~= k("0") then
-				return a7
+	g["WR_GetUnitOutburstDebuffTime"] = function(L)
+		for w, a8 in g["pairs"](g["OutburstDebuff"]) do
+			local a5 = g["WR_GetUnitDebuffTime"](L, a8)
+			if a5 ~= i("0") then
+				return a5
 			end
 		end;
-		return k("999")
+		return i("999")
 	end;
-	i["WR_GetPartyOutburstDebuffTime"] = function()
-		local M;
-		for M = k("1"), k("4"), k("1") do
-			if i["UnitExists"]("party" .. M) then
-				for y, b3 in i["pairs"](i["PartyOutburstDebuff"]) do
-					local a7 = i["WR_GetUnitDebuffTime"]("party" .. M, b3)
-					if a7 > k("0") then
-						return a7
+	g["WR_GetPartyOutburstDebuffTime"] = function()
+		local K;
+		for K = i("1"), i("4"), i("1") do
+			if g["UnitExists"]("party" .. K) then
+				for w, b1 in g["pairs"](g["PartyOutburstDebuff"]) do
+					local a5 = g["WR_GetUnitDebuffTime"]("party" .. K, b1)
+					if a5 > i("0") then
+						return a5
 					end
 				end
 			end
 		end;
-		for M = k("1"), k("40"), k("1") do
-			if i["UnitExists"]("raid" .. M) then
-				for y, b3 in i["pairs"](i["PartyOutburstDebuff"]) do
-					local a7 = i["WR_GetUnitDebuffTime"]("raid" .. M, b3)
-					if a7 > k("0") then
-						return a7
+		for K = i("1"), i("40"), i("1") do
+			if g["UnitExists"]("raid" .. K) then
+				for w, b1 in g["pairs"](g["PartyOutburstDebuff"]) do
+					local a5 = g["WR_GetUnitDebuffTime"]("raid" .. K, b1)
+					if a5 > i("0") then
+						return a5
 					end
 				end
 			end
 		end;
-		return k("999")
+		return i("999")
 	end;
-	i["WR_ResistOutburstTime"] = function()
-		local b4 = i["WR_GetRangeSpellTime"](k("45"), i["OutburstAoe"])
-		if b4 < k("999") then
+	g["WR_ResistOutburstTime"] = function()
+		local b2 = g["WR_GetRangeSpellTime"](i("45"), g["OutburstAoe"])
+		if b2 < i("999") then
+			return b2
+		end;
+		local b3 = g["WR_GetUnitOutburstDebuffTime"]("player")
+		if b3 < i("999") then
+			return b3
+		end;
+		local b4 = g["WR_GetPartyOutburstDebuffTime"]()
+		if b4 < i("999") then
 			return b4
 		end;
-		local b5 = i["WR_GetUnitOutburstDebuffTime"]("player")
-		if b5 < k("999") then
+		local b5 = g["WR_GetRangeSpellTime"](i("45"), g["OutburstCasting"], "player")
+		if b5 < i("999") then
 			return b5
 		end;
-		local b6 = i["WR_GetPartyOutburstDebuffTime"]()
-		if b6 < k("999") then
-			return b6
-		end;
-		local b7 = i["WR_GetRangeSpellTime"](k("45"), i["OutburstCasting"], "player")
-		if b7 < k("999") then
-			return b7
-		end;
-		i["WR_DangerSpellTime"]()
-		local b8;
-		if i["Time"] == g then
-			b8 = k("5")
+		g["WR_DangerSpellTime"]()
+		local b6;
+		if g["Time"] == e then
+			b6 = i("5")
 		else
-			b8 = i["Time"]
+			b6 = g["Time"]
 		end;
-		if i["SF_CastTime"] ~= g then
-			if k("6") - (i["GetTime"]() - i["SF_CastTime"]) > k("0") then
-				return k("6") - (i["GetTime"]() - i["SF_CastTime"])
+		if g["SF_CastTime"] ~= e then
+			if i("6") - (g["GetTime"]() - g["SF_CastTime"]) > i("0") then
+				return i("6") - (g["GetTime"]() - g["SF_CastTime"])
 			end
 		end;
-		if i["QFJ_CastTime"] ~= g then
-			if k("1.5") - (i["GetTime"]() - i["QFJ_CastTime"]) > k("0") then
-				return k("1.5") - (i["GetTime"]() - i["QFJ_CastTime"])
+		if g["QFJ_CastTime"] ~= e then
+			if i("1.5") - (g["GetTime"]() - g["QFJ_CastTime"]) > i("0") then
+				return i("1.5") - (g["GetTime"]() - g["QFJ_CastTime"])
 			end
 		end;
-		if i["WL_CastTime"] ~= g then
-			if k("0.5") - (i["GetTime"]() - i["WL_CastTime"]) > k("0") then
-				return k("0.5") - (i["GetTime"]() - i["WL_CastTime"])
+		if g["WL_CastTime"] ~= e then
+			if i("0.5") - (g["GetTime"]() - g["WL_CastTime"]) > i("0") then
+				return i("0.5") - (g["GetTime"]() - g["WL_CastTime"])
 			end
 		end;
-		if i["JSSP_CastTime"] ~= g then
-			if k("0.5") - (i["GetTime"]() - i["JSSP_CastTime"]) > k("0") then
-				return k("0.5") - (i["GetTime"]() - i["JSSP_CastTime"])
+		if g["JSSP_CastTime"] ~= e then
+			if i("0.5") - (g["GetTime"]() - g["JSSP_CastTime"]) > i("0") then
+				return i("0.5") - (g["GetTime"]() - g["JSSP_CastTime"])
 			end
 		end;
-		if i["JLPB_CastTime"] ~= g then
-			if k("4") - (i["GetTime"]() - i["JLPB_CastTime"]) > k("0") then
-				return k("4") - (i["GetTime"]() - i["JLPB_CastTime"])
+		if g["JLPB_CastTime"] ~= e then
+			if i("4") - (g["GetTime"]() - g["JLPB_CastTime"]) > i("0") then
+				return i("4") - (g["GetTime"]() - g["JLPB_CastTime"])
 			end
 		end;
-		return k("999")
+		return i("999")
 	end;
-	i["WR_ResistSustained"] = function(b9)
-		if b9 == g or i["UnitHealth"]("player") / i["UnitHealthMax"]("player") <= b9 then
-			local ba = i["WR_GetRangeSpellTime"](k("45"), i["SustainedAoe"])
-			if ba < k("999") then
-				return f
+	g["WR_ResistSustained"] = function(b7)
+		if b7 == e or g["UnitHealth"]("player") / g["UnitHealthMax"]("player") <= b7 then
+			local b8 = g["WR_GetRangeSpellTime"](i("45"), g["SustainedAoe"])
+			if b8 < i("999") then
+				return d
 			end;
-			if i["WR_GetUnitDebuffTime"]("player", i["SustainedDebuff"]) > k("0") then
-				return f
+			if g["WR_GetUnitDebuffTime"]("player", g["SustainedDebuff"]) > i("0") then
+				return d
 			end;
-			for M = k("1"), k("40"), k("1") do
-				if i["UnitExists"]("nameplate" .. M) then
-					if i["WR_GetUnitBuffTime"]("nameplate" .. M, i["SustainedBuff"]) > k("0") then
-						return f
+			for K = i("1"), i("40"), i("1") do
+				if g["UnitExists"]("nameplate" .. K) then
+					if g["WR_GetUnitBuffTime"]("nameplate" .. K, g["SustainedBuff"]) > i("0") then
+						return d
 					end;
-					for y, L in i["pairs"](i["NecroblastName"]) do
-						if L == i["UnitName"]("nameplate" .. M) and i["UnitHealth"]("nameplate" .. M) / i["UnitHealthMax"]("nameplate" .. M) <= k("0.15") then
-							return f
+					for w, J in g["pairs"](g["NecroblastName"]) do
+						if J == g["UnitName"]("nameplate" .. K) and g["UnitHealth"]("nameplate" .. K) / g["UnitHealthMax"]("nameplate" .. K) <= i("0.15") then
+							return d
 						end
 					end
 				end
 			end;
-			if i["JSJM_CastTime"] ~= g and i["GetTime"]() - i["JSJM_CastTime"] < k("3") then
-				return f
+			if g["JSJM_CastTime"] ~= e and g["GetTime"]() - g["JSJM_CastTime"] < i("3") then
+				return d
 			end
 		end;
-		return e
+		return c
 	end;
-	i["WR_MustDefenseTime"] = function()
-		local bb = i["WR_ResistSustained"]()
-		local bc = i["WR_ResistOutburstTime"]()
-		if i["UnitHealth"]("player") / i["UnitHealthMax"]("player") <= k("0.35") and i["UnitAffectingCombat"]("player") then
-			if bb or not i["WR_InBossCombat"]() then
-				return k("0")
+	g["WR_MustDefenseTime"] = function()
+		local b9 = g["WR_ResistSustained"]()
+		local ba = g["WR_ResistOutburstTime"]()
+		if g["UnitHealth"]("player") / g["UnitHealthMax"]("player") <= i("0.35") and g["UnitAffectingCombat"]("player") then
+			if b9 or not g["WR_InBossCombat"]() then
+				return i("0")
 			end;
-			if bc < k("999") then
-				return bc
+			if ba < i("999") then
+				return ba
 			end
 		end;
-		if bc < k("999") and (bb or i["WR_GetUnitDebuffCount"]("player", "音速易伤") >= k("2")) then
-			return bc
+		if ba < i("999") and (b9 or g["WR_GetUnitDebuffCount"]("player", "音速易伤") >= i("2")) then
+			return ba
 		end;
-		local bd = i["WR_GetRangeSpellTime"](k("45"), i["DangerOutburstAoe"])
-		if bd < k("999") then
-			return bd
+		local bb = g["WR_GetRangeSpellTime"](i("45"), g["DangerOutburstAoe"])
+		if bb < i("999") then
+			return bb
 		end;
-		local be = i["WR_GetRangeSpellTime"](k("45"), i["DangerSustainedAoe"])
-		if be < k("999") then
-			return k("0")
+		local bc = g["WR_GetRangeSpellTime"](i("45"), g["DangerSustainedAoe"])
+		if bc < i("999") then
+			return i("0")
 		end;
-		local bf = i["WR_GetRangeSpellTime"](k("45"), "熔炉之力")
-		if bf > k("6") and bf < k("999") then
-			return bf - k("6")
+		local bd = g["WR_GetRangeSpellTime"](i("45"), "熔炉之力")
+		if bd > i("6") and bd < i("999") then
+			return bd - i("6")
 		end;
-		if i["UnitName"]("boss1") == "丹塔利纳克斯" and i["UnitCastingInfo"]("boss1") == "暗影箭雨" and i["WR_GetUnitDebuffCount"]("player", "拉文凯斯的遗产") == k("0") then
-			return k("0")
+		if g["UnitName"]("boss1") == "丹塔利纳克斯" and g["UnitCastingInfo"]("boss1") == "暗影箭雨" and g["WR_GetUnitDebuffCount"]("player", "拉文凯斯的遗产") == i("0") then
+			return i("0")
 		end;
-		if i["WR_GetUnitDebuffTime"]("player", i["DangerDebuff"]) > k("0") then
-			return k("0")
+		if g["WR_GetUnitDebuffTime"]("player", g["DangerDebuff"]) > i("0") then
+			return i("0")
 		end;
-		local bg = i["WR_GetRangeSpellTime"](k("45"), i["DangerSpellToMe"], "player")
-		if bg <= k("0.8") then
-			return bg
+		local be = g["WR_GetRangeSpellTime"](i("45"), g["DangerSpellToMe"], "player")
+		if be <= i("0.8") then
+			return be
 		end;
-		i["WR_DangerSpellTime"]()
-		if i["SF_CastTime"] ~= g then
-			if k("6.2") - (i["GetTime"]() - i["SF_CastTime"]) > k("0") then
-				return k("6.2") - (i["GetTime"]() - i["SF_CastTime"])
+		g["WR_DangerSpellTime"]()
+		if g["SF_CastTime"] ~= e then
+			if i("6.2") - (g["GetTime"]() - g["SF_CastTime"]) > i("0") then
+				return i("6.2") - (g["GetTime"]() - g["SF_CastTime"])
 			end
 		end;
-		return k("999")
+		return i("999")
 	end;
-	i["WR_Escape"] = function()
-		if not i["WR_PlayerMove"]() and i["UnitAffectingCombat"]("player") then
-			if i["WR_GetRangeSpellTime"](k("45"), i["EscapeSpellName"], "player") < k("999") then
-				return f
+	g["WR_Escape"] = function()
+		if not g["WR_PlayerMove"]() and g["UnitAffectingCombat"]("player") then
+			if g["WR_GetRangeSpellTime"](i("45"), g["EscapeSpellName"], "player") < i("999") then
+				return d
 			end
 		end;
-		return e
+		return c
 	end;
-	i["WR_GetEquipCD"] = function(bh)
-		if i["GetInventoryItemID"]("player", bh) == k("203729") then
-			return e
+	g["WR_GetEquipCD"] = function(bf)
+		if g["GetInventoryItemID"]("player", bf) == i("203729") then
+			return c
 		end;
-		local w, x, bi = i["GetInventoryItemCooldown"]("player", bh)
-		if bi == k("1") then
-			if w + x <= i["GetTime"]() + i["GCD"] then
-				return f
+		local u, v, bg = g["GetInventoryItemCooldown"]("player", bf)
+		if bg == i("1") then
+			if u + v <= g["GetTime"]() + g["GCD"] then
+				return d
 			end
 		end;
-		return e
+		return c
 	end;
-	i["WR_Use_Item"] = function(bj, bk)
-		if i["GetInventoryItemID"]("player", bj) == bk and i["WR_GetEquipCD"](bj) then
-			return f
+	g["WR_Use_Item"] = function(bh, bi)
+		if g["GetInventoryItemID"]("player", bh) == bi and g["WR_GetEquipCD"](bh) then
+			return d
 		end;
-		return e
+		return c
 	end;
-	i["WR_WuQi"] = function(aB, bl)
-		if bl == k("1") or bl == k("2") and i["zhandoumoshi"] == k("1") then
-			if i["WR_GetEquipCD"](k("16")) and i["WR_GetUnitRange"]("target") <= aB and i["WR_TargetInCombat"]("target") then
-				if i["WR_ColorFrame_Show"]("F6", "武器") then
-					return f
+	g["WR_WuQi"] = function(az, bj)
+		if bj == i("1") or bj == i("2") and g["zhandoumoshi"] == i("1") then
+			if g["WR_GetEquipCD"](i("16")) and g["WR_GetUnitRange"]("target") <= az and g["WR_TargetInCombat"]("target") then
+				if g["WR_ColorFrame_Show"]("F6", "武器") then
+					return d
 				end
 			end
 		end;
-		return e
+		return c
 	end;
-	i["WR_ShiPin"] = function(bj, bl)
-		if bl == k("13") then
-			return e
+	g["WR_ShiPin"] = function(bh, bj)
+		if bj == i("13") then
+			return c
 		end;
-		if not i["WR_GetEquipCD"](bj + k("12")) then
-			return e
+		if not g["WR_GetEquipCD"](bh + i("12")) then
+			return c
 		end;
-		if bj == k("1") then
-			if i["WR_Use_Item"](k("13"), k("178783")) and i["WR_GetUnitBuffTime"]("player", k("345549")) > k("0") then
-				return e
+		if bh == i("1") then
+			if g["WR_Use_Item"](i("13"), i("178783")) and g["WR_GetUnitBuffTime"]("player", i("345549")) > i("0") then
+				return c
 			end;
-			if bl == k("1") then
-				if i["WR_ColorFrame_Show"]("F10", bj .. "饰常") then
-					return f
+			if bj == i("1") then
+				if g["WR_ColorFrame_Show"]("F10", bh .. "饰常") then
+					return d
 				end
-			elseif bl == k("2") and i["zhandoumoshi"] == k("1") then
-				if i["WR_ColorFrame_Show"]("F10", bj .. "饰爆") then
-					return f
+			elseif bj == i("2") and g["zhandoumoshi"] == i("1") then
+				if g["WR_ColorFrame_Show"]("F10", bh .. "饰爆") then
+					return d
 				end
-			elseif bl >= k("3") and bl <= k("7") then
-				if i["WR_GetUnitHP"]("player") <= (bl - k("2")) / k("10") then
-					if i["WR_ColorFrame_Show"]("ACF2", bj .. "饰自") then
-						return f
+			elseif bj >= i("3") and bj <= i("7") then
+				if g["WR_GetUnitHP"]("player") <= (bj - i("2")) / i("10") then
+					if g["WR_ColorFrame_Show"]("ACF2", bh .. "饰自") then
+						return d
 					end
 				end
-			elseif bl >= k("8") and bl <= k("12") then
-				if i["WR_GetUnitHP"]("player") <= (bl - k("7")) / k("10") then
-					if i["WR_ColorFrame_Show"]("ACF2", bj .. "饰协P") then
-						return f
+			elseif bj >= i("8") and bj <= i("12") then
+				if g["WR_GetUnitHP"]("player") <= (bj - i("7")) / i("10") then
+					if g["WR_ColorFrame_Show"]("ACF2", bh .. "饰协P") then
+						return d
 					end
-				elseif not i["UnitIsDead"]("party1") and i["WR_GetUnitHP"]("party1") <= (bl - k("5")) / k("10") and i["WR_GetUnitRange"]("party1") <= k("40") then
-					if i["WR_ColorFrame_Show"]("ACF3", bj .. "饰协P1") then
-						return f
+				elseif not g["UnitIsDead"]("party1") and g["WR_GetUnitHP"]("party1") <= (bj - i("5")) / i("10") and g["WR_GetUnitRange"]("party1") <= i("40") then
+					if g["WR_ColorFrame_Show"]("ACF3", bh .. "饰协P1") then
+						return d
 					end
-				elseif not i["UnitIsDead"]("party2") and i["WR_GetUnitHP"]("party2") <= (bl - k("5")) / k("10") and i["WR_GetUnitRange"]("party2") <= k("40") then
-					if i["WR_ColorFrame_Show"]("ACF5", bj .. "饰协P2") then
-						return f
+				elseif not g["UnitIsDead"]("party2") and g["WR_GetUnitHP"]("party2") <= (bj - i("5")) / i("10") and g["WR_GetUnitRange"]("party2") <= i("40") then
+					if g["WR_ColorFrame_Show"]("ACF5", bh .. "饰协P2") then
+						return d
 					end
-				elseif not i["UnitIsDead"]("party3") and i["WR_GetUnitHP"]("party3") <= (bl - k("5")) / k("10") and i["WR_GetUnitRange"]("party3") <= k("40") then
-					if i["WR_ColorFrame_Show"]("ACF6", bj .. "饰协P3") then
-						return f
+				elseif not g["UnitIsDead"]("party3") and g["WR_GetUnitHP"]("party3") <= (bj - i("5")) / i("10") and g["WR_GetUnitRange"]("party3") <= i("40") then
+					if g["WR_ColorFrame_Show"]("ACF6", bh .. "饰协P3") then
+						return d
 					end
-				elseif not i["UnitIsDead"]("party4") and i["WR_GetUnitHP"]("party4") <= (bl - k("5")) / k("10") and i["WR_GetUnitRange"]("party4") <= k("40") then
-					if i["WR_ColorFrame_Show"]("ACF7", bj .. "饰协P4") then
-						return f
+				elseif not g["UnitIsDead"]("party4") and g["WR_GetUnitHP"]("party4") <= (bj - i("5")) / i("10") and g["WR_GetUnitRange"]("party4") <= i("40") then
+					if g["WR_ColorFrame_Show"]("ACF7", bh .. "饰协P4") then
+						return d
 					end
 				end
 			end
-		elseif bj == k("2") then
-			if i["WR_Use_Item"](k("14"), k("178783")) and i["WR_GetUnitBuffTime"]("player", k("345549")) > k("0") then
-				return e
+		elseif bh == i("2") then
+			if g["WR_Use_Item"](i("14"), i("178783")) and g["WR_GetUnitBuffTime"]("player", i("345549")) > i("0") then
+				return c
 			end;
-			if bl == k("1") then
-				if i["WR_ColorFrame_Show"]("F11", bj .. "饰常") then
-					return f
+			if bj == i("1") then
+				if g["WR_ColorFrame_Show"]("F11", bh .. "饰常") then
+					return d
 				end
-			elseif bl == k("2") and i["zhandoumoshi"] == k("1") then
-				if i["WR_ColorFrame_Show"]("F11", bj .. "饰爆") then
-					return f
+			elseif bj == i("2") and g["zhandoumoshi"] == i("1") then
+				if g["WR_ColorFrame_Show"]("F11", bh .. "饰爆") then
+					return d
 				end
-			elseif bl >= k("3") and bl <= k("7") then
-				if i["WR_GetUnitHP"]("player") <= (bl - k("2")) / k("10") then
-					if i["WR_ColorFrame_Show"]("ACSF2", bj .. "饰自") then
-						return f
+			elseif bj >= i("3") and bj <= i("7") then
+				if g["WR_GetUnitHP"]("player") <= (bj - i("2")) / i("10") then
+					if g["WR_ColorFrame_Show"]("ACSF2", bh .. "饰自") then
+						return d
 					end
 				end
-			elseif bl >= k("8") and bl <= k("12") then
-				if i["WR_GetUnitHP"]("player") <= (bl - k("7")) / k("10") then
-					if i["WR_ColorFrame_Show"]("ACSF2", bj .. "饰协P") then
-						return f
+			elseif bj >= i("8") and bj <= i("12") then
+				if g["WR_GetUnitHP"]("player") <= (bj - i("7")) / i("10") then
+					if g["WR_ColorFrame_Show"]("ACSF2", bh .. "饰协P") then
+						return d
 					end
-				elseif not i["UnitIsDead"]("party1") and i["WR_GetUnitHP"]("party1") <= (bl - k("5")) / k("10") and i["WR_GetUnitRange"]("party1") <= k("40") then
-					if i["WR_ColorFrame_Show"]("ACSF3", bj .. "饰协P1") then
-						return f
+				elseif not g["UnitIsDead"]("party1") and g["WR_GetUnitHP"]("party1") <= (bj - i("5")) / i("10") and g["WR_GetUnitRange"]("party1") <= i("40") then
+					if g["WR_ColorFrame_Show"]("ACSF3", bh .. "饰协P1") then
+						return d
 					end
-				elseif not i["UnitIsDead"]("party2") and i["WR_GetUnitHP"]("party2") <= (bl - k("5")) / k("10") and i["WR_GetUnitRange"]("party2") <= k("40") then
-					if i["WR_ColorFrame_Show"]("ACSF5", bj .. "饰协P2") then
-						return f
+				elseif not g["UnitIsDead"]("party2") and g["WR_GetUnitHP"]("party2") <= (bj - i("5")) / i("10") and g["WR_GetUnitRange"]("party2") <= i("40") then
+					if g["WR_ColorFrame_Show"]("ACSF5", bh .. "饰协P2") then
+						return d
 					end
-				elseif not i["UnitIsDead"]("party3") and i["WR_GetUnitHP"]("party3") <= (bl - k("5")) / k("10") and i["WR_GetUnitRange"]("party3") <= k("40") then
-					if i["WR_ColorFrame_Show"]("ACSF6", bj .. "饰协P3") then
-						return f
+				elseif not g["UnitIsDead"]("party3") and g["WR_GetUnitHP"]("party3") <= (bj - i("5")) / i("10") and g["WR_GetUnitRange"]("party3") <= i("40") then
+					if g["WR_ColorFrame_Show"]("ACSF6", bh .. "饰协P3") then
+						return d
 					end
-				elseif not i["UnitIsDead"]("party4") and i["WR_GetUnitHP"]("party4") <= (bl - k("5")) / k("10") and i["WR_GetUnitRange"]("party4") <= k("40") then
-					if i["WR_ColorFrame_Show"]("ACSF7", bj .. "饰协P4") then
-						return f
+				elseif not g["UnitIsDead"]("party4") and g["WR_GetUnitHP"]("party4") <= (bj - i("5")) / i("10") and g["WR_GetUnitRange"]("party4") <= i("40") then
+					if g["WR_ColorFrame_Show"]("ACSF7", bh .. "饰协P4") then
+						return d
 					end
 				end
 			end
 		end;
-		return e
+		return c
 	end;
-	i["WR_Use_ZLS"] = function()
-		if i["ZLS_UseTime"] ~= g and i["GetTime"]() - i["ZLS_UseTime"] < k("10") then
-			return e
+	g["WR_Use_ZLS"] = function()
+		if g["ZLS_UseTime"] ~= e and g["GetTime"]() - g["ZLS_UseTime"] < i("10") then
+			return c
 		end;
-		if i["ZLYS_UseTime"] ~= g and i["GetTime"]() - i["ZLYS_UseTime"] < k("0.5") then
-			return e
+		if g["ZLYS_UseTime"] ~= e and g["GetTime"]() - g["ZLYS_UseTime"] < i("0.5") then
+			return c
 		end;
-		if i["ZLYS2_UseTime"] ~= g and i["GetTime"]() - i["ZLYS2_UseTime"] < k("0.5") then
-			return e
+		if g["ZLYS2_UseTime"] ~= e and g["GetTime"]() - g["ZLYS2_UseTime"] < i("0.5") then
+			return c
 		end;
-		if i["WR_GetUnitBuffTime"]("player", "圣盾术") > k("0") then
-			return e
+		if g["WR_GetUnitBuffTime"]("player", "圣盾术") > i("0") then
+			return c
 		end;
-		local bm = {
-			[k("1")] = "治疗石",
-			[k("2")] = "恶魔治疗石"
+		local bk = {
+			[i("1")] = "治疗石",
+			[i("2")] = "恶魔治疗石"
 		}
-		for y, bn in i["pairs"](bm) do
-			local T = i["C_Item"]["GetItemCount"](bn)
-			local w, x, bi = i["C_Item"]["GetItemCooldown"](bn)
-			if T ~= g and T >= k("1") and w + x - i["GetTime"]() <= k("0") then
-				return f
+		for w, bl in g["pairs"](bk) do
+			local R = g["C_Item"]["GetItemCount"](bl)
+			local u, v, bg = g["C_Item"]["GetItemCooldown"](bl)
+			if R ~= e and R >= i("1") and u + v - g["GetTime"]() <= i("0") then
+				return d
 			end
 		end;
-		return e
+		return c
 	end;
-	i["WR_ZLS"] = function(bo)
-		if not i["PlayerHP"] then
-			i["PlayerHP"] = i["UnitHealth"]("player") / i["UnitHealthMax"]("player")
+	g["WR_ZLS"] = function(bm)
+		if not g["PlayerHP"] then
+			g["PlayerHP"] = g["UnitHealth"]("player") / g["UnitHealthMax"]("player")
 		end;
-		if bo ~= k("5") and i["PlayerHP"] < bo / k("10") and i["UnitAffectingCombat"]("player") and i["WR_Use_ZLS"]() then
-			if i["UnitClassBase"]("player") == "WARLOCK" and i["WR_SpellUsable"]("灵魂燃烧") then
-				if i["WR_ColorFrame_Show"]("CN0", "灵魂燃烧") then
-					return f
+		if bm ~= i("5") and g["PlayerHP"] < bm / i("10") and g["UnitAffectingCombat"]("player") and g["WR_Use_ZLS"]() then
+			if g["UnitClassBase"]("player") == "WARLOCK" and g["WR_SpellUsable"]("灵魂燃烧") then
+				if g["WR_ColorFrame_Show"]("CN0", "灵魂燃烧") then
+					return d
 				end
 			else
-				if i["WR_ColorFrame_Show"]("CSF", "治疗石") then
-					return f
+				if g["WR_ColorFrame_Show"]("CSF", "治疗石") then
+					return d
 				end
 			end
 		end;
-		return e
+		return c
 	end;
-	i["WR_Use_ZLYS"] = function()
-		if i["ZLS_UseTime"] ~= g and i["GetTime"]() - i["ZLS_UseTime"] < k("0.5") then
-			return e
+	g["WR_Use_ZLYS"] = function()
+		if g["ZLS_UseTime"] ~= e and g["GetTime"]() - g["ZLS_UseTime"] < i("0.5") then
+			return c
 		end;
-		if i["ZLYS_UseTime"] ~= g and i["GetTime"]() - i["ZLYS_UseTime"] < k("0.5") then
-			return e
+		if g["ZLYS_UseTime"] ~= e and g["GetTime"]() - g["ZLYS_UseTime"] < i("0.5") then
+			return c
 		end;
-		if i["ZLYS2_UseTime"] ~= g and i["GetTime"]() - i["ZLYS2_UseTime"] < k("0.5") then
-			return e
+		if g["ZLYS2_UseTime"] ~= e and g["GetTime"]() - g["ZLYS2_UseTime"] < i("0.5") then
+			return c
 		end;
-		if i["WR_GetUnitBuffTime"]("player", "圣盾术") > k("0") then
-			return e
+		if g["WR_GetUnitBuffTime"]("player", "圣盾术") > i("0") then
+			return c
 		end;
+		local bn = {
+			[i("1")] = "阿加治疗药水"
+		}
+		for w, bo in g["pairs"](bn) do
+			local R = g["C_Item"]["GetItemCount"](bo)
+			local u, v, bg = g["C_Item"]["GetItemCooldown"](bo)
+			if R ~= e and R >= i("1") and u + v - g["GetTime"]() <= i("0") then
+				return d
+			end
+		end;
+		return c
+	end;
+	g["WR_Use_ZLYS2"] = function()
+		if g["ZLS_UseTime"] ~= e and g["GetTime"]() - g["ZLS_UseTime"] < i("0.5") then
+			return c
+		end;
+		if g["ZLYS_UseTime"] ~= e and g["GetTime"]() - g["ZLYS_UseTime"] < i("0.5") then
+			return c
+		end;
+		if g["ZLYS2_UseTime"] ~= e and g["GetTime"]() - g["ZLYS2_UseTime"] < i("0.5") then
+			return c
+		end;
+		if g["WR_GetUnitBuffTime"]("player", "圣盾术") > i("0") then
+			return c
+		end;
+		local bn = {
+			[i("1")] = "洞穴住民的挚爱"
+		}
+		for w, bo in g["pairs"](bn) do
+			local R = g["C_Item"]["GetItemCount"](bo)
+			local u, v, bg = g["C_Item"]["GetItemCooldown"](bo)
+			if R ~= e and R >= i("1") and u + v - g["GetTime"]() <= i("0") then
+				return d
+			end
+		end;
+		return c
+	end;
+	g["WR_ZLYS"] = function(bm)
+		if not g["PlayerHP"] then
+			g["PlayerHP"] = g["UnitHealth"]("player") / g["UnitHealthMax"]("player")
+		end;
+		if bm ~= i("5") and g["PlayerHP"] < bm / i("10") and g["UnitAffectingCombat"]("player") and g["WR_Use_ZLYS"]() then
+			if g["WR_ColorFrame_Show"]("CST", "治疗药水") then
+				return d
+			end
+		end;
+		return c
+	end;
+	g["WR_ZLYS2"] = function(bm)
+		if not g["PlayerHP"] then
+			g["PlayerHP"] = g["UnitHealth"]("player") / g["UnitHealthMax"]("player")
+		end;
+		if bm ~= i("5") and g["PlayerHP"] < bm / i("10") and g["UnitAffectingCombat"]("player") and g["WR_Use_ZLYS2"]() then
+			if g["WR_ColorFrame_Show"]("CSX", "治疗药水2") then
+				return d
+			end
+		end;
+		return c
+	end;
+	g["WR_Use_BFYS"] = function()
 		local bp = {
-			[k("1")] = "阿加治疗药水"
+			[i("1")] = "淬火药水"
 		}
-		for y, bq in i["pairs"](bp) do
-			local T = i["C_Item"]["GetItemCount"](bq)
-			local w, x, bi = i["C_Item"]["GetItemCooldown"](bq)
-			if T ~= g and T >= k("1") and w + x - i["GetTime"]() <= k("0") then
-				return f
+		for w, bq in g["pairs"](bp) do
+			local R = g["C_Item"]["GetItemCount"](bq)
+			local u, v, bg = g["C_Item"]["GetItemCooldown"](bq)
+			if R ~= e and R >= i("1") and u + v - g["GetTime"]() <= i("0") then
+				return d
 			end
 		end;
-		return e
+		return c
 	end;
-	i["WR_Use_ZLYS2"] = function()
-		if i["ZLS_UseTime"] ~= g and i["GetTime"]() - i["ZLS_UseTime"] < k("0.5") then
-			return e
-		end;
-		if i["ZLYS_UseTime"] ~= g and i["GetTime"]() - i["ZLYS_UseTime"] < k("0.5") then
-			return e
-		end;
-		if i["ZLYS2_UseTime"] ~= g and i["GetTime"]() - i["ZLYS2_UseTime"] < k("0.5") then
-			return e
-		end;
-		if i["WR_GetUnitBuffTime"]("player", "圣盾术") > k("0") then
-			return e
-		end;
-		local bp = {
-			[k("1")] = "洞穴住民的挚爱"
-		}
-		for y, bq in i["pairs"](bp) do
-			local T = i["C_Item"]["GetItemCount"](bq)
-			local w, x, bi = i["C_Item"]["GetItemCooldown"](bq)
-			if T ~= g and T >= k("1") and w + x - i["GetTime"]() <= k("0") then
-				return f
-			end
-		end;
-		return e
+	g["WR_GetTrueCastTime"] = function(y)
+		local Q, br, bs, bt, aC, aD, j = g["GetSpellInfo"](y)
+		return bt / i("1000")
 	end;
-	i["WR_ZLYS"] = function(bo)
-		if not i["PlayerHP"] then
-			i["PlayerHP"] = i["UnitHealth"]("player") / i["UnitHealthMax"]("player")
+	g["WR_PreemptiveHealing"] = function(y)
+		if g["WR_GetRangeSpellTime"](i("45"), g["QZWY_AOE_Name"]) < i("999") then
+			return c
 		end;
-		if bo ~= k("5") and i["PlayerHP"] < bo / k("10") and i["UnitAffectingCombat"]("player") and i["WR_Use_ZLYS"]() then
-			if i["WR_ColorFrame_Show"]("CST", "治疗药水") then
-				return f
-			end
+		if g["WR_GetRangeSpellTime"](i("45"), g["QZWY_Spell_Name"], "player") < i("999") then
+			return c
 		end;
-		return e
+		if g["WR_ResistOutburstTime"]() < g["WR_GetTrueCastTime"](y) then
+			return d
+		end;
+		return c
 	end;
-	i["WR_ZLYS2"] = function(bo)
-		if not i["PlayerHP"] then
-			i["PlayerHP"] = i["UnitHealth"]("player") / i["UnitHealthMax"]("player")
-		end;
-		if bo ~= k("5") and i["PlayerHP"] < bo / k("10") and i["UnitAffectingCombat"]("player") and i["WR_Use_ZLYS2"]() then
-			if i["WR_ColorFrame_Show"]("CSX", "治疗药水2") then
-				return f
-			end
-		end;
-		return e
-	end;
-	i["WR_Use_BFYS"] = function()
-		local br = {
-			[k("1")] = "淬火药水"
-		}
-		for y, bs in i["pairs"](br) do
-			local T = i["C_Item"]["GetItemCount"](bs)
-			local w, x, bi = i["C_Item"]["GetItemCooldown"](bs)
-			if T ~= g and T >= k("1") and w + x - i["GetTime"]() <= k("0") then
-				return f
-			end
-		end;
-		return e
-	end;
-	i["WR_GetTrueCastTime"] = function(A)
-		local S, bt, bu, bv, aE, aF, l = i["GetSpellInfo"](A)
-		return bv / k("1000")
-	end;
-	i["WR_PreemptiveHealing"] = function(A)
-		if i["WR_GetRangeSpellTime"](k("45"), i["QZWY_AOE_Name"]) < k("999") then
-			return e
-		end;
-		if i["WR_GetRangeSpellTime"](k("45"), i["QZWY_Spell_Name"], "player") < k("999") then
-			return e
-		end;
-		if i["WR_ResistOutburstTime"]() < i["WR_GetTrueCastTime"](A) then
-			return f
-		end;
-		return e
-	end;
-	i["WR_GetInRaidOrParty"] = function()
-		for M = k("1"), k("40"), k("1") do
-			if i["UnitExists"]("raid" .. M) == f then
+	g["WR_GetInRaidOrParty"] = function()
+		for K = i("1"), i("40"), i("1") do
+			if g["UnitExists"]("raid" .. K) == d then
 				return "raid"
 			end
 		end;
-		for M = k("1"), k("4"), k("1") do
-			if i["UnitExists"]("party" .. M) == f then
+		for K = i("1"), i("4"), i("1") do
+			if g["UnitExists"]("party" .. K) == d then
 				return "party"
 			end
 		end;
 		return "single"
 	end;
-	i["WR_EventNotifications"] = function()
-		if i["WR_EventNotificationsIsOpen"] == f then
+	g["WR_EventNotifications"] = function()
+		if g["WR_EventNotificationsIsOpen"] == d then
 			return
 		end;
-		local bw = i["CreateFrame"]("Frame")
-		bw["RegisterEvent"](bw, "COMBAT_LOG_EVENT_UNFILTERED")
-		bw["SetScript"](bw, "OnEvent", function()
-			if i["IsInInstance"]() then
-				local bx = "SAY"
-				local by, bz, bA, bB, bC, bD, bE, bF, bG, bH, bI = i["CombatLogGetCurrentEventInfo"]()
-				if bz == "SPELL_INTERRUPT" then
-					local a_, bJ, bK, bL, bM, bN = i["select"](k("12"), i["CombatLogGetCurrentEventInfo"]())
-					if bC == i["UnitName"]("player") or bC == i["UnitName"]("pet") then
-						i["SendChatMessage"]("打断-->" .. i["C_Spell"]["GetSpellLink"](bL), bx)
+		local bu = g["CreateFrame"]("Frame")
+		bu["RegisterEvent"](bu, "COMBAT_LOG_EVENT_UNFILTERED")
+		bu["SetScript"](bu, "OnEvent", function()
+			if g["IsInInstance"]() then
+				local bv = "SAY"
+				local bw, bx, by, bz, bA, bB, bC, bD, bE, bF, bG = g["CombatLogGetCurrentEventInfo"]()
+				if bx == "SPELL_INTERRUPT" then
+					local aY, bH, bI, bJ, bK, bL = g["select"](i("12"), g["CombatLogGetCurrentEventInfo"]())
+					if bA == g["UnitName"]("player") or bA == g["UnitName"]("pet") then
+						g["SendChatMessage"]("打断-->" .. g["C_Spell"]["GetSpellLink"](bJ), bv)
 					end
-				elseif bz == "SPELL_DISPEL" then
-					local a_, bJ, bK, bL, bM, bN, bO = i["select"](k("12"), i["CombatLogGetCurrentEventInfo"]())
-					if bC == i["UnitName"]("player") or bC == i["UnitName"]("pet") then
-						i["SendChatMessage"]("驱散-->" .. i["C_Spell"]["GetSpellLink"](bL), bx)
+				elseif bx == "SPELL_DISPEL" then
+					local aY, bH, bI, bJ, bK, bL, bM = g["select"](i("12"), g["CombatLogGetCurrentEventInfo"]())
+					if bA == g["UnitName"]("player") or bA == g["UnitName"]("pet") then
+						g["SendChatMessage"]("驱散-->" .. g["C_Spell"]["GetSpellLink"](bJ), bv)
 					end
-				elseif bz == "SPELL_STOLEN" then
-					local a_, bJ, bK, bL, bM, bN, bO = i["select"](k("12"), i["CombatLogGetCurrentEventInfo"]())
-					if bC == i["UnitName"]("player") then
-						i["SendChatMessage"]("偷取-->" .. i["C_Spell"]["GetSpellLink"](bL), bx)
+				elseif bx == "SPELL_STOLEN" then
+					local aY, bH, bI, bJ, bK, bL, bM = g["select"](i("12"), g["CombatLogGetCurrentEventInfo"]())
+					if bA == g["UnitName"]("player") then
+						g["SendChatMessage"]("偷取-->" .. g["C_Spell"]["GetSpellLink"](bJ), bv)
 					end
-				elseif bz == "SPELL_MISSED" then
-					local a_, bJ, bK, bP, bQ, bR = i["select"](k("12"), i["CombatLogGetCurrentEventInfo"]())
-					if bP == "REFLECT" and bG == i["UnitName"]("player") then
-						i["SendChatMessage"]("反射-->" .. i["C_Spell"]["GetSpellLink"](a_), bx)
-					elseif bP == "ABSORB" and bG == "根基图腾" and bH == k("8465") then
-						i["SendChatMessage"]("吸收-->" .. i["C_Spell"]["GetSpellLink"](a_), bx)
+				elseif bx == "SPELL_MISSED" then
+					local aY, bH, bI, bN, bO, bP = g["select"](i("12"), g["CombatLogGetCurrentEventInfo"]())
+					if bN == "REFLECT" and bE == g["UnitName"]("player") then
+						g["SendChatMessage"]("反射-->" .. g["C_Spell"]["GetSpellLink"](aY), bv)
+					elseif bN == "ABSORB" and bE == "根基图腾" and bF == i("8465") then
+						g["SendChatMessage"]("吸收-->" .. g["C_Spell"]["GetSpellLink"](aY), bv)
 					end
 				end
 			end
 		end)
-		i["WR_EventNotificationsIsOpen"] = f
+		g["WR_EventNotificationsIsOpen"] = d
 	end;
-	i["WR_HidePlayerNotFound"] = function()
-		if i["WR_HidePlayerNotFoundIsOpen"] == f then
+	g["WR_HidePlayerNotFound"] = function()
+		if g["WR_HidePlayerNotFoundIsOpen"] == d then
 			return
 		end;
-		i["ChatFrame_AddMessageEventFilter"]("CHAT_MSG_SYSTEM", function(y, y, bS)
-			if i["strmatch"](bS, i["ERR_CHAT_PLAYER_NOT_FOUND_S"]["gsub"](i["ERR_CHAT_PLAYER_NOT_FOUND_S"], "%%%d?$?%a", ".*")) then
-				return f
+		g["ChatFrame_AddMessageEventFilter"]("CHAT_MSG_SYSTEM", function(w, w, bQ)
+			if g["strmatch"](bQ, g["ERR_CHAT_PLAYER_NOT_FOUND_S"]["gsub"](g["ERR_CHAT_PLAYER_NOT_FOUND_S"], "%%%d?$?%a", ".*")) then
+				return d
 			end
 		end)
-		local bT = i["CommunitiesGuildNewsFrame_OnEvent"]
-		local bU, bV;
-		i["CommunitiesFrameGuildDetailsFrameNews"]["SetScript"](i["CommunitiesFrameGuildDetailsFrameNews"], "OnEvent", function(bW, bX)
-			if bX == "GUILD_NEWS_UPDATE" then
-				if bV then
-					bU = f
+		local bR = g["CommunitiesGuildNewsFrame_OnEvent"]
+		local bS, bT;
+		g["CommunitiesFrameGuildDetailsFrameNews"]["SetScript"](g["CommunitiesFrameGuildDetailsFrameNews"], "OnEvent", function(bU, bV)
+			if bV == "GUILD_NEWS_UPDATE" then
+				if bT then
+					bS = d
 				else
-					bT(bW, bX)
-					bV = i["C_Timer"]["NewTimer"](k("1"), function()
-						if bU then
-							bT(bW, bX)
+					bR(bU, bV)
+					bT = g["C_Timer"]["NewTimer"](i("1"), function()
+						if bS then
+							bR(bU, bV)
 						end;
-						bV = g
+						bT = e
 					end)
 				end
 			else
-				bT(bW, bX)
+				bR(bU, bV)
 			end
 		end)
-		i["WR_HidePlayerNotFoundIsOpen"] = f
+		g["WR_HidePlayerNotFoundIsOpen"] = d
 	end;
-	i["WR_DangerSpellTime"] = function()
-		if i["WR_DangerSpellTimeIsOpen"] == f then
+	g["WR_DangerSpellTime"] = function()
+		if g["WR_DangerSpellTimeIsOpen"] == d then
 			return
 		end;
-		local bw = i["CreateFrame"]("Frame")
-		bw["RegisterEvent"](bw, "COMBAT_LOG_EVENT_UNFILTERED")
-		bw["SetScript"](bw, "OnEvent", function()
-			if i["select"](k("2"), i["CombatLogGetCurrentEventInfo"]()) == "SPELL_CAST_SUCCESS" then
-				local u = i["select"](k("13"), i["CombatLogGetCurrentEventInfo"]())
-				if u == "霜风" then
-					i["SF_CastTime"] = i["GetTime"]()
+		local bu = g["CreateFrame"]("Frame")
+		bu["RegisterEvent"](bu, "COMBAT_LOG_EVENT_UNFILTERED")
+		bu["SetScript"](bu, "OnEvent", function()
+			if g["select"](i("2"), g["CombatLogGetCurrentEventInfo"]()) == "SPELL_CAST_SUCCESS" then
+				local s = g["select"](i("13"), g["CombatLogGetCurrentEventInfo"]())
+				if s == "霜风" then
+					g["SF_CastTime"] = g["GetTime"]()
 				end;
-				if u == "强风箭" then
-					i["QFJ_CastTime"] = i["GetTime"]()
+				if s == "强风箭" then
+					g["QFJ_CastTime"] = g["GetTime"]()
 				end;
-				if u == "紊流" then
-					i["WL_CastTime"] = i["GetTime"]()
+				if s == "紊流" then
+					g["WL_CastTime"] = g["GetTime"]()
 				end;
-				if u == "坚石碎片" then
-					i["JSSP_CastTime"] = i["GetTime"]()
+				if s == "坚石碎片" then
+					g["JSSP_CastTime"] = g["GetTime"]()
 				end;
-				if u == "警示尖鸣" then
-					i["JSJM_CastTime"] = i["GetTime"]()
+				if s == "警示尖鸣" then
+					g["JSJM_CastTime"] = g["GetTime"]()
 				end;
-				if u == "激流破奔" then
-					i["JLPB_CastTime"] = i["GetTime"]()
+				if s == "激流破奔" then
+					g["JLPB_CastTime"] = g["GetTime"]()
 				end
 			end
 		end)
-		i["WR_DangerSpellTimeIsOpen"] = f
+		g["WR_DangerSpellTimeIsOpen"] = d
 	end;
-	i["WR_CanTab"] = function()
-		for y, S in i["pairs"](i["DontTabUnitName"]) do
-			if i["UnitName"]("target") == S then
-				return e
+	g["WR_CanTab"] = function()
+		for w, Q in g["pairs"](g["DontTabUnitName"]) do
+			if g["UnitName"]("target") == Q then
+				return c
 			end
 		end;
-		return f
+		return d
 	end;
-	i["WR_CanDot"] = function(N)
-		i["TempUnit"] = N;
-		if i["TempUnit"] == g then
-			i["TempUnit"] = "target"
+	g["WR_CanDot"] = function(L)
+		g["TempUnit"] = L;
+		if g["TempUnit"] == e then
+			g["TempUnit"] = "target"
 		end;
-		for y, S in i["pairs"](i["DontDotUnitName"]) do
-			if i["UnitName"](i["TempUnit"]) == S then
-				return e
+		for w, Q in g["pairs"](g["DontDotUnitName"]) do
+			if g["UnitName"](g["TempUnit"]) == Q then
+				return c
 			end
 		end;
-		for y, S in i["pairs"](i["InvincibleUnitName"]) do
-			if i["UnitName"](i["TempUnit"]) == S then
-				return e
+		for w, Q in g["pairs"](g["InvincibleUnitName"]) do
+			if g["UnitName"](g["TempUnit"]) == Q then
+				return c
 			end
 		end;
-		return f
+		return d
 	end;
-	i["WR_PartyNotBuff"] = function(Z, A)
-		if i["WR_GetUnitBuffCount"]("player", Z) == k("0") then
-			return f
+	g["WR_PartyNotBuff"] = function(X, y)
+		if g["WR_GetUnitBuffCount"]("player", X) == i("0") then
+			return d
 		end;
-		if not i["IsInInstance"]() then
-			return e
+		if not g["IsInInstance"]() then
+			return c
 		end;
-		if i["UnitAffectingCombat"]("player") then
-			return e
+		if g["UnitAffectingCombat"]("player") then
+			return c
 		end;
-		for M = k("1"), k("40"), k("1") do
-			if M <= k("4") then
-				i["unit"] = "party" .. M;
-				if i["UnitExists"](i["unit"]) and i["UnitIsPlayer"](i["unit"]) and not i["UnitCanAttack"]("player", i["unit"]) and not i["UnitIsDead"](i["unit"]) and i["WR_GetUnitBuffCount"](i["unit"], Z) == k("0") and (i["WR_GetUnitRange"](i["unit"]) <= k("50") or A ~= g and i["IsSpellInRange"](A, i["unit"])) then
-					return f
+		for K = i("1"), i("40"), i("1") do
+			if K <= i("4") then
+				g["unit"] = "party" .. K;
+				if g["UnitExists"](g["unit"]) and g["UnitIsPlayer"](g["unit"]) and not g["UnitCanAttack"]("player", g["unit"]) and not g["UnitIsDead"](g["unit"]) and g["WR_GetUnitBuffCount"](g["unit"], X) == i("0") and (g["WR_GetUnitRange"](g["unit"]) <= i("50") or y ~= e and g["IsSpellInRange"](y, g["unit"])) then
+					return d
 				end;
-				i["unit"] = "raid" .. M;
-				if i["UnitExists"](i["unit"]) and i["UnitIsPlayer"](i["unit"]) and not i["UnitCanAttack"]("player", i["unit"]) and not i["UnitIsDead"](i["unit"]) and i["WR_GetUnitBuffCount"](i["unit"], Z) == k("0") and (i["WR_GetUnitRange"](i["unit"]) <= k("50") or A ~= g and i["IsSpellInRange"](A, i["unit"])) then
-					return f
+				g["unit"] = "raid" .. K;
+				if g["UnitExists"](g["unit"]) and g["UnitIsPlayer"](g["unit"]) and not g["UnitCanAttack"]("player", g["unit"]) and not g["UnitIsDead"](g["unit"]) and g["WR_GetUnitBuffCount"](g["unit"], X) == i("0") and (g["WR_GetUnitRange"](g["unit"]) <= i("50") or y ~= e and g["IsSpellInRange"](y, g["unit"])) then
+					return d
 				end
 			end
 		end;
-		return e
+		return c
 	end;
-	i["WR_CanRemoveUnitDebuff"] = function(N)
-		local ac = e;
-		local ad = e;
-		local ae = e;
-		local af = e;
-		if i["IsPlayerSpell"](k("527")) == f then
-			ac = f
+	g["WR_CanRemoveUnitDebuff"] = function(L)
+		local aa = c;
+		local ab = c;
+		local ac = c;
+		local ad = c;
+		if g["IsPlayerSpell"](i("527")) == d then
+			aa = d
 		end;
-		if i["IsSpellKnown"](k("89808"), f) == f then
-			ac = f
+		if g["IsSpellKnown"](i("89808"), d) == d then
+			aa = d
 		end;
-		if i["IsPlayerSpell"](k("77130")) == f then
-			ac = f
+		if g["IsPlayerSpell"](i("77130")) == d then
+			aa = d
 		end;
-		if i["IsPlayerSpell"](k("4987")) == f then
-			ac = f
+		if g["IsPlayerSpell"](i("4987")) == d then
+			aa = d
 		end;
-		if i["IsPlayerSpell"](k("213644")) == f then
-			ae = f;
-			af = f
+		if g["IsPlayerSpell"](i("213644")) == d then
+			ac = d;
+			ad = d
 		end;
-		if i["IsPlayerSpell"](k("115450")) == f then
-			ac = f
+		if g["IsPlayerSpell"](i("115450")) == d then
+			aa = d
 		end;
-		if i["IsPlayerSpell"](k("390632")) == f then
-			ae = f
+		if g["IsPlayerSpell"](i("390632")) == d then
+			ac = d
 		end;
-		if i["IsPlayerSpell"](k("383016")) == f then
-			ad = f
+		if g["IsPlayerSpell"](i("383016")) == d then
+			ab = d
 		end;
-		if i["IsPlayerSpell"](k("51886")) == f then
-			ad = f
+		if g["IsPlayerSpell"](i("51886")) == d then
+			ab = d
 		end;
-		if i["IsPlayerSpell"](k("2782")) == f then
-			ad = f;
-			af = f
+		if g["IsPlayerSpell"](i("2782")) == d then
+			ab = d;
+			ad = d
 		end;
-		if i["IsPlayerSpell"](k("218164")) == f then
-			ae = f;
-			af = f
+		if g["IsPlayerSpell"](i("218164")) == d then
+			ac = d;
+			ad = d
 		end;
-		if i["IsPlayerSpell"](k("393024")) == f then
-			af = f;
-			ae = f
+		if g["IsPlayerSpell"](i("393024")) == d then
+			ad = d;
+			ac = d
 		end;
-		if i["IsPlayerSpell"](k("388874")) == f then
-			af = f;
-			ae = f
+		if g["IsPlayerSpell"](i("388874")) == d then
+			ad = d;
+			ac = d
 		end;
-		if i["IsPlayerSpell"](k("365585")) == f then
-			af = f
+		if g["IsPlayerSpell"](i("365585")) == d then
+			ad = d
 		end;
-		if i["IsPlayerSpell"](k("475")) == f then
-			ad = f
+		if g["IsPlayerSpell"](i("475")) == d then
+			ab = d
 		end;
-		if i["IsPlayerSpell"](k("213634")) == f then
-			ae = f
+		if g["IsPlayerSpell"](i("213634")) == d then
+			ac = d
 		end;
-		if i["IsPlayerSpell"](k("88423")) == f then
-			ac = f
+		if g["IsPlayerSpell"](i("88423")) == d then
+			aa = d
 		end;
-		if i["IsPlayerSpell"](k("392378")) == f then
-			af = f;
-			ad = f
+		if g["IsPlayerSpell"](i("392378")) == d then
+			ad = d;
+			ab = d
 		end;
-		if i["WR_GetUnitDebuffTime"](N, i["ZXQS_Debuff"]) > k("0") and i["UnitGUID"](N) ~= i["UnitGUID"]("mouseover") then
-			return e
+		if g["WR_GetUnitDebuffTime"](L, g["ZXQS_Debuff"]) > i("0") and g["UnitGUID"](L) ~= g["UnitGUID"]("mouseover") then
+			return c
 		end;
-		if i["WR_GetUnitDebuffTime"](N, "消解时间") > k("0") then
-			return e
+		if g["WR_GetUnitDebuffTime"](L, "消解时间") > i("0") then
+			return c
 		end;
-		if i["WR_GetUnitDebuffTime"](N, i["HuLueQuSanDebuffName"]) > k("0") then
-			return e
+		if g["WR_GetUnitDebuffTime"](L, g["HuLueQuSanDebuffName"]) > i("0") then
+			return c
 		end;
-		if ac == f and i["WR_UnitDebuffType"](N, "Magic") == f then
-			return f
+		if aa == d and g["WR_UnitDebuffType"](L, "Magic") == d then
+			return d
 		end;
-		if ad == f and i["WR_UnitDebuffType"](N, "Curse") == f then
-			return f
+		if ab == d and g["WR_UnitDebuffType"](L, "Curse") == d then
+			return d
 		end;
-		if ae == f and i["WR_UnitDebuffType"](N, "Disease") == f then
-			return f
+		if ac == d and g["WR_UnitDebuffType"](L, "Disease") == d then
+			return d
 		end;
-		if af == f and i["WR_UnitDebuffType"](N, "Poison") == f then
-			return f
+		if ad == d and g["WR_UnitDebuffType"](L, "Poison") == d then
+			return d
 		end;
-		return e
+		return c
 	end;
-	i["WR_CanRemoveUnitDangerDebuff"] = function(N)
-		if not i["WR_CanRemoveUnitDebuff"](N) then
-			return e
+	g["WR_CanRemoveUnitDangerDebuff"] = function(L)
+		if not g["WR_CanRemoveUnitDebuff"](L) then
+			return c
 		end;
-		if i["WR_GetUnitDebuffTime"](N, i["DangerRemoveDebuff"]) > k("0") then
-			return f
+		if g["WR_GetUnitDebuffTime"](L, g["DangerRemoveDebuff"]) > i("0") then
+			return d
 		end;
-		if i["WR_GetUnitDebuffCount"](N, "爆裂") >= k("5") then
-			return f
+		if g["WR_GetUnitDebuffCount"](L, "爆裂") >= i("5") then
+			return d
 		end;
-		if i["WR_GetUnitDebuffCount"](N, "压制瘴气") >= k("10") then
-			return f
+		if g["WR_GetUnitDebuffCount"](L, "压制瘴气") >= i("10") then
+			return d
 		end
 	end;
-	i["WR_ResurrectParty"] = function()
-		for M = k("1"), k("40"), k("1") do
-			local aJ;
-			if M <= k("4") then
-				aJ = "party" .. M;
-				if i["UnitIsDead"](aJ) and i["WR_GetUnitRange"](aJ) <= k("100") then
-					return f
+	g["WR_ResurrectParty"] = function()
+		for K = i("1"), i("40"), i("1") do
+			local aH;
+			if K <= i("4") then
+				aH = "party" .. K;
+				if g["UnitIsDead"](aH) and g["WR_GetUnitRange"](aH) <= i("100") then
+					return d
 				end;
-				aJ = "raid" .. M;
-				if i["UnitIsDead"](aJ) and i["WR_GetUnitRange"](aJ) <= k("100") then
-					return f
+				aH = "raid" .. K;
+				if g["UnitIsDead"](aH) and g["WR_GetUnitRange"](aH) <= i("100") then
+					return d
 				end
 			end
 		end;
-		return e
+		return c
 	end;
-	i["WR_StopCast"] = function(bY)
-		if i["WR_GetRangeSpellTime"](k("45"), i["StopCastID"]) < bY + k("0.4") then
-			return f
+	g["WR_StopCast"] = function(bW)
+		if g["WR_GetRangeSpellTime"](i("45"), g["StopCastID"]) < bW + i("0.4") then
+			return d
 		end;
-		return e
+		return c
 	end;
-	i["WR_RangeCountPR"] = function(aB, bZ)
-		local aJ;
-		local b_ = k("0")
-		aJ = "player"
-		if i["UnitHealthMax"](aJ) ~= k("0") and i["WR_GetUnitHP"](aJ) <= bZ then
-			b_ = b_ + k("1")
+	g["WR_RangeCountPR"] = function(az, bX)
+		local aH;
+		local bY = i("0")
+		aH = "player"
+		if g["UnitHealthMax"](aH) ~= i("0") and g["WR_GetUnitHP"](aH) <= bX then
+			bY = bY + i("1")
 		end;
-		if i["UnitExists"]("raid1") then
-			for M = k("1"), k("40"), k("1") do
-				aJ = "raid" .. M;
-				local aF = i["WR_GetUnitRange"](aJ)
-				local c0 = k("0")
-				if i["UnitExists"](aJ) then
-					c0 = i["WR_GetUnitHP"](aJ)
+		if g["UnitExists"]("raid1") then
+			for K = i("1"), i("40"), i("1") do
+				aH = "raid" .. K;
+				local aD = g["WR_GetUnitRange"](aH)
+				local bZ = i("0")
+				if g["UnitExists"](aH) then
+					bZ = g["WR_GetUnitHP"](aH)
 				end;
-				if aF ~= g and aF <= aB and c0 > k("0") and c0 <= bZ then
-					b_ = b_ + k("1")
+				if aD ~= e and aD <= az and bZ > i("0") and bZ <= bX then
+					bY = bY + i("1")
 				end
 			end
 		else
-			for M = k("1"), k("4"), k("1") do
-				aJ = "party" .. M;
-				local aF = i["WR_GetUnitRange"](aJ)
-				local c0 = k("0")
-				if i["UnitExists"](aJ) then
-					c0 = i["WR_GetUnitHP"](aJ)
+			for K = i("1"), i("4"), i("1") do
+				aH = "party" .. K;
+				local aD = g["WR_GetUnitRange"](aH)
+				local bZ = i("0")
+				if g["UnitExists"](aH) then
+					bZ = g["WR_GetUnitHP"](aH)
 				end;
-				if aF ~= g and aF <= aB and c0 > k("0") and c0 <= bZ then
-					b_ = b_ + k("1")
+				if aD ~= e and aD <= az and bZ > i("0") and bZ <= bX then
+					bY = bY + i("1")
 				end
 			end
 		end;
-		return b_
+		return bY
 	end;
-	i["WR_UnitEnragedBuff"] = function(N)
-		if i["WR_GetUnitBuffCount"](N, "无穷饥渴") >= k("6") then
-			return f
+	g["WR_UnitEnragedBuff"] = function(L)
+		if g["WR_GetUnitBuffCount"](L, "无穷饥渴") >= i("6") then
+			return d
 		end;
-		if i["WR_GetUnitBuffTime"](N, i["EnragedBuffName"]) > k("0") then
-			return f
+		if g["WR_GetUnitBuffTime"](L, g["EnragedBuffName"]) > i("0") then
+			return d
 		end
 	end;
-	i["WR_GetCastInterruptible"] = function(N, c1, c2)
-		if i["UnitCastingInfo"]("boss1") == "宇宙奇点" then
-			return e
+	g["WR_GetCastInterruptible"] = function(L, b_, c0)
+		if g["UnitCastingInfo"]("boss1") == "宇宙奇点" then
+			return c
 		end;
-		if i["UnitCastingInfo"](N) == "星宇飞升" then
-			return e
+		if g["UnitCastingInfo"](L) == "星宇飞升" then
+			return c
 		end;
-		if i["UnitName"]("boss1") == "无堕者哈夫" then
-			return e
+		if g["UnitName"]("boss1") == "无堕者哈夫" then
+			return c
 		end;
-		local c3, c4, c5 = i["WR_GetUnitCastInfo"](N, c2)
-		if c3 ~= g and c5 ~= g then
-			if c3 / (c3 + c4) >= c1 and c5 == f then
-				return f
+		local c1, c2, c3 = g["WR_GetUnitCastInfo"](L, c0)
+		if c1 ~= e and c3 ~= e then
+			if c1 / (c1 + c2) >= b_ and c3 == d then
+				return d
 			end
 		end;
-		local c6, c7 = i["WR_GetUnitChannelInfo"](N, c2)
-		if c6 ~= g and c7 ~= g then
-			if c6 >= c1 and c7 == f then
-				return f
+		local c4, c5 = g["WR_GetUnitChannelInfo"](L, c0)
+		if c4 ~= e and c5 ~= e then
+			if c4 >= b_ and c5 == d then
+				return d
 			end
 		end;
-		return e
+		return c
 	end;
-	i["WR_GetUnitCastInfo"] = function(N, c2)
-		local c8 = g;
-		local c9 = g;
-		local S, aU, aV, aW, z, aX, aY, aZ, a_ = i["UnitCastingInfo"](N)
-		if z ~= g then
-			for y, ca in i["pairs"](i["MustInterruptUnitName"]) do
-				if i["UnitName"](N) == ca then
-					return i["GetTime"]() - aW / k("1000"), z / k("1000") - i["GetTime"](), not aZ
+	g["WR_GetUnitCastInfo"] = function(L, c0)
+		local c6 = e;
+		local c7 = e;
+		local Q, aS, aT, aU, x, aV, aW, aX, aY = g["UnitCastingInfo"](L)
+		if x ~= e then
+			for w, c8 in g["pairs"](g["MustInterruptUnitName"]) do
+				if g["UnitName"](L) == c8 then
+					return g["GetTime"]() - aU / i("1000"), x / i("1000") - g["GetTime"](), not aX
 				end
 			end;
-			if i["UnitIsPlayer"](N) then
-				return i["GetTime"]() - aW / k("1000"), z / k("1000") - i["GetTime"](), not aZ
+			if g["UnitIsPlayer"](L) then
+				return g["GetTime"]() - aU / i("1000"), x / i("1000") - g["GetTime"](), not aX
 			end;
-			local S, aN, aO, aP = i["GetInstanceInfo"]()
-			if aO ~= k("8") then
-				return i["GetTime"]() - aW / k("1000"), z / k("1000") - i["GetTime"](), not aZ
+			local Q, aL, aM, aN = g["GetInstanceInfo"]()
+			if aM ~= i("8") then
+				return g["GetTime"]() - aU / i("1000"), x / i("1000") - g["GetTime"](), not aX
 			end;
-			if c2 then
-				for cb, u in i["pairs"](i["MustInterruptSpellName"]) do
-					if a_ == cb or S == u then
-						return i["GetTime"]() - aW / k("1000"), z / k("1000") - i["GetTime"](), not aZ
+			if c0 then
+				for c9, s in g["pairs"](g["MustInterruptSpellName"]) do
+					if aY == c9 or Q == s then
+						return g["GetTime"]() - aU / i("1000"), x / i("1000") - g["GetTime"](), not aX
 					end
 				end
 			else
-				for cc, cd in i["pairs"](i["ExcludeSpell"]) do
-					if a_ == cc or S == cd then
-						return g, g, g
+				for ca, cb in g["pairs"](g["ExcludeSpell"]) do
+					if aY == ca or Q == cb then
+						return e, e, e
 					end
 				end;
-				return i["GetTime"]() - aW / k("1000"), z / k("1000") - i["GetTime"](), not aZ
+				return g["GetTime"]() - aU / i("1000"), x / i("1000") - g["GetTime"](), not aX
 			end
 		end;
-		return g, g, g
+		return e, e, e
 	end;
-	i["WR_GetUnitChannelInfo"] = function(N, c2)
-		local ce = g;
-		local cf = g;
-		local S, aU, aV, aW, z, aX, aZ, a_ = i["UnitChannelInfo"](N)
-		if z ~= g then
-			for y, ca in i["pairs"](i["MustInterruptUnitName"]) do
-				if i["UnitName"](N) == ca then
-					return i["GetTime"]() - aW / k("1000"), not aZ
+	g["WR_GetUnitChannelInfo"] = function(L, c0)
+		local cc = e;
+		local cd = e;
+		local Q, aS, aT, aU, x, aV, aX, aY = g["UnitChannelInfo"](L)
+		if x ~= e then
+			for w, c8 in g["pairs"](g["MustInterruptUnitName"]) do
+				if g["UnitName"](L) == c8 then
+					return g["GetTime"]() - aU / i("1000"), not aX
 				end
 			end;
-			if i["UnitIsPlayer"](N) then
-				return i["GetTime"]() - aW / k("1000"), not aZ
+			if g["UnitIsPlayer"](L) then
+				return g["GetTime"]() - aU / i("1000"), not aX
 			end;
-			if c2 then
-				for cb, u in i["pairs"](i["MustInterruptSpellName"]) do
-					if a_ == cb or S == u then
-						return i["GetTime"]() - aW / k("1000"), not aZ
+			if c0 then
+				for c9, s in g["pairs"](g["MustInterruptSpellName"]) do
+					if aY == c9 or Q == s then
+						return g["GetTime"]() - aU / i("1000"), not aX
 					end
 				end
 			else
-				for cc, cd in i["pairs"](i["ExcludeSpell"]) do
-					if a_ == cc or S == cd then
-						return g, g
+				for ca, cb in g["pairs"](g["ExcludeSpell"]) do
+					if aY == ca or Q == cb then
+						return e, e
 					end
 				end;
-				return i["GetTime"]() - aW / k("1000"), not aZ
+				return g["GetTime"]() - aU / i("1000"), not aX
 			end
 		end;
-		return g, g
+		return e, e
 	end;
-	i["WR_GetRuneCount"] = function()
-		local cg = k("0")
-		for M = k("1"), k("6") do
-			if i["GetRuneCount"](M) ~= g then
-				cg = cg + i["GetRuneCount"](M)
+	g["WR_GetRuneCount"] = function()
+		local ce = i("0")
+		for K = i("1"), i("6") do
+			if g["GetRuneCount"](K) ~= e then
+				ce = ce + g["GetRuneCount"](K)
 			end
 		end;
-		return cg
+		return ce
 	end;
-	i["WR_TankResist"] = function()
-		local ch = k("999")
-		local ci = k("999")
-		local cj = k("999")
-		local ck = k("999")
-		for M = k("1"), k("40"), k("1") do
-			if i["UnitName"]("boss1") == "乌比斯将军" and i["WR_GetUnitDebuffCount"]("player", "碎颅打击") >= k("2") and i["WR_GetUnitDebuffTime"]("player", "碎颅打击") > k("4") then
-				cj = k("1.4")
-				ck = k("1.4")
+	g["WR_TankResist"] = function()
+		local cf = i("999")
+		local cg = i("999")
+		local ch = i("999")
+		local ci = i("999")
+		for K = i("1"), i("40"), i("1") do
+			if g["UnitName"]("boss1") == "乌比斯将军" and g["WR_GetUnitDebuffCount"]("player", "碎颅打击") >= i("2") and g["WR_GetUnitDebuffTime"]("player", "碎颅打击") > i("4") then
+				ch = i("1.4")
+				ci = i("1.4")
 			end;
-			local S, aU, aV, aW, z, aX, aY, aZ, a_ = i["UnitCastingInfo"]("nameplate" .. M)
-			if S ~= g then
-				if i["UnitIsUnit"]("nameplate" .. M .. "target", "player") then
-					if i["TankResist_SmallMagicToMe"] ~= g then
-						for cb, u in i["pairs"](i["TankResist_SmallMagicToMe"]) do
-							if u == h then
+			local Q, aS, aT, aU, x, aV, aW, aX, aY = g["UnitCastingInfo"]("nameplate" .. K)
+			if Q ~= e then
+				if g["UnitIsUnit"]("nameplate" .. K .. "target", "player") then
+					if g["TankResist_SmallMagicToMe"] ~= e then
+						for c9, s in g["pairs"](g["TankResist_SmallMagicToMe"]) do
+							if s == f then
 								break
 							end;
-							if u == S or cb == a_ then
-								ch = z / k("1000") - i["GetTime"]()
+							if s == Q or c9 == aY then
+								cf = x / i("1000") - g["GetTime"]()
 							end
 						end
 					end;
-					if i["TankResist_BigMagicToMe"] ~= g then
-						for cb, u in i["pairs"](i["TankResist_BigMagicToMe"]) do
-							if u == h then
+					if g["TankResist_BigMagicToMe"] ~= e then
+						for c9, s in g["pairs"](g["TankResist_BigMagicToMe"]) do
+							if s == f then
 								break
 							end;
-							if u == S or cb == a_ then
-								ci = z / k("1000") - i["GetTime"]()
+							if s == Q or c9 == aY then
+								cg = x / i("1000") - g["GetTime"]()
 							end
 						end
 					end;
-					if i["TankResist_SmallPhysicalToMe"] ~= g then
-						for cb, u in i["pairs"](i["TankResist_SmallPhysicalToMe"]) do
-							if u == h then
+					if g["TankResist_SmallPhysicalToMe"] ~= e then
+						for c9, s in g["pairs"](g["TankResist_SmallPhysicalToMe"]) do
+							if s == f then
 								break
 							end;
-							if u == S or cb == a_ then
-								cj = z / k("1000") - i["GetTime"]()
+							if s == Q or c9 == aY then
+								ch = x / i("1000") - g["GetTime"]()
 							end
 						end
 					end;
-					if i["TankResist_BigPhysicalToMe"] ~= g then
-						for cb, u in i["pairs"](i["TankResist_BigPhysicalToMe"]) do
-							if u == h then
+					if g["TankResist_BigPhysicalToMe"] ~= e then
+						for c9, s in g["pairs"](g["TankResist_BigPhysicalToMe"]) do
+							if s == f then
 								break
 							end;
-							if u == S or cb == a_ then
-								ck = z / k("1000") - i["GetTime"]()
+							if s == Q or c9 == aY then
+								ci = x / i("1000") - g["GetTime"]()
 							end
 						end
 					end
 				end;
-				if i["TankResist_SmallMagicToAoe"] ~= g then
-					for cb, u in i["pairs"](i["TankResist_SmallMagicToAoe"]) do
-						if u == h then
+				if g["TankResist_SmallMagicToAoe"] ~= e then
+					for c9, s in g["pairs"](g["TankResist_SmallMagicToAoe"]) do
+						if s == f then
 							break
 						end;
-						if u == S or cb == a_ then
-							ch = z / k("1000") - i["GetTime"]()
+						if s == Q or c9 == aY then
+							cf = x / i("1000") - g["GetTime"]()
 						end
 					end
 				end;
-				if i["TankResist_BigMagicToAoe"] ~= g then
-					for cb, u in i["pairs"](i["TankResist_BigMagicToAoe"]) do
-						if u == h then
+				if g["TankResist_BigMagicToAoe"] ~= e then
+					for c9, s in g["pairs"](g["TankResist_BigMagicToAoe"]) do
+						if s == f then
 							break
 						end;
-						if u == S or cb == a_ then
-							ci = z / k("1000") - i["GetTime"]()
+						if s == Q or c9 == aY then
+							cg = x / i("1000") - g["GetTime"]()
 						end
 					end
 				end;
-				if i["TankResist_SmallPhysicalToAoe"] ~= g then
-					for cb, u in i["pairs"](i["TankResist_SmallPhysicalToAoe"]) do
-						if u == h then
+				if g["TankResist_SmallPhysicalToAoe"] ~= e then
+					for c9, s in g["pairs"](g["TankResist_SmallPhysicalToAoe"]) do
+						if s == f then
 							break
 						end;
-						if u == S or cb == a_ then
-							cj = z / k("1000") - i["GetTime"]()
+						if s == Q or c9 == aY then
+							ch = x / i("1000") - g["GetTime"]()
 						end
 					end
 				end;
-				if i["TankResist_BigPhysicalToAoe"] ~= g then
-					for cb, u in i["pairs"](i["TankResist_BigPhysicalToAoe"]) do
-						if u == h then
+				if g["TankResist_BigPhysicalToAoe"] ~= e then
+					for c9, s in g["pairs"](g["TankResist_BigPhysicalToAoe"]) do
+						if s == f then
 							break
 						end;
-						if u == S or cb == a_ then
-							ck = z / k("1000") - i["GetTime"]()
+						if s == Q or c9 == aY then
+							ci = x / i("1000") - g["GetTime"]()
 						end
 					end
 				end
 			end
 		end;
-		return ch, ci, cj, ck
+		return cf, cg, ch, ci
 	end;
-	i["WR_SpellReflection"] = function(cl)
-		for M = k("1"), k("40"), k("1") do
-			local S, aU, aV, aW, z, aX, aY, aZ, a_ = i["UnitCastingInfo"]("nameplate" .. M)
-			if z ~= g then
-				if z / k("1000") - i["GetTime"]() < cl then
-					for cb, u in i["pairs"](i["ReflectionAOE"]) do
-						if u == S or cb == a_ then
-							return f
+	g["WR_SpellReflection"] = function(cj)
+		for K = i("1"), i("40"), i("1") do
+			local Q, aS, aT, aU, x, aV, aW, aX, aY = g["UnitCastingInfo"]("nameplate" .. K)
+			if x ~= e then
+				if x / i("1000") - g["GetTime"]() < cj then
+					for c9, s in g["pairs"](g["ReflectionAOE"]) do
+						if s == Q or c9 == aY then
+							return d
 						end
 					end;
-					if i["UnitIsUnit"]("nameplate" .. M .. "target", "player") then
-						for cb, u in i["pairs"](i["ReflectionSpell"]) do
-							if u == S or cb == a_ then
-								return f
+					if g["UnitIsUnit"]("nameplate" .. K .. "target", "player") then
+						for c9, s in g["pairs"](g["ReflectionSpell"]) do
+							if s == Q or c9 == aY then
+								return d
 							end
 						end
 					end
 				end
 			end;
-			local S, aU, aV, aW, z, aX, aZ, a_ = i["UnitChannelInfo"]("nameplate" .. M)
-			if aW ~= g then
-				for cb, u in i["pairs"](i["ReflectionAOE"]) do
-					if u == S or cb == a_ then
-						return f
+			local Q, aS, aT, aU, x, aV, aX, aY = g["UnitChannelInfo"]("nameplate" .. K)
+			if aU ~= e then
+				for c9, s in g["pairs"](g["ReflectionAOE"]) do
+					if s == Q or c9 == aY then
+						return d
 					end
 				end;
-				if i["UnitIsUnit"]("nameplate" .. M .. "target", "player") then
-					for cb, u in i["pairs"](i["ReflectionSpell"]) do
-						if u == S or cb == a_ then
-							return f
+				if g["UnitIsUnit"]("nameplate" .. K .. "target", "player") then
+					for c9, s in g["pairs"](g["ReflectionSpell"]) do
+						if s == Q or c9 == aY then
+							return d
 						end
 					end
 				end
 			end
 		end;
-		return e
+		return c
 	end;
-	i["WR_StunUnit"] = function(aB, cl)
-		if i["UnitCastingInfo"]("boss1") == "宇宙奇点" then
-			return e
+	g["WR_StunUnit"] = function(az, cj)
+		if g["UnitCastingInfo"]("boss1") == "宇宙奇点" then
+			return c
 		end;
-		local M = k("1")
-		while i["DontStunUnitName"][M] ~= g and i["DontStunUnitName"][M] ~= h do
-			if i["DontStunUnitName"][M] == i["UnitName"]("target") then
-				return e
+		local K = i("1")
+		while g["DontStunUnitName"][K] ~= e and g["DontStunUnitName"][K] ~= f do
+			if g["DontStunUnitName"][K] == g["UnitName"]("target") then
+				return c
 			end;
-			M = M + k("1")
+			K = K + i("1")
 		end;
-		for M = k("1"), k("40"), k("1") do
-			if i["UnitCanAttack"]("player", "nameplate" .. M) then
-				local S, aU, aV, aW, z, aX, aY, aZ, a_ = i["UnitCastingInfo"]("nameplate" .. M)
-				if S ~= g then
-					local aF = i["WR_GetUnitRange"]("nameplate" .. M)
-					if aF ~= g and aF <= aB and (cl == g or z / k("1000") - i["GetTime"]() < cl) then
-						for cb, u in i["pairs"](i["StunCastName"]) do
-							if u == S or cb == a_ then
-								return f
+		for K = i("1"), i("40"), i("1") do
+			if g["UnitCanAttack"]("player", "nameplate" .. K) then
+				local Q, aS, aT, aU, x, aV, aW, aX, aY = g["UnitCastingInfo"]("nameplate" .. K)
+				if Q ~= e then
+					local aD = g["WR_GetUnitRange"]("nameplate" .. K)
+					if aD ~= e and aD <= az and (cj == e or x / i("1000") - g["GetTime"]() < cj) then
+						for c9, s in g["pairs"](g["StunCastName"]) do
+							if s == Q or c9 == aY then
+								return d
 							end
 						end
 					end
 				end;
-				local S, aU, aV, aW, z, aX, aZ, a_ = i["UnitChannelInfo"]("nameplate" .. M)
-				if S ~= g then
-					local aF = i["WR_GetUnitRange"]("nameplate" .. M)
-					if aF ~= g and aF <= aB then
-						for cb, u in i["pairs"](i["StunChannelName"]) do
-							if u == S or cb == a_ then
-								return f
+				local Q, aS, aT, aU, x, aV, aX, aY = g["UnitChannelInfo"]("nameplate" .. K)
+				if Q ~= e then
+					local aD = g["WR_GetUnitRange"]("nameplate" .. K)
+					if aD ~= e and aD <= az then
+						for c9, s in g["pairs"](g["StunChannelName"]) do
+							if s == Q or c9 == aY then
+								return d
 							end
 						end
 					end
 				end
 			end
 		end;
-		return e
+		return c
 	end;
-	i["WR_GetSpellNextCharge"] = function(u)
-		if i["C_Spell"]["GetSpellCharges"](u) == g then
-			return k("999")
+	g["WR_GetSpellNextCharge"] = function(s)
+		if g["C_Spell"]["GetSpellCharges"](s) == e then
+			return i("999")
 		end;
-		local cm = i["C_Spell"]["GetSpellCharges"](u)["cooldownStartTime"]
-		local cn = i["C_Spell"]["GetSpellCharges"](u)["cooldownDuration"]
-		if cm == k("0") then
-			return k("0")
+		local ck = g["C_Spell"]["GetSpellCharges"](s)["cooldownStartTime"]
+		local cl = g["C_Spell"]["GetSpellCharges"](s)["cooldownDuration"]
+		if ck == i("0") then
+			return i("0")
 		end;
-		return cm + cn - i["GetTime"]()
+		return ck + cl - g["GetTime"]()
 	end;
-	i["WR_GetSpellCharges"] = function(u)
-		if i["C_Spell"]["GetSpellCharges"](u) ~= g then
-			return i["C_Spell"]["GetSpellCharges"](u)["currentCharges"] or k("0")
+	g["WR_GetSpellCharges"] = function(s)
+		if g["C_Spell"]["GetSpellCharges"](s) ~= e then
+			return g["C_Spell"]["GetSpellCharges"](s)["currentCharges"] or i("0")
 		end
 	end;
-	i["WR_GetSuit"] = function(co)
-		local cp = k("0")
-		for M = k("1"), k("19") do
-			local cq = i["GetInventoryItemID"]("player", M)
-			for y, cr in i["pairs"](co) do
-				if cq == cr then
-					cp = cp + k("1")
+	g["WR_GetSuit"] = function(cm)
+		local cn = i("0")
+		for K = i("1"), i("19") do
+			local co = g["GetInventoryItemID"]("player", K)
+			for w, cp in g["pairs"](cm) do
+				if co == cp then
+					cn = cn + i("1")
 				end
 			end
 		end;
-		return cp
+		return cn
 	end;
-	i["WR_StunSpell"] = function(N, cl)
-		if i["UnitCastingInfo"]("boss1") == "宇宙奇点" then
-			return e
+	g["WR_StunSpell"] = function(L, cj)
+		if g["UnitCastingInfo"]("boss1") == "宇宙奇点" then
+			return c
 		end;
-		local P, y = i["UnitName"](N)
-		local aL, y, y, y = i["GetUnitSpeed"](N)
-		local M = k("1")
-		while i["StunUnitName"][M] ~= g and i["StunUnitName"][M] ~= h do
-			if i["StunUnitName"][M] == P and aL > k("0") then
-				return f
+		local N, w = g["UnitName"](L)
+		local aJ, w, w, w = g["GetUnitSpeed"](L)
+		local K = i("1")
+		while g["StunUnitName"][K] ~= e and g["StunUnitName"][K] ~= f do
+			if g["StunUnitName"][K] == N and aJ > i("0") then
+				return d
 			end;
-			M = M + k("1")
+			K = K + i("1")
 		end;
-		local M = k("1")
-		while i["DontStunUnitName"][M] ~= g and i["DontStunUnitName"][M] ~= h do
-			if i["DontStunUnitName"][M] == P then
-				return e
+		local K = i("1")
+		while g["DontStunUnitName"][K] ~= e and g["DontStunUnitName"][K] ~= f do
+			if g["DontStunUnitName"][K] == N then
+				return c
 			end;
-			M = M + k("1")
+			K = K + i("1")
 		end;
-		if i["UnitCanAttack"]("player", N) then
-			local S, aU, aV, aW, z, aX, aY, aZ, a_ = i["UnitCastingInfo"](N)
-			if S ~= g and (cl == g or z / k("1000") - i["GetTime"]() < cl) then
-				for cb, u in i["pairs"](i["StunCastName"]) do
-					if u == S or cb == a_ then
-						return f
+		if g["UnitCanAttack"]("player", L) then
+			local Q, aS, aT, aU, x, aV, aW, aX, aY = g["UnitCastingInfo"](L)
+			if Q ~= e and (cj == e or x / i("1000") - g["GetTime"]() < cj) then
+				for c9, s in g["pairs"](g["StunCastName"]) do
+					if s == Q or c9 == aY then
+						return d
 					end
 				end
 			end;
-			local S, aU, aV, aW, z, aX, aZ, a_ = i["UnitChannelInfo"](N)
-			if S ~= g then
-				for cb, u in i["pairs"](i["StunChannelName"]) do
-					if u == S or cb == a_ then
-						return f
+			local Q, aS, aT, aU, x, aV, aX, aY = g["UnitChannelInfo"](L)
+			if Q ~= e then
+				for c9, s in g["pairs"](g["StunChannelName"]) do
+					if s == Q or c9 == aY then
+						return d
 					end
 				end
 			end
 		end;
-		return e
+		return c
 	end;
-	i["WR_SingleUnit"] = function()
-		local P, y = i["UnitName"]("target")
-		local O = k("1")
-		while i["SingleUnitName"][O] ~= g and i["SingleUnitName"][O] ~= h do
-			if P == i["SingleUnitName"][O] then
-				return f
+	g["WR_SingleUnit"] = function()
+		local N, w = g["UnitName"]("target")
+		local M = i("1")
+		while g["SingleUnitName"][M] ~= e and g["SingleUnitName"][M] ~= f do
+			if N == g["SingleUnitName"][M] then
+				return d
 			end;
-			O = O + k("1")
+			M = M + i("1")
 		end;
-		return e
+		return c
 	end;
-	i["WR_GetPartyRange"] = function()
-		local M;
-		i["TargetRange"] = i["WR_GetUnitRange"]("target")
-		i["FocusRange"] = i["WR_GetUnitRange"]("focus")
-		for M = k("1"), k("4"), k("1") do
-			i["PartyRange"][M] = i["WR_GetUnitRange"]("party" .. M)
+	g["WR_GetPartyRange"] = function()
+		local K;
+		g["TargetRange"] = g["WR_GetUnitRange"]("target")
+		g["FocusRange"] = g["WR_GetUnitRange"]("focus")
+		for K = i("1"), i("4"), i("1") do
+			g["PartyRange"][K] = g["WR_GetUnitRange"]("party" .. K)
 		end;
-		for M = k("1"), k("40"), k("1") do
-			i["RiadRange"][M] = i["WR_GetUnitRange"]("raid" .. M)
+		for K = i("1"), i("40"), i("1") do
+			g["RiadRange"][K] = g["WR_GetUnitRange"]("raid" .. K)
 		end
 	end;
-	i["WR_GetPartyLostHealth"] = function()
-		local M;
-		i["PlayerLostHealth"] = i["WR_GetUnitLostHealth"]("player")
-		i["TargetLostHealth"] = i["WR_GetUnitLostHealth"]("target")
-		i["FocusLostHealth"] = i["WR_GetUnitLostHealth"]("focus")
-		for M = k("1"), k("4"), k("1") do
-			i["PartyLostHealth"][M] = i["WR_GetUnitLostHealth"]("party" .. M)
+	g["WR_GetPartyLostHealth"] = function()
+		local K;
+		g["PlayerLostHealth"] = g["WR_GetUnitLostHealth"]("player")
+		g["TargetLostHealth"] = g["WR_GetUnitLostHealth"]("target")
+		g["FocusLostHealth"] = g["WR_GetUnitLostHealth"]("focus")
+		for K = i("1"), i("4"), i("1") do
+			g["PartyLostHealth"][K] = g["WR_GetUnitLostHealth"]("party" .. K)
 		end;
-		for M = k("1"), k("40"), k("1") do
-			i["RiadLostHealth"][M] = i["WR_GetUnitLostHealth"]("raid" .. M)
+		for K = i("1"), i("40"), i("1") do
+			g["RiadLostHealth"][K] = g["WR_GetUnitLostHealth"]("raid" .. K)
 		end
 	end;
-	i["WR_GetLastSpellName"] = function()
-		if i["WR_LastSpellNameIsOpen"] == f then
+	g["WR_GetLastSpellName"] = function()
+		if g["WR_LastSpellNameIsOpen"] == d then
 			return
 		end;
-		local bw = i["CreateFrame"]("Frame")
-		bw["RegisterEvent"](bw, "COMBAT_LOG_EVENT_UNFILTERED")
-		bw["SetScript"](bw, "OnEvent", function()
-			local by, cs, bA, bB, bC, bD, bE, bF, bG, bH, bI = i["CombatLogGetCurrentEventInfo"]()
-			if cs == "SPELL_CAST_SUCCESS" and bB == i["UnitGUID"]("player") then
-				i["WR_LastSpellName"] = i["select"](k("13"), i["CombatLogGetCurrentEventInfo"]())
+		local bu = g["CreateFrame"]("Frame")
+		bu["RegisterEvent"](bu, "COMBAT_LOG_EVENT_UNFILTERED")
+		bu["SetScript"](bu, "OnEvent", function()
+			local bw, cq, by, bz, bA, bB, bC, bD, bE, bF, bG = g["CombatLogGetCurrentEventInfo"]()
+			if cq == "SPELL_CAST_SUCCESS" and bz == g["UnitGUID"]("player") then
+				g["WR_LastSpellName"] = g["select"](i("13"), g["CombatLogGetCurrentEventInfo"]())
 			end
 		end)
-		i["WR_LastSpellNameIsOpen"] = f
+		g["WR_LastSpellNameIsOpen"] = d
 	end;
-	i["WR_GetSpellAuraApplied"] = function()
-		if i["WR_GetSpellAuraAppliedIsOpen"] == f then
+	g["WR_GetSpellAuraApplied"] = function()
+		if g["WR_GetSpellAuraAppliedIsOpen"] == d then
 			return
 		end;
-		local bw = i["CreateFrame"]("Frame")
-		bw["RegisterEvent"](bw, "COMBAT_LOG_EVENT_UNFILTERED")
-		bw["SetScript"](bw, "OnEvent", function()
-			local by, cs, bA, bB, bC, bD, bE, bF, bG, bH, bI = i["CombatLogGetCurrentEventInfo"]()
-			if cs == "SPELL_AURA_APPLIED" and bF == i["UnitGUID"]("player") then
-				if i["select"](k("12"), i["CombatLogGetCurrentEventInfo"]()) == k("438141") or i["select"](k("13"), i["CombatLogGetCurrentEventInfo"]()) == "暮光屠戮" then
-					i["MGTL_DebuffTime"] = i["GetTime"]()
+		local bu = g["CreateFrame"]("Frame")
+		bu["RegisterEvent"](bu, "COMBAT_LOG_EVENT_UNFILTERED")
+		bu["SetScript"](bu, "OnEvent", function()
+			local bw, cq, by, bz, bA, bB, bC, bD, bE, bF, bG = g["CombatLogGetCurrentEventInfo"]()
+			if cq == "SPELL_AURA_APPLIED" and bD == g["UnitGUID"]("player") then
+				if g["select"](i("12"), g["CombatLogGetCurrentEventInfo"]()) == i("438141") or g["select"](i("13"), g["CombatLogGetCurrentEventInfo"]()) == "暮光屠戮" then
+					g["MGTL_DebuffTime"] = g["GetTime"]()
 				end
 			end;
-			if cs == "SPELL_CAST_START" and bF == i["UnitGUID"]("player") then
-				if i["select"](k("12"), i["CombatLogGetCurrentEventInfo"]()) == k("438141") or i["select"](k("13"), i["CombatLogGetCurrentEventInfo"]()) == "暮光屠戮" then
-					i["MGTL_DebuffTime"] = i["GetTime"]()
+			if cq == "SPELL_CAST_START" and bD == g["UnitGUID"]("player") then
+				if g["select"](i("12"), g["CombatLogGetCurrentEventInfo"]()) == i("438141") or g["select"](i("13"), g["CombatLogGetCurrentEventInfo"]()) == "暮光屠戮" then
+					g["MGTL_DebuffTime"] = g["GetTime"]()
 				end
 			end;
-			if bF == i["UnitGUID"]("player") then
+			if bD == g["UnitGUID"]("player") then
 			end
 		end)
-		i["WR_GetSpellAuraAppliedIsOpen"] = f
+		g["WR_GetSpellAuraAppliedIsOpen"] = d
 	end;
-	i["WR_SpeedUp"] = function()
-		if i["WR_GetUnitDebuffInfo"]("player", "能量过载", e) ~= k("0") then
-			return f
+	g["WR_SpeedUp"] = function()
+		if g["WR_GetUnitDebuffInfo"]("player", "能量过载", c) ~= i("0") then
+			return d
 		end;
-		i["WR_GetSpellAuraApplied"]()
-		if i["MGTL_DebuffTime"] ~= g and i["GetTime"]() - i["MGTL_DebuffTime"] > k("0") and i["GetTime"]() - i["MGTL_DebuffTime"] < k("2") then
-			return f
+		g["WR_GetSpellAuraApplied"]()
+		if g["MGTL_DebuffTime"] ~= e and g["GetTime"]() - g["MGTL_DebuffTime"] > i("0") and g["GetTime"]() - g["MGTL_DebuffTime"] < i("2") then
+			return d
 		end;
-		for M = k("1"), k("40"), k("1") do
-			if i["UnitName"]("nameplate" .. M) == "怨毒影魔" and i["UnitIsUnit"]("nameplate" .. M .. "target", "player") then
-				return f
+		for K = i("1"), i("40"), i("1") do
+			if g["UnitName"]("nameplate" .. K) == "怨毒影魔" and g["UnitIsUnit"]("nameplate" .. K .. "target", "player") then
+				return d
 			end;
-			local S, aU, aV, aW, z, aX, aY, aZ, a_ = i["UnitCastingInfo"]("nameplate" .. M)
-			if S == g then
-				S, aU, aV, aW, z, aX, aZ, a_ = i["UnitChannelInfo"]("nameplate" .. M)
+			local Q, aS, aT, aU, x, aV, aW, aX, aY = g["UnitCastingInfo"]("nameplate" .. K)
+			if Q == e then
+				Q, aS, aT, aU, x, aV, aX, aY = g["UnitChannelInfo"]("nameplate" .. K)
 			end;
-			if S ~= g then
-				for cb, u in i["pairs"](i["SpeedUpSpellName"]) do
-					if u == S or cb == a_ then
-						return f
+			if Q ~= e then
+				for c9, s in g["pairs"](g["SpeedUpSpellName"]) do
+					if s == Q or c9 == aY then
+						return d
 					end
 				end
 			end
 		end;
-		return e
+		return c
 	end;
-	i["WR_GetUnitCrazyBuff"] = function(N)
-		for y, Z in i["pairs"](i["CrazyBuff"]) do
-			if i["WR_GetUnitBuffInfo"](N, Z) > k("12") then
-				return f
+	g["WR_GetUnitCrazyBuff"] = function(L)
+		for w, X in g["pairs"](g["CrazyBuff"]) do
+			if g["WR_GetUnitBuffInfo"](L, X) > i("12") then
+				return d
 			end
 		end;
-		i["WR_GetCrazyBuffTime"]()
-		if N == "party1" and i["WR_GetCrazyBuffTime_Party1"] ~= g and i["GetTime"]() - i["WR_GetCrazyBuffTime_Party1"] <= k("2") then
-			return f
+		g["WR_GetCrazyBuffTime"]()
+		if L == "party1" and g["WR_GetCrazyBuffTime_Party1"] ~= e and g["GetTime"]() - g["WR_GetCrazyBuffTime_Party1"] <= i("2") then
+			return d
 		end;
-		if N == "party2" and i["WR_GetCrazyBuffTime_Party2"] ~= g and i["GetTime"]() - i["WR_GetCrazyBuffTime_Party2"] <= k("2") then
-			return f
+		if L == "party2" and g["WR_GetCrazyBuffTime_Party2"] ~= e and g["GetTime"]() - g["WR_GetCrazyBuffTime_Party2"] <= i("2") then
+			return d
 		end;
-		if N == "party3" and i["WR_GetCrazyBuffTime_Party3"] ~= g and i["GetTime"]() - i["WR_GetCrazyBuffTime_Party3"] <= k("2") then
-			return f
+		if L == "party3" and g["WR_GetCrazyBuffTime_Party3"] ~= e and g["GetTime"]() - g["WR_GetCrazyBuffTime_Party3"] <= i("2") then
+			return d
 		end;
-		if N == "party4" and i["WR_GetCrazyBuffTime_Party4"] ~= g and i["GetTime"]() - i["WR_GetCrazyBuffTime_Party4"] <= k("2") then
-			return f
+		if L == "party4" and g["WR_GetCrazyBuffTime_Party4"] ~= e and g["GetTime"]() - g["WR_GetCrazyBuffTime_Party4"] <= i("2") then
+			return d
 		end;
-		return e
+		return c
 	end;
-	i["WR_GetCrazyBuffTime"] = function()
-		if i["WR_GetCrazyBuffTimeIsOpen"] == f then
+	g["WR_GetCrazyBuffTime"] = function()
+		if g["WR_GetCrazyBuffTimeIsOpen"] == d then
 			return
 		end;
-		local bw = i["CreateFrame"]("Frame")
-		bw["RegisterEvent"](bw, "COMBAT_LOG_EVENT_UNFILTERED")
-		bw["SetScript"](bw, "OnEvent", function()
-			local by, cs, bA, bB, bC, bD, bE, bF, bG, bH, bI = i["CombatLogGetCurrentEventInfo"]()
-			if cs == "SPELL_CAST_SUCCESS" then
-				for y, Z in i["pairs"](i["CrazyBuff"]) do
-					if i["select"](k("13"), i["CombatLogGetCurrentEventInfo"]()) == Z or i["select"](k("12"), i["CombatLogGetCurrentEventInfo"]()) == Z then
-						if bB == i["UnitGUID"]("party1") then
-							i["WR_GetCrazyBuffTime_Party1"] = i["GetTime"]()
+		local bu = g["CreateFrame"]("Frame")
+		bu["RegisterEvent"](bu, "COMBAT_LOG_EVENT_UNFILTERED")
+		bu["SetScript"](bu, "OnEvent", function()
+			local bw, cq, by, bz, bA, bB, bC, bD, bE, bF, bG = g["CombatLogGetCurrentEventInfo"]()
+			if cq == "SPELL_CAST_SUCCESS" then
+				for w, X in g["pairs"](g["CrazyBuff"]) do
+					if g["select"](i("13"), g["CombatLogGetCurrentEventInfo"]()) == X or g["select"](i("12"), g["CombatLogGetCurrentEventInfo"]()) == X then
+						if bz == g["UnitGUID"]("party1") then
+							g["WR_GetCrazyBuffTime_Party1"] = g["GetTime"]()
 						end;
-						if bB == i["UnitGUID"]("party2") then
-							i["WR_GetCrazyBuffTime_Party2"] = i["GetTime"]()
+						if bz == g["UnitGUID"]("party2") then
+							g["WR_GetCrazyBuffTime_Party2"] = g["GetTime"]()
 						end;
-						if bB == i["UnitGUID"]("party3") then
-							i["WR_GetCrazyBuffTime_Party3"] = i["GetTime"]()
+						if bz == g["UnitGUID"]("party3") then
+							g["WR_GetCrazyBuffTime_Party3"] = g["GetTime"]()
 						end;
-						if bB == i["UnitGUID"]("party4") then
-							i["WR_GetCrazyBuffTime_Party4"] = i["GetTime"]()
+						if bz == g["UnitGUID"]("party4") then
+							g["WR_GetCrazyBuffTime_Party4"] = g["GetTime"]()
 						end
 					end
 				end
 			end
 		end)
-		i["WR_GetCrazyBuffTimeIsOpen"] = f
+		g["WR_GetCrazyBuffTimeIsOpen"] = d
 	end;
-	i["WR_UnitIsHuLueName"] = function(N)
-		local ct = i["IsInInstance"]()
-		if not ct and i["UnitIsPlayer"](N) then
-			return f
+	g["WR_UnitIsHuLueName"] = function(L)
+		local cr = g["IsInInstance"]()
+		if not cr and g["UnitIsPlayer"](L) then
+			return d
 		end;
-		local P, y = i["UnitName"](N)
-		local O = k("1")
-		while i["HuLueUnitName"][O] ~= g and i["HuLueUnitName"][O] ~= h do
-			if P == i["HuLueUnitName"][O] then
-				return f
+		local N, w = g["UnitName"](L)
+		local M = i("1")
+		while g["HuLueUnitName"][M] ~= e and g["HuLueUnitName"][M] ~= f do
+			if N == g["HuLueUnitName"][M] then
+				return d
 			end;
-			O = O + k("1")
+			M = M + i("1")
 		end;
-		return e
+		return c
 	end;
-	i["WR_GetNoDebuffRangeUnitCount"] = function(aB, a6, aQ)
-		local cu = k("0")
-		local cv = k("1")
-		if i["Time"] ~= g then
-			cv = i["Time"]
+	g["WR_GetNoDebuffRangeUnitCount"] = function(az, a4, aO)
+		local cs = i("0")
+		local ct = i("1")
+		if g["Time"] ~= e then
+			ct = g["Time"]
 		end;
-		for M = k("1"), k("40"), k("1") do
-			local P, y = i["UnitName"]("nameplate" .. M)
-			local aF = i["WR_GetUnitRange"]("nameplate" .. M)
-			local cw = i["UnitCanAttack"]("player", "nameplate" .. M)
-			local cx = i["UnitAffectingCombat"]("nameplate" .. M)
-			local cy = i["WR_GetUnitDebuffInfo"]("nameplate" .. M, a6, f)
-			local cz = i["UnitCreatureType"]("nameplate" .. M)
-			if not i["WR_UnitIsHuLueName"]("nameplate" .. M) then
-				if aF ~= g and aF <= aB and cw == f and cy == k("0") and cz ~= "图腾" and cz ~= "Totem" and cz ~= "气体云雾" and cz ~= "Gas Cloud" then
-					if cx == f and aQ == f or aQ ~= f then
-						if not i["WR_Invincible"]("nameplate" .. M) then
-							cu = cu + k("1")
+		for K = i("1"), i("40"), i("1") do
+			local N, w = g["UnitName"]("nameplate" .. K)
+			local aD = g["WR_GetUnitRange"]("nameplate" .. K)
+			local cu = g["UnitCanAttack"]("player", "nameplate" .. K)
+			local cv = g["UnitAffectingCombat"]("nameplate" .. K)
+			local cw = g["WR_GetUnitDebuffInfo"]("nameplate" .. K, a4, d)
+			local cx = g["UnitCreatureType"]("nameplate" .. K)
+			if not g["WR_UnitIsHuLueName"]("nameplate" .. K) then
+				if aD ~= e and aD <= az and cu == d and cw == i("0") and cx ~= "图腾" and cx ~= "Totem" and cx ~= "气体云雾" and cx ~= "Gas Cloud" then
+					if cv == d and aO == d or aO ~= d then
+						if not g["WR_Invincible"]("nameplate" .. K) then
+							cs = cs + i("1")
 						end
 					end
 				end
 			end
 		end;
-		if i["MSG"] == k("1") then
-			if aQ == f then
-				i["print"]("|cff00ff00", aB, "|cffffffff码内，没有中|cffffdf00", a6, "|cffffffff的战斗中的敌人数量为:|cffff5040", cu)
+		if g["MSG"] == i("1") then
+			if aO == d then
+				g["print"]("|cff00ff00", az, "|cffffffff码内，没有中|cffffdf00", a4, "|cffffffff的战斗中的敌人数量为:|cffff5040", cs)
 			else
-				i["print"]("|cff00ff00", aB, "|cffffffff码内，没有中|cffffdf00", a6, "|cffffffff的敌人数量为:|cffff5040", cu)
+				g["print"]("|cff00ff00", az, "|cffffffff码内，没有中|cffffdf00", a4, "|cffffffff的敌人数量为:|cffff5040", cs)
 			end
 		end;
-		return cu
+		return cs
 	end;
-	i["WR_GetHaveDebuffRangeUnitCount"] = function(aB, a6, aQ, cl)
-		local cu = k("0")
-		local cv = k("1")
-		if cl ~= g then
-			cv = cl
+	g["WR_GetHaveDebuffRangeUnitCount"] = function(az, a4, aO, cj)
+		local cs = i("0")
+		local ct = i("1")
+		if cj ~= e then
+			ct = cj
 		end;
-		for M = k("1"), k("40"), k("1") do
-			local cz = i["UnitCreatureType"]("nameplate" .. M)
-			if cz ~= "图腾" and cz ~= "Totem" and cz ~= "气体云雾" and cz ~= "Gas Cloud" and i["UnitCanAttack"]("player", "nameplate" .. M) and (aQ ~= f or aQ == f and i["UnitAffectingCombat"]("nameplate" .. M)) and i["WR_GetUnitRange"]("nameplate" .. M) <= aB and not i["WR_Invincible"]("nameplate" .. M) and i["WR_GetUnitDebuffInfo"]("nameplate" .. M, a6, f) >= cv then
-				cu = cu + k("1")
+		for K = i("1"), i("40"), i("1") do
+			local cx = g["UnitCreatureType"]("nameplate" .. K)
+			if cx ~= "图腾" and cx ~= "Totem" and cx ~= "气体云雾" and cx ~= "Gas Cloud" and g["UnitCanAttack"]("player", "nameplate" .. K) and (aO ~= d or aO == d and g["UnitAffectingCombat"]("nameplate" .. K)) and g["WR_GetUnitRange"]("nameplate" .. K) <= az and not g["WR_Invincible"]("nameplate" .. K) and g["WR_GetUnitDebuffInfo"]("nameplate" .. K, a4, d) >= ct then
+				cs = cs + i("1")
 			end
 		end;
-		if i["MSG"] == k("1") then
-			if aQ == f then
-				i["print"]("|cff00ff00", aB, "|cffffffff码内，中|cffffdf00", a6, "|cffffffff的战斗中的敌人数量为:|cffff5040", cu)
+		if g["MSG"] == i("1") then
+			if aO == d then
+				g["print"]("|cff00ff00", az, "|cffffffff码内，中|cffffdf00", a4, "|cffffffff的战斗中的敌人数量为:|cffff5040", cs)
 			else
-				i["print"]("|cff00ff00", aB, "|cffffffff码内，中|cffffdf00", a6, "|cffffffff的敌人数量为:|cffff5040", cu)
+				g["print"]("|cff00ff00", az, "|cffffffff码内，中|cffffdf00", a4, "|cffffffff的敌人数量为:|cffff5040", cs)
 			end
 		end;
-		return cu
+		return cs
 	end;
-	i["WR_DamageMitigation"] = function(cA, cB, cC)
-		if cC > cB then
-			return cA * cB
+	g["WR_DamageMitigation"] = function(cy, cz, cA)
+		if cA > cz then
+			return cy * cz
 		end;
-		i["DamageMitigation"] = cA * (cC - k("1"))
-		for M = cC, cB, k("1") do
-			i["DamageMitigation"] = i["DamageMitigation"] + cA * i["math"]["sqrt"]((cC - k("1")) / M)
+		g["DamageMitigation"] = cy * (cA - i("1"))
+		for K = cA, cz, i("1") do
+			g["DamageMitigation"] = g["DamageMitigation"] + cy * g["math"]["sqrt"]((cA - i("1")) / K)
 		end;
-		return i["DamageMitigation"]
+		return g["DamageMitigation"]
 	end;
-	i["WR_ColorFrame_Show"] = function(o, q)
-		i["WR_HideColorFrame"](i["zhandoumoshi"])
-		i["WR_ShowColorFrame"](o, q, i["zhandoumoshi"])
-		return f
+	g["WR_ColorFrame_Show"] = function(m, o)
+		g["WR_HideColorFrame"](g["zhandoumoshi"])
+		g["WR_ShowColorFrame"](m, o, g["zhandoumoshi"])
+		return d
 	end;
-	i["WR_FocusUnit"] = function(N, q)
-		if not i["UnitIsUnit"]("focus", N) then
-			if i["GCD"] > k("0.5") then
-				i["WR_FocusHealthMaxWeightUnit_LastTime"] = i["GetTime"]() + i["GCD"]
+	g["WR_FocusUnit"] = function(L, o)
+		if not g["UnitIsUnit"]("focus", L) then
+			if g["GCD"] > i("0.5") then
+				g["WR_FocusHealthMaxWeightUnit_LastTime"] = g["GetTime"]() + g["GCD"]
 			else
-				i["WR_FocusHealthMaxWeightUnit_LastTime"] = i["GetTime"]() + k("0.5")
+				g["WR_FocusHealthMaxWeightUnit_LastTime"] = g["GetTime"]() + i("0.5")
 			end;
-			if N == "player" then
-				i["WR_HideColorFrame"](i["zhandoumoshi"])
-				i["WR_ShowColorFrame"]("CSF5", q .. "焦点P", i["zhandoumoshi"])
-				return f
-			elseif N == "party1" then
-				i["WR_HideColorFrame"](i["zhandoumoshi"])
-				i["WR_ShowColorFrame"]("CSF1", q .. "焦点P1", i["zhandoumoshi"])
-				return f
-			elseif N == "party2" then
-				i["WR_HideColorFrame"](i["zhandoumoshi"])
-				i["WR_ShowColorFrame"]("CSF2", q .. "焦点P2", i["zhandoumoshi"])
-				return f
-			elseif N == "party3" then
-				i["WR_HideColorFrame"](i["zhandoumoshi"])
-				i["WR_ShowColorFrame"]("CSF3", q .. "焦点P3", i["zhandoumoshi"])
-				return f
-			elseif N == "party4" then
-				i["WR_HideColorFrame"](i["zhandoumoshi"])
-				i["WR_ShowColorFrame"]("CSF4", q .. "焦点P4", i["zhandoumoshi"])
-				return f
-			elseif N == "pet" then
-				i["WR_HideColorFrame"](i["zhandoumoshi"])
-				i["WR_ShowColorFrame"]("CSF9", q .. "焦点Pet", i["zhandoumoshi"])
-				return f
-			elseif N == "target" then
-				i["WR_HideColorFrame"](i["zhandoumoshi"])
-				i["WR_ShowColorFrame"]("CSF11", q .. "焦点T", i["zhandoumoshi"])
-				return f
-			elseif N == "mouseover" then
-				i["WR_HideColorFrame"](i["zhandoumoshi"])
-				i["WR_ShowColorFrame"]("CSF12", q .. "焦点M", i["zhandoumoshi"])
-				return f
-			elseif N == "boss2" then
-				i["WR_HideColorFrame"](i["zhandoumoshi"])
-				i["WR_ShowColorFrame"]("CSF6", q .. "焦点B2", i["zhandoumoshi"])
-				return f
-			elseif N == "boss3" then
-				i["WR_HideColorFrame"](i["zhandoumoshi"])
-				i["WR_ShowColorFrame"]("CSF7", q .. "焦点B3", i["zhandoumoshi"])
-				return f
-			elseif N == "boss4" then
-				i["WR_HideColorFrame"](i["zhandoumoshi"])
-				i["WR_ShowColorFrame"]("CSF8", q .. "焦点B4", i["zhandoumoshi"])
-				return f
-			elseif N == "boss4" then
-				i["WR_HideColorFrame"](i["zhandoumoshi"])
-				i["WR_ShowColorFrame"]("CSF8", q .. "焦点B4", i["zhandoumoshi"])
-				return f
-			elseif N == "raid1" then
-				i["WR_HideColorFrame"](i["zhandoumoshi"])
-				i["WR_ShowColorFrame"]("AN1", q .. "焦点R1", i["zhandoumoshi"])
-				return f
-			elseif N == "raid2" then
-				i["WR_HideColorFrame"](i["zhandoumoshi"])
-				i["WR_ShowColorFrame"]("AN2", q .. "焦点R2", i["zhandoumoshi"])
-				return f
-			elseif N == "raid3" then
-				i["WR_HideColorFrame"](i["zhandoumoshi"])
-				i["WR_ShowColorFrame"]("AN3", q .. "焦点R3", i["zhandoumoshi"])
-				return f
-			elseif N == "raid4" then
-				i["WR_HideColorFrame"](i["zhandoumoshi"])
-				i["WR_ShowColorFrame"]("AN4", q .. "焦点R4", i["zhandoumoshi"])
-				return f
-			elseif N == "raid5" then
-				i["WR_HideColorFrame"](i["zhandoumoshi"])
-				i["WR_ShowColorFrame"]("AN5", q .. "焦点R5", i["zhandoumoshi"])
-				return f
-			elseif N == "raid6" then
-				i["WR_HideColorFrame"](i["zhandoumoshi"])
-				i["WR_ShowColorFrame"]("AN6", q .. "焦点R6", i["zhandoumoshi"])
-				return f
-			elseif N == "raid7" then
-				i["WR_HideColorFrame"](i["zhandoumoshi"])
-				i["WR_ShowColorFrame"]("AN7", q .. "焦点R7", i["zhandoumoshi"])
-				return f
-			elseif N == "raid8" then
-				i["WR_HideColorFrame"](i["zhandoumoshi"])
-				i["WR_ShowColorFrame"]("AN8", q .. "焦点R8", i["zhandoumoshi"])
-				return f
-			elseif N == "raid9" then
-				i["WR_HideColorFrame"](i["zhandoumoshi"])
-				i["WR_ShowColorFrame"]("AN9", q .. "焦点R9", i["zhandoumoshi"])
-				return f
-			elseif N == "raid10" then
-				i["WR_HideColorFrame"](i["zhandoumoshi"])
-				i["WR_ShowColorFrame"]("AN0", q .. "焦点R10", i["zhandoumoshi"])
-				return f
-			elseif N == "raid11" then
-				i["WR_HideColorFrame"](i["zhandoumoshi"])
-				i["WR_ShowColorFrame"]("CN1", q .. "焦点R11", i["zhandoumoshi"])
-				return f
-			elseif N == "raid12" then
-				i["WR_HideColorFrame"](i["zhandoumoshi"])
-				i["WR_ShowColorFrame"]("CN2", q .. "焦点R12", i["zhandoumoshi"])
-				return f
-			elseif N == "raid13" then
-				i["WR_HideColorFrame"](i["zhandoumoshi"])
-				i["WR_ShowColorFrame"]("CN3", q .. "焦点R13", i["zhandoumoshi"])
-				return f
-			elseif N == "raid14" then
-				i["WR_HideColorFrame"](i["zhandoumoshi"])
-				i["WR_ShowColorFrame"]("CN4", q .. "焦点R14", i["zhandoumoshi"])
-				return f
-			elseif N == "raid15" then
-				i["WR_HideColorFrame"](i["zhandoumoshi"])
-				i["WR_ShowColorFrame"]("CN5", q .. "焦点R15", i["zhandoumoshi"])
-				return f
-			elseif N == "raid16" then
-				i["WR_HideColorFrame"](i["zhandoumoshi"])
-				i["WR_ShowColorFrame"]("CN6", q .. "焦点R16", i["zhandoumoshi"])
-				return f
-			elseif N == "raid17" then
-				i["WR_HideColorFrame"](i["zhandoumoshi"])
-				i["WR_ShowColorFrame"]("CN7", q .. "焦点R17", i["zhandoumoshi"])
-				return f
-			elseif N == "raid18" then
-				i["WR_HideColorFrame"](i["zhandoumoshi"])
-				i["WR_ShowColorFrame"]("CN8", q .. "焦点R18", i["zhandoumoshi"])
-				return f
-			elseif N == "raid19" then
-				i["WR_HideColorFrame"](i["zhandoumoshi"])
-				i["WR_ShowColorFrame"]("CN9", q .. "焦点R19", i["zhandoumoshi"])
-				return f
-			elseif N == "raid20" then
-				i["WR_HideColorFrame"](i["zhandoumoshi"])
-				i["WR_ShowColorFrame"]("CN0", q .. "焦点R20", i["zhandoumoshi"])
-				return f
-			elseif N == "party1target" then
-				i["WR_HideColorFrame"](i["zhandoumoshi"])
-				i["WR_ShowColorFrame"]("ACN1", q .. "焦点P1T", i["zhandoumoshi"])
-				return f
-			elseif N == "party2target" then
-				i["WR_HideColorFrame"](i["zhandoumoshi"])
-				i["WR_ShowColorFrame"]("ACN2", q .. "焦点P2T", i["zhandoumoshi"])
-				return f
-			elseif N == "party3target" then
-				i["WR_HideColorFrame"](i["zhandoumoshi"])
-				i["WR_ShowColorFrame"]("ACN3", q .. "焦点P3T", i["zhandoumoshi"])
-				return f
-			elseif N == "party4target" then
-				i["WR_HideColorFrame"](i["zhandoumoshi"])
-				i["WR_ShowColorFrame"]("ACN4", q .. "焦点P4T", i["zhandoumoshi"])
-				return f
+			if L == "player" then
+				g["WR_HideColorFrame"](g["zhandoumoshi"])
+				g["WR_ShowColorFrame"]("CSF5", o .. "焦点P", g["zhandoumoshi"])
+				return d
+			elseif L == "party1" then
+				g["WR_HideColorFrame"](g["zhandoumoshi"])
+				g["WR_ShowColorFrame"]("CSF1", o .. "焦点P1", g["zhandoumoshi"])
+				return d
+			elseif L == "party2" then
+				g["WR_HideColorFrame"](g["zhandoumoshi"])
+				g["WR_ShowColorFrame"]("CSF2", o .. "焦点P2", g["zhandoumoshi"])
+				return d
+			elseif L == "party3" then
+				g["WR_HideColorFrame"](g["zhandoumoshi"])
+				g["WR_ShowColorFrame"]("CSF3", o .. "焦点P3", g["zhandoumoshi"])
+				return d
+			elseif L == "party4" then
+				g["WR_HideColorFrame"](g["zhandoumoshi"])
+				g["WR_ShowColorFrame"]("CSF4", o .. "焦点P4", g["zhandoumoshi"])
+				return d
+			elseif L == "pet" then
+				g["WR_HideColorFrame"](g["zhandoumoshi"])
+				g["WR_ShowColorFrame"]("CSF9", o .. "焦点Pet", g["zhandoumoshi"])
+				return d
+			elseif L == "target" then
+				g["WR_HideColorFrame"](g["zhandoumoshi"])
+				g["WR_ShowColorFrame"]("CSF11", o .. "焦点T", g["zhandoumoshi"])
+				return d
+			elseif L == "mouseover" then
+				g["WR_HideColorFrame"](g["zhandoumoshi"])
+				g["WR_ShowColorFrame"]("CSF12", o .. "焦点M", g["zhandoumoshi"])
+				return d
+			elseif L == "boss2" then
+				g["WR_HideColorFrame"](g["zhandoumoshi"])
+				g["WR_ShowColorFrame"]("CSF6", o .. "焦点B2", g["zhandoumoshi"])
+				return d
+			elseif L == "boss3" then
+				g["WR_HideColorFrame"](g["zhandoumoshi"])
+				g["WR_ShowColorFrame"]("CSF7", o .. "焦点B3", g["zhandoumoshi"])
+				return d
+			elseif L == "boss4" then
+				g["WR_HideColorFrame"](g["zhandoumoshi"])
+				g["WR_ShowColorFrame"]("CSF8", o .. "焦点B4", g["zhandoumoshi"])
+				return d
+			elseif L == "boss4" then
+				g["WR_HideColorFrame"](g["zhandoumoshi"])
+				g["WR_ShowColorFrame"]("CSF8", o .. "焦点B4", g["zhandoumoshi"])
+				return d
+			elseif L == "raid1" then
+				g["WR_HideColorFrame"](g["zhandoumoshi"])
+				g["WR_ShowColorFrame"]("AN1", o .. "焦点R1", g["zhandoumoshi"])
+				return d
+			elseif L == "raid2" then
+				g["WR_HideColorFrame"](g["zhandoumoshi"])
+				g["WR_ShowColorFrame"]("AN2", o .. "焦点R2", g["zhandoumoshi"])
+				return d
+			elseif L == "raid3" then
+				g["WR_HideColorFrame"](g["zhandoumoshi"])
+				g["WR_ShowColorFrame"]("AN3", o .. "焦点R3", g["zhandoumoshi"])
+				return d
+			elseif L == "raid4" then
+				g["WR_HideColorFrame"](g["zhandoumoshi"])
+				g["WR_ShowColorFrame"]("AN4", o .. "焦点R4", g["zhandoumoshi"])
+				return d
+			elseif L == "raid5" then
+				g["WR_HideColorFrame"](g["zhandoumoshi"])
+				g["WR_ShowColorFrame"]("AN5", o .. "焦点R5", g["zhandoumoshi"])
+				return d
+			elseif L == "raid6" then
+				g["WR_HideColorFrame"](g["zhandoumoshi"])
+				g["WR_ShowColorFrame"]("AN6", o .. "焦点R6", g["zhandoumoshi"])
+				return d
+			elseif L == "raid7" then
+				g["WR_HideColorFrame"](g["zhandoumoshi"])
+				g["WR_ShowColorFrame"]("AN7", o .. "焦点R7", g["zhandoumoshi"])
+				return d
+			elseif L == "raid8" then
+				g["WR_HideColorFrame"](g["zhandoumoshi"])
+				g["WR_ShowColorFrame"]("AN8", o .. "焦点R8", g["zhandoumoshi"])
+				return d
+			elseif L == "raid9" then
+				g["WR_HideColorFrame"](g["zhandoumoshi"])
+				g["WR_ShowColorFrame"]("AN9", o .. "焦点R9", g["zhandoumoshi"])
+				return d
+			elseif L == "raid10" then
+				g["WR_HideColorFrame"](g["zhandoumoshi"])
+				g["WR_ShowColorFrame"]("AN0", o .. "焦点R10", g["zhandoumoshi"])
+				return d
+			elseif L == "raid11" then
+				g["WR_HideColorFrame"](g["zhandoumoshi"])
+				g["WR_ShowColorFrame"]("CN1", o .. "焦点R11", g["zhandoumoshi"])
+				return d
+			elseif L == "raid12" then
+				g["WR_HideColorFrame"](g["zhandoumoshi"])
+				g["WR_ShowColorFrame"]("CN2", o .. "焦点R12", g["zhandoumoshi"])
+				return d
+			elseif L == "raid13" then
+				g["WR_HideColorFrame"](g["zhandoumoshi"])
+				g["WR_ShowColorFrame"]("CN3", o .. "焦点R13", g["zhandoumoshi"])
+				return d
+			elseif L == "raid14" then
+				g["WR_HideColorFrame"](g["zhandoumoshi"])
+				g["WR_ShowColorFrame"]("CN4", o .. "焦点R14", g["zhandoumoshi"])
+				return d
+			elseif L == "raid15" then
+				g["WR_HideColorFrame"](g["zhandoumoshi"])
+				g["WR_ShowColorFrame"]("CN5", o .. "焦点R15", g["zhandoumoshi"])
+				return d
+			elseif L == "raid16" then
+				g["WR_HideColorFrame"](g["zhandoumoshi"])
+				g["WR_ShowColorFrame"]("CN6", o .. "焦点R16", g["zhandoumoshi"])
+				return d
+			elseif L == "raid17" then
+				g["WR_HideColorFrame"](g["zhandoumoshi"])
+				g["WR_ShowColorFrame"]("CN7", o .. "焦点R17", g["zhandoumoshi"])
+				return d
+			elseif L == "raid18" then
+				g["WR_HideColorFrame"](g["zhandoumoshi"])
+				g["WR_ShowColorFrame"]("CN8", o .. "焦点R18", g["zhandoumoshi"])
+				return d
+			elseif L == "raid19" then
+				g["WR_HideColorFrame"](g["zhandoumoshi"])
+				g["WR_ShowColorFrame"]("CN9", o .. "焦点R19", g["zhandoumoshi"])
+				return d
+			elseif L == "raid20" then
+				g["WR_HideColorFrame"](g["zhandoumoshi"])
+				g["WR_ShowColorFrame"]("CN0", o .. "焦点R20", g["zhandoumoshi"])
+				return d
+			elseif L == "party1target" then
+				g["WR_HideColorFrame"](g["zhandoumoshi"])
+				g["WR_ShowColorFrame"]("ACN1", o .. "焦点P1T", g["zhandoumoshi"])
+				return d
+			elseif L == "party2target" then
+				g["WR_HideColorFrame"](g["zhandoumoshi"])
+				g["WR_ShowColorFrame"]("ACN2", o .. "焦点P2T", g["zhandoumoshi"])
+				return d
+			elseif L == "party3target" then
+				g["WR_HideColorFrame"](g["zhandoumoshi"])
+				g["WR_ShowColorFrame"]("ACN3", o .. "焦点P3T", g["zhandoumoshi"])
+				return d
+			elseif L == "party4target" then
+				g["WR_HideColorFrame"](g["zhandoumoshi"])
+				g["WR_ShowColorFrame"]("ACN4", o .. "焦点P4T", g["zhandoumoshi"])
+				return d
 			end
 		end;
-		return e
+		return c
 	end;
-	i["WR_PriorityCheck"] = function()
-		if i["WR_CreateButtonInfo"] ~= f and not i["UnitAffectingCombat"]("player") then
-			i["WR_CreateButtonInfo"] = f;
-			if i["UnitClassBase"]("player") == "PALADIN" then
-				i["WR_PaladinCreateButton"]()
+	g["WR_PriorityCheck"] = function()
+		if g["WR_CreateButtonInfo"] ~= d and not g["UnitAffectingCombat"]("player") then
+			g["WR_CreateButtonInfo"] = d;
+			if g["UnitClassBase"]("player") == "PALADIN" then
+				g["WR_PaladinCreateButton"]()
 			end;
-			if i["UnitClassBase"]("player") == "DEATHKNIGHT" then
-				i["WR_DeathKnightCreateButton"]()
+			if g["UnitClassBase"]("player") == "DEATHKNIGHT" then
+				g["WR_DeathKnightCreateButton"]()
 			end;
-			if i["UnitClassBase"]("player") == "DRUID" then
-				i["WR_DruidCreateButton"]()
+			if g["UnitClassBase"]("player") == "DRUID" then
+				g["WR_DruidCreateButton"]()
 			end;
-			if i["UnitClassBase"]("player") == "HUNTER" then
-				i["WR_HunterCreateButton"]()
+			if g["UnitClassBase"]("player") == "HUNTER" then
+				g["WR_HunterCreateButton"]()
 			end;
-			if i["UnitClassBase"]("player") == "MAGE" then
-				i["WR_MageCreateButton"]()
+			if g["UnitClassBase"]("player") == "MAGE" then
+				g["WR_MageCreateButton"]()
 			end;
-			if i["UnitClassBase"]("player") == "WARRIOR" then
-				i["WR_WarriorCreateButton"]()
+			if g["UnitClassBase"]("player") == "WARRIOR" then
+				g["WR_WarriorCreateButton"]()
 			end;
-			if i["UnitClassBase"]("player") == "SHAMAN" then
-				i["WR_ShamanCreateButton"]()
+			if g["UnitClassBase"]("player") == "SHAMAN" then
+				g["WR_ShamanCreateButton"]()
 			end;
-			if i["UnitClassBase"]("player") == "ROGUE" then
-				i["WR_RogueCreateButton"]()
+			if g["UnitClassBase"]("player") == "ROGUE" then
+				g["WR_RogueCreateButton"]()
 			end;
-			if i["UnitClassBase"]("player") == "PRIEST" then
-				i["WR_PriestCreateButton"]()
+			if g["UnitClassBase"]("player") == "PRIEST" then
+				g["WR_PriestCreateButton"]()
 			end;
-			if i["UnitClassBase"]("player") == "MONK" then
-				i["WR_MonkCreateButton"]()
+			if g["UnitClassBase"]("player") == "MONK" then
+				g["WR_MonkCreateButton"]()
 			end;
-			if i["UnitClassBase"]("player") == "WARLOCK" then
-				i["WR_WarlockCreateButton"]()
+			if g["UnitClassBase"]("player") == "WARLOCK" then
+				g["WR_WarlockCreateButton"]()
 			end;
-			if i["UnitClassBase"]("player") == "EVOKER" then
-				i["WR_EvokerCreateButton"]()
+			if g["UnitClassBase"]("player") == "EVOKER" then
+				g["WR_EvokerCreateButton"]()
 			end;
-			if i["UnitClassBase"]("player") == "DEMONHUNTER" then
-				i["WR_DemonHunterCreateButton"]()
+			if g["UnitClassBase"]("player") == "DEMONHUNTER" then
+				g["WR_DemonHunterCreateButton"]()
 			end
 		end;
-		if i["WR_Use_Item"](k("13"), k("215174")) and i["WR_GetUnitBuffTime"]("player", k("435493")) > i["GCD"] and i["WR_GetUnitBuffTime"]("player", k("435493")) < k("1.5") then
-			if i["WR_ColorFrame_Show"]("F10", "死亡之吻") then
-				return f
+		if g["WR_Use_Item"](i("13"), i("215174")) and g["WR_GetUnitBuffTime"]("player", i("435493")) > g["GCD"] and g["WR_GetUnitBuffTime"]("player", i("435493")) < i("1.5") then
+			if g["WR_ColorFrame_Show"]("F10", "死亡之吻") then
+				return d
 			end
 		end;
-		if i["WR_Use_Item"](k("14"), k("215174")) and i["WR_GetUnitBuffTime"]("player", k("435493")) > i["GCD"] and i["WR_GetUnitBuffTime"]("player", k("435493")) < k("1.5") then
-			if i["WR_ColorFrame_Show"]("F11", "死亡之吻") then
-				return f
+		if g["WR_Use_Item"](i("14"), i("215174")) and g["WR_GetUnitBuffTime"]("player", i("435493")) > g["GCD"] and g["WR_GetUnitBuffTime"]("player", i("435493")) < i("1.5") then
+			if g["WR_ColorFrame_Show"]("F11", "死亡之吻") then
+				return d
 			end
 		end;
-		local cD = {
-			[k("1")] = "喝水",
-			[k("2")] = "进食",
-			[k("3")] = "饮用",
-			[k("4")] = "进食饮水",
-			[k("5")] = "假死",
-			[k("6")] = "影遁",
-			[k("7")] = "食物",
-			[k("8")] = "饮料",
-			[k("9")] = "食物和饮料"
+		local cB = {
+			[i("1")] = "喝水",
+			[i("2")] = "进食",
+			[i("3")] = "饮用",
+			[i("4")] = "进食饮水",
+			[i("5")] = "假死",
+			[i("6")] = "影遁",
+			[i("7")] = "食物",
+			[i("8")] = "饮料",
+			[i("9")] = "食物和饮料"
 		}
-		if i["IsFlying"]() or i["UnitIsDeadOrGhost"]("player") or i["SpellIsTargeting"]() and i["WR_GetUnitBuffTime"]("player", "救赎之魂") == k("0") or i["UnitChannelInfo"]("player") ~= g and i["UnitChannelInfo"]("player") ~= "抚慰之雾" and i["UnitChannelInfo"]("player") ~= "法力茶" and i["UnitChannelInfo"]("player") ~= "时间跳跃" and i["UnitChannelInfo"]("player") ~= "火焰吐息" and i["UnitChannelInfo"]("player") ~= "地壳激变" or i["WR_GetUnitBuffTime"]("player", cD, g, "NAME") ~= k("0") or i["UnitCastingInfo"]("player") ~= g and i["UnitClassBase"]("player") == "PRIEST" and i["GetSpecialization"]() == k("2") then
-			i["WR_HideColorFrame"](k("0"))
-			i["WR_HideColorFrame"](k("1"))
-			return f
+		if g["IsFlying"]() or g["UnitIsDeadOrGhost"]("player") or g["SpellIsTargeting"]() and g["WR_GetUnitBuffTime"]("player", "救赎之魂") == i("0") or g["UnitChannelInfo"]("player") ~= e and g["UnitChannelInfo"]("player") ~= "抚慰之雾" and g["UnitChannelInfo"]("player") ~= "法力茶" and g["UnitChannelInfo"]("player") ~= "时间跳跃" and g["UnitChannelInfo"]("player") ~= "火焰吐息" and g["UnitChannelInfo"]("player") ~= "地壳激变" or g["WR_GetUnitBuffTime"]("player", cB, e, "NAME") ~= i("0") or g["UnitCastingInfo"]("player") ~= e and g["UnitClassBase"]("player") == "PRIEST" and g["GetSpecialization"]() == i("2") then
+			g["WR_HideColorFrame"](i("0"))
+			g["WR_HideColorFrame"](i("1"))
+			return d
 		end;
-		if not i["UnitIsDeadOrGhost"]("player") and (i["UnitAffectingCombat"]("player") or i["WR_InTraining"]() or i["IsInInstance"]() and i["UnitGroupRolesAssigned"]("player") == "HEALER" or i["UnitClassBase"]("player") == "ROGUE" and i["WR_GetUnitBuffTime"]("player", "潜行") == k("0") or i["WR_Combat"]) then
-			i["WR_CombatFrame"]["Show"](i["WR_CombatFrame"])
+		if not g["UnitIsDeadOrGhost"]("player") and (g["UnitAffectingCombat"]("player") or g["WR_InTraining"]() or g["IsInInstance"]() and g["UnitGroupRolesAssigned"]("player") == "HEALER" or g["UnitClassBase"]("player") == "ROGUE" and g["WR_GetUnitBuffTime"]("player", "潜行") == i("0") or g["WR_Combat"]) then
+			g["WR_CombatFrame"]["Show"](g["WR_CombatFrame"])
 		else
-			i["SetCVar"]("autoUnshift", k("1"))
-			i["SetCVar"]("doNotFlashLowHealthWarning", k("1"))
-			i["SetCVar"]("secureAbilityToggle", k("1"))
-			i["SetCVar"]("findYourselfAnywhereOnlyInCombat", k("0"))
-			i["SetCVar"]("findYourselfAnywhere", k("1"))
-			i["SetCVar"]("SpellQueueWindow", k("400"))
-			i["C_CVar"]["RegisterCVar"]("addonProfilerEnabled", "1")
-			i["C_CVar"]["SetCVar"]("addonProfilerEnabled", "0")
-			i["WR_CombatFrame"]["Hide"](i["WR_CombatFrame"])
+			g["SetCVar"]("autoUnshift", i("1"))
+			g["SetCVar"]("doNotFlashLowHealthWarning", i("1"))
+			g["SetCVar"]("secureAbilityToggle", i("1"))
+			g["SetCVar"]("findYourselfAnywhereOnlyInCombat", i("0"))
+			g["SetCVar"]("findYourselfAnywhere", i("1"))
+			g["SetCVar"]("SpellQueueWindow", i("400"))
+			g["C_CVar"]["RegisterCVar"]("addonProfilerEnabled", "1")
+			g["C_CVar"]["SetCVar"]("addonProfilerEnabled", "0")
+			g["WR_CombatFrame"]["Hide"](g["WR_CombatFrame"])
 		end;
-		if i["zhandoumoshi"] ~= k("1") then
-			i["WR_HideColorFrame"](k("1"))
-			i["WR_ShowColorFrame"]("CSC", "爆发", k("1"))
+		if g["zhandoumoshi"] ~= i("1") then
+			g["WR_HideColorFrame"](i("1"))
+			g["WR_ShowColorFrame"]("CSC", "爆发", i("1"))
 		end;
-		if i["zhandoumoshi"] == k("1") then
-			i["WR_HideColorFrame"](k("0"))
-			i["WR_ShowColorFrame"]("CSV", "平伤", k("0"))
+		if g["zhandoumoshi"] == i("1") then
+			g["WR_HideColorFrame"](i("0"))
+			g["WR_ShowColorFrame"]("CSV", "平伤", i("0"))
+		end;
+		return c
+	end;
+	g["WR_GetBN"] = function(o)
+		if o ~= e then
+			local bh = i("0")
+			for K = i("1"), g["string"]["len"](o), i("1") do
+				if g["string"]["byte"](o, K) ~= e then
+					bh = bh + g["string"]["byte"](o, K)
+				end
+			end;
+			bh = bh .. g["tonumber"](g["string"]["sub"](o, g["string"]["len"](o) - i("3"), g["string"]["len"](o)))
+			return bh
 		end;
 		return e
 	end;
-	i["WR_GetBN"] = function(q)
-		if q ~= g then
-			local bj = k("0")
-			for M = k("1"), i["string"]["len"](q), k("1") do
-				if i["string"]["byte"](q, M) ~= g then
-					bj = bj + i["string"]["byte"](q, M)
+	g["WR_Function_ZNMB"] = function(az, bj)
+		if bj == i("3") then
+			return c
+		end;
+		if g["WR_PartyInCombat"]() and (not g["UnitExists"]("target") or g["UnitIsDead"]("target") or not g["UnitCanAttack"]("player", "target") or bj == i("2") and g["WR_GetUnitRange"]("target") > az or bj == i("2") and not g["WR_TargetInCombat"]("target")) then
+			local am = "pettarget"
+			if not g["UnitIsDead"](am) and g["UnitCanAttack"]("player", am) and g["WR_TargetInCombat"](am) and g["WR_GetUnitRange"](am) <= az then
+				if g["WR_ColorFrame_Show"]("ACN9", "宠物目标") then
+					return d
 				end
 			end;
-			bj = bj .. i["tonumber"](i["string"]["sub"](q, i["string"]["len"](q) - k("3"), i["string"]["len"](q)))
-			return bj
-		end;
-		return g
-	end;
-	i["WR_Function_ZNMB"] = function(aB, bl)
-		if bl == k("3") then
-			return e
-		end;
-		if i["WR_PartyInCombat"]() and (not i["UnitExists"]("target") or i["UnitIsDead"]("target") or not i["UnitCanAttack"]("player", "target") or bl == k("2") and i["WR_GetUnitRange"]("target") > aB or bl == k("2") and not i["WR_TargetInCombat"]("target")) then
-			local ao = "pettarget"
-			if not i["UnitIsDead"](ao) and i["UnitCanAttack"]("player", ao) and i["WR_TargetInCombat"](ao) and i["WR_GetUnitRange"](ao) <= aB then
-				if i["WR_ColorFrame_Show"]("ACN9", "宠物目标") then
-					return f
-				end
-			end;
-			for M = k("1"), k("4"), k("1") do
-				local ao = "party" .. M .. "target"
-				if i["UnitGroupRolesAssigned"]("party" .. M) == "TANK" and not i["UnitIsDead"](ao) and i["UnitCanAttack"]("player", ao) and i["UnitAffectingCombat"](ao) and i["WR_TargetInCombat"](ao) and i["WR_GetUnitRange"](ao) <= aB then
-					if M == k("1") then
-						if i["WR_ColorFrame_Show"]("ACN5", "智能-" .. M) then
-							return f
+			for K = i("1"), i("4"), i("1") do
+				local am = "party" .. K .. "target"
+				if g["UnitGroupRolesAssigned"]("party" .. K) == "TANK" and not g["UnitIsDead"](am) and g["UnitCanAttack"]("player", am) and g["UnitAffectingCombat"](am) and g["WR_TargetInCombat"](am) and g["WR_GetUnitRange"](am) <= az then
+					if K == i("1") then
+						if g["WR_ColorFrame_Show"]("ACN5", "智能-" .. K) then
+							return d
 						end
-					elseif M == k("2") then
-						if i["WR_ColorFrame_Show"]("ACN6", "智能-" .. M) then
-							return f
+					elseif K == i("2") then
+						if g["WR_ColorFrame_Show"]("ACN6", "智能-" .. K) then
+							return d
 						end
-					elseif M == k("3") then
-						if i["WR_ColorFrame_Show"]("ACN7", "智能-" .. M) then
-							return f
+					elseif K == i("3") then
+						if g["WR_ColorFrame_Show"]("ACN7", "智能-" .. K) then
+							return d
 						end
-					elseif M == k("4") then
-						if i["WR_ColorFrame_Show"]("ACN8", "智能-" .. M) then
-							return f
+					elseif K == i("4") then
+						if g["WR_ColorFrame_Show"]("ACN8", "智能-" .. K) then
+							return d
 						end
 					end
 				end
 			end;
-			for M = k("1"), k("4"), k("1") do
-				local ao = "party" .. M .. "target"
-				if not i["UnitIsDead"](ao) and i["UnitCanAttack"]("player", ao) and i["UnitAffectingCombat"](ao) and i["WR_TargetInCombat"](ao) and i["WR_GetUnitRange"](ao) <= aB then
-					if M == k("1") then
-						if i["WR_ColorFrame_Show"]("ACN5", "智能-" .. M) then
-							return f
+			for K = i("1"), i("4"), i("1") do
+				local am = "party" .. K .. "target"
+				if not g["UnitIsDead"](am) and g["UnitCanAttack"]("player", am) and g["UnitAffectingCombat"](am) and g["WR_TargetInCombat"](am) and g["WR_GetUnitRange"](am) <= az then
+					if K == i("1") then
+						if g["WR_ColorFrame_Show"]("ACN5", "智能-" .. K) then
+							return d
 						end
-					elseif M == k("2") then
-						if i["WR_ColorFrame_Show"]("ACN6", "智能-" .. M) then
-							return f
+					elseif K == i("2") then
+						if g["WR_ColorFrame_Show"]("ACN6", "智能-" .. K) then
+							return d
 						end
-					elseif M == k("3") then
-						if i["WR_ColorFrame_Show"]("ACN7", "智能-" .. M) then
-							return f
+					elseif K == i("3") then
+						if g["WR_ColorFrame_Show"]("ACN7", "智能-" .. K) then
+							return d
 						end
-					elseif M == k("4") then
-						if i["WR_ColorFrame_Show"]("ACN8", "智能-" .. M) then
-							return f
+					elseif K == i("4") then
+						if g["WR_ColorFrame_Show"]("ACN8", "智能-" .. K) then
+							return d
 						end
 					end
 				end
 			end;
-			if not i["IsInInstance"]() then
-				if (i["WR_TargetEnemyTime"] == g or i["GetTime"]() - i["WR_TargetEnemyTime"] > k("0.2")) and i["WR_GetRangeHarmUnitCount"](aB) >= k("1") then
-					i["WR_TargetEnemyTime"] = i["GetTime"]()
-					if i["WR_ColorFrame_Show"]("CSF10", "智能目标") then
-						return f
+			if not g["IsInInstance"]() then
+				if (g["WR_TargetEnemyTime"] == e or g["GetTime"]() - g["WR_TargetEnemyTime"] > i("0.2")) and g["WR_GetRangeHarmUnitCount"](az) >= i("1") then
+					g["WR_TargetEnemyTime"] = g["GetTime"]()
+					if g["WR_ColorFrame_Show"]("CSF10", "智能目标") then
+						return d
 					end
 				end
 			end
 		end;
-		return e
+		return c
 	end;
-	i["WR_DebugTime"] = function(q)
-		if not i["wrdebug"] then
+	g["WR_DebugTime"] = function(o)
+		if not g["wrdebug"] then
 			return
 		end;
-		if q == k("0") then
-			i["print"]("循环开始-----------------------------------------")
+		if o == i("0") then
+			g["print"]("循环开始-----------------------------------------")
 		end;
-		if q ~= g then
-			i["TempText"] = q
+		if o ~= e then
+			g["TempText"] = o
 		else
-			i["TempText"] = h
+			g["TempText"] = f
 		end;
-		if q ~= k("0") and i["WR_Debug_StartTime"] ~= g then
-			i["print"]("循环时间" .. q .. ": " .. i["string"]["format"]("%.2f", i["debugprofilestop"]() - i["WR_Debug_StartTime"]) .. "毫秒")
+		if o ~= i("0") and g["WR_Debug_StartTime"] ~= e then
+			g["print"]("循环时间" .. o .. ": " .. g["string"]["format"]("%.2f", g["debugprofilestop"]() - g["WR_Debug_StartTime"]) .. "毫秒")
 		end;
-		i["WR_Debug_StartTime"] = i["debugprofilestop"]()
+		g["WR_Debug_StartTime"] = g["debugprofilestop"]()
 	end;
-	i["WR_FocusMaxWeightUnit"] = function(q)
-		if q == g and i["WR_FocusHealthMaxWeightUnit_LastTime"] ~= g and i["GetTime"]() - i["WR_FocusHealthMaxWeightUnit_LastTime"] <= k("0") and i["UnitExists"]("focus") then
-			return e
+	g["WR_FocusMaxWeightUnit"] = function(o)
+		if o == e and g["WR_FocusHealthMaxWeightUnit_LastTime"] ~= e and g["GetTime"]() - g["WR_FocusHealthMaxWeightUnit_LastTime"] <= i("0") and g["UnitExists"]("focus") then
+			return c
 		end;
-		i["HMWUnit"] = i["WR_GetHealthMaxWeightUnit"]()
-		if i["UnitIsUnit"](i["HMWUnit"], "focus") then
-			return e
+		g["HMWUnit"] = g["WR_GetHealthMaxWeightUnit"]()
+		if g["UnitIsUnit"](g["HMWUnit"], "focus") then
+			return c
 		end;
-		if i["HMWUnit"] == "party1" then
-			if i["WR_ColorFrame_Show"]("CSF1", "焦点P1") then
-				return f
+		if g["HMWUnit"] == "party1" then
+			if g["WR_ColorFrame_Show"]("CSF1", "焦点P1") then
+				return d
 			end
-		elseif i["HMWUnit"] == "party2" then
-			if i["WR_ColorFrame_Show"]("CSF2", "焦点P2") then
-				return f
+		elseif g["HMWUnit"] == "party2" then
+			if g["WR_ColorFrame_Show"]("CSF2", "焦点P2") then
+				return d
 			end
-		elseif i["HMWUnit"] == "party3" then
-			if i["WR_ColorFrame_Show"]("CSF3", "焦点P3") then
-				return f
+		elseif g["HMWUnit"] == "party3" then
+			if g["WR_ColorFrame_Show"]("CSF3", "焦点P3") then
+				return d
 			end
-		elseif i["HMWUnit"] == "party4" then
-			if i["WR_ColorFrame_Show"]("CSF4", "焦点P4") then
-				return f
+		elseif g["HMWUnit"] == "party4" then
+			if g["WR_ColorFrame_Show"]("CSF4", "焦点P4") then
+				return d
 			end
-		elseif i["HMWUnit"] == "player" then
-			if i["WR_ColorFrame_Show"]("CSF5", "焦点P") then
-				return f
+		elseif g["HMWUnit"] == "player" then
+			if g["WR_ColorFrame_Show"]("CSF5", "焦点P") then
+				return d
 			end
-		elseif i["HMWUnit"] == "boss2" then
-			if i["WR_ColorFrame_Show"]("CSF6", "焦点b2") then
-				return f
+		elseif g["HMWUnit"] == "boss2" then
+			if g["WR_ColorFrame_Show"]("CSF6", "焦点b2") then
+				return d
 			end
-		elseif i["HMWUnit"] == "boss3" then
-			if i["WR_ColorFrame_Show"]("CSF7", "焦点b3") then
-				return f
+		elseif g["HMWUnit"] == "boss3" then
+			if g["WR_ColorFrame_Show"]("CSF7", "焦点b3") then
+				return d
 			end
-		elseif i["HMWUnit"] == "boss4" then
-			if i["WR_ColorFrame_Show"]("CSF8", "焦点b4") then
-				return f
+		elseif g["HMWUnit"] == "boss4" then
+			if g["WR_ColorFrame_Show"]("CSF8", "焦点b4") then
+				return d
 			end
-		elseif i["HMWUnit"] == "target" then
-			if i["WR_ColorFrame_Show"]("CSF11", "焦点T") then
-				return f
+		elseif g["HMWUnit"] == "target" then
+			if g["WR_ColorFrame_Show"]("CSF11", "焦点T") then
+				return d
 			end
-		elseif i["HMWUnit"] == "mouseover" then
-			if i["WR_ColorFrame_Show"]("CSF12", "焦点M") then
-				return f
+		elseif g["HMWUnit"] == "mouseover" then
+			if g["WR_ColorFrame_Show"]("CSF12", "焦点M") then
+				return d
 			end
-		elseif i["HMWUnit"] == "raid1" then
-			if i["WR_ColorFrame_Show"]("AN1", "焦点R1") then
-				return f
+		elseif g["HMWUnit"] == "raid1" then
+			if g["WR_ColorFrame_Show"]("AN1", "焦点R1") then
+				return d
 			end
-		elseif i["HMWUnit"] == "raid2" then
-			if i["WR_ColorFrame_Show"]("AN2", "焦点R2") then
-				return f
+		elseif g["HMWUnit"] == "raid2" then
+			if g["WR_ColorFrame_Show"]("AN2", "焦点R2") then
+				return d
 			end
-		elseif i["HMWUnit"] == "raid3" then
-			if i["WR_ColorFrame_Show"]("AN3", "焦点R3") then
-				return f
+		elseif g["HMWUnit"] == "raid3" then
+			if g["WR_ColorFrame_Show"]("AN3", "焦点R3") then
+				return d
 			end
-		elseif i["HMWUnit"] == "raid4" then
-			if i["WR_ColorFrame_Show"]("AN4", "焦点R4") then
-				return f
+		elseif g["HMWUnit"] == "raid4" then
+			if g["WR_ColorFrame_Show"]("AN4", "焦点R4") then
+				return d
 			end
-		elseif i["HMWUnit"] == "raid5" then
-			if i["WR_ColorFrame_Show"]("AN5", "焦点R5") then
-				return f
+		elseif g["HMWUnit"] == "raid5" then
+			if g["WR_ColorFrame_Show"]("AN5", "焦点R5") then
+				return d
 			end
-		elseif i["HMWUnit"] == "raid6" then
-			if i["WR_ColorFrame_Show"]("AN6", "焦点R6") then
-				return f
+		elseif g["HMWUnit"] == "raid6" then
+			if g["WR_ColorFrame_Show"]("AN6", "焦点R6") then
+				return d
 			end
-		elseif i["HMWUnit"] == "raid7" then
-			if i["WR_ColorFrame_Show"]("AN7", "焦点R7") then
-				return f
+		elseif g["HMWUnit"] == "raid7" then
+			if g["WR_ColorFrame_Show"]("AN7", "焦点R7") then
+				return d
 			end
-		elseif i["HMWUnit"] == "raid8" then
-			if i["WR_ColorFrame_Show"]("AN8", "焦点R8") then
-				return f
+		elseif g["HMWUnit"] == "raid8" then
+			if g["WR_ColorFrame_Show"]("AN8", "焦点R8") then
+				return d
 			end
-		elseif i["HMWUnit"] == "raid9" then
-			if i["WR_ColorFrame_Show"]("AN9", "焦点R9") then
-				return f
+		elseif g["HMWUnit"] == "raid9" then
+			if g["WR_ColorFrame_Show"]("AN9", "焦点R9") then
+				return d
 			end
-		elseif i["HMWUnit"] == "raid10" then
-			if i["WR_ColorFrame_Show"]("AN0", "焦点R10") then
-				return f
+		elseif g["HMWUnit"] == "raid10" then
+			if g["WR_ColorFrame_Show"]("AN0", "焦点R10") then
+				return d
 			end
-		elseif i["HMWUnit"] == "raid11" then
-			if i["WR_ColorFrame_Show"]("CN1", "焦点R11") then
-				return f
+		elseif g["HMWUnit"] == "raid11" then
+			if g["WR_ColorFrame_Show"]("CN1", "焦点R11") then
+				return d
 			end
-		elseif i["HMWUnit"] == "raid12" then
-			if i["WR_ColorFrame_Show"]("CN2", "焦点R12") then
-				return f
+		elseif g["HMWUnit"] == "raid12" then
+			if g["WR_ColorFrame_Show"]("CN2", "焦点R12") then
+				return d
 			end
-		elseif i["HMWUnit"] == "raid13" then
-			if i["WR_ColorFrame_Show"]("CN3", "焦点R13") then
-				return f
+		elseif g["HMWUnit"] == "raid13" then
+			if g["WR_ColorFrame_Show"]("CN3", "焦点R13") then
+				return d
 			end
-		elseif i["HMWUnit"] == "raid14" then
-			if i["WR_ColorFrame_Show"]("CN4", "焦点R14") then
-				return f
+		elseif g["HMWUnit"] == "raid14" then
+			if g["WR_ColorFrame_Show"]("CN4", "焦点R14") then
+				return d
 			end
-		elseif i["HMWUnit"] == "raid15" then
-			if i["WR_ColorFrame_Show"]("CN5", "焦点R15") then
-				return f
+		elseif g["HMWUnit"] == "raid15" then
+			if g["WR_ColorFrame_Show"]("CN5", "焦点R15") then
+				return d
 			end
-		elseif i["HMWUnit"] == "raid16" then
-			if i["WR_ColorFrame_Show"]("CN6", "焦点R16") then
-				return f
+		elseif g["HMWUnit"] == "raid16" then
+			if g["WR_ColorFrame_Show"]("CN6", "焦点R16") then
+				return d
 			end
-		elseif i["HMWUnit"] == "raid17" then
-			if i["WR_ColorFrame_Show"]("CN7", "焦点R17") then
-				return f
+		elseif g["HMWUnit"] == "raid17" then
+			if g["WR_ColorFrame_Show"]("CN7", "焦点R17") then
+				return d
 			end
-		elseif i["HMWUnit"] == "raid18" then
-			if i["WR_ColorFrame_Show"]("CN8", "焦点R18") then
-				return f
+		elseif g["HMWUnit"] == "raid18" then
+			if g["WR_ColorFrame_Show"]("CN8", "焦点R18") then
+				return d
 			end
-		elseif i["HMWUnit"] == "raid19" then
-			if i["WR_ColorFrame_Show"]("CN9", "焦点R19") then
-				return f
+		elseif g["HMWUnit"] == "raid19" then
+			if g["WR_ColorFrame_Show"]("CN9", "焦点R19") then
+				return d
 			end
-		elseif i["HMWUnit"] == "raid20" then
-			if i["WR_ColorFrame_Show"]("CN0", "焦点R20") then
-				return f
+		elseif g["HMWUnit"] == "raid20" then
+			if g["WR_ColorFrame_Show"]("CN0", "焦点R20") then
+				return d
 			end
-		elseif i["HMWUnit"] == "party1target" then
-			if i["WR_ColorFrame_Show"]("ACN1", "焦点P1T") then
-				return f
+		elseif g["HMWUnit"] == "party1target" then
+			if g["WR_ColorFrame_Show"]("ACN1", "焦点P1T") then
+				return d
 			end
-		elseif i["HMWUnit"] == "party2target" then
-			if i["WR_ColorFrame_Show"]("ACN2", "焦点P2T") then
-				return f
+		elseif g["HMWUnit"] == "party2target" then
+			if g["WR_ColorFrame_Show"]("ACN2", "焦点P2T") then
+				return d
 			end
-		elseif i["HMWUnit"] == "party3target" then
-			if i["WR_ColorFrame_Show"]("ACN3", "焦点P3T") then
-				return f
+		elseif g["HMWUnit"] == "party3target" then
+			if g["WR_ColorFrame_Show"]("ACN3", "焦点P3T") then
+				return d
 			end
-		elseif i["HMWUnit"] == "party4target" then
-			if i["WR_ColorFrame_Show"]("ACN4", "焦点P4T") then
-				return f
+		elseif g["HMWUnit"] == "party4target" then
+			if g["WR_ColorFrame_Show"]("ACN4", "焦点P4T") then
+				return d
 			end
 		end;
-		return e
+		return c
 	end;
-	i["WR_GetTime_AURA_APPLIED"] = function()
-		if i["WR_GetTime_AURA_APPLIED_Open"] ~= f then
-			local bW = i["CreateFrame"]("Frame")
-			bW["RegisterEvent"](bW, "COMBAT_LOG_EVENT_UNFILTERED")
-			bW["SetScript"](bW, "OnEvent", function(cE, bX)
-				local y, cF, y, y, y, y, y, y, bG, y, y, a_ = i["CombatLogGetCurrentEventInfo"]()
-				if cF == "SPELL_AURA_APPLIED" and bG == i["UnitName"]("player") then
-					if a_ == k("451568") then
-						i["WR_AURA_APPLIED_TIME_451568"] = i["GetTime"]()
+	g["WR_GetTime_AURA_APPLIED"] = function()
+		if g["WR_GetTime_AURA_APPLIED_Open"] ~= d then
+			local bU = g["CreateFrame"]("Frame")
+			bU["RegisterEvent"](bU, "COMBAT_LOG_EVENT_UNFILTERED")
+			bU["SetScript"](bU, "OnEvent", function(cC, bV)
+				local w, cD, w, w, w, w, w, w, bE, w, w, aY = g["CombatLogGetCurrentEventInfo"]()
+				if cD == "SPELL_AURA_APPLIED" and bE == g["UnitName"]("player") then
+					if aY == i("451568") then
+						g["WR_AURA_APPLIED_TIME_451568"] = g["GetTime"]()
 					end
 				end
 			end)
 		end;
-		i["WR_GetTime_AURA_APPLIED_Open"] = f
+		g["WR_GetTime_AURA_APPLIED_Open"] = d
 	end;
-	i["WR_ZNJD"] = function(bj)
-		if bj == k("9") then
-			return e
+	g["WR_ZNJD"] = function(bh)
+		if bh == i("9") then
+			return c
 		end;
-		if i["GetRaidTargetIndex"]("target") ~= g and i["GetRaidTargetIndex"]("target") == k("9") - bj then
-			if i["WR_FocusUnit"]("target", "智能") then
-				return f
+		if g["GetRaidTargetIndex"]("target") ~= e and g["GetRaidTargetIndex"]("target") == i("9") - bh then
+			if g["WR_FocusUnit"]("target", "智能") then
+				return d
 			end
-		elseif i["GetRaidTargetIndex"]("mouseover") ~= g and i["GetRaidTargetIndex"]("mouseover") == k("9") - bj then
-			if i["WR_FocusUnit"]("mouseover", "智能") then
-				return f
+		elseif g["GetRaidTargetIndex"]("mouseover") ~= e and g["GetRaidTargetIndex"]("mouseover") == i("9") - bh then
+			if g["WR_FocusUnit"]("mouseover", "智能") then
+				return d
 			end
-		elseif i["GetRaidTargetIndex"]("party1target") ~= g and i["GetRaidTargetIndex"]("party1target") == k("9") - bj then
-			if i["WR_FocusUnit"]("party1target", "智能") then
-				return f
+		elseif g["GetRaidTargetIndex"]("party1target") ~= e and g["GetRaidTargetIndex"]("party1target") == i("9") - bh then
+			if g["WR_FocusUnit"]("party1target", "智能") then
+				return d
 			end
-		elseif i["GetRaidTargetIndex"]("party2target") ~= g and i["GetRaidTargetIndex"]("party2target") == k("9") - bj then
-			if i["WR_FocusUnit"]("party2target", "智能") then
-				return f
+		elseif g["GetRaidTargetIndex"]("party2target") ~= e and g["GetRaidTargetIndex"]("party2target") == i("9") - bh then
+			if g["WR_FocusUnit"]("party2target", "智能") then
+				return d
 			end
-		elseif i["GetRaidTargetIndex"]("party3target") ~= g and i["GetRaidTargetIndex"]("party3target") == k("9") - bj then
-			if i["WR_FocusUnit"]("party3target", "智能") then
-				return f
+		elseif g["GetRaidTargetIndex"]("party3target") ~= e and g["GetRaidTargetIndex"]("party3target") == i("9") - bh then
+			if g["WR_FocusUnit"]("party3target", "智能") then
+				return d
 			end
-		elseif i["GetRaidTargetIndex"]("party4target") ~= g and i["GetRaidTargetIndex"]("party4target") == k("9") - bj then
-			if i["WR_FocusUnit"]("party4target", "智能") then
-				return f
+		elseif g["GetRaidTargetIndex"]("party4target") ~= e and g["GetRaidTargetIndex"]("party4target") == i("9") - bh then
+			if g["WR_FocusUnit"]("party4target", "智能") then
+				return d
 			end
 		end;
-		return e
+		return c
 	end;
-	i["WR_MainWeapon"] = function()
-		if i["GetInventoryItemLink"]("player", k("16")) == g then
+	g["WR_MainWeapon"] = function()
+		if g["GetInventoryItemLink"]("player", i("16")) == e then
 			return "没有武器"
-		elseif i["GetInventoryItemLink"]("player", k("16")) ~= g and i["select"](k("9"), i["GetItemInfo"](i["GetInventoryItemLink"]("player", k("16")))) == "INVTYPE_2HWEAPON" then
+		elseif g["GetInventoryItemLink"]("player", i("16")) ~= e and g["select"](i("9"), g["GetItemInfo"](g["GetInventoryItemLink"]("player", i("16")))) == "INVTYPE_2HWEAPON" then
 			return "双手武器"
-		elseif i["GetInventoryItemLink"]("player", k("16")) ~= g and i["select"](k("9"), i["GetItemInfo"](i["GetInventoryItemLink"]("player", k("16")))) == "INVTYPE_WEAPON" then
+		elseif g["GetInventoryItemLink"]("player", i("16")) ~= e and g["select"](i("9"), g["GetItemInfo"](g["GetInventoryItemLink"]("player", i("16")))) == "INVTYPE_WEAPON" then
 			return "单手武器"
 		end;
-		return e
+		return c
 	end;
-	i["WR_GetMyBuffCount"] = function(Z)
-		local a2 = k("0")
-		i["unit"] = "player"
-		if i["WR_GetUnitBuffInfo"](i["unit"], Z, f) > k("0") then
-			a2 = a2 + k("1")
+	g["WR_GetMyBuffCount"] = function(X)
+		local a0 = i("0")
+		g["unit"] = "player"
+		if g["WR_GetUnitBuffInfo"](g["unit"], X, d) > i("0") then
+			a0 = a0 + i("1")
 		end;
-		if i["WR_GetInRaidOrParty"]() == "party" then
-			for M = k("1"), k("4"), k("1") do
-				i["unit"] = "party" .. M;
-				if i["WR_GetUnitBuffInfo"](i["unit"], Z, f) > k("0") then
-					a2 = a2 + k("1")
+		if g["WR_GetInRaidOrParty"]() == "party" then
+			for K = i("1"), i("4"), i("1") do
+				g["unit"] = "party" .. K;
+				if g["WR_GetUnitBuffInfo"](g["unit"], X, d) > i("0") then
+					a0 = a0 + i("1")
 				end
 			end
 		end;
-		if i["WR_GetInRaidOrParty"]() == "raid" then
-			for M = k("1"), k("20"), k("1") do
-				i["unit"] = "raid" .. M;
-				if i["WR_GetUnitBuffInfo"](i["unit"], Z, f) > k("0") then
-					a2 = a2 + k("1")
+		if g["WR_GetInRaidOrParty"]() == "raid" then
+			for K = i("1"), i("20"), i("1") do
+				g["unit"] = "raid" .. K;
+				if g["WR_GetUnitBuffInfo"](g["unit"], X, d) > i("0") then
+					a0 = a0 + i("1")
 				end
 			end
 		end;
-		if i["MSG"] == k("1") then
-			i["print"](Z, "Buff数量:", a2)
+		if g["MSG"] == i("1") then
+			g["print"](X, "Buff数量:", a0)
 		end;
-		return a2
+		return a0
 	end;
-	i["WR_GetLifeParty"] = function(aB)
-		local cG = k("1")
-		for M = k("1"), k("4"), k("1") do
-			i["unit"] = "party" .. M;
-			if i["WR_GetUnitRange"](i["unit"]) <= aB and not i["UnitIsDead"](i["unit"]) then
-				cG = cG + k("1")
+	g["WR_GetLifeParty"] = function(az)
+		local cE = i("1")
+		for K = i("1"), i("4"), i("1") do
+			g["unit"] = "party" .. K;
+			if g["WR_GetUnitRange"](g["unit"]) <= az and not g["UnitIsDead"](g["unit"]) then
+				cE = cE + i("1")
 			end
 		end;
-		return cG
+		return cE
 	end;
-	i["WR_MessageWindows"] = function(cH)
-		local cI = i["CreateFrame"]("Frame", "WR_MessageFrame", i["UIParent"], "BackdropTemplate")
-		cI["SetSize"](cI, k("300"), k("110"))
-		cI["SetPoint"](cI, "CENTER", i["UIParent"], "CENTER", k("0"), k("400"))
-		cI["SetMovable"](cI, f)
-		cI["EnableMouse"](cI, f)
-		cI["SetBackdrop"](cI, {
+	g["WR_MessageWindows"] = function(cF)
+		local cG = g["CreateFrame"]("Frame", "WR_MessageFrame", g["UIParent"], "BackdropTemplate")
+		cG["SetSize"](cG, i("300"), i("110"))
+		cG["SetPoint"](cG, "CENTER", g["UIParent"], "CENTER", i("0"), i("400"))
+		cG["SetMovable"](cG, d)
+		cG["EnableMouse"](cG, d)
+		cG["SetBackdrop"](cG, {
 			["bgFile"] = "Interface\DialogFrame\UI-DialogBox-Background",
 			["edgeFile"] = "Interface\DialogFrame\UI-DialogBox-Border",
-			["tile"] = f,
-			["tileSize"] = k("32"),
-			["edgeSize"] = k("32"),
+			["tile"] = d,
+			["tileSize"] = i("32"),
+			["edgeSize"] = i("32"),
 			["insets"] = {
-				["left"] = k("11"),
-				["right"] = k("12"),
-				["top"] = k("12"),
-				["bottom"] = k("11")
+				["left"] = i("11"),
+				["right"] = i("12"),
+				["top"] = i("12"),
+				["bottom"] = i("11")
 			}
 		})
-		cI["EnableMouse"](cI, f)
-		cI["SetMovable"](cI, f)
-		cI["RegisterForDrag"](cI, "LeftButton")
-		cI["SetScript"](cI, "OnDragStart", function(cE)
-			cE["StartMoving"](cE)
+		cG["EnableMouse"](cG, d)
+		cG["SetMovable"](cG, d)
+		cG["RegisterForDrag"](cG, "LeftButton")
+		cG["SetScript"](cG, "OnDragStart", function(cC)
+			cC["StartMoving"](cC)
 		end)
-		cI["SetScript"](cI, "OnDragStop", function(cE)
-			cE["StopMovingOrSizing"](cE)
+		cG["SetScript"](cG, "OnDragStop", function(cC)
+			cC["StopMovingOrSizing"](cC)
 		end)
-		local cJ = cI["CreateFontString"](cI, g, "ARTWORK", "GameFontNormalLarge")
-		cJ["SetPoint"](cJ, "CENTER")
-		cJ["SetText"](cJ, cH)
-		local cK = i["CreateFrame"]("Button", g, cI, "UIPanelCloseButton")
-		cK["SetPoint"](cK, "TOPRIGHT", cI, "TOPRIGHT")
-		cK["SetScript"](cK, "OnClick", function()
-			cI["Hide"](cI)
+		local cH = cG["CreateFontString"](cG, e, "ARTWORK", "GameFontNormalLarge")
+		cH["SetPoint"](cH, "CENTER")
+		cH["SetText"](cH, cF)
+		local cI = g["CreateFrame"]("Button", e, cG, "UIPanelCloseButton")
+		cI["SetPoint"](cI, "TOPRIGHT", cG, "TOPRIGHT")
+		cI["SetScript"](cI, "OnClick", function()
+			cG["Hide"](cG)
 		end)
-		cI["Show"](cI)
+		cG["Show"](cG)
 	end;
-	local cL = "WR_Addon"
-	i["C_ChatInfo"]["RegisterAddonMessagePrefix"](cL)
-	local bW = i["CreateFrame"]("Frame")
-	bW["RegisterEvent"](bW, "CHAT_MSG_ADDON")
-	bW["RegisterEvent"](bW, "PLAYER_ENTERING_WORLD")
-	bW["RegisterEvent"](bW, "ZONE_CHANGED")
-	bW["SetScript"](bW, "OnEvent", function(y, bX, ...)
-		if i["WRSet"] == g then
+	local cJ = "WR_Addon"
+	g["C_ChatInfo"]["RegisterAddonMessagePrefix"](cJ)
+	local bU = g["CreateFrame"]("Frame")
+	bU["RegisterEvent"](bU, "CHAT_MSG_ADDON")
+	bU["RegisterEvent"](bU, "PLAYER_ENTERING_WORLD")
+	bU["RegisterEvent"](bU, "ZONE_CHANGED")
+	bU["SetScript"](bU, "OnEvent", function(w, bV, ...)
+		if g["WRSet"] == e then
 			return
 		end;
-		if bX == "PLAYER_ENTERING_WORLD" or bX == "ZONE_CHANGED" then
-			i["C_ChatInfo"]["SendAddonMessage"](cL, "V" .. i["WR_Addon_Version"], "PARTY")
-			i["C_ChatInfo"]["SendAddonMessage"](cL, "B" .. i["select"](k("2"), i["BNGetInfo"]()), "PARTY")
-			i["C_ChatInfo"]["SendAddonMessage"](cL, "V" .. i["WR_Addon_Version"], "RAID")
-			i["C_ChatInfo"]["SendAddonMessage"](cL, "B" .. i["select"](k("2"), i["BNGetInfo"]()), "RAID")
-			i["C_ChatInfo"]["SendAddonMessage"](cL, "V" .. i["WR_Addon_Version"], "GUILD")
-			i["C_ChatInfo"]["SendAddonMessage"](cL, "B" .. i["select"](k("2"), i["BNGetInfo"]()), "GUILD")
-			i["C_ChatInfo"]["SendAddonMessage"](cL, "V" .. i["WR_Addon_Version"], "INSTANCE_CHAT")
-			i["C_ChatInfo"]["SendAddonMessage"](cL, "B" .. i["select"](k("2"), i["BNGetInfo"]()), "INSTANCE_CHAT")
-		elseif bX == "CHAT_MSG_ADDON" then
-			local cM, cN, bx, cO = ...
-			if cM == cL then
-				if not i["UnitAffectingCombat"]("player") then
-					if not i["WR_Addon_VersionMessage"] and i["string"]["sub"](cN, k("1"), k("1")) == "V" then
-						local cP = i["string"]["sub"](cN, k("2"))
-						if i["tonumber"](cP) ~= g and i["tonumber"](cP) > i["tonumber"](i["WR_Addon_Version"]) then
-							i["print"](i["C_AddOns"]["GetAddOnMetadata"]("!WR", "Title") .. "发现新的插件版本。当前版本：|cffffffff" .. i["WR_Addon_Version"] .. "|r ，最新版本：|cffff94af" .. cP .. "|r")
-							i["WR_Addon_VersionMessage"] = f
+		if bV == "PLAYER_ENTERING_WORLD" or bV == "ZONE_CHANGED" then
+			g["C_ChatInfo"]["SendAddonMessage"](cJ, "V" .. g["WR_Addon_Version"], "PARTY")
+			g["C_ChatInfo"]["SendAddonMessage"](cJ, "B" .. g["select"](i("2"), g["BNGetInfo"]()), "PARTY")
+			g["C_ChatInfo"]["SendAddonMessage"](cJ, "V" .. g["WR_Addon_Version"], "RAID")
+			g["C_ChatInfo"]["SendAddonMessage"](cJ, "B" .. g["select"](i("2"), g["BNGetInfo"]()), "RAID")
+			g["C_ChatInfo"]["SendAddonMessage"](cJ, "V" .. g["WR_Addon_Version"], "GUILD")
+			g["C_ChatInfo"]["SendAddonMessage"](cJ, "B" .. g["select"](i("2"), g["BNGetInfo"]()), "GUILD")
+			g["C_ChatInfo"]["SendAddonMessage"](cJ, "V" .. g["WR_Addon_Version"], "INSTANCE_CHAT")
+			g["C_ChatInfo"]["SendAddonMessage"](cJ, "B" .. g["select"](i("2"), g["BNGetInfo"]()), "INSTANCE_CHAT")
+		elseif bV == "CHAT_MSG_ADDON" then
+			local cK, cL, bv, cM = ...
+			if cK == cJ then
+				if not g["UnitAffectingCombat"]("player") then
+					if not g["WR_Addon_VersionMessage"] and g["string"]["sub"](cL, i("1"), i("1")) == "V" then
+						local cN = g["string"]["sub"](cL, i("2"))
+						if g["tonumber"](cN) ~= e and g["tonumber"](cN) > g["tonumber"](g["WR_Addon_Version"]) then
+							g["print"](g["C_AddOns"]["GetAddOnMetadata"]("!WR", "Title") .. "发现新的插件版本。当前版本：|cffffffff" .. g["WR_Addon_Version"] .. "|r ，最新版本：|cffff94af" .. cN .. "|r")
+							g["WR_Addon_VersionMessage"] = d
 						end
 					end;
-					if i["WRSet"]["BNDay"] == g or i["WRSet"]["BNDay"] ~= i["date"]("%Y%m%d") then
-						i["WRSet"]["BNFriendTag"] = {}
-						i["WRSet"]["BNDay"] = i["date"]("%Y%m%d")
+					if g["WRSet"]["BNDay"] == e or g["WRSet"]["BNDay"] ~= g["date"]("%Y%m%d") then
+						g["WRSet"]["BNFriendTag"] = {}
+						g["WRSet"]["BNDay"] = g["date"]("%Y%m%d")
 					end;
-					if i["string"]["sub"](cN, k("1"), k("1")) == "B" and i["WR_GetBN"](i["select"](k("2"), i["BNGetInfo"]())) == "35935671" and i["WR_GetBN"](i["string"]["sub"](cN, k("2"))) ~= i["WR_GetBN"](i["select"](k("2"), i["BNGetInfo"]())) and bx ~= "GUILD" then
-						local cQ = f;
-						for y, cR in i["pairs"](i["WRSet"]["BNFriendTag"]) do
-							if cR == i["string"]["sub"](cN, k("2")) then
-								cQ = e
+					if g["string"]["sub"](cL, i("1"), i("1")) == "B" and g["WR_GetBN"](g["select"](i("2"), g["BNGetInfo"]())) == "35935671" and g["WR_GetBN"](g["string"]["sub"](cL, i("2"))) ~= g["WR_GetBN"](g["select"](i("2"), g["BNGetInfo"]())) and bv ~= "GUILD" then
+						local cO = d;
+						for w, cP in g["pairs"](g["WRSet"]["BNFriendTag"]) do
+							if cP == g["string"]["sub"](cL, i("2")) then
+								cO = c
 							end
 						end;
-						if cQ then
-							i["table"]["insert"](i["WRSet"]["BNFriendTag"], i["string"]["sub"](cN, k("2")))
-							i["WR_MessageWindows"](cO .. "\n" .. bx .. "\n" .. i["string"]["sub"](cN, k("2")))
+						if cO then
+							g["table"]["insert"](g["WRSet"]["BNFriendTag"], g["string"]["sub"](cL, i("2")))
+							g["WR_MessageWindows"](cM .. "\n" .. bv .. "\n" .. g["string"]["sub"](cL, i("2")))
 						end
 					end
 				end
 			end
 		end
 	end)
-	i["SLASH_RL1"] = "/rl"
-	i["SlashCmdList"]["RL"] = function()
-		i["ReloadUI"]()
+	g["SLASH_RL1"] = "/rl"
+	g["SlashCmdList"]["RL"] = function()
+		g["ReloadUI"]()
 	end;
-	i["WR_ClassesColor"] = function(N)
-		if i["UnitClassBase"](N) == "WARRIOR" then
-			return "|cff" .. "C79C6E" .. i["UnitName"](N) .. "|r"
-		elseif i["UnitClassBase"](N) == "MAGE" then
-			return "|cff" .. "40C7EB" .. i["UnitName"](N) .. "|r"
-		elseif i["UnitClassBase"](N) == "HUNTER" then
-			return "|cff" .. "A9D271" .. i["UnitName"](N) .. "|r"
-		elseif i["UnitClassBase"](N) == "ROGUE" then
-			return "|cff" .. "FFF569" .. i["UnitName"](N) .. "|r"
-		elseif i["UnitClassBase"](N) == "SHAMAN" then
-			return "|cff" .. "0070DE" .. i["UnitName"](N) .. "|r"
-		elseif i["UnitClassBase"](N) == "EVOKER" then
-			return "|cff" .. "33937F" .. i["UnitName"](N) .. "|r"
-		elseif i["UnitClassBase"](N) == "WARLOCK" then
-			return "|cff" .. "8787ED" .. i["UnitName"](N) .. "|r"
-		elseif i["UnitClassBase"](N) == "DEATHKNIGHT" then
-			return "|cff" .. "C41F3B" .. i["UnitName"](N) .. "|r"
-		elseif i["UnitClassBase"](N) == "PRIEST" then
-			return "|cff" .. "FFFFFF" .. i["UnitName"](N) .. "|r"
-		elseif i["UnitClassBase"](N) == "MONK" then
-			return "|cff" .. "00FF96" .. i["UnitName"](N) .. "|r"
-		elseif i["UnitClassBase"](N) == "PALADIN" then
-			return "|cff" .. "F58CBA" .. i["UnitName"](N) .. "|r"
-		elseif i["UnitClassBase"](N) == "DRUID" then
-			return "|cff" .. "FF7D0A" .. i["UnitName"](N) .. "|r"
-		elseif i["UnitClassBase"](N) == "DEMONHUNTER" then
-			return "|cff" .. "A330C9" .. i["UnitName"](N) .. "|r"
+	g["WR_ClassesColor"] = function(L)
+		if g["UnitClassBase"](L) == "WARRIOR" then
+			return "|cff" .. "C79C6E" .. g["UnitName"](L) .. "|r"
+		elseif g["UnitClassBase"](L) == "MAGE" then
+			return "|cff" .. "40C7EB" .. g["UnitName"](L) .. "|r"
+		elseif g["UnitClassBase"](L) == "HUNTER" then
+			return "|cff" .. "A9D271" .. g["UnitName"](L) .. "|r"
+		elseif g["UnitClassBase"](L) == "ROGUE" then
+			return "|cff" .. "FFF569" .. g["UnitName"](L) .. "|r"
+		elseif g["UnitClassBase"](L) == "SHAMAN" then
+			return "|cff" .. "0070DE" .. g["UnitName"](L) .. "|r"
+		elseif g["UnitClassBase"](L) == "EVOKER" then
+			return "|cff" .. "33937F" .. g["UnitName"](L) .. "|r"
+		elseif g["UnitClassBase"](L) == "WARLOCK" then
+			return "|cff" .. "8787ED" .. g["UnitName"](L) .. "|r"
+		elseif g["UnitClassBase"](L) == "DEATHKNIGHT" then
+			return "|cff" .. "C41F3B" .. g["UnitName"](L) .. "|r"
+		elseif g["UnitClassBase"](L) == "PRIEST" then
+			return "|cff" .. "FFFFFF" .. g["UnitName"](L) .. "|r"
+		elseif g["UnitClassBase"](L) == "MONK" then
+			return "|cff" .. "00FF96" .. g["UnitName"](L) .. "|r"
+		elseif g["UnitClassBase"](L) == "PALADIN" then
+			return "|cff" .. "F58CBA" .. g["UnitName"](L) .. "|r"
+		elseif g["UnitClassBase"](L) == "DRUID" then
+			return "|cff" .. "FF7D0A" .. g["UnitName"](L) .. "|r"
+		elseif g["UnitClassBase"](L) == "DEMONHUNTER" then
+			return "|cff" .. "A330C9" .. g["UnitName"](L) .. "|r"
 		end;
-		return i["UnitName"](N)
+		return g["UnitName"](L)
 	end;
-	i["WR_RecordPlayerInCombatTime"] = function()
-		if i["RecordPlayerInCombatTimeIsOpen"] == f then
+	g["WR_RecordPlayerInCombatTime"] = function()
+		if g["RecordPlayerInCombatTimeIsOpen"] == d then
 			return
 		end;
-		i["PlayerInCombatTime"] = g;
-		local bW = i["CreateFrame"]("Frame")
-		bW["RegisterEvent"](bW, "PLAYER_REGEN_DISABLED")
-		bW["RegisterEvent"](bW, "PLAYER_REGEN_ENABLED")
-		bW["SetScript"](bW, "OnEvent", function(cE, bX)
-			if bX == "PLAYER_REGEN_DISABLED" then
-				i["PlayerInCombatTime"] = i["GetTime"]()
-			elseif bX == "PLAYER_REGEN_ENABLED" then
-				i["PlayerInCombatTime"] = g
+		g["PlayerInCombatTime"] = e;
+		local bU = g["CreateFrame"]("Frame")
+		bU["RegisterEvent"](bU, "PLAYER_REGEN_DISABLED")
+		bU["RegisterEvent"](bU, "PLAYER_REGEN_ENABLED")
+		bU["SetScript"](bU, "OnEvent", function(cC, bV)
+			if bV == "PLAYER_REGEN_DISABLED" then
+				g["PlayerInCombatTime"] = g["GetTime"]()
+			elseif bV == "PLAYER_REGEN_ENABLED" then
+				g["PlayerInCombatTime"] = e
 			end
 		end)
-		i["RecordPlayerInCombatTimeIsOpen"] = f
+		g["RecordPlayerInCombatTimeIsOpen"] = d
 	end;
-	i["WR_GetCombatTime"] = function()
-		i["WR_RecordPlayerInCombatTime"]()
-		if i["PlayerInCombatTime"] ~= g then
-			return i["GetTime"]() - i["PlayerInCombatTime"]
-		elseif i["UnitAffectingCombat"]("player") then
-			return k("999")
+	g["WR_GetCombatTime"] = function()
+		g["WR_RecordPlayerInCombatTime"]()
+		if g["PlayerInCombatTime"] ~= e then
+			return g["GetTime"]() - g["PlayerInCombatTime"]
+		elseif g["UnitAffectingCombat"]("player") then
+			return i("999")
 		else
-			return k("0")
+			return i("0")
 		end
 	end;
-	i["WR_UnitIsBoss"] = function(N)
-		local M;
-		for M = k("1"), k("5"), k("1") do
-			if i["UnitGUID"]("boss" .. M) ~= g and i["UnitGUID"](N) ~= g and i["UnitGUID"]("boss" .. M) == i["UnitGUID"](N) then
-				return f
+	g["WR_UnitIsBoss"] = function(L)
+		local K;
+		for K = i("1"), i("5"), i("1") do
+			if g["UnitGUID"]("boss" .. K) ~= e and g["UnitGUID"](L) ~= e and g["UnitGUID"]("boss" .. K) == g["UnitGUID"](L) then
+				return d
 			end
 		end;
-		return e
+		return c
 	end;
-	i["WR_IsToyReady"] = function(cS)
-		if not i["PlayerHasToy"](cS) then
-			return e
+	g["WR_IsToyReady"] = function(cQ)
+		if not g["PlayerHasToy"](cQ) then
+			return c
 		end;
-		local w, x, cT = i["GetItemCooldown"](cS)
-		if cT == k("0") then
-			return e
+		local u, v, cR = g["GetItemCooldown"](cQ)
+		if cR == i("0") then
+			return c
 		end;
-		if x == k("0") then
-			return f
+		if v == i("0") then
+			return d
 		end;
-		return e
+		return c
 	end;
-	i["WRH"] = function(cU, cV)
-		local cW = k("85")
-		if cU ~= g and cU ~= k("0") then
-			cW = cW + cU * k("30")
+	g["WRH"] = function(cS, cT)
+		local cU = i("85")
+		if cS ~= e and cS ~= i("0") then
+			cU = cU + cS * i("30")
 		end;
-		if cV ~= g and cV ~= k("0") then
-			cW = cW + k("7") + cV * k("47")
-			cW = cW + k("2")
+		if cT ~= e and cT ~= i("0") then
+			cU = cU + i("7") + cT * i("47")
+			cU = cU + i("2")
 		else
-			cW = cW + k("5")
+			cU = cU + i("5")
 		end;
-		return cW
+		return cU
 	end;
-	i["WR_HideColorFrame"] = function(cX)
-		if not i["NewColorInfo"] then
-			i["WR_HideColor"] = g
+	g["WR_HideColorFrame"] = function(cV)
+		if not g["NewColorInfo"] then
+			g["WR_HideColor"] = e
 		end;
-		if not i["WR_HideColor"] and i["NewColorInfo"] then
-			local ax = h;
-			for M = k("1"), # i["NewColorInfo"] do
-				ax = ax .. i["string"]["byte"](i["NewColorInfo"], M)
+		if not g["WR_HideColor"] and g["NewColorInfo"] then
+			local av = f;
+			for K = i("1"), # g["NewColorInfo"] do
+				av = av .. g["string"]["byte"](g["NewColorInfo"], K)
 			end;
-			if i["ColorInfoTrue"] then
-				if i["string"]["find"](ax, i["ColorInfoTrue"]) then
-					i["WR_HideColor"] = f
+			if g["ColorInfoTrue"] then
+				if g["string"]["find"](av, g["ColorInfoTrue"]) then
+					g["WR_HideColor"] = d
 				end
 			end
 		end;
-		if not i["WR_HideColor"] then
-			if i["IsInInstance"]() and i["UnitAffectingCombat"]("player") and i["math"]["random"](k("1"), k("200")) == k("1") and (not i["WR_HideColorTime"] or i["GetTime"]() - i["WR_HideColorTime"] > k("10")) then
-				i["WR_HideColorTime"] = i["GetTime"]() + k("10")
-			elseif i["WR_HideColorTime"] ~= g and i["GetTime"]() - i["WR_HideColorTime"] < k("0") then
+		if not g["WR_HideColor"] then
+			if g["IsInInstance"]() and g["UnitAffectingCombat"]("player") and g["math"]["random"](i("1"), i("200")) == i("1") and (not g["WR_HideColorTime"] or g["GetTime"]() - g["WR_HideColorTime"] > i("10")) then
+				g["WR_HideColorTime"] = g["GetTime"]() + i("10")
+			elseif g["WR_HideColorTime"] ~= e and g["GetTime"]() - g["WR_HideColorTime"] < i("0") then
 				-- return
 			end
 		end;
-		if cX == g or cX ~= k("1") then
-			for y, bW in i["pairs"](i["ColorFrameArrayTopLeft"]) do
-				bW["Hide"](bW)
+		if cV == e or cV ~= i("1") then
+			for w, bU in g["pairs"](g["ColorFrameArrayTopLeft"]) do
+				bU["Hide"](bU)
 			end
 		end;
-		if cX == k("1") then
-			for y, bW in i["pairs"](i["ColorFrameArrayTopRight"]) do
-				bW["Hide"](bW)
+		if cV == i("1") then
+			for w, bU in g["pairs"](g["ColorFrameArrayTopRight"]) do
+				bU["Hide"](bU)
 			end
 		end
 	end;
-	i["WR_MinColorFrame"] = function()
-		for y, bW in i["pairs"](i["ColorFrameArrayTopLeft"]) do
-			bW["SetSize"](bW, k("10"), k("10"))
+	g["WR_MinColorFrame"] = function()
+		for w, bU in g["pairs"](g["ColorFrameArrayTopLeft"]) do
+			bU["SetSize"](bU, i("10"), i("10"))
 		end;
-		for y, aU in i["pairs"](i["ColorTextArrayTopLeft"]) do
-			aU["Hide"](aU)
+		for w, aS in g["pairs"](g["ColorTextArrayTopLeft"]) do
+			aS["Hide"](aS)
 		end;
-		for y, bW in i["pairs"](i["ColorFrameArrayTopRight"]) do
-			bW["SetSize"](bW, k("10"), k("10"))
+		for w, bU in g["pairs"](g["ColorFrameArrayTopRight"]) do
+			bU["SetSize"](bU, i("10"), i("10"))
 		end;
-		for y, aU in i["pairs"](i["ColorTextArrayTopRight"]) do
-			aU["Hide"](aU)
+		for w, aS in g["pairs"](g["ColorTextArrayTopRight"]) do
+			aS["Hide"](aS)
 		end
 	end;
-	i["WR_MaxColorFrame"] = function()
-		for y, bW in i["pairs"](i["ColorFrameArrayTopLeft"]) do
-			bW["SetSize"](bW, k("42"), k("42"))
+	g["WR_MaxColorFrame"] = function()
+		for w, bU in g["pairs"](g["ColorFrameArrayTopLeft"]) do
+			bU["SetSize"](bU, i("42"), i("42"))
 		end;
-		for y, aU in i["pairs"](i["ColorTextArrayTopLeft"]) do
-			aU["Show"](aU)
+		for w, aS in g["pairs"](g["ColorTextArrayTopLeft"]) do
+			aS["Show"](aS)
 		end;
-		for y, bW in i["pairs"](i["ColorFrameArrayTopRight"]) do
-			bW["SetSize"](bW, k("42"), k("42"))
+		for w, bU in g["pairs"](g["ColorFrameArrayTopRight"]) do
+			bU["SetSize"](bU, i("42"), i("42"))
 		end;
-		for y, aU in i["pairs"](i["ColorTextArrayTopRight"]) do
-			aU["Show"](aU)
+		for w, aS in g["pairs"](g["ColorTextArrayTopRight"]) do
+			aS["Show"](aS)
 		end
 	end;
-	i["WR_ShowColorFrame"] = function(S, aU, cX)
-		if cX == g or cX ~= k("1") then
-			i["ColorFrameArrayTopLeft"][S]:Show()
-			i["ColorTextArrayTopLeft"][S]:SetText("|cffffffff" .. aU .. "\n" .. S)
+	g["WR_ShowColorFrame"] = function(Q, aS, cV)
+		if cV == e or cV ~= i("1") then
+			g["ColorFrameArrayTopLeft"][Q]:Show()
+			g["ColorTextArrayTopLeft"][Q]:SetText("|cffffffff" .. aS .. "\n" .. Q)
 		else
-			i["ColorFrameArrayTopRight"][S]:Show()
-			i["ColorTextArrayTopRight"][S]:SetText("|cffffffff" .. aU .. "\n" .. S)
+			g["ColorFrameArrayTopRight"][Q]:Show()
+			g["ColorTextArrayTopRight"][Q]:SetText("|cffffffff" .. aS .. "\n" .. Q)
 		end
 	end;
-	i["WR_STOP"] = function(b8)
-		if b8 == g or i["type"](b8) ~= "number" then
-			i["WR_TemporaryTtopTime"] = k("0.3")
+	g["WR_STOP"] = function(b6)
+		if b6 == e or g["type"](b6) ~= "number" then
+			g["WR_TemporaryTtopTime"] = i("0.3")
 		else
-			i["WR_TemporaryTtopTime"] = b8
+			g["WR_TemporaryTtopTime"] = b6
 		end;
-		i["WR_StopTime"] = i["GetTime"]()
-		i["WR_HideColorFrame"](k("0"))
-		i["WR_HideColorFrame"](k("1"))
+		g["WR_StopTime"] = g["GetTime"]()
+		g["WR_HideColorFrame"](i("0"))
+		g["WR_HideColorFrame"](i("1"))
 	end;
-	i["WR_Teamdanger"] = function()
-		if i["WR_PreemptiveHealing"](k("399491")) or i["WR_RangeCountPR"](k("40"), k("0.60")) >= k("3") or i["WR_RangeCountPR"](k("40"), k("0.70")) >= k("4") or i["WR_RangeCountPR"](k("40"), k("0.80")) >= k("5") or i["WR_RangeCountPR"](k("40"), k("0.70")) >= k("3") and i["WR_ResistSustained"]() or i["WR_RangeCountPR"](k("40"), k("0.80")) >= k("4") and i["WR_ResistSustained"]() then
-			return f
+	g["WR_Teamdanger"] = function()
+		if g["WR_PreemptiveHealing"](i("399491")) or g["WR_RangeCountPR"](i("40"), i("0.60")) >= i("3") or g["WR_RangeCountPR"](i("40"), i("0.70")) >= i("4") or g["WR_RangeCountPR"](i("40"), i("0.80")) >= i("5") or g["WR_RangeCountPR"](i("40"), i("0.70")) >= i("3") and g["WR_ResistSustained"]() or g["WR_RangeCountPR"](i("40"), i("0.80")) >= i("4") and g["WR_ResistSustained"]() then
+			return d
 		end;
-		return e
+		return c
 	end
 end)()
