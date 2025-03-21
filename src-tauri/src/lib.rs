@@ -129,6 +129,7 @@ fn press_keys(keys: Vec<String>) {
             "NUMPADMULTIPLY" => enigo.key_click(Key::Raw(106)),
             "NUMPADMINUS" => enigo.key_click(Key::Raw(109)),
             "NUMPADPLUS" => enigo.key_click(Key::Raw(107)),
+            "NUMPADDECIMAL" => enigo.key_click(Key::Raw(110)),
             "," => enigo.key_click(Key::Layout(',')),
             "." => enigo.key_click(Key::Layout('.')),
             ";" => enigo.key_click(Key::Layout(';')),

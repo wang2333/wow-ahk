@@ -21,7 +21,7 @@ interface ColorInfo {
   g: number;
   b: number;
 }
-type ColorMapping = 'JIAJIA' | 'JIAJIA_REAL' | 'ZHUZHU' | 'XIAOYI_SS' | 'XIAOYI_LR';
+type ColorMapping = 'JIAJIA' | 'JIAJIA_REAL' | 'ZHUZHU' | 'XIAOYI_SS' | 'XIAOYI_LR' | 'AH';
 
 // 创建音频对象
 const mode1Audio = new Audio(mode1);
@@ -52,12 +52,40 @@ const colorMapDict = {
   JIAJIA_REAL: color_mappings_JIAJIA_REAL,
   ZHUZHU: color_mappings_ZHUZHU,
   XIAOYI_SS: color_mappings_XIAOYI_SS,
-  XIAOYI_LR: color_mappings_XIAOYI_LR
+  XIAOYI_LR: color_mappings_XIAOYI_LR,
+  AH: null
 };
+
+function getKeyNum(targetNum: number, actionNum: number) {
+  const keyMap = [
+    '',
+    'NUMPAD1',
+    'NUMPAD2',
+    'NUMPAD3',
+    'NUMPAD4',
+    'NUMPAD5',
+    'NUMPAD6',
+    'NUMPAD7',
+    'NUMPAD8',
+    'NUMPAD9',
+    'NUMPADDIVIDE',
+    'NUMPADMULTIPLY',
+    'NUMPADMINUS',
+    'NUMPADPLUS',
+    'NUMPADDECIMAL'
+  ];
+
+  const keyNum1 = Math.floor(targetNum / 14);
+  const keyNum2 = targetNum % 14;
+  const keyNum3 = Math.floor(actionNum / 14);
+  const keyNum4 = actionNum % 14;
+  return [keyMap[keyNum1], keyMap[keyNum2], keyMap[keyNum3], keyMap[keyNum4]];
+}
 
 function WOW() {
   const { userInfo, gameSettings, updateWowCoordinates, updateHotkeySettings } = useAuth();
   const [color, setColor] = useState<string | null>(null);
+  const [oldColor, setOldColor] = useState<ColorInfo>({ r: 0, g: 0, b: 0 });
   const [model, setModel] = useState(0);
   const [autoMove, setAutoMove] = useState(false);
   const [moveInterval, setMoveInterval] = useState(500);
@@ -149,7 +177,18 @@ function WOW() {
     } else {
       hexColor = rgbToHex(newColor.r, newColor.g, newColor.b);
     }
+    setOldColor(newColor);
     setColor(hexColor);
+
+    if (selectedMapping === 'AH') {
+      const keys = getKeyNum(newColor.g, newColor.b);
+      if (newColor.r !== oldColor.r && newColor.g !== 0 && newColor.b !== 0) {
+        for (const key of keys) {
+          await invoke('press_keys', { keys: ['CTRL', key] });
+        }
+      }
+      return;
+    }
 
     const keyCombo1 = color_mappings?.[hexColor.toLowerCase()];
     if (keyCombo1) {
