@@ -144,6 +144,7 @@ fn press_keys(keys: Vec<String>) {
             }
             _ => {}
         }
+        thread::sleep(delay);
     }
 
     // 释放所有修饰键

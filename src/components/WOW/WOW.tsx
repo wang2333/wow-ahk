@@ -86,28 +86,27 @@ const colorMapDict = {
 
 function getKeyNum(targetNum: number, actionNum: number) {
   const keyMap = [
-    'NUMPAD1',
-    'NUMPAD2',
-    'NUMPAD3',
     'NUMPAD4',
     'NUMPAD5',
     'NUMPAD6',
-    'NUMPAD7',
-    'NUMPAD8',
-    'NUMPAD9',
+    'NUMPAD1',
+    'NUMPAD2',
+    'NUMPAD3',
     'NUMPADDIVIDE',
     'NUMPADMULTIPLY',
     'NUMPADMINUS',
     'NUMPADPLUS',
-    'NUMPADDECIMAL'
+    'NUMPAD7',
+    'NUMPAD8',
+    'NUMPAD9'
   ];
 
-  const keyNum1 = Math.floor(targetNum / 14);
-  const keyNum2 = targetNum % 14;
-  const keyNum3 = Math.floor(actionNum / 14);
-  const keyNum4 = actionNum % 14;
-  const f = keyNum2 * 14 + keyNum3;
-  const g = keyNum4 * 14 + keyNum1;
+  const keyNum1 = Math.floor(targetNum / 13);
+  const keyNum2 = targetNum % 13;
+  const keyNum3 = Math.floor(actionNum / 13);
+  const keyNum4 = actionNum % 13;
+  // const f = keyNum2 * 13 + keyNum3;
+  // const g = keyNum4 * 13 + keyNum1;
   return [keyMap[keyNum1], keyMap[keyNum2], keyMap[keyNum3], keyMap[keyNum4]];
 }
 
@@ -159,6 +158,9 @@ function WOW() {
         configs.push({ value: 'JIAJIA_REAL', label: '佳佳正式服一键宏' });
         setSelectedMapping('JIAJIA_REAL');
       } else if (userType.includes('4')) {
+        configs.push({ value: 'AH', label: 'AH一键宏' });
+        setSelectedMapping('AH');
+      } else if (userType.includes('5')) {
         configs.push({ value: 'XIAOYI_SS', label: '小易SS一键宏' });
         configs.push({ value: 'XIAOYI_LR', label: '小易LR一键宏' });
         setSelectedMapping('XIAOYI_SS');
@@ -204,15 +206,12 @@ function WOW() {
     const autokey = async (params: { x: number; y: number }) => {
       const newColor = await invoke<ColorInfo>('get_pixel_color', params);
       if (!newColor) return;
-
       if (selectedMapping === 'AH') {
         if (newColor.r !== oldColor.r && newColor.g !== 0 && newColor.b !== 0) {
           oldColor = newColor;
           const keys = getKeyNum(newColor.g, newColor.b);
-          // console.log('👻 ~ newColor:', newColor);
-          // console.log('👻 ~ keys:', keys);
           for await (const key of keys) {
-            await invoke('press_keys', { keys: ['CTRL', key] });
+            await invoke('press_keys', { keys: [key] });
           }
         }
         return;
