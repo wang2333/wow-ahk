@@ -138,7 +138,7 @@ function WOW() {
 
   useEffect(() => {
     let configs = [];
-    const userType = userInfo?.userType;
+    const userType = userInfo && userInfo.userType ? userInfo.userType.toString() : '';
     if (userType) {
       if (userType === '0' || userType === '99') {
         configs.push({ value: 'ZHUZHU', label: '猪猪一键宏' });
