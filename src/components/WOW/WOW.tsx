@@ -111,7 +111,8 @@ function getKeyNum(targetNum: number, actionNum: number) {
 }
 
 function WOW() {
-  const { userInfo, gameSettings, updateWowCoordinates, updateHotkeySettings } = useAuth();
+  const { userInfo, gameSettings, updateWowCoordinates, updateHotkeySettings, checkUser } =
+    useAuth();
   const [color, setColor] = useState<string | null>(null);
   const [model, setModel] = useState(0);
   const [autoMove, setAutoMove] = useState(false);
@@ -357,6 +358,7 @@ function WOW() {
           }
         }
       });
+      await checkUser();
     } catch (error) {
       console.error('注册热键失败:', error);
     }

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 
 interface LoginProps {
-  onLogin: (keyCode: string) => Promise<boolean>;
+  onLogin: (keyCode: string) => void;
   isLoading: boolean;
 }
 

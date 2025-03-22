@@ -8,8 +8,9 @@ export interface ApiResponse {
 }
 
 const instance = axios.create({
-  baseURL: 'https://wow.syoooo.top',
+  baseURL: 'https://wow-api.syoooo.top',
   // baseURL: 'http://localhost:8787',
+  // baseURL: 'https://wow-api.syoooo.workers.dev',
   timeout: 5000, // 基本超时时间保持不变
   headers: {
     'Content-Type': 'application/json'
@@ -33,7 +34,11 @@ instance.interceptors.response.use(
     return response;
   },
   error => {
-    return Promise.reject(error);
+    if (error?.response?.data) {
+      return Promise.reject(error.response.data);
+    } else {
+      return Promise.reject(error);
+    }
   }
 );
 

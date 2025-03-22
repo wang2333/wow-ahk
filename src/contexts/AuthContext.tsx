@@ -37,10 +37,11 @@ interface AuthContextType {
   userInfo: User | null;
   gameSettings: GameSettings;
   isLoading: boolean;
-  login: (keyCode: string) => Promise<boolean>;
-  logout: () => Promise<boolean>;
+  login: (keyCode: string) => Promise<void>;
+  logout: () => Promise<void>;
   updateWowCoordinates: (coordinates: Coordinates) => Promise<void>;
   updateHotkeySettings: (hotkeys: HotkeySettings) => Promise<void>;
+  checkUser: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -96,43 +97,36 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const loadSavedUser = async () => {
     const userAccountStore = await userAccountStorePromise;
     const savedUserAccount = await userAccountStore.get<string>('userAccount');
+    const store = await userStorePromise;
+    const savedUser = await store.get<User>('user');
+
     if (savedUserAccount) {
       setUserAccount(savedUserAccount);
+    } else {
+      return;
     }
+    if (savedUser) {
+      setUserInfo(savedUser);
+    }
+  };
 
+  const checkUser = async () => {
+    const userAccountStore = await userAccountStorePromise;
+    const savedUserAccount = await userAccountStore.get<string>('userAccount');
     if (!savedUserAccount) {
       return;
     }
-
-    const store = await userStorePromise;
-    const savedUser = await store.get<User>('user');
-    if (savedUser) {
-      setUserInfo(savedUser);
-
-      // if (savedUser?.loginTime && new Date().getTime() - savedUser.loginTime > 1000) {
-      //   const response = await request<{
-      //     success: boolean;
-      //     message: string;
-      //     data: {
-      //       user_type: string;
-      //     };
-      //   }>('/api/verifyCard', {
-      //     method: 'GET',
-      //     params: {
-      //       keyCode: savedUserAccount
-      //     }
-      //   });
-      //   if (response.message === '无效的卡密') {
-      //     await clearUserState();
-      //   } else {
-      //     const store = await userStorePromise;
-      //     const savedUser = await store.get<User>('user');
-      //     if (savedUser) {
-      //       setUserInfo(savedUser);
-      //     }
-      //   }
-      // }
-    }
+    await request('/api/verify', {
+      method: 'GET',
+      params: {
+        keyCode: savedUserAccount
+      }
+    }).catch(async err => {
+      console.log('👻 ~ err:', err)
+      if (err.message === '卡密不存在') {
+        await clearUserState();
+      }
+    });
   };
 
   // 清空用户状态的函数，只清除用户登录信息，不清除游戏设置
@@ -142,7 +136,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const store = await userStorePromise;
     await store.set('user', null);
     await store.save();
-    return;
   };
 
   // 初始化时加载用户和游戏设置，并设置应用关闭事件监听
@@ -173,76 +166,66 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     await saveGameSettings(newSettings);
   };
 
-  const login = async (keyCode: string): Promise<boolean> => {
+  const login = async (keyCode: string) => {
     setIsLoading(true);
 
-    try {
-      // 注意：这里使用完整的API路径
-      const response = await request<{
-        success: boolean;
-        message: string;
-        data: {
-          user_type: string;
-        };
-      }>('/api/verifyCard', {
-        method: 'GET',
-        params: {
-          keyCode
-        }
-      });
-      if (!response.success) {
-        await message(response.message, '登录失败');
-        return false;
-      }
-      const userData = {
-        keyCode,
-        userType: response.data.user_type.toString(),
-        loginTime: new Date().getTime()
+    await request<{
+      success: boolean;
+      message: string;
+      data: {
+        userType: string;
       };
-      setUserInfo(userData);
-      setUserAccount(keyCode);
-      // 保存用户数据到存储
-      const store = await userStorePromise;
-      await store.set('user', userData);
-      await store.save();
+    }>('/api/login', {
+      method: 'GET',
+      params: {
+        keyCode
+      }
+    })
+      .then(async response => {
+        const userData = {
+          keyCode,
+          userType: response.data.userType.toString(),
+          loginTime: new Date().getTime()
+        };
+        setUserInfo(userData);
+        setUserAccount(keyCode);
+        // 保存用户数据到存储
+        const store = await userStorePromise;
+        await store.set('user', userData);
+        await store.save();
 
-      const userAccountStore = await userAccountStorePromise;
-      await userAccountStore.set('userAccount', keyCode);
-      await userAccountStore.save();
-      return true;
-    } catch (error) {
-      console.error('登录总体错误:', error);
-      await message('登录失败，请重新尝试', '登录失败');
-      return false;
-    } finally {
-      setIsLoading(false);
-    }
+        const userAccountStore = await userAccountStorePromise;
+        await userAccountStore.set('userAccount', keyCode);
+        await userAccountStore.save();
+      })
+      .catch(async error => {
+        await message(error.message, '登录失败');
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
-  const logout = async (): Promise<boolean> => {
+  const logout = async () => {
     setIsLoading(true);
 
-    try {
-      // 注意：这里使用完整的API路径
-      const response = await request<{ success: boolean }>('/api/logout', {
-        method: 'GET',
-        params: {
-          keyCode: userAccount
-        }
-      });
-      if (!response.success) {
-        await message('退出失败，请重新尝试', '退出失败');
-        return false;
+    // 注意：这里使用完整的API路径
+    await request<{ success: boolean }>('/api/logout', {
+      method: 'GET',
+      params: {
+        keyCode: userAccount
       }
-      await message('退出成功', '退出成功');
-      await clearUserState();
-      return true;
-    } catch (error) {
-      await message('退出失败，请重新尝试', '退出失败');
-      return false;
-    } finally {
-      setIsLoading(false);
-    }
+    })
+      .then(async () => {
+        await message('退出成功', '退出成功');
+        await clearUserState();
+      })
+      .catch(async () => {
+        await message('退出失败，请重新尝试', '退出失败');
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   return (
@@ -255,7 +238,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         login,
         logout,
         updateWowCoordinates,
-        updateHotkeySettings
+        updateHotkeySettings,
+        checkUser
       }}
     >
       {children}
