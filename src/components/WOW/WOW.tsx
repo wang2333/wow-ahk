@@ -142,36 +142,33 @@ function WOW() {
     if (userType) {
       if (userType === '0' || userType === '99') {
         configs.push({ value: 'ZHUZHU', label: '猪猪一键宏' });
-        configs.push({ value: 'JIAJIA', label: '佳佳一键宏' });
-        configs.push({ value: 'JIAJIA_REAL', label: '佳佳正式服一键宏' });
-        configs.push({ value: 'XIAOYI_SS', label: '小易SS一键宏' });
-        configs.push({ value: 'XIAOYI_LR', label: '小易LR一键宏' });
+        configs.push({ value: 'JIAJIA', label: '佳佳一键宏-WLK' });
+        configs.push({ value: 'JIAJIA_REAL', label: '佳佳一键宏-正式服' });
+        configs.push({ value: 'XIAOYI_SS', label: '小易一键宏-术士' });
+        configs.push({ value: 'XIAOYI_LR', label: '小易一键宏-猎人' });
         configs.push({ value: 'AH', label: 'AH一键宏' });
-        setSelectedMapping('ZHUZHU');
-      }
-      if (userType.includes('5')) {
-        configs.push({ value: 'XIAOYI_SS', label: '小易SS一键宏' });
-        configs.push({ value: 'XIAOYI_LR', label: '小易LR一键宏' });
-        setSelectedMapping('XIAOYI_SS');
-      }
-      if (userType.includes('4')) {
-        configs.push({ value: 'AH', label: 'AH一键宏' });
-        setSelectedMapping('AH');
-      }
-      if (userType.includes('3')) {
-        configs.push({ value: 'JIAJIA_REAL', label: '佳佳正式服一键宏' });
-        setSelectedMapping('JIAJIA_REAL');
-      }
-      if (userType.includes('2')) {
-        configs.push({ value: 'JIAJIA', label: '佳佳一键宏' });
-        setSelectedMapping('JIAJIA');
       }
       if (userType.includes('1')) {
         configs.push({ value: 'ZHUZHU', label: '猪猪一键宏' });
-        setSelectedMapping('ZHUZHU');
+      }
+      if (userType.includes('2')) {
+        configs.push({ value: 'JIAJIA', label: '佳佳一键宏-WLK' });
+      }
+      if (userType.includes('3')) {
+        configs.push({ value: 'JIAJIA_REAL', label: '佳佳一键宏-正式服' });
+      }
+      if (userType.includes('4')) {
+        configs.push({ value: 'AH', label: 'AH一键宏' });
+      }
+      if (userType.includes('5')) {
+        configs.push({ value: 'XIAOYI_SS', label: '小易一键宏-术士' });
+        configs.push({ value: 'XIAOYI_LR', label: '小易一键宏-猎人' });
       }
     }
-    setConfigs(configs);
+    if (configs.length) {
+      setConfigs(configs);
+      setSelectedMapping(configs[0].value as ColorMapping);
+    }
   }, [userInfo]);
 
   // 当游戏设置变化时，更新坐标和热键设置

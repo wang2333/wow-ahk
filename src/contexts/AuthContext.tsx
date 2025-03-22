@@ -29,6 +29,7 @@ interface GameSettings {
 interface User {
   keyCode: string;
   userType: string;
+  loginTime: number;
 }
 
 interface AuthContextType {
@@ -37,7 +38,7 @@ interface AuthContextType {
   gameSettings: GameSettings;
   isLoading: boolean;
   login: (keyCode: string) => Promise<boolean>;
-  logout: () => Promise<void>;
+  logout: () => Promise<boolean>;
   updateWowCoordinates: (coordinates: Coordinates) => Promise<void>;
   updateHotkeySettings: (hotkeys: HotkeySettings) => Promise<void>;
 }
@@ -93,22 +94,44 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   // 检查保存的用户数据
   const loadSavedUser = async () => {
-    try {
-      const userAccountStore = await userAccountStorePromise;
-      const savedUserAccount = await userAccountStore.get<string>('userAccount');
-      if (savedUserAccount) {
-        setUserAccount(savedUserAccount);
-      }
+    const userAccountStore = await userAccountStorePromise;
+    const savedUserAccount = await userAccountStore.get<string>('userAccount');
+    if (savedUserAccount) {
+      setUserAccount(savedUserAccount);
+    }
 
-      const store = await userStorePromise;
-      const savedUser = await store.get<User>('user');
-      if (savedUser) {
-        setUserInfo(savedUser);
-      }
-    } catch (error) {
-      console.error('加载用户数据失败:', error);
-    } finally {
-      setIsLoading(false);
+    if (!savedUserAccount) {
+      return;
+    }
+
+    const store = await userStorePromise;
+    const savedUser = await store.get<User>('user');
+    if (savedUser) {
+      setUserInfo(savedUser);
+
+      // if (savedUser?.loginTime && new Date().getTime() - savedUser.loginTime > 1000) {
+      //   const response = await request<{
+      //     success: boolean;
+      //     message: string;
+      //     data: {
+      //       user_type: string;
+      //     };
+      //   }>('/api/verifyCard', {
+      //     method: 'GET',
+      //     params: {
+      //       keyCode: savedUserAccount
+      //     }
+      //   });
+      //   if (response.message === '无效的卡密') {
+      //     await clearUserState();
+      //   } else {
+      //     const store = await userStorePromise;
+      //     const savedUser = await store.get<User>('user');
+      //     if (savedUser) {
+      //       setUserInfo(savedUser);
+      //     }
+      //   }
+      // }
     }
   };
 
@@ -119,7 +142,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const store = await userStorePromise;
     await store.set('user', null);
     await store.save();
-    console.log('用户状态已清空');
     return;
   };
 
@@ -174,9 +196,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       }
       const userData = {
         keyCode,
-        userType: response.data.user_type.toString()
+        userType: response.data.user_type.toString(),
+        loginTime: new Date().getTime()
       };
       setUserInfo(userData);
+      setUserAccount(keyCode);
       // 保存用户数据到存储
       const store = await userStorePromise;
       await store.set('user', userData);
@@ -195,7 +219,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const logout = async (): Promise<void> => {
+  const logout = async (): Promise<boolean> => {
     setIsLoading(true);
 
     try {
@@ -208,12 +232,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       });
       if (!response.success) {
         await message('退出失败，请重新尝试', '退出失败');
-        return;
+        return false;
       }
       await message('退出成功', '退出成功');
       await clearUserState();
+      return true;
     } catch (error) {
       await message('退出失败，请重新尝试', '退出失败');
+      return false;
     } finally {
       setIsLoading(false);
     }
