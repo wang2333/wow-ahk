@@ -213,8 +213,10 @@ function WOW() {
         if (newColor.r !== oldColor.r && newColor.g !== 0 && newColor.b !== 0) {
           oldColor = newColor;
           const keys = getKeyNum(newColor.g, newColor.b);
-          for await (const key of keys) {
-            await invoke('press_keys', { keys: [key] });
+          if (keys.every(v => !!v)) {
+            for await (const key of keys) {
+              await invoke('press_keys', { keys: [key] });
+            }
           }
         }
         return;
