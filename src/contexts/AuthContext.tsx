@@ -123,7 +123,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       }
     }).catch(async err => {
       console.log('👻 ~ err:', err)
-      if (err.message === '卡密不存在') {
+      if (err.message === '卡密不存在' || err.message === '卡密已过期' || err.message === '卡密已禁用') {
         await clearUserState();
       }
     });

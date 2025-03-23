@@ -123,9 +123,9 @@ function WOW() {
 
   // 添加自定义热键状态，从游戏设置中加载
   const [hotkeys, setHotkeys] = useState({
-    mode1Key: gameSettings?.hotkeySettings?.mode1Key || 'F1',
-    mode2Key: gameSettings?.hotkeySettings?.mode2Key || 'F2',
-    pauseKey: gameSettings?.hotkeySettings?.pauseKey || 'F3'
+    mode1Key: gameSettings?.hotkeySettings?.mode1Key || '',
+    mode2Key: gameSettings?.hotkeySettings?.mode2Key || '',
+    pauseKey: gameSettings?.hotkeySettings?.pauseKey || ''
   });
 
   // 从游戏设置中获取坐标
@@ -293,41 +293,45 @@ function WOW() {
     try {
       // 在注册前先尝试注销所有热键，防止重复注册
       await cleanup();
-
-      // 注册模式1热键
-      await register(hotkeys.mode1Key, async e => {
-        if (e.state === 'Pressed') {
-          if (selectedMapping === 'XIAOYI_LR') {
-            await invoke('press_keys', { keys: ['SHIFT', 'F11'] });
-          } else if (selectedMapping === 'XIAOYI_SS') {
-            await invoke('press_keys', { keys: ['ALT', 'SHIFT', 'F11'] });
+      if (hotkeys.mode1Key) {
+        // 注册模式1热键
+        await register(hotkeys.mode1Key, async e => {
+          if (e.state === 'Pressed') {
+            if (selectedMapping === 'XIAOYI_LR') {
+              await invoke('press_keys', { keys: ['SHIFT', 'F11'] });
+            } else if (selectedMapping === 'XIAOYI_SS') {
+              await invoke('press_keys', { keys: ['ALT', 'SHIFT', 'F11'] });
+            }
+            setModel(1);
+            mode1Audio.play().catch(console.error);
           }
-          setModel(1);
-          mode1Audio.play().catch(console.error);
-        }
-      });
-
-      // 注册模式2热键
-      await register(hotkeys.mode2Key, async e => {
-        if (e.state === 'Pressed') {
-          if (selectedMapping === 'XIAOYI_LR') {
-            await invoke('press_keys', { keys: ['ALT', 'CTRL', 'SHIFT', 'F11'] });
-          } else if (selectedMapping === 'XIAOYI_SS') {
-            await invoke('press_keys', { keys: ['ALT', 'CTRL', 'SHIFT', 'F11'] });
+        });
+      }
+      if (hotkeys.mode2Key) {
+        // 注册模式2热键
+        await register(hotkeys.mode2Key, async e => {
+          if (e.state === 'Pressed') {
+            if (selectedMapping === 'XIAOYI_LR') {
+              await invoke('press_keys', { keys: ['ALT', 'CTRL', 'SHIFT', 'F11'] });
+            } else if (selectedMapping === 'XIAOYI_SS') {
+              await invoke('press_keys', { keys: ['ALT', 'CTRL', 'SHIFT', 'F11'] });
+            }
+            setModel(2);
+            mode2Audio.play().catch(console.error);
           }
-          setModel(2);
-          mode2Audio.play().catch(console.error);
-        }
-      });
+        });
+      }
 
-      // 注册暂停热键
-      await register(hotkeys.pauseKey, async e => {
-        if (e.state === 'Pressed') {
-          setModel(0);
-          setColor(null);
-          pauseAudio.play().catch(console.error);
-        }
-      });
+      if (hotkeys.pauseKey) {
+        // 注册暂停热键
+        await register(hotkeys.pauseKey, async e => {
+          if (e.state === 'Pressed') {
+            setModel(0);
+            setColor(null);
+            pauseAudio.play().catch(console.error);
+          }
+        });
+      }
 
       // 注册坐标获取热键
       await register('F8', async e => {
@@ -370,17 +374,17 @@ function WOW() {
     try {
       // 使用try-catch分别处理每个热键的注销，确保一个失败不影响其他热键
       try {
-        await unregister(hotkeys.mode1Key);
+        hotkeys.mode1Key && (await unregister(hotkeys.mode1Key));
       } catch (e) {
         console.log(`${hotkeys.mode1Key}热键注销:`, e);
       }
       try {
-        await unregister(hotkeys.mode2Key);
+        hotkeys.mode2Key && (await unregister(hotkeys.mode2Key));
       } catch (e) {
         console.log(`${hotkeys.mode2Key}热键注销:`, e);
       }
       try {
-        await unregister(hotkeys.pauseKey);
+        hotkeys.pauseKey && (await unregister(hotkeys.pauseKey));
       } catch (e) {
         console.log(`${hotkeys.pauseKey}热键注销:`, e);
       }
@@ -430,7 +434,7 @@ function WOW() {
   };
 
   // 创建可用热键选项列表
-  const availableHotkeys = ['F1', 'F2', 'F3', '1', '2', '3', 'Q', 'W', 'E', 'R', 'T'];
+  const availableHotkeys = ['', '`', 'F1', 'F2', 'F3', '1', '2', '3', 'Q', 'W', 'E', 'R', 'T'];
 
   return (
     <div className={styles.container}>
