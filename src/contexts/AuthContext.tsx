@@ -122,7 +122,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       params: {
         keyCode: savedUserAccount
       }
-    }).catch(async () => {
+    }).catch(async (err) => {
+      await message(err.message, '验证失败');
       await clearUserState();
     });
   };
@@ -218,7 +219,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         await message('退出成功', '退出成功');
         await clearUserState();
       })
-      .catch(async err => {
+      .catch(async (err) => {
         await message(err.message, '退出失败');
       })
       .finally(() => {
