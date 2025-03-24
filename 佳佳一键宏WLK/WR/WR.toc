@@ -7,7 +7,6 @@
 ## SavedVariablesPerCharacter: WRSet
 
 VX WOW-Robot\Libs\LibRangeCheck-3.0.lua
-VX WOW-Robot\Welcome.lua
 VX WOW-Robot\Api.lua
 VX WOW-Robot\Frame.lua
 
