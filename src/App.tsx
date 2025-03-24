@@ -14,7 +14,6 @@ function App() {
 
   useEffect(() => {
     const disableRefresh = (e: KeyboardEvent) => {
-      e.preventDefault();
       if (e.key === 'F5') {
         e.preventDefault();
         return false;
