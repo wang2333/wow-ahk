@@ -95,6 +95,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   // 检查保存的用户数据
   const loadSavedUser = async () => {
+    await checkUser();
     const userAccountStore = await userAccountStorePromise;
     const savedUserAccount = await userAccountStore.get<string>('userAccount');
     const store = await userStorePromise;
