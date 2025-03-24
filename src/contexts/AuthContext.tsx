@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
 import request from '@/Utils/axios';
+import { getMachineCode } from '@/Utils/machine';
 import { message } from '@tauri-apps/plugin-dialog';
 import { Store } from '@tauri-apps/plugin-store';
 
@@ -62,6 +63,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [userInfo, setUserInfo] = useState<User | null>(null);
   const [gameSettings, setGameSettings] = useState<GameSettings>(DEFAULT_GAME_SETTINGS);
   const [isLoading, setIsLoading] = useState(false);
+  const [machineCode, setMachineCode] = useState<string>('');
 
   // 加载游戏设置
   const loadGameSettings = async () => {
@@ -142,6 +144,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     loadSavedUser();
     // 加载游戏设置
     loadGameSettings();
+    // 获取机器码
+    getMachineCode().then(code => {
+      setMachineCode(code);
+    });
   }, []);
 
   // 更新WOW坐标
@@ -176,7 +182,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }>('/api/login', {
       method: 'GET',
       params: {
-        keyCode
+        keyCode,
+        machineCode
       }
     })
       .then(async response => {
