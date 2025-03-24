@@ -122,8 +122,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       params: {
         keyCode: savedUserAccount
       }
-    }).catch(async (err) => {
-      await message(err.message, '验证失败');
+    }).catch(async () => {
       await clearUserState();
     });
   };
