@@ -218,7 +218,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         await message('退出成功', '退出成功');
         await clearUserState();
       })
-      .catch(async (err) => {
+      .catch(async err => {
         await message(err.message, '退出失败');
       })
       .finally(() => {
