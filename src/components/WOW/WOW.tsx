@@ -204,19 +204,20 @@ function WOW() {
   useEffect(() => {
     let isRunning = true;
     let currentIndex = 0;
-    let oldColor = { r: 0, g: 0, b: 0 };
 
     const autokey = async (params: { x: number; y: number }) => {
       const newColor = await invoke<ColorInfo>('get_pixel_color', params);
       if (!newColor) return;
       if (selectedMapping === 'AH') {
-        if (newColor.r !== oldColor.r && newColor.g !== 0 && newColor.b !== 0) {
-          oldColor = newColor;
-          const keys = getKeyNum(newColor.g, newColor.b);
-          if (keys.every(v => !!v)) {
+        if (newColor.g !== 0 && newColor.b !== 0) {
+          const keys = getKeyNum(newColor.g, newColor.b).filter(v => !!v);
+          if (keys.length === 4) {
+            let promises = [];
             for await (const key of keys) {
-              await invoke('press_keys', { keys: [key] });
+              promises.push(invoke('press_keys', { keys: [key] }));
             }
+            promises.push(setTimeout(() => Promise.resolve(), 200));
+            await Promise.all(promises);
           }
         }
         return;
