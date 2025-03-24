@@ -190,7 +190,7 @@ function WOW() {
         pauseKey: gameSettings.hotkeySettings.pauseKey || prev.pauseKey
       }));
     }
-  }, [gameSettings]);681268126812
+  }, [gameSettings]);
 
   // 注册全局热键
   useEffect(() => {
