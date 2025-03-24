@@ -1,5 +1,5 @@
-local a = 75;
-local b = 87;
+local a = 56;
+local b = 25;
 local c = 0 == 1;
 local d = not c;
 local e = nil;
@@ -8,6 +8,10 @@ local g = _G;
 local h = _ENV;
 local i = g["tonumber"]
 return (function(...)
+g["WRFindWRBN20250315"] = true
+g["Welcome_XiaoManZS"] = true
+g["DemonHunterPass"] = true
+
 	if not g["IsSpellInRange"] then
 		g["IsSpellInRange"] = g["C_Spell"]["IsSpellInRange"]
 	end;
@@ -220,8 +224,13 @@ return (function(...)
 		if g["UnitCastingInfo"]("boss1") == "宇宙奇点" then
 			return c
 		end;
-		if g["UnitClassBase"]("player") == "DRUID" and g["WR_GetUnitDebuffTime"](L, "晦幽纺纱") > i("0") and g["WR_GetUnitDebuffTime"](L, "晦幽纺纱") < i("11") then
-			return c
+		if g["UnitClassBase"]("player") == "DRUID" then
+			if g["WR_GetUnitDebuffTime"](L, "晦幽纺纱") > i("0") and g["WR_GetUnitDebuffTime"](L, "晦幽纺纱") < i("11") then
+				return c
+			end;
+			if g["WR_GetUnitDebuffTime"](L, "钉伤") > i("0") and g["WR_GetUnitDebuffTime"](L, "钉伤") < i("1.9") then
+				return c
+			end
 		end;
 		if g["WR_GetUnitDebuffCount"](L, "恐瓣花粉") >= i("6") then
 			return d
@@ -313,7 +322,7 @@ return (function(...)
 			if Q == "灵魂毒液" and R < i("7") then
 				U = c
 			end;
-			if (Q == "爆裂" or Q == "巨口蛙毒" or Q == "腐蚀波") and R < i("5") then
+			if (Q == "爆裂" or Q == "巨口蛙毒" or Q == "腐蚀波" or Q == "蜂毒") and R < i("5") then
 				U = c
 			end;
 			if Q == "窃取时间" and R < i("3") then
@@ -3087,7 +3096,9 @@ return (function(...)
 					if not g["WR_Addon_VersionMessage"] and g["string"]["sub"](cL, i("1"), i("1")) == "V" then
 						local cN = g["string"]["sub"](cL, i("2"))
 						if g["tonumber"](cN) ~= e and g["tonumber"](cN) > g["tonumber"](g["WR_Addon_Version"]) then
-							g["print"](g["C_AddOns"]["GetAddOnMetadata"]("!WR", "Title") .. "发现新的插件版本。当前版本：|cffffffff" .. g["WR_Addon_Version"] .. "|r ，最新版本：|cffff94af" .. cN .. "|r")
+							g["print"](g["C_AddOns"]["GetAddOnMetadata"]("!WR", "Title") .. "发现新的插件版本。")
+							g["print"](g["C_AddOns"]["GetAddOnMetadata"]("当前版本：|cffff94af" .. g["WR_Addon_Version"] .. "|r"))
+							g["print"](g["C_AddOns"]["GetAddOnMetadata"]("最新版本：|cffff94af" .. cN .. "|r"))
 							g["WR_Addon_VersionMessage"] = d
 						end
 					end;

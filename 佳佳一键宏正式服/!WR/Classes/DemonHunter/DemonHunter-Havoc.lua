@@ -1,1 +1,1 @@
-local a=96;local b=51;local c=0==1;local d=not c;local e=nil;local f=""local g=_G;local h=_ENV;local i=g["tonumber"]return(function(...)end)()
+local a=93;local b=16;local c=81;local d=71;local e=61;local f=0==1;local g=not f;local h=nil;local i=""local j=_G;local k=_ENV;local l=j["\116\111\110\117\109\98\101\114"]return(function(...)end)()
