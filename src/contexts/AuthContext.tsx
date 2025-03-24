@@ -122,11 +122,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       params: {
         keyCode: savedUserAccount
       }
-    }).catch(async err => {
-      console.log('👻 ~ err:', err)
-      if (err.message === '卡密不存在' || err.message === '卡密已过期' || err.message === '卡密已禁用') {
-        await clearUserState();
-      }
+    }).catch(async () => {
+      await clearUserState();
     });
   };
 
@@ -221,7 +218,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         await message('退出成功', '退出成功');
         await clearUserState();
       })
-      .catch(async (err) => {
+      .catch(async err => {
         await message(err.message, '退出失败');
       })
       .finally(() => {
