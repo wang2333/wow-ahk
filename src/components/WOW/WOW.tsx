@@ -190,7 +190,7 @@ function WOW() {
         pauseKey: gameSettings.hotkeySettings.pauseKey || prev.pauseKey
       }));
     }
-  }, [gameSettings]);
+  }, [gameSettings]);681268126812
 
   // 注册全局热键
   useEffect(() => {
@@ -204,12 +204,13 @@ function WOW() {
   useEffect(() => {
     let isRunning = true;
     let currentIndex = 0;
+    let oldTemp = 0;
 
     const autokey = async (params: { x: number; y: number }) => {
       const newColor = await invoke<ColorInfo>('get_pixel_color', params);
       if (!newColor) return;
       if (selectedMapping === 'AH') {
-        if (newColor.g !== 0 && newColor.b !== 0) {
+        if (newColor.r !== oldTemp && newColor.g !== 0 && newColor.b !== 0) {
           const keys = getKeyNum(newColor.g, newColor.b).filter(v => !!v);
           if (keys.length === 4) {
             let promises = [];
@@ -218,6 +219,7 @@ function WOW() {
             }
             promises.push(setTimeout(() => Promise.resolve(), 200));
             await Promise.all(promises);
+            oldTemp = newColor.r;
           }
         }
         return;
