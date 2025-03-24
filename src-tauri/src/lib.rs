@@ -3,7 +3,6 @@ use screenshots::Screen;
 use serde::Serialize;
 use std::thread;
 use std::time::Duration;
-use std::process::Command;
 
 #[derive(Debug, Serialize)]
 struct ColorInfo {
