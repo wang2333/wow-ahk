@@ -1,7 +1,6 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
 import request from '@/Utils/axios';
-import { getMachineCode } from '@/Utils/machine';
 import { message } from '@tauri-apps/plugin-dialog';
 import { Store } from '@tauri-apps/plugin-store';
 
@@ -97,7 +96,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   // 检查保存的用户数据
   const loadSavedUser = async () => {
-    await checkUser();
     const userAccountStore = await userAccountStorePromise;
     const savedUserAccount = await userAccountStore.get<string>('userAccount');
     const store = await userStorePromise;
@@ -144,10 +142,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     loadSavedUser();
     // 加载游戏设置
     loadGameSettings();
-    // 获取机器码
-    getMachineCode().then(code => {
-      setMachineCode(code);
-    });
   }, []);
 
   // 更新WOW坐标

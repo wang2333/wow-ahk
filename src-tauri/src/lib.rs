@@ -167,63 +167,7 @@ fn move_mouse_to_point(x: f64, y: f64) -> Result<(), String> {
     Ok(())
 }
 
-#[tauri::command]
-fn get_machine_code() -> Result<String, String> {
-    let mut machine_id = String::new();
 
-    // 在Windows系统上，获取CPU ID和主板序列号
-    if cfg!(target_os = "windows") {
-        // 获取CPU ID
-        if let Ok(output) = Command::new("wmic").args(["cpu", "get", "ProcessorId"]).output() {
-            if let Ok(output_str) = String::from_utf8(output.stdout) {
-                let lines: Vec<&str> = output_str.lines().collect();
-                if lines.len() >= 2 {
-                    machine_id.push_str(lines[1].trim());
-                }
-            }
-        }
-
-        // 获取主板序列号
-        if let Ok(output) = Command::new("wmic").args(["baseboard", "get", "serialnumber"]).output() {
-            if let Ok(output_str) = String::from_utf8(output.stdout) {
-                let lines: Vec<&str> = output_str.lines().collect();
-                if lines.len() >= 2 {
-                    if !machine_id.is_empty() {
-                        machine_id.push('-');
-                    }
-                    machine_id.push_str(lines[1].trim());
-                }
-            }
-        }
-    } else if cfg!(target_os = "macos") {
-        // 获取macOS设备的硬件UUID
-        if let Ok(output) = Command::new("system_profiler").args(["SPHardwareDataType"]).output() {
-            if let Ok(output_str) = String::from_utf8(output.stdout) {
-                for line in output_str.lines() {
-                    if line.contains("Hardware UUID") {
-                        if let Some(uuid) = line.split(':').nth(1) {
-                            machine_id = uuid.trim().to_string();
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-    } else if cfg!(target_os = "linux") {
-        // 获取Linux设备的机器ID
-        if let Ok(output) = Command::new("cat").args(["/etc/machine-id"]).output() {
-            if let Ok(output_str) = String::from_utf8(output.stdout) {
-                machine_id = output_str.trim().to_string();
-            }
-        }
-    }
-
-    if machine_id.is_empty() {
-        return Err("无法获取机器码".to_string());
-    }
-
-    Ok(machine_id)
-}
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
@@ -237,8 +181,7 @@ pub fn run() {
             get_pixel_color,
             get_current_position_color,
             press_keys,
-            move_mouse_to_point,
-            get_machine_code
+            move_mouse_to_point
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
