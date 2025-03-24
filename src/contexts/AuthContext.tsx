@@ -3,6 +3,7 @@ import { createContext, ReactNode, useContext, useEffect, useState } from 'react
 import request from '@/Utils/axios';
 import { message } from '@tauri-apps/plugin-dialog';
 import { Store } from '@tauri-apps/plugin-store';
+import { invoke } from '@tauri-apps/api/core';
 
 // 坐标接口
 interface Coordinates {
@@ -142,6 +143,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     loadSavedUser();
     // 加载游戏设置
     loadGameSettings();
+
+    invoke<string>('get_hostname').then(code => {
+      setMachineCode(code);
+    });
   }, []);
 
   // 更新WOW坐标

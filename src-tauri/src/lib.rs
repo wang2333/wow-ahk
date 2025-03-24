@@ -167,7 +167,18 @@ fn move_mouse_to_point(x: f64, y: f64) -> Result<(), String> {
     Ok(())
 }
 
-
+#[tauri::command]
+fn get_hostname() -> Result<String, String> {
+    match hostname::get() {
+        Ok(name) => {
+            match name.into_string() {
+                Ok(hostname) => Ok(hostname),
+                Err(_) => Err("无法将主机名转换为字符串".to_string())
+            }
+        },
+        Err(e) => Err(format!("获取主机名失败: {}", e))
+    }
+}
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
@@ -181,7 +192,8 @@ pub fn run() {
             get_pixel_color,
             get_current_position_color,
             press_keys,
-            move_mouse_to_point
+            move_mouse_to_point,
+            get_hostname
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
