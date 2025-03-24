@@ -220,8 +220,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         await message('退出成功', '退出成功');
         await clearUserState();
       })
-      .catch(async () => {
-        await message('退出失败，请重新尝试', '退出失败');
+      .catch(async (err) => {
+        await message(err.message, '退出失败');
       })
       .finally(() => {
         setIsLoading(false);

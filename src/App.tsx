@@ -1,6 +1,6 @@
 import './App.css';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Login from '@/components/Login';
 import WOW from '@/components/WOW';
@@ -11,6 +11,27 @@ import Help from './components/Help';
 function App() {
   const [activeTab, setActiveTab] = useState<'wow' | 'zxsj' | 'help'>('help');
   const { userInfo, isLoading, login, logout } = useAuth();
+
+  useEffect(() => {
+    const disableRefresh = (e: KeyboardEvent) => {
+      e.preventDefault();
+      if (e.key === 'F5') {
+        e.preventDefault();
+        return false;
+      }
+      // 禁用 Ctrl+R
+      if ((e.ctrlKey || e.metaKey) && e.key === 'r') {
+        e.preventDefault();
+        return false;
+      }
+      return false;
+    };
+
+    document.addEventListener('keydown', disableRefresh);
+    return () => {
+      document.removeEventListener('keydown', disableRefresh);
+    };
+  }, []);
 
   // 如果用户未登录，显示登录页面
   if (!userInfo) {
