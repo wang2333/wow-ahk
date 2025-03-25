@@ -411,9 +411,6 @@ export const color_mappings_ZHUZHU: Record<string, string> = {
   //C3 CTRL-p
   //C4 CTRL-o
   //C5 CTRL-i
-  //C6 CTRL-l
-  //C7 CTRL-k
-  //C8 CTRL-j
   //C9 CTRL-m
   //C10 CTRL-n
 };
