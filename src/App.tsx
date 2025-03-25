@@ -7,9 +7,10 @@ import WOW from '@/components/WOW';
 // import ZXSJ from '@/components/ZXSJ';
 import { useAuth } from './contexts/AuthContext';
 import Help from './components/Help';
+import Install from './components/Install';
 
 function App() {
-  const [activeTab, setActiveTab] = useState<'wow' | 'zxsj' | 'help'>('help');
+  const [activeTab, setActiveTab] = useState<'wow' | 'zxsj' | 'help' | 'install'>('help');
   const { userInfo, isLoading, login, logout } = useAuth();
 
   useEffect(() => {
@@ -59,6 +60,12 @@ function App() {
           >
             魔兽世界
           </button>
+          <button
+            className={`tab-button ${activeTab === 'install' ? 'active' : ''}`}
+            onClick={() => setActiveTab('install')}
+          >
+            插件安装
+          </button>
 
           {/* <button
             className={`tab-button ${activeTab === 'zxsj' ? 'active' : ''}`}
@@ -78,6 +85,7 @@ function App() {
       <div className='tab-content'>
         {activeTab === 'wow' && <WOW />}
         {activeTab === 'help' && <Help />}
+        {activeTab === 'install' && <Install />}
       </div>
     </div>
   );

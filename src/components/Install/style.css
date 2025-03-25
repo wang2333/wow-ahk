@@ -1,0 +1,149 @@
+.install-description {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.path-selection {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.path-item {
+  margin-bottom: 10px;
+}
+
+.path-item label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.path-input-group {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.path-input-group input {
+  flex-grow: 1;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.path-input-group button {
+  padding: 8px 15px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.path-input-group button:hover {
+  background-color: #357abf;
+}
+
+.path-input-group button:disabled {
+  background-color: #a0c3e8;
+  cursor: not-allowed;
+}
+
+.install-actions {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.install-actions label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.install-button {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.install-button:hover {
+  background-color: #3e8e41;
+}
+
+.install-button:disabled {
+  background-color: #9fd0a1;
+  cursor: not-allowed;
+}
+
+.message {
+  margin: 15px 0;
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.message.success {
+  background-color: #dff0d8;
+  border: 1px solid #d6e9c6;
+  color: #3c763d;
+}
+
+.message.error {
+  background-color: #f2dede;
+  border: 1px solid #ebccd1;
+  color: #a94442;
+}
+
+.message.info {
+  background-color: #d9edf7;
+  border: 1px solid #bce8f1;
+  color: #31708f;
+}
+
+.install-help {
+  margin-top: 30px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.install-help h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+.install-help ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.install-help li {
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #555;
+}
+
+.install-help code {
+  background-color: #f0f0f0;
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-family: monospace;
+  font-size: 13px;
+}

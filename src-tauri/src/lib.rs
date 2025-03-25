@@ -10,6 +10,10 @@ use windows_sys::Win32::UI::WindowsAndMessaging::{
 };
 use std::ffi::OsString;
 use std::os::windows::ffi::OsStringExt;
+use std::fs;
+use std::path::Path;
+use std::path::PathBuf;
+use tauri::Manager;
 
 #[derive(Debug, Serialize)]
 struct ColorInfo {
@@ -277,6 +281,84 @@ fn get_wow_window_info() -> Option<WindowInfo> {
     }
 }
 
+#[tauri::command]
+fn install_addon(app_handle: tauri::AppHandle, plugin_type: &str, target_dir: &str) -> Result<String, String> {
+    // 获取资源路径
+    let resource_path = app_handle.path().resource_dir()
+        .map_err(|e| format!("无法获取资源目录: {}", e))?;
+
+    // 构建插件源目录路径 - 首先尝试资源路径下的直接位置
+    let mut source_path = resource_path.join("src").join("addOns").join(plugin_type);
+
+    println!("尝试资源路径1: {:?}", source_path);
+
+    // 如果资源路径不存在，尝试其他可能的路径
+    if !source_path.exists() {
+        // 尝试使用相对路径（开发环境）
+        source_path = PathBuf::from("src-tauri/src/addOns").join(plugin_type);
+        println!("尝试资源路径2: {:?}", source_path);
+    }
+
+    // 尝试其他可能的路径
+    if !source_path.exists() {
+        source_path = resource_path.join("addOns").join(plugin_type);
+        println!("尝试资源路径3: {:?}", source_path);
+    }
+
+    // 尝试当前目录
+    if !source_path.exists() {
+        let current_dir = std::env::current_dir().map_err(|e| format!("无法获取当前目录: {}", e))?;
+        source_path = current_dir.join("src").join("addOns").join(plugin_type);
+        println!("尝试资源路径4: {:?}", source_path);
+    }
+
+    // 检查源目录是否存在
+    if !source_path.exists() {
+        return Err(format!("插件目录不存在: {:?}\n已尝试多个可能的路径但都未找到", source_path));
+    }
+
+    // 日志输出源目录和目标目录
+    println!("找到源目录: {:?}", source_path);
+    println!("目标目录: {:?}", target_dir);
+
+    // 创建一个用于复制目录的函数
+    fn copy_dir_all(src: &Path, dst: &Path) -> std::io::Result<()> {
+        if !dst.exists() {
+            fs::create_dir_all(dst)?;
+        }
+
+        for entry in fs::read_dir(src)? {
+            let entry = entry?;
+            let ty = entry.file_type()?;
+            let src_path = entry.path();
+            let dst_path = dst.join(entry.file_name());
+
+            println!("复制: {:?} -> {:?}", src_path, dst_path);
+
+            if ty.is_dir() {
+                copy_dir_all(&src_path, &dst_path)?;
+            } else {
+                fs::copy(&src_path, &dst_path)?;
+            }
+        }
+        Ok(())
+    }
+
+    // 直接将整个插件目录复制到目标位置
+    let dst_path = Path::new(target_dir).join(plugin_type);
+    println!("安装插件: {:?} -> {:?}", source_path, dst_path);
+
+    // 如果目标目录已存在，先删除
+    if dst_path.exists() {
+        fs::remove_dir_all(&dst_path).map_err(|e| format!("删除已存在的目录失败: {}", e))?;
+    }
+
+    // 复制目录
+    copy_dir_all(&source_path, &dst_path).map_err(|e| format!("复制目录失败: {}", e))?;
+
+    Ok(format!("插件 {} 安装成功!", plugin_type))
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
@@ -291,7 +373,8 @@ pub fn run() {
             press_keys,
             move_mouse_to_point,
             get_hostname,
-            get_wow_window_info
+            get_wow_window_info,
+            install_addon
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
