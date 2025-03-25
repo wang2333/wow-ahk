@@ -214,7 +214,10 @@ function WOW() {
 
       if (!wowWindow) return;
       let { x, y, width, is_foreground, is_fullscreen } = wowWindow;
-      if (!is_foreground) return;
+      if (!is_foreground) {
+        handleCheckColor();
+        return;
+      }
       if (is_fullscreen) {
         if (selectedMapping === 'AH') {
           x = x + 1;
