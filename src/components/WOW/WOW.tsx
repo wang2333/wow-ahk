@@ -56,34 +56,6 @@ const colorMapDict = {
   AH: null
 };
 
-// function findSolutions(targetF, targetG) {
-//   const solutions = [];
-
-//   // Loop over all possible values for b, c, d, a (from 0 to 14)
-//   for (let b = 0; b <= 14; b++) {
-//       for (let c = 0; c <= 14; c++) {
-//           const f = b * 14 + c;
-//           if (f === targetF) {
-//               for (let d = 0; d <= 14; d++) {
-//                   for (let a = 0; a <= 14; a++) {
-//                       const g = d * 14 + a;
-//                       if (g === targetG) {
-//                           solutions.push({ a, b, c, d });
-//                       }
-//                   }
-//               }
-//           }
-//       }
-//   }
-//   return solutions;
-// }
-
-// Example usage:
-// const targetF = 200;
-// const targetG = 300;
-// const solutions = findSolutions(targetF, targetG);
-// console.log(solutions);
-
 function getKeyNum(targetNum: number, actionNum: number) {
   const keyMap = [
     'NUMPAD4',
@@ -111,8 +83,7 @@ function getKeyNum(targetNum: number, actionNum: number) {
 }
 
 function WOW() {
-  const { userInfo, gameSettings, updateWowCoordinates, updateHotkeySettings, checkUser } =
-    useAuth();
+  const { userInfo, gameSettings, updateHotkeySettings, checkUser } = useAuth();
   const [color, setColor] = useState<string | null>(null);
   const [model, setModel] = useState(0);
   const [autoMove, setAutoMove] = useState(false);
@@ -127,14 +98,6 @@ function WOW() {
     mode2Key: gameSettings?.hotkeySettings?.mode2Key || '',
     pauseKey: gameSettings?.hotkeySettings?.pauseKey || ''
   });
-
-  // 从游戏设置中获取坐标
-  const [coordinates, setCoordinates] = useState({
-    x1: gameSettings?.wowCoordinates?.x1 || 2,
-    x2: gameSettings?.wowCoordinates?.x2 || 2550,
-    y: gameSettings?.wowCoordinates?.y || 30
-  });
-
   const color_mappings = colorMapDict[selectedMapping];
 
   useEffect(() => {
@@ -174,14 +137,6 @@ function WOW() {
 
   // 当游戏设置变化时，更新坐标和热键设置
   useEffect(() => {
-    if (gameSettings?.wowCoordinates) {
-      setCoordinates(prev => ({
-        ...prev,
-        x1: gameSettings.wowCoordinates.x1,
-        x2: gameSettings.wowCoordinates.x2,
-        y: gameSettings.wowCoordinates.y
-      }));
-    }
     if (gameSettings?.hotkeySettings) {
       setHotkeys(prev => ({
         ...prev,
@@ -253,25 +208,52 @@ function WOW() {
         y: number;
         width: number;
         height: number;
+        is_foreground: boolean;
+        is_fullscreen: boolean;
       } | null = await invoke('get_wow_window_info');
-      console.log('👻 ~ wowWindow:', wowWindow);
+
+      if (!wowWindow) return;
+      let { x, y, width, is_foreground, is_fullscreen } = wowWindow;
+      if (!is_foreground) return;
+      if (is_fullscreen) {
+        if (selectedMapping === 'AH') {
+          x = x + 1;
+          y = y + 5;
+        } else {
+          x = x + 5;
+          y = y + 5;
+        }
+      } else {
+        if (selectedMapping === 'AH') {
+          x = x + 8;
+          y = y + 35;
+        } else {
+          x = x + 13;
+          y = y + 35;
+        }
+      }
 
       if (selectedMapping === 'XIAOYI_LR' || selectedMapping === 'XIAOYI_SS') {
         await autokey({
-          x: coordinates.x1 + 34,
-          y: coordinates.y
+          x: x + 34,
+          y: y
         });
       }
+      if (model === 2 && (selectedMapping === 'JIAJIA' || selectedMapping === 'JIAJIA_REAL')) {
+        if (is_fullscreen) {
+          x = width - 5;
+        } else {
+          x = x + width - 27;
+        }
+      }
+
       await autokey({
-        x:
-          model === 1 || (selectedMapping !== 'JIAJIA' && selectedMapping !== 'JIAJIA_REAL')
-            ? coordinates.x1
-            : coordinates.x2,
-        y: coordinates.y
+        x: x,
+        y: y
       });
 
       // 递归调用，确保前一个操作完成后才开始下一个
-      // handleCheckColor();
+      handleCheckColor();
     };
 
     const handleMove = async () => {
@@ -294,11 +276,10 @@ function WOW() {
       }
     }
 
-
     return () => {
       isRunning = false;
     };
-  }, [model, coordinates, autoMove, moveInterval, selectedMapping]);
+  }, [model, autoMove, moveInterval, selectedMapping]);
 
   const registerShortcuts = async () => {
     try {
@@ -379,19 +360,6 @@ function WOW() {
     updateHotkeySettings(newHotkeys);
   };
 
-  const handleCoordinateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    const newValue = parseInt(value) || 0;
-    const newCoordinates = {
-      ...coordinates,
-      [name]: newValue
-    };
-
-    setCoordinates(newCoordinates);
-    // 更新用户设置中的坐标
-    updateWowCoordinates(newCoordinates);
-  };
-
   const handleIntervalChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(e.target.value) || 500;
     setMoveInterval(Math.max(100, value));
@@ -434,39 +402,6 @@ function WOW() {
                 </option>
               ))}
             </select>
-          </div>
-          <div className={styles.coordinateInputs}>
-            <div className={styles.inputGroup}>
-              <label className={styles.label}>X坐标</label>
-              <input
-                type='number'
-                name='x1'
-                value={coordinates.x1}
-                onChange={handleCoordinateChange}
-                className={styles.input}
-              />
-            </div>
-            <div className={styles.inputGroup}>
-              <label className={styles.label}>Y 坐标</label>
-              <input
-                type='number'
-                name='y'
-                value={coordinates.y}
-                onChange={handleCoordinateChange}
-                min='0'
-                className={styles.input}
-              />
-            </div>
-            <div className={styles.inputGroup}>
-              <label className={styles.label}>X2 坐标</label>
-              <input
-                type='number'
-                name='x2'
-                value={coordinates.x2}
-                onChange={handleCoordinateChange}
-                className={styles.input}
-              />
-            </div>
           </div>
         </div>
       </div>

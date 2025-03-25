@@ -5,13 +5,6 @@ import { message } from '@tauri-apps/plugin-dialog';
 import { Store } from '@tauri-apps/plugin-store';
 import { invoke } from '@tauri-apps/api/core';
 
-// 坐标接口
-interface Coordinates {
-  x1: number;
-  x2: number;
-  y: number;
-}
-
 // 热键设置接口
 interface HotkeySettings {
   mode1Key: string;
@@ -21,7 +14,6 @@ interface HotkeySettings {
 
 // 游戏设置接口
 interface GameSettings {
-  wowCoordinates: Coordinates;
   hotkeySettings: HotkeySettings;
   // 可以在这里添加更多游戏设置
 }
@@ -40,7 +32,6 @@ interface AuthContextType {
   isLoading: boolean;
   login: (keyCode: string) => Promise<void>;
   logout: () => Promise<void>;
-  updateWowCoordinates: (coordinates: Coordinates) => Promise<void>;
   updateHotkeySettings: (hotkeys: HotkeySettings) => Promise<void>;
   checkUser: () => Promise<void>;
 }
@@ -49,7 +40,6 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 // 默认游戏设置
 const DEFAULT_GAME_SETTINGS: GameSettings = {
-  wowCoordinates: { x1: 10, x2: 2550, y: 10 },
   hotkeySettings: { mode1Key: 'F1', mode2Key: 'F2', pauseKey: 'F3' }
 };
 
@@ -149,16 +139,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     });
   }, []);
 
-  // 更新WOW坐标
-  const updateWowCoordinates = async (coordinates: Coordinates): Promise<void> => {
-    const newSettings = {
-      ...gameSettings,
-      wowCoordinates: coordinates
-    };
-    setGameSettings(newSettings);
-    await saveGameSettings(newSettings);
-  };
-
   // 更新热键设置
   const updateHotkeySettings = async (hotkeys: HotkeySettings): Promise<void> => {
     const newSettings = {
@@ -241,7 +221,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         isLoading,
         login,
         logout,
-        updateWowCoordinates,
         updateHotkeySettings,
         checkUser
       }}

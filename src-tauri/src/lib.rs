@@ -200,13 +200,6 @@ fn get_hostname() -> Result<String, String> {
 #[tauri::command]
 fn get_wow_window_info() -> Option<WindowInfo> {
     unsafe {
-        // 获取当前前台窗口句柄
-        let foreground_hwnd = GetForegroundWindow();
-
-        // 获取屏幕分辨率
-        let screen_width = GetSystemMetrics(0);  // SM_CXSCREEN = 0
-        let screen_height = GetSystemMetrics(1); // SM_CYSCREEN = 1
-
         // 用于存储找到的WoW窗口信息
         let mut result = None;
 
