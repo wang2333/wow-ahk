@@ -23,6 +23,11 @@ function App() {
         e.preventDefault();
         return false;
       }
+      // 禁用 Ctrl+Shift+C
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'c') {
+        e.preventDefault();
+        return false;
+      }
       return false;
     };
 

@@ -217,7 +217,6 @@ function WOW() {
             for await (const key of keys) {
               promises.push(invoke('press_keys', { keys: [key] }));
             }
-            promises.push(setTimeout(() => Promise.resolve(), 200));
             await Promise.all(promises);
             oldTemp = newColor.r;
           }
@@ -248,6 +247,14 @@ function WOW() {
 
     const handleCheckColor = async () => {
       if (!isRunning) return;
+      const wowWindow: {
+        title: string;
+        x: number;
+        y: number;
+        width: number;
+        height: number;
+      } | null = await invoke('get_wow_window_info');
+      console.log('👻 ~ wowWindow:', wowWindow);
 
       if (selectedMapping === 'XIAOYI_LR' || selectedMapping === 'XIAOYI_SS') {
         await autokey({
@@ -255,7 +262,6 @@ function WOW() {
           y: coordinates.y
         });
       }
-
       await autokey({
         x:
           model === 1 || (selectedMapping !== 'JIAJIA' && selectedMapping !== 'JIAJIA_REAL')
@@ -265,7 +271,7 @@ function WOW() {
       });
 
       // 递归调用，确保前一个操作完成后才开始下一个
-      handleCheckColor();
+      // handleCheckColor();
     };
 
     const handleMove = async () => {
@@ -287,6 +293,8 @@ function WOW() {
         handleMove();
       }
     }
+
+
     return () => {
       isRunning = false;
     };
@@ -336,38 +344,6 @@ function WOW() {
         });
       }
 
-      // 注册坐标获取热键
-      await register('F8', async e => {
-        if (e.state === 'Pressed') {
-          const info = await invoke<{ x: number; y: number }>('get_current_position_color');
-          if (info) {
-            const newCoordinates = {
-              ...coordinates,
-              x1: info.x,
-              y: info.y
-            };
-            setCoordinates(newCoordinates);
-            // 更新用户设置中的坐标
-            updateWowCoordinates(newCoordinates);
-          }
-        }
-      });
-      await register('F9', async e => {
-        if (e.state === 'Pressed') {
-          const info = await invoke<{ x: number; y: number }>('get_current_position_color');
-          if (info) {
-            const newCoordinates = {
-              ...coordinates,
-              x2: info.x,
-              y: info.y
-            };
-            setCoordinates(newCoordinates);
-            // 更新用户设置中的坐标
-            updateWowCoordinates(newCoordinates);
-          }
-        }
-      });
-
       await checkUser();
     } catch (error) {
       console.error('注册热键失败:', error);
@@ -379,29 +355,13 @@ function WOW() {
       // 使用try-catch分别处理每个热键的注销，确保一个失败不影响其他热键
       try {
         hotkeys.mode1Key && (await unregister(hotkeys.mode1Key));
-      } catch (e) {
-        console.log(`${hotkeys.mode1Key}热键注销:`, e);
-      }
+      } catch (e) {}
       try {
         hotkeys.mode2Key && (await unregister(hotkeys.mode2Key));
-      } catch (e) {
-        console.log(`${hotkeys.mode2Key}热键注销:`, e);
-      }
+      } catch (e) {}
       try {
         hotkeys.pauseKey && (await unregister(hotkeys.pauseKey));
-      } catch (e) {
-        console.log(`${hotkeys.pauseKey}热键注销:`, e);
-      }
-      try {
-        await unregister('F8');
-      } catch (e) {
-        console.log(`F8热键注销:`, e);
-      }
-      try {
-        await unregister('F9');
-      } catch (e) {
-        console.log(`F9热键注销:`, e);
-      }
+      } catch (e) {}
     } catch (error) {
       console.error('注销热键失败:', error);
     }

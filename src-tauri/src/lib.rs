@@ -3,6 +3,13 @@ use screenshots::Screen;
 use serde::Serialize;
 use std::thread;
 use std::time::Duration;
+use windows_sys::Win32::Foundation::{BOOL, HWND, LPARAM, RECT};
+use windows_sys::Win32::UI::WindowsAndMessaging::{
+    EnumWindows, GetWindowTextW, IsWindowVisible, GetWindowRect, GetForegroundWindow,
+    GetSystemMetrics,
+};
+use std::ffi::OsString;
+use std::os::windows::ffi::OsStringExt;
 
 #[derive(Debug, Serialize)]
 struct ColorInfo {
@@ -16,6 +23,17 @@ struct PositionColorInfo {
     x: i32,
     y: i32,
     color: ColorInfo,
+}
+
+#[derive(Debug, Serialize)]
+struct WindowInfo {
+    title: String,
+    x: i32,
+    y: i32,
+    width: i32,
+    height: i32,
+    is_foreground: bool,
+    is_fullscreen: bool,
 }
 
 #[tauri::command]
@@ -179,6 +197,93 @@ fn get_hostname() -> Result<String, String> {
     }
 }
 
+#[tauri::command]
+fn get_wow_window_info() -> Option<WindowInfo> {
+    unsafe {
+        // 获取当前前台窗口句柄
+        let foreground_hwnd = GetForegroundWindow();
+
+        // 获取屏幕分辨率
+        let screen_width = GetSystemMetrics(0);  // SM_CXSCREEN = 0
+        let screen_height = GetSystemMetrics(1); // SM_CYSCREEN = 1
+
+        // 用于存储找到的WoW窗口信息
+        let mut result = None;
+
+        extern "system" fn enum_windows_callback(hwnd: HWND, lparam: LPARAM) -> BOOL {
+            unsafe {
+                // 检查窗口是否可见
+                if IsWindowVisible(hwnd) == 0 {
+                    return TRUE;
+                }
+
+                // 获取窗口标题
+                let mut title: [u16; 512] = [0; 512];
+                let len = GetWindowTextW(hwnd, title.as_mut_ptr(), title.len() as i32);
+
+                if len > 0 {
+                    let title = OsString::from_wide(&title[..len as usize])
+                        .to_string_lossy()
+                        .into_owned();
+
+                    // 检查窗口标题是否包含"World of Warcraft"
+                    if title.contains("World of Warcraft") || title.contains("魔兽世界") || title.contains("资源管理器") {
+                        // 获取窗口位置和大小
+                        let mut rect = RECT { left: 0, top: 0, right: 0, bottom: 0 };
+                        if GetWindowRect(hwnd, &mut rect) != 0 {
+                            // 获取当前前台窗口句柄
+                            let foreground_hwnd = GetForegroundWindow();
+                            // 判断当前窗口是否为前台窗口
+                            let is_foreground = hwnd == foreground_hwnd;
+
+                            // 获取窗口宽高
+                            let width = rect.right - rect.left;
+                            let height = rect.bottom - rect.top;
+
+                            // 获取屏幕分辨率
+                            let screen_width = GetSystemMetrics(0);  // SM_CXSCREEN = 0
+                            let screen_height = GetSystemMetrics(1); // SM_CYSCREEN = 1
+
+                            // 判断是否全屏（窗口大小与屏幕分辨率相同或非常接近）
+                            let is_fullscreen = rect.left <= 0 && rect.top <= 0 &&
+                                               (width >= screen_width - 10) &&
+                                               (height >= screen_height - 10);
+
+                            let window_info = WindowInfo {
+                                title,
+                                x: rect.left,
+                                y: rect.top,
+                                width,
+                                height,
+                                is_foreground,
+                                is_fullscreen,
+                            };
+
+                            // 将窗口信息存储到lparam指向的位置
+                            let result_ptr = lparam as *mut Option<WindowInfo>;
+                            *result_ptr = Some(window_info);
+
+                            // 找到了WoW窗口，停止枚举
+                            return FALSE;
+                        }
+                    }
+                }
+
+                // 继续枚举下一个窗口
+                TRUE
+            }
+        }
+
+        const TRUE: BOOL = 1;
+        const FALSE: BOOL = 0;
+
+        // 使用枚举窗口函数查找WoW窗口
+        EnumWindows(Some(enum_windows_callback), &mut result as *mut _ as LPARAM);
+
+        result
+    }
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
@@ -192,7 +297,8 @@ pub fn run() {
             get_current_position_color,
             press_keys,
             move_mouse_to_point,
-            get_hostname
+            get_hostname,
+            get_wow_window_info
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
