@@ -53,7 +53,6 @@ const Install: React.FC<InstallProps> = () => {
       setMessage({ text: errorMsg, type: 'error' });
       return;
     }
-    console.log('👻 ~ gamePath:', gamePath);
 
     try {
       setIsInstalling(true);
@@ -83,8 +82,6 @@ const Install: React.FC<InstallProps> = () => {
 
   return (
     <div>
-      <p className='install-description'>请选择魔兽世界目录，然后点击安装按钮。</p>
-
       <div className='path-selection'>
         <div className='path-item'>
           <label>
@@ -95,7 +92,7 @@ const Install: React.FC<InstallProps> = () => {
               type='text'
               value={gamePath}
               readOnly
-              placeholder='选择魔兽世界AddOns目录'
+              placeholder='选择魔兽世界安装目录'
               style={{
                 backgroundColor: gamePath ? '#f0fff0' : '#fff0f0',
                 borderColor: gamePath ? 'green' : '#ccc'
@@ -135,7 +132,7 @@ const Install: React.FC<InstallProps> = () => {
             onClick={() => installAddon(4)}
             disabled={isInstalling || !gamePath}
           >
-            {isInstalling ? '安装中...' : 'AutoHelp'}
+            {isInstalling ? '安装中...' : 'AH一键宏'}
           </button>
         </div>
       </div>

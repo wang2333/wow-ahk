@@ -352,7 +352,7 @@ fn install_addon(app_handle: tauri::AppHandle, plugin_type: &str, target_dir: &s
     // 复制目录
     copy_dir_all(&source_path, &dst_path).map_err(|e| format!("复制目录失败: {}", e))?;
 
-    Ok(format!("插件 {} 安装成功!", plugin_type))
+    Ok(format!("插件安装成功!", ))
 }
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
