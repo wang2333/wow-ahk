@@ -287,37 +287,33 @@ fn install_addon(app_handle: tauri::AppHandle, plugin_type: &str, target_dir: &s
     let resource_path = app_handle.path().resource_dir()
         .map_err(|e| format!("无法获取资源目录: {}", e))?;
 
-    // 构建插件源目录路径 - 首先尝试资源路径下的直接位置
-    let mut source_path = resource_path.join("src").join("addOns").join(plugin_type);
+    // 构建可能的插件源目录路径列表
+    let possible_paths = vec![
+        // 1. 打包后的标准资源路径
+        resource_path.join("addOns").join(plugin_type),
+        // 2. 直接使用插件名称作为路径
+        resource_path.join(plugin_type),
+        // 3. 开发环境路径
+        PathBuf::from("src-tauri/addOns").join(plugin_type),
+        // 4. 当前工作目录
+        std::env::current_dir()
+            .unwrap_or_else(|_| PathBuf::from("."))
+            .join("addOns")
+            .join(plugin_type),
+    ];
 
-    println!("尝试资源路径1: {:?}", source_path);
+    // 查找第一个存在的路径
+    let source_path = possible_paths.iter()
+        .find(|path| path.exists())
+        .ok_or_else(|| format!(
+            "找不到插件目录: {}。尝试了以下路径:\n{}",
+            plugin_type,
+            possible_paths.iter()
+                .map(|p| format!("- {:?}", p))
+                .collect::<Vec<_>>()
+                .join("\n")
+        ))?;
 
-    // 如果资源路径不存在，尝试其他可能的路径
-    if !source_path.exists() {
-        // 尝试使用相对路径（开发环境）
-        source_path = PathBuf::from("src-tauri/src/addOns").join(plugin_type);
-        println!("尝试资源路径2: {:?}", source_path);
-    }
-
-    // 尝试其他可能的路径
-    if !source_path.exists() {
-        source_path = resource_path.join("addOns").join(plugin_type);
-        println!("尝试资源路径3: {:?}", source_path);
-    }
-
-    // 尝试当前目录
-    if !source_path.exists() {
-        let current_dir = std::env::current_dir().map_err(|e| format!("无法获取当前目录: {}", e))?;
-        source_path = current_dir.join("src").join("addOns").join(plugin_type);
-        println!("尝试资源路径4: {:?}", source_path);
-    }
-
-    // 检查源目录是否存在
-    if !source_path.exists() {
-        return Err(format!("插件目录不存在: {:?}\n已尝试多个可能的路径但都未找到", source_path));
-    }
-
-    // 日志输出源目录和目标目录
     println!("找到源目录: {:?}", source_path);
     println!("目标目录: {:?}", target_dir);
 

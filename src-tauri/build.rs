@@ -1,4 +1,5 @@
 fn main() {
-    tauri_build::build()
+    // 配置Tauri构建
+    tauri_build::build();
 }
 
