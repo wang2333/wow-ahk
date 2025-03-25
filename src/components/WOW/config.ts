@@ -397,21 +397,24 @@ export const color_mappings_ZHUZHU: Record<string, string> = {
   '#ef8f92': 'SHIFT-I',
   '#e673c4': 'SHIFT-L',
   '#f78a48': 'SHIFT-K',
-  '#888888': 'CTRL-J'
+  '#888888': 'CTRL-J',
+  '#44c4fb': 'CTRL-K',
+
+
   // '#f7aeae': 'SHIFT-F9',
-  // SHIFT-j
-  // SHIFT-m
-  // SHIFT-n
-  // CTRL-=
-  // CTRL--
-  // CTRL-p
-  // CTRL-o
-  // CTRL-i
-  // CTRL-l
-  // CTRL-k
-  // CTRL-j
-  // CTRL-m
-  // CTRL-n
+  //S8 SHIFT-j
+  //S9 SHIFT-m
+  //S10 SHIFT-n
+  //C1 CTRL-=
+  //C2 CTRL--
+  //C3 CTRL-p
+  //C4 CTRL-o
+  //C5 CTRL-i
+  //C6 CTRL-l
+  //C7 CTRL-k
+  //C8 CTRL-j
+  //C9 CTRL-m
+  //C10 CTRL-n
 };
 
 /** 猪猪一键宏 */
