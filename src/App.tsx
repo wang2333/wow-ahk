@@ -15,6 +15,11 @@ function App() {
 
   useEffect(() => {
     const disableRefresh = (e: KeyboardEvent) => {
+      // 禁用 F12
+      if (e.key === 'F12') {
+        e.preventDefault();
+        return false;
+      }
       if (e.key === 'F5') {
         e.preventDefault();
         return false;
@@ -31,10 +36,17 @@ function App() {
       }
       return false;
     };
+    // 禁用鼠标右键
+    // const disabledRightClick = (e: MouseEvent) => {
+    //   e.preventDefault();
+    //   return false;
+    // };
 
     document.addEventListener('keydown', disableRefresh);
+    // document.addEventListener('contextmenu', disabledRightClick);
     return () => {
       document.removeEventListener('keydown', disableRefresh);
+      // document.removeEventListener('contextmenu', disabledRightClick);
     };
   }, []);
 
@@ -47,34 +59,30 @@ function App() {
   return (
     <div className='app-container'>
       <div className='header'>
-        <div className='tab-container'>
-          <button
-            className={`tab-button ${activeTab === 'help' ? 'active' : ''}`}
-            onClick={() => setActiveTab('help')}
-          >
-            使用说明
-          </button>
-          <button
-            className={`tab-button ${activeTab === 'wow' ? 'active' : ''}`}
-            onClick={() => setActiveTab('wow')}
-          >
-            魔兽世界
-          </button>
-          <button
-            className={`tab-button ${activeTab === 'install' ? 'active' : ''}`}
-            onClick={() => setActiveTab('install')}
-          >
-            插件安装
-          </button>
-
-          {/* <button
-            className={`tab-button ${activeTab === 'zxsj' ? 'active' : ''}`}
-            onClick={() => setActiveTab('zxsj')}
-            disabled={true}
-          >
-            诛仙世界
-          </button> */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <div className='tab-container'>
+            <button
+              className={`tab-button ${activeTab === 'help' ? 'active' : ''}`}
+              onClick={() => setActiveTab('help')}
+            >
+              使用说明
+            </button>
+            <button
+              className={`tab-button ${activeTab === 'wow' ? 'active' : ''}`}
+              onClick={() => setActiveTab('wow')}
+            >
+              魔兽世界
+            </button>
+            <button
+              className={`tab-button ${activeTab === 'install' ? 'active' : ''}`}
+              onClick={() => setActiveTab('install')}
+            >
+              插件安装
+            </button>
+          </div>
+          <span className='group-link'>售前QQ：154019212</span>
         </div>
+
         <div className='user-info'>
           <button className='logout-button' onClick={logout}>
             退出登录
