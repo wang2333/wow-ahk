@@ -8,6 +8,7 @@ import WOW from '@/components/WOW';
 import { useAuth } from './contexts/AuthContext';
 import Help from './components/Help';
 import Install from './components/Install';
+import Loading from './components/Loading';
 
 function App() {
   const [activeTab, setActiveTab] = useState<'wow' | 'zxsj' | 'help' | 'install'>('help');
@@ -52,50 +53,58 @@ function App() {
 
   // 如果用户未登录，显示登录页面
   if (!userInfo) {
-    return <Login onLogin={login} isLoading={isLoading} />;
+    return (
+      <>
+        <Loading isLoading={isLoading} />
+        <Login onLogin={login} isLoading={isLoading} />
+      </>
+    );
   }
 
   // 用户已登录，显示主应用
   return (
-    <div className='app-container'>
-      <div className='header'>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <div className='tab-container'>
-            <button
-              className={`tab-button ${activeTab === 'help' ? 'active' : ''}`}
-              onClick={() => setActiveTab('help')}
-            >
-              使用说明
-            </button>
-            <button
-              className={`tab-button ${activeTab === 'wow' ? 'active' : ''}`}
-              onClick={() => setActiveTab('wow')}
-            >
-              魔兽世界
-            </button>
-            <button
-              className={`tab-button ${activeTab === 'install' ? 'active' : ''}`}
-              onClick={() => setActiveTab('install')}
-            >
-              插件安装
+    <>
+      <Loading isLoading={isLoading} />
+      <div className='app-container'>
+        <div className='header'>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <div className='tab-container'>
+              <button
+                className={`tab-button ${activeTab === 'help' ? 'active' : ''}`}
+                onClick={() => setActiveTab('help')}
+              >
+                使用说明
+              </button>
+              <button
+                className={`tab-button ${activeTab === 'wow' ? 'active' : ''}`}
+                onClick={() => setActiveTab('wow')}
+              >
+                魔兽世界
+              </button>
+              <button
+                className={`tab-button ${activeTab === 'install' ? 'active' : ''}`}
+                onClick={() => setActiveTab('install')}
+              >
+                插件安装
+              </button>
+            </div>
+            <span className='group-link'>售前QQ：154019212</span>
+          </div>
+
+          <div className='user-info'>
+            <button className='logout-button' onClick={logout}>
+              退出登录
             </button>
           </div>
-          <span className='group-link'>售前QQ：154019212</span>
         </div>
 
-        <div className='user-info'>
-          <button className='logout-button' onClick={logout}>
-            退出登录
-          </button>
+        <div className='tab-content'>
+          {activeTab === 'wow' && <WOW />}
+          {activeTab === 'help' && <Help />}
+          {activeTab === 'install' && <Install />}
         </div>
       </div>
-
-      <div className='tab-content'>
-        {activeTab === 'wow' && <WOW />}
-        {activeTab === 'help' && <Help />}
-        {activeTab === 'install' && <Install />}
-      </div>
-    </div>
+    </>
   );
 }
 
