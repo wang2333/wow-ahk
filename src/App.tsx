@@ -37,16 +37,16 @@ function App() {
       return false;
     };
     // 禁用鼠标右键
-    // const disabledRightClick = (e: MouseEvent) => {
-    //   e.preventDefault();
-    //   return false;
-    // };
+    const disabledRightClick = (e: MouseEvent) => {
+      e.preventDefault();
+      return false;
+    };
 
     document.addEventListener('keydown', disableRefresh);
-    // document.addEventListener('contextmenu', disabledRightClick);
+    document.addEventListener('contextmenu', disabledRightClick);
     return () => {
       document.removeEventListener('keydown', disableRefresh);
-      // document.removeEventListener('contextmenu', disabledRightClick);
+      document.removeEventListener('contextmenu', disabledRightClick);
     };
   }, []);
 
