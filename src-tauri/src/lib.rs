@@ -87,334 +87,334 @@ fn get_current_position_color() -> Option<PositionColorInfo> {
     None
 }
 
-#[tauri::command]
-fn press_keys(keys: Vec<String>) {
-    // 创建键名到虚拟键码的映射
-    let mut key_map: HashMap<&'static str, u16> = HashMap::new();
-    key_map.insert("ALT", VK_LMENU as u16);
-    key_map.insert("CTRL", VK_LCONTROL as u16);
-    key_map.insert("SHIFT", VK_LSHIFT as u16);
-    key_map.insert("F1", VK_F1 as u16);
-    key_map.insert("F2", VK_F2 as u16);
-    key_map.insert("F3", VK_F3 as u16);
-    key_map.insert("F4", VK_F4 as u16);
-    key_map.insert("F5", VK_F5 as u16);
-    key_map.insert("F6", VK_F6 as u16);
-    key_map.insert("F7", VK_F7 as u16);
-    key_map.insert("F8", VK_F8 as u16);
-    key_map.insert("F9", VK_F9 as u16);
-    key_map.insert("F10", VK_F10 as u16);
-    key_map.insert("F11", VK_F11 as u16);
-    key_map.insert("F12", VK_F12 as u16);
-    key_map.insert("NUM0", VK_NUMPAD0 as u16);
-    key_map.insert("NUM1", VK_NUMPAD1 as u16);
-    key_map.insert("NUM2", VK_NUMPAD2 as u16);
-    key_map.insert("NUM3", VK_NUMPAD3 as u16);
-    key_map.insert("NUM4", VK_NUMPAD4 as u16);
-    key_map.insert("NUM5", VK_NUMPAD5 as u16);
-    key_map.insert("NUM6", VK_NUMPAD6 as u16);
-    key_map.insert("NUM7", VK_NUMPAD7 as u16);
-    key_map.insert("NUM8", VK_NUMPAD8 as u16);
-    key_map.insert("NUM9", VK_NUMPAD9 as u16);
-    key_map.insert("NUMPAD0", VK_NUMPAD0 as u16);
-    key_map.insert("NUMPAD1", VK_NUMPAD1 as u16);
-    key_map.insert("NUMPAD2", VK_NUMPAD2 as u16);
-    key_map.insert("NUMPAD3", VK_NUMPAD3 as u16);
-    key_map.insert("NUMPAD4", VK_NUMPAD4 as u16);
-    key_map.insert("NUMPAD5", VK_NUMPAD5 as u16);
-    key_map.insert("NUMPAD6", VK_NUMPAD6 as u16);
-    key_map.insert("NUMPAD7", VK_NUMPAD7 as u16);
-    key_map.insert("NUMPAD8", VK_NUMPAD8 as u16);
-    key_map.insert("NUMPAD9", VK_NUMPAD9 as u16);
-    key_map.insert("TAB", VK_TAB as u16);
-    key_map.insert("DELETE", VK_DELETE as u16);
-    key_map.insert("HOME", VK_HOME as u16);
-    key_map.insert("END", VK_END as u16);
-    key_map.insert("PAGEUP", VK_PRIOR as u16);
-    key_map.insert("PAGEDOWN", VK_NEXT as u16);
-    key_map.insert("UP", VK_UP as u16);
-    key_map.insert("DOWN", VK_DOWN as u16);
-    key_map.insert("LEFT", VK_LEFT as u16);
-    key_map.insert("RIGHT", VK_RIGHT as u16);
-    key_map.insert("INSERT", VK_INSERT as u16);
-    key_map.insert("NUMPADDIVIDE", VK_DIVIDE as u16);
-    key_map.insert("NUMPADMULTIPLY", VK_MULTIPLY as u16);
-    key_map.insert("NUMPADMINUS", VK_SUBTRACT as u16);
-    key_map.insert("NUMPADPLUS", VK_ADD as u16);
-    key_map.insert("NUMPADDECIMAL", VK_DECIMAL as u16);
-
-    // 添加数字键的虚拟键码映射
-    key_map.insert("0", 0x30);
-    key_map.insert("1", 0x31);
-    key_map.insert("2", 0x32);
-    key_map.insert("3", 0x33);
-    key_map.insert("4", 0x34);
-    key_map.insert("5", 0x35);
-    key_map.insert("6", 0x36);
-    key_map.insert("7", 0x37);
-    key_map.insert("8", 0x38);
-    key_map.insert("9", 0x39);
-
-    // 添加字母键的虚拟键码映射
-    key_map.insert("A", 0x41);
-    key_map.insert("B", 0x42);
-    key_map.insert("C", 0x43);
-    key_map.insert("D", 0x44);
-    key_map.insert("E", 0x45);
-    key_map.insert("F", 0x46);
-    key_map.insert("G", 0x47);
-    key_map.insert("H", 0x48);
-    key_map.insert("I", 0x49);
-    key_map.insert("J", 0x4A);
-    key_map.insert("K", 0x4B);
-    key_map.insert("L", 0x4C);
-    key_map.insert("M", 0x4D);
-    key_map.insert("N", 0x4E);
-    key_map.insert("O", 0x4F);
-    key_map.insert("P", 0x50);
-    key_map.insert("Q", 0x51);
-    key_map.insert("R", 0x52);
-    key_map.insert("S", 0x53);
-    key_map.insert("T", 0x54);
-    key_map.insert("U", 0x55);
-    key_map.insert("V", 0x56);
-    key_map.insert("W", 0x57);
-    key_map.insert("X", 0x58);
-    key_map.insert("Y", 0x59);
-    key_map.insert("Z", 0x5A);
-
-    key_map.insert("a", 0x41);
-    key_map.insert("b", 0x42);
-    key_map.insert("c", 0x43);
-    key_map.insert("d", 0x44);
-    key_map.insert("e", 0x45);
-    key_map.insert("f", 0x46);
-    key_map.insert("g", 0x47);
-    key_map.insert("h", 0x48);
-    key_map.insert("i", 0x49);
-    key_map.insert("j", 0x4A);
-    key_map.insert("k", 0x4B);
-    key_map.insert("l", 0x4C);
-    key_map.insert("m", 0x4D);
-    key_map.insert("n", 0x4E);
-    key_map.insert("o", 0x4F);
-    key_map.insert("p", 0x50);
-    key_map.insert("q", 0x51);
-    key_map.insert("r", 0x52);
-    key_map.insert("s", 0x53);
-    key_map.insert("t", 0x54);
-    key_map.insert("u", 0x55);
-    key_map.insert("v", 0x56);
-    key_map.insert("w", 0x57);
-    key_map.insert("x", 0x58);
-    key_map.insert("y", 0x59);
-    key_map.insert("z", 0x5A);
-
-    // 添加一些特殊字符的映射
-    key_map.insert(",", 0xBC);
-    key_map.insert(".", 0xBE);
-    key_map.insert(";", 0xBA);
-    key_map.insert("[", 0xDB);
-    key_map.insert("]", 0xDD);
-    key_map.insert("=", 0xBB);
-    key_map.insert("-", 0xBD);
-
-    // 记录需要按下的修饰键
-    let mut modifier_keys = Vec::new();
-    for key in &keys {
-        if key == "ALT" || key == "CTRL" || key == "SHIFT" {
-            modifier_keys.push(key.clone());
-        }
-    }
-
-    let delay = Duration::from_millis(10);
-
-    unsafe {
-        // 按下所有修饰键
-        for key in &modifier_keys {
-            if let Some(&vk) = key_map.get(key.as_str()) {
-                let mut input = INPUT {
-                    r#type: INPUT_KEYBOARD,
-                    Anonymous: std::mem::zeroed(),
-                };
-                // 直接设置ki字段
-                input.Anonymous.ki = KEYBDINPUT {
-                    wVk: vk,
-                    wScan: 0,
-                    dwFlags: 0,
-                    time: 0,
-                    dwExtraInfo: 0,
-                };
-                SendInput(1, &input, std::mem::size_of::<INPUT>() as i32);
-                thread::sleep(delay);
-            }
-        }
-
-        // 处理所有非修饰键
-        for key in &keys {
-            if !modifier_keys.contains(key) {
-                if key == "MOUSEWHEELUP" {
-                    // 处理鼠标滚轮向上
-                    // 这里需要使用鼠标输入，暂不实现
-                } else if key == "MOUSEWHEELDOWN" {
-                    // 处理鼠标滚轮向下
-                    // 这里需要使用鼠标输入，暂不实现
-                } else if let Some(&vk) = key_map.get(key.as_str()) {
-                    // 按下并释放非修饰键
-                    let mut input = INPUT {
-                        r#type: INPUT_KEYBOARD,
-                        Anonymous: std::mem::zeroed(),
-                    };
-                    // 直接设置ki字段
-                    input.Anonymous.ki = KEYBDINPUT {
-                        wVk: vk,
-                        wScan: 0,
-                        dwFlags: 0,
-                        time: 0,
-                        dwExtraInfo: 0,
-                    };
-                    SendInput(1, &input, std::mem::size_of::<INPUT>() as i32);
-                    thread::sleep(delay);
-
-                    // 释放非修饰键
-                    input.Anonymous.ki = KEYBDINPUT {
-                        wVk: vk,
-                        wScan: 0,
-                        dwFlags: KEYEVENTF_KEYUP,
-                        time: 0,
-                        dwExtraInfo: 0,
-                    };
-                    SendInput(1, &input, std::mem::size_of::<INPUT>() as i32);
-                    thread::sleep(delay);
-                }
-            }
-        }
-
-        // 释放所有修饰键（从后往前，与按下顺序相反）
-        for key in modifier_keys.iter().rev() {
-            if let Some(&vk) = key_map.get(key.as_str()) {
-                let mut input = INPUT {
-                    r#type: INPUT_KEYBOARD,
-                    Anonymous: std::mem::zeroed(),
-                };
-                // 直接设置ki字段
-                input.Anonymous.ki = KEYBDINPUT {
-                    wVk: vk,
-                    wScan: 0,
-                    dwFlags: KEYEVENTF_KEYUP,
-                    time: 0,
-                    dwExtraInfo: 0,
-                };
-                SendInput(1, &input, std::mem::size_of::<INPUT>() as i32);
-                thread::sleep(delay);
-            }
-        }
-    }
-}
-
 // #[tauri::command]
 // fn press_keys(keys: Vec<String>) {
-//     let mut enigo = Enigo::new();
+//     // 创建键名到虚拟键码的映射
+//     let mut key_map: HashMap<&'static str, u16> = HashMap::new();
+//     key_map.insert("ALT", VK_LMENU as u16);
+//     key_map.insert("CTRL", VK_LCONTROL as u16);
+//     key_map.insert("SHIFT", VK_LSHIFT as u16);
+//     key_map.insert("F1", VK_F1 as u16);
+//     key_map.insert("F2", VK_F2 as u16);
+//     key_map.insert("F3", VK_F3 as u16);
+//     key_map.insert("F4", VK_F4 as u16);
+//     key_map.insert("F5", VK_F5 as u16);
+//     key_map.insert("F6", VK_F6 as u16);
+//     key_map.insert("F7", VK_F7 as u16);
+//     key_map.insert("F8", VK_F8 as u16);
+//     key_map.insert("F9", VK_F9 as u16);
+//     key_map.insert("F10", VK_F10 as u16);
+//     key_map.insert("F11", VK_F11 as u16);
+//     key_map.insert("F12", VK_F12 as u16);
+//     key_map.insert("NUM0", VK_NUMPAD0 as u16);
+//     key_map.insert("NUM1", VK_NUMPAD1 as u16);
+//     key_map.insert("NUM2", VK_NUMPAD2 as u16);
+//     key_map.insert("NUM3", VK_NUMPAD3 as u16);
+//     key_map.insert("NUM4", VK_NUMPAD4 as u16);
+//     key_map.insert("NUM5", VK_NUMPAD5 as u16);
+//     key_map.insert("NUM6", VK_NUMPAD6 as u16);
+//     key_map.insert("NUM7", VK_NUMPAD7 as u16);
+//     key_map.insert("NUM8", VK_NUMPAD8 as u16);
+//     key_map.insert("NUM9", VK_NUMPAD9 as u16);
+//     key_map.insert("NUMPAD0", VK_NUMPAD0 as u16);
+//     key_map.insert("NUMPAD1", VK_NUMPAD1 as u16);
+//     key_map.insert("NUMPAD2", VK_NUMPAD2 as u16);
+//     key_map.insert("NUMPAD3", VK_NUMPAD3 as u16);
+//     key_map.insert("NUMPAD4", VK_NUMPAD4 as u16);
+//     key_map.insert("NUMPAD5", VK_NUMPAD5 as u16);
+//     key_map.insert("NUMPAD6", VK_NUMPAD6 as u16);
+//     key_map.insert("NUMPAD7", VK_NUMPAD7 as u16);
+//     key_map.insert("NUMPAD8", VK_NUMPAD8 as u16);
+//     key_map.insert("NUMPAD9", VK_NUMPAD9 as u16);
+//     key_map.insert("TAB", VK_TAB as u16);
+//     key_map.insert("DELETE", VK_DELETE as u16);
+//     key_map.insert("HOME", VK_HOME as u16);
+//     key_map.insert("END", VK_END as u16);
+//     key_map.insert("PAGEUP", VK_PRIOR as u16);
+//     key_map.insert("PAGEDOWN", VK_NEXT as u16);
+//     key_map.insert("UP", VK_UP as u16);
+//     key_map.insert("DOWN", VK_DOWN as u16);
+//     key_map.insert("LEFT", VK_LEFT as u16);
+//     key_map.insert("RIGHT", VK_RIGHT as u16);
+//     key_map.insert("INSERT", VK_INSERT as u16);
+//     key_map.insert("NUMPADDIVIDE", VK_DIVIDE as u16);
+//     key_map.insert("NUMPADMULTIPLY", VK_MULTIPLY as u16);
+//     key_map.insert("NUMPADMINUS", VK_SUBTRACT as u16);
+//     key_map.insert("NUMPADPLUS", VK_ADD as u16);
+//     key_map.insert("NUMPADDECIMAL", VK_DECIMAL as u16);
+
+//     // 添加数字键的虚拟键码映射
+//     key_map.insert("0", 0x30);
+//     key_map.insert("1", 0x31);
+//     key_map.insert("2", 0x32);
+//     key_map.insert("3", 0x33);
+//     key_map.insert("4", 0x34);
+//     key_map.insert("5", 0x35);
+//     key_map.insert("6", 0x36);
+//     key_map.insert("7", 0x37);
+//     key_map.insert("8", 0x38);
+//     key_map.insert("9", 0x39);
+
+//     // 添加字母键的虚拟键码映射
+//     key_map.insert("A", 0x41);
+//     key_map.insert("B", 0x42);
+//     key_map.insert("C", 0x43);
+//     key_map.insert("D", 0x44);
+//     key_map.insert("E", 0x45);
+//     key_map.insert("F", 0x46);
+//     key_map.insert("G", 0x47);
+//     key_map.insert("H", 0x48);
+//     key_map.insert("I", 0x49);
+//     key_map.insert("J", 0x4A);
+//     key_map.insert("K", 0x4B);
+//     key_map.insert("L", 0x4C);
+//     key_map.insert("M", 0x4D);
+//     key_map.insert("N", 0x4E);
+//     key_map.insert("O", 0x4F);
+//     key_map.insert("P", 0x50);
+//     key_map.insert("Q", 0x51);
+//     key_map.insert("R", 0x52);
+//     key_map.insert("S", 0x53);
+//     key_map.insert("T", 0x54);
+//     key_map.insert("U", 0x55);
+//     key_map.insert("V", 0x56);
+//     key_map.insert("W", 0x57);
+//     key_map.insert("X", 0x58);
+//     key_map.insert("Y", 0x59);
+//     key_map.insert("Z", 0x5A);
+
+//     key_map.insert("a", 0x41);
+//     key_map.insert("b", 0x42);
+//     key_map.insert("c", 0x43);
+//     key_map.insert("d", 0x44);
+//     key_map.insert("e", 0x45);
+//     key_map.insert("f", 0x46);
+//     key_map.insert("g", 0x47);
+//     key_map.insert("h", 0x48);
+//     key_map.insert("i", 0x49);
+//     key_map.insert("j", 0x4A);
+//     key_map.insert("k", 0x4B);
+//     key_map.insert("l", 0x4C);
+//     key_map.insert("m", 0x4D);
+//     key_map.insert("n", 0x4E);
+//     key_map.insert("o", 0x4F);
+//     key_map.insert("p", 0x50);
+//     key_map.insert("q", 0x51);
+//     key_map.insert("r", 0x52);
+//     key_map.insert("s", 0x53);
+//     key_map.insert("t", 0x54);
+//     key_map.insert("u", 0x55);
+//     key_map.insert("v", 0x56);
+//     key_map.insert("w", 0x57);
+//     key_map.insert("x", 0x58);
+//     key_map.insert("y", 0x59);
+//     key_map.insert("z", 0x5A);
+
+//     // 添加一些特殊字符的映射
+//     key_map.insert(",", 0xBC);
+//     key_map.insert(".", 0xBE);
+//     key_map.insert(";", 0xBA);
+//     key_map.insert("[", 0xDB);
+//     key_map.insert("]", 0xDD);
+//     key_map.insert("=", 0xBB);
+//     key_map.insert("-", 0xBD);
+
+//     // 记录需要按下的修饰键
+//     let mut modifier_keys = Vec::new();
+//     for key in &keys {
+//         if key == "ALT" || key == "CTRL" || key == "SHIFT" {
+//             modifier_keys.push(key.clone());
+//         }
+//     }
+
 //     let delay = Duration::from_millis(10);
 
-//     // 按下所有修饰键
-//     for key in &keys {
-//         match key.as_str() {
-//             "ALT" => enigo.key_down(Key::Alt),
-//             "CTRL" => enigo.key_down(Key::Control),
-//             "SHIFT" => enigo.key_down(Key::Shift),
-//             _ => {}
+//     unsafe {
+//         // 按下所有修饰键
+//         for key in &modifier_keys {
+//             if let Some(&vk) = key_map.get(key.as_str()) {
+//                 let mut input = INPUT {
+//                     r#type: INPUT_KEYBOARD,
+//                     Anonymous: std::mem::zeroed(),
+//                 };
+//                 // 直接设置ki字段
+//                 input.Anonymous.ki = KEYBDINPUT {
+//                     wVk: vk,
+//                     wScan: 0,
+//                     dwFlags: 0,
+//                     time: 0,
+//                     dwExtraInfo: 0,
+//                 };
+//                 SendInput(1, &input, std::mem::size_of::<INPUT>() as i32);
+//                 thread::sleep(delay);
+//             }
 //         }
-//         thread::sleep(delay);
-//     }
 
-//     // 按下主键
-//     for key in &keys {
-//         match key.as_str() {
-//             "F1" => enigo.key_click(Key::F1),
-//             "F2" => enigo.key_click(Key::F2),
-//             "F3" => enigo.key_click(Key::F3),
-//             "F4" => enigo.key_click(Key::F4),
-//             "F5" => enigo.key_click(Key::F5),
-//             "F6" => enigo.key_click(Key::F6),
-//             "F7" => enigo.key_click(Key::F7),
-//             "F8" => enigo.key_click(Key::F8),
-//             "F9" => enigo.key_click(Key::F9),
-//             "F10" => enigo.key_click(Key::F10),
-//             "F11" => enigo.key_click(Key::F11),
-//             "F12" => enigo.key_click(Key::F12),
-//             "NUM0" => enigo.key_click(Key::Numpad0),
-//             "NUM1" => enigo.key_click(Key::Numpad1),
-//             "NUM2" => enigo.key_click(Key::Numpad2),
-//             "NUM3" => enigo.key_click(Key::Numpad3),
-//             "NUM4" => enigo.key_click(Key::Numpad4),
-//             "NUM5" => enigo.key_click(Key::Numpad5),
-//             "NUM6" => enigo.key_click(Key::Numpad6),
-//             "NUM7" => enigo.key_click(Key::Numpad7),
-//             "NUM8" => enigo.key_click(Key::Numpad8),
-//             "NUM9" => enigo.key_click(Key::Numpad9),
-//             "NUMPAD0" => enigo.key_click(Key::Numpad0),
-//             "NUMPAD1" => enigo.key_click(Key::Numpad1),
-//             "NUMPAD2" => enigo.key_click(Key::Numpad2),
-//             "NUMPAD3" => enigo.key_click(Key::Numpad3),
-//             "NUMPAD4" => enigo.key_click(Key::Numpad4),
-//             "NUMPAD5" => enigo.key_click(Key::Numpad5),
-//             "NUMPAD6" => enigo.key_click(Key::Numpad6),
-//             "NUMPAD7" => enigo.key_click(Key::Numpad7),
-//             "NUMPAD8" => enigo.key_click(Key::Numpad8),
-//             "NUMPAD9" => enigo.key_click(Key::Numpad9),
-//             "6" => enigo.key_click(Key::Raw(54)),
-//             "7" => enigo.key_click(Key::Raw(55)),
-//             "8" => enigo.key_click(Key::Raw(56)),
-//             "9" => enigo.key_click(Key::Raw(57)),
-//             "0" => enigo.key_click(Key::Raw(48)),
+//         // 处理所有非修饰键
+//         for key in &keys {
+//             if !modifier_keys.contains(key) {
+//                 if key == "MOUSEWHEELUP" {
+//                     // 处理鼠标滚轮向上
+//                     // 这里需要使用鼠标输入，暂不实现
+//                 } else if key == "MOUSEWHEELDOWN" {
+//                     // 处理鼠标滚轮向下
+//                     // 这里需要使用鼠标输入，暂不实现
+//                 } else if let Some(&vk) = key_map.get(key.as_str()) {
+//                     // 按下并释放非修饰键
+//                     let mut input = INPUT {
+//                         r#type: INPUT_KEYBOARD,
+//                         Anonymous: std::mem::zeroed(),
+//                     };
+//                     // 直接设置ki字段
+//                     input.Anonymous.ki = KEYBDINPUT {
+//                         wVk: vk,
+//                         wScan: 0,
+//                         dwFlags: 0,
+//                         time: 0,
+//                         dwExtraInfo: 0,
+//                     };
+//                     SendInput(1, &input, std::mem::size_of::<INPUT>() as i32);
+//                     thread::sleep(delay);
 
-//             "MOUSEWHEELUP" => enigo.mouse_scroll_y(1),
-//             "MOUSEWHEELDOWN" => enigo.mouse_scroll_y(-1),
-//             "TAB" => enigo.key_click(Key::Tab),
-//             "DELETE" => enigo.key_click(Key::Delete),
-//             "HOME" => enigo.key_click(Key::Home),
-//             "END" => enigo.key_click(Key::End),
-//             "PAGEUP" => enigo.key_click(Key::PageUp),
-//             "PAGEDOWN" => enigo.key_click(Key::PageDown),
-//             "UP" => enigo.key_click(Key::UpArrow),
-//             "DOWN" => enigo.key_click(Key::DownArrow),
-//             "LEFT" => enigo.key_click(Key::LeftArrow),
-//             "RIGHT" => enigo.key_click(Key::RightArrow),
-//             "INSERT" => enigo.key_click(Key::Insert),
-//             "NUMPADDIVIDE" => enigo.key_click(Key::Raw(111)),
-//             "NUMPADMULTIPLY" => enigo.key_click(Key::Raw(106)),
-//             "NUMPADMINUS" => enigo.key_click(Key::Raw(109)),
-//             "NUMPADPLUS" => enigo.key_click(Key::Raw(107)),
-//             "NUMPADDECIMAL" => enigo.key_click(Key::Raw(110)),
-//             "," => enigo.key_click(Key::Layout(',')),
-//             "." => enigo.key_click(Key::Layout('.')),
-//             ";" => enigo.key_click(Key::Layout(';')),
-//             "[" => enigo.key_click(Key::Layout('[')),
-//             "]" => enigo.key_click(Key::Layout(']')),
-//             "=" => enigo.key_click(Key::Layout('=')),
-//             "-" => enigo.key_click(Key::Layout('-')),
-//             key if key.len() == 1 => {
-//                 if let Some(c) = key.chars().next() {
-//                     enigo.key_click(Key::Layout(c.to_ascii_lowercase()));
+//                     // 释放非修饰键
+//                     input.Anonymous.ki = KEYBDINPUT {
+//                         wVk: vk,
+//                         wScan: 0,
+//                         dwFlags: KEYEVENTF_KEYUP,
+//                         time: 0,
+//                         dwExtraInfo: 0,
+//                     };
+//                     SendInput(1, &input, std::mem::size_of::<INPUT>() as i32);
+//                     thread::sleep(delay);
 //                 }
 //             }
-//             _ => {}
 //         }
-//         thread::sleep(delay);
-//     }
 
-//     // 释放所有修饰键
-//     for key in &keys {
-//         match key.as_str() {
-//             "ALT" => enigo.key_up(Key::Alt),
-//             "CTRL" => enigo.key_up(Key::Control),
-//             "SHIFT" => enigo.key_up(Key::Shift),
-//             _ => {}
+//         // 释放所有修饰键（从后往前，与按下顺序相反）
+//         for key in modifier_keys.iter().rev() {
+//             if let Some(&vk) = key_map.get(key.as_str()) {
+//                 let mut input = INPUT {
+//                     r#type: INPUT_KEYBOARD,
+//                     Anonymous: std::mem::zeroed(),
+//                 };
+//                 // 直接设置ki字段
+//                 input.Anonymous.ki = KEYBDINPUT {
+//                     wVk: vk,
+//                     wScan: 0,
+//                     dwFlags: KEYEVENTF_KEYUP,
+//                     time: 0,
+//                     dwExtraInfo: 0,
+//                 };
+//                 SendInput(1, &input, std::mem::size_of::<INPUT>() as i32);
+//                 thread::sleep(delay);
+//             }
 //         }
-//         thread::sleep(delay);
 //     }
 // }
+
+#[tauri::command]
+fn press_keys(keys: Vec<String>) {
+    let mut enigo = Enigo::new();
+    let delay = Duration::from_millis(10);
+
+    // 按下所有修饰键
+    for key in &keys {
+        match key.as_str() {
+            "ALT" => enigo.key_down(Key::Alt),
+            "CTRL" => enigo.key_down(Key::Control),
+            "SHIFT" => enigo.key_down(Key::Shift),
+            _ => {}
+        }
+        thread::sleep(delay);
+    }
+
+    // 按下主键
+    for key in &keys {
+        match key.as_str() {
+            "F1" => enigo.key_click(Key::F1),
+            "F2" => enigo.key_click(Key::F2),
+            "F3" => enigo.key_click(Key::F3),
+            "F4" => enigo.key_click(Key::F4),
+            "F5" => enigo.key_click(Key::F5),
+            "F6" => enigo.key_click(Key::F6),
+            "F7" => enigo.key_click(Key::F7),
+            "F8" => enigo.key_click(Key::F8),
+            "F9" => enigo.key_click(Key::F9),
+            "F10" => enigo.key_click(Key::F10),
+            "F11" => enigo.key_click(Key::F11),
+            "F12" => enigo.key_click(Key::F12),
+            "NUM0" => enigo.key_click(Key::Numpad0),
+            "NUM1" => enigo.key_click(Key::Numpad1),
+            "NUM2" => enigo.key_click(Key::Numpad2),
+            "NUM3" => enigo.key_click(Key::Numpad3),
+            "NUM4" => enigo.key_click(Key::Numpad4),
+            "NUM5" => enigo.key_click(Key::Numpad5),
+            "NUM6" => enigo.key_click(Key::Numpad6),
+            "NUM7" => enigo.key_click(Key::Numpad7),
+            "NUM8" => enigo.key_click(Key::Numpad8),
+            "NUM9" => enigo.key_click(Key::Numpad9),
+            "NUMPAD0" => enigo.key_click(Key::Numpad0),
+            "NUMPAD1" => enigo.key_click(Key::Numpad1),
+            "NUMPAD2" => enigo.key_click(Key::Numpad2),
+            "NUMPAD3" => enigo.key_click(Key::Numpad3),
+            "NUMPAD4" => enigo.key_click(Key::Numpad4),
+            "NUMPAD5" => enigo.key_click(Key::Numpad5),
+            "NUMPAD6" => enigo.key_click(Key::Numpad6),
+            "NUMPAD7" => enigo.key_click(Key::Numpad7),
+            "NUMPAD8" => enigo.key_click(Key::Numpad8),
+            "NUMPAD9" => enigo.key_click(Key::Numpad9),
+            "6" => enigo.key_click(Key::Raw(54)),
+            "7" => enigo.key_click(Key::Raw(55)),
+            "8" => enigo.key_click(Key::Raw(56)),
+            "9" => enigo.key_click(Key::Raw(57)),
+            "0" => enigo.key_click(Key::Raw(48)),
+
+            "MOUSEWHEELUP" => enigo.mouse_scroll_y(1),
+            "MOUSEWHEELDOWN" => enigo.mouse_scroll_y(-1),
+            "TAB" => enigo.key_click(Key::Tab),
+            "DELETE" => enigo.key_click(Key::Delete),
+            "HOME" => enigo.key_click(Key::Home),
+            "END" => enigo.key_click(Key::End),
+            "PAGEUP" => enigo.key_click(Key::PageUp),
+            "PAGEDOWN" => enigo.key_click(Key::PageDown),
+            "UP" => enigo.key_click(Key::UpArrow),
+            "DOWN" => enigo.key_click(Key::DownArrow),
+            "LEFT" => enigo.key_click(Key::LeftArrow),
+            "RIGHT" => enigo.key_click(Key::RightArrow),
+            "INSERT" => enigo.key_click(Key::Insert),
+            "NUMPADDIVIDE" => enigo.key_click(Key::Raw(111)),
+            "NUMPADMULTIPLY" => enigo.key_click(Key::Raw(106)),
+            "NUMPADMINUS" => enigo.key_click(Key::Raw(109)),
+            "NUMPADPLUS" => enigo.key_click(Key::Raw(107)),
+            "NUMPADDECIMAL" => enigo.key_click(Key::Raw(110)),
+            "," => enigo.key_click(Key::Layout(',')),
+            "." => enigo.key_click(Key::Layout('.')),
+            ";" => enigo.key_click(Key::Layout(';')),
+            "[" => enigo.key_click(Key::Layout('[')),
+            "]" => enigo.key_click(Key::Layout(']')),
+            "=" => enigo.key_click(Key::Layout('=')),
+            "-" => enigo.key_click(Key::Layout('-')),
+            key if key.len() == 1 => {
+                if let Some(c) = key.chars().next() {
+                    enigo.key_click(Key::Layout(c.to_ascii_lowercase()));
+                }
+            }
+            _ => {}
+        }
+        thread::sleep(delay);
+    }
+
+    // 释放所有修饰键
+    for key in &keys {
+        match key.as_str() {
+            "ALT" => enigo.key_up(Key::Alt),
+            "CTRL" => enigo.key_up(Key::Control),
+            "SHIFT" => enigo.key_up(Key::Shift),
+            _ => {}
+        }
+        thread::sleep(delay);
+    }
+}
 
 #[tauri::command]
 fn move_mouse_to_point(x: f64, y: f64) -> Result<(), String> {
