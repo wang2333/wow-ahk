@@ -35,8 +35,12 @@ const Install: React.FC<InstallProps> = () => {
       if (selected && !Array.isArray(selected)) {
         // 验证目录是否存在
         if (await exists(selected)) {
-          setGamePath(selected);
-          setMessage({ text: '已选择游戏目录: ' + selected, type: 'info' });
+          if (selected.endsWith('_classic_') || selected.endsWith('_retail_')) {
+            setGamePath(selected);
+            setMessage({ text: '已选择游戏目录: ' + selected, type: 'info' });
+          } else {
+            setMessage({ text: '请选择正确的目录', type: 'error' });
+          }
         } else {
           setMessage({ text: `所选目录不存在: ${selected}`, type: 'error' });
         }
