@@ -56,6 +56,16 @@ const Login = ({ onLogin, isLoading }: LoginProps) => {
           </button>
         </form>
       </div>
+      <span
+        style={{
+          display: 'flex',
+          lineHeight: '50px',
+          color: 'green',
+          fontSize: '18px'
+        }}
+      >
+        售前QQ：154019212
+      </span>
     </div>
   );
 };

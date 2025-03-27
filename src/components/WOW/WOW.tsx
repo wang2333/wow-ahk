@@ -228,30 +228,29 @@ function WOW() {
           y = y + 5;
         }
       } else {
-        const gameStartX = x + 11;
-        const gameStartY = y + 45;
+        x = x + 8;
+        y = y + 8 + 23;
+      }
 
-        if (selectedMapping === 'AH') {
-          x = gameStartX;
-          y = gameStartY + 4;
+      if (selectedMapping === 'AH') {
+        y = y + 4;
+      }
+
+      if (model === 2 && (selectedMapping === 'JIAJIA' || selectedMapping === 'JIAJIA_REAL')) {
+        if (is_fullscreen) {
+          x = width - 5;
         } else {
-          x = gameStartX;
-          y = gameStartY;
+          x = x + width - 20;
         }
       }
+      // console.log('wowWindow :>> ', wowWindow);
+      // console.log(x, y);
 
       if (selectedMapping === 'XIAOYI_LR' || selectedMapping === 'XIAOYI_SS') {
         await autokey({
           x: x + 34,
           y: y
         });
-      }
-      if (model === 2 && (selectedMapping === 'JIAJIA' || selectedMapping === 'JIAJIA_REAL')) {
-        if (is_fullscreen) {
-          x = width - 5;
-        } else {
-          x = x + width - 24;
-        }
       }
       await autokey({
         x: x,
@@ -394,8 +393,8 @@ function WOW() {
             </span>
           )}
         </h3>
-        <div className={styles.settingsContainer}>
-          <div className={styles.mappingSelection}>
+        <div className={styles.controlSection}>
+          <div className={styles.inputGroupCompact}>
             <label className={styles.label}>配置选择</label>
             <select
               value={selectedMapping}
