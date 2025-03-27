@@ -220,13 +220,8 @@ function WOW() {
       }
 
       if (is_fullscreen) {
-        if (selectedMapping === 'AH') {
-          x = x + 1;
-          y = y + 5;
-        } else {
-          x = x + 5;
-          y = y + 5;
-        }
+        x = x + 1;
+        y = y + 1;
       } else {
         x = x + 8;
         y = y + 8 + 23;

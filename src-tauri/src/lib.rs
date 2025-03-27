@@ -478,8 +478,8 @@ fn get_wow_window_info() -> Option<WindowInfo> {
 
                             // 判断是否全屏（窗口大小与屏幕分辨率相同或非常接近）
                             let is_fullscreen = rect.left <= 0 && rect.top <= 0 &&
-                                               (width >= screen_width - 10) &&
-                                               (height >= screen_height - 10);
+                                               (width >= screen_width ) &&
+                                               (height >= screen_height);
 
                             let window_info = WindowInfo {
                                 title,
@@ -489,6 +489,7 @@ fn get_wow_window_info() -> Option<WindowInfo> {
                                 height,
                                 is_foreground,
                                 is_fullscreen,
+
                             };
 
                             // 将窗口信息存储到lparam指向的位置
