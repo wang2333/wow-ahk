@@ -218,6 +218,7 @@ function WOW() {
         handleCheckColor();
         return;
       }
+
       if (is_fullscreen) {
         if (selectedMapping === 'AH') {
           x = x + 1;
@@ -227,12 +228,15 @@ function WOW() {
           y = y + 5;
         }
       } else {
+        const gameStartX = x + 11;
+        const gameStartY = y + 45;
+
         if (selectedMapping === 'AH') {
-          x = x + 8;
-          y = y + 35;
+          x = gameStartX;
+          y = gameStartY + 4;
         } else {
-          x = x + 13;
-          y = y + 35;
+          x = gameStartX;
+          y = gameStartY;
         }
       }
 
@@ -246,10 +250,9 @@ function WOW() {
         if (is_fullscreen) {
           x = width - 5;
         } else {
-          x = x + width - 27;
+          x = x + width - 24;
         }
       }
-
       await autokey({
         x: x,
         y: y
