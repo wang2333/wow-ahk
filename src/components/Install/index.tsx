@@ -130,13 +130,13 @@ const Install: React.FC<InstallProps> = () => {
           <b>第2步: 选择要安装的插件</b>
         </label>
         <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
-          <button
+          {/* <button
             className='install-button'
             onClick={() => installAddon(1)}
             disabled={isInstalling || !gamePath}
           >
             {isInstalling ? '安装中...' : '猪猪一键宏'}
-          </button>
+          </button> */}
           <button
             className='install-button'
             onClick={() => installAddon(2)}

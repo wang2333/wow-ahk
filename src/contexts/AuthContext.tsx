@@ -11,11 +11,15 @@ interface HotkeySettings {
   mode2Key: string;
   pauseKey: string;
 }
-
+interface ColorBlock {
+  isCustomColorBlock: boolean;
+  x: number;
+  y: number;
+}
 // 游戏设置接口
 interface GameSettings {
   hotkeySettings: HotkeySettings;
-  customColorBlock: { isCustomColorBlock: boolean; x: number; y: number };
+  customColorBlock: ColorBlock;
   // 可以在这里添加更多游戏设置
 }
 
@@ -34,7 +38,7 @@ interface AuthContextType {
   login: (keyCode: string) => Promise<void>;
   logout: () => Promise<void>;
   updateHotkeySettings: (hotkeys: HotkeySettings) => Promise<void>;
-  updateCustomColorBlock: (isCustomColorBlock: boolean, x: number, y: number) => Promise<void>;
+  updateCustomColorBlock: (colorBlock: ColorBlock) => Promise<void>;
   checkUser: () => Promise<void>;
 }
 
@@ -162,10 +166,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     await saveGameSettings(newSettings);
   };
 
-  const updateCustomColorBlock = async (isCustomColorBlock: boolean, x: number, y: number): Promise<void> => {
+  const updateCustomColorBlock = async (colorBlock: ColorBlock): Promise<void> => {
     const newSettings = {
       ...gameSettings,
-      customColorBlock: { isCustomColorBlock, x, y }
+      customColorBlock: colorBlock
     };
     setGameSettings(newSettings);
     await saveGameSettings(newSettings);

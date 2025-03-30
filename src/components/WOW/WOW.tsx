@@ -130,6 +130,7 @@ function WOW() {
     updateCustomColorBlock,
     checkUser
   } = useAuth();
+  console.log('👻 ~ gameSettings:', gameSettings);
   const [color, setColor] = useState<string | null>(null);
   const [model, setModel] = useState(0);
   const [autoMove, setAutoMove] = useState(false);
@@ -428,15 +429,25 @@ function WOW() {
 
   const handleCustomColorBlockChange = (
     e: React.ChangeEvent<HTMLInputElement>,
-    type: 'x' | 'y'
+    type: 'isCustomColorBlock' | 'x' | 'y'
   ) => {
+    const newConfig = {
+      x: colorBlockX,
+      y: colorBlockY,
+      isCustomColorBlock
+    };
     const { value } = e.target;
     if (type === 'x') {
+      newConfig.x = parseInt(value);
       setColorBlockX(parseInt(value));
-    } else {
+    } else if (type === 'y') {
+      newConfig.y = parseInt(value);
       setColorBlockY(parseInt(value));
+    } else if (type === 'isCustomColorBlock') {
+      newConfig.isCustomColorBlock = value === '1';
+      setIsCustomColorBlock(value == '1');
     }
-    updateCustomColorBlock(isCustomColorBlock, colorBlockX, colorBlockY);
+    updateCustomColorBlock(newConfig);
   };
 
   return (
@@ -477,12 +488,19 @@ function WOW() {
           <div className={styles.inputGroupCompact}>
             <label className={styles.label}>自定义色块坐标</label>
             <select
-              value={isCustomColorBlock ? '0' : '1'}
-              onChange={e => setIsCustomColorBlock(e.target.value === '0')}
+              value={isCustomColorBlock ? '1' : '0'}
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                const inputEvent = {
+                  target: {
+                    value: e.target.value
+                  }
+                } as React.ChangeEvent<HTMLInputElement>;
+                handleCustomColorBlockChange(inputEvent, 'isCustomColorBlock');
+              }}
               className={styles.input}
             >
-              <option value='0'>开启</option>
-              <option value='1'>关闭</option>
+              <option value='0'>关闭</option>
+              <option value='1'>开启</option>
             </select>
           </div>
         </div>
