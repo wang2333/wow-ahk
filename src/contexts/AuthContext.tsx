@@ -15,6 +15,7 @@ interface HotkeySettings {
 // 游戏设置接口
 interface GameSettings {
   hotkeySettings: HotkeySettings;
+  customColorBlock: { isCustomColorBlock: boolean; x: number; y: number };
   // 可以在这里添加更多游戏设置
 }
 
@@ -33,6 +34,7 @@ interface AuthContextType {
   login: (keyCode: string) => Promise<void>;
   logout: () => Promise<void>;
   updateHotkeySettings: (hotkeys: HotkeySettings) => Promise<void>;
+  updateCustomColorBlock: (isCustomColorBlock: boolean, x: number, y: number) => Promise<void>;
   checkUser: () => Promise<void>;
 }
 
@@ -40,7 +42,8 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 // 默认游戏设置
 const DEFAULT_GAME_SETTINGS: GameSettings = {
-  hotkeySettings: { mode1Key: 'F1', mode2Key: 'F2', pauseKey: 'F3' }
+  hotkeySettings: { mode1Key: 'F1', mode2Key: 'F2', pauseKey: 'F3' },
+  customColorBlock: { isCustomColorBlock: false, x: 0, y: 0 }
 };
 
 // 创建存储实例
@@ -52,7 +55,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [userAccount, setUserAccount] = useState<string | null>(null);
   const [userInfo, setUserInfo] = useState<User | null>(null);
   const [gameSettings, setGameSettings] = useState<GameSettings>(DEFAULT_GAME_SETTINGS);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [machineCode, setMachineCode] = useState<string>('');
 
   // 加载游戏设置
@@ -87,6 +90,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   // 检查保存的用户数据
   const loadSavedUser = async () => {
+    setIsLoading(true);
     const userAccountStore = await userAccountStorePromise;
     const savedUserAccount = await userAccountStore.get<string>('userAccount');
     const store = await userStorePromise;
@@ -94,7 +98,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     if (savedUserAccount) {
       setUserAccount(savedUserAccount);
+      setIsLoading(false);
     } else {
+      setIsLoading(false);
       return;
     }
     if (savedUser) {
@@ -103,9 +109,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const checkUser = async () => {
+    setIsLoading(true);
     const userAccountStore = await userAccountStorePromise;
     const savedUserAccount = await userAccountStore.get<string>('userAccount');
     if (!savedUserAccount) {
+      await clearUserState();
+      setIsLoading(false);
       return;
     }
     await request('/api/verify', {
@@ -113,9 +122,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       params: {
         keyCode: savedUserAccount
       }
-    }).catch(async () => {
-      await clearUserState();
-    });
+    })
+      .then(async () => {
+        setIsLoading(false);
+      })
+      .catch(async () => {
+        await clearUserState();
+      });
   };
 
   // 清空用户状态的函数，只清除用户登录信息，不清除游戏设置
@@ -144,6 +157,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const newSettings = {
       ...gameSettings,
       hotkeySettings: hotkeys
+    };
+    setGameSettings(newSettings);
+    await saveGameSettings(newSettings);
+  };
+
+  const updateCustomColorBlock = async (isCustomColorBlock: boolean, x: number, y: number): Promise<void> => {
+    const newSettings = {
+      ...gameSettings,
+      customColorBlock: { isCustomColorBlock, x, y }
     };
     setGameSettings(newSettings);
     await saveGameSettings(newSettings);
@@ -222,6 +244,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         login,
         logout,
         updateHotkeySettings,
+        updateCustomColorBlock,
         checkUser
       }}
     >

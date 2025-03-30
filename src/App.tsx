@@ -12,7 +12,7 @@ import Loading from './components/Loading';
 
 function App() {
   const [activeTab, setActiveTab] = useState<'wow' | 'zxsj' | 'help' | 'install'>('help');
-  const { userInfo, isLoading, login, logout } = useAuth();
+  const { userInfo, userAccount, isLoading, login, logout } = useAuth();
 
   useEffect(() => {
     const disableRefresh = (e: KeyboardEvent) => {
@@ -51,7 +51,15 @@ function App() {
     };
   }, []);
 
-  // 如果用户未登录，显示登录页面
+  if (!userAccount) {
+    return (
+      <>
+        <Loading isLoading={isLoading} />
+        <Login onLogin={login} isLoading={isLoading} />
+      </>
+    );
+  }
+
   if (!userInfo) {
     return (
       <>

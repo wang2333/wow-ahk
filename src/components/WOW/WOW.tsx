@@ -56,6 +56,45 @@ const colorMapDict = {
   AH: null
 };
 
+// 创建可用热键选项列表
+const availableHotkeys = [
+  '',
+  '`',
+  'F1',
+  'F2',
+  'F3',
+  'F5',
+  'F6',
+  'F7',
+  'F8',
+  'F9',
+  'F10',
+  'F11',
+  'F12',
+  '1',
+  '2',
+  '3',
+  '4',
+  '5',
+  '6',
+  '7',
+  '8',
+  '9',
+  '0',
+  'Q',
+  'W',
+  'E',
+  'R',
+  'T',
+  'Y',
+  'U',
+  'I',
+  'O',
+  'P',
+  'J',
+  'K',
+  'L'
+];
 function getKeyNum(targetNum: number, actionNum: number) {
   const keyMap = [
     'NUMPAD4',
@@ -83,7 +122,14 @@ function getKeyNum(targetNum: number, actionNum: number) {
 }
 
 function WOW() {
-  const { userInfo, gameSettings, updateHotkeySettings, checkUser } = useAuth();
+  const {
+    userInfo,
+    isLoading,
+    gameSettings,
+    updateHotkeySettings,
+    updateCustomColorBlock,
+    checkUser
+  } = useAuth();
   const [color, setColor] = useState<string | null>(null);
   const [model, setModel] = useState(0);
   const [autoMove, setAutoMove] = useState(false);
@@ -98,9 +144,16 @@ function WOW() {
     mode2Key: gameSettings?.hotkeySettings?.mode2Key || '',
     pauseKey: gameSettings?.hotkeySettings?.pauseKey || ''
   });
+  const [colorBlockX, setColorBlockX] = useState(gameSettings?.customColorBlock?.x || 0);
+  const [colorBlockY, setColorBlockY] = useState(gameSettings?.customColorBlock?.y || 0);
+  const [isCustomColorBlock, setIsCustomColorBlock] = useState(
+    gameSettings?.customColorBlock?.isCustomColorBlock || false
+  );
+
   const color_mappings = colorMapDict[selectedMapping];
 
   useEffect(() => {
+    if (isLoading) return;
     let configs = [];
     const userType = userInfo && userInfo.userType ? userInfo.userType.toString() : '';
     if (userType) {
@@ -133,19 +186,7 @@ function WOW() {
       setConfigs(configs);
       setSelectedMapping(configs[0].value as ColorMapping);
     }
-  }, [userInfo]);
-
-  // 当游戏设置变化时，更新坐标和热键设置
-  useEffect(() => {
-    if (gameSettings?.hotkeySettings) {
-      setHotkeys(prev => ({
-        ...prev,
-        mode1Key: gameSettings.hotkeySettings.mode1Key || prev.mode1Key,
-        mode2Key: gameSettings.hotkeySettings.mode2Key || prev.mode2Key,
-        pauseKey: gameSettings.hotkeySettings.pauseKey || prev.pauseKey
-      }));
-    }
-  }, [gameSettings]);
+  }, [userInfo, isLoading]);
 
   // 注册全局热键
   useEffect(() => {
@@ -154,12 +195,13 @@ function WOW() {
     return () => {
       cleanup();
     };
-  }, [hotkeys]); // 添加hotkeys作为依赖项，当热键改变时重新注册
+  }, [JSON.stringify(hotkeys)]); // 添加hotkeys作为依赖项，当热键改变时重新注册
 
   useEffect(() => {
     let isRunning = true;
     let currentIndex = 0;
     let oldTemp = 0;
+    let time = new Date();
 
     const autokey = async (params: { x: number; y: number }) => {
       const newColor = await invoke<ColorInfo>('get_pixel_color', params);
@@ -174,8 +216,14 @@ function WOW() {
             }
             await Promise.all(promises);
             oldTemp = newColor.r;
+            time = new Date();
           }
         }
+        // 如果超过2秒没有变化，则重置oldTemp
+        if (new Date().getTime() - time.getTime() > 5000) {
+          oldTemp = 0;
+        }
+
         return;
       }
 
@@ -240,6 +288,13 @@ function WOW() {
       }
       // console.log('wowWindow :>> ', wowWindow);
       // console.log(x, y);
+      if (isCustomColorBlock) {
+        x = colorBlockX;
+        y = colorBlockY;
+      } else {
+        setColorBlockX(x);
+        setColorBlockY(y);
+      }
 
       if (selectedMapping === 'XIAOYI_LR' || selectedMapping === 'XIAOYI_SS') {
         await autokey({
@@ -279,10 +334,19 @@ function WOW() {
     return () => {
       isRunning = false;
     };
-  }, [model, autoMove, moveInterval, selectedMapping]);
+  }, [
+    model,
+    autoMove,
+    moveInterval,
+    selectedMapping,
+    isCustomColorBlock,
+    colorBlockX,
+    colorBlockY
+  ]);
 
   const registerShortcuts = async () => {
     try {
+      await checkUser();
       // 在注册前先尝试注销所有热键，防止重复注册
       await cleanup();
       if (hotkeys.mode1Key) {
@@ -313,7 +377,6 @@ function WOW() {
           }
         });
       }
-
       if (hotkeys.pauseKey) {
         // 注册暂停热键
         await register(hotkeys.pauseKey, async e => {
@@ -324,8 +387,6 @@ function WOW() {
           }
         });
       }
-
-      await checkUser();
     } catch (error) {
       console.error('注册热键失败:', error);
     }
@@ -365,8 +426,18 @@ function WOW() {
     setMoveInterval(Math.max(100, value));
   };
 
-  // 创建可用热键选项列表
-  const availableHotkeys = ['', '`', 'F1', 'F2', 'F3', '1', '2', '3', 'Q', 'W', 'E', 'R', 'T'];
+  const handleCustomColorBlockChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    type: 'x' | 'y'
+  ) => {
+    const { value } = e.target;
+    if (type === 'x') {
+      setColorBlockX(parseInt(value));
+    } else {
+      setColorBlockY(parseInt(value));
+    }
+    updateCustomColorBlock(isCustomColorBlock, colorBlockX, colorBlockY);
+  };
 
   return (
     <div className={styles.container}>
@@ -401,6 +472,17 @@ function WOW() {
                   {config.label}
                 </option>
               ))}
+            </select>
+          </div>
+          <div className={styles.inputGroupCompact}>
+            <label className={styles.label}>自定义色块坐标</label>
+            <select
+              value={isCustomColorBlock ? '0' : '1'}
+              onChange={e => setIsCustomColorBlock(e.target.value === '0')}
+              className={styles.input}
+            >
+              <option value='0'>开启</option>
+              <option value='1'>关闭</option>
             </select>
           </div>
         </div>
@@ -457,6 +539,33 @@ function WOW() {
           </div>
         </div>
       </div>
+
+      {/* 自定义色块坐标 */}
+      {isCustomColorBlock && (
+        <div className={styles.card}>
+          <h3 className={styles.cardTitle}>自定义色块坐标</h3>
+          <div className={styles.controlSection}>
+            <div className={styles.inputGroupCompact}>
+              <label className={styles.label}>色块坐标X</label>
+              <input
+                type='number'
+                value={colorBlockX}
+                onChange={e => handleCustomColorBlockChange(e, 'x')}
+                className={styles.input}
+              />
+            </div>
+            <div className={styles.inputGroupCompact}>
+              <label className={styles.label}>色块坐标Y</label>
+              <input
+                type='number'
+                value={colorBlockY}
+                onChange={e => handleCustomColorBlockChange(e, 'y')}
+                className={styles.input}
+              />
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* 鼠标移动控制区域 */}
       {userInfo?.userType === '99' && (

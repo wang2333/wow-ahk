@@ -1,6 +1,18 @@
+import { useAuth } from '@/contexts/AuthContext';
+import { useEffect } from 'react';
+
 interface PageProps {}
 
 const Page: React.FC<PageProps> = () => {
+  const { checkUser } = useAuth();
+
+  useEffect(() => {
+    const init = async () => {
+      await checkUser();
+    };
+    init();
+  }, []);
+
   return (
     <div className='help-container'>
       <section className='basic-functions'>
@@ -17,6 +29,7 @@ const Page: React.FC<PageProps> = () => {
         <h3 style={{ margin: '10px' }}>常见问题</h3>
         <ul style={{ margin: 0 }}>
           <li>热键无响应：请重启软件</li>
+          <li>4K分辨率如果无法正常启动软件，请自行设置色块识别坐标</li>
         </ul>
       </section>
     </div>

@@ -1,5 +1,8 @@
 import './style.css';
-import React, { useState } from 'react';
+
+import React, { useEffect, useState } from 'react';
+
+import { useAuth } from '@/contexts/AuthContext';
 import { invoke } from '@tauri-apps/api/core';
 import { open } from '@tauri-apps/plugin-dialog';
 import { exists } from '@tauri-apps/plugin-fs';
@@ -7,12 +10,22 @@ import { exists } from '@tauri-apps/plugin-fs';
 interface InstallProps {}
 
 const pluginsMap: Record<number, string> = {
+  1: 'ZZ',
   2: 'WR', // 佳佳-WLK
   3: '!WR', // 佳佳-正式服
   4: 'AH' // AutoHelp
 };
 
 const Install: React.FC<InstallProps> = () => {
+  const { checkUser } = useAuth();
+
+  useEffect(() => {
+    const init = async () => {
+      await checkUser();
+    };
+    init();
+  }, []);
+
   const [gamePath, setGamePath] = useState<string>('');
   const [isInstalling, setIsInstalling] = useState<boolean>(false);
   const [message, setMessage] = useState<{
@@ -117,6 +130,13 @@ const Install: React.FC<InstallProps> = () => {
           <b>第2步: 选择要安装的插件</b>
         </label>
         <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
+          <button
+            className='install-button'
+            onClick={() => installAddon(1)}
+            disabled={isInstalling || !gamePath}
+          >
+            {isInstalling ? '安装中...' : '猪猪一键宏'}
+          </button>
           <button
             className='install-button'
             onClick={() => installAddon(2)}
