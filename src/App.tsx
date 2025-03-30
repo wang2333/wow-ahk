@@ -30,12 +30,20 @@ function App() {
         e.preventDefault();
         return false;
       }
+      if ((e.ctrlKey || e.metaKey) && e.key === 'R') {
+        e.preventDefault();
+        return false;
+      }
       // 禁用 Ctrl+Shift+C
       if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'c') {
         e.preventDefault();
         return false;
       }
-      return false;
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'C') {
+        e.preventDefault();
+        return false;
+      }
+
     };
     // 禁用鼠标右键
     const disabledRightClick = (e: MouseEvent) => {

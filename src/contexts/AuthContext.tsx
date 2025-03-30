@@ -141,12 +141,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const [isLoading2, setIsLoading2] = useState(true);
   const checkUser2 = async () => {
+    setIsLoading(true);
     setIsLoading2(true);
+    setIsLoading3(true);
     const userAccountStore = await userAccountStorePromise;
     const savedUserAccount = await userAccountStore.get<string>('userAccount');
     if (!savedUserAccount) {
       await clearUserState();
-      setIsLoading2(false);
+      setIsLoading(false)
+      setIsLoading2(false)
+      setIsLoading3(false);
       return;
     }
     await request('/api/verify', {
@@ -156,7 +160,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       }
     })
       .then(async () => {
-        setIsLoading2(false);
+        setIsLoading(false)
+        setIsLoading2(false)
+        setIsLoading3(false);
       })
       .catch(async () => {
         await clearUserState();
@@ -165,12 +171,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const [isLoading3, setIsLoading3] = useState(true);
   const checkUser3 = async () => {
-    setIsLoading(true);
+    setIsLoading(true)
+    setIsLoading2(true)
+    setIsLoading3(true);
     const userAccountStore = await userAccountStorePromise;
     const savedUserAccount = await userAccountStore.get<string>('userAccount');
     if (!savedUserAccount) {
       await clearUserState();
-      setIsLoading(false);
+      setIsLoading(false)
+      setIsLoading2(false)
+      setIsLoading3(false);
       return;
     }
     await request('/api/verify', {
@@ -180,7 +190,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       }
     })
       .then(async () => {
-        setIsLoading(false);
+        setIsLoading(false)
+        setIsLoading2(false)
+        setIsLoading3(false);
       })
       .catch(async () => {
         await clearUserState();
@@ -229,6 +241,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const login = async (keyCode: string) => {
     setIsLoading(true);
+    setIsLoading2(true);
+    setIsLoading3(true);
 
     await request<{
       success: boolean;
@@ -264,12 +278,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         await message(error.message, '登录失败');
       })
       .finally(() => {
-        setIsLoading(false);
+        setIsLoading(false)
+        setIsLoading2(false)
+        setIsLoading3(false);
       });
   };
 
   const logout = async () => {
     setIsLoading(true);
+    setIsLoading2(true);
+    setIsLoading3(true);
 
     // 注意：这里使用完整的API路径
     await request<{ success: boolean }>('/api/logout', {
@@ -286,7 +304,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         await message(err.message, '退出失败');
       })
       .finally(() => {
-        setIsLoading(false);
+        setIsLoading(false)
+        setIsLoading2(false)
+        setIsLoading3(false);
       });
   };
 
