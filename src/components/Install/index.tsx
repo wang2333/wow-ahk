@@ -17,11 +17,11 @@ const pluginsMap: Record<number, string> = {
 };
 
 const Install: React.FC<InstallProps> = () => {
-  const { checkUser } = useAuth();
+  const { checkUser2 } = useAuth();
 
   useEffect(() => {
     const init = async () => {
-      await checkUser();
+      await checkUser2();
     };
     init();
   }, []);

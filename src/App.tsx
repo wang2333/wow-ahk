@@ -12,7 +12,7 @@ import Loading from './components/Loading';
 
 function App() {
   const [activeTab, setActiveTab] = useState<'wow' | 'zxsj' | 'help' | 'install'>('help');
-  const { userInfo, userAccount, isLoading, login, logout } = useAuth();
+  const { userInfo, userAccount, isLoading, isLoading2, isLoading3, login, logout } = useAuth();
 
   useEffect(() => {
     const disableRefresh = (e: KeyboardEvent) => {
@@ -54,7 +54,7 @@ function App() {
   if (!userAccount) {
     return (
       <>
-        <Loading isLoading={isLoading} />
+        <Loading isLoading={isLoading || isLoading2 || isLoading3} />
         <Login onLogin={login} isLoading={isLoading} />
       </>
     );
@@ -63,7 +63,7 @@ function App() {
   if (!userInfo) {
     return (
       <>
-        <Loading isLoading={isLoading} />
+        <Loading isLoading={isLoading || isLoading2 || isLoading3} />
         <Login onLogin={login} isLoading={isLoading} />
       </>
     );
@@ -72,7 +72,7 @@ function App() {
   // 用户已登录，显示主应用
   return (
     <>
-      <Loading isLoading={isLoading} />
+      <Loading isLoading={isLoading || isLoading2 || isLoading3} />
       <div className='app-container'>
         <div className='header'>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>

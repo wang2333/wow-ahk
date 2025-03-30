@@ -6,7 +6,7 @@ use std::time::Duration;
 use windows_sys::Win32::Foundation::{BOOL, HWND, LPARAM, RECT};
 use windows_sys::Win32::UI::WindowsAndMessaging::{
     EnumWindows, GetWindowTextW, IsWindowVisible, GetWindowRect, GetForegroundWindow,
-    GetSystemMetrics,
+    GetSystemMetrics, PostMessageW, WM_KEYDOWN, WM_KEYUP,
 };
 use std::ffi::OsString;
 use std::os::windows::ffi::OsStringExt;
@@ -591,6 +591,110 @@ fn install_addon(app_handle: tauri::AppHandle, plugin_type: &str, target_dir: &s
     Ok(format!("插件安装成功!", ))
 }
 
+#[tauri::command]
+fn send_keys_to_wow(keys: Vec<String>) -> Result<String, String> {
+    // 创建键名到虚拟键码的映射
+    let mut key_map: HashMap<&'static str, u16> = HashMap::new();
+    key_map.insert("F1", VK_F1 as u16);
+    key_map.insert("F2", VK_F2 as u16);
+    key_map.insert("F3", VK_F3 as u16);
+    key_map.insert("F4", VK_F4 as u16);
+    key_map.insert("F5", VK_F5 as u16);
+    key_map.insert("F6", VK_F6 as u16);
+    key_map.insert("F7", VK_F7 as u16);
+    key_map.insert("F8", VK_F8 as u16);
+    key_map.insert("F9", VK_F9 as u16);
+    key_map.insert("F10", VK_F10 as u16);
+    key_map.insert("F11", VK_F11 as u16);
+    key_map.insert("F12", VK_F12 as u16);
+    key_map.insert("NUM0", VK_NUMPAD0 as u16);
+    key_map.insert("NUM1", VK_NUMPAD1 as u16);
+    key_map.insert("NUM2", VK_NUMPAD2 as u16);
+    key_map.insert("NUM3", VK_NUMPAD3 as u16);
+    key_map.insert("NUM4", VK_NUMPAD4 as u16);
+    key_map.insert("NUM5", VK_NUMPAD5 as u16);
+    key_map.insert("NUM6", VK_NUMPAD6 as u16);
+    key_map.insert("NUM7", VK_NUMPAD7 as u16);
+    key_map.insert("NUM8", VK_NUMPAD8 as u16);
+    key_map.insert("NUM9", VK_NUMPAD9 as u16);
+    key_map.insert("NUMPAD0", VK_NUMPAD0 as u16);
+    key_map.insert("NUMPAD1", VK_NUMPAD1 as u16);
+    key_map.insert("NUMPAD2", VK_NUMPAD2 as u16);
+    key_map.insert("NUMPAD3", VK_NUMPAD3 as u16);
+    key_map.insert("NUMPAD4", VK_NUMPAD4 as u16);
+    key_map.insert("NUMPAD5", VK_NUMPAD5 as u16);
+    key_map.insert("NUMPAD6", VK_NUMPAD6 as u16);
+    key_map.insert("NUMPAD7", VK_NUMPAD7 as u16);
+    key_map.insert("NUMPAD8", VK_NUMPAD8 as u16);
+    key_map.insert("NUMPAD9", VK_NUMPAD9 as u16);
+    key_map.insert("NUMPADDIVIDE", VK_DIVIDE as u16);
+    key_map.insert("NUMPADMULTIPLY", VK_MULTIPLY as u16);
+    key_map.insert("NUMPADMINUS", VK_SUBTRACT as u16);
+    key_map.insert("NUMPADPLUS", VK_ADD as u16);
+    key_map.insert("NUMPADDECIMAL", VK_DECIMAL as u16);
+
+    // 添加数字键的虚拟键码映射
+    key_map.insert("0", 0x30);
+    key_map.insert("1", 0x31);
+    key_map.insert("2", 0x32);
+    key_map.insert("3", 0x33);
+    key_map.insert("4", 0x34);
+    key_map.insert("5", 0x35);
+    key_map.insert("6", 0x36);
+    key_map.insert("7", 0x37);
+    key_map.insert("8", 0x38);
+    key_map.insert("9", 0x39);
+
+    // 直接在函数内查找魔兽世界窗口
+    let mut wow_hwnd: HWND = 0;
+
+    unsafe {
+        extern "system" fn enum_windows_callback(hwnd: HWND, lparam: LPARAM) -> BOOL {
+            unsafe {
+                if IsWindowVisible(hwnd) == 0 {
+                    return 1; // 继续枚举
+                }
+
+                let mut title: [u16; 512] = [0; 512];
+                let len = GetWindowTextW(hwnd, title.as_mut_ptr(), title.len() as i32);
+
+                if len > 0 {
+                    let title = OsString::from_wide(&title[..len as usize])
+                        .to_string_lossy()
+                        .into_owned();
+
+                    if title.contains("World of Warcraft") || title.contains("魔兽世界") {
+                        let result_ptr = lparam as *mut HWND;
+                        *result_ptr = hwnd;
+                        return 0; // 停止枚举
+                    }
+                }
+                1 // 继续枚举
+            }
+        }
+
+        EnumWindows(Some(enum_windows_callback), &mut wow_hwnd as *mut _ as LPARAM);
+
+        if wow_hwnd == 0 {
+            return Err("未找到魔兽世界窗口".to_string());
+        }
+
+        // 发送按键到魔兽世界窗口
+        let delay = Duration::from_millis(10);
+
+        for key in &keys {
+            if let Some(&vk) = key_map.get(key.as_str()) {
+                PostMessageW(wow_hwnd, WM_KEYDOWN, vk as usize, 0);
+                // thread::sleep(delay);
+                PostMessageW(wow_hwnd, WM_KEYUP, vk as usize, 0);
+                // thread::sleep(delay);
+            }
+        }
+    }
+
+    Ok("按键已发送到魔兽世界窗口".to_string())
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
@@ -604,6 +708,7 @@ pub fn run() {
             get_current_position_color,
             press_keys,
             press_keys2,
+            send_keys_to_wow,
             move_mouse_to_point,
             get_hostname,
             get_wow_window_info,

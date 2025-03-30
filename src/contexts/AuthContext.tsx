@@ -35,11 +35,15 @@ interface AuthContextType {
   userInfo: User | null;
   gameSettings: GameSettings;
   isLoading: boolean;
+  isLoading2: boolean;
+  isLoading3: boolean;
   login: (keyCode: string) => Promise<void>;
   logout: () => Promise<void>;
   updateHotkeySettings: (hotkeys: HotkeySettings) => Promise<void>;
   updateCustomColorBlock: (colorBlock: ColorBlock) => Promise<void>;
   checkUser: () => Promise<void>;
+  checkUser2: () => Promise<void>;
+  checkUser3: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -113,6 +117,54 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const checkUser = async () => {
+    setIsLoading(true);
+    const userAccountStore = await userAccountStorePromise;
+    const savedUserAccount = await userAccountStore.get<string>('userAccount');
+    if (!savedUserAccount) {
+      await clearUserState();
+      setIsLoading(false);
+      return;
+    }
+    await request('/api/verify', {
+      method: 'GET',
+      params: {
+        keyCode: savedUserAccount
+      }
+    })
+      .then(async () => {
+        setIsLoading(false);
+      })
+      .catch(async () => {
+        await clearUserState();
+      });
+  };
+
+  const [isLoading2, setIsLoading2] = useState(true);
+  const checkUser2 = async () => {
+    setIsLoading2(true);
+    const userAccountStore = await userAccountStorePromise;
+    const savedUserAccount = await userAccountStore.get<string>('userAccount');
+    if (!savedUserAccount) {
+      await clearUserState();
+      setIsLoading2(false);
+      return;
+    }
+    await request('/api/verify', {
+      method: 'GET',
+      params: {
+        keyCode: savedUserAccount
+      }
+    })
+      .then(async () => {
+        setIsLoading2(false);
+      })
+      .catch(async () => {
+        await clearUserState();
+      });
+  };
+
+  const [isLoading3, setIsLoading3] = useState(true);
+  const checkUser3 = async () => {
     setIsLoading(true);
     const userAccountStore = await userAccountStorePromise;
     const savedUserAccount = await userAccountStore.get<string>('userAccount');
@@ -245,11 +297,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         userInfo,
         gameSettings,
         isLoading,
+        isLoading2,
+        isLoading3,
         login,
         logout,
         updateHotkeySettings,
         updateCustomColorBlock,
-        checkUser
+        checkUser,
+        checkUser2,
+        checkUser3
       }}
     >
       {children}

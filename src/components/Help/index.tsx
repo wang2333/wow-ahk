@@ -4,11 +4,11 @@ import { useEffect } from 'react';
 interface PageProps {}
 
 const Page: React.FC<PageProps> = () => {
-  const { checkUser } = useAuth();
+  const { checkUser3 } = useAuth();
 
   useEffect(() => {
     const init = async () => {
-      await checkUser();
+      await checkUser3();
     };
     init();
   }, []);

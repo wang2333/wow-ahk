@@ -130,7 +130,6 @@ function WOW() {
     updateCustomColorBlock,
     checkUser
   } = useAuth();
-  console.log('👻 ~ gameSettings:', gameSettings);
   const [color, setColor] = useState<string | null>(null);
   const [model, setModel] = useState(0);
   const [autoMove, setAutoMove] = useState(false);
@@ -211,16 +210,18 @@ function WOW() {
         if (newColor.r !== oldTemp && newColor.g !== 0 && newColor.b !== 0) {
           const keys = getKeyNum(newColor.g, newColor.b).filter(v => !!v);
           if (keys.length === 4) {
-            let promises = [];
+            // let promises = [];
             for await (const key of keys) {
-              promises.push(invoke('press_keys', { keys: [key] }));
+              await invoke('send_keys_to_wow', { keys: [key] })
+              // promises.push(invoke('send_keys_to_wow', { keys: [key] }));
+              // promises.push(invoke('press_keys', { keys: [key] }));
             }
-            await Promise.all(promises);
+            // await Promise.all(promises);
             oldTemp = newColor.r;
             time = new Date();
           }
         }
-        // 如果超过2秒没有变化，则重置oldTemp
+        // 如果超过5秒没有变化，则重置oldTemp
         if (new Date().getTime() - time.getTime() > 5000) {
           oldTemp = 0;
         }
@@ -263,7 +264,8 @@ function WOW() {
 
       if (!wowWindow) return;
       let { x, y, width, is_foreground, is_fullscreen } = wowWindow;
-      if (!is_foreground) {
+
+      if (!is_foreground && selectedMapping !== 'AH') {
         handleCheckColor();
         return;
       }
