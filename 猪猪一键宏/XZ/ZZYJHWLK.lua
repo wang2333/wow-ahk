@@ -1,0 +1,2 @@
+
+pigtogoDB = nil
