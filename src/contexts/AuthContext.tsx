@@ -99,6 +99,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   // 检查保存的用户数据
   const loadSavedUser = async () => {
     setIsLoading(true);
+    setIsLoading2(true);
+    setIsLoading3(true);
     const userAccountStore = await userAccountStorePromise;
     const savedUserAccount = await userAccountStore.get<string>('userAccount');
     const store = await userStorePromise;
@@ -107,8 +109,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (savedUserAccount) {
       setUserAccount(savedUserAccount);
       setIsLoading(false);
+      setIsLoading2(false);
+      setIsLoading3(false);
     } else {
       setIsLoading(false);
+      setIsLoading2(false);
+      setIsLoading3(false);
       return;
     }
     if (savedUser) {
@@ -118,11 +124,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const checkUser = async () => {
     setIsLoading(true);
+    setIsLoading2(true);
+    setIsLoading3(true);
+
     const userAccountStore = await userAccountStorePromise;
     const savedUserAccount = await userAccountStore.get<string>('userAccount');
     if (!savedUserAccount) {
       await clearUserState();
       setIsLoading(false);
+      setIsLoading2(false);
+      setIsLoading3(false);
       return;
     }
     await request('/api/verify', {
@@ -133,6 +144,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     })
       .then(async () => {
         setIsLoading(false);
+        setIsLoading2(false);
+        setIsLoading3(false);
       })
       .catch(async () => {
         await clearUserState();
@@ -148,8 +161,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const savedUserAccount = await userAccountStore.get<string>('userAccount');
     if (!savedUserAccount) {
       await clearUserState();
-      setIsLoading(false)
-      setIsLoading2(false)
+      setIsLoading(false);
+      setIsLoading2(false);
       setIsLoading3(false);
       return;
     }
@@ -160,8 +173,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       }
     })
       .then(async () => {
-        setIsLoading(false)
-        setIsLoading2(false)
+        setIsLoading(false);
+        setIsLoading2(false);
         setIsLoading3(false);
       })
       .catch(async () => {
@@ -171,15 +184,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const [isLoading3, setIsLoading3] = useState(true);
   const checkUser3 = async () => {
-    setIsLoading(true)
-    setIsLoading2(true)
+    setIsLoading(true);
+    setIsLoading2(true);
     setIsLoading3(true);
     const userAccountStore = await userAccountStorePromise;
     const savedUserAccount = await userAccountStore.get<string>('userAccount');
     if (!savedUserAccount) {
       await clearUserState();
-      setIsLoading(false)
-      setIsLoading2(false)
+      setIsLoading(false);
+      setIsLoading2(false);
       setIsLoading3(false);
       return;
     }
@@ -190,8 +203,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       }
     })
       .then(async () => {
-        setIsLoading(false)
-        setIsLoading2(false)
+        setIsLoading(false);
+        setIsLoading2(false);
         setIsLoading3(false);
       })
       .catch(async () => {
@@ -278,8 +291,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         await message(error.message, '登录失败');
       })
       .finally(() => {
-        setIsLoading(false)
-        setIsLoading2(false)
+        setIsLoading(false);
+        setIsLoading2(false);
         setIsLoading3(false);
       });
   };
@@ -304,8 +317,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         await message(err.message, '退出失败');
       })
       .finally(() => {
-        setIsLoading(false)
-        setIsLoading2(false)
+        setIsLoading(false);
+        setIsLoading2(false);
         setIsLoading3(false);
       });
   };
