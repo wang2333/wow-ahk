@@ -14,7 +14,6 @@ import {
   color_mappings_ZHUZHU,
   rgbToHex
 } from './config';
-import { color_mappings_HEKILI } from './hekili';
 import styles from './index.module.css';
 
 interface ColorInfo {
@@ -22,14 +21,7 @@ interface ColorInfo {
   g: number;
   b: number;
 }
-type ColorMapping =
-  | 'JIAJIA'
-  | 'JIAJIA_REAL'
-  | 'ZHUZHU'
-  | 'XIAOYI_SS'
-  | 'XIAOYI_LR'
-  | 'AH'
-  | 'HEKILI';
+type ColorMapping = 'JIAJIA' | 'JIAJIA_REAL' | 'ZHUZHU' | 'XIAOYI_SS' | 'XIAOYI_LR' | 'AH';
 
 // 创建音频对象
 const mode1Audio = new Audio(mode1);
@@ -61,7 +53,6 @@ const colorMapDict = {
   ZHUZHU: color_mappings_ZHUZHU,
   XIAOYI_SS: color_mappings_XIAOYI_SS,
   XIAOYI_LR: color_mappings_XIAOYI_LR,
-  HEKILI: color_mappings_HEKILI,
   AH: null
 };
 
@@ -183,7 +174,6 @@ function WOW() {
       }
       if (userType.includes('3')) {
         configs.push({ value: 'JIAJIA_REAL', label: '佳佳一键宏-正式服' });
-        configs.push({ value: 'HEKILI', label: 'Hekili一键宏' });
       }
       if (userType.includes('4')) {
         configs.push({ value: 'AH', label: 'AH一键宏' });
