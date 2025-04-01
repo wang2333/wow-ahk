@@ -161,7 +161,6 @@ function WOW() {
         configs.push({ value: 'ZHUZHU', label: '猪猪一键宏' });
         configs.push({ value: 'JIAJIA', label: '佳佳一键宏-WLK' });
         configs.push({ value: 'JIAJIA_REAL', label: '佳佳一键宏-正式服' });
-        configs.push({ value: 'HEKILI', label: 'Hekili一键宏' });
         configs.push({ value: 'XIAOYI_SS', label: '小易一键宏-术士' });
         configs.push({ value: 'XIAOYI_LR', label: '小易一键宏-猎人' });
         configs.push({ value: 'AH', label: 'AH一键宏' });
