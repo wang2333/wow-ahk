@@ -1,1385 +1,2407 @@
-local a = {"6", "x", "C", "2", "5", "A", "8", _G, "1", "F", "4", "E", "0", "9", "7", "_", "B", "D", "3", 37, 56, 12, 91,
-           54, 78, 18, 40, 62, 25}
-a[10] = a[16] .. a[13] .. a[2] .. a[17] .. a[1] .. a[4] .. a[5] .. a[11] .. a[6] .. a[13] .. a[12] .. a[14] .. a[15] ..
-            a[18] .. a[7] .. a[9] .. a[10] .. a[11] .. a[13] .. a[19] .. a[3]
-a[a[18]] = function()
-    local b = 49;
-    local c = 94;
-    local d = 11;
-    local e = 69;
-    local f = 53;
-    local g = 38;
-    local h = 40;
-    local i = 71;
-    local j = 94;
-    local k = 89;
-    local l = 43;
-    local m = 41;
-    local n = 43;
-    local o = "g"
-    local p = "m"
-    local q = "n"
-    local r = "a"
-    local s = "b"
-    local t = "p"
-    local u = "r"
-    local v = "s"
-    local w = "t"
-    local x = "c"
-    local y = "o"
-    local z = "u"
-    local A = "h"
-    local B = "d"
-    local C = "e"
-    local D = "i"
-    local E = "k"
-    local F = "l"
-    local G = "y"
-    local H = "w"
-    local I = a[8][w .. r .. s .. F .. C][x .. y .. q .. x .. r .. w]
-    local J = a[8][p .. r .. w .. A][F .. B .. C .. a[2] .. t] or a[8][p .. r .. w .. A][v .. x .. r .. F .. C]
-    local K = v .. w .. u .. D .. q .. o;
-    local L = a[8][v .. C .. w .. p .. C .. w .. r .. w .. r .. s .. F .. C]
-    local M = a[8][K][v .. z .. s]
-    local N = a[8][K][x .. A .. r .. u]
-    local O = a[8][v .. C .. F .. C .. x .. w]
-    local P = a[8][K][s .. G .. w .. C]
-    local Q = function()
-        return a[8]
-    end;
-    local R = a[8][w .. r .. s .. F .. C][z .. q .. t .. r .. x .. E] or a[8][z .. q .. t .. r .. x .. E]
-    local S = a[8][K][o .. v .. z .. s]
-    local T = a[8][w .. y .. q .. z .. p .. s .. C .. u]
-    local function U(V)
-        local W, X, Y = "", "", {}
-        local Z = 256;
-        local _ = {}
-        if V == u then
-            return X
-        end
-        for a0 = 0, Z - 1 do
-            _[a0] = N(a0)
-        end
-        local a1 = 1;
-        local function a2()
-            local a3 = T(M(V, a1, a1), 36)
-            a1 = a1 + 1;
-            local a4 = T(M(V, a1, a1 + a3 - 1), 36)
-            a1 = a1 + a3;
-            return a4
-        end
-        W = N(a2())
-        Y[1] = W;
-        while a1 < #V do
-            local a5 = a2()
-            if _[a5] then
-                X = _[a5]
-            else
-                X = W .. M(W, 1, 1)
-            end
-            _[Z] = W .. M(X, 1, 1)
-            Y[#Y + 1], W, Z = X, X, Z + 1
-        end
-        return I(Y)
-    end
-    local l = a[10]
-    local a6 = a[8][s .. D .. w] and a[8][s .. D .. w][s .. a[2] .. y .. u] or function(a7, V)
-        local a8, W = 1, 0;
-        while a7 > 0 and V > 0 do
-            local a9, aa = a7 % 2, V % 2;
-            if a9 ~= aa then
-                W = W + a8
-            end
-            a7, V, a8 = (a7 - a9) / 2, (V - aa) / 2, a8 * 2
-        end
-        if a7 < V then
-            a7 = V
-        end
-        while a7 > 0 do
-            local a9 = a7 % 2;
-            if a9 > 0 then
-                W = W + a8
-            end
-            a7, a8 = (a7 - a9) / 2, a8 * 2
-        end
-        return W
-    end;
-    local ab = l .. a[15]
-    local ac = Q()
-    local ad = l .. a[5]
-    local function ae(af, ag, ah)
-        if ah then
-            local ai = af / 2 ^ (ag - 1) % 2 ^ (ah - 1 - (ag - 1) + 1)
-            return ai - ai % 1
-        else
-            local aj = 2 ^ (ag - 1)
-            return af % (aj + aj) >= aj and 1 or 0
-        end
-    end
-    local ak = l .. a[9]
-    local al = 1;
-    local am = l .. a[14]
-    local an = U(u)
-    local ao = l .. a[1]
-    local function ap()
-        local aq, ar, as, at = P(an, al, al + 3)
-        aq = a6(aq, 156)
-        ar = a6(ar, 156)
-        as = a6(as, 156)
-        at = a6(at, 156)
-        al = al + 4;
-        return at * 16777216 + as * 65536 + ar * 256 + aq
-    end
-    local au = l .. a[19]
-    local av = U(q .. a[4] .. w)
-    local function aw()
-        local ax = a6(P(an, al, al), 156)
-        al = al + 1;
-        return ax
-    end
-    local ay = a[8][a[10]]
-    local az = l .. a[7]
-    local function aA()
-        local aB = ap()
-        local aC = ap()
-        local aD = 1;
-        local aE = ae(aC, 1, 20) * 2 ^ 32 + aB;
-        local aF = ae(aC, 21, 31)
-        local aG = (-1) ^ ae(aC, 32)
-        if aF == 0 then
-            if aE == 0 then
-                return aG * 0
-            else
-                aF = 1;
-                aD = 0
-            end
-        elseif aF == 2047 then
-            return aE == 0 and aG * 1 / 0 or aG * 0 / 0
-        end
-        return J(aG, aF - 1023) * (aD + aE / 2 ^ 52)
-    end
-    local aH = a[12]
-    local aI = av == a[17]
-    local aJ = l .. a[11]
-    local aK = ap;
-    local function aL(aM)
-        local aN;
-        if not aM then
-            aM = aK()
-            if aM == 0 then
-                return ""
-            end
-        end
-        aN = M(an, al, al + aM - 1)
-        al = al + aM;
-        local aO = {}
-        for aP = 1, #aN do
-            aO[aP] = N(a6(P(M(aN, aP, aP)), 156))
-        end
-        return I(aO)
-    end
-    local aQ = l .. a[4]
-    local aR = ap;
-    local aS = av == C;
-    local aT = a[3]
-    local function aU(...)
-        return {...}, O("#", ...)
-    end
-    local function aV(aW, aX, aY)
-        local function aZ(a0, a_)
-            local b0 = an;
-            for a1 = 1, #a_ do
-                local W = P(a_, a1, a1) - (a0 + a1) % 256;
-                if W < 0 then
-                    W = W + 256
-                end
-                b0 = b0 .. N(W)
-            end
-            return b0
-        end
-        local function b1(b2)
-            return S(b2, '..', function(b3)
-                return N(T(b3, 16) % 256)
-            end)
-        end
-        ac[am] = function(b4)
-            return aA() .. b4
-        end;
-        ac[ak] = function(b5, b6)
-            return T(aZ(b5, b1(b6)))
-        end;
-        ac[aQ] = function()
-            return ay
-        end;
-        ac[ab] = function()
-            return an
-        end;
-        ac[aJ] = function(b7, b8)
-            return aZ(b7, b1(b8))
-        end;
-        ac[ao] = function()
-            return aS
-        end;
-        ac[ad] = function()
-            return aX
-        end;
-        ac[az] = function(a2)
-            local a0 = 0;
-            for a1 = 1, #a2 do
-                a0 = a0 + P(a2, a1, a1)
-            end
-            return a0
-        end;
-        ac[au] = function()
-            return aI
-        end;
-        return b1(aW .. aY)
-    end
-    local function b9()
-        local ba = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                    0, 0, 0, 0, 0, 0}
-        local bb = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-        local bc = {}
-        local bd = {ba, nil, bb, nil, bc}
-        if F ~= q then
-            return bb
-        end
-        bd[4] = aw()
-        for aP = 1, ap() do
-            local be = a6(ap(), 182)
-            local bf = a6(ap(), 119)
-            local bg = ae(be, 1, 2)
-            local bh = ae(bf, 1, 11)
-            local bi = {bh, ae(be, 3, 11), nil, nil, bf}
-            if bg == 0 then
-                bi[3] = ae(be, 12, 20)
-                bi[5] = ae(be, 21, 29)
-            elseif bg == 1 then
-                bi[3] = ae(bf, 12, 33)
-            elseif bg == 2 then
-                bi[3] = ae(bf, 12, 32) - 1048575
-            elseif bg == 3 then
-                bi[3] = ae(bf, 12, 32) - 1048575;
-                bi[5] = ae(be, 21, 29)
-            end
-            ba[aP] = bi
-        end
-        local bj = ap()
-        local bk = {0, 0, 0, 0, 0, 0, 0}
-        for aP = 1, bj do
-            local bg = aw()
-            local bl;
-            if bg == 1 then
-                bl = aw() ~= 0
-            elseif bg == 2 then
-                bl = aA()
-            elseif bg == 0 then
-                bl = aL()
-            end
-            bk[aP] = bl
-        end
-        bd[2] = bk;
-        for aP = 1, ap() do
-            bb[aP - 1] = b9()
-        end
-        return bd
-    end
-    local function bm(bd, bn, bo)
-        local bp = bd[1]
-        local bq = bd[2]
-        local br = bd[3]
-        local bs = bd[4]
-        return function(...)
-            local bp = bp;
-            local bq = bq;
-            local br = br;
-            local bs = bs;
-            local bt = aV(aT, ac, aH)
-            local aU = aU;
-            local bu = 1;
-            local bv = -1;
-            if av ~= E then
-                return bu
-            end
-            local bw = {}
-            local bx = {...}
-            local by = {}
-            local bz = O("#", ...) - 1;
-            for aP = 0, bz do
-                if aP >= bs then
-                    bw[aP - bs] = bx[aP + 1]
-                else
-                    by[aP] = bx[aP + 1]
-                end
-            end
-            local bA = bz - bs + 1;
-            local bi;
-            local bB;
-            while true do
-                bi = bp[bu]
-                bB = bi[1]
-                if bB <= 34 then
-                    if bB <= 16 then
-                        if bB <= 7 then
-                            if bB <= 3 then
-                                if bB <= 1 then
-                                    if bB == 0 then
-                                        by[bi[2]] = by[bi[3]] + bq[bi[5]]
-                                    else
-                                        local bC = bi[2]
-                                        local bx = {}
-                                        local bD = 0;
-                                        local bE = bC + bi[3] - 1;
-                                        for aP = bC + 1, bE do
-                                            bD = bD + 1;
-                                            bx[bD] = by[aP]
-                                        end
-                                        local bF = {by[bC](R(bx, 1, bE - bC))}
-                                        local bE = bC + bi[5] - 2;
-                                        bD = 0;
-                                        for aP = bC, bE do
-                                            bD = bD + 1;
-                                            by[aP] = bF[bD]
-                                        end
-                                        bv = bE
-                                    end
-                                elseif bB == 2 then
-                                    local bG = br[bi[3]]
-                                    local bH;
-                                    local bI = {}
-                                    bH = L({}, {
-                                        [a[16] .. a[16] .. D .. q .. B .. C .. a[2]] = function(bJ, bK)
-                                            local bL = bI[bK]
-                                            return bL[1][bL[2]]
-                                        end,
-                                        [a[16] .. a[16] .. q .. C .. H .. D .. q .. B .. C .. a[2]] = function(bJ, bK,
-                                            bM)
-                                            local bL = bI[bK]
-                                            bL[1][bL[2]] = bM
-                                        end
-                                    })
-                                    for aP = 1, bi[5] do
-                                        bu = bu + 1;
-                                        local bN = bp[bu]
-                                        if bN[1] == 7 then
-                                            bI[aP - 1] = {by, bN[3]}
-                                        else
-                                            bI[aP - 1] = {bn, bN[3]}
-                                        end
-                                        bt[#bt + 1] = bI
-                                    end
-                                    by[bi[2]] = bm(bG, bH, bo)
-                                else
-                                    local bC = bi[2]
-                                    local bO = by[bi[3]]
-                                    by[bC + 1] = bO;
-                                    by[bC] = bO[bq[bi[5]]]
-                                end
-                            elseif bB <= 5 then
-                                if bB > 4 then
-                                    local bC;
-                                    by[bi[2]] = bq[bi[3]]
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    by[bi[2]] = #by[bi[3]]
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    by[bi[2]] = bq[bi[3]]
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    by[bi[2]] = #by[bi[3]]
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    by[bi[2]] = bq[bi[3]]
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    bC = bi[2]
-                                    by[bC] = by[bC] - by[bC + 2]
-                                    bu = bu + bi[3]
-                                else
-                                    local bP;
-                                    local bF, bE;
-                                    local bE;
-                                    local bD;
-                                    local bx;
-                                    local bC;
-                                    by[bi[2]] = bo[bq[bi[3]]]
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    by[bi[2]] = bn[bi[3]]
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    by[bi[2]] = by[bi[3]]
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    by[bi[2]] = bn[bi[3]]
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    by[bi[2]] = by[bi[3]]
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    bC = bi[2]
-                                    bx = {}
-                                    bD = 0;
-                                    bE = bC + bi[3] - 1;
-                                    for aP = bC + 1, bE do
-                                        bD = bD + 1;
-                                        bx[bD] = by[aP]
-                                    end
-                                    bF, bE = aU(by[bC](R(bx, 1, bE - bC)))
-                                    bE = bE + bC - 1;
-                                    bD = 0;
-                                    for aP = bC, bE do
-                                        bD = bD + 1;
-                                        by[aP] = bF[bD]
-                                    end
-                                    bv = bE;
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    bC = bi[2]
-                                    bx = {}
-                                    bD = 0;
-                                    bE = bv;
-                                    for aP = bC + 1, bE do
-                                        bD = bD + 1;
-                                        bx[bD] = by[aP]
-                                    end
-                                    bF, bE = aU(by[bC](R(bx, 1, bE - bC)))
-                                    bE = bE + bC - 1;
-                                    bD = 0;
-                                    for aP = bC, bE do
-                                        bD = bD + 1;
-                                        by[aP] = bF[bD]
-                                    end
-                                    bv = bE;
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    bC = bi[2]
-                                    bx = {}
-                                    bE = bv;
-                                    for aP = bC + 1, bE do
-                                        bx[#bx + 1] = by[aP]
-                                    end
-                                    do
-                                        return by[bC](R(bx, 1, bE - bC))
-                                    end
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    bC = bi[2]
-                                    bE = bv;
-                                    bP = {}
-                                    bD = 0;
-                                    for aP = bC, bE do
-                                        bD = bD + 1;
-                                        bP[bD] = by[aP]
-                                    end
-                                    do
-                                        return R(bP, 1, bD)
-                                    end
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    do
-                                        return
-                                    end
-                                end
-                            elseif bB > 6 then
-                                by[bi[2]] = by[bi[3]]
-                            else
-                                bu = bu + bi[3]
-                            end
-                        elseif bB <= 11 then
-                            if bB <= 9 then
-                                if bB == 8 then
-                                    by[bi[2]] = bo[bq[bi[3]]]
-                                else
-                                    local bO;
-                                    local bF;
-                                    local bE;
-                                    local bD;
-                                    local bx;
-                                    local bC;
-                                    by[bi[2]] = by[bi[3]]
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    by[bi[2]] = by[bi[3]]
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    bC = bi[2]
-                                    bx = {}
-                                    bD = 0;
-                                    bE = bC + bi[3] - 1;
-                                    for aP = bC + 1, bE do
-                                        bD = bD + 1;
-                                        bx[bD] = by[aP]
-                                    end
-                                    bF = {by[bC](R(bx, 1, bE - bC))}
-                                    bE = bC + bi[5] - 2;
-                                    bD = 0;
-                                    for aP = bC, bE do
-                                        bD = bD + 1;
-                                        by[aP] = bF[bD]
-                                    end
-                                    bv = bE;
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    by[bi[2]] = by[bi[3]] + by[bi[5]]
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    by[bi[2]] = by[bi[3]] % bq[bi[5]]
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    bC = bi[2]
-                                    bO = by[bi[3]]
-                                    by[bC + 1] = bO;
-                                    by[bC] = bO[bq[bi[5]]]
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    by[bi[2]] = by[bi[3]]
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    by[bi[2]] = by[bi[3]]
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    bC = bi[2]
-                                    bx = {}
-                                    bD = 0;
-                                    bE = bC + bi[3] - 1;
-                                    for aP = bC + 1, bE do
-                                        bD = bD + 1;
-                                        bx[bD] = by[aP]
-                                    end
-                                    bF = {by[bC](R(bx, 1, bE - bC))}
-                                    bE = bC + bi[5] - 2;
-                                    bD = 0;
-                                    for aP = bC, bE do
-                                        bD = bD + 1;
-                                        by[aP] = bF[bD]
-                                    end
-                                    bv = bE;
-                                    bu = bu + 1;
-                                    bi = bp[bu]
-                                    if by[bi[2]] > by[bi[5]] then
-                                        bu = bu + 1
-                                    else
-                                        bu = bu + bi[3]
-                                    end
-                                end
-                            elseif bB > 10 then
-                                local bO = by[bi[3]]
-                                if not bO then
-                                    bu = bu + 1
-                                else
-                                    by[bi[2]] = bO;
-                                    bu = bu + bp[bu + 1][3] + 1
-                                end
-                            else
-                                local bP;
-                                local bF, bE;
-                                local bE;
-                                local bD;
-                                local bx;
-                                local bC;
-                                by[bi[2]] = bn[bi[3]]
-                                bu = bu + 1;
-                                bi = bp[bu]
-                                by[bi[2]] = by[bi[3]]
-                                bu = bu + 1;
-                                bi = bp[bu]
-                                by[bi[2]] = bn[bi[3]]
-                                bu = bu + 1;
-                                bi = bp[bu]
-                                by[bi[2]] = by[bi[3]]
-                                bu = bu + 1;
-                                bi = bp[bu]
-                                bC = bi[2]
-                                bx = {}
-                                bD = 0;
-                                bE = bC + bi[3] - 1;
-                                for aP = bC + 1, bE do
-                                    bD = bD + 1;
-                                    bx[bD] = by[aP]
-                                end
-                                bF, bE = aU(by[bC](R(bx, 1, bE - bC)))
-                                bE = bE + bC - 1;
-                                bD = 0;
-                                for aP = bC, bE do
-                                    bD = bD + 1;
-                                    by[aP] = bF[bD]
-                                end
-                                bv = bE;
-                                bu = bu + 1;
-                                bi = bp[bu]
-                                bC = bi[2]
-                                bx = {}
-                                bE = bv;
-                                for aP = bC + 1, bE do
-                                    bx[#bx + 1] = by[aP]
-                                end
-                                do
-                                    return by[bC](R(bx, 1, bE - bC))
-                                end
-                                bu = bu + 1;
-                                bi = bp[bu]
-                                bC = bi[2]
-                                bE = bv;
-                                bP = {}
-                                bD = 0;
-                                for aP = bC, bE do
-                                    bD = bD + 1;
-                                    bP[bD] = by[aP]
-                                end
-                                do
-                                    return R(bP, 1, bD)
-                                end
-                                bu = bu + 1;
-                                bi = bp[bu]
-                                do
-                                    return
-                                end
-                            end
-                        elseif bB <= 13 then
-                            if bB == 12 then
-                                by[bi[2]] = bi[3] ~= 0
-                            else
-                                local bC = bi[2]
-                                local bx = {}
-                                local bE = bv;
-                                for aP = bC + 1, bE do
-                                    bx[#bx + 1] = by[aP]
-                                end
-                                do
-                                    return by[bC](R(bx, 1, bE - bC))
-                                end
-                            end
-                        elseif bB <= 14 then
-                            local bC = bi[2]
-                            local bx = {}
-                            local bD = 0;
-                            local bE = bC + bi[3] - 1;
-                            for aP = bC + 1, bE do
-                                bD = bD + 1;
-                                bx[bD] = by[aP]
-                            end
-                            local bF = {by[bC](R(bx, 1, bE - bC))}
-                            local bE = bC + bi[5] - 2;
-                            bD = 0;
-                            for aP = bC, bE do
-                                bD = bD + 1;
-                                by[aP] = bF[bD]
-                            end
-                            bv = bE
-                        elseif bB == 15 then
-                            by[bi[2]] = by[bi[3]] % by[bi[5]]
-                        else
-                            local bC = bi[2]
-                            local bx = {}
-                            local bD = 0;
-                            local bE = bC + bi[3] - 1;
-                            for aP = bC + 1, bE do
-                                bD = bD + 1;
-                                bx[bD] = by[aP]
-                            end
-                            local bF, bE = aU(by[bC](R(bx, 1, bE - bC)))
-                            bE = bE + bC - 1;
-                            bD = 0;
-                            for aP = bC, bE do
-                                bD = bD + 1;
-                                by[aP] = bF[bD]
-                            end
-                            bv = bE
-                        end
-                    elseif bB <= 25 then
-                        if bB <= 20 then
-                            if bB <= 18 then
-                                if bB > 17 then
-                                    local bC = bi[2]
-                                    local bx = {}
-                                    local bE = bv;
-                                    for aP = bC + 1, bE do
-                                        bx[#bx + 1] = by[aP]
-                                    end
-                                    do
-                                        return by[bC](R(bx, 1, bE - bC))
-                                    end
-                                else
-                                    by[bi[2]] = by[bi[3]] + bq[bi[5]]
-                                end
-                            elseif bB == 19 then
-                                local bQ;
-                                local bO;
-                                local bF;
-                                local bE;
-                                local bD;
-                                local bx;
-                                local bC;
-                                by[bi[2]] = bo[bq[bi[3]]]
-                                bu = bu + 1;
-                                bi = bp[bu]
-                                by[bi[2]] = by[bi[3]][bq[bi[5]]]
-                                bu = bu + 1;
-                                bi = bp[bu]
-                                by[bi[2]] = by[bi[3]]
-                                bu = bu + 1;
-                                bi = bp[bu]
-                                bC = bi[2]
-                                bx = {}
-                                bD = 0;
-                                bE = bC + bi[3] - 1;
-                                for aP = bC + 1, bE do
-                                    bD = bD + 1;
-                                    bx[bD] = by[aP]
-                                end
-                                bF = {by[bC](R(bx, 1, bE - bC))}
-                                bE = bC + bi[5] - 2;
-                                bD = 0;
-                                for aP = bC, bE do
-                                    bD = bD + 1;
-                                    by[aP] = bF[bD]
-                                end
-                                bv = bE;
-                                bu = bu + 1;
-                                bi = bp[bu]
-                                bO = bi[3]
-                                bQ = by[bO]
-                                for aP = bO + 1, bi[5] do
-                                    bQ = bQ .. by[aP]
-                                end
-                                by[bi[2]] = bQ
-                            else
-                                by[bi[2]] = bn[bi[3]]
-                            end
-                        elseif bB <= 22 then
-                            if bB == 21 then
-                                local bC = bi[2]
-                                by[bC] = by[bC] - by[bC + 2]
-                                bu = bu + bi[3]
-                            else
-                                local bG = br[bi[3]]
-                                local bH;
-                                local bI = {}
-                                bH = L({}, {
-                                    [a[16] .. a[16] .. D .. q .. B .. C .. a[2]] = function(bJ, bK)
-                                        local bL = bI[bK]
-                                        return bL[1][bL[2]]
-                                    end,
-                                    [a[16] .. a[16] .. q .. C .. H .. D .. q .. B .. C .. a[2]] = function(bJ, bK, bM)
-                                        local bL = bI[bK]
-                                        bL[1][bL[2]] = bM
-                                    end
-                                })
-                                for aP = 1, bi[5] do
-                                    bu = bu + 1;
-                                    local bN = bp[bu]
-                                    if bN[1] == 7 then
-                                        bI[aP - 1] = {by, bN[3]}
-                                    else
-                                        bI[aP - 1] = {bn, bN[3]}
-                                    end
-                                    bt[#bt + 1] = bI
-                                end
-                                by[bi[2]] = bm(bG, bH, bo)
-                            end
-                        elseif bB <= 23 then
-                            by[bi[2]] = bo[bq[bi[3]]]
-                        elseif bB == 24 then
-                            by[bi[2]] = by[bi[3]] % by[bi[5]]
-                        else
-                            by[bi[2]] = by[bi[3]][bq[bi[5]]]
-                        end
-                    elseif bB <= 29 then
-                        if bB <= 27 then
-                            if bB == 26 then
-                                local bO = bi[3]
-                                local bQ = by[bO]
-                                for aP = bO + 1, bi[5] do
-                                    bQ = bQ .. by[aP]
-                                end
-                                by[bi[2]] = bQ
-                            else
-                                by[bi[2]] = by[bi[3]] + by[bi[5]]
-                            end
-                        elseif bB == 28 then
-                            by[bi[2]] = bm(br[bi[3]], nil, bo)
-                        else
-                            local bC = bi[2]
-                            local bx = {}
-                            local bE = bC + bi[3] - 1;
-                            for aP = bC + 1, bE do
-                                bx[#bx + 1] = by[aP]
-                            end
-                            do
-                                return by[bC](R(bx, 1, bE - bC))
-                            end
-                        end
-                    elseif bB <= 31 then
-                        if bB == 30 then
-                            by[bi[2]] = by[bi[3]]
-                        else
-                            by[bi[2]] = by[bi[3]] % bq[bi[5]]
-                        end
-                    elseif bB <= 32 then
-                        local bC = bi[2]
-                        by[bC] = by[bC] - by[bC + 2]
-                        bu = bu + bi[3]
-                    elseif bB == 33 then
-                        by[bi[2]] = #by[bi[3]]
-                    else
-                        if by[bi[2]] == bq[bi[5]] then
-                            bu = bu + 1
-                        else
-                            bu = bu + bi[3]
-                        end
-                    end
-                elseif bB <= 51 then
-                    if bB <= 42 then
-                        if bB <= 38 then
-                            if bB <= 36 then
-                                if bB > 35 then
-                                    local bC = bi[2]
-                                    local bx = {}
-                                    local bD = 0;
-                                    local bE = bC + bi[3] - 1;
-                                    for aP = bC + 1, bE do
-                                        bD = bD + 1;
-                                        bx[bD] = by[aP]
-                                    end
-                                    local bF, bE = aU(by[bC](R(bx, 1, bE - bC)))
-                                    bE = bE + bC - 1;
-                                    bD = 0;
-                                    for aP = bC, bE do
-                                        bD = bD + 1;
-                                        by[aP] = bF[bD]
-                                    end
-                                    bv = bE
-                                else
-                                    local bC = bi[2]
-                                    local bE = bv;
-                                    local bP = {}
-                                    local bD = 0;
-                                    for aP = bC, bE do
-                                        bD = bD + 1;
-                                        bP[bD] = by[aP]
-                                    end
-                                    do
-                                        return R(bP, 1, bD)
-                                    end
-                                end
-                            elseif bB == 37 then
-                                by[bi[2]] = bm(br[bi[3]], nil, bo)
-                            else
-                                by[bi[2]] = bq[bi[3]]
-                            end
-                        elseif bB <= 40 then
-                            if bB > 39 then
-                                local bC = bi[2]
-                                local bx = {}
-                                local bD = 0;
-                                local bE = bv;
-                                for aP = bC + 1, bE do
-                                    bD = bD + 1;
-                                    bx[bD] = by[aP]
-                                end
-                                local bF, bE = aU(by[bC](R(bx, 1, bE - bC)))
-                                bE = bE + bC - 1;
-                                bD = 0;
-                                for aP = bC, bE do
-                                    bD = bD + 1;
-                                    by[aP] = bF[bD]
-                                end
-                                bv = bE
-                            else
-                                by[bi[2]] = by[bi[3]] - by[bi[5]]
-                            end
-                        elseif bB == 41 then
-                            local bC = bi[2]
-                            local bR = by[bC + 2]
-                            local bS = by[bC] + bR;
-                            by[bC] = bS;
-                            if bR > 0 then
-                                if bS <= by[bC + 1] then
-                                    bu = bu + bi[3]
-                                    by[bC + 3] = bS
-                                end
-                            elseif bS >= by[bC + 1] then
-                                bu = bu + bi[3]
-                                by[bC + 3] = bS
-                            end
-                        else
-                            if by[bi[2]] == bq[bi[5]] then
-                                bu = bu + 1
-                            else
-                                bu = bu + bi[3]
-                            end
-                        end
-                    elseif bB <= 46 then
-                        if bB <= 44 then
-                            if bB > 43 then
-                                by[bi[2]] = bi[3] ~= 0
-                            else
-                                local bC = bi[2]
-                                local bE = bC + bi[3] - 2;
-                                local bP = {}
-                                local bD = 0;
-                                for aP = bC, bE do
-                                    bD = bD + 1;
-                                    bP[bD] = by[aP]
-                                end
-                                do
-                                    return R(bP, 1, bD)
-                                end
-                            end
-                        elseif bB == 45 then
-                            local bC = bi[2]
-                            local bE = bC + bi[3] - 2;
-                            local bP = {}
-                            local bD = 0;
-                            for aP = bC, bE do
-                                bD = bD + 1;
-                                bP[bD] = by[aP]
-                            end
-                            do
-                                return R(bP, 1, bD)
-                            end
-                        else
-                            by[bi[2]] = by[bi[3]] % bq[bi[5]]
-                        end
-                    elseif bB <= 48 then
-                        if bB == 47 then
-                            local bC = bi[2]
-                            local bO = by[bi[3]]
-                            by[bC + 1] = bO;
-                            by[bC] = bO[bq[bi[5]]]
-                        else
-                            local bC = bi[2]
-                            local bx = {}
-                            local bE = bC + bi[3] - 1;
-                            for aP = bC + 1, bE do
-                                bx[#bx + 1] = by[aP]
-                            end
-                            do
-                                return by[bC](R(bx, 1, bE - bC))
-                            end
-                        end
-                    elseif bB <= 49 then
-                        by[bi[2]] = by[bi[3]] - by[bi[5]]
-                    elseif bB > 50 then
-                        local bC = bi[2]
-                        local bx = {}
-                        local bD = 0;
-                        local bE = bv;
-                        for aP = bC + 1, bE do
-                            bD = bD + 1;
-                            bx[bD] = by[aP]
-                        end
-                        local bF, bE = aU(by[bC](R(bx, 1, bE - bC)))
-                        bE = bE + bC - 1;
-                        bD = 0;
-                        for aP = bC, bE do
-                            bD = bD + 1;
-                            by[aP] = bF[bD]
-                        end
-                        bv = bE
-                    else
-                        local bC = bi[2]
-                        local bE = bv;
-                        local bP = {}
-                        local bD = 0;
-                        for aP = bC, bE do
-                            bD = bD + 1;
-                            bP[bD] = by[aP]
-                        end
-                        do
-                            return R(bP, 1, bD)
-                        end
-                    end
-                elseif bB <= 60 then
-                    if bB <= 55 then
-                        if bB <= 53 then
-                            if bB == 52 then
-                                by[bi[2]] = #by[bi[3]]
-                            else
-                                bo[bq[bi[3]]] = by[bi[2]]
-                            end
-                        elseif bB > 54 then
-                            local bO = bi[3]
-                            local bQ = by[bO]
-                            for aP = bO + 1, bi[5] do
-                                bQ = bQ .. by[aP]
-                            end
-                            by[bi[2]] = bQ
-                        else
-                            do
-                                return
-                            end
-                        end
-                    elseif bB <= 57 then
-                        if bB == 56 then
-                            by[bi[2]] = bq[bi[3]]
-                        else
-                            bu = bu + bi[3]
-                        end
-                    elseif bB <= 58 then
-                        by[bi[2]] = by[bi[3]] + by[bi[5]]
-                    elseif bB == 59 then
-                        if by[bi[2]] > by[bi[5]] then
-                            bu = bu + 1
-                        else
-                            bu = bu + bi[3]
-                        end
-                    else
-                        bo[bq[bi[3]]] = by[bi[2]]
-                    end
-                elseif bB <= 64 then
-                    if bB <= 62 then
-                        if bB > 61 then
-                            local bO = by[bi[3]]
-                            if not bO then
-                                bu = bu + 1
-                            else
-                                by[bi[2]] = bO;
-                                bu = bu + bp[bu + 1][3] + 1
-                            end
-                        else
-                            if not by[bi[2]] then
-                                bu = bu + 1
-                            else
-                                bu = bu + bi[3]
-                            end
-                        end
-                    elseif bB > 63 then
-                        local bP;
-                        local bF;
-                        local bE;
-                        local bD;
-                        local bx;
-                        local bC;
-                        by[bi[2]] = bo[bq[bi[3]]]
-                        bu = bu + 1;
-                        bi = bp[bu]
-                        by[bi[2]] = by[bi[3]][bq[bi[5]]]
-                        bu = bu + 1;
-                        bi = bp[bu]
-                        by[bi[2]] = bo[bq[bi[3]]]
-                        bu = bu + 1;
-                        bi = bp[bu]
-                        by[bi[2]] = by[bi[3]]
-                        bu = bu + 1;
-                        bi = bp[bu]
-                        by[bi[2]] = bq[bi[3]]
-                        bu = bu + 1;
-                        bi = bp[bu]
-                        bC = bi[2]
-                        bx = {}
-                        bD = 0;
-                        bE = bC + bi[3] - 1;
-                        for aP = bC + 1, bE do
-                            bD = bD + 1;
-                            bx[bD] = by[aP]
-                        end
-                        bF = {by[bC](R(bx, 1, bE - bC))}
-                        bE = bC + bi[5] - 2;
-                        bD = 0;
-                        for aP = bC, bE do
-                            bD = bD + 1;
-                            by[aP] = bF[bD]
-                        end
-                        bv = bE;
-                        bu = bu + 1;
-                        bi = bp[bu]
-                        by[bi[2]] = by[bi[3]] % bq[bi[5]]
-                        bu = bu + 1;
-                        bi = bp[bu]
-                        bC = bi[2]
-                        bx = {}
-                        bE = bC + bi[3] - 1;
-                        for aP = bC + 1, bE do
-                            bx[#bx + 1] = by[aP]
-                        end
-                        do
-                            return by[bC](R(bx, 1, bE - bC))
-                        end
-                        bu = bu + 1;
-                        bi = bp[bu]
-                        bC = bi[2]
-                        bE = bv;
-                        bP = {}
-                        bD = 0;
-                        for aP = bC, bE do
-                            bD = bD + 1;
-                            bP[bD] = by[aP]
-                        end
-                        do
-                            return R(bP, 1, bD)
-                        end
-                        bu = bu + 1;
-                        bi = bp[bu]
-                        do
-                            return
-                        end
-                    else
-                        by[bi[2]] = bn[bi[3]]
-                    end
-                elseif bB <= 66 then
-                    if bB > 65 then
-                        local bC = bi[2]
-                        local bR = by[bC + 2]
-                        local bS = by[bC] + bR;
-                        by[bC] = bS;
-                        if bR > 0 then
-                            if bS <= by[bC + 1] then
-                                bu = bu + bi[3]
-                                by[bC + 3] = bS
-                            end
-                        elseif bS >= by[bC + 1] then
-                            bu = bu + bi[3]
-                            by[bC + 3] = bS
-                        end
-                    else
-                        if not by[bi[2]] then
-                            bu = bu + 1
-                        else
-                            bu = bu + bi[3]
-                        end
-                    end
-                elseif bB <= 67 then
-                    by[bi[2]] = by[bi[3]][bq[bi[5]]]
-                elseif bB == 68 then
-                    do
-                        return
-                    end
-                else
-                    if by[bi[2]] > by[bi[5]] then
-                        bu = bu + 1
-                    else
-                        bu = bu + bi[3]
-                    end
-                end
-                bu = bu + 1
-            end
-        end
-    end
-    return bm(b9(), {}, Q())()
-end;
-a[26] = _ENV;
-a[20] = a[a[18]]()
-a[29] = a[8][a[10] .. a[4]]
-a[24] = a[8][a[10] .. a[1]]
-a[21] = a[8][a[10] .. a[9]]
-a[28] = a[8][a[10] .. a[11]]
-_G = a[8][a[10] .. a[5]]()
-a[25] = a[8][a[10] .. a[19]]
-a[22] = a[8][a[10] .. a[15]]
-a[27] = a[8][a[10] .. a[7]]("3515")
+local a = 77;
+local b = 22;
+local c = 24;
+local d = 51;
+local e = 0 == 1;
+local f = not e;
+local g = nil;
+local h = ""
+local i = _G;
+local j = _ENV;
+local k = i["tonumber"]
 return (function(...)
-    _G["ud7lqateqbhc0zhfok"] = nil
-    _G["pd7lqyteqbhcozhl"] = false
-    while "" == true do
-        _G["xiao0man"] = "enc"
-    end
-    _G["q14yufbc7wqlzm0r"] = ""
-    _G["qz4yufb791qlzmg0i"] = nil
-    _G["ColorFrameArrayTopLeft"] = {}
-    _G["ColorTextArrayTopLeft"] = {}
-    _G["ColorFrameArrayTopRight"] = {}
-    _G["ColorTextArrayTopRight"] = {}
-    _G["WR_CreateColorFrame"] = function(bT)
-        for bU, bV in _G["pairs"](bT) do
-            _G["ColorFrameArrayTopLeft"][bU] = _G["CreateFrame"]("Frame", bU .. "_FrameTopLeft")
-            _G["ColorFrameArrayTopLeft"][bU]:SetSize(42, 42)
-            _G["ColorFrameArrayTopLeft"][bU]:SetPoint("TOPLEFT", 0, 0)
-            _G["ColorFrameArrayTopLeft"][bU]:SetFrameStrata("TOOLTIP")
-            local bW = _G["ColorFrameArrayTopLeft"][bU]:CreateTexture(nil, "OVERLAY")
-            bW["SetAllPoints"](bW, _G["ColorFrameArrayTopLeft"][bU])
-            bW["SetColorTexture"](bW, _G["BGRtoRGB"](bT[bU]))
-            _G["ColorTextArrayTopLeft"][bU] = _G["ColorFrameArrayTopLeft"][bU]:CreateFontString(nil, "OVERLAY",
-                "GameFontNormal")
-            _G["ColorTextArrayTopLeft"][bU]:SetPoint("BOTTOM", _G["ColorFrameArrayTopLeft"][bU], "BOTTOM")
-            _G["ColorTextArrayTopLeft"][bU]:SetText(bU)
-            _G["ColorTextArrayTopLeft"][bU]:SetFont(_G["ColorTextArrayTopLeft"][bU]:GetFont(), 9)
-            _G["ColorFrameArrayTopLeft"][bU]:Hide()
-            _G["ColorFrameArrayTopRight"][bU] = _G["CreateFrame"]("Frame", bU .. "_FrameTopRight")
-            _G["ColorFrameArrayTopRight"][bU]:SetSize(42, 42)
-            _G["ColorFrameArrayTopRight"][bU]:SetPoint("TOPRIGHT", 0, 0)
-            _G["ColorFrameArrayTopRight"][bU]:SetFrameStrata("TOOLTIP")
-            local bW = _G["ColorFrameArrayTopRight"][bU]:CreateTexture(nil, "OVERLAY")
-            bW["SetAllPoints"](bW, _G["ColorFrameArrayTopRight"][bU])
-            bW["SetColorTexture"](bW, _G["BGRtoRGB"](bT[bU]))
-            _G["ColorTextArrayTopRight"][bU] = _G["ColorFrameArrayTopRight"][bU]:CreateFontString(nil, "OVERLAY",
-                "GameFontNormal")
-            _G["ColorTextArrayTopRight"][bU]:SetPoint("BOTTOM", _G["ColorFrameArrayTopRight"][bU], "BOTTOM")
-            _G["ColorTextArrayTopRight"][bU]:SetText(bU)
-            _G["ColorTextArrayTopRight"][bU]:SetFont(_G["ColorTextArrayTopRight"][bU]:GetFont(), 9)
-            _G["ColorFrameArrayTopRight"][bU]:Hide()
-        end
-    end;
-    _G["WR_FrameColor"] = {
-        ["CF1"] = 0x23A359,
-        ["CF2"] = 0x3C4835,
-        ["CF3"] = 0xB89EB8,
-        ["CF4"] = 0xB89EB1,
-        ["CF5"] = 0xB89EAB,
-        ["CF6"] = 0xB89EA5,
-        ["CF7"] = 0xB89E9E,
-        ["CF8"] = 0xB8B89E,
-        ["CF9"] = 0xB19EB8,
-        ["CF10"] = 0xB8B19E,
-        ["CF11"] = 0x9EB89E,
-        ["CF12"] = 0x9EB8B8,
-        ["SF1"] = 0x2C2328,
-        ["SF2"] = 0x9EABB8,
-        ["SF3"] = 0x4E3D3F,
-        ["SF4"] = 0x9EA5B8,
-        ["SF5"] = 0x9EB1B8,
-        ["SF6"] = 0x3F3730,
-        ["SF7"] = 0xB8AB9E,
-        ["SF8"] = 0xB8A59E,
-        ["SF9"] = 0xB1B89E,
-        ["SF10"] = 0xAB9EB8,
-        ["SF11"] = 0x9EB8B1,
-        ["SF12"] = 0x9EB8AB,
-        ["AF1"] = 0x65408E,
-        ["AF2"] = 0xB677C4,
-        ["AF3"] = 0xAC4A8C,
-        ["AF4"] = 0xC7768C,
-        ["AF5"] = 0xAB5245,
-        ["AF6"] = 0xC5BC81,
-        ["AF7"] = 0x74B458,
-        ["AF8"] = 0x99D59F,
-        ["AF9"] = 0x5CBE9E,
-        ["AF10"] = 0x389198,
-        ["AF11"] = 0xA0BDDC,
-        ["AF12"] = 0x3A3A7E,
-        ["AN1"] = 0x4340BD,
-        ["AN2"] = 0xC796DC,
-        ["AN3"] = 0xC44AB5,
-        ["AN4"] = 0xDF9BBD,
-        ["AN5"] = 0xC44454,
-        ["AN6"] = 0xE0B79E,
-        ["AN7"] = 0xC8B457,
-        ["AN8"] = 0xCFDD97,
-        ["AN9"] = 0x82C84F,
-        ["AN0"] = 0xAEE6AE,
-        ["CN1"] = 0x67AAE7,
-        ["CN2"] = 0x66D1E8,
-        ["CN3"] = 0x65E9DC,
-        ["CN4"] = 0x65E99D,
-        ["CN5"] = 0x1ECC22,
-        ["CN6"] = 0xAAE340,
-        ["CN7"] = 0xE3CB40,
-        ["CN8"] = 0xE4753F,
-        ["CN9"] = 0xE63E74,
-        ["CN0"] = 0x686FE6,
-        ["CSF1"] = 0xDA54F1,
-        ["CSF2"] = 0xF8A3E0,
-        ["CSF3"] = 0xF3568D,
-        ["CSF4"] = 0xF89C9C,
-        ["CSF5"] = 0xF4A360,
-        ["CSF6"] = 0xFAF8B4,
-        ["CSF7"] = 0xAAF46C,
-        ["CSF8"] = 0xB4FAC6,
-        ["CSF9"] = 0x77F7D7,
-        ["CSF10"] = 0xDAC2FA,
-        ["CSF11"] = 0xBF6FA5,
-        ["CSF12"] = 0x4EA383,
-        ["ASF1"] = 0xB6B4F8,
-        ["ASF2"] = 0xDBB3F9,
-        ["ASF3"] = 0xF4B1FA,
-        ["ASF4"] = 0xF9B3E2,
-        ["ASF5"] = 0xFAB1CB,
-        ["ASF6"] = 0xFBB3B0,
-        ["ASF7"] = 0xFBD2B0,
-        ["ASF8"] = 0xF9ECB3,
-        ["ASF9"] = 0xD8F9B7,
-        ["ASF10"] = 0xC2F9B7,
-        ["ASF11"] = 0xDAB356,
-        ["ASF12"] = 0xC769A6,
-        ["ACF1"] = 0xEED68C,
-        ["ACF2"] = 0xEEA38C,
-        ["ACF3"] = 0xEE8C9B,
-        ["ACF4"] = 0xED8DBD,
-        ["ACF5"] = 0xEE8CE4,
-        ["ACF6"] = 0xDB8CEE,
-        ["ACF7"] = 0xBD8FEF,
-        ["ACF8"] = 0x928FEF,
-        ["ACF9"] = 0xC473E6,
-        ["ACF10"] = 0xE87195,
-        ["ACF11"] = 0x18AEE7,
-        ["ACF12"] = 0x5792E1,
-        ["ACSF1"] = 0xB7F9F5,
-        ["ACSF2"] = 0xB7DDF9,
-        ["ACSF3"] = 0xAEC2F7,
-        ["ACSF4"] = 0xAEAEF7,
-        ["ACSF5"] = 0x8DA0ED,
-        ["ACSF6"] = 0x8DB9ED,
-        ["ACSF7"] = 0x8DDAED,
-        ["ACSF8"] = 0x8DEDD2,
-        ["ACSF9"] = 0x8DEDA6,
-        ["ACSF10"] = 0xCEED8D,
-        ["ACSF11"] = 0xF9E431,
-        ["ACSF12"] = 0xD0888A,
-        ["ACN1"] = 0x46E7F9,
-        ["ACN2"] = 0x45FABF,
-        ["ACN3"] = 0x45FA6D,
-        ["ACN4"] = 0xBFFB44,
-        ["ACN5"] = 0xFBC444,
-        ["ACN6"] = 0xFB7644,
-        ["ACN7"] = 0xFB4496,
-        ["ACN8"] = 0xFB44F7,
-        ["ACN9"] = 0x9644FB,
-        ["ACN0"] = 0x488AF7,
-        ["CSP"] = 0x9B84EA,
-        ["CSL"] = 0xB984EA,
-        ["CSO"] = 0xEA84EA,
-        ["CSK"] = 0xEB83B1,
-        ["CSM"] = 0xEB9383,
-        ["CSI"] = 0xECC782,
-        ["CSJ"] = 0xDAED81,
-        ["CSN"] = 0xA2ED81,
-        ["CSU"] = 0x82ECBA,
-        ["CSH"] = 0x82E7EC,
-        ["CSB"] = 0x82B1EC,
-        ["CSY"] = 0xA6AAF4,
-        ["CSG"] = 0xA6CFF4,
-        ["CSV"] = 0xA6F2F4,
-        ["CST"] = 0xA6F4C9,
-        ["CSF"] = 0xC1F4A6,
-        ["CSC"] = 0xF2F4A6,
-        ["CSX"] = 0xF4C4A6,
-        ["CSZ"] = 0xF4A6BB,
-        ["C6"] = 0x1E90FF,
-        ["C7"] = 0xFF4500,
-        ["C8"] = 0x32CD32,
-        ["C9"] = 0x8A2BE2,
-        ["C0"] = 0xFFD700,
-        ["S6"] = 0x00CED1,
-        ["S7"] = 0xFF69B4,
-        ["S8"] = 0x8B4513,
-        ["S9"] = 0x4682B4,
-        ["S0"] = 0xD2691E,
-        ["CS6"] = 0x7FFF00,
-        ["CS7"] = 0xDC143C,
-        ["CS8"] = 0x00FA9A,
-        ["CS9"] = 0x9932CC,
-        ["CS0"] = 0xFF8C00,
-        ["F5"] = 0x4D5E79,
-        ["F6"] = 0x3E6249,
-        ["F7"] = 0x72AD30,
-        ["F8"] = 0xA63E96,
-        ["F9"] = 0x497D33,
-        ["F10"] = 0x987E43,
-        ["F11"] = 0xB0A977,
-        ["F12"] = 0x681C1E,
-        ["Stop"] = 0x9F9EB8,
-        ["Combat"] = 0x9EB8A5
-    }
-    _G["BGRtoRGB"] = function(bX)
-        local bY = _G["math"]["floor"](bX / 0x10000) % 0x100
-        local bZ = _G["math"]["floor"](bX / 0x100) % 0x100
-        local b_ = bX % 0x100
-        b_ = b_ / 255
-        bZ = bZ / 255
-        bY = bY / 255
-        return b_, bZ, bY
-    end;
-    _G["WR_CreateColorFrame"](_G["WR_FrameColor"])
+	local l = i["tonumber"]
+	local m = i["string"]["byte"]
+	local n = i["string"]["char"]
+	local o = i["string"]["sub"]
+	local p = i["string"]["gsub"]
+	local q = i["string"]["rep"]
+	local r = i["table"]["concat"]
+	local s = i["table"]["insert"]
+	local t = i["math"]["ldexp"]
+	local u = i["getfenv"] or function()
+		return j
+	end;
+	local v = i["setmetatable"]
+	local w = i["pcall"]
+	local x = i["select"]
+	local y = i["unpack"] or i["table"]["unpack"]
+	local z = i["tonumber"]
+	local function A(B, C, ...)
+		local D = k("1")
+		local E;
+		B = p(o(B, k("5")), "..", function(F)
+			if m(F, k("2")) == k("81") then
+				E = l(o(F, k("1"), k("1")))
+				return h
+			else
+				local G = n(l(F, k("16")))
+				if E then
+					local H = q(G, E)
+					E = g;
+					return H
+				else
+					return G
+				end
+			end
+		end)
+		local function I(J, K, L)
+			if L then
+				local M = J / k("2") ^ (K - k("1")) % k("2") ^ (L - k("1") - (K - k("1")) + k("1"))
+				return M - M % k("1")
+			else
+				local N = k("2") ^ (K - k("1"))
+				return J % (N + N) >= N and k("1") or k("0")
+			end
+		end;
+		local function O()
+			local G = m(B, D, D)
+			D = D + k("1")
+			return G
+		end;
+		local function P()
+			local G, H = m(B, D, D + k("2"))
+			D = D + k("2")
+			return H * k("256") + G
+		end;
+		local function Q()
+			local G, H, R, S = m(B, D, D + k("3"))
+			D = D + k("4")
+			return S * k("16777216") + R * k("65536") + H * k("256") + G
+		end;
+		local function T()
+			local U = Q()
+			local V = Q()
+			local W = k("1")
+			local X = I(V, k("1"), k("20")) * k("2") ^ k("32") + U;
+			local Y = I(V, k("21"), k("31"))
+			local Z = I(V, k("32")) == k("1") and - k("1") or k("1")
+			if Y == k("0") then
+				if X == k("0") then
+					return Z * k("0")
+				else
+					Y = k("1")
+					W = k("0")
+				end
+			elseif Y == k("2047") then
+				return X == k("0") and Z * k("1") / k("0") or Z * i["NaN"]
+			end;
+			return t(Z, Y - k("1023")) * (W + X / k("2") ^ k("52"))
+		end;
+		local function _(a0)
+			local a1;
+			if not a0 then
+				a0 = Q()
+				if a0 == k("0") then
+					return h
+				end
+			end;
+			a1 = o(B, D, D + a0 - k("1"))
+			D = D + a0;
+			local a2 = {}
+			for a3 = k("1"), # a1 do
+				a2[a3] = n(m(o(a1, a3, a3)))
+			end;
+			return r(a2)
+		end;
+		local a4 = Q;
+		local function a5(...)
+			return {
+				...
+			}, x("#", ...)
+		end;
+		local function a6()
+			local a7 = {}
+			local a8 = {}
+			local a9 = {}
+			local aa = {
+				a7,
+				a8,
+				g,
+				a9
+			}
+			local ab = Q()
+			local ac = {}
+			for a3 = k("1"), ab do
+				local ad = O()
+				local ae;
+				if ad == k("1") then
+					ae = O() ~= k("0")
+				elseif ad == k("2") then
+					ae = T()
+				elseif ad == k("3") then
+					ae = _()
+				end;
+				ac[a3] = ae
+			end;
+			aa[k("3")] = O()
+			for a3 = k("1"), Q() do
+				local af = O()
+				if I(af, k("1"), k("1")) == k("0") then
+					local ad = I(af, k("2"), k("3"))
+					local ag = I(af, k("4"), k("6"))
+					local ah = {
+						P(),
+						P(),
+						g,
+						g
+					}
+					if ad == k("0") then
+						ah[k("3")] = P()
+						ah[k("4")] = P()
+					elseif ad == k("1") then
+						ah[k("3")] = Q()
+					elseif ad == k("2") then
+						ah[k("3")] = Q() - k("2") ^ k("16")
+					elseif ad == k("3") then
+						ah[k("3")] = Q() - k("2") ^ k("16")
+						ah[k("4")] = P()
+					end;
+					if I(ag, k("1"), k("1")) == k("1") then
+						ah[k("2")] = ac[ah[k("2")]]
+					end;
+					if I(ag, k("2"), k("2")) == k("1") then
+						ah[k("3")] = ac[ah[k("3")]]
+					end;
+					if I(ag, k("3"), k("3")) == k("1") then
+						ah[k("4")] = ac[ah[k("4")]]
+					end;
+					a7[a3] = ah
+				end
+			end;
+			for a3 = k("1"), Q() do
+				a8[a3 - k("1")] = a6()
+			end;
+			return aa
+		end;
+		local function ai(aa, aj, ak)
+			local al = aa[k("1")]
+			local am = aa[k("2")]
+			local an = aa[k("3")]
+			return function(...)
+				local al = al;
+				local am = am;
+				local an = an;
+				local a5 = a5;
+				local ao = k("1")
+				local ap = - k("1")
+				local aq = {}
+				local ar = {
+					...
+				}
+				local as = x("#", ...) - k("1")
+				local at = {}
+				local au = {}
+				for a3 = k("0"), as do
+					if a3 >= an then
+						aq[a3 - an] = ar[a3 + k("1")]
+					else
+						au[a3] = ar[a3 + k("1")]
+					end
+				end;
+				local av = as - an + k("1")
+				local ah;
+				local aw;
+				while f do
+					ah = al[ao]
+					aw = ah[k("1")]
+					if aw <= k("33") then
+						if aw <= k("16") then
+							if aw <= k("7") then
+								if aw <= k("3") then
+									if aw <= k("1") then
+										if aw == k("0") then
+											local ax = ah[k("2")]
+											au[ax] = au[ax](y(au, ax + k("1"), ap))
+										else
+											au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+										end
+									elseif aw == k("2") then
+										local ax;
+										au[ah[k("2")]] = au[ah[k("3")]][ah[k("4")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = au[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = au[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										au[ax] = au[ax](y(au, ax + k("1"), ah[k("3")]))
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = au[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										if au[ah[k("2")]] ~= ah[k("4")] then
+											ao = ao + k("1")
+										else
+											ao = ah[k("3")]
+										end
+									else
+										local ay;
+										local az, aA;
+										local aB;
+										local ax;
+										ax = ah[k("2")]
+										au[ax] = au[ax](y(au, ax + k("1"), ah[k("3")]))
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ak[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = au[ah[k("3")]][au[ah[k("4")]]]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										aB = au[ah[k("3")]]
+										au[ax + k("1")] = aB;
+										au[ax] = aB[ah[k("4")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ah[k("3")]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ah[k("3")]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										au[ax](y(au, ax + k("1"), ah[k("3")]))
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ak[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = au[ah[k("3")]][au[ah[k("4")]]]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										aB = au[ah[k("3")]]
+										au[ax + k("1")] = aB;
+										au[ax] = aB[ah[k("4")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ah[k("3")]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ah[k("3")]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ah[k("3")]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										au[ax](y(au, ax + k("1"), ah[k("3")]))
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ak[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = au[ah[k("3")]][au[ah[k("4")]]]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										aB = au[ah[k("3")]]
+										au[ax + k("1")] = aB;
+										au[ax] = aB[ah[k("4")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ah[k("3")]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										au[ax](y(au, ax + k("1"), ah[k("3")]))
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ak[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = au[ah[k("3")]][au[ah[k("4")]]]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										aB = au[ah[k("3")]]
+										au[ax + k("1")] = aB;
+										au[ax] = aB[ah[k("4")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										for a3 = ah[k("2")], ah[k("3")] do
+											au[a3] = g
+										end;
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ah[k("3")]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										au[ax] = au[ax](y(au, ax + k("1"), ah[k("3")]))
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										aB = au[ah[k("3")]]
+										au[ax + k("1")] = aB;
+										au[ax] = aB[ah[k("4")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ak[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = au[ah[k("3")]][au[ah[k("4")]]]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										au[ax](y(au, ax + k("1"), ah[k("3")]))
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										aB = au[ah[k("3")]]
+										au[ax + k("1")] = aB;
+										au[ax] = aB[ah[k("4")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ak[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = au[ah[k("3")]][au[ah[k("4")]]]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										az, aA = a5(au[ax](au[ax + k("1")]))
+										ap = aA + ax - k("1")
+										ay = k("0")
+										for a3 = ax, ap do
+											ay = ay + k("1")
+											au[a3] = az[ay]
+										end;
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										au[ax](y(au, ax + k("1"), ap))
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ak[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ak[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = au[ah[k("3")]][au[ah[k("4")]]]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										aB = au[ah[k("3")]]
+										au[ax + k("1")] = aB;
+										au[ax] = aB[ah[k("4")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										for a3 = ah[k("2")], ah[k("3")] do
+											au[a3] = g
+										end;
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ah[k("3")]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ah[k("3")]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										au[ax] = au[ax](y(au, ax + k("1"), ah[k("3")]))
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ak[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = au[ah[k("3")]][au[ah[k("4")]]]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										aB = au[ah[k("3")]]
+										au[ax + k("1")] = aB;
+										au[ax] = aB[ah[k("4")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ah[k("3")]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ak[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = au[ah[k("3")]][au[ah[k("4")]]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ah[k("3")]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										au[ax](y(au, ax + k("1"), ah[k("3")]))
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ak[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = au[ah[k("3")]][au[ah[k("4")]]]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										aB = au[ah[k("3")]]
+										au[ax + k("1")] = aB;
+										au[ax] = aB[ah[k("4")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = au[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										au[ax](y(au, ax + k("1"), ah[k("3")]))
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ak[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = au[ah[k("3")]][au[ah[k("4")]]]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										aB = au[ah[k("3")]]
+										au[ax + k("1")] = aB;
+										au[ax] = aB[ah[k("4")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ak[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = au[ah[k("3")]][au[ah[k("4")]]]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										aB = au[ah[k("3")]]
+										au[ax + k("1")] = aB;
+										au[ax] = aB[ah[k("4")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										au[ax] = au[ax](au[ax + k("1")])
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ah[k("3")]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										au[ax](y(au, ax + k("1"), ah[k("3")]))
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ak[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = au[ah[k("3")]][au[ah[k("4")]]]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										aB = au[ah[k("3")]]
+										au[ax + k("1")] = aB;
+										au[ax] = aB[ah[k("4")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										au[ax](au[ax + k("1")])
+									end
+								elseif aw <= k("5") then
+									if aw == k("4") then
+										local ax;
+										au[ah[k("2")]] = aj[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										au[ax](au[ax + k("1")])
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = aj[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]]()
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ah[k("3")] ~= k("0")
+										ao = ao + k("1")
+										ah = al[ao]
+										ak[ah[k("3")]] = au[ah[k("2")]]
+									else
+										local ay;
+										local az, aA;
+										local ax;
+										local aC;
+										local aB;
+										au[ah[k("2")]] = ak[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ah[k("3")]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = au[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ah[k("3")]
+										ao = ao + k("1")
+										ah = al[ao]
+										aB = ah[k("3")]
+										aC = au[aB]
+										for a3 = aB + k("1"), ah[k("4")] do
+											aC = aC .. au[a3]
+										end;
+										au[ah[k("2")]] = aC;
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										au[ax] = au[ax](y(au, ax + k("1"), ah[k("3")]))
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ak[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = au[ah[k("3")]][au[ah[k("4")]]]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										aB = au[ah[k("3")]]
+										au[ax + k("1")] = aB;
+										au[ax] = aB[ah[k("4")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ah[k("3")]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ah[k("3")]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										au[ax](y(au, ax + k("1"), ah[k("3")]))
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ak[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = au[ah[k("3")]][au[ah[k("4")]]]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										aB = au[ah[k("3")]]
+										au[ax + k("1")] = aB;
+										au[ax] = aB[ah[k("4")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ah[k("3")]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ah[k("3")]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ah[k("3")]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										au[ax](y(au, ax + k("1"), ah[k("3")]))
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ak[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = au[ah[k("3")]][au[ah[k("4")]]]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										aB = au[ah[k("3")]]
+										au[ax + k("1")] = aB;
+										au[ax] = aB[ah[k("4")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ah[k("3")]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										au[ax](y(au, ax + k("1"), ah[k("3")]))
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ak[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = au[ah[k("3")]][au[ah[k("4")]]]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										aB = au[ah[k("3")]]
+										au[ax + k("1")] = aB;
+										au[ax] = aB[ah[k("4")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										for a3 = ah[k("2")], ah[k("3")] do
+											au[a3] = g
+										end;
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ah[k("3")]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										au[ax] = au[ax](y(au, ax + k("1"), ah[k("3")]))
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										aB = au[ah[k("3")]]
+										au[ax + k("1")] = aB;
+										au[ax] = aB[ah[k("4")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ak[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = au[ah[k("3")]][au[ah[k("4")]]]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										au[ax](y(au, ax + k("1"), ah[k("3")]))
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										aB = au[ah[k("3")]]
+										au[ax + k("1")] = aB;
+										au[ax] = aB[ah[k("4")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ak[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = au[ah[k("3")]][au[ah[k("4")]]]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										az, aA = a5(au[ax](au[ax + k("1")]))
+										ap = aA + ax - k("1")
+										ay = k("0")
+										for a3 = ax, ap do
+											ay = ay + k("1")
+											au[a3] = az[ay]
+										end;
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										au[ax](y(au, ax + k("1"), ap))
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ak[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ak[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = au[ah[k("3")]][au[ah[k("4")]]]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										aB = au[ah[k("3")]]
+										au[ax + k("1")] = aB;
+										au[ax] = aB[ah[k("4")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										for a3 = ah[k("2")], ah[k("3")] do
+											au[a3] = g
+										end;
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ah[k("3")]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ah[k("3")]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										au[ax] = au[ax](y(au, ax + k("1"), ah[k("3")]))
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ak[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = au[ah[k("3")]][au[ah[k("4")]]]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										aB = au[ah[k("3")]]
+										au[ax + k("1")] = aB;
+										au[ax] = aB[ah[k("4")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ah[k("3")]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ak[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = au[ah[k("3")]][au[ah[k("4")]]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ah[k("3")]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										au[ax](y(au, ax + k("1"), ah[k("3")]))
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ak[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = au[ah[k("3")]][au[ah[k("4")]]]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										aB = au[ah[k("3")]]
+										au[ax + k("1")] = aB;
+										au[ax] = aB[ah[k("4")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = au[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										au[ax](y(au, ax + k("1"), ah[k("3")]))
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ak[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = au[ah[k("3")]][au[ah[k("4")]]]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										aB = au[ah[k("3")]]
+										au[ax + k("1")] = aB;
+										au[ax] = aB[ah[k("4")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ak[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = au[ah[k("3")]][au[ah[k("4")]]]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										aB = au[ah[k("3")]]
+										au[ax + k("1")] = aB;
+										au[ax] = aB[ah[k("4")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										au[ax] = au[ax](au[ax + k("1")])
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ah[k("3")]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										au[ax](y(au, ax + k("1"), ah[k("3")]))
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ak[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = au[ah[k("3")]][au[ah[k("4")]]]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										aB = au[ah[k("3")]]
+										au[ax + k("1")] = aB;
+										au[ax] = aB[ah[k("4")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										ax = ah[k("2")]
+										au[ax](au[ax + k("1")])
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ak[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ak[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ah[k("3")]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = au[ah[k("3")]]
+										ao = ao + k("1")
+										ah = al[ao]
+										au[ah[k("2")]] = ah[k("3")]
+									end
+								elseif aw > k("6") then
+									au[ah[k("2")]] = au[ah[k("3")]][ah[k("4")]]
+								else
+									local aB;
+									local ax;
+									au[ah[k("2")]] = ak[ah[k("3")]]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]] = ah[k("3")]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]] = ah[k("3")]
+									ao = ao + k("1")
+									ah = al[ao]
+									ax = ah[k("2")]
+									au[ax] = au[ax](y(au, ax + k("1"), ah[k("3")]))
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]] = ah[k("3")]
+									ao = ao + k("1")
+									ah = al[ao]
+									ax = ah[k("2")]
+									aB = au[ah[k("3")]]
+									au[ax + k("1")] = aB;
+									au[ax] = aB[au[ah[k("4")]]]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]] = ah[k("3")]
+								end
+							elseif aw <= k("11") then
+								if aw <= k("9") then
+									if aw > k("8") then
+										if not au[ah[k("2")]] then
+											ao = ao + k("1")
+										else
+											ao = ah[k("3")]
+										end
+									else
+										ao = ah[k("3")]
+									end
+								elseif aw > k("10") then
+									au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]] = ah[k("3")]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]] = ah[k("3")]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]] = ah[k("3")]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]] = ah[k("3")]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]] = ah[k("3")]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]] = ah[k("3")]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+								else
+									local ax;
+									au[ah[k("2")]] = au[ah[k("3")]][ah[k("4")]]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]] = au[ah[k("3")]]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]] = au[ah[k("3")]][au[ah[k("4")]]]
+									ao = ao + k("1")
+									ah = al[ao]
+									ax = ah[k("2")]
+									au[ax] = au[ax](y(au, ax + k("1"), ah[k("3")]))
+									ao = ao + k("1")
+									ah = al[ao]
+									if au[ah[k("2")]] ~= ah[k("4")] then
+										ao = ao + k("1")
+									else
+										ao = ah[k("3")]
+									end
+								end
+							elseif aw <= k("13") then
+								if aw == k("12") then
+									if au[ah[k("2")]] == ah[k("4")] then
+										ao = ao + k("1")
+									else
+										ao = ah[k("3")]
+									end
+								else
+									local ax;
+									au[ah[k("2")]] = au[ah[k("3")]][ah[k("4")]]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]] = au[ah[k("3")]]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]] = au[ah[k("3")]]
+									ao = ao + k("1")
+									ah = al[ao]
+									ax = ah[k("2")]
+									au[ax] = au[ax](y(au, ax + k("1"), ah[k("3")]))
+									ao = ao + k("1")
+									ah = al[ao]
+									if au[ah[k("2")]] ~= ah[k("4")] then
+										ao = ao + k("1")
+									else
+										ao = ah[k("3")]
+									end
+								end
+							elseif aw <= k("14") then
+								local ax = ah[k("2")]
+								au[ax] = au[ax]()
+							elseif aw == k("15") then
+								do
+									return au[ah[k("2")]]
+								end
+							else
+								au[ah[k("2")]] = ah[k("3")]
+								ao = ao + k("1")
+								ah = al[ao]
+								au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+								ao = ao + k("1")
+								ah = al[ao]
+								au[ah[k("2")]] = ah[k("3")]
+								ao = ao + k("1")
+								ah = al[ao]
+								au[ah[k("2")]] = ah[k("3")]
+								ao = ao + k("1")
+								ah = al[ao]
+								au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+								ao = ao + k("1")
+								ah = al[ao]
+								au[ah[k("2")]] = ah[k("3")]
+								ao = ao + k("1")
+								ah = al[ao]
+								au[ah[k("2")]] = ah[k("3")]
+								ao = ao + k("1")
+								ah = al[ao]
+								au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+							end
+						elseif aw <= k("24") then
+							if aw <= k("20") then
+								if aw <= k("18") then
+									if aw == k("17") then
+										local ax = ah[k("2")]
+										local az, aA = a5(au[ax](au[ax + k("1")]))
+										ap = aA + ax - k("1")
+										local ay = k("0")
+										for a3 = ax, ap do
+											ay = ay + k("1")
+											au[a3] = az[ay]
+										end
+									elseif au[ah[k("2")]] == au[ah[k("4")]] then
+										ao = ao + k("1")
+									else
+										ao = ah[k("3")]
+									end
+								elseif aw == k("19") then
+									local ay;
+									local az, aA;
+									local aB;
+									local ax;
+									au[ah[k("2")]] = ak[ah[k("3")]]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]] = ah[k("3")]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]] = ah[k("3")]
+									ao = ao + k("1")
+									ah = al[ao]
+									ax = ah[k("2")]
+									au[ax] = au[ax](y(au, ax + k("1"), ah[k("3")]))
+									ao = ao + k("1")
+									ah = al[ao]
+									ax = ah[k("2")]
+									aB = au[ah[k("3")]]
+									au[ax + k("1")] = aB;
+									au[ax] = aB[ah[k("4")]]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]] = ah[k("3")]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]] = ah[k("3")]
+									ao = ao + k("1")
+									ah = al[ao]
+									ax = ah[k("2")]
+									au[ax](y(au, ax + k("1"), ah[k("3")]))
+									ao = ao + k("1")
+									ah = al[ao]
+									ax = ah[k("2")]
+									aB = au[ah[k("3")]]
+									au[ax + k("1")] = aB;
+									au[ax] = aB[ah[k("4")]]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]] = ah[k("3")]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]] = ah[k("3")]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]] = ah[k("3")]
+									ao = ao + k("1")
+									ah = al[ao]
+									ax = ah[k("2")]
+									au[ax](y(au, ax + k("1"), ah[k("3")]))
+									ao = ao + k("1")
+									ah = al[ao]
+									ax = ah[k("2")]
+									aB = au[ah[k("3")]]
+									au[ax + k("1")] = aB;
+									au[ax] = aB[ah[k("4")]]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]] = ah[k("3")]
+									ao = ao + k("1")
+									ah = al[ao]
+									ax = ah[k("2")]
+									au[ax](y(au, ax + k("1"), ah[k("3")]))
+									ao = ao + k("1")
+									ah = al[ao]
+									ax = ah[k("2")]
+									aB = au[ah[k("3")]]
+									au[ax + k("1")] = aB;
+									au[ax] = aB[ah[k("4")]]
+									ao = ao + k("1")
+									ah = al[ao]
+									for a3 = ah[k("2")], ah[k("3")] do
+										au[a3] = g
+									end;
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]] = ah[k("3")]
+									ao = ao + k("1")
+									ah = al[ao]
+									ax = ah[k("2")]
+									au[ax] = au[ax](y(au, ax + k("1"), ah[k("3")]))
+									ao = ao + k("1")
+									ah = al[ao]
+									ax = ah[k("2")]
+									aB = au[ah[k("3")]]
+									au[ax + k("1")] = aB;
+									au[ax] = aB[ah[k("4")]]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]] = au[ah[k("3")]]
+									ao = ao + k("1")
+									ah = al[ao]
+									ax = ah[k("2")]
+									au[ax](y(au, ax + k("1"), ah[k("3")]))
+									ao = ao + k("1")
+									ah = al[ao]
+									ax = ah[k("2")]
+									aB = au[ah[k("3")]]
+									au[ax + k("1")] = aB;
+									au[ax] = aB[ah[k("4")]]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]] = ak[ah[k("3")]]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]] = aj[ah[k("3")]]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]] = au[ah[k("3")]][ah[k("4")]]
+									ao = ao + k("1")
+									ah = al[ao]
+									ax = ah[k("2")]
+									az, aA = a5(au[ax](au[ax + k("1")]))
+									ap = aA + ax - k("1")
+									ay = k("0")
+									for a3 = ax, ap do
+										ay = ay + k("1")
+										au[a3] = az[ay]
+									end;
+									ao = ao + k("1")
+									ah = al[ao]
+									ax = ah[k("2")]
+									au[ax](y(au, ax + k("1"), ap))
+									ao = ao + k("1")
+									ah = al[ao]
+									ax = ah[k("2")]
+									aB = au[ah[k("3")]]
+									au[ax + k("1")] = aB;
+									au[ax] = aB[ah[k("4")]]
+									ao = ao + k("1")
+									ah = al[ao]
+									ax = ah[k("2")]
+									au[ax](au[ax + k("1")])
+									ao = ao + k("1")
+									ah = al[ao]
+									do
+										return
+									end
+								else
+									ak[ah[k("3")]] = au[ah[k("2")]]
+								end
+							elseif aw <= k("22") then
+								if aw > k("21") then
+									local ax = ah[k("2")]
+									local aB = au[ah[k("3")]]
+									au[ax + k("1")] = aB;
+									au[ax] = aB[au[ah[k("4")]]]
+								else
+									local ax = ah[k("2")]
+									local aB = au[ah[k("3")]]
+									au[ax + k("1")] = aB;
+									au[ax] = aB[ah[k("4")]]
+								end
+							elseif aw > k("23") then
+								local ax = ah[k("2")]
+								au[ax](au[ax + k("1")])
+							else
+								au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+							end
+						elseif aw <= k("28") then
+							if aw <= k("26") then
+								if aw > k("25") then
+									if ah[k("2")] < au[ah[k("4")]] then
+										ao = ao + k("1")
+									else
+										ao = ah[k("3")]
+									end
+								else
+									au[ah[k("2")]] = au[ah[k("3")]] * au[ah[k("4")]]
+								end
+							elseif aw > k("27") then
+								local ax = ah[k("2")]
+								local aD = au[ax]
+								local aE = au[ax + k("2")]
+								if aE > k("0") then
+									if aD > au[ax + k("1")] then
+										ao = ah[k("3")]
+									else
+										au[ax + k("3")] = aD
+									end
+								elseif aD < au[ax + k("1")] then
+									ao = ah[k("3")]
+								else
+									au[ax + k("3")] = aD
+								end
+							elseif au[ah[k("2")]] then
+								ao = ao + k("1")
+							else
+								ao = ah[k("3")]
+							end
+						elseif aw <= k("30") then
+							if aw == k("29") then
+								do
+									return
+								end
+							else
+								local aF = am[ah[k("3")]]
+								local aG;
+								local aH = {}
+								aG = v({}, {
+									["__index"] = function(aI, aJ)
+										local aK = aH[aJ]
+										return aK[k("1")][aK[k("2")]]
+									end,
+									["__newindex"] = function(aI, aJ, aL)
+										local aK = aH[aJ]
+										aK[k("1")][aK[k("2")]] = aL
+									end
+								})
+								for a3 = k("1"), ah[k("4")] do
+									ao = ao + k("1")
+									local aM = al[ao]
+									if aM[k("1")] == k("35") then
+										aH[a3 - k("1")] = {
+											au,
+											aM[k("3")]
+										}
+									else
+										aH[a3 - k("1")] = {
+											aj,
+											aM[k("3")]
+										}
+									end;
+									at[# at + k("1")] = aH
+								end;
+								au[ah[k("2")]] = ai(aF, aG, ak)
+							end
+						elseif aw <= k("31") then
+							au[ah[k("2")]] = aj[ah[k("3")]]
+						elseif aw > k("32") then
+							au[ah[k("2")]] = {}
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+						else
+							local ay;
+							local az;
+							local aB;
+							local ax;
+							au[ah[k("2")]] = ak[ah[k("3")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ak[ah[k("3")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							ax = ah[k("2")]
+							au[ax] = au[ax](au[ax + k("1")])
+							ao = ao + k("1")
+							ah = al[ao]
+							ax = ah[k("2")]
+							aB = au[ah[k("3")]]
+							au[ax + k("1")] = aB;
+							au[ax] = aB[ah[k("4")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							ax = ah[k("2")]
+							az = {
+								au[ax](y(au, ax + k("1"), ah[k("3")]))
+							}
+							ay = k("0")
+							for a3 = ax, ah[k("4")] do
+								ay = ay + k("1")
+								au[a3] = az[ay]
+							end;
+							ao = ao + k("1")
+							ah = al[ao]
+							ao = ah[k("3")]
+						end
+					elseif aw <= k("50") then
+						if aw <= k("41") then
+							if aw <= k("37") then
+								if aw <= k("35") then
+									if aw > k("34") then
+										au[ah[k("2")]] = au[ah[k("3")]]
+									elseif au[ah[k("2")]] ~= ah[k("4")] then
+										ao = ao + k("1")
+									else
+										ao = ah[k("3")]
+									end
+								elseif aw == k("36") then
+									local ax = ah[k("2")]
+									au[ax] = au[ax](y(au, ax + k("1"), ah[k("3")]))
+								else
+									local ay;
+									local az;
+									local ax;
+									au[ah[k("2")]] = {}
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]] = ak[ah[k("3")]]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]] = ah[k("3")]
+									ao = ao + k("1")
+									ah = al[ao]
+									ax = ah[k("2")]
+									az = {
+										au[ax](au[ax + k("1")])
+									}
+									ay = k("0")
+									for a3 = ax, ah[k("4")] do
+										ay = ay + k("1")
+										au[a3] = az[ay]
+									end;
+									ao = ao + k("1")
+									ah = al[ao]
+									if au[ah[k("2")]] ~= ah[k("4")] then
+										ao = ao + k("1")
+									else
+										ao = ah[k("3")]
+									end
+								end
+							elseif aw <= k("39") then
+								if aw > k("38") then
+									au[ah[k("2")]] = au[ah[k("3")]] / ah[k("4")]
+								else
+									local ax;
+									ax = ah[k("2")]
+									au[ax] = au[ax]()
+									ao = ao + k("1")
+									ah = al[ao]
+									ak[ah[k("3")]] = au[ah[k("2")]]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]] = ak[ah[k("3")]]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]] = ak[ah[k("3")]]
+									ao = ao + k("1")
+									ah = al[ao]
+									ax = ah[k("2")]
+									au[ax](au[ax + k("1")])
+								end
+							elseif aw > k("40") then
+								local ax = ah[k("2")]
+								do
+									return y(au, ax, ax + ah[k("3")])
+								end
+							else
+								au[ah[k("2")]]()
+							end
+						elseif aw <= k("45") then
+							if aw <= k("43") then
+								if aw > k("42") then
+									local ax = ah[k("2")]
+									au[ax](y(au, ax + k("1"), ah[k("3")]))
+								else
+									local ax = ah[k("2")]
+									local aE = au[ax + k("2")]
+									local aD = au[ax] + aE;
+									au[ax] = aD;
+									if aE > k("0") then
+										if aD <= au[ax + k("1")] then
+											ao = ah[k("3")]
+											au[ax + k("3")] = aD
+										end
+									elseif aD >= au[ax + k("1")] then
+										ao = ah[k("3")]
+										au[ax + k("3")] = aD
+									end
+								end
+							elseif aw == k("44") then
+								local ax = ah[k("2")]
+								local az = {
+									au[ax](au[ax + k("1")])
+								}
+								local ay = k("0")
+								for a3 = ax, ah[k("4")] do
+									ay = ay + k("1")
+									au[a3] = az[ay]
+								end
+							else
+								local aE;
+								local aD;
+								local ay;
+								local az, aA;
+								local ax;
+								au[ah[k("2")]] = ak[ah[k("3")]]
+								ao = ao + k("1")
+								ah = al[ao]
+								au[ah[k("2")]] = au[ah[k("3")]][ah[k("4")]]
+								ao = ao + k("1")
+								ah = al[ao]
+								au[ah[k("2")]] = au[ah[k("3")]]
+								ao = ao + k("1")
+								ah = al[ao]
+								au[ah[k("2")]] = ak[ah[k("3")]]
+								ao = ao + k("1")
+								ah = al[ao]
+								au[ah[k("2")]] = au[ah[k("3")]][ah[k("4")]]
+								ao = ao + k("1")
+								ah = al[ao]
+								au[ah[k("2")]] = au[ah[k("3")]]
+								ao = ao + k("1")
+								ah = al[ao]
+								ax = ah[k("2")]
+								au[ax] = au[ax](au[ax + k("1")])
+								ao = ao + k("1")
+								ah = al[ao]
+								au[ah[k("2")]] = au[ah[k("3")]] - ah[k("4")]
+								ao = ao + k("1")
+								ah = al[ao]
+								au[ah[k("2")]] = ak[ah[k("3")]]
+								ao = ao + k("1")
+								ah = al[ao]
+								au[ah[k("2")]] = au[ah[k("3")]][ah[k("4")]]
+								ao = ao + k("1")
+								ah = al[ao]
+								au[ah[k("2")]] = au[ah[k("3")]]
+								ao = ao + k("1")
+								ah = al[ao]
+								ax = ah[k("2")]
+								az, aA = a5(au[ax](au[ax + k("1")]))
+								ap = aA + ax - k("1")
+								ay = k("0")
+								for a3 = ax, ap do
+									ay = ay + k("1")
+									au[a3] = az[ay]
+								end;
+								ao = ao + k("1")
+								ah = al[ao]
+								ax = ah[k("2")]
+								az, aA = a5(au[ax](y(au, ax + k("1"), ap)))
+								ap = aA + ax - k("1")
+								ay = k("0")
+								for a3 = ax, ap do
+									ay = ay + k("1")
+									au[a3] = az[ay]
+								end;
+								ao = ao + k("1")
+								ah = al[ao]
+								ax = ah[k("2")]
+								au[ax] = au[ax](y(au, ax + k("1"), ap))
+								ao = ao + k("1")
+								ah = al[ao]
+								au[ah[k("2")]] = au[ah[k("3")]]
+								ao = ao + k("1")
+								ah = al[ao]
+								au[ah[k("2")]] = ah[k("3")]
+								ao = ao + k("1")
+								ah = al[ao]
+								au[ah[k("2")]] = ah[k("3")]
+								ao = ao + k("1")
+								ah = al[ao]
+								au[ah[k("2")]] = ah[k("3")]
+								ao = ao + k("1")
+								ah = al[ao]
+								au[ah[k("2")]] = ah[k("3")]
+								ao = ao + k("1")
+								ah = al[ao]
+								ax = ah[k("2")]
+								aD = au[ax]
+								aE = au[ax + k("2")]
+								if aE > k("0") then
+									if aD > au[ax + k("1")] then
+										ao = ah[k("3")]
+									else
+										au[ax + k("3")] = aD
+									end
+								elseif aD < au[ax + k("1")] then
+									ao = ah[k("3")]
+								else
+									au[ax + k("3")] = aD
+								end
+							end
+						elseif aw <= k("47") then
+							if aw == k("46") then
+								au[ah[k("2")]] = {}
+							else
+								for a3 = ah[k("2")], ah[k("3")] do
+									au[a3] = g
+								end
+							end
+						elseif aw <= k("48") then
+							local aC;
+							local aB;
+							local ax;
+							au[ah[k("2")]] = ak[ah[k("3")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = au[ah[k("3")]][ah[k("4")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							ax = ah[k("2")]
+							au[ax] = au[ax](y(au, ax + k("1"), ah[k("3")]))
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ak[ah[k("3")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							aB = ah[k("3")]
+							aC = au[aB]
+							for a3 = aB + k("1"), ah[k("4")] do
+								aC = aC .. au[a3]
+							end;
+							au[ah[k("2")]] = aC;
+							ao = ao + k("1")
+							ah = al[ao]
+							ak[ah[k("3")]] = au[ah[k("2")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ak[ah[k("3")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = au[ah[k("3")]][ah[k("4")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							ax = ah[k("2")]
+							au[ax] = au[ax](y(au, ax + k("1"), ah[k("3")]))
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ak[ah[k("3")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							aB = ah[k("3")]
+							aC = au[aB]
+							for a3 = aB + k("1"), ah[k("4")] do
+								aC = aC .. au[a3]
+							end;
+							au[ah[k("2")]] = aC;
+							ao = ao + k("1")
+							ah = al[ao]
+							ak[ah[k("3")]] = au[ah[k("2")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = {}
+							ao = ao + k("1")
+							ah = al[ao]
+							ak[ah[k("3")]] = au[ah[k("2")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = {}
+							ao = ao + k("1")
+							ah = al[ao]
+							ak[ah[k("3")]] = au[ah[k("2")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = {}
+							ao = ao + k("1")
+							ah = al[ao]
+							ak[ah[k("3")]] = au[ah[k("2")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = {}
+							ao = ao + k("1")
+							ah = al[ao]
+							ak[ah[k("3")]] = au[ah[k("2")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = {}
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						elseif aw > k("49") then
+							au[ah[k("2")]] = ai(am[ah[k("3")]], g, ak)
+						else
+							au[ah[k("2")]] = au[ah[k("3")]][au[ah[k("4")]]]
+						end
+					elseif aw <= k("58") then
+						if aw <= k("54") then
+							if aw <= k("52") then
+								if aw == k("51") then
+									local ax;
+									au[ah[k("2")]] = au[ah[k("3")]][ah[k("4")]]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]] = au[ah[k("3")]]
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]] = au[ah[k("3")]]
+									ao = ao + k("1")
+									ah = al[ao]
+									ax = ah[k("2")]
+									au[ax] = au[ax](y(au, ax + k("1"), ah[k("3")]))
+									ao = ao + k("1")
+									ah = al[ao]
+									au[ah[k("2")]] = au[ah[k("3")]] + au[ah[k("4")]]
+								else
+									local aB = ah[k("3")]
+									local aC = au[aB]
+									for a3 = aB + k("1"), ah[k("4")] do
+										aC = aC .. au[a3]
+									end;
+									au[ah[k("2")]] = aC
+								end
+							elseif aw == k("53") then
+								au[ah[k("2")]] = au[ah[k("3")]] - au[ah[k("4")]]
+							else
+								au[ah[k("2")]] = ah[k("3")]
+								ao = ao + k("1")
+								ah = al[ao]
+								au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+								ao = ao + k("1")
+								ah = al[ao]
+								au[ah[k("2")]] = ah[k("3")]
+								ao = ao + k("1")
+								ah = al[ao]
+								au[ah[k("2")]] = ah[k("3")]
+								ao = ao + k("1")
+								ah = al[ao]
+								au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+							end
+						elseif aw <= k("56") then
+							if aw == k("55") then
+								local ax = ah[k("2")]
+								local az, aA = a5(au[ax](y(au, ax + k("1"), ap)))
+								ap = aA + ax - k("1")
+								local ay = k("0")
+								for a3 = ax, ap do
+									ay = ay + k("1")
+									au[a3] = az[ay]
+								end
+							else
+								au[ah[k("2")]] = ah[k("3")]
+							end
+						elseif aw == k("57") then
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = ah[k("3")]
+						else
+							local ax = ah[k("2")]
+							local aN = ah[k("4")]
+							local aO = ax + k("2")
+							local aP = {
+								au[ax](au[ax + k("1")], au[aO])
+							}
+							for a3 = k("1"), aN do
+								au[aO + a3] = aP[a3]
+							end;
+							local aQ = aP[k("1")]
+							if aQ then
+								au[aO] = aQ;
+								ao = ah[k("3")]
+							else
+								ao = ao + k("1")
+							end
+						end
+					elseif aw <= k("62") then
+						if aw <= k("60") then
+							if aw > k("59") then
+								au[ah[k("2")]] = ah[k("3")] ~= k("0")
+							else
+								local ax = ah[k("2")]
+								local az = {
+									au[ax](y(au, ax + k("1"), ah[k("3")]))
+								}
+								local ay = k("0")
+								for a3 = ax, ah[k("4")] do
+									ay = ay + k("1")
+									au[a3] = az[ay]
+								end
+							end
+						elseif aw == k("61") then
+							au[ah[k("2")]] = au[ah[k("3")]] - ah[k("4")]
+						else
+							au[ah[k("2")]] = ak[ah[k("3")]]
+						end
+					elseif aw <= k("64") then
+						if aw > k("63") then
+							au[ah[k("2")]] = au[ah[k("3")]] + au[ah[k("4")]]
+						else
+							local ax;
+							au[ah[k("2")]] = au[ah[k("3")]][ah[k("4")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = au[ah[k("3")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = au[ah[k("3")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							ax = ah[k("2")]
+							au[ax] = au[ax](y(au, ax + k("1"), ah[k("3")]))
+							ao = ao + k("1")
+							ah = al[ao]
+							au[ah[k("2")]] = au[ah[k("3")]]
+							ao = ao + k("1")
+							ah = al[ao]
+							if au[ah[k("2")]] ~= ah[k("4")] then
+								ao = ao + k("1")
+							else
+								ao = ah[k("3")]
+							end
+						end
+					elseif aw <= k("65") then
+						local ax = ah[k("2")]
+						au[ax] = au[ax](au[ax + k("1")])
+					elseif aw == k("66") then
+						local ax = ah[k("2")]
+						au[ax](y(au, ax + k("1"), ap))
+					else
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][ah[k("3")]] = ah[k("4")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]] = ah[k("3")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]] = ah[k("3")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]] = ah[k("3")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]] = ah[k("3")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]] = ah[k("3")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]] = ah[k("3")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]][au[ah[k("3")]]] = au[ah[k("4")]]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]] = ah[k("3")]
+						ao = ao + k("1")
+						ah = al[ao]
+						au[ah[k("2")]] = ah[k("3")]
+					end;
+					ao = ao + k("1")
+				end
+			end
+		end;
+		return ai(a6(), {}, C)(...)
+	end;
+	return A("LOL!59012Q00030E3Q0057525F57656C636F6D6549734F4B03083Q00435F412Q644F6E7303103Q00476574412Q644F6E4D657461646174612Q033Q0021575203053Q005469746C65030D3Q00EFBC9A7C634Q663934616603103Q0057525F412Q646F6E5F56657273696F6E034B3Q007C72EFBC8C7C638Q6620E58AA0E82QBDE68890E58A9F7C72EFBC8C7C632Q66306362643063E5BEAEE4BFA17C72EFBC9A7C634Q6664662Q30574F572D526F626F747C7203113Q0057525F57656C636F6D6549734E6F744F4B034B3Q007C72EFBC8C7C634Q664Q3020E58AA0E82QBDE5A4B1E8B4A57C72EFBC8C7C632Q66306362643063E5BEAEE4BFA17C72EFBC9A7C634Q6664662Q30574F572D526F626F747C7203163Q00436F6C6F724672616D65412Q726179546F704C65667403153Q00436F6C6F7254657874412Q726179546F704C65667403173Q00436F6C6F724672616D65412Q726179546F70526967687403163Q00436F6C6F7254657874412Q726179546F7052696768742Q033Q00434631023Q0080ACD12Q412Q033Q00434632023Q00801A244E412Q033Q00434633024Q00D71367412Q033Q00434634023Q0020D61367412Q033Q00434635023Q0060D51367412Q033Q00434636023Q00A0D41367412Q033Q00434637023Q00C0D31367412Q033Q00434638023Q00C0131767412Q033Q00434639024Q00D733664103043Q0043463130023Q00C03316674103043Q0043462Q31023Q00C013D7634103043Q0043463132024Q0017D763412Q033Q00534631024Q00941146412Q033Q00534632024Q0077D563412Q033Q00534633023Q00C04F8F53412Q033Q00534634024Q00B7D463412Q033Q00534635024Q0037D663412Q033Q00534636024Q00989B4F412Q033Q00534637023Q00C0731567412Q033Q00534638023Q00C0B31467412Q033Q00534639023Q00C01337664103043Q0053463130024Q00D773654103043Q0053462Q31023Q002016D7634103043Q0053463132023Q006015D763412Q033Q00414631023Q0080235059412Q033Q00414632023Q0080F8CE66412Q033Q00414633023Q0080518965412Q033Q00414634023Q0080D1EE68412Q033Q00414635023Q00A0486A65412Q033Q00414636023Q002090B768412Q033Q00414637024Q00162D5D412Q033Q00414638023Q00E0B33A63412Q033Q00414639023Q0080A72F574103043Q0041463130024Q00CC484C4103043Q0041462Q31023Q0080BB17644103043Q0041463132024Q003F1D4D412Q033Q00414E31023Q00402FD050412Q033Q00414E32023Q0080DBF268412Q033Q00414E33023Q00A0568968412Q033Q00414E34023Q00A077F36B412Q033Q00414E35023Q00808A8868412Q033Q00414E36023Q00C0F3166C412Q033Q00414E37023Q00E08A1669412Q033Q00414E38023Q00E0B2FB69412Q033Q00414E39023Q00E0095960412Q033Q00414E30023Q00C0D5DC65412Q033Q00434E31023Q00C0B9EA59412Q033Q00434E32024Q007AB459412Q033Q00434E33024Q00777A59412Q033Q00434E34023Q0040677A59412Q033Q00434E35024Q0022CC3E412Q033Q00434E36024Q00685C65412Q033Q00434E37024Q0068796C412Q033Q00434E38023Q00E0A78E6C412Q033Q00434E39023Q0080CEC76C412Q033Q00434E30023Q0080F91B5A4103043Q0043534631023Q00209E4A6B4103043Q0043534632024Q007C146F4103043Q0043534633023Q00A0D16A6E4103043Q0043534634023Q008093136F4103043Q0043534635024Q006C946E4103043Q0043534636023Q0080165F6F4103043Q0043534637023Q00808D5E654103043Q0043534638023Q00C0589F664103043Q0043534639023Q00C0F5FD5D4103053Q004353463130023Q00405F586B4103053Q004353462Q31023Q00A0F4ED674103053Q004353463132023Q00C0E0A8534103043Q0041534631024Q009FD6664103043Q0041534632023Q00207F766B4103043Q0041534633023Q00403F966E4103043Q0041534634023Q00407C366F4103043Q0041534635023Q006039566F4103043Q0041534636024Q002Q766F4103043Q0041534637024Q00567A6F4103043Q0041534638023Q0060963D6F4103043Q0041534639023Q00E0361F6B4103053Q004153463130023Q00E0365F684103053Q004153462Q31023Q00C06A566B4103053Q004153463132023Q00C034ED684103043Q0041434631023Q0080D1DA6D4103043Q0041434632023Q008071D46D4103043Q0041434633023Q006093D16D4103043Q0041434634023Q00A0B7B16D4103043Q0041434635023Q00809CD16D4103043Q0041434636023Q00C09D716B4103043Q0041434637023Q00E0FDB1674103043Q0041434638023Q00E0FD51624103043Q0041434639023Q00C07C8E684103053Q004143463130023Q00A0320E6D4103053Q004143462Q31024Q00E7AE384103053Q004143463132023Q0040B8E4554103053Q004143534631023Q00A03EFF664103053Q004143534632023Q0020BFFB664103053Q004143534633023Q00E05ED8654103053Q004143534634023Q00E0DED5654103053Q004143534635023Q00A01DB4614103053Q004143534636023Q00A03DB7614103053Q004143534637023Q00A05DBB614103053Q004143534638023Q0040BABD614103053Q004143534639023Q00C0B4BD614103063Q00414353463130023Q00A0B1DD694103063Q00414353462Q31023Q0020863C6F4103063Q00414353463132023Q00402Q116A4103043Q0041434E31023Q0040FEB9514103043Q0041434E32023Q00C0AF7E514103043Q0041434E33023Q00409B7E514103043Q0041434E34023Q008068FF674103043Q0041434E35023Q008088786F4103043Q0041434E36023Q0080C86E6F4103043Q0041434E37023Q00C092686F4103043Q0041434E38023Q00E09E686F4103043Q0041434E39023Q00609FC8624103043Q0041434E30023Q00C0BD2252412Q033Q00435350023Q00409D7063412Q033Q0043534C023Q00409D3067412Q033Q0043534F023Q00409D506D412Q033Q0043534B023Q002076706D412Q033Q0043534D023Q006070726D412Q033Q00435349023Q0040F0986D412Q033Q0043534A023Q0020B05D6B412Q033Q0043534E023Q0020B05D64412Q033Q00435355023Q0040975D60412Q033Q00435348023Q0080FD5C60412Q033Q00435342023Q00803D5660412Q033Q00435359023Q00805ED564412Q033Q00435347023Q0080FED964412Q033Q00435356023Q00805EDE64412Q033Q00435354023Q002099DE64412Q033Q00435346023Q00C0943E68412Q033Q00435343023Q00C0945E6E412Q033Q00435358023Q00C094986E412Q033Q0043535A023Q0060D7946E4103023Q004336024Q00FF903E4103023Q004337024Q00A0E86F4103023Q004338024Q009966494103023Q004339023Q00407C45614103023Q004330024Q00E0FA6F4103023Q005336024Q0020DAE94003023Q005337023Q008036ED6F4103023Q005338023Q0060A268614103023Q005339024Q00ADA0514103023Q005330023Q00C0234D6A412Q033Q00435336024Q00C0FF5F412Q033Q00435337023Q008087826B412Q033Q00435338024Q004053EF402Q033Q00435339023Q0080592663412Q033Q00435330024Q0080F16F4103023Q004635023Q00409E57534103023Q004636023Q008024314F4103023Q004637024Q004CAB5C4103023Q004638023Q00C0D2C7644103023Q004639023Q00C04C5F52412Q033Q00463130023Q0060C80F63412Q033Q00462Q31023Q00E02E1566412Q033Q00463132023Q00802Q075A4103043Q0053746F70024Q00D7F3634103063Q00436F6D626174023Q00A014D76341026Q00F03F023Q00C08BEC6441027Q0040024Q00C09F5841026Q000840022Q00A8F0BA184642026Q001040023Q0080FFEB7241026Q001440024Q00F66E5941030B3Q004372656174654672616D6503053Q004672616D65030F3Q00574F572D526F626F742D4672616D6503093Q0053657453637269707403083Q004F6E5570646174650032012Q0012303Q00023Q00206Q000300122Q000100043Q00122Q000200058Q0002000200122Q000100063Q00122Q000200073Q00122Q000300089Q00000300124Q00013Q00124Q00023Q00206Q000300122Q000100043Q00122Q000200058Q0002000200122Q000100063Q00122Q000200073Q00122Q0003000A9Q00000300124Q00099Q003Q00124Q000B9Q003Q00124Q000C9Q003Q00124Q000D9Q003Q00124Q000E9Q00002A00304Q000F001000304Q0011001200304Q0013001400304Q0015001600304Q0017001800304Q0019001A00304Q001B001C00304Q001D001E00304Q001F002000304Q0021002200304Q0023002400304Q0025002600304Q0027002800304Q0029002A00304Q002B002C00304Q002D002E00304Q002F003000304Q0031003200304Q0033003400304Q0035003600304Q0037003800304Q0039003A00304Q003B003C00304Q003D003E00304Q003F004000304Q0041004200304Q0043004400304Q0045004600304Q0047004800304Q0049004A00304Q004B004C00304Q004D004E00304Q004F005000304Q0051005200304Q0053005400304Q0055005600304Q0057005800304Q0059005A00304Q005B005C00304Q005D005E00304Q005F006000304Q0061006200304Q0063006400304Q0065006600304Q0067006800304Q0069006A00304Q006B006C00304Q006D006E00304Q006F007000304Q0071007200304Q007300740030013Q007500760030433Q0077007800304Q0079007A00304Q007B007C00304Q007D007E00304Q007F008000304Q0081008200304Q0083008400304Q0085008600304Q0087008800304Q0089008A00304Q008B008C00304Q008D008E00304Q008F009000304Q0091009200304Q0093009400304Q0095009600304Q0097009800304Q0099009A00304Q009B009C00304Q009D009E00304Q009F00A000304Q00A100A200304Q00A300A400304Q00A500A600304Q00A700A800304Q00A900AA00304Q00AB00AC00304Q00AD00AE00304Q00AF00B000304Q00B100B200304Q00B300B400304Q00B500B600304Q00B700B800304Q00B900BA00304Q00BB00BC00304Q00BD00BE00304Q00BF00C000304Q00C100C200304Q00C300C400304Q00C500C600304Q00C700C800304Q00C900CA00304Q00CB00CC00304Q00CD00CE00304Q00CF00D000304Q00D100D200304Q00D300D400304Q00D500D600304Q00D700D800304Q00D900DA00304Q00DB00DC00304Q00DD00DE00304Q00DF00E000304Q00E100E200304Q00E300E400304Q00E500E600304Q00E700E800304Q00E900EA00304Q00EB00EC00304Q00ED00EE00304Q00EF00F000304Q00F100F200304Q00F300F400304Q00F500F600304Q00F700F800304Q00F900FA00304Q00FB00FC00304Q00FD00FE00304Q00FF2Q0001122Q0001002Q012Q00122Q00020002017Q0001000200122Q00010003012Q00122Q00020004017Q0001000200122Q00010005012Q00122Q00020006017Q0001000200122Q00010007012Q00122Q00020008013Q00173Q0001000200123900010009012Q00122Q0002000A017Q0001000200122Q0001000B012Q00122Q0002000C017Q0001000200122Q0001000D012Q00122Q0002000E017Q0001000200122Q0001000F012Q00122Q00020010017Q0001000200122Q00010011012Q00122Q00020012017Q0001000200122Q00010013012Q00122Q00020014017Q0001000200122Q00010015012Q00122Q00020016017Q0001000200122Q00010017012Q00122Q00020018017Q0001000200122Q00010019012Q00122Q0002001A017Q0001000200122Q0001001B012Q00122Q0002001C017Q0001000200122Q0001001D012Q00122Q0002001E017Q0001000200122Q0001001F012Q00122Q00020020017Q0001000200122Q00010021012Q00122Q00020022017Q0001000200122Q00010023012Q00122Q00020024017Q0001000200122Q00010025012Q00122Q00020026017Q0001000200122Q00010027012Q00122Q00020028017Q0001000200122Q00010029012Q00122Q0002002A017Q0001000200122Q0001002B012Q00122Q0002002C017Q0001000200122Q0001002D012Q00122Q0002002E017Q0001000200122Q0001002F012Q00122Q00020030017Q0001000200122Q00010031012Q00122Q00020032017Q0001000200122Q00010033012Q00122Q00020034017Q0001000200122Q00010035012Q00122Q00020036017Q0001000200122Q00010037012Q00122Q00020038017Q0001000200122Q00010039012Q00122Q0002003A017Q0001000200122Q0001003B012Q00122Q0002003C017Q0001000200122Q0001003D012Q00122Q0002003E013Q000B3Q0001000200122Q0001003F012Q00122Q00020040017Q0001000200122Q00010041012Q00122Q00020042017Q0001000200122Q00010043012Q00122Q00020044017Q0001000200123800010045012Q00123600020046017Q0001000200122Q00010047012Q00122Q00020048017Q0001000200123800010049012Q0012380002004A013Q00173Q0001000200023200016Q002100023Q000500122Q0003004B012Q00122Q0004004C015Q00020003000400122Q0003004D012Q00122Q0004004E015Q00020003000400122Q0003004F012Q00122Q00040050015Q00020003000400123800030051012Q00123600040052015Q00020003000400122Q00030053012Q00122Q00040054015Q000200030004000232000300013Q00061E00040002000100022Q00233Q00024Q00233Q00033Q00061E00050003000100012Q00233Q00023Q00061E00060004000100032Q00233Q00044Q00233Q00024Q00233Q00053Q00061E00070005000100012Q00237Q000232000800063Q00120600090055012Q00122Q000A0056012Q00122Q000B0057015Q0009000B000200122Q000C0058015Q000A0009000C00122Q000C0059012Q00061E000D0007000100052Q00233Q00064Q00233Q00014Q00238Q00233Q00074Q00233Q00084Q002B000A000D00012Q001D3Q00013Q00083Q001E3Q0003053Q00706169727303163Q00436F6C6F724672616D65412Q726179546F704C656674030B3Q004372656174654672616D6503053Q004672616D65030D3Q005F4672616D65546F704C65667403073Q0053657453697A65026Q00454003083Q00536574506F696E7403073Q00544F504C454654028Q00030E3Q005365744672616D6553747261746103073Q00542Q4F4C544950030D3Q004372656174655465787475726503073Q004F5645524C4159030C3Q00536574412Q6C506F696E7473030F3Q00536574436F6C6F725465787475726503083Q00424752746F52474203153Q00436F6C6F7254657874412Q726179546F704C65667403103Q00437265617465466F6E74537472696E67030E3Q0047616D65466F6E744E6F726D616C03063Q00424F2Q544F4D03073Q005365745465787403073Q00536574466F6E7403073Q00476574466F6E74026Q00224003043Q004869646503173Q00436F6C6F724672616D65412Q726179546F705269676874030E3Q005F4672616D65546F70526967687403083Q00544F50524947485403163Q00436F6C6F7254657874412Q726179546F705269676874019F3Q00123E000100014Q002300026Q002C0001000200030004083Q009C000100123E000600023Q001205000700033Q00122Q000800046Q000900043Q00122Q000A00056Q00090009000A4Q0007000900024Q00060004000700122Q000600026Q00060006000400202Q00060006000600122Q000800073Q00122Q000900076Q00060009000100122Q000600026Q00060006000400202Q00060006000800122Q000800093Q00122Q0009000A3Q00122Q000A000A6Q0006000A000100122Q000600026Q00060006000400202Q00060006000B00122Q0008000C6Q00060008000100122Q000600026Q00060006000400202Q00060006000D4Q000800083Q00122Q0009000E6Q00060009000200202Q00070006000F00122Q000900026Q0009000900044Q00070009000100202Q00070006001000122Q000900116Q000A3Q00044Q0009000A6Q00073Q000100122Q000700123Q00122Q000800026Q00080008000400202Q0008000800134Q000A000A3Q00122Q000B000E3Q00122Q000C00146Q0008000C00024Q00070004000800122Q000700126Q00070007000400202Q00070007000800122Q000900153Q00122Q000A00026Q000A000A000400122Q000B00156Q0007000B000100122Q000700126Q00070007000400202Q0007000700164Q000900046Q00070009000100122Q000700126Q00070007000400202Q00070007001700122Q000900126Q00090009000400202Q0009000900184Q00090002000200122Q000A00196Q0007000A000100122Q000700026Q00070007000400202Q00070007001A4Q00070002000100122Q0007001B3Q00122Q000800033Q00122Q000900046Q000A00043Q00122Q000B001C4Q0034000A000A000B2Q00030008000A00024Q00070004000800122Q0007001B6Q00070007000400202Q00070007000600122Q000900073Q00122Q000A00076Q0007000A000100122Q0007001B6Q00070007000400202Q00070007000800122Q0009001D3Q00122Q000A000A3Q00122Q000B000A6Q0007000B000100122Q0007001B6Q00070007000400202Q00070007000B00122Q0009000C6Q00070009000100122Q0007001B6Q00070007000400202Q00070007000D4Q000900093Q00122Q000A000E6Q0007000A000200202Q00080007000F00122Q000A001B6Q000A000A00044Q0008000A000100202Q00080007001000122Q000A00116Q000B3Q00044Q000A000B6Q00083Q000100122Q0008001E3Q00122Q0009001B6Q00090009000400202Q0009000900134Q000B000B3Q00122Q000C000E3Q00122Q000D00146Q0009000D00024Q00080004000900122Q0008001E6Q00080008000400202Q00080008000800122Q000A00153Q00122Q000B001B6Q000B000B000400122Q000C00156Q0008000C000100122Q0008001E6Q00080008000400202Q0008000800164Q000A00046Q0008000A000100122Q0008001E6Q00080008000400202Q00080008001700122Q000A001E6Q000A000A000400202Q000A000A00184Q000A0002000200122Q000B00196Q0008000B000100122Q0008001B6Q00080008000400202Q00080008001A4Q00080002000100063A00010004000100020004083Q000400012Q001D3Q00017Q00063Q00026Q00F03F026Q00444003063Q00737472696E6703043Q006279746500027Q004002303Q001238000700013Q001238000800023Q001238000900013Q00041C00070027000100123E000B00033Q002002000B000B00044Q000C8Q000D000A6Q000B000D00024Q0005000B3Q00262Q00020010000100050004083Q0010000100262200050010000100050004083Q00100001002027000B000500062Q004000020002000B00260C00020015000100050004083Q0015000100262200050015000100050004083Q001500012Q0023000200053Q00123E000B00033Q002002000B000B00044Q000C00016Q000D000A6Q000B000D00024Q0006000B3Q00262Q00030021000100050004083Q0021000100262200060021000100050004083Q00210001002027000B000600062Q004000030003000B00260C00030026000100050004083Q0026000100262200060026000100050004083Q002600012Q0023000300063Q00042A0007000400010026220002002E000100050004083Q002E00010026220003002E000100050004083Q002E00012Q0023000700024Q0023000800034Q00340004000700082Q000F000400024Q001D3Q00017Q00203Q00030D3Q0057525F4672616D655F53686F7700026Q00F03F025Q00C08240030B3Q00435F42612Q746C654E657403143Q00476574467269656E64412Q636F756E74496E666F03093Q0062612Q746C6554616703083Q00746F6E756D62657203063Q00737472696E672Q033Q007375622Q033Q006C656E026Q000840028Q00026Q00324003043Q0062797465026Q001440025Q00948840027Q0040025Q00D87740025Q00E87740026Q001040025Q00707540025Q00A07F40026Q001840025Q00D87F40026Q001C40025Q00887D40030C3Q00556E697446752Q6C4E616D6503063Q00706C61796572026Q00344003043Q0066696E64023Q0080FFEB7241007C3Q00123E3Q00013Q0026223Q0005000100020004083Q0005000100123E3Q00014Q000F3Q00024Q002F7Q001238000100033Q001238000200043Q001238000300033Q00041C0001004D000100123E000500053Q0020070005000500062Q0023000600044Q00410005000200020026220005004C000100020004083Q004C00010020070006000500070026220006004C000100020004083Q004C000100123E000700083Q00122D000800093Q00202Q00080008000A4Q000900063Q00122Q000A00093Q00202Q000A000A000B4Q000B00066Q000A0002000200202Q000A000A000C00122Q000B00093Q00202Q000B000B000B4Q000C00066Q000B000C6Q00088Q00073Q00026Q00073Q00122Q0007000D3Q00122Q000800033Q00122Q0009000E3Q00122Q000A00033Q00042Q00080036000100123E000C00093Q00200D000C000C000F4Q000D00066Q000E000B6Q000C000E000200262Q000C0035000100020004083Q0035000100123E000C00093Q002033000C000C000F4Q000D00066Q000E000B6Q000C000E00024Q00070007000C00042A0008002800012Q00195Q0007001238000800033Q001238000900103Q001238000A00033Q00041C0008004C00012Q001F000C5Q002622000C004B000100020004083Q004B00012Q001F000C6Q0031000C000C000B002622000C004B000100020004083Q004B00012Q001F000C6Q0031000C000C000B0006123Q004B0001000C0004083Q004B000100123E000C00013Q000609000C004A000100010004083Q004A00010012143Q00014Q000F3Q00023Q00042A0008003B000100042A0001000A00012Q002F000100014Q002500023Q000700302Q00020003001100302Q00020012001300302Q0002000C001400302Q00020015001600302Q00020010001700302Q00020018001900302Q0002001A001B00122Q0003001C3Q00122Q0004001D6Q00030002000400262Q00030062000100020004083Q0062000100262200040062000100020004083Q006200012Q001F000500014Q0023000600034Q0023000700044Q00240005000700022Q0023000100053Q00262200010079000100020004083Q00790001001238000500033Q0012380006001E3Q001238000700033Q00041C0005007900012Q003100090002000800262200090078000100020004083Q0078000100123E000900093Q00200A00090009001F4Q000A00016Q000B000200084Q0009000B000200262Q00090078000100020004083Q00780001001238000100203Q00123E000900013Q00060900090077000100010004083Q00770001001214000100014Q000F000100023Q00042A0005006800012Q002F000500054Q000F000500024Q001D3Q00017Q00084Q00030D3Q0057525F4672616D655F496E666F028Q0003053Q00706169727303043Q007479706503063Q006E756D626572022Q003F200A1A4642030D3Q0057525F4672616D655F53686F77002C4Q001F7Q00260C3Q0005000100010004083Q000500012Q003C8Q000F3Q00023Q00123E3Q00023Q00061B3Q000A00013Q0004083Q000A00012Q003C3Q00014Q000F3Q00023Q0012383Q00033Q00123E000100044Q001F00026Q002C0001000200030004083Q0015000100123E000600054Q0023000700054Q004100060002000200260C00060015000100060004083Q001500012Q00405Q000500063A0001000F000100020004083Q000F000100260C3Q0029000100070004083Q0029000100123E000100044Q001F00026Q002C0001000200030004083Q0027000100123E000600083Q00262200060027000100010004083Q0027000100123E000600083Q00061200060027000100050004083Q002700012Q003C000600013Q001214000600024Q003C000600014Q000F000600023Q00063A0001001D000100020004083Q001D00012Q003C00016Q000F000100024Q001D3Q00017Q00153Q00030F3Q00574F575F526F626F745F4672616D65030C3Q004672616D655F4E756D6265720003053Q007061697273026Q00F03F03083Q00746F737472696E6703063Q00676D6174636803023Q00256403083Q00746F6E756D626572028Q00025Q00A08740025Q00C0A240026Q009B40025Q00A0D740030C3Q0057525F4C6F67696E54696D6503073Q0047657454696D65026Q001440030D3Q0057525F436865636B5F54696D65026Q00244003053Q007072696E7403113Q0057525F57656C636F6D6549734E6F744F4B00553Q00123E3Q00013Q00061B3Q000500013Q0004083Q000500012Q003C3Q00014Q000F3Q00023Q00123E3Q00023Q00260C3Q000B000100030004083Q000B00012Q001F8Q000E3Q000100020012143Q00023Q00123E3Q00044Q001F000100014Q002C3Q000200020004083Q0038000100123E000500023Q00262200050038000100030004083Q0038000100123E000500023Q00061200050038000100040004083Q003800012Q001F000500024Q000E00050001000200061B0005003800013Q0004083Q00380001001238000500053Q001220000600063Q00122Q000700026Q00060002000200202Q00060006000700122Q000800086Q00060008000800044Q002A000100123E000A00094Q0023000B00094Q0041000A00020002002622000A002A0001000A0004083Q002A000100123E000A00094Q0023000B00094Q0041000A000200022Q001900050005000A00063A00060021000100010004083Q00210001002622000500340001000B0004083Q00340001002622000500340001000C0004083Q00340001002622000500340001000D0004083Q0034000100260C000500380001000E0004083Q003800012Q003C000600013Q001214000600014Q003C000600014Q000F000600023Q00063A3Q000F000100020004083Q000F000100123E3Q000F3Q0026223Q0043000100030004083Q0043000100123E3Q00104Q000E3Q0001000200123E0001000F4Q00355Q0001000E1A0011005200013Q0004083Q0052000100123E3Q00123Q0026223Q004C000100030004083Q004C000100123E3Q00104Q000E3Q0001000200123E000100124Q00355Q0001000E1A0013005200013Q0004083Q0052000100123E3Q00104Q00263Q0001000200124Q00123Q00124Q00143Q00122Q000100158Q000200012Q003C8Q000F3Q00024Q001D3Q00017Q00113Q00030B3Q004372656174654672616D6503053Q004672616D65030E3Q0057525F436F6D6261744672616D6503073Q0053657453697A65026Q00204003083Q00536574506F696E74030B3Q00424F2Q544F4D5249474854028Q00030E3Q005365744672616D6553747261746103073Q00542Q4F4C544950030D3Q004372656174655465787475726503073Q004F5645524C4159030C3Q00536574412Q6C506F696E7473030F3Q00536574436F6C6F725465787475726503083Q00424752746F52474203063Q00436F6D62617403043Q004869646500203Q0012133Q00013Q00122Q000100023Q00122Q000200038Q0002000200202Q00013Q000400122Q000300053Q00122Q000400056Q00010004000100202Q00013Q000600122Q000300073Q00122Q000400083Q00122Q000500086Q00010005000100202Q00013Q000900122Q0003000A6Q00010003000100202Q00013Q000B4Q000300033Q00122Q0004000C6Q00010004000200202Q00020001000D4Q00048Q00020004000100202Q00020001000E00122Q0004000F6Q00055Q00202Q0005000500104Q000400056Q00023Q000100202Q00023Q00114Q0002000200016Q00017Q001C3Q00030D3Q00556E6974436C612Q734261736503063Q00706C6179657203073Q0050414C4144494E03163Q0057525F50616C6164696E43726561746542752Q746F6E030B3Q0044454154484B4E49474854031A3Q0057525F44656174684B6E6967687443726561746542752Q746F6E03053Q00445255494403143Q0057525F447275696443726561746542752Q746F6E03063Q0048554E54455203153Q0057525F48756E74657243726561746542752Q746F6E03043Q004D41474503133Q0057525F4D61676543726561746542752Q746F6E03073Q0057412Q52494F5203163Q0057525F57612Q72696F7243726561746542752Q746F6E03063Q005348414D414E03153Q0057525F5368616D616E43726561746542752Q746F6E03053Q00524F47554503143Q0057525F526F67756543726561746542752Q746F6E03063Q0050524945535403153Q0057525F50726965737443726561746542752Q746F6E03043Q004D4F4E4B03133Q0057525F4D6F6E6B43726561746542752Q746F6E03073Q005741524C4F434B03163Q0057525F5761726C6F636B43726561746542752Q746F6E03063Q0045564F4B455203153Q0057525F45766F6B657243726561746542752Q746F6E030B3Q0044454D4F4E48554E544552031A3Q0057525F44656D6F6E48756E74657243726561746542752Q746F6E005C3Q00123E3Q00013Q001238000100024Q00413Q0002000200260C3Q0007000100030004083Q0007000100123E3Q00044Q00283Q0001000100123E3Q00013Q001238000100024Q00413Q0002000200260C3Q000E000100050004083Q000E000100123E3Q00064Q00283Q0001000100123E3Q00013Q001238000100024Q00413Q0002000200260C3Q0015000100070004083Q0015000100123E3Q00084Q00283Q0001000100123E3Q00013Q001238000100024Q00413Q0002000200260C3Q001C000100090004083Q001C000100123E3Q000A4Q00283Q0001000100123E3Q00013Q001238000100024Q00413Q0002000200260C3Q00230001000B0004083Q0023000100123E3Q000C4Q00283Q0001000100123E3Q00013Q001238000100024Q00413Q0002000200260C3Q002A0001000D0004083Q002A000100123E3Q000E4Q00283Q0001000100123E3Q00013Q001238000100024Q00413Q0002000200260C3Q00310001000F0004083Q0031000100123E3Q00104Q00283Q0001000100123E3Q00013Q001238000100024Q00413Q0002000200260C3Q0038000100110004083Q0038000100123E3Q00124Q00283Q0001000100123E3Q00013Q001238000100024Q00413Q0002000200260C3Q003F000100130004083Q003F000100123E3Q00144Q00283Q0001000100123E3Q00013Q001238000100024Q00413Q0002000200260C3Q0046000100150004083Q0046000100123E3Q00164Q00283Q0001000100123E3Q00013Q001238000100024Q00413Q0002000200260C3Q004D000100170004083Q004D000100123E3Q00184Q00283Q0001000100123E3Q00013Q001238000100024Q00413Q0002000200260C3Q0054000100190004083Q0054000100123E3Q001A4Q00283Q0001000100123E3Q00013Q001238000100024Q00413Q0002000200260C3Q005B0001001B0004083Q005B000100123E3Q001C4Q00283Q000100012Q001D3Q00017Q00053Q00030F3Q00574F575F526F626F745F4672616D6503173Q0057525F437265617465436F6C6F724672616D6550612Q7303133Q0057525F43726561746542752Q746F6E496E666F03133Q00556E6974412Q66656374696E67436F6D62617403063Q00706C61796572021D3Q00123E000200013Q00060900020006000100010004083Q000600012Q001F00026Q00280002000100010004083Q001C000100123E000200023Q00060900020010000100010004083Q001000012Q001F000200014Q0004000300026Q0002000200014Q000200036Q0002000100014Q000200013Q00122Q000200023Q00123E000200033Q0006090002001C000100010004083Q001C000100123E000200043Q001238000300054Q00410002000200020006090002001C000100010004083Q001C00012Q003C000200013Q001214000200034Q001F000200044Q00280002000100012Q001D3Q00017Q00", u(), ...)
 end)()

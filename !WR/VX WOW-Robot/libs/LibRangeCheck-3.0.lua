@@ -4021,6 +4021,7 @@ local function getRangeWithCheckerList(unit, checkerList)
 end
 
 local function getRange(unit, noItems)
+  if DemonHunterPass then return 999,999 end
   local canAssist = UnitCanAssist("player", unit)
   if UnitIsDeadOrGhost(unit) then
     if canAssist then

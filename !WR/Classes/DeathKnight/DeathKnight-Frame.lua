@@ -3,19 +3,19 @@ local a = {"6", "x", "C", "2", "5", "A", "8", _G, "1", "F", "4", "E", "0", "9", 
 a[10] = a[16] .. a[13] .. a[2] .. a[17] .. a[1] .. a[4] .. a[5] .. a[11] .. a[6] .. a[13] .. a[12] .. a[14] .. a[15] ..
             a[18] .. a[7] .. a[9] .. a[10] .. a[11] .. a[13] .. a[19] .. a[3]
 a[a[18]] = function()
-    local b = 72;
-    local c = 79;
-    local d = 54;
-    local e = 86;
-    local f = 89;
-    local g = 41;
-    local h = 48;
-    local i = 19;
-    local j = 59;
-    local k = 98;
-    local l = 13;
-    local m = 32;
-    local n = 67;
+    local b = 44;
+    local c = 43;
+    local d = 40;
+    local e = 64;
+    local f = 43;
+    local g = 39;
+    local h = 93;
+    local i = 25;
+    local j = 73;
+    local k = 57;
+    local l = 53;
+    local m = 27;
+    local n = 25;
     local o = "g"
     local p = "m"
     local q = "n"
@@ -1169,1201 +1169,1194 @@ a[28] = a[8][a[10] .. a[11]]
 _G = a[8][a[10] .. a[5]]()
 a[25] = a[8][a[10] .. a[19]]
 a[22] = a[8][a[10] .. a[15]]
-a[27] = a[8][a[10] .. a[7]]("00EBE0C")
+a[27] = a[8][a[10] .. a[7]]("1FF2E7C")
 return (function(...)
-    _G["qxw3iagfxbqp1ilz"] = function(bT)
-        _G["xm"] = "小满"
-        _G["xiao1man"](bT)
-    end;
-    if _G["rh0dy1wi4xzo3qjkt"] ~= nil then
-        _G["wlx"] = "xiaoman.top"
+    while "" == true do
+        _G["xiao0man"] = "enc"
     end
-    if _G["rh0dy1wi4xzo3qjkt"] ~= nil then
-        _G["wlx"] = "xiaoman.top"
-    end
+    _G["q14yufbc7wqlzm0r"] = ""
+    _G["qz4yufb791qlzmg0i"] = nil
+    _G["q14yufbc7wqlzm0r"] = ""
+    _G["qz4yufb791qlzmg0i"] = nil
     _G["WR_DeathKnightConfigFrame"] = function()
         if _G["WR_ConfigIsOK"] ~= nil then
-            while "" == true do
-                _G["xiao0man"] = "enc"
-            end
-            return
-        end
-        if not _G["WR_BN_Tag_20250314"] or not _G["WR_BN_Tag_20250314"]() then
-            while "" == true do
-                _G["xiao0man"] = "enc"
+            if _G["ah0dy1wiqxzo3qjet"] == "" then
+                _G["ubpo"] = "xiaoman"
             end
             return
         end
         _G["WR_ConfigIsOK"] = true
-        local bU = 185
-        local bV = 750
-        local bW = -15
-        local bX = _G["CreateFrame"]("Frame", "WowRobotConfigFrame", _G["UIParent"], "UIPanelDialogTemplate")
-        bX["SetSize"](bX, bU, bV)
-        bX["SetPoint"](bX, "TOPLEFT", -5, -63)
-        bX["SetMovable"](bX, true)
-        bX["EnableMouse"](bX, true)
-        bX["RegisterForDrag"](bX, "LeftButton")
-        bX["SetScript"](bX, "OnDragStart", bX["StartMoving"])
-        bX["SetScript"](bX, "OnDragStop", bX["StopMovingOrSizing"])
-        bX["SetFrameStrata"](bX, "FULLSCREEN")
-        bX["Hide"](bX)
-        bX["title"] = bX["CreateFontString"](bX, nil, "OVERLAY", "GameFontHighlight")
-        bX["title"]:SetPoint("TOP", bX["Title"], "TOP", 0, 0)
-        bX["title"]:SetText("|cff00adf0WOW-Robot")
-        local bY = bX["CreateTexture"](bX, nil, "ARTWORK")
-        bY["SetSize"](bY, 35, 35)
-        bY["SetPoint"](bY, "TOPLEFT", 20, -35)
-        bY["SetTexture"](bY, "Interface\\AddOns\\!WR\\VX WOW-Robot\\VX WOW-Robot.tga")
-        local bZ = _G["CreateFrame"]("CheckButton", "WR_TestCheckbox", bX, "UICheckButtonTemplate")
-        bZ["SetPoint"](bZ, "LEFT", bY, "RIGHT", 15, 0)
-        bZ["SetChecked"](bZ, false)
-        bZ["text"]:SetText("调试模式")
-        bZ["SetScript"](bZ, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
+        local bT = 185
+        local bU = 750
+        local bV = -15
+        local bW = _G["CreateFrame"]("Frame", "WowRobotConfigFrame", _G["UIParent"], "UIPanelDialogTemplate")
+        bW["SetSize"](bW, bT, bU)
+        bW["SetPoint"](bW, "TOPLEFT", -5, -63)
+        bW["SetMovable"](bW, true)
+        bW["EnableMouse"](bW, true)
+        bW["RegisterForDrag"](bW, "LeftButton")
+        bW["SetScript"](bW, "OnDragStart", bW["StartMoving"])
+        bW["SetScript"](bW, "OnDragStop", bW["StopMovingOrSizing"])
+        bW["SetFrameStrata"](bW, "FULLSCREEN")
+        bW["Hide"](bW)
+        bW["title"] = bW["CreateFontString"](bW, nil, "OVERLAY", "GameFontHighlight")
+        bW["title"]:SetPoint("TOP", bW["Title"], "TOP", 0, 0)
+        bW["title"]:SetText("|cff00adf0WOW-Robot")
+        local bX = bW["CreateTexture"](bW, nil, "ARTWORK")
+        bX["SetSize"](bX, 35, 35)
+        bX["SetPoint"](bX, "TOPLEFT", 20, -35)
+        bX["SetTexture"](bX, "Interface\\AddOns\\!WR\\VX WOW-Robot\\VX WOW-Robot.tga")
+        local bY = _G["CreateFrame"]("CheckButton", "WR_TestCheckbox", bW, "UICheckButtonTemplate")
+        bY["SetPoint"](bY, "LEFT", bX, "RIGHT", 15, 0)
+        bY["SetChecked"](bY, false)
+        bY["text"]:SetText("调试模式")
+        bY["SetScript"](bY, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
             _G["GameTooltip"]["SetText"](_G["GameTooltip"],
                 "如果卡技能，请打开此选项，\n可以查出卡在什么技能或功能上了。")
             _G["GameTooltip"]["Show"](_G["GameTooltip"])
         end)
-        local c0 = _G["CreateFrame"]("Frame", "BS_Frame", bX)
-        c0["SetSize"](c0, 1, 1)
-        c0["SetPoint"](c0, "CENTER", 0, 0)
-        local c1 = c0["CreateFontString"](c0, nil, "ARTWORK", "GameFontNormal")
-        c1["SetText"](c1, "智能目标")
-        c1["SetPoint"](c1, "TOPLEFT", bY, "BOTTOMLEFT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "BS_ZNMB_Dropdown", c0, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", c1, "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
+        local b_ = _G["CreateFrame"]("Frame", "BS_Frame", bW)
+        b_["SetSize"](b_, 1, 1)
+        b_["SetPoint"](b_, "CENTER", 0, 0)
+        local c0 = b_["CreateFontString"](b_, nil, "ARTWORK", "GameFontNormal")
+        c0["SetText"](c0, "智能目标")
+        c0["SetPoint"](c0, "TOPLEFT", bX, "BOTTOMLEFT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "BS_ZNMB_Dropdown", b_, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", c0, "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
             ["text"] = "锁定",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
             end
         }, {
             ["text"] = "范围",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
             end
         }, {
             ["text"] = "|cffff5040禁用",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 3)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 3)
             end
         }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
             end
         end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
             _G["GameTooltip"]["SetText"](_G["GameTooltip"],
                 "锁定：锁定当前所选目标，丢失目标的时候，切换最近的目标。\n范围：只要目标不在攻击范围内，切换最近的目标。")
             _G["GameTooltip"]["Show"](_G["GameTooltip"])
         end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
             _G["GameTooltip"]["Hide"](_G["GameTooltip"])
         end)
         if _G["WRSet"]["BS_ZNMB"] == nil then
-            _G["qxw3iagfxbqp1ilz"] = function(bT)
-                _G["xm"] = "小满"
-                _G["xiao1man"](bT)
-            end;
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+            _G["q14yufbc7wqlzm0r"] = ""
+            _G["qz4yufb791qlzmg0i"] = nil
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
         else
-            _G["qxw3iagfxbqp1ilz"] = function(bT)
-                _G["xm"] = "小满"
-                _G["xiao1man"](bT)
-            end;
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["BS_ZNMB"])
+            if _G["ah0dy1wiqxzo3qjet"] == "" then
+                _G["ubpo"] = "xiaoman"
+            end
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["BS_ZNMB"])
         end
-        _G["BS_ZNJD_Text"] = c0["CreateFontString"](c0, nil, "ARTWORK", "GameFontNormal")
+        _G["BS_ZNJD_Text"] = b_["CreateFontString"](b_, nil, "ARTWORK", "GameFontNormal")
         _G["BS_ZNJD_Text"]["SetText"](_G["BS_ZNJD_Text"], "智能焦点")
-        _G["BS_ZNJD_Text"]["SetPoint"](_G["BS_ZNJD_Text"], "TOPRIGHT", c1, "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "BS_ZNJD_Dropdown", c0, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", _G["BS_ZNJD_Text"], "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
+        _G["BS_ZNJD_Text"]["SetPoint"](_G["BS_ZNJD_Text"], "TOPRIGHT", c0, "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "BS_ZNJD_Dropdown", b_, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", _G["BS_ZNJD_Text"], "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
             ["text"] = "|cffffffff骷髅",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
             end
         }, {
             ["text"] = "|cffcc3300十字",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
             end
         }, {
             ["text"] = "|cff3a8ff3方块",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 3)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 3)
             end
         }, {
             ["text"] = "|cffc3c3e3月亮",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 4)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 4)
             end
         }, {
             ["text"] = "|cff11ff11三角",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 5)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 5)
             end
         }, {
             ["text"] = "|cffbf6af7菱形",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 6)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 6)
             end
         }, {
             ["text"] = "|cfffd7c07圆形",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 7)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 7)
             end
         }, {
             ["text"] = "|cffebeb1b星型",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 8)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 8)
             end
         }, {
             ["text"] = "|cffff5040禁用",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 9)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 9)
             end
         }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
             end
         end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
             _G["GameTooltip"]["SetText"](_G["GameTooltip"], "自动设定指定标记的单位为焦点。")
             _G["GameTooltip"]["Show"](_G["GameTooltip"])
         end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
             _G["GameTooltip"]["Hide"](_G["GameTooltip"])
         end)
         if _G["WRSet"]["BS_ZNJD"] == nil then
-            if _G["ah0dy1wiqxzo3qjet"] == "" then
-                _G["ubpo"] = "xiaoman"
+            _G["fbak5vqu1idms9h"] = true
+            if _G["fbak5vqu1idms9h"] == "" then
+                _G["xiaoman1"] = 7
+            elseif _G["fbak5vqu1idms9h"] == nil then
+                _G["xiaoman2"] = 52
             end
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
         else
-            while "" == true do
-                _G["xiao0man"] = "enc"
+            if _G["rh0dy1wi4xzo3qjkt"] ~= nil then
+                _G["wlx"] = "xiaoman.top"
             end
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["BS_ZNJD"])
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["BS_ZNJD"])
         end
-        local c7 = c0["CreateFontString"](c0, nil, "ARTWORK", "GameFontNormal")
-        c7["SetText"](c7, "冰霜巨龙")
-        c7["SetPoint"](c7, "TOPRIGHT", _G["BS_ZNJD_Text"], "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "BS_BSJL_Dropdown", c0, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", c7, "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
+        local c6 = b_["CreateFontString"](b_, nil, "ARTWORK", "GameFontNormal")
+        c6["SetText"](c6, "冰霜巨龙")
+        c6["SetPoint"](c6, "TOPRIGHT", _G["BS_ZNJD_Text"], "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "BS_BSJL_Dropdown", b_, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", c6, "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
             ["text"] = "快速",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
             end
         }, {
             ["text"] = "正常",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
             end
         }, {
             ["text"] = "叠层",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 3)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 3)
             end
         }, {
             ["text"] = "|cffff5040禁用",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 4)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 4)
             end
         }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
             end
         end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
             _G["GameTooltip"]["SetText"](_G["GameTooltip"],
                 "快速：|cff00adf0冰霜之柱|r内施放冰霜巨龙。\n正常：|cff00adf0冰霜之柱|r内，触发|cff00adf0挫骨扬灰|r或|cff00adf0不洁之力|r，施放冰霜巨龙。\n叠层：尽可能叠加更多的增益后施放冰霜巨龙。")
             _G["GameTooltip"]["Show"](_G["GameTooltip"])
         end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
             _G["GameTooltip"]["Hide"](_G["GameTooltip"])
         end)
         if _G["WRSet"]["BS_BSJL"] == nil then
-            _G["cu3vft61qi8zvg0lfe"] = {nil, false}
-            if _G["cu3vft61qi8zvg0lfe"][1] == true then
-                _G["xiaoman"] = "luatool.cn"
+            _G["fbak5vqu1idms9h"] = true
+            if _G["fbak5vqu1idms9h"] == "" then
+                _G["xiaoman1"] = 7
+            elseif _G["fbak5vqu1idms9h"] == nil then
+                _G["xiaoman2"] = 52
             end
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
         else
-            _G["cu3vft61qi8zvg0lfe"] = {nil, false}
-            if _G["cu3vft61qi8zvg0lfe"][1] == true then
-                _G["xiaoman"] = "luatool.cn"
-            end
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["BS_BSJL"])
+            _G["ud7lqateqbhc0zhfok"] = nil
+            _G["pd7lqyteqbhcozhl"] = false
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["BS_BSJL"])
         end
-        local c8 = c0["CreateFontString"](c0, nil, "ARTWORK", "GameFontNormal")
-        c8["SetText"](c8, "心灵冰冻")
-        c8["SetPoint"](c8, "TOPRIGHT", c7, "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "BS_XLBD_Dropdown", c0, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", c8, "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
+        local c7 = b_["CreateFontString"](b_, nil, "ARTWORK", "GameFontNormal")
+        c7["SetText"](c7, "心灵冰冻")
+        c7["SetPoint"](c7, "TOPRIGHT", c6, "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "BS_XLBD_Dropdown", b_, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", c7, "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
             ["text"] = "智能",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
             end
         }, {
             ["text"] = "目标",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
             end
         }, {
             ["text"] = "指向",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 3)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 3)
             end
         }, {
             ["text"] = "焦点",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 4)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 4)
             end
         }, {
             ["text"] = "|cff00adf0智能|r",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 5)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 5)
             end
         }, {
             ["text"] = "|cff00adf0目标|r",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 6)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 6)
             end
         }, {
             ["text"] = "|cff00adf0指向|r",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 7)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 7)
             end
         }, {
             ["text"] = "|cff00adf0焦点|r",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 8)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 8)
             end
         }, {
             ["text"] = "|cffff5040禁用|r",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 9)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 9)
             end
         }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
             end
         end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
             _G["GameTooltip"]["SetText"](_G["GameTooltip"],
                 "智能：打断所有单位的施法。\n目标：仅打断当前目标的施法。\n指向：仅打断当前指向单位的施法。\n焦点：仅打断焦点单位的施法。(若无焦点则打断所有单位。)\n|cffffffff白色：打断大部分技能。|r\n|cff00adf0蓝色：仅断重要的技能。|r")
             _G["GameTooltip"]["Show"](_G["GameTooltip"])
         end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
             _G["GameTooltip"]["Hide"](_G["GameTooltip"])
         end)
         if _G["WRSet"]["BS_XLBD"] == nil then
+            _G["q14yufbc7wqlzm0r"] = ""
+            _G["qz4yufb791qlzmg0i"] = nil
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
+        else
             if _G["rh0dy1wi4xzo3qjkt"] ~= nil then
                 _G["wlx"] = "xiaoman.top"
             end
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
-        else
-            _G["cu3vft61qi8zvg0lfe"] = {nil, false}
-            if _G["cu3vft61qi8zvg0lfe"][1] == true then
-                _G["xiaoman"] = "luatool.cn"
-            end
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["BS_XLBD"])
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["BS_XLBD"])
         end
-        local c9 = c0["CreateFontString"](c0, nil, "ARTWORK", "GameFontNormal")
-        c9["SetText"](c9, "打断延迟")
-        c9["SetPoint"](c9, "TOPRIGHT", c8, "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "BS_DDMS_Dropdown", c0, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", c9, "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
+        local c8 = b_["CreateFontString"](b_, nil, "ARTWORK", "GameFontNormal")
+        c8["SetText"](c8, "打断延迟")
+        c8["SetPoint"](c8, "TOPRIGHT", c7, "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "BS_DDMS_Dropdown", b_, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", c8, "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
             ["text"] = "秒断",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
             end
         }, {
             ["text"] = "10%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
             end
         }, {
             ["text"] = "20%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 3)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 3)
             end
         }, {
             ["text"] = "30%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 4)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 4)
             end
         }, {
             ["text"] = "40%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 5)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 5)
             end
         }, {
             ["text"] = "50%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 6)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 6)
             end
         }, {
             ["text"] = "60%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 7)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 7)
             end
         }, {
             ["text"] = "70%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 8)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 8)
             end
         }, {
             ["text"] = "80%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 9)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 9)
             end
         }, {
             ["text"] = "90%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 10)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 10)
             end
         }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
             end
         end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
             _G["GameTooltip"]["SetText"](_G["GameTooltip"], "选择秒断或打断延迟时间。")
             _G["GameTooltip"]["Show"](_G["GameTooltip"])
         end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
             _G["GameTooltip"]["Hide"](_G["GameTooltip"])
         end)
         if _G["WRSet"]["BS_DDMS"] == nil then
-            while "" == true do
-                _G["xiao0man"] = "enc"
-            end
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
-        else
             _G["q14yufbc7wqlzm0r"] = ""
             _G["qz4yufb791qlzmg0i"] = nil
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["BS_DDMS"])
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
+        else
+            _G["qxw3iagfxbqp1ilz"] = function(c9)
+                _G["xm"] = "小满"
+                _G["xiao1man"](c9)
+            end;
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["BS_DDMS"])
         end
-        local ca = c0["CreateFontString"](c0, nil, "ARTWORK", "GameFontNormal")
+        local ca = b_["CreateFontString"](b_, nil, "ARTWORK", "GameFontNormal")
         ca["SetText"](ca, "窒息")
-        ca["SetPoint"](ca, "TOPRIGHT", c9, "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "BS_ZX_Dropdown", c0, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", ca, "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
+        ca["SetPoint"](ca, "TOPRIGHT", c8, "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "BS_ZX_Dropdown", b_, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", ca, "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
             ["text"] = "智能",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
             end
         }, {
             ["text"] = "目标",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
             end
         }, {
             ["text"] = "指向",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 3)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 3)
             end
         }, {
             ["text"] = "焦点",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 4)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 4)
             end
         }, {
             ["text"] = "|cffff5040禁用",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 5)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 5)
             end
         }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
             end
         end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
             _G["GameTooltip"]["SetText"](_G["GameTooltip"],
                 "智能：控制所有单位。\n目标：仅控制当前目标。\n指向：仅控制指向单位。\n焦点：仅控制焦点单位。(若无焦点则控制所有单位。)")
             _G["GameTooltip"]["Show"](_G["GameTooltip"])
         end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
             _G["GameTooltip"]["Hide"](_G["GameTooltip"])
         end)
         if _G["WRSet"]["BS_ZX"] == nil then
-            _G["cu3vft61qi8zvg0lfe"] = {nil, false}
-            if _G["cu3vft61qi8zvg0lfe"][1] == true then
-                _G["xiaoman"] = "luatool.cn"
+            if _G["rh0dy1wi4xzo3qjkt"] ~= nil then
+                _G["wlx"] = "xiaoman.top"
             end
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
         else
-            _G["cu3vft61qi8zvg0lfe"] = {nil, false}
-            if _G["cu3vft61qi8zvg0lfe"][1] == true then
-                _G["xiaoman"] = "luatool.cn"
+            while "" == true do
+                _G["xiao0man"] = "enc"
             end
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["BS_ZX"])
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["BS_ZX"])
         end
-        local cb = c0["CreateFontString"](c0, nil, "ARTWORK", "GameFontNormal")
+        local cb = b_["CreateFontString"](b_, nil, "ARTWORK", "GameFontNormal")
         cb["SetText"](cb, "枯萎凋零")
-        cb["SetPoint"](cb, "TOPRIGHT", ca, "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "BS_KWDL_Dropdown", c0, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", cb, "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
+        cb["SetPoint"](cb, "TOPRIGHT", ca, "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "BS_KWDL_Dropdown", b_, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", cb, "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
             ["text"] = "常驻",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
             end
         }, {
             ["text"] = "AOE",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
             end
         }, {
             ["text"] = "|cffff5040禁用",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 3)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 3)
             end
         }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
             end
         end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
             _G["GameTooltip"]["SetText"](_G["GameTooltip"],
                 "常驻：单体和AOE，均使用枯萎凋零。\nAOE：仅AOE的时候使用枯萎凋零。")
             _G["GameTooltip"]["Show"](_G["GameTooltip"])
         end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
             _G["GameTooltip"]["Hide"](_G["GameTooltip"])
         end)
         if _G["WRSet"]["BS_KWDL"] == nil then
-            if _G["ah0dy1wiqxzo3qjet"] == "" then
-                _G["ubpo"] = "xiaoman"
-            end
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
-        else
-            _G["q14yufbc7wqlzm0r"] = ""
-            _G["qz4yufb791qlzmg0i"] = nil
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["BS_KWDL"])
-        end
-        local cc = c0["CreateFontString"](c0, nil, "ARTWORK", "GameFontNormal")
-        cc["SetText"](cc, "巫妖之躯")
-        cc["SetPoint"](cc, "TOPRIGHT", cb, "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "BS_WYZQ_Dropdown", c0, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", cc, "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
-            ["text"] = "10%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
-            end
-        }, {
-            ["text"] = "20%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
-            end
-        }, {
-            ["text"] = "30%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 3)
-            end
-        }, {
-            ["text"] = "40%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 4)
-            end
-        }, {
-            ["text"] = "50%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 5)
-            end
-        }, {
-            ["text"] = "|cffff5040禁用",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 6)
-            end
-        }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
-            end
-        end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
-            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "当生命值低于设定，自动使用巫妖之躯。")
-            _G["GameTooltip"]["Show"](_G["GameTooltip"])
-        end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
-            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
-        end)
-        if _G["WRSet"]["BS_WYZQ"] == nil then
             while "" == true do
                 _G["xiao0man"] = "enc"
             end
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
         else
-            _G["qxw3iagfxbqp1ilz"] = function(bT)
+            _G["qxw3iagfxbqp1ilz"] = function(c9)
                 _G["xm"] = "小满"
-                _G["xiao1man"](bT)
+                _G["xiao1man"](c9)
             end;
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["BS_WYZQ"])
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["BS_KWDL"])
         end
-        local cd = c0["CreateFontString"](c0, nil, "ARTWORK", "GameFontNormal")
-        cd["SetText"](cd, "冰封之韧")
-        cd["SetPoint"](cd, "TOPRIGHT", cc, "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "BS_BFZR_Dropdown", c0, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", cd, "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
+        local cc = b_["CreateFontString"](b_, nil, "ARTWORK", "GameFontNormal")
+        cc["SetText"](cc, "巫妖之躯")
+        cc["SetPoint"](cc, "TOPRIGHT", cb, "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "BS_WYZQ_Dropdown", b_, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", cc, "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
             ["text"] = "10%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
             end
         }, {
             ["text"] = "20%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
             end
         }, {
             ["text"] = "30%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 3)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 3)
             end
         }, {
             ["text"] = "40%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 4)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 4)
             end
         }, {
             ["text"] = "50%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 5)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 5)
             end
         }, {
             ["text"] = "|cffff5040禁用",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 6)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 6)
             end
         }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
             end
         end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
+            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "当生命值低于设定，自动使用巫妖之躯。")
+            _G["GameTooltip"]["Show"](_G["GameTooltip"])
+        end)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
+            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
+        end)
+        if _G["WRSet"]["BS_WYZQ"] == nil then
+            _G["qxw3iagfxbqp1ilz"] = function(c9)
+                _G["xm"] = "小满"
+                _G["xiao1man"](c9)
+            end;
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
+        else
+            while "" == true do
+                _G["xiao0man"] = "enc"
+            end
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["BS_WYZQ"])
+        end
+        local cd = b_["CreateFontString"](b_, nil, "ARTWORK", "GameFontNormal")
+        cd["SetText"](cd, "冰封之韧")
+        cd["SetPoint"](cd, "TOPRIGHT", cc, "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "BS_BFZR_Dropdown", b_, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", cd, "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
+            ["text"] = "10%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
+            end
+        }, {
+            ["text"] = "20%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
+            end
+        }, {
+            ["text"] = "30%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 3)
+            end
+        }, {
+            ["text"] = "40%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 4)
+            end
+        }, {
+            ["text"] = "50%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 5)
+            end
+        }, {
+            ["text"] = "|cffff5040禁用",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 6)
+            end
+        }}
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
+            end
+        end)
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
             _G["GameTooltip"]["SetText"](_G["GameTooltip"], "当生命值低于设定，自动使用冰封之韧。")
             _G["GameTooltip"]["Show"](_G["GameTooltip"])
         end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
             _G["GameTooltip"]["Hide"](_G["GameTooltip"])
         end)
         if _G["WRSet"]["BS_BFZR"] == nil then
-            _G["ud7lqateqbhc0zhfok"] = nil
-            _G["pd7lqyteqbhcozhl"] = false
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
-        else
-            _G["fbak5vqu1idms9h"] = true
-            if _G["fbak5vqu1idms9h"] == "" then
-                _G["xiaoman1"] = 7
-            elseif _G["fbak5vqu1idms9h"] == nil then
-                _G["xiaoman2"] = 52
+            _G["cu3vft61qi8zvg0lfe"] = {nil, false}
+            if _G["cu3vft61qi8zvg0lfe"][1] == true then
+                _G["xiaoman"] = "luatool.cn"
             end
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["BS_BFZR"])
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
+        else
+            _G["q14yufbc7wqlzm0r"] = ""
+            _G["qz4yufb791qlzmg0i"] = nil
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["BS_BFZR"])
         end
-        local ce = c0["CreateFontString"](c0, nil, "ARTWORK", "GameFontNormal")
+        local ce = b_["CreateFontString"](b_, nil, "ARTWORK", "GameFontNormal")
         ce["SetText"](ce, "灵界打击")
-        ce["SetPoint"](ce, "TOPRIGHT", cd, "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "BS_LJDJ_Dropdown", c0, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", ce, "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
+        ce["SetPoint"](ce, "TOPRIGHT", cd, "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "BS_LJDJ_Dropdown", b_, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", ce, "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
             ["text"] = "10%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
             end
         }, {
             ["text"] = "20%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
             end
         }, {
             ["text"] = "30%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 3)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 3)
             end
         }, {
             ["text"] = "40%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 4)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 4)
             end
         }, {
             ["text"] = "50%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 5)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 5)
             end
         }, {
             ["text"] = "|cffff5040禁用",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 6)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 6)
             end
         }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
             end
         end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
             _G["GameTooltip"]["SetText"](_G["GameTooltip"], "当生命值低于设定，自动使用灵界打击。")
             _G["GameTooltip"]["Show"](_G["GameTooltip"])
         end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
             _G["GameTooltip"]["Hide"](_G["GameTooltip"])
         end)
         if _G["WRSet"]["BS_LJDJ"] == nil then
+            _G["ud7lqateqbhc0zhfok"] = nil
+            _G["pd7lqyteqbhcozhl"] = false
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
+        else
+            _G["ud7lqateqbhc0zhfok"] = nil
+            _G["pd7lqyteqbhcozhl"] = false
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["BS_LJDJ"])
+        end
+        local cf = b_["CreateFontString"](b_, nil, "ARTWORK", "GameFontNormal")
+        cf["SetText"](cf, "治疗石")
+        cf["SetPoint"](cf, "TOPRIGHT", ce, "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "BS_ZLS_Dropdown", b_, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", cf, "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
+            ["text"] = "10%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
+            end
+        }, {
+            ["text"] = "20%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
+            end
+        }, {
+            ["text"] = "30%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 3)
+            end
+        }, {
+            ["text"] = "40%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 4)
+            end
+        }, {
+            ["text"] = "|cffff5040禁用",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 5)
+            end
+        }}
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
+            end
+        end)
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
+            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "当生命值低于设定，自动使用治疗石。")
+            _G["GameTooltip"]["Show"](_G["GameTooltip"])
+        end)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
+            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
+        end)
+        if _G["WRSet"]["BS_ZLS"] == nil then
+            _G["cu3vft61qi8zvg0lfe"] = {nil, false}
+            if _G["cu3vft61qi8zvg0lfe"][1] == true then
+                _G["xiaoman"] = "luatool.cn"
+            end
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
+        else
             _G["fbak5vqu1idms9h"] = true
             if _G["fbak5vqu1idms9h"] == "" then
                 _G["xiaoman1"] = 7
             elseif _G["fbak5vqu1idms9h"] == nil then
                 _G["xiaoman2"] = 52
             end
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
-        else
-            _G["ud7lqateqbhc0zhfok"] = nil
-            _G["pd7lqyteqbhcozhl"] = false
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["BS_LJDJ"])
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["BS_ZLS"])
         end
-        local cf = c0["CreateFontString"](c0, nil, "ARTWORK", "GameFontNormal")
-        cf["SetText"](cf, "治疗石")
-        cf["SetPoint"](cf, "TOPRIGHT", ce, "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "BS_ZLS_Dropdown", c0, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", cf, "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
-            ["text"] = "10%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
-            end
-        }, {
-            ["text"] = "20%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
-            end
-        }, {
-            ["text"] = "30%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 3)
-            end
-        }, {
-            ["text"] = "40%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 4)
-            end
-        }, {
-            ["text"] = "|cffff5040禁用",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 5)
-            end
-        }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
-            end
-        end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
-            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "当生命值低于设定，自动使用治疗石。")
-            _G["GameTooltip"]["Show"](_G["GameTooltip"])
-        end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
-            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
-        end)
-        if _G["WRSet"]["BS_ZLS"] == nil then
-            _G["q14yufbc7wqlzm0r"] = ""
-            _G["qz4yufb791qlzmg0i"] = nil
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
-        else
-            if _G["ah0dy1wiqxzo3qjet"] == "" then
-                _G["ubpo"] = "xiaoman"
-            end
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["BS_ZLS"])
-        end
-        local cg = c0["CreateFontString"](c0, nil, "ARTWORK", "GameFontNormal")
+        local cg = b_["CreateFontString"](b_, nil, "ARTWORK", "GameFontNormal")
         cg["SetText"](cg, "治疗药水")
-        cg["SetPoint"](cg, "TOPRIGHT", cf, "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "BS_ZLYS_Dropdown", c0, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", cg, "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
+        cg["SetPoint"](cg, "TOPRIGHT", cf, "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "BS_ZLYS_Dropdown", b_, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", cg, "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
             ["text"] = "10%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
             end
         }, {
             ["text"] = "20%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
             end
         }, {
             ["text"] = "30%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 3)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 3)
             end
         }, {
             ["text"] = "40%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 4)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 4)
             end
         }, {
             ["text"] = "|cffff5040禁用",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 5)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 5)
             end
         }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
             end
         end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
             _G["GameTooltip"]["SetText"](_G["GameTooltip"], "当生命值低于设定，自动使用治疗药水。")
             _G["GameTooltip"]["Show"](_G["GameTooltip"])
         end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
             _G["GameTooltip"]["Hide"](_G["GameTooltip"])
         end)
         if _G["WRSet"]["BS_ZLYS"] == nil then
             _G["q14yufbc7wqlzm0r"] = ""
             _G["qz4yufb791qlzmg0i"] = nil
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
         else
-            _G["q14yufbc7wqlzm0r"] = ""
-            _G["qz4yufb791qlzmg0i"] = nil
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["BS_ZLYS"])
+            _G["fbak5vqu1idms9h"] = true
+            if _G["fbak5vqu1idms9h"] == "" then
+                _G["xiaoman1"] = 7
+            elseif _G["fbak5vqu1idms9h"] == nil then
+                _G["xiaoman2"] = 52
+            end
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["BS_ZLYS"])
         end
-        _G["BS_SP1_Text"] = c0["CreateFontString"](c0, nil, "ARTWORK", "GameFontNormal")
+        _G["BS_SP1_Text"] = b_["CreateFontString"](b_, nil, "ARTWORK", "GameFontNormal")
         _G["BS_SP1_Text"]["SetText"](_G["BS_SP1_Text"], "饰品①")
-        _G["BS_SP1_Text"]["SetPoint"](_G["BS_SP1_Text"], "TOPRIGHT", cg, "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "BS_SP1_Dropdown", c0, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", _G["BS_SP1_Text"], "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
+        _G["BS_SP1_Text"]["SetPoint"](_G["BS_SP1_Text"], "TOPRIGHT", cg, "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "BS_SP1_Dropdown", b_, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", _G["BS_SP1_Text"], "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
             ["text"] = "|cffffa500常驻",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
             end
         }, {
             ["text"] = "|cff90ee90爆发",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
             end
         }, {
             ["text"] = "|cff00adf010%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 3)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 3)
             end
         }, {
             ["text"] = "|cff00adf020%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 4)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 4)
             end
         }, {
             ["text"] = "|cff00adf030%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 5)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 5)
             end
         }, {
             ["text"] = "|cff00adf040%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 6)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 6)
             end
         }, {
             ["text"] = "|cff00adf050%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 7)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 7)
             end
         }, {
             ["text"] = "|cffba55d310%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 8)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 8)
             end
         }, {
             ["text"] = "|cffba55d320%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 9)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 9)
             end
         }, {
             ["text"] = "|cffba55d330%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 10)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 10)
             end
         }, {
             ["text"] = "|cffba55d340%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 11)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 11)
             end
         }, {
             ["text"] = "|cffba55d350%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 12)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 12)
             end
         }, {
             ["text"] = "|cffff5040禁用",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 13)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 13)
             end
         }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
             end
         end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
             _G["GameTooltip"]["SetText"](_G["GameTooltip"],
                 "|cffffa500常驻：CD好了就用。\n|cff90ee90爆发：随爆发技能同时使用。\n|cff00adf0自保：自己生命值低于设定值时使用。\n|cffba55d3协助：队友或自己生命值低于设定值时使用。")
             _G["GameTooltip"]["Show"](_G["GameTooltip"])
         end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
             _G["GameTooltip"]["Hide"](_G["GameTooltip"])
         end)
         if _G["WRSet"]["BS_SP1"] == nil then
             _G["q14yufbc7wqlzm0r"] = ""
             _G["qz4yufb791qlzmg0i"] = nil
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
         else
-            if _G["ah0dy1wiqxzo3qjet"] == "" then
-                _G["ubpo"] = "xiaoman"
-            end
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["BS_SP1"])
+            _G["ud7lqateqbhc0zhfok"] = nil
+            _G["pd7lqyteqbhcozhl"] = false
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["BS_SP1"])
         end
-        _G["BS_SP2_Text"] = c0["CreateFontString"](c0, nil, "ARTWORK", "GameFontNormal")
+        _G["BS_SP2_Text"] = b_["CreateFontString"](b_, nil, "ARTWORK", "GameFontNormal")
         _G["BS_SP2_Text"]["SetText"](_G["BS_SP2_Text"], "饰品②")
-        _G["BS_SP2_Text"]["SetPoint"](_G["BS_SP2_Text"], "TOPRIGHT", _G["BS_SP1_Text"], "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "BS_SP2_Dropdown", c0, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", _G["BS_SP2_Text"], "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
+        _G["BS_SP2_Text"]["SetPoint"](_G["BS_SP2_Text"], "TOPRIGHT", _G["BS_SP1_Text"], "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "BS_SP2_Dropdown", b_, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", _G["BS_SP2_Text"], "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
             ["text"] = "|cffffa500常驻",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
             end
         }, {
             ["text"] = "|cff90ee90爆发",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
             end
         }, {
             ["text"] = "|cff00adf010%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 3)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 3)
             end
         }, {
             ["text"] = "|cff00adf020%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 4)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 4)
             end
         }, {
             ["text"] = "|cff00adf030%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 5)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 5)
             end
         }, {
             ["text"] = "|cff00adf040%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 6)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 6)
             end
         }, {
             ["text"] = "|cff00adf050%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 7)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 7)
             end
         }, {
             ["text"] = "|cffba55d310%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 8)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 8)
             end
         }, {
             ["text"] = "|cffba55d320%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 9)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 9)
             end
         }, {
             ["text"] = "|cffba55d330%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 10)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 10)
             end
         }, {
             ["text"] = "|cffba55d340%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 11)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 11)
             end
         }, {
             ["text"] = "|cffba55d350%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 12)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 12)
             end
         }, {
             ["text"] = "|cffff5040禁用",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 13)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 13)
             end
         }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
             end
         end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
             _G["GameTooltip"]["SetText"](_G["GameTooltip"],
                 "|cffffa500常驻：CD好了就用。\n|cff90ee90爆发：随爆发技能同时使用。\n|cff00adf0自保：自己生命值低于设定值时使用。\n|cffba55d3协助：队友或自己生命值低于设定值时使用。")
             _G["GameTooltip"]["Show"](_G["GameTooltip"])
         end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
             _G["GameTooltip"]["Hide"](_G["GameTooltip"])
         end)
         if _G["WRSet"]["BS_SP2"] == nil then
             if _G["ah0dy1wiqxzo3qjet"] == "" then
                 _G["ubpo"] = "xiaoman"
             end
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
         else
-            _G["qxw3iagfxbqp1ilz"] = function(bT)
-                _G["xm"] = "小满"
-                _G["xiao1man"](bT)
-            end;
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["BS_SP2"])
+            while "" == true do
+                _G["xiao0man"] = "enc"
+            end
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["BS_SP2"])
         end
-        _G["BS_WuQi_Text"] = c0["CreateFontString"](c0, nil, "ARTWORK", "GameFontNormal")
+        _G["BS_WuQi_Text"] = b_["CreateFontString"](b_, nil, "ARTWORK", "GameFontNormal")
         _G["BS_WuQi_Text"]["SetText"](_G["BS_WuQi_Text"], "武器")
-        _G["BS_WuQi_Text"]["SetPoint"](_G["BS_WuQi_Text"], "TOPRIGHT", _G["BS_SP2_Text"], "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "BS_WuQi_Dropdown", c0, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", _G["BS_WuQi_Text"], "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
+        _G["BS_WuQi_Text"]["SetPoint"](_G["BS_WuQi_Text"], "TOPRIGHT", _G["BS_SP2_Text"], "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "BS_WuQi_Dropdown", b_, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", _G["BS_WuQi_Text"], "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
             ["text"] = "|cffffa500常驻",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
             end
         }, {
             ["text"] = "|cff90ee90爆发",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
             end
         }, {
             ["text"] = "|cffff5040禁用",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 3)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 3)
             end
         }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
             end
         end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
             _G["GameTooltip"]["SetText"](_G["GameTooltip"],
                 "|cffffa500常驻：CD好了就用。\n|cff90ee90爆发：爆发模式使用。")
             _G["GameTooltip"]["Show"](_G["GameTooltip"])
         end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
             _G["GameTooltip"]["Hide"](_G["GameTooltip"])
         end)
         if _G["WRSet"]["BS_WuQi"] == nil then
+            _G["q14yufbc7wqlzm0r"] = ""
+            _G["qz4yufb791qlzmg0i"] = nil
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
+        else
             while "" == true do
                 _G["xiao0man"] = "enc"
             end
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
-        else
-            _G["q14yufbc7wqlzm0r"] = ""
-            _G["qz4yufb791qlzmg0i"] = nil
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["BS_WuQi"])
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["BS_WuQi"])
         end
-        local ch = c0["CreateFontString"](c0, nil, "ARTWORK", "GameFontNormal")
+        local ch = b_["CreateFontString"](b_, nil, "ARTWORK", "GameFontNormal")
         ch["SetText"](ch, "施法速度")
-        ch["SetPoint"](ch, "TOPRIGHT", _G["BS_WuQi_Text"], "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "BS_SFSD_Dropdown", c0, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", ch, "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
+        ch["SetPoint"](ch, "TOPRIGHT", _G["BS_WuQi_Text"], "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "BS_SFSD_Dropdown", b_, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", ch, "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
             ["text"] = "10%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
             end
         }, {
             ["text"] = "15%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
             end
         }, {
             ["text"] = "20%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 3)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 3)
             end
         }, {
             ["text"] = "25%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 4)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 4)
             end
         }, {
             ["text"] = "30%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 5)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 5)
             end
         }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
             end
         end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
             _G["GameTooltip"]["SetText"](_G["GameTooltip"], "在公共冷却(GCD)前0.1-0.3秒插入下一个技能。")
             _G["GameTooltip"]["Show"](_G["GameTooltip"])
         end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
             _G["GameTooltip"]["Hide"](_G["GameTooltip"])
         end)
         if _G["WRSet"]["BS_SFSD"] == nil then
-            while "" == true do
-                _G["xiao0man"] = "enc"
+            if _G["ah0dy1wiqxzo3qjet"] == "" then
+                _G["ubpo"] = "xiaoman"
             end
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
         else
-            _G["q14yufbc7wqlzm0r"] = ""
-            _G["qz4yufb791qlzmg0i"] = nil
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["BS_SFSD"])
+            if _G["ah0dy1wiqxzo3qjet"] == "" then
+                _G["ubpo"] = "xiaoman"
+            end
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["BS_SFSD"])
         end
-        local ci = c0["CreateFontString"](c0, nil, "ARTWORK", "GameFontNormal")
+        local ci = b_["CreateFontString"](b_, nil, "ARTWORK", "GameFontNormal")
         ci["SetText"](ci, "插件功率")
-        ci["SetPoint"](ci, "TOPRIGHT", ch, "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "BS_CJGL_Dropdown", c0, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", ci, "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
+        ci["SetPoint"](ci, "TOPRIGHT", ch, "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "BS_CJGL_Dropdown", b_, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", ci, "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
             ["text"] = "最高",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
             end
         }, {
             ["text"] = "较高",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
             end
         }, {
             ["text"] = "中等",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 3)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 3)
             end
         }, {
             ["text"] = "较低",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 4)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 4)
             end
         }, {
             ["text"] = "最低",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 5)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 5)
             end
         }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
             end
         end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
             _G["GameTooltip"]["SetText"](_G["GameTooltip"],
                 "功率设置会影响插件的反应速度。\n功率越高，反应越快，帧数下降。\n功率越低，反应越慢，帧数提高。\n请根据自己的电脑性能酌情调整。")
             _G["GameTooltip"]["Show"](_G["GameTooltip"])
         end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
             _G["GameTooltip"]["Hide"](_G["GameTooltip"])
         end)
         if _G["WRSet"]["BS_CJGL"] == nil then
-            if _G["ah0dy1wiqxzo3qjet"] == "" then
-                _G["ubpo"] = "xiaoman"
-            end
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+            _G["qxw3iagfxbqp1ilz"] = function(c9)
+                _G["xm"] = "小满"
+                _G["xiao1man"](c9)
+            end;
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
         else
             _G["fbak5vqu1idms9h"] = true
             if _G["fbak5vqu1idms9h"] == "" then
@@ -2371,1816 +2364,1832 @@ return (function(...)
             elseif _G["fbak5vqu1idms9h"] == nil then
                 _G["xiaoman2"] = 52
             end
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["BS_CJGL"])
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["BS_CJGL"])
         end
-        _G["BS_FWWQ_Text"] = c0["CreateFontString"](c0, nil, "ARTWORK", "GameFontNormal")
+        _G["BS_FWWQ_Text"] = b_["CreateFontString"](b_, nil, "ARTWORK", "GameFontNormal")
         _G["BS_FWWQ_Text"]["SetText"](_G["BS_FWWQ_Text"], "符武")
-        _G["BS_FWWQ_Text"]["SetPoint"](_G["BS_FWWQ_Text"], "TOPRIGHT", ci, "BOTTOMRIGHT", -33, bW)
-        local bZ = _G["CreateFrame"]("CheckButton", "BS_FWWQ_Checkbox", c0, "UICheckButtonTemplate")
-        bZ["SetPoint"](bZ, "TOP", _G["BS_FWWQ_Text"], "BOTTOM", 0, 0)
-        bZ["SetChecked"](bZ, false)
-        bZ["SetScript"](bZ, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
+        _G["BS_FWWQ_Text"]["SetPoint"](_G["BS_FWWQ_Text"], "TOPRIGHT", ci, "BOTTOMRIGHT", -33, bV)
+        local bY = _G["CreateFrame"]("CheckButton", "BS_FWWQ_Checkbox", b_, "UICheckButtonTemplate")
+        bY["SetPoint"](bY, "TOP", _G["BS_FWWQ_Text"], "BOTTOM", 0, 0)
+        bY["SetChecked"](bY, false)
+        bY["SetScript"](bY, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
             _G["GameTooltip"]["SetText"](_G["GameTooltip"], "|cff00adf0符文武器|r(爆发)")
             _G["GameTooltip"]["Show"](_G["GameTooltip"])
         end)
-        bZ["SetScript"](bZ, "OnLeave", function(b_)
+        bY["SetScript"](bY, "OnLeave", function(bZ)
             _G["GameTooltip"]["Hide"](_G["GameTooltip"])
         end)
         if _G["WRSet"]["BS_FWWQ"] == nil then
-            _G["cu3vft61qi8zvg0lfe"] = {nil, false}
-            if _G["cu3vft61qi8zvg0lfe"][1] == true then
-                _G["xiaoman"] = "luatool.cn"
+            if _G["rh0dy1wi4xzo3qjkt"] ~= nil then
+                _G["wlx"] = "xiaoman.top"
             end
-            bZ["SetChecked"](bZ, true)
+            bY["SetChecked"](bY, true)
         else
-            while "" == true do
-                _G["xiao0man"] = "enc"
+            if _G["ah0dy1wiqxzo3qjet"] == "" then
+                _G["ubpo"] = "xiaoman"
             end
-            bZ["SetChecked"](bZ, _G["WRSet"]["BS_FWWQ"])
+            bY["SetChecked"](bY, _G["WRSet"]["BS_FWWQ"])
         end
-        _G["BS_BLTX_Text"] = c0["CreateFontString"](c0, nil, "ARTWORK", "GameFontNormal")
+        _G["BS_BLTX_Text"] = b_["CreateFontString"](b_, nil, "ARTWORK", "GameFontNormal")
         _G["BS_BLTX_Text"]["SetText"](_G["BS_BLTX_Text"], "吐息")
         _G["BS_BLTX_Text"]["SetPoint"](_G["BS_BLTX_Text"], "LEFT", _G["BS_FWWQ_Text"], "RIGHT", 8, 0)
-        local bZ = _G["CreateFrame"]("CheckButton", "BS_BLTX_Checkbox", c0, "UICheckButtonTemplate")
-        bZ["SetPoint"](bZ, "TOP", _G["BS_BLTX_Text"], "BOTTOM", 0, 0)
-        bZ["SetChecked"](bZ, false)
-        bZ["SetScript"](bZ, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
+        local bY = _G["CreateFrame"]("CheckButton", "BS_BLTX_Checkbox", b_, "UICheckButtonTemplate")
+        bY["SetPoint"](bY, "TOP", _G["BS_BLTX_Text"], "BOTTOM", 0, 0)
+        bY["SetChecked"](bY, false)
+        bY["SetScript"](bY, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
             _G["GameTooltip"]["SetText"](_G["GameTooltip"], "|cff00adf0冰龙吐息|r(爆发)")
             _G["GameTooltip"]["Show"](_G["GameTooltip"])
         end)
-        bZ["SetScript"](bZ, "OnLeave", function(b_)
+        bY["SetScript"](bY, "OnLeave", function(bZ)
             _G["GameTooltip"]["Hide"](_G["GameTooltip"])
         end)
         if _G["WRSet"]["BS_BLTX"] == nil then
             while "" == true do
                 _G["xiao0man"] = "enc"
             end
-            bZ["SetChecked"](bZ, true)
+            bY["SetChecked"](bY, true)
         else
-            _G["cu3vft61qi8zvg0lfe"] = {nil, false}
-            if _G["cu3vft61qi8zvg0lfe"][1] == true then
-                _G["xiaoman"] = "luatool.cn"
-            end
-            bZ["SetChecked"](bZ, _G["WRSet"]["BS_BLTX"])
-        end
-        _G["BS_ZEFZ_Text"] = c0["CreateFontString"](c0, nil, "ARTWORK", "GameFontNormal")
-        _G["BS_ZEFZ_Text"]["SetText"](_G["BS_ZEFZ_Text"], "附肢")
-        _G["BS_ZEFZ_Text"]["SetPoint"](_G["BS_ZEFZ_Text"], "LEFT", _G["BS_BLTX_Text"], "RIGHT", 8, 0)
-        local bZ = _G["CreateFrame"]("CheckButton", "BS_ZEFZ_Checkbox", c0, "UICheckButtonTemplate")
-        bZ["SetPoint"](bZ, "TOP", _G["BS_ZEFZ_Text"], "BOTTOM", 0, 0)
-        bZ["SetChecked"](bZ, false)
-        bZ["SetScript"](bZ, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
-            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "|cff00adf0憎恶附肢|r(爆发)")
-            _G["GameTooltip"]["Show"](_G["GameTooltip"])
-        end)
-        bZ["SetScript"](bZ, "OnLeave", function(b_)
-            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
-        end)
-        if _G["WRSet"]["BS_ZEFZ"] == nil then
             _G["fbak5vqu1idms9h"] = true
             if _G["fbak5vqu1idms9h"] == "" then
                 _G["xiaoman1"] = 7
             elseif _G["fbak5vqu1idms9h"] == nil then
                 _G["xiaoman2"] = 52
             end
-            bZ["SetChecked"](bZ, true)
+            bY["SetChecked"](bY, _G["WRSet"]["BS_BLTX"])
+        end
+        _G["BS_ZEFZ_Text"] = b_["CreateFontString"](b_, nil, "ARTWORK", "GameFontNormal")
+        _G["BS_ZEFZ_Text"]["SetText"](_G["BS_ZEFZ_Text"], "附肢")
+        _G["BS_ZEFZ_Text"]["SetPoint"](_G["BS_ZEFZ_Text"], "LEFT", _G["BS_BLTX_Text"], "RIGHT", 8, 0)
+        local bY = _G["CreateFrame"]("CheckButton", "BS_ZEFZ_Checkbox", b_, "UICheckButtonTemplate")
+        bY["SetPoint"](bY, "TOP", _G["BS_ZEFZ_Text"], "BOTTOM", 0, 0)
+        bY["SetChecked"](bY, false)
+        bY["SetScript"](bY, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
+            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "|cff00adf0憎恶附肢|r(爆发)")
+            _G["GameTooltip"]["Show"](_G["GameTooltip"])
+        end)
+        bY["SetScript"](bY, "OnLeave", function(bZ)
+            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
+        end)
+        if _G["WRSet"]["BS_ZEFZ"] == nil then
+            _G["ud7lqateqbhc0zhfok"] = nil
+            _G["pd7lqyteqbhcozhl"] = false
+            bY["SetChecked"](bY, true)
+        else
+            _G["ud7lqateqbhc0zhfok"] = nil
+            _G["pd7lqyteqbhcozhl"] = false
+            bY["SetChecked"](bY, _G["WRSet"]["BS_ZEFZ"])
+        end
+        _G["BS_FHMY_Text"] = b_["CreateFontString"](b_, nil, "ARTWORK", "GameFontNormal")
+        _G["BS_FHMY_Text"]["SetText"](_G["BS_FHMY_Text"], "战复")
+        _G["BS_FHMY_Text"]["SetPoint"](_G["BS_FHMY_Text"], "LEFT", _G["BS_ZEFZ_Text"], "RIGHT", 8, 0)
+        local bY = _G["CreateFrame"]("CheckButton", "BS_FHMY_Checkbox", b_, "UICheckButtonTemplate")
+        bY["SetPoint"](bY, "TOP", _G["BS_FHMY_Text"], "BOTTOM", 0, 0)
+        bY["SetChecked"](bY, false)
+        bY["SetScript"](bY, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
+            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "|cff00adf0复活盟友|r(指向战复)")
+            _G["GameTooltip"]["Show"](_G["GameTooltip"])
+        end)
+        bY["SetScript"](bY, "OnLeave", function(bZ)
+            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
+        end)
+        if _G["WRSet"]["BS_FHMY"] == nil then
+            _G["q14yufbc7wqlzm0r"] = ""
+            _G["qz4yufb791qlzmg0i"] = nil
+            bY["SetChecked"](bY, true)
+        else
+            _G["q14yufbc7wqlzm0r"] = ""
+            _G["qz4yufb791qlzmg0i"] = nil
+            bY["SetChecked"](bY, _G["WRSet"]["BS_FHMY"])
+        end
+        _G["BS_FMFHZ_Text"] = b_["CreateFontString"](b_, nil, "ARTWORK", "GameFontNormal")
+        _G["BS_FMFHZ_Text"]["SetText"](_G["BS_FMFHZ_Text"], "魔罩")
+        _G["BS_FMFHZ_Text"]["SetPoint"](_G["BS_FMFHZ_Text"], "TOP", _G["BS_FWWQ_Checkbox"], "BOTTOM", 0, 0)
+        local bY = _G["CreateFrame"]("CheckButton", "BS_FMFHZ_Checkbox", b_, "UICheckButtonTemplate")
+        bY["SetPoint"](bY, "TOP", _G["BS_FMFHZ_Text"], "BOTTOM", 0, 0)
+        bY["SetChecked"](bY, false)
+        bY["SetScript"](bY, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
+            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "|cff00adf0反魔法护罩|r(减伤)")
+            _G["GameTooltip"]["Show"](_G["GameTooltip"])
+        end)
+        bY["SetScript"](bY, "OnLeave", function(bZ)
+            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
+        end)
+        if _G["WRSet"]["BS_FMFHZ"] == nil then
+            while "" == true do
+                _G["xiao0man"] = "enc"
+            end
+            bY["SetChecked"](bY, true)
+        else
+            if _G["rh0dy1wi4xzo3qjkt"] ~= nil then
+                _G["wlx"] = "xiaoman.top"
+            end
+            bY["SetChecked"](bY, _G["WRSet"]["BS_FMFHZ"])
+        end
+        _G["BS_ZMBY_Text"] = b_["CreateFontString"](b_, nil, "ARTWORK", "GameFontNormal")
+        _G["BS_ZMBY_Text"]["SetText"](_G["BS_ZMBY_Text"], "冰雨")
+        _G["BS_ZMBY_Text"]["SetPoint"](_G["BS_ZMBY_Text"], "LEFT", _G["BS_FMFHZ_Text"], "RIGHT", 8, 0)
+        local bY = _G["CreateFrame"]("CheckButton", "BS_ZMBY_Checkbox", b_, "UICheckButtonTemplate")
+        bY["SetPoint"](bY, "TOP", _G["BS_ZMBY_Text"], "BOTTOM", 0, 0)
+        bY["SetChecked"](bY, false)
+        bY["SetScript"](bY, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
+            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "|cff00adf0致盲冰雨|r(控制)")
+            _G["GameTooltip"]["Show"](_G["GameTooltip"])
+        end)
+        bY["SetScript"](bY, "OnLeave", function(bZ)
+            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
+        end)
+        if _G["WRSet"]["BS_ZMBY"] == nil then
+            _G["cu3vft61qi8zvg0lfe"] = {nil, false}
+            if _G["cu3vft61qi8zvg0lfe"][1] == true then
+                _G["xiaoman"] = "luatool.cn"
+            end
+            bY["SetChecked"](bY, true)
+        else
+            if _G["rh0dy1wi4xzo3qjkt"] ~= nil then
+                _G["wlx"] = "xiaoman.top"
+            end
+            bY["SetChecked"](bY, _G["WRSet"]["BS_ZMBY"])
+        end
+        _G["BS_WZFS_Text"] = b_["CreateFontString"](b_, nil, "ARTWORK", "GameFontNormal")
+        _G["BS_WZFS_Text"]["SetText"](_G["BS_WZFS_Text"], "尸鬼")
+        _G["BS_WZFS_Text"]["SetPoint"](_G["BS_WZFS_Text"], "LEFT", _G["BS_ZMBY_Text"], "RIGHT", 8, 0)
+        local bY = _G["CreateFrame"]("CheckButton", "BS_WZFS_Checkbox", b_, "UICheckButtonTemplate")
+        bY["SetPoint"](bY, "TOP", _G["BS_WZFS_Text"], "BOTTOM", 0, 0)
+        bY["SetChecked"](bY, false)
+        bY["SetScript"](bY, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
+            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "|cff00adf0亡者复生|r(爆发)")
+            _G["GameTooltip"]["Show"](_G["GameTooltip"])
+        end)
+        bY["SetScript"](bY, "OnLeave", function(bZ)
+            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
+        end)
+        if _G["WRSet"]["BS_WZFS"] == nil then
+            _G["qxw3iagfxbqp1ilz"] = function(c9)
+                _G["xm"] = "小满"
+                _G["xiao1man"](c9)
+            end;
+            bY["SetChecked"](bY, true)
         else
             while "" == true do
                 _G["xiao0man"] = "enc"
             end
-            bZ["SetChecked"](bZ, _G["WRSet"]["BS_ZEFZ"])
+            bY["SetChecked"](bY, _G["WRSet"]["BS_WZFS"])
         end
-        _G["BS_FHMY_Text"] = c0["CreateFontString"](c0, nil, "ARTWORK", "GameFontNormal")
-        _G["BS_FHMY_Text"]["SetText"](_G["BS_FHMY_Text"], "战复")
-        _G["BS_FHMY_Text"]["SetPoint"](_G["BS_FHMY_Text"], "LEFT", _G["BS_ZEFZ_Text"], "RIGHT", 8, 0)
-        local bZ = _G["CreateFrame"]("CheckButton", "BS_FHMY_Checkbox", c0, "UICheckButtonTemplate")
-        bZ["SetPoint"](bZ, "TOP", _G["BS_FHMY_Text"], "BOTTOM", 0, 0)
-        bZ["SetChecked"](bZ, false)
-        bZ["SetScript"](bZ, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
-            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "|cff00adf0复活盟友|r(指向战复)")
-            _G["GameTooltip"]["Show"](_G["GameTooltip"])
-        end)
-        bZ["SetScript"](bZ, "OnLeave", function(b_)
-            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
-        end)
-        if _G["WRSet"]["BS_FHMY"] == nil then
-            _G["ud7lqateqbhc0zhfok"] = nil
-            _G["pd7lqyteqbhcozhl"] = false
-            bZ["SetChecked"](bZ, true)
-        else
-            _G["qxw3iagfxbqp1ilz"] = function(bT)
-                _G["xm"] = "小满"
-                _G["xiao1man"](bT)
-            end;
-            bZ["SetChecked"](bZ, _G["WRSet"]["BS_FHMY"])
-        end
-        _G["BS_FMFHZ_Text"] = c0["CreateFontString"](c0, nil, "ARTWORK", "GameFontNormal")
-        _G["BS_FMFHZ_Text"]["SetText"](_G["BS_FMFHZ_Text"], "魔罩")
-        _G["BS_FMFHZ_Text"]["SetPoint"](_G["BS_FMFHZ_Text"], "TOP", _G["BS_FWWQ_Checkbox"], "BOTTOM", 0, 0)
-        local bZ = _G["CreateFrame"]("CheckButton", "BS_FMFHZ_Checkbox", c0, "UICheckButtonTemplate")
-        bZ["SetPoint"](bZ, "TOP", _G["BS_FMFHZ_Text"], "BOTTOM", 0, 0)
-        bZ["SetChecked"](bZ, false)
-        bZ["SetScript"](bZ, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
-            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "|cff00adf0反魔法护罩|r(减伤)")
-            _G["GameTooltip"]["Show"](_G["GameTooltip"])
-        end)
-        bZ["SetScript"](bZ, "OnLeave", function(b_)
-            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
-        end)
-        if _G["WRSet"]["BS_FMFHZ"] == nil then
-            if _G["rh0dy1wi4xzo3qjkt"] ~= nil then
-                _G["wlx"] = "xiaoman.top"
-            end
-            bZ["SetChecked"](bZ, true)
-        else
-            _G["qxw3iagfxbqp1ilz"] = function(bT)
-                _G["xm"] = "小满"
-                _G["xiao1man"](bT)
-            end;
-            bZ["SetChecked"](bZ, _G["WRSet"]["BS_FMFHZ"])
-        end
-        _G["BS_ZMBY_Text"] = c0["CreateFontString"](c0, nil, "ARTWORK", "GameFontNormal")
-        _G["BS_ZMBY_Text"]["SetText"](_G["BS_ZMBY_Text"], "冰雨")
-        _G["BS_ZMBY_Text"]["SetPoint"](_G["BS_ZMBY_Text"], "LEFT", _G["BS_FMFHZ_Text"], "RIGHT", 8, 0)
-        local bZ = _G["CreateFrame"]("CheckButton", "BS_ZMBY_Checkbox", c0, "UICheckButtonTemplate")
-        bZ["SetPoint"](bZ, "TOP", _G["BS_ZMBY_Text"], "BOTTOM", 0, 0)
-        bZ["SetChecked"](bZ, false)
-        bZ["SetScript"](bZ, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
-            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "|cff00adf0致盲冰雨|r(控制)")
-            _G["GameTooltip"]["Show"](_G["GameTooltip"])
-        end)
-        bZ["SetScript"](bZ, "OnLeave", function(b_)
-            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
-        end)
-        if _G["WRSet"]["BS_ZMBY"] == nil then
-            _G["qxw3iagfxbqp1ilz"] = function(bT)
-                _G["xm"] = "小满"
-                _G["xiao1man"](bT)
-            end;
-            bZ["SetChecked"](bZ, true)
-        else
-            if _G["rh0dy1wi4xzo3qjkt"] ~= nil then
-                _G["wlx"] = "xiaoman.top"
-            end
-            bZ["SetChecked"](bZ, _G["WRSet"]["BS_ZMBY"])
-        end
-        _G["BS_WZFS_Text"] = c0["CreateFontString"](c0, nil, "ARTWORK", "GameFontNormal")
-        _G["BS_WZFS_Text"]["SetText"](_G["BS_WZFS_Text"], "尸鬼")
-        _G["BS_WZFS_Text"]["SetPoint"](_G["BS_WZFS_Text"], "LEFT", _G["BS_ZMBY_Text"], "RIGHT", 8, 0)
-        local bZ = _G["CreateFrame"]("CheckButton", "BS_WZFS_Checkbox", c0, "UICheckButtonTemplate")
-        bZ["SetPoint"](bZ, "TOP", _G["BS_WZFS_Text"], "BOTTOM", 0, 0)
-        bZ["SetChecked"](bZ, false)
-        bZ["SetScript"](bZ, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
-            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "|cff00adf0亡者复生|r(爆发)")
-            _G["GameTooltip"]["Show"](_G["GameTooltip"])
-        end)
-        bZ["SetScript"](bZ, "OnLeave", function(b_)
-            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
-        end)
-        if _G["WRSet"]["BS_WZFS"] == nil then
-            if _G["ah0dy1wiqxzo3qjet"] == "" then
-                _G["ubpo"] = "xiaoman"
-            end
-            bZ["SetChecked"](bZ, true)
-        else
-            if _G["rh0dy1wi4xzo3qjkt"] ~= nil then
-                _G["wlx"] = "xiaoman.top"
-            end
-            bZ["SetChecked"](bZ, _G["WRSet"]["BS_WZFS"])
-        end
-        local cj = _G["CreateFrame"]("Frame", "XE_Frame", bX)
+        local cj = _G["CreateFrame"]("Frame", "XE_Frame", bW)
         cj["SetSize"](cj, 1, 1)
         cj["SetPoint"](cj, "CENTER", 0, 0)
         local ck = cj["CreateFontString"](cj, nil, "ARTWORK", "GameFontNormal")
         ck["SetText"](ck, "智能目标")
-        ck["SetPoint"](ck, "TOPLEFT", bY, "BOTTOMLEFT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "XE_ZNMB_Dropdown", cj, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", ck, "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
+        ck["SetPoint"](ck, "TOPLEFT", bX, "BOTTOMLEFT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "XE_ZNMB_Dropdown", cj, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", ck, "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
             ["text"] = "锁定",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
             end
         }, {
             ["text"] = "范围",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
             end
         }, {
             ["text"] = "|cffff5040禁用",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 3)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 3)
             end
         }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
             end
         end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
             _G["GameTooltip"]["SetText"](_G["GameTooltip"],
                 "锁定：锁定当前所选目标，丢失目标的时候，切换最近的目标。\n范围：只要目标不在攻击范围内，切换最近的目标。")
             _G["GameTooltip"]["Show"](_G["GameTooltip"])
         end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
             _G["GameTooltip"]["Hide"](_G["GameTooltip"])
         end)
         if _G["WRSet"]["XE_ZNMB"] == nil then
-            _G["ud7lqateqbhc0zhfok"] = nil
-            _G["pd7lqyteqbhcozhl"] = false
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+            _G["fbak5vqu1idms9h"] = true
+            if _G["fbak5vqu1idms9h"] == "" then
+                _G["xiaoman1"] = 7
+            elseif _G["fbak5vqu1idms9h"] == nil then
+                _G["xiaoman2"] = 52
+            end
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
         else
-            _G["qxw3iagfxbqp1ilz"] = function(bT)
-                _G["xm"] = "小满"
-                _G["xiao1man"](bT)
-            end;
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["XE_ZNMB"])
+            while "" == true do
+                _G["xiao0man"] = "enc"
+            end
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["XE_ZNMB"])
         end
         local cl = cj["CreateFontString"](cj, nil, "ARTWORK", "GameFontNormal")
         cl["SetText"](cl, "心灵冰冻")
-        cl["SetPoint"](cl, "TOPRIGHT", ck, "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "XE_XLBD_Dropdown", cj, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", cl, "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
+        cl["SetPoint"](cl, "TOPRIGHT", ck, "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "XE_XLBD_Dropdown", cj, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", cl, "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
             ["text"] = "智能",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
             end
         }, {
             ["text"] = "目标",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
             end
         }, {
             ["text"] = "指向",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 3)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 3)
             end
         }, {
             ["text"] = "焦点",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 4)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 4)
             end
         }, {
             ["text"] = "|cffff5040禁用",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 5)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 5)
             end
         }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
             end
         end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
             _G["GameTooltip"]["SetText"](_G["GameTooltip"],
                 "智能：打断所有单位的施法。\n目标：仅打断当前目标的施法。\n指向：仅打断当前指向单位的施法。\n焦点：仅打断焦点单位的施法。(若无焦点则打断所有单位。)")
             _G["GameTooltip"]["Show"](_G["GameTooltip"])
         end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
             _G["GameTooltip"]["Hide"](_G["GameTooltip"])
         end)
         if _G["WRSet"]["XE_XLBD"] == nil then
-            _G["fbak5vqu1idms9h"] = true
-            if _G["fbak5vqu1idms9h"] == "" then
-                _G["xiaoman1"] = 7
-            elseif _G["fbak5vqu1idms9h"] == nil then
-                _G["xiaoman2"] = 52
-            end
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+            _G["q14yufbc7wqlzm0r"] = ""
+            _G["qz4yufb791qlzmg0i"] = nil
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
         else
             if _G["ah0dy1wiqxzo3qjet"] == "" then
                 _G["ubpo"] = "xiaoman"
             end
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["XE_XLBD"])
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["XE_XLBD"])
         end
         local cm = cj["CreateFontString"](cj, nil, "ARTWORK", "GameFontNormal")
         cm["SetText"](cm, "打断模式")
-        cm["SetPoint"](cm, "TOPRIGHT", cl, "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "XE_DDMS_Dropdown", cj, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", cm, "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
+        cm["SetPoint"](cm, "TOPRIGHT", cl, "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "XE_DDMS_Dropdown", cj, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", cm, "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
             ["text"] = "秒断",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
             end
         }, {
             ["text"] = "10%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
             end
         }, {
             ["text"] = "20%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 3)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 3)
             end
         }, {
             ["text"] = "30%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 4)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 4)
             end
         }, {
             ["text"] = "40%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 5)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 5)
             end
         }, {
             ["text"] = "50%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 6)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 6)
             end
         }, {
             ["text"] = "60%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 7)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 7)
             end
         }, {
             ["text"] = "70%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 8)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 8)
             end
         }, {
             ["text"] = "80%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 9)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 9)
             end
         }, {
             ["text"] = "90%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 10)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 10)
             end
         }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
             end
         end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
             _G["GameTooltip"]["SetText"](_G["GameTooltip"], "选择秒断或打断延迟时间。")
             _G["GameTooltip"]["Show"](_G["GameTooltip"])
         end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
             _G["GameTooltip"]["Hide"](_G["GameTooltip"])
         end)
         if _G["WRSet"]["XE_DDMS"] == nil then
-            if _G["rh0dy1wi4xzo3qjkt"] ~= nil then
-                _G["wlx"] = "xiaoman.top"
-            end
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
-        else
-            _G["ud7lqateqbhc0zhfok"] = nil
-            _G["pd7lqyteqbhcozhl"] = false
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["XE_DDMS"])
-        end
-        local cn = cj["CreateFontString"](cj, nil, "ARTWORK", "GameFontNormal")
-        cn["SetText"](cn, "致盲冰雨")
-        cn["SetPoint"](cn, "TOPRIGHT", cm, "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "XE_ZMBY_Dropdown", cj, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", cn, "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
-            ["text"] = "开启",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
-            end
-        }, {
-            ["text"] = "|cffff5040禁用",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
-            end
-        }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
-            end
-        end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
-            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "击晕附近特定的钢条施法单位。")
-            _G["GameTooltip"]["Show"](_G["GameTooltip"])
-        end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
-            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
-        end)
-        if _G["WRSet"]["XE_ZMBY"] == nil then
             if _G["ah0dy1wiqxzo3qjet"] == "" then
                 _G["ubpo"] = "xiaoman"
             end
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
         else
             while "" == true do
                 _G["xiao0man"] = "enc"
             end
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["XE_ZMBY"])
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["XE_DDMS"])
+        end
+        local cn = cj["CreateFontString"](cj, nil, "ARTWORK", "GameFontNormal")
+        cn["SetText"](cn, "致盲冰雨")
+        cn["SetPoint"](cn, "TOPRIGHT", cm, "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "XE_ZMBY_Dropdown", cj, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", cn, "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
+            ["text"] = "开启",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
+            end
+        }, {
+            ["text"] = "|cffff5040禁用",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
+            end
+        }}
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
+            end
+        end)
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
+            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "击晕附近特定的钢条施法单位。")
+            _G["GameTooltip"]["Show"](_G["GameTooltip"])
+        end)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
+            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
+        end)
+        if _G["WRSet"]["XE_ZMBY"] == nil then
+            _G["q14yufbc7wqlzm0r"] = ""
+            _G["qz4yufb791qlzmg0i"] = nil
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
+        else
+            if _G["rh0dy1wi4xzo3qjkt"] ~= nil then
+                _G["wlx"] = "xiaoman.top"
+            end
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["XE_ZMBY"])
         end
         local co = cj["CreateFontString"](cj, nil, "ARTWORK", "GameFontNormal")
         co["SetText"](co, "窒息")
-        co["SetPoint"](co, "TOPRIGHT", cn, "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "XE_ZX_Dropdown", cj, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", co, "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
+        co["SetPoint"](co, "TOPRIGHT", cn, "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "XE_ZX_Dropdown", cj, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", co, "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
             ["text"] = "智能",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
             end
         }, {
             ["text"] = "目标",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
             end
         }, {
             ["text"] = "指向",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 3)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 3)
             end
         }, {
             ["text"] = "焦点",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 4)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 4)
             end
         }, {
             ["text"] = "|cffff5040禁用",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 5)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 5)
             end
         }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
             end
         end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
             _G["GameTooltip"]["SetText"](_G["GameTooltip"],
                 "智能：控制所有单位。\n目标：仅控制当前目标。\n指向：仅控制指向单位。\n焦点：仅控制焦点单位。(若无焦点则控制所有单位。)")
             _G["GameTooltip"]["Show"](_G["GameTooltip"])
         end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
             _G["GameTooltip"]["Hide"](_G["GameTooltip"])
         end)
         if _G["WRSet"]["XE_ZX"] == nil then
-            while "" == true do
-                _G["xiao0man"] = "enc"
-            end
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
-        else
-            _G["qxw3iagfxbqp1ilz"] = function(bT)
-                _G["xm"] = "小满"
-                _G["xiao1man"](bT)
-            end;
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["XE_ZX"])
-        end
-        local cp = cj["CreateFontString"](cj, nil, "ARTWORK", "GameFontNormal")
-        cp["SetText"](cp, "亡者大军")
-        cp["SetPoint"](cp, "TOPRIGHT", co, "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "XE_WZDJ_Dropdown", cj, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", cp, "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
-            ["text"] = "开启",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
-            end
-        }, {
-            ["text"] = "|cffff5040禁用",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
-            end
-        }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
-            end
-        end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
-            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "使用[亡者大军]技能")
-            _G["GameTooltip"]["Show"](_G["GameTooltip"])
-        end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
-            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
-        end)
-        if _G["WRSet"]["XE_WZDJ"] == nil then
-            _G["ud7lqateqbhc0zhfok"] = nil
-            _G["pd7lqyteqbhcozhl"] = false
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
-        else
             _G["q14yufbc7wqlzm0r"] = ""
             _G["qz4yufb791qlzmg0i"] = nil
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["XE_WZDJ"])
-        end
-        local cq = cj["CreateFontString"](cj, nil, "ARTWORK", "GameFontNormal")
-        cq["SetText"](cq, "憎恶附肢")
-        cq["SetPoint"](cq, "TOPRIGHT", cp, "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "XE_ZEFZ_Dropdown", cj, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", cq, "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
-            ["text"] = "开启",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
-            end
-        }, {
-            ["text"] = "|cffff5040禁用",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
-            end
-        }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
-            end
-        end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
-            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "使用[憎恶附肢]技能")
-            _G["GameTooltip"]["Show"](_G["GameTooltip"])
-        end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
-            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
-        end)
-        if _G["WRSet"]["XE_ZEFZ"] == nil then
-            _G["q14yufbc7wqlzm0r"] = ""
-            _G["qz4yufb791qlzmg0i"] = nil
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
         else
-            _G["qxw3iagfxbqp1ilz"] = function(bT)
-                _G["xm"] = "小满"
-                _G["xiao1man"](bT)
-            end;
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["XE_ZEFZ"])
-        end
-        local cr = cj["CreateFontString"](cj, nil, "ARTWORK", "GameFontNormal")
-        cr["SetText"](cr, "反魔法罩")
-        cr["SetPoint"](cr, "TOPRIGHT", cq, "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "XE_FMFHZ_Dropdown", cj, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", cr, "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
-            ["text"] = "开启",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
-            end
-        }, {
-            ["text"] = "|cffff5040禁用",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
-            end
-        }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
-            end
-        end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
-            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "反射对你施法的法术。")
-            _G["GameTooltip"]["Show"](_G["GameTooltip"])
-        end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
-            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
-        end)
-        if _G["WRSet"]["XE_FMFHZ"] == nil then
             _G["fbak5vqu1idms9h"] = true
             if _G["fbak5vqu1idms9h"] == "" then
                 _G["xiaoman1"] = 7
             elseif _G["fbak5vqu1idms9h"] == nil then
                 _G["xiaoman2"] = 52
             end
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
-        else
-            _G["qxw3iagfxbqp1ilz"] = function(bT)
-                _G["xm"] = "小满"
-                _G["xiao1man"](bT)
-            end;
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["XE_FMFHZ"])
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["XE_ZX"])
         end
-        _G["XE_FHMY_Text"] = cj["CreateFontString"](cj, nil, "ARTWORK", "GameFontNormal")
-        _G["XE_FHMY_Text"]["SetText"](_G["XE_FHMY_Text"], "复活盟友")
-        _G["XE_FHMY_Text"]["SetPoint"](_G["XE_FHMY_Text"], "TOPRIGHT", cr, "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "XE_FHMY_Dropdown", cj, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", _G["XE_FHMY_Text"], "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
+        local cp = cj["CreateFontString"](cj, nil, "ARTWORK", "GameFontNormal")
+        cp["SetText"](cp, "亡者大军")
+        cp["SetPoint"](cp, "TOPRIGHT", co, "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "XE_WZDJ_Dropdown", cj, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", cp, "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
             ["text"] = "开启",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
             end
         }, {
             ["text"] = "|cffff5040禁用",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
             end
         }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
             end
         end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
-            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "战复鼠标指向的队友。")
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
+            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "使用[亡者大军]技能")
             _G["GameTooltip"]["Show"](_G["GameTooltip"])
         end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
             _G["GameTooltip"]["Hide"](_G["GameTooltip"])
         end)
-        if _G["WRSet"]["XE_FHMY"] == nil then
-            _G["qxw3iagfxbqp1ilz"] = function(bT)
-                _G["xm"] = "小满"
-                _G["xiao1man"](bT)
-            end;
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
-        else
-            _G["ud7lqateqbhc0zhfok"] = nil
-            _G["pd7lqyteqbhcozhl"] = false
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["XE_FHMY"])
-        end
-        local cs = cj["CreateFontString"](cj, nil, "ARTWORK", "GameFontNormal")
-        cs["SetText"](cs, "巫妖之躯")
-        cs["SetPoint"](cs, "TOPRIGHT", _G["XE_FHMY_Text"], "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "XE_WYZQ_Dropdown", cj, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", cs, "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
-            ["text"] = "10%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+        if _G["WRSet"]["XE_WZDJ"] == nil then
+            _G["cu3vft61qi8zvg0lfe"] = {nil, false}
+            if _G["cu3vft61qi8zvg0lfe"][1] == true then
+                _G["xiaoman"] = "luatool.cn"
             end
-        }, {
-            ["text"] = "20%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
-            end
-        }, {
-            ["text"] = "30%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 3)
-            end
-        }, {
-            ["text"] = "40%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 4)
-            end
-        }, {
-            ["text"] = "50%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 5)
-            end
-        }, {
-            ["text"] = "|cffff5040禁用",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 6)
-            end
-        }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
-            end
-        end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
-            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "当生命值低于设定，自动使用巫妖之躯。")
-            _G["GameTooltip"]["Show"](_G["GameTooltip"])
-        end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
-            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
-        end)
-        if _G["WRSet"]["XE_WYZQ"] == nil then
-            if _G["rh0dy1wi4xzo3qjkt"] ~= nil then
-                _G["wlx"] = "xiaoman.top"
-            end
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
-        else
-            _G["qxw3iagfxbqp1ilz"] = function(bT)
-                _G["xm"] = "小满"
-                _G["xiao1man"](bT)
-            end;
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["XE_WYZQ"])
-        end
-        local ct = cj["CreateFontString"](cj, nil, "ARTWORK", "GameFontNormal")
-        ct["SetText"](ct, "冰封之韧")
-        ct["SetPoint"](ct, "TOPRIGHT", cs, "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "XE_BFZR_Dropdown", cj, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", ct, "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
-            ["text"] = "10%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
-            end
-        }, {
-            ["text"] = "20%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
-            end
-        }, {
-            ["text"] = "30%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 3)
-            end
-        }, {
-            ["text"] = "40%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 4)
-            end
-        }, {
-            ["text"] = "50%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 5)
-            end
-        }, {
-            ["text"] = "|cffff5040禁用",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 6)
-            end
-        }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
-            end
-        end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
-            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "当生命值低于设定，自动使用冰封之韧。")
-            _G["GameTooltip"]["Show"](_G["GameTooltip"])
-        end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
-            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
-        end)
-        if _G["WRSet"]["XE_BFZR"] == nil then
-            _G["qxw3iagfxbqp1ilz"] = function(bT)
-                _G["xm"] = "小满"
-                _G["xiao1man"](bT)
-            end;
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
-        else
-            _G["qxw3iagfxbqp1ilz"] = function(bT)
-                _G["xm"] = "小满"
-                _G["xiao1man"](bT)
-            end;
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["XE_BFZR"])
-        end
-        local cu = cj["CreateFontString"](cj, nil, "ARTWORK", "GameFontNormal")
-        cu["SetText"](cu, "灵界打击")
-        cu["SetPoint"](cu, "TOPRIGHT", ct, "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "XE_LJDJ_Dropdown", cj, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", cu, "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
-            ["text"] = "10%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
-            end
-        }, {
-            ["text"] = "20%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
-            end
-        }, {
-            ["text"] = "30%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 3)
-            end
-        }, {
-            ["text"] = "40%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 4)
-            end
-        }, {
-            ["text"] = "50%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 5)
-            end
-        }, {
-            ["text"] = "|cffff5040禁用",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 6)
-            end
-        }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
-            end
-        end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
-            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "当生命值低于设定，自动使用灵界打击。")
-            _G["GameTooltip"]["Show"](_G["GameTooltip"])
-        end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
-            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
-        end)
-        if _G["WRSet"]["XE_LJDJ"] == nil then
-            _G["q14yufbc7wqlzm0r"] = ""
-            _G["qz4yufb791qlzmg0i"] = nil
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
         else
             _G["cu3vft61qi8zvg0lfe"] = {nil, false}
             if _G["cu3vft61qi8zvg0lfe"][1] == true then
                 _G["xiaoman"] = "luatool.cn"
             end
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["XE_LJDJ"])
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["XE_WZDJ"])
         end
-        local cv = cj["CreateFontString"](cj, nil, "ARTWORK", "GameFontNormal")
-        cv["SetText"](cv, "治疗石")
-        cv["SetPoint"](cv, "TOPRIGHT", cu, "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "XE_ZLS_Dropdown", cj, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", cv, "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
-            ["text"] = "10%",
+        local cq = cj["CreateFontString"](cj, nil, "ARTWORK", "GameFontNormal")
+        cq["SetText"](cq, "憎恶附肢")
+        cq["SetPoint"](cq, "TOPRIGHT", cp, "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "XE_ZEFZ_Dropdown", cj, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", cq, "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
+            ["text"] = "开启",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
-            end
-        }, {
-            ["text"] = "20%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
-            end
-        }, {
-            ["text"] = "30%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 3)
-            end
-        }, {
-            ["text"] = "40%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 4)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
             end
         }, {
             ["text"] = "|cffff5040禁用",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 5)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
             end
         }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
             end
         end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
-            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "当生命值低于设定，自动使用治疗石。")
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
+            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "使用[憎恶附肢]技能")
             _G["GameTooltip"]["Show"](_G["GameTooltip"])
         end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
             _G["GameTooltip"]["Hide"](_G["GameTooltip"])
         end)
-        if _G["WRSet"]["XE_ZLS"] == nil then
+        if _G["WRSet"]["XE_ZEFZ"] == nil then
+            _G["cu3vft61qi8zvg0lfe"] = {nil, false}
+            if _G["cu3vft61qi8zvg0lfe"][1] == true then
+                _G["xiaoman"] = "luatool.cn"
+            end
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
+        else
             _G["ud7lqateqbhc0zhfok"] = nil
             _G["pd7lqyteqbhcozhl"] = false
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["XE_ZEFZ"])
+        end
+        local cr = cj["CreateFontString"](cj, nil, "ARTWORK", "GameFontNormal")
+        cr["SetText"](cr, "反魔法罩")
+        cr["SetPoint"](cr, "TOPRIGHT", cq, "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "XE_FMFHZ_Dropdown", cj, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", cr, "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
+            ["text"] = "开启",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
+            end
+        }, {
+            ["text"] = "|cffff5040禁用",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
+            end
+        }}
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
+            end
+        end)
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
+            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "反射对你施法的法术。")
+            _G["GameTooltip"]["Show"](_G["GameTooltip"])
+        end)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
+            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
+        end)
+        if _G["WRSet"]["XE_FMFHZ"] == nil then
+            while "" == true do
+                _G["xiao0man"] = "enc"
+            end
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
+        else
+            if _G["rh0dy1wi4xzo3qjkt"] ~= nil then
+                _G["wlx"] = "xiaoman.top"
+            end
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["XE_FMFHZ"])
+        end
+        _G["XE_FHMY_Text"] = cj["CreateFontString"](cj, nil, "ARTWORK", "GameFontNormal")
+        _G["XE_FHMY_Text"]["SetText"](_G["XE_FHMY_Text"], "复活盟友")
+        _G["XE_FHMY_Text"]["SetPoint"](_G["XE_FHMY_Text"], "TOPRIGHT", cr, "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "XE_FHMY_Dropdown", cj, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", _G["XE_FHMY_Text"], "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
+            ["text"] = "开启",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
+            end
+        }, {
+            ["text"] = "|cffff5040禁用",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
+            end
+        }}
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
+            end
+        end)
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
+            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "战复鼠标指向的队友。")
+            _G["GameTooltip"]["Show"](_G["GameTooltip"])
+        end)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
+            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
+        end)
+        if _G["WRSet"]["XE_FHMY"] == nil then
+            while "" == true do
+                _G["xiao0man"] = "enc"
+            end
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
         else
             if _G["ah0dy1wiqxzo3qjet"] == "" then
                 _G["ubpo"] = "xiaoman"
             end
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["XE_ZLS"])
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["XE_FHMY"])
         end
-        local cw = cj["CreateFontString"](cj, nil, "ARTWORK", "GameFontNormal")
-        cw["SetText"](cw, "治疗药水")
-        cw["SetPoint"](cw, "TOPRIGHT", cv, "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "XE_ZLYS_Dropdown", cj, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", cw, "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
+        local cs = cj["CreateFontString"](cj, nil, "ARTWORK", "GameFontNormal")
+        cs["SetText"](cs, "巫妖之躯")
+        cs["SetPoint"](cs, "TOPRIGHT", _G["XE_FHMY_Text"], "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "XE_WYZQ_Dropdown", cj, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", cs, "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
             ["text"] = "10%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
             end
         }, {
             ["text"] = "20%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
             end
         }, {
             ["text"] = "30%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 3)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 3)
             end
         }, {
             ["text"] = "40%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 4)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 4)
+            end
+        }, {
+            ["text"] = "50%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 5)
             end
         }, {
             ["text"] = "|cffff5040禁用",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 5)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 6)
             end
         }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
             end
         end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
-            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "当生命值低于设定，自动使用治疗药水。")
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
+            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "当生命值低于设定，自动使用巫妖之躯。")
             _G["GameTooltip"]["Show"](_G["GameTooltip"])
         end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
             _G["GameTooltip"]["Hide"](_G["GameTooltip"])
         end)
-        if _G["WRSet"]["XE_ZLYS"] == nil then
-            _G["q14yufbc7wqlzm0r"] = ""
-            _G["qz4yufb791qlzmg0i"] = nil
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+        if _G["WRSet"]["XE_WYZQ"] == nil then
+            while "" == true do
+                _G["xiao0man"] = "enc"
+            end
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
         else
             while "" == true do
                 _G["xiao0man"] = "enc"
             end
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["XE_ZLYS"])
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["XE_WYZQ"])
         end
-        local cx = _G["CreateFrame"]("Frame", "XX_Frame", bX)
+        local ct = cj["CreateFontString"](cj, nil, "ARTWORK", "GameFontNormal")
+        ct["SetText"](ct, "冰封之韧")
+        ct["SetPoint"](ct, "TOPRIGHT", cs, "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "XE_BFZR_Dropdown", cj, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", ct, "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
+            ["text"] = "10%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
+            end
+        }, {
+            ["text"] = "20%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
+            end
+        }, {
+            ["text"] = "30%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 3)
+            end
+        }, {
+            ["text"] = "40%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 4)
+            end
+        }, {
+            ["text"] = "50%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 5)
+            end
+        }, {
+            ["text"] = "|cffff5040禁用",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 6)
+            end
+        }}
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
+            end
+        end)
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
+            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "当生命值低于设定，自动使用冰封之韧。")
+            _G["GameTooltip"]["Show"](_G["GameTooltip"])
+        end)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
+            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
+        end)
+        if _G["WRSet"]["XE_BFZR"] == nil then
+            if _G["ah0dy1wiqxzo3qjet"] == "" then
+                _G["ubpo"] = "xiaoman"
+            end
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
+        else
+            _G["fbak5vqu1idms9h"] = true
+            if _G["fbak5vqu1idms9h"] == "" then
+                _G["xiaoman1"] = 7
+            elseif _G["fbak5vqu1idms9h"] == nil then
+                _G["xiaoman2"] = 52
+            end
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["XE_BFZR"])
+        end
+        local cu = cj["CreateFontString"](cj, nil, "ARTWORK", "GameFontNormal")
+        cu["SetText"](cu, "灵界打击")
+        cu["SetPoint"](cu, "TOPRIGHT", ct, "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "XE_LJDJ_Dropdown", cj, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", cu, "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
+            ["text"] = "10%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
+            end
+        }, {
+            ["text"] = "20%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
+            end
+        }, {
+            ["text"] = "30%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 3)
+            end
+        }, {
+            ["text"] = "40%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 4)
+            end
+        }, {
+            ["text"] = "50%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 5)
+            end
+        }, {
+            ["text"] = "|cffff5040禁用",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 6)
+            end
+        }}
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
+            end
+        end)
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
+            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "当生命值低于设定，自动使用灵界打击。")
+            _G["GameTooltip"]["Show"](_G["GameTooltip"])
+        end)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
+            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
+        end)
+        if _G["WRSet"]["XE_LJDJ"] == nil then
+            _G["fbak5vqu1idms9h"] = true
+            if _G["fbak5vqu1idms9h"] == "" then
+                _G["xiaoman1"] = 7
+            elseif _G["fbak5vqu1idms9h"] == nil then
+                _G["xiaoman2"] = 52
+            end
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
+        else
+            _G["cu3vft61qi8zvg0lfe"] = {nil, false}
+            if _G["cu3vft61qi8zvg0lfe"][1] == true then
+                _G["xiaoman"] = "luatool.cn"
+            end
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["XE_LJDJ"])
+        end
+        local cv = cj["CreateFontString"](cj, nil, "ARTWORK", "GameFontNormal")
+        cv["SetText"](cv, "治疗石")
+        cv["SetPoint"](cv, "TOPRIGHT", cu, "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "XE_ZLS_Dropdown", cj, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", cv, "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
+            ["text"] = "10%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
+            end
+        }, {
+            ["text"] = "20%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
+            end
+        }, {
+            ["text"] = "30%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 3)
+            end
+        }, {
+            ["text"] = "40%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 4)
+            end
+        }, {
+            ["text"] = "|cffff5040禁用",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 5)
+            end
+        }}
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
+            end
+        end)
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
+            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "当生命值低于设定，自动使用治疗石。")
+            _G["GameTooltip"]["Show"](_G["GameTooltip"])
+        end)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
+            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
+        end)
+        if _G["WRSet"]["XE_ZLS"] == nil then
+            _G["q14yufbc7wqlzm0r"] = ""
+            _G["qz4yufb791qlzmg0i"] = nil
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
+        else
+            _G["cu3vft61qi8zvg0lfe"] = {nil, false}
+            if _G["cu3vft61qi8zvg0lfe"][1] == true then
+                _G["xiaoman"] = "luatool.cn"
+            end
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["XE_ZLS"])
+        end
+        local cw = cj["CreateFontString"](cj, nil, "ARTWORK", "GameFontNormal")
+        cw["SetText"](cw, "治疗药水")
+        cw["SetPoint"](cw, "TOPRIGHT", cv, "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "XE_ZLYS_Dropdown", cj, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", cw, "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
+            ["text"] = "10%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
+            end
+        }, {
+            ["text"] = "20%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
+            end
+        }, {
+            ["text"] = "30%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 3)
+            end
+        }, {
+            ["text"] = "40%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 4)
+            end
+        }, {
+            ["text"] = "|cffff5040禁用",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 5)
+            end
+        }}
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
+            end
+        end)
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
+            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "当生命值低于设定，自动使用治疗药水。")
+            _G["GameTooltip"]["Show"](_G["GameTooltip"])
+        end)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
+            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
+        end)
+        if _G["WRSet"]["XE_ZLYS"] == nil then
+            if _G["ah0dy1wiqxzo3qjet"] == "" then
+                _G["ubpo"] = "xiaoman"
+            end
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
+        else
+            _G["qxw3iagfxbqp1ilz"] = function(c9)
+                _G["xm"] = "小满"
+                _G["xiao1man"](c9)
+            end;
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["XE_ZLYS"])
+        end
+        local cx = _G["CreateFrame"]("Frame", "XX_Frame", bW)
         cx["SetSize"](cx, 1, 1)
         cx["SetPoint"](cx, "CENTER", 0, 0)
         local cy = cx["CreateFontString"](cx, nil, "ARTWORK", "GameFontNormal")
         cy["SetText"](cy, "智能目标")
-        cy["SetPoint"](cy, "TOPLEFT", bY, "BOTTOMLEFT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "XX_ZNMB_Dropdown", cx, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", cy, "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
+        cy["SetPoint"](cy, "TOPLEFT", bX, "BOTTOMLEFT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "XX_ZNMB_Dropdown", cx, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", cy, "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
             ["text"] = "锁定",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
             end
         }, {
             ["text"] = "范围",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
             end
         }, {
             ["text"] = "|cffff5040禁用",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 3)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 3)
             end
         }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
             end
         end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
             _G["GameTooltip"]["SetText"](_G["GameTooltip"],
                 "锁定：锁定当前所选目标，丢失目标的时候，切换最近的目标。\n范围：只要目标不在攻击范围内，切换最近的目标。")
             _G["GameTooltip"]["Show"](_G["GameTooltip"])
         end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
             _G["GameTooltip"]["Hide"](_G["GameTooltip"])
         end)
         if _G["WRSet"]["XX_ZNMB"] == nil then
-            if _G["rh0dy1wi4xzo3qjkt"] ~= nil then
-                _G["wlx"] = "xiaoman.top"
+            _G["fbak5vqu1idms9h"] = true
+            if _G["fbak5vqu1idms9h"] == "" then
+                _G["xiaoman1"] = 7
+            elseif _G["fbak5vqu1idms9h"] == nil then
+                _G["xiaoman2"] = 52
             end
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
         else
-            while "" == true do
-                _G["xiao0man"] = "enc"
-            end
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["XX_ZNMB"])
+            _G["q14yufbc7wqlzm0r"] = ""
+            _G["qz4yufb791qlzmg0i"] = nil
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["XX_ZNMB"])
         end
         _G["XX_ZNJD_Text"] = cx["CreateFontString"](cx, nil, "ARTWORK", "GameFontNormal")
         _G["XX_ZNJD_Text"]["SetText"](_G["XX_ZNJD_Text"], "智能焦点")
-        _G["XX_ZNJD_Text"]["SetPoint"](_G["XX_ZNJD_Text"], "TOPRIGHT", cy, "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "XX_ZNJD_Dropdown", cx, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", _G["XX_ZNJD_Text"], "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
+        _G["XX_ZNJD_Text"]["SetPoint"](_G["XX_ZNJD_Text"], "TOPRIGHT", cy, "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "XX_ZNJD_Dropdown", cx, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", _G["XX_ZNJD_Text"], "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
             ["text"] = "|cffffffff骷髅",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
             end
         }, {
             ["text"] = "|cffcc3300十字",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
             end
         }, {
             ["text"] = "|cff3a8ff3方块",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 3)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 3)
             end
         }, {
             ["text"] = "|cffc3c3e3月亮",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 4)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 4)
             end
         }, {
             ["text"] = "|cff11ff11三角",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 5)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 5)
             end
         }, {
             ["text"] = "|cffbf6af7菱形",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 6)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 6)
             end
         }, {
             ["text"] = "|cfffd7c07圆形",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 7)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 7)
             end
         }, {
             ["text"] = "|cffebeb1b星型",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 8)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 8)
             end
         }, {
             ["text"] = "|cffff5040禁用",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 9)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 9)
             end
         }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
             end
         end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
             _G["GameTooltip"]["SetText"](_G["GameTooltip"], "自动设定指定标记的单位为焦点。")
             _G["GameTooltip"]["Show"](_G["GameTooltip"])
         end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
             _G["GameTooltip"]["Hide"](_G["GameTooltip"])
         end)
         if _G["WRSet"]["XX_ZNJD"] == nil then
             if _G["rh0dy1wi4xzo3qjkt"] ~= nil then
                 _G["wlx"] = "xiaoman.top"
             end
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
         else
-            if _G["ah0dy1wiqxzo3qjet"] == "" then
-                _G["ubpo"] = "xiaoman"
-            end
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["XX_ZNJD"])
-        end
-        local cz = cx["CreateFontString"](cx, nil, "ARTWORK", "GameFontNormal")
-        cz["SetText"](cz, "心灵冰冻")
-        cz["SetPoint"](cz, "TOPRIGHT", _G["XX_ZNJD_Text"], "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "XX_XLBD_Dropdown", cx, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", cz, "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
-            ["text"] = "智能",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
-            end
-        }, {
-            ["text"] = "目标",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
-            end
-        }, {
-            ["text"] = "指向",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 3)
-            end
-        }, {
-            ["text"] = "焦点",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 4)
-            end
-        }, {
-            ["text"] = "|cff00adf0智能|r",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 5)
-            end
-        }, {
-            ["text"] = "|cff00adf0目标|r",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 6)
-            end
-        }, {
-            ["text"] = "|cff00adf0指向|r",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 7)
-            end
-        }, {
-            ["text"] = "|cff00adf0焦点|r",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 8)
-            end
-        }, {
-            ["text"] = "|cffff5040禁用|r",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 9)
-            end
-        }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
-            end
-        end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
-            _G["GameTooltip"]["SetText"](_G["GameTooltip"],
-                "智能：打断所有单位的施法。\n目标：仅打断当前目标的施法。\n指向：仅打断当前指向单位的施法。\n焦点：仅打断焦点单位的施法。(若无焦点则打断所有单位。)\n|cffffffff白色：打断大部分技能。|r\n|cff00adf0蓝色：仅断重要的技能。|r")
-            _G["GameTooltip"]["Show"](_G["GameTooltip"])
-        end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
-            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
-        end)
-        if _G["WRSet"]["XX_XLBD"] == nil then
-            _G["ud7lqateqbhc0zhfok"] = nil
-            _G["pd7lqyteqbhcozhl"] = false
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
-        else
-            if _G["rh0dy1wi4xzo3qjkt"] ~= nil then
-                _G["wlx"] = "xiaoman.top"
-            end
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["XX_XLBD"])
-        end
-        local cA = cx["CreateFontString"](cx, nil, "ARTWORK", "GameFontNormal")
-        cA["SetText"](cA, "打断延迟")
-        cA["SetPoint"](cA, "TOPRIGHT", cz, "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "XX_DDMS_Dropdown", cx, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", cA, "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
-            ["text"] = "秒断",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
-            end
-        }, {
-            ["text"] = "10%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
-            end
-        }, {
-            ["text"] = "20%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 3)
-            end
-        }, {
-            ["text"] = "30%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 4)
-            end
-        }, {
-            ["text"] = "40%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 5)
-            end
-        }, {
-            ["text"] = "50%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 6)
-            end
-        }, {
-            ["text"] = "60%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 7)
-            end
-        }, {
-            ["text"] = "70%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 8)
-            end
-        }, {
-            ["text"] = "80%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 9)
-            end
-        }, {
-            ["text"] = "90%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 10)
-            end
-        }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
-            end
-        end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
-            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "选择秒断或打断延迟时间。")
-            _G["GameTooltip"]["Show"](_G["GameTooltip"])
-        end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
-            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
-        end)
-        if _G["WRSet"]["XX_DDMS"] == nil then
-            while "" == true do
-                _G["xiao0man"] = "enc"
-            end
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
-        else
-            _G["cu3vft61qi8zvg0lfe"] = {nil, false}
-            if _G["cu3vft61qi8zvg0lfe"][1] == true then
-                _G["xiaoman"] = "luatool.cn"
-            end
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["XX_DDMS"])
-        end
-        local cB = cx["CreateFontString"](cx, nil, "ARTWORK", "GameFontNormal")
-        cB["SetText"](cB, "窒息")
-        cB["SetPoint"](cB, "TOPRIGHT", cA, "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "XX_ZX_Dropdown", cx, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", cB, "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
-            ["text"] = "智能",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
-            end
-        }, {
-            ["text"] = "目标",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
-            end
-        }, {
-            ["text"] = "指向",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 3)
-            end
-        }, {
-            ["text"] = "焦点",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 4)
-            end
-        }, {
-            ["text"] = "|cffff5040禁用",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 5)
-            end
-        }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
-            end
-        end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
-            _G["GameTooltip"]["SetText"](_G["GameTooltip"],
-                "智能：控制所有单位。\n目标：仅控制当前目标。\n指向：仅控制指向单位。\n焦点：仅控制焦点单位。(若无焦点则控制所有单位。)")
-            _G["GameTooltip"]["Show"](_G["GameTooltip"])
-        end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
-            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
-        end)
-        if _G["WRSet"]["XX_ZX"] == nil then
-            _G["ud7lqateqbhc0zhfok"] = nil
-            _G["pd7lqyteqbhcozhl"] = false
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
-        else
-            _G["ud7lqateqbhc0zhfok"] = nil
-            _G["pd7lqyteqbhcozhl"] = false
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["XX_ZX"])
-        end
-        local cC = cx["CreateFontString"](cx, nil, "ARTWORK", "GameFontNormal")
-        cC["SetText"](cC, "治疗石")
-        cC["SetPoint"](cC, "TOPRIGHT", cB, "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "XX_ZLS_Dropdown", cx, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", cC, "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
-            ["text"] = "10%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
-            end
-        }, {
-            ["text"] = "20%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
-            end
-        }, {
-            ["text"] = "30%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 3)
-            end
-        }, {
-            ["text"] = "40%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 4)
-            end
-        }, {
-            ["text"] = "|cffff5040禁用",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 5)
-            end
-        }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
-            end
-        end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
-            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "当生命值低于设定，自动使用治疗石。")
-            _G["GameTooltip"]["Show"](_G["GameTooltip"])
-        end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
-            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
-        end)
-        if _G["WRSet"]["XX_ZLS"] == nil then
-            _G["q14yufbc7wqlzm0r"] = ""
-            _G["qz4yufb791qlzmg0i"] = nil
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
-        else
-            if _G["ah0dy1wiqxzo3qjet"] == "" then
-                _G["ubpo"] = "xiaoman"
-            end
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["XX_ZLS"])
-        end
-        local cD = cx["CreateFontString"](cx, nil, "ARTWORK", "GameFontNormal")
-        cD["SetText"](cD, "治疗药水")
-        cD["SetPoint"](cD, "TOPRIGHT", cC, "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "XX_ZLYS_Dropdown", cx, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", cD, "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
-            ["text"] = "10%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
-            end
-        }, {
-            ["text"] = "20%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
-            end
-        }, {
-            ["text"] = "30%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 3)
-            end
-        }, {
-            ["text"] = "40%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 4)
-            end
-        }, {
-            ["text"] = "|cffff5040禁用",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 5)
-            end
-        }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
-            end
-        end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
-            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "当生命值低于设定，自动使用治疗药水。")
-            _G["GameTooltip"]["Show"](_G["GameTooltip"])
-        end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
-            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
-        end)
-        if _G["WRSet"]["XX_ZLYS"] == nil then
             _G["fbak5vqu1idms9h"] = true
             if _G["fbak5vqu1idms9h"] == "" then
                 _G["xiaoman1"] = 7
             elseif _G["fbak5vqu1idms9h"] == nil then
                 _G["xiaoman2"] = 52
             end
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
-        else
-            _G["cu3vft61qi8zvg0lfe"] = {nil, false}
-            if _G["cu3vft61qi8zvg0lfe"][1] == true then
-                _G["xiaoman"] = "luatool.cn"
-            end
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["XX_ZLYS"])
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["XX_ZNJD"])
         end
-        _G["XX_SP1_Text"] = cx["CreateFontString"](cx, nil, "ARTWORK", "GameFontNormal")
-        _G["XX_SP1_Text"]["SetText"](_G["XX_SP1_Text"], "饰品①")
-        _G["XX_SP1_Text"]["SetPoint"](_G["XX_SP1_Text"], "TOPRIGHT", cD, "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "XX_SP1_Dropdown", cx, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", _G["XX_SP1_Text"], "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
-            ["text"] = "|cffffa500常驻",
+        local cz = cx["CreateFontString"](cx, nil, "ARTWORK", "GameFontNormal")
+        cz["SetText"](cz, "心灵冰冻")
+        cz["SetPoint"](cz, "TOPRIGHT", _G["XX_ZNJD_Text"], "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "XX_XLBD_Dropdown", cx, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", cz, "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
+            ["text"] = "智能",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
             end
         }, {
-            ["text"] = "|cff90ee90爆发",
+            ["text"] = "目标",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
             end
         }, {
-            ["text"] = "|cff00adf010%",
+            ["text"] = "指向",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 3)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 3)
             end
         }, {
-            ["text"] = "|cff00adf020%",
+            ["text"] = "焦点",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 4)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 4)
             end
         }, {
-            ["text"] = "|cff00adf030%",
+            ["text"] = "|cff00adf0智能|r",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 5)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 5)
             end
         }, {
-            ["text"] = "|cff00adf040%",
+            ["text"] = "|cff00adf0目标|r",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 6)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 6)
             end
         }, {
-            ["text"] = "|cff00adf050%",
+            ["text"] = "|cff00adf0指向|r",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 7)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 7)
             end
         }, {
-            ["text"] = "|cffba55d310%",
+            ["text"] = "|cff00adf0焦点|r",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 8)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 8)
             end
         }, {
-            ["text"] = "|cffba55d320%",
+            ["text"] = "|cffff5040禁用|r",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 9)
-            end
-        }, {
-            ["text"] = "|cffba55d330%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 10)
-            end
-        }, {
-            ["text"] = "|cffba55d340%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 11)
-            end
-        }, {
-            ["text"] = "|cffba55d350%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 12)
-            end
-        }, {
-            ["text"] = "|cffff5040禁用",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 13)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 9)
             end
         }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
             end
         end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
             _G["GameTooltip"]["SetText"](_G["GameTooltip"],
-                "|cffffa500常驻：CD好了就用。\n|cff90ee90爆发：随爆发技能同时使用。\n|cff00adf0自保：自己生命值低于设定值时使用。\n|cffba55d3协助：队友或自己生命值低于设定值时使用。")
+                "智能：打断所有单位的施法。\n目标：仅打断当前目标的施法。\n指向：仅打断当前指向单位的施法。\n焦点：仅打断焦点单位的施法。(若无焦点则打断所有单位。)\n|cffffffff白色：打断大部分技能。|r\n|cff00adf0蓝色：仅断重要的技能。|r")
             _G["GameTooltip"]["Show"](_G["GameTooltip"])
         end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
             _G["GameTooltip"]["Hide"](_G["GameTooltip"])
         end)
-        if _G["WRSet"]["XX_SP1"] == nil then
-            while "" == true do
-                _G["xiao0man"] = "enc"
-            end
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
-        else
-            if _G["rh0dy1wi4xzo3qjkt"] ~= nil then
-                _G["wlx"] = "xiaoman.top"
-            end
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["XX_SP1"])
-        end
-        _G["XX_SP2_Text"] = cx["CreateFontString"](cx, nil, "ARTWORK", "GameFontNormal")
-        _G["XX_SP2_Text"]["SetText"](_G["XX_SP2_Text"], "饰品②")
-        _G["XX_SP2_Text"]["SetPoint"](_G["XX_SP2_Text"], "TOPRIGHT", _G["XX_SP1_Text"], "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "XX_SP2_Dropdown", cx, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", _G["XX_SP2_Text"], "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
-            ["text"] = "|cffffa500常驻",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
-            end
-        }, {
-            ["text"] = "|cff90ee90爆发",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
-            end
-        }, {
-            ["text"] = "|cff00adf010%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 3)
-            end
-        }, {
-            ["text"] = "|cff00adf020%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 4)
-            end
-        }, {
-            ["text"] = "|cff00adf030%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 5)
-            end
-        }, {
-            ["text"] = "|cff00adf040%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 6)
-            end
-        }, {
-            ["text"] = "|cff00adf050%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 7)
-            end
-        }, {
-            ["text"] = "|cffba55d310%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 8)
-            end
-        }, {
-            ["text"] = "|cffba55d320%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 9)
-            end
-        }, {
-            ["text"] = "|cffba55d330%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 10)
-            end
-        }, {
-            ["text"] = "|cffba55d340%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 11)
-            end
-        }, {
-            ["text"] = "|cffba55d350%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 12)
-            end
-        }, {
-            ["text"] = "|cffff5040禁用",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 13)
-            end
-        }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
-            end
-        end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
-            _G["GameTooltip"]["SetText"](_G["GameTooltip"],
-                "|cffffa500常驻：CD好了就用。\n|cff90ee90爆发：随爆发技能同时使用。\n|cff00adf0自保：自己生命值低于设定值时使用。\n|cffba55d3协助：队友或自己生命值低于设定值时使用。")
-            _G["GameTooltip"]["Show"](_G["GameTooltip"])
-        end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
-            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
-        end)
-        if _G["WRSet"]["XX_SP2"] == nil then
-            _G["ud7lqateqbhc0zhfok"] = nil
-            _G["pd7lqyteqbhcozhl"] = false
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
-        else
-            if _G["ah0dy1wiqxzo3qjet"] == "" then
-                _G["ubpo"] = "xiaoman"
-            end
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["XX_SP2"])
-        end
-        _G["XX_WuQi_Text"] = cx["CreateFontString"](cx, nil, "ARTWORK", "GameFontNormal")
-        _G["XX_WuQi_Text"]["SetText"](_G["XX_WuQi_Text"], "武器")
-        _G["XX_WuQi_Text"]["SetPoint"](_G["XX_WuQi_Text"], "TOPRIGHT", _G["XX_SP2_Text"], "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "XX_WuQi_Dropdown", cx, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", _G["XX_WuQi_Text"], "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
-            ["text"] = "|cffffa500常驻",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
-            end
-        }, {
-            ["text"] = "|cff90ee90爆发",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
-            end
-        }, {
-            ["text"] = "|cffff5040禁用",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 3)
-            end
-        }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
-            end
-        end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
-            _G["GameTooltip"]["SetText"](_G["GameTooltip"],
-                "|cffffa500常驻：CD好了就用。\n|cff90ee90爆发：爆发模式使用。")
-            _G["GameTooltip"]["Show"](_G["GameTooltip"])
-        end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
-            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
-        end)
-        if _G["WRSet"]["XX_WuQi"] == nil then
-            _G["qxw3iagfxbqp1ilz"] = function(bT)
+        if _G["WRSet"]["XX_XLBD"] == nil then
+            _G["qxw3iagfxbqp1ilz"] = function(c9)
                 _G["xm"] = "小满"
-                _G["xiao1man"](bT)
+                _G["xiao1man"](c9)
             end;
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
         else
-            _G["qxw3iagfxbqp1ilz"] = function(bT)
-                _G["xm"] = "小满"
-                _G["xiao1man"](bT)
-            end;
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["XX_WuQi"])
+            _G["fbak5vqu1idms9h"] = true
+            if _G["fbak5vqu1idms9h"] == "" then
+                _G["xiaoman1"] = 7
+            elseif _G["fbak5vqu1idms9h"] == nil then
+                _G["xiaoman2"] = 52
+            end
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["XX_XLBD"])
         end
-        local cE = cx["CreateFontString"](cx, nil, "ARTWORK", "GameFontNormal")
-        cE["SetText"](cE, "施法速度")
-        cE["SetPoint"](cE, "TOPRIGHT", _G["XX_WuQi_Text"], "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "XX_SFSD_Dropdown", cx, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", cE, "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
+        local cA = cx["CreateFontString"](cx, nil, "ARTWORK", "GameFontNormal")
+        cA["SetText"](cA, "打断延迟")
+        cA["SetPoint"](cA, "TOPRIGHT", cz, "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "XX_DDMS_Dropdown", cx, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", cA, "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
+            ["text"] = "秒断",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
+            end
+        }, {
             ["text"] = "10%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
-            end
-        }, {
-            ["text"] = "15%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
             end
         }, {
             ["text"] = "20%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 3)
-            end
-        }, {
-            ["text"] = "25%",
-            ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 4)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 3)
             end
         }, {
             ["text"] = "30%",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 5)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 4)
+            end
+        }, {
+            ["text"] = "40%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 5)
+            end
+        }, {
+            ["text"] = "50%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 6)
+            end
+        }, {
+            ["text"] = "60%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 7)
+            end
+        }, {
+            ["text"] = "70%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 8)
+            end
+        }, {
+            ["text"] = "80%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 9)
+            end
+        }, {
+            ["text"] = "90%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 10)
             end
         }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
             end
         end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
-            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "在公共冷却(GCD)前0.1-0.3秒插入下一个技能。")
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
+            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "选择秒断或打断延迟时间。")
             _G["GameTooltip"]["Show"](_G["GameTooltip"])
         end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
             _G["GameTooltip"]["Hide"](_G["GameTooltip"])
         end)
-        if _G["WRSet"]["XX_SFSD"] == nil then
-            if _G["ah0dy1wiqxzo3qjet"] == "" then
-                _G["ubpo"] = "xiaoman"
+        if _G["WRSet"]["XX_DDMS"] == nil then
+            _G["fbak5vqu1idms9h"] = true
+            if _G["fbak5vqu1idms9h"] == "" then
+                _G["xiaoman1"] = 7
+            elseif _G["fbak5vqu1idms9h"] == nil then
+                _G["xiaoman2"] = 52
             end
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
         else
             _G["cu3vft61qi8zvg0lfe"] = {nil, false}
             if _G["cu3vft61qi8zvg0lfe"][1] == true then
                 _G["xiaoman"] = "luatool.cn"
             end
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["XX_SFSD"])
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["XX_DDMS"])
+        end
+        local cB = cx["CreateFontString"](cx, nil, "ARTWORK", "GameFontNormal")
+        cB["SetText"](cB, "窒息")
+        cB["SetPoint"](cB, "TOPRIGHT", cA, "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "XX_ZX_Dropdown", cx, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", cB, "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
+            ["text"] = "智能",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
+            end
+        }, {
+            ["text"] = "目标",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
+            end
+        }, {
+            ["text"] = "指向",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 3)
+            end
+        }, {
+            ["text"] = "焦点",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 4)
+            end
+        }, {
+            ["text"] = "|cffff5040禁用",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 5)
+            end
+        }}
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
+            end
+        end)
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
+            _G["GameTooltip"]["SetText"](_G["GameTooltip"],
+                "智能：控制所有单位。\n目标：仅控制当前目标。\n指向：仅控制指向单位。\n焦点：仅控制焦点单位。(若无焦点则控制所有单位。)")
+            _G["GameTooltip"]["Show"](_G["GameTooltip"])
+        end)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
+            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
+        end)
+        if _G["WRSet"]["XX_ZX"] == nil then
+            while "" == true do
+                _G["xiao0man"] = "enc"
+            end
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
+        else
+            _G["q14yufbc7wqlzm0r"] = ""
+            _G["qz4yufb791qlzmg0i"] = nil
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["XX_ZX"])
+        end
+        local cC = cx["CreateFontString"](cx, nil, "ARTWORK", "GameFontNormal")
+        cC["SetText"](cC, "治疗石")
+        cC["SetPoint"](cC, "TOPRIGHT", cB, "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "XX_ZLS_Dropdown", cx, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", cC, "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
+            ["text"] = "10%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
+            end
+        }, {
+            ["text"] = "20%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
+            end
+        }, {
+            ["text"] = "30%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 3)
+            end
+        }, {
+            ["text"] = "40%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 4)
+            end
+        }, {
+            ["text"] = "|cffff5040禁用",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 5)
+            end
+        }}
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
+            end
+        end)
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
+            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "当生命值低于设定，自动使用治疗石。")
+            _G["GameTooltip"]["Show"](_G["GameTooltip"])
+        end)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
+            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
+        end)
+        if _G["WRSet"]["XX_ZLS"] == nil then
+            while "" == true do
+                _G["xiao0man"] = "enc"
+            end
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
+        else
+            _G["cu3vft61qi8zvg0lfe"] = {nil, false}
+            if _G["cu3vft61qi8zvg0lfe"][1] == true then
+                _G["xiaoman"] = "luatool.cn"
+            end
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["XX_ZLS"])
+        end
+        local cD = cx["CreateFontString"](cx, nil, "ARTWORK", "GameFontNormal")
+        cD["SetText"](cD, "治疗药水")
+        cD["SetPoint"](cD, "TOPRIGHT", cC, "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "XX_ZLYS_Dropdown", cx, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", cD, "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
+            ["text"] = "10%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
+            end
+        }, {
+            ["text"] = "20%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
+            end
+        }, {
+            ["text"] = "30%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 3)
+            end
+        }, {
+            ["text"] = "40%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 4)
+            end
+        }, {
+            ["text"] = "|cffff5040禁用",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 5)
+            end
+        }}
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
+            end
+        end)
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
+            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "当生命值低于设定，自动使用治疗药水。")
+            _G["GameTooltip"]["Show"](_G["GameTooltip"])
+        end)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
+            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
+        end)
+        if _G["WRSet"]["XX_ZLYS"] == nil then
+            _G["cu3vft61qi8zvg0lfe"] = {nil, false}
+            if _G["cu3vft61qi8zvg0lfe"][1] == true then
+                _G["xiaoman"] = "luatool.cn"
+            end
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
+        else
+            _G["fbak5vqu1idms9h"] = true
+            if _G["fbak5vqu1idms9h"] == "" then
+                _G["xiaoman1"] = 7
+            elseif _G["fbak5vqu1idms9h"] == nil then
+                _G["xiaoman2"] = 52
+            end
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["XX_ZLYS"])
+        end
+        _G["XX_SP1_Text"] = cx["CreateFontString"](cx, nil, "ARTWORK", "GameFontNormal")
+        _G["XX_SP1_Text"]["SetText"](_G["XX_SP1_Text"], "饰品①")
+        _G["XX_SP1_Text"]["SetPoint"](_G["XX_SP1_Text"], "TOPRIGHT", cD, "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "XX_SP1_Dropdown", cx, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", _G["XX_SP1_Text"], "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
+            ["text"] = "|cffffa500常驻",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
+            end
+        }, {
+            ["text"] = "|cff90ee90爆发",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
+            end
+        }, {
+            ["text"] = "|cff00adf010%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 3)
+            end
+        }, {
+            ["text"] = "|cff00adf020%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 4)
+            end
+        }, {
+            ["text"] = "|cff00adf030%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 5)
+            end
+        }, {
+            ["text"] = "|cff00adf040%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 6)
+            end
+        }, {
+            ["text"] = "|cff00adf050%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 7)
+            end
+        }, {
+            ["text"] = "|cffba55d310%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 8)
+            end
+        }, {
+            ["text"] = "|cffba55d320%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 9)
+            end
+        }, {
+            ["text"] = "|cffba55d330%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 10)
+            end
+        }, {
+            ["text"] = "|cffba55d340%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 11)
+            end
+        }, {
+            ["text"] = "|cffba55d350%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 12)
+            end
+        }, {
+            ["text"] = "|cffff5040禁用",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 13)
+            end
+        }}
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
+            end
+        end)
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
+            _G["GameTooltip"]["SetText"](_G["GameTooltip"],
+                "|cffffa500常驻：CD好了就用。\n|cff90ee90爆发：随爆发技能同时使用。\n|cff00adf0自保：自己生命值低于设定值时使用。\n|cffba55d3协助：队友或自己生命值低于设定值时使用。")
+            _G["GameTooltip"]["Show"](_G["GameTooltip"])
+        end)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
+            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
+        end)
+        if _G["WRSet"]["XX_SP1"] == nil then
+            _G["qxw3iagfxbqp1ilz"] = function(c9)
+                _G["xm"] = "小满"
+                _G["xiao1man"](c9)
+            end;
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
+        else
+            _G["cu3vft61qi8zvg0lfe"] = {nil, false}
+            if _G["cu3vft61qi8zvg0lfe"][1] == true then
+                _G["xiaoman"] = "luatool.cn"
+            end
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["XX_SP1"])
+        end
+        _G["XX_SP2_Text"] = cx["CreateFontString"](cx, nil, "ARTWORK", "GameFontNormal")
+        _G["XX_SP2_Text"]["SetText"](_G["XX_SP2_Text"], "饰品②")
+        _G["XX_SP2_Text"]["SetPoint"](_G["XX_SP2_Text"], "TOPRIGHT", _G["XX_SP1_Text"], "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "XX_SP2_Dropdown", cx, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", _G["XX_SP2_Text"], "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
+            ["text"] = "|cffffa500常驻",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
+            end
+        }, {
+            ["text"] = "|cff90ee90爆发",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
+            end
+        }, {
+            ["text"] = "|cff00adf010%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 3)
+            end
+        }, {
+            ["text"] = "|cff00adf020%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 4)
+            end
+        }, {
+            ["text"] = "|cff00adf030%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 5)
+            end
+        }, {
+            ["text"] = "|cff00adf040%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 6)
+            end
+        }, {
+            ["text"] = "|cff00adf050%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 7)
+            end
+        }, {
+            ["text"] = "|cffba55d310%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 8)
+            end
+        }, {
+            ["text"] = "|cffba55d320%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 9)
+            end
+        }, {
+            ["text"] = "|cffba55d330%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 10)
+            end
+        }, {
+            ["text"] = "|cffba55d340%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 11)
+            end
+        }, {
+            ["text"] = "|cffba55d350%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 12)
+            end
+        }, {
+            ["text"] = "|cffff5040禁用",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 13)
+            end
+        }}
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
+            end
+        end)
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
+            _G["GameTooltip"]["SetText"](_G["GameTooltip"],
+                "|cffffa500常驻：CD好了就用。\n|cff90ee90爆发：随爆发技能同时使用。\n|cff00adf0自保：自己生命值低于设定值时使用。\n|cffba55d3协助：队友或自己生命值低于设定值时使用。")
+            _G["GameTooltip"]["Show"](_G["GameTooltip"])
+        end)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
+            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
+        end)
+        if _G["WRSet"]["XX_SP2"] == nil then
+            while "" == true do
+                _G["xiao0man"] = "enc"
+            end
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
+        else
+            while "" == true do
+                _G["xiao0man"] = "enc"
+            end
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["XX_SP2"])
+        end
+        _G["XX_WuQi_Text"] = cx["CreateFontString"](cx, nil, "ARTWORK", "GameFontNormal")
+        _G["XX_WuQi_Text"]["SetText"](_G["XX_WuQi_Text"], "武器")
+        _G["XX_WuQi_Text"]["SetPoint"](_G["XX_WuQi_Text"], "TOPRIGHT", _G["XX_SP2_Text"], "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "XX_WuQi_Dropdown", cx, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", _G["XX_WuQi_Text"], "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
+            ["text"] = "|cffffa500常驻",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
+            end
+        }, {
+            ["text"] = "|cff90ee90爆发",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
+            end
+        }, {
+            ["text"] = "|cffff5040禁用",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 3)
+            end
+        }}
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
+            end
+        end)
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
+            _G["GameTooltip"]["SetText"](_G["GameTooltip"],
+                "|cffffa500常驻：CD好了就用。\n|cff90ee90爆发：爆发模式使用。")
+            _G["GameTooltip"]["Show"](_G["GameTooltip"])
+        end)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
+            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
+        end)
+        if _G["WRSet"]["XX_WuQi"] == nil then
+            while "" == true do
+                _G["xiao0man"] = "enc"
+            end
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
+        else
+            _G["q14yufbc7wqlzm0r"] = ""
+            _G["qz4yufb791qlzmg0i"] = nil
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["XX_WuQi"])
+        end
+        local cE = cx["CreateFontString"](cx, nil, "ARTWORK", "GameFontNormal")
+        cE["SetText"](cE, "施法速度")
+        cE["SetPoint"](cE, "TOPRIGHT", _G["XX_WuQi_Text"], "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "XX_SFSD_Dropdown", cx, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", cE, "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
+            ["text"] = "10%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
+            end
+        }, {
+            ["text"] = "15%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
+            end
+        }, {
+            ["text"] = "20%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 3)
+            end
+        }, {
+            ["text"] = "25%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 4)
+            end
+        }, {
+            ["text"] = "30%",
+            ["func"] = function()
+                _G["UIDropDownMenu_SetSelectedID"](c1, 5)
+            end
+        }}
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
+            end
+        end)
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
+            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "在公共冷却(GCD)前0.1-0.3秒插入下一个技能。")
+            _G["GameTooltip"]["Show"](_G["GameTooltip"])
+        end)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
+            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
+        end)
+        if _G["WRSet"]["XX_SFSD"] == nil then
+            if _G["rh0dy1wi4xzo3qjkt"] ~= nil then
+                _G["wlx"] = "xiaoman.top"
+            end
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
+        else
+            while "" == true do
+                _G["xiao0man"] = "enc"
+            end
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["XX_SFSD"])
         end
         local cF = cx["CreateFontString"](cx, nil, "ARTWORK", "GameFontNormal")
         cF["SetText"](cF, "插件功率")
-        cF["SetPoint"](cF, "TOPRIGHT", cE, "BOTTOMRIGHT", 0, bW)
-        local c2 = _G["CreateFrame"]("Frame", "XX_CJGL_Dropdown", cx, "UIDropDownMenuTemplate")
-        c2["SetPoint"](c2, "LEFT", cF, "RIGHT", -16, -2)
-        _G["UIDropDownMenu_SetWidth"](c2, 70)
-        local c3 = {{
+        cF["SetPoint"](cF, "TOPRIGHT", cE, "BOTTOMRIGHT", 0, bV)
+        local c1 = _G["CreateFrame"]("Frame", "XX_CJGL_Dropdown", cx, "UIDropDownMenuTemplate")
+        c1["SetPoint"](c1, "LEFT", cF, "RIGHT", -16, -2)
+        _G["UIDropDownMenu_SetWidth"](c1, 70)
+        local c2 = {{
             ["text"] = "最高",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 1)
             end
         }, {
             ["text"] = "较高",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 2)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 2)
             end
         }, {
             ["text"] = "中等",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 3)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 3)
             end
         }, {
             ["text"] = "较低",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 4)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 4)
             end
         }, {
             ["text"] = "最低",
             ["func"] = function()
-                _G["UIDropDownMenu_SetSelectedID"](c2, 5)
+                _G["UIDropDownMenu_SetSelectedID"](c1, 5)
             end
         }}
-        _G["UIDropDownMenu_Initialize"](c2, function()
-            for c4, c5 in _G["ipairs"](c3) do
-                local c6 = _G["UIDropDownMenu_CreateInfo"]()
-                c6["text"] = c5["text"]
-                c6["func"] = c5["func"]
-                _G["UIDropDownMenu_AddButton"](c6)
+        _G["UIDropDownMenu_Initialize"](c1, function()
+            for c3, c4 in _G["ipairs"](c2) do
+                local c5 = _G["UIDropDownMenu_CreateInfo"]()
+                c5["text"] = c4["text"]
+                c5["func"] = c4["func"]
+                _G["UIDropDownMenu_AddButton"](c5)
             end
         end)
-        c2["SetScript"](c2, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
+        c1["SetScript"](c1, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
             _G["GameTooltip"]["SetText"](_G["GameTooltip"],
                 "功率设置会影响插件的反应速度。\n功率越高，反应越快，帧数下降。\n功率越低，反应越慢，帧数提高。\n请根据自己的电脑性能酌情调整。")
             _G["GameTooltip"]["Show"](_G["GameTooltip"])
         end)
-        c2["SetScript"](c2, "OnLeave", function(b_)
+        c1["SetScript"](c1, "OnLeave", function(bZ)
             _G["GameTooltip"]["Hide"](_G["GameTooltip"])
         end)
         if _G["WRSet"]["XX_CJGL"] == nil then
@@ -4188,231 +4197,230 @@ return (function(...)
             if _G["cu3vft61qi8zvg0lfe"][1] == true then
                 _G["xiaoman"] = "luatool.cn"
             end
-            _G["UIDropDownMenu_SetSelectedID"](c2, 1)
+            _G["UIDropDownMenu_SetSelectedID"](c1, 1)
         else
-            if _G["ah0dy1wiqxzo3qjet"] == "" then
-                _G["ubpo"] = "xiaoman"
-            end
-            _G["UIDropDownMenu_SetSelectedID"](c2, _G["WRSet"]["XX_CJGL"])
+            _G["q14yufbc7wqlzm0r"] = ""
+            _G["qz4yufb791qlzmg0i"] = nil
+            _G["UIDropDownMenu_SetSelectedID"](c1, _G["WRSet"]["XX_CJGL"])
         end
         _G["XX_NotADD_Text"] = cx["CreateFontString"](cx, nil, "ARTWORK", "GameFontNormal")
         _G["XX_NotADD_Text"]["SetText"](_G["XX_NotADD_Text"], "防衅")
-        _G["XX_NotADD_Text"]["SetPoint"](_G["XX_NotADD_Text"], "TOPRIGHT", cF, "BOTTOMRIGHT", -33, bW)
-        local bZ = _G["CreateFrame"]("CheckButton", "XX_NotADD_Checkbox", cx, "UICheckButtonTemplate")
-        bZ["SetPoint"](bZ, "TOP", _G["XX_NotADD_Text"], "BOTTOM", 0, 0)
-        bZ["SetChecked"](bZ, false)
-        bZ["SetScript"](bZ, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
+        _G["XX_NotADD_Text"]["SetPoint"](_G["XX_NotADD_Text"], "TOPRIGHT", cF, "BOTTOMRIGHT", -33, bV)
+        local bY = _G["CreateFrame"]("CheckButton", "XX_NotADD_Checkbox", cx, "UICheckButtonTemplate")
+        bY["SetPoint"](bY, "TOP", _G["XX_NotADD_Text"], "BOTTOM", 0, 0)
+        bY["SetChecked"](bY, false)
+        bY["SetScript"](bY, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
             _G["GameTooltip"]["SetText"](_G["GameTooltip"], "不主动攻击未战斗的单位。")
             _G["GameTooltip"]["Show"](_G["GameTooltip"])
         end)
-        bZ["SetScript"](bZ, "OnLeave", function(b_)
+        bY["SetScript"](bY, "OnLeave", function(bZ)
             _G["GameTooltip"]["Hide"](_G["GameTooltip"])
         end)
         if _G["WRSet"]["XX_NotADD"] == nil then
-            _G["q14yufbc7wqlzm0r"] = ""
-            _G["qz4yufb791qlzmg0i"] = nil
-            bZ["SetChecked"](bZ, true)
-        else
-            if _G["ah0dy1wiqxzo3qjet"] == "" then
-                _G["ubpo"] = "xiaoman"
-            end
-            bZ["SetChecked"](bZ, _G["WRSet"]["XX_NotADD"])
-        end
-        _G["XX_QZJS_Text"] = cx["CreateFontString"](cx, nil, "ARTWORK", "GameFontNormal")
-        _G["XX_QZJS_Text"]["SetText"](_G["XX_QZJS_Text"], "预防")
-        _G["XX_QZJS_Text"]["SetPoint"](_G["XX_QZJS_Text"], "LEFT", _G["XX_NotADD_Text"], "RIGHT", 8, 0)
-        local bZ = _G["CreateFrame"]("CheckButton", "XX_QZJS_Checkbox", cx, "UICheckButtonTemplate")
-        bZ["SetPoint"](bZ, "TOP", _G["XX_QZJS_Text"], "BOTTOM", 0, 0)
-        bZ["SetChecked"](bZ, false)
-        bZ["SetScript"](bZ, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
-            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "使用减伤技能提前应对部分尖刺伤害。")
-            _G["GameTooltip"]["Show"](_G["GameTooltip"])
-        end)
-        bZ["SetScript"](bZ, "OnLeave", function(b_)
-            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
-        end)
-        if _G["WRSet"]["XX_QZJS"] == nil then
-            while "" == true do
-                _G["xiao0man"] = "enc"
-            end
-            bZ["SetChecked"](bZ, true)
-        else
-            _G["fbak5vqu1idms9h"] = true
-            if _G["fbak5vqu1idms9h"] == "" then
-                _G["xiaoman1"] = 7
-            elseif _G["fbak5vqu1idms9h"] == nil then
-                _G["xiaoman2"] = 52
-            end
-            bZ["SetChecked"](bZ, _G["WRSet"]["XX_QZJS"])
-        end
-        _G["XX_ZMBY_Text"] = cx["CreateFontString"](cx, nil, "ARTWORK", "GameFontNormal")
-        _G["XX_ZMBY_Text"]["SetText"](_G["XX_ZMBY_Text"], "冰雨")
-        _G["XX_ZMBY_Text"]["SetPoint"](_G["XX_ZMBY_Text"], "LEFT", _G["XX_QZJS_Text"], "RIGHT", 8, 0)
-        local bZ = _G["CreateFrame"]("CheckButton", "XX_ZMBY_Checkbox", cx, "UICheckButtonTemplate")
-        bZ["SetPoint"](bZ, "TOP", _G["XX_ZMBY_Text"], "BOTTOM", 0, 0)
-        bZ["SetChecked"](bZ, false)
-        bZ["SetScript"](bZ, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
-            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "|cff00adf0致盲冰雨|r(控制)")
-            _G["GameTooltip"]["Show"](_G["GameTooltip"])
-        end)
-        bZ["SetScript"](bZ, "OnLeave", function(b_)
-            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
-        end)
-        if _G["WRSet"]["XX_ZMBY"] == nil then
-            while "" == true do
-                _G["xiao0man"] = "enc"
-            end
-            bZ["SetChecked"](bZ, true)
-        else
-            if _G["rh0dy1wi4xzo3qjkt"] ~= nil then
-                _G["wlx"] = "xiaoman.top"
-            end
-            bZ["SetChecked"](bZ, _G["WRSet"]["XX_ZMBY"])
-        end
-        _G["XX_FHMY_Text"] = cx["CreateFontString"](cx, nil, "ARTWORK", "GameFontNormal")
-        _G["XX_FHMY_Text"]["SetText"](_G["XX_FHMY_Text"], "战复")
-        _G["XX_FHMY_Text"]["SetPoint"](_G["XX_FHMY_Text"], "LEFT", _G["XX_ZMBY_Text"], "RIGHT", 8, 0)
-        local bZ = _G["CreateFrame"]("CheckButton", "XX_FHMY_Checkbox", cx, "UICheckButtonTemplate")
-        bZ["SetPoint"](bZ, "TOP", _G["XX_FHMY_Text"], "BOTTOM", 0, 0)
-        bZ["SetChecked"](bZ, false)
-        bZ["SetScript"](bZ, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
-            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "|cff00adf0复活盟友|r(指向战复)")
-            _G["GameTooltip"]["Show"](_G["GameTooltip"])
-        end)
-        bZ["SetScript"](bZ, "OnLeave", function(b_)
-            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
-        end)
-        if _G["WRSet"]["XX_FHMY"] == nil then
             _G["cu3vft61qi8zvg0lfe"] = {nil, false}
             if _G["cu3vft61qi8zvg0lfe"][1] == true then
                 _G["xiaoman"] = "luatool.cn"
             end
-            bZ["SetChecked"](bZ, true)
+            bY["SetChecked"](bY, true)
         else
-            while "" == true do
-                _G["xiao0man"] = "enc"
-            end
-            bZ["SetChecked"](bZ, _G["WRSet"]["XX_FHMY"])
-        end
-        _G["XX_FMFHZ_Text"] = cx["CreateFontString"](cx, nil, "ARTWORK", "GameFontNormal")
-        _G["XX_FMFHZ_Text"]["SetText"](_G["XX_FMFHZ_Text"], "魔罩")
-        _G["XX_FMFHZ_Text"]["SetPoint"](_G["XX_FMFHZ_Text"], "TOP", _G["XX_NotADD_Checkbox"], "BOTTOM", 0, 0)
-        local bZ = _G["CreateFrame"]("CheckButton", "XX_FMFHZ_Checkbox", cx, "UICheckButtonTemplate")
-        bZ["SetPoint"](bZ, "TOP", _G["XX_FMFHZ_Text"], "BOTTOM", 0, 0)
-        bZ["SetChecked"](bZ, false)
-        bZ["SetScript"](bZ, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
-            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "|cff00adf0反魔法护罩|r(减伤)")
-            _G["GameTooltip"]["Show"](_G["GameTooltip"])
-        end)
-        bZ["SetScript"](bZ, "OnLeave", function(b_)
-            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
-        end)
-        if _G["WRSet"]["XX_FMFHZ"] == nil then
             _G["fbak5vqu1idms9h"] = true
             if _G["fbak5vqu1idms9h"] == "" then
                 _G["xiaoman1"] = 7
             elseif _G["fbak5vqu1idms9h"] == nil then
                 _G["xiaoman2"] = 52
             end
-            bZ["SetChecked"](bZ, true)
-        else
-            if _G["ah0dy1wiqxzo3qjet"] == "" then
-                _G["ubpo"] = "xiaoman"
-            end
-            bZ["SetChecked"](bZ, _G["WRSet"]["XX_FMFHZ"])
+            bY["SetChecked"](bY, _G["WRSet"]["XX_NotADD"])
         end
-        _G["XX_XXGZX_Text"] = cx["CreateFontString"](cx, nil, "ARTWORK", "GameFontNormal")
-        _G["XX_XXGZX_Text"]["SetText"](_G["XX_XXGZX_Text"], "吸血")
-        _G["XX_XXGZX_Text"]["SetPoint"](_G["XX_XXGZX_Text"], "LEFT", _G["XX_FMFHZ_Text"], "RIGHT", 8, 0)
-        local bZ = _G["CreateFrame"]("CheckButton", "XX_XXGZX_Checkbox", cx, "UICheckButtonTemplate")
-        bZ["SetPoint"](bZ, "TOP", _G["XX_XXGZX_Text"], "BOTTOM", 0, 0)
-        bZ["SetChecked"](bZ, false)
-        bZ["SetScript"](bZ, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
-            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "|cff00adf0吸血鬼之血|r(减伤)")
+        _G["XX_QZJS_Text"] = cx["CreateFontString"](cx, nil, "ARTWORK", "GameFontNormal")
+        _G["XX_QZJS_Text"]["SetText"](_G["XX_QZJS_Text"], "预防")
+        _G["XX_QZJS_Text"]["SetPoint"](_G["XX_QZJS_Text"], "LEFT", _G["XX_NotADD_Text"], "RIGHT", 8, 0)
+        local bY = _G["CreateFrame"]("CheckButton", "XX_QZJS_Checkbox", cx, "UICheckButtonTemplate")
+        bY["SetPoint"](bY, "TOP", _G["XX_QZJS_Text"], "BOTTOM", 0, 0)
+        bY["SetChecked"](bY, false)
+        bY["SetScript"](bY, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
+            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "使用减伤技能提前应对部分尖刺伤害。")
             _G["GameTooltip"]["Show"](_G["GameTooltip"])
         end)
-        bZ["SetScript"](bZ, "OnLeave", function(b_)
+        bY["SetScript"](bY, "OnLeave", function(bZ)
             _G["GameTooltip"]["Hide"](_G["GameTooltip"])
         end)
-        if _G["WRSet"]["XX_XXGZX"] == nil then
-            _G["q14yufbc7wqlzm0r"] = ""
-            _G["qz4yufb791qlzmg0i"] = nil
-            bZ["SetChecked"](bZ, true)
+        if _G["WRSet"]["XX_QZJS"] == nil then
+            _G["qxw3iagfxbqp1ilz"] = function(c9)
+                _G["xm"] = "小满"
+                _G["xiao1man"](c9)
+            end;
+            bY["SetChecked"](bY, true)
+        else
+            _G["cu3vft61qi8zvg0lfe"] = {nil, false}
+            if _G["cu3vft61qi8zvg0lfe"][1] == true then
+                _G["xiaoman"] = "luatool.cn"
+            end
+            bY["SetChecked"](bY, _G["WRSet"]["XX_QZJS"])
+        end
+        _G["XX_ZMBY_Text"] = cx["CreateFontString"](cx, nil, "ARTWORK", "GameFontNormal")
+        _G["XX_ZMBY_Text"]["SetText"](_G["XX_ZMBY_Text"], "冰雨")
+        _G["XX_ZMBY_Text"]["SetPoint"](_G["XX_ZMBY_Text"], "LEFT", _G["XX_QZJS_Text"], "RIGHT", 8, 0)
+        local bY = _G["CreateFrame"]("CheckButton", "XX_ZMBY_Checkbox", cx, "UICheckButtonTemplate")
+        bY["SetPoint"](bY, "TOP", _G["XX_ZMBY_Text"], "BOTTOM", 0, 0)
+        bY["SetChecked"](bY, false)
+        bY["SetScript"](bY, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
+            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "|cff00adf0致盲冰雨|r(控制)")
+            _G["GameTooltip"]["Show"](_G["GameTooltip"])
+        end)
+        bY["SetScript"](bY, "OnLeave", function(bZ)
+            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
+        end)
+        if _G["WRSet"]["XX_ZMBY"] == nil then
+            _G["cu3vft61qi8zvg0lfe"] = {nil, false}
+            if _G["cu3vft61qi8zvg0lfe"][1] == true then
+                _G["xiaoman"] = "luatool.cn"
+            end
+            bY["SetChecked"](bY, true)
+        else
+            _G["cu3vft61qi8zvg0lfe"] = {nil, false}
+            if _G["cu3vft61qi8zvg0lfe"][1] == true then
+                _G["xiaoman"] = "luatool.cn"
+            end
+            bY["SetChecked"](bY, _G["WRSet"]["XX_ZMBY"])
+        end
+        _G["XX_FHMY_Text"] = cx["CreateFontString"](cx, nil, "ARTWORK", "GameFontNormal")
+        _G["XX_FHMY_Text"]["SetText"](_G["XX_FHMY_Text"], "战复")
+        _G["XX_FHMY_Text"]["SetPoint"](_G["XX_FHMY_Text"], "LEFT", _G["XX_ZMBY_Text"], "RIGHT", 8, 0)
+        local bY = _G["CreateFrame"]("CheckButton", "XX_FHMY_Checkbox", cx, "UICheckButtonTemplate")
+        bY["SetPoint"](bY, "TOP", _G["XX_FHMY_Text"], "BOTTOM", 0, 0)
+        bY["SetChecked"](bY, false)
+        bY["SetScript"](bY, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
+            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "|cff00adf0复活盟友|r(指向战复)")
+            _G["GameTooltip"]["Show"](_G["GameTooltip"])
+        end)
+        bY["SetScript"](bY, "OnLeave", function(bZ)
+            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
+        end)
+        if _G["WRSet"]["XX_FHMY"] == nil then
+            _G["ud7lqateqbhc0zhfok"] = nil
+            _G["pd7lqyteqbhcozhl"] = false
+            bY["SetChecked"](bY, true)
         else
             if _G["rh0dy1wi4xzo3qjkt"] ~= nil then
                 _G["wlx"] = "xiaoman.top"
             end
-            bZ["SetChecked"](bZ, _G["WRSet"]["XX_XXGZX"])
+            bY["SetChecked"](bY, _G["WRSet"]["XX_FHMY"])
+        end
+        _G["XX_FMFHZ_Text"] = cx["CreateFontString"](cx, nil, "ARTWORK", "GameFontNormal")
+        _G["XX_FMFHZ_Text"]["SetText"](_G["XX_FMFHZ_Text"], "魔罩")
+        _G["XX_FMFHZ_Text"]["SetPoint"](_G["XX_FMFHZ_Text"], "TOP", _G["XX_NotADD_Checkbox"], "BOTTOM", 0, 0)
+        local bY = _G["CreateFrame"]("CheckButton", "XX_FMFHZ_Checkbox", cx, "UICheckButtonTemplate")
+        bY["SetPoint"](bY, "TOP", _G["XX_FMFHZ_Text"], "BOTTOM", 0, 0)
+        bY["SetChecked"](bY, false)
+        bY["SetScript"](bY, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
+            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "|cff00adf0反魔法护罩|r(减伤)")
+            _G["GameTooltip"]["Show"](_G["GameTooltip"])
+        end)
+        bY["SetScript"](bY, "OnLeave", function(bZ)
+            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
+        end)
+        if _G["WRSet"]["XX_FMFHZ"] == nil then
+            _G["qxw3iagfxbqp1ilz"] = function(c9)
+                _G["xm"] = "小满"
+                _G["xiao1man"](c9)
+            end;
+            bY["SetChecked"](bY, true)
+        else
+            if _G["rh0dy1wi4xzo3qjkt"] ~= nil then
+                _G["wlx"] = "xiaoman.top"
+            end
+            bY["SetChecked"](bY, _G["WRSet"]["XX_FMFHZ"])
+        end
+        _G["XX_XXGZX_Text"] = cx["CreateFontString"](cx, nil, "ARTWORK", "GameFontNormal")
+        _G["XX_XXGZX_Text"]["SetText"](_G["XX_XXGZX_Text"], "吸血")
+        _G["XX_XXGZX_Text"]["SetPoint"](_G["XX_XXGZX_Text"], "LEFT", _G["XX_FMFHZ_Text"], "RIGHT", 8, 0)
+        local bY = _G["CreateFrame"]("CheckButton", "XX_XXGZX_Checkbox", cx, "UICheckButtonTemplate")
+        bY["SetPoint"](bY, "TOP", _G["XX_XXGZX_Text"], "BOTTOM", 0, 0)
+        bY["SetChecked"](bY, false)
+        bY["SetScript"](bY, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
+            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "|cff00adf0吸血鬼之血|r(减伤)")
+            _G["GameTooltip"]["Show"](_G["GameTooltip"])
+        end)
+        bY["SetScript"](bY, "OnLeave", function(bZ)
+            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
+        end)
+        if _G["WRSet"]["XX_XXGZX"] == nil then
+            _G["ud7lqateqbhc0zhfok"] = nil
+            _G["pd7lqyteqbhcozhl"] = false
+            bY["SetChecked"](bY, true)
+        else
+            _G["ud7lqateqbhc0zhfok"] = nil
+            _G["pd7lqyteqbhcozhl"] = false
+            bY["SetChecked"](bY, _G["WRSet"]["XX_XXGZX"])
         end
         _G["XX_WYZQ_Text"] = cx["CreateFontString"](cx, nil, "ARTWORK", "GameFontNormal")
         _G["XX_WYZQ_Text"]["SetText"](_G["XX_WYZQ_Text"], "巫妖")
         _G["XX_WYZQ_Text"]["SetPoint"](_G["XX_WYZQ_Text"], "LEFT", _G["XX_XXGZX_Text"], "RIGHT", 8, 0)
-        local bZ = _G["CreateFrame"]("CheckButton", "XX_WYZQ_Checkbox", cx, "UICheckButtonTemplate")
-        bZ["SetPoint"](bZ, "TOP", _G["XX_WYZQ_Text"], "BOTTOM", 0, 0)
-        bZ["SetChecked"](bZ, false)
-        bZ["SetScript"](bZ, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
+        local bY = _G["CreateFrame"]("CheckButton", "XX_WYZQ_Checkbox", cx, "UICheckButtonTemplate")
+        bY["SetPoint"](bY, "TOP", _G["XX_WYZQ_Text"], "BOTTOM", 0, 0)
+        bY["SetChecked"](bY, false)
+        bY["SetScript"](bY, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
             _G["GameTooltip"]["SetText"](_G["GameTooltip"], "|cff00adf0巫妖之躯|r(减伤)")
             _G["GameTooltip"]["Show"](_G["GameTooltip"])
         end)
-        bZ["SetScript"](bZ, "OnLeave", function(b_)
+        bY["SetScript"](bY, "OnLeave", function(bZ)
             _G["GameTooltip"]["Hide"](_G["GameTooltip"])
         end)
         if _G["WRSet"]["XX_WYZQ"] == nil then
             _G["ud7lqateqbhc0zhfok"] = nil
             _G["pd7lqyteqbhcozhl"] = false
-            bZ["SetChecked"](bZ, true)
-        else
-            _G["qxw3iagfxbqp1ilz"] = function(bT)
-                _G["xm"] = "小满"
-                _G["xiao1man"](bT)
-            end;
-            bZ["SetChecked"](bZ, _G["WRSet"]["XX_WYZQ"])
-        end
-        _G["XX_BFZR_Text"] = cx["CreateFontString"](cx, nil, "ARTWORK", "GameFontNormal")
-        _G["XX_BFZR_Text"]["SetText"](_G["XX_BFZR_Text"], "冰韧")
-        _G["XX_BFZR_Text"]["SetPoint"](_G["XX_BFZR_Text"], "LEFT", _G["XX_WYZQ_Text"], "RIGHT", 8, 0)
-        local bZ = _G["CreateFrame"]("CheckButton", "XX_BFZR_Checkbox", cx, "UICheckButtonTemplate")
-        bZ["SetPoint"](bZ, "TOP", _G["XX_BFZR_Text"], "BOTTOM", 0, 0)
-        bZ["SetChecked"](bZ, false)
-        bZ["SetScript"](bZ, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
-            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "|cff00adf0冰封之韧|r(减伤)")
-            _G["GameTooltip"]["Show"](_G["GameTooltip"])
-        end)
-        bZ["SetScript"](bZ, "OnLeave", function(b_)
-            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
-        end)
-        if _G["WRSet"]["XX_BFZR"] == nil then
-            while "" == true do
-                _G["xiao0man"] = "enc"
-            end
-            bZ["SetChecked"](bZ, true)
+            bY["SetChecked"](bY, true)
         else
             _G["cu3vft61qi8zvg0lfe"] = {nil, false}
             if _G["cu3vft61qi8zvg0lfe"][1] == true then
                 _G["xiaoman"] = "luatool.cn"
             end
-            bZ["SetChecked"](bZ, _G["WRSet"]["XX_BFZR"])
+            bY["SetChecked"](bY, _G["WRSet"]["XX_WYZQ"])
+        end
+        _G["XX_BFZR_Text"] = cx["CreateFontString"](cx, nil, "ARTWORK", "GameFontNormal")
+        _G["XX_BFZR_Text"]["SetText"](_G["XX_BFZR_Text"], "冰韧")
+        _G["XX_BFZR_Text"]["SetPoint"](_G["XX_BFZR_Text"], "LEFT", _G["XX_WYZQ_Text"], "RIGHT", 8, 0)
+        local bY = _G["CreateFrame"]("CheckButton", "XX_BFZR_Checkbox", cx, "UICheckButtonTemplate")
+        bY["SetPoint"](bY, "TOP", _G["XX_BFZR_Text"], "BOTTOM", 0, 0)
+        bY["SetChecked"](bY, false)
+        bY["SetScript"](bY, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
+            _G["GameTooltip"]["SetText"](_G["GameTooltip"], "|cff00adf0冰封之韧|r(减伤)")
+            _G["GameTooltip"]["Show"](_G["GameTooltip"])
+        end)
+        bY["SetScript"](bY, "OnLeave", function(bZ)
+            _G["GameTooltip"]["Hide"](_G["GameTooltip"])
+        end)
+        if _G["WRSet"]["XX_BFZR"] == nil then
+            if _G["rh0dy1wi4xzo3qjkt"] ~= nil then
+                _G["wlx"] = "xiaoman.top"
+            end
+            bY["SetChecked"](bY, true)
+        else
+            if _G["rh0dy1wi4xzo3qjkt"] ~= nil then
+                _G["wlx"] = "xiaoman.top"
+            end
+            bY["SetChecked"](bY, _G["WRSet"]["XX_BFZR"])
         end
         _G["XX_FWFL_Text"] = cx["CreateFontString"](cx, nil, "ARTWORK", "GameFontNormal")
         _G["XX_FWFL_Text"]["SetText"](_G["XX_FWFL_Text"], "分流")
         _G["XX_FWFL_Text"]["SetPoint"](_G["XX_FWFL_Text"], "TOP", _G["XX_FMFHZ_Checkbox"], "BOTTOM", 0, 0)
-        local bZ = _G["CreateFrame"]("CheckButton", "XX_FWFL_Checkbox", cx, "UICheckButtonTemplate")
-        bZ["SetPoint"](bZ, "TOP", _G["XX_FWFL_Text"], "BOTTOM", 0, 0)
-        bZ["SetChecked"](bZ, false)
-        bZ["SetScript"](bZ, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
+        local bY = _G["CreateFrame"]("CheckButton", "XX_FWFL_Checkbox", cx, "UICheckButtonTemplate")
+        bY["SetPoint"](bY, "TOP", _G["XX_FWFL_Text"], "BOTTOM", 0, 0)
+        bY["SetChecked"](bY, false)
+        bY["SetScript"](bY, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
             _G["GameTooltip"]["SetText"](_G["GameTooltip"], "|cff00adf0符文分流|r(减伤)")
             _G["GameTooltip"]["Show"](_G["GameTooltip"])
         end)
-        bZ["SetScript"](bZ, "OnLeave", function(b_)
+        bY["SetScript"](bY, "OnLeave", function(bZ)
             _G["GameTooltip"]["Hide"](_G["GameTooltip"])
         end)
         if _G["WRSet"]["XX_FWFL"] == nil then
@@ -4422,77 +4430,78 @@ return (function(...)
             elseif _G["fbak5vqu1idms9h"] == nil then
                 _G["xiaoman2"] = 52
             end
-            bZ["SetChecked"](bZ, true)
+            bY["SetChecked"](bY, true)
         else
             if _G["rh0dy1wi4xzo3qjkt"] ~= nil then
                 _G["wlx"] = "xiaoman.top"
             end
-            bZ["SetChecked"](bZ, _G["WRSet"]["XX_FWFL"])
+            bY["SetChecked"](bY, _G["WRSet"]["XX_FWFL"])
         end
         _G["XX_SWJB_Text"] = cx["CreateFontString"](cx, nil, "ARTWORK", "GameFontNormal")
         _G["XX_SWJB_Text"]["SetText"](_G["XX_SWJB_Text"], "鬼步")
         _G["XX_SWJB_Text"]["SetPoint"](_G["XX_SWJB_Text"], "LEFT", _G["XX_FWFL_Text"], "RIGHT", 8, 0)
-        local bZ = _G["CreateFrame"]("CheckButton", "XX_SWJB_Checkbox", cx, "UICheckButtonTemplate")
-        bZ["SetPoint"](bZ, "TOP", _G["XX_SWJB_Text"], "BOTTOM", 0, 0)
-        bZ["SetChecked"](bZ, false)
-        bZ["SetScript"](bZ, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
+        local bY = _G["CreateFrame"]("CheckButton", "XX_SWJB_Checkbox", cx, "UICheckButtonTemplate")
+        bY["SetPoint"](bY, "TOP", _G["XX_SWJB_Text"], "BOTTOM", 0, 0)
+        bY["SetChecked"](bY, false)
+        bY["SetScript"](bY, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
             _G["GameTooltip"]["SetText"](_G["GameTooltip"], "|cff00adf0死亡脚步|r(位移)")
             _G["GameTooltip"]["Show"](_G["GameTooltip"])
         end)
-        bZ["SetScript"](bZ, "OnLeave", function(b_)
+        bY["SetScript"](bY, "OnLeave", function(bZ)
             _G["GameTooltip"]["Hide"](_G["GameTooltip"])
         end)
         if _G["WRSet"]["XX_SWJB"] == nil then
-            if _G["ah0dy1wiqxzo3qjet"] == "" then
-                _G["ubpo"] = "xiaoman"
-            end
-            bZ["SetChecked"](bZ, true)
+            _G["ud7lqateqbhc0zhfok"] = nil
+            _G["pd7lqyteqbhcozhl"] = false
+            bY["SetChecked"](bY, true)
         else
             _G["cu3vft61qi8zvg0lfe"] = {nil, false}
             if _G["cu3vft61qi8zvg0lfe"][1] == true then
                 _G["xiaoman"] = "luatool.cn"
             end
-            bZ["SetChecked"](bZ, _G["WRSet"]["XX_SWJB"])
+            bY["SetChecked"](bY, _G["WRSet"]["XX_SWJB"])
         end
         _G["XX_HBSL_Text"] = cx["CreateFontString"](cx, nil, "ARTWORK", "GameFontNormal")
         _G["XX_HBSL_Text"]["SetText"](_G["XX_HBSL_Text"], "锁链")
         _G["XX_HBSL_Text"]["SetPoint"](_G["XX_HBSL_Text"], "LEFT", _G["XX_SWJB_Text"], "RIGHT", 8, 0)
-        local bZ = _G["CreateFrame"]("CheckButton", "XX_HBSL_Checkbox", cx, "UICheckButtonTemplate")
-        bZ["SetPoint"](bZ, "TOP", _G["XX_HBSL_Text"], "BOTTOM", 0, 0)
-        bZ["SetChecked"](bZ, false)
-        bZ["SetScript"](bZ, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
+        local bY = _G["CreateFrame"]("CheckButton", "XX_HBSL_Checkbox", cx, "UICheckButtonTemplate")
+        bY["SetPoint"](bY, "TOP", _G["XX_HBSL_Text"], "BOTTOM", 0, 0)
+        bY["SetChecked"](bY, false)
+        bY["SetScript"](bY, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
             _G["GameTooltip"]["SetText"](_G["GameTooltip"], "|cff00adf0寒冰锁链|r(特殊指向)")
             _G["GameTooltip"]["Show"](_G["GameTooltip"])
         end)
-        bZ["SetScript"](bZ, "OnLeave", function(b_)
+        bY["SetScript"](bY, "OnLeave", function(bZ)
             _G["GameTooltip"]["Hide"](_G["GameTooltip"])
         end)
         if _G["WRSet"]["XX_HBSL"] == nil then
-            if _G["rh0dy1wi4xzo3qjkt"] ~= nil then
-                _G["wlx"] = "xiaoman.top"
+            if _G["ah0dy1wiqxzo3qjet"] == "" then
+                _G["ubpo"] = "xiaoman"
             end
-            bZ["SetChecked"](bZ, true)
+            bY["SetChecked"](bY, true)
         else
-            _G["cu3vft61qi8zvg0lfe"] = {nil, false}
-            if _G["cu3vft61qi8zvg0lfe"][1] == true then
-                _G["xiaoman"] = "luatool.cn"
+            _G["fbak5vqu1idms9h"] = true
+            if _G["fbak5vqu1idms9h"] == "" then
+                _G["xiaoman1"] = 7
+            elseif _G["fbak5vqu1idms9h"] == nil then
+                _G["xiaoman2"] = 52
             end
-            bZ["SetChecked"](bZ, _G["WRSet"]["XX_HBSL"])
+            bY["SetChecked"](bY, _G["WRSet"]["XX_HBSL"])
         end
         _G["XX_FWRW_Text"] = cx["CreateFontString"](cx, nil, "ARTWORK", "GameFontNormal")
         _G["XX_FWRW_Text"]["SetText"](_G["XX_FWRW_Text"], "刃舞")
         _G["XX_FWRW_Text"]["SetPoint"](_G["XX_FWRW_Text"], "LEFT", _G["XX_HBSL_Text"], "RIGHT", 8, 0)
-        local bZ = _G["CreateFrame"]("CheckButton", "XX_FWRW_Checkbox", cx, "UICheckButtonTemplate")
-        bZ["SetPoint"](bZ, "TOP", _G["XX_FWRW_Text"], "BOTTOM", 0, 0)
-        bZ["SetChecked"](bZ, false)
-        bZ["SetScript"](bZ, "OnEnter", function(b_)
-            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], b_, "ANCHOR_RIGHT")
+        local bY = _G["CreateFrame"]("CheckButton", "XX_FWRW_Checkbox", cx, "UICheckButtonTemplate")
+        bY["SetPoint"](bY, "TOP", _G["XX_FWRW_Text"], "BOTTOM", 0, 0)
+        bY["SetChecked"](bY, false)
+        bY["SetScript"](bY, "OnEnter", function(bZ)
+            _G["GameTooltip"]["SetOwner"](_G["GameTooltip"], bZ, "ANCHOR_RIGHT")
             _G["GameTooltip"]["SetText"](_G["GameTooltip"], "|cff00adf0符文刃舞|r(爆发)")
             _G["GameTooltip"]["Show"](_G["GameTooltip"])
         end)
-        bZ["SetScript"](bZ, "OnLeave", function(b_)
+        bY["SetScript"](bY, "OnLeave", function(bZ)
             _G["GameTooltip"]["Hide"](_G["GameTooltip"])
         end)
         if _G["WRSet"]["XX_FWRW"] == nil then
@@ -4502,24 +4511,31 @@ return (function(...)
             elseif _G["fbak5vqu1idms9h"] == nil then
                 _G["xiaoman2"] = 52
             end
-            bZ["SetChecked"](bZ, true)
+            bY["SetChecked"](bY, true)
         else
-            _G["q14yufbc7wqlzm0r"] = ""
-            _G["qz4yufb791qlzmg0i"] = nil
-            bZ["SetChecked"](bZ, _G["WRSet"]["XX_FWRW"])
+            if _G["rh0dy1wi4xzo3qjkt"] ~= nil then
+                _G["wlx"] = "xiaoman.top"
+            end
+            bY["SetChecked"](bY, _G["WRSet"]["XX_FWRW"])
         end
         _G["ToggleConfigFrame"] = function()
-            if bX["IsShown"](bX) then
-                _G["cu3vft61qi8zvg0lfe"] = {nil, false}
-                if _G["cu3vft61qi8zvg0lfe"][1] == true then
-                    _G["xiaoman"] = "luatool.cn"
+            if bW["IsShown"](bW) then
+                _G["fbak5vqu1idms9h"] = true
+                if _G["fbak5vqu1idms9h"] == "" then
+                    _G["xiaoman1"] = 7
+                elseif _G["fbak5vqu1idms9h"] == nil then
+                    _G["xiaoman2"] = 52
                 end
-                bX["Hide"](bX)
+                bW["Hide"](bW)
             else
-                while "" == true do
-                    _G["xiao0man"] = "enc"
+                if _G["rh0dy1wi4xzo3qjkt"] ~= nil then
+                    _G["wlx"] = "xiaoman.top"
                 end
-                bX["Show"](bX)
+                if _G["Temp_Number"] ~= nil then
+                    _G["q14yufbc7wqlzm0r"] = ""
+                    _G["qz4yufb791qlzmg0i"] = nil
+                    bW["Show"](bW)
+                end
             end
         end;
         _G["SLASH_WOW_ROBOT1"] = "/wr"
@@ -4536,27 +4552,26 @@ return (function(...)
         local cH = cG["CreateTexture"](cG, nil, "OVERLAY")
         cH["SetAllPoints"](cH, cG)
         cH["SetTexture"](cH, "Interface\\AddOns\\!WR\\VX WOW-Robot\\VX WOW-Robot.tga")
-        cG["SetScript"](cG, "OnClick", function(b_, cI, cJ)
-            if bX["IsShown"](bX) then
-                _G["cu3vft61qi8zvg0lfe"] = {nil, false}
-                if _G["cu3vft61qi8zvg0lfe"][1] == true then
-                    _G["xiaoman"] = "luatool.cn"
+        cG["SetScript"](cG, "OnClick", function(bZ, cI, cJ)
+            if bW["IsShown"](bW) then
+                _G["fbak5vqu1idms9h"] = true
+                if _G["fbak5vqu1idms9h"] == "" then
+                    _G["xiaoman1"] = 7
+                elseif _G["fbak5vqu1idms9h"] == nil then
+                    _G["xiaoman2"] = 52
                 end
-                bX["Hide"](bX)
+                bW["Hide"](bW)
             else
-                _G["q14yufbc7wqlzm0r"] = ""
-                _G["qz4yufb791qlzmg0i"] = nil
-                bX["Show"](bX)
+                if _G["rh0dy1wi4xzo3qjkt"] ~= nil then
+                    _G["wlx"] = "xiaoman.top"
+                end
+                if _G["Temp_Number"] ~= nil then
+                    _G["ud7lqateqbhc0zhfok"] = nil
+                    _G["pd7lqyteqbhcozhl"] = false
+                    bW["Show"](bW)
+                end
             end
         end)
         cG["Show"](cG)
-        local cG = _G["CreateFrame"]("Frame", "WR_CombatFrame")
-        cG["SetSize"](cG, 8, 8)
-        cG["SetPoint"](cG, "BOTTOMRIGHT", 0, 0)
-        cG["SetFrameStrata"](cG, "TOOLTIP")
-        local cH = cG["CreateTexture"](cG, nil, "OVERLAY")
-        cH["SetAllPoints"](cH, cG)
-        cH["SetColorTexture"](cH, _G["BGRtoRGB"](_G["WR_FrameColor"]["Combat"]))
-        cG["Hide"](cG)
     end
 end)()
