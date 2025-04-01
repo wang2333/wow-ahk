@@ -357,6 +357,9 @@ fn install_addon(app_handle: tauri::AppHandle, plugin_type: &str, target_dir: &s
     println!("找到源目录: {:?}", source_path);
     println!("目标目录: {:?}", target_dir);
 
+    // 清空目标目录
+    fs::remove_dir_all(target_dir).map_err(|e| format!("清空目标目录失败: {}", e))?;
+
     // 创建一个用于复制目录的函数
     fn copy_dir_all(src: &Path, dst: &Path) -> std::io::Result<()> {
         if !dst.exists() {

@@ -8,7 +8,6 @@
 
 VX WOW-Robot\Libs\LibRangeCheck-3.0.lua
 VX WOW-Robot\Startup.lua
-VX WOW-Robot\DemonHunte.lua
 VX WOW-Robot\Api.lua
 VX WOW-Robot\Variable.lua
 
