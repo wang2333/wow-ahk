@@ -87,6 +87,7 @@ Classes\DeathKnight\DeathKnight.lua
 Classes\DeathKnight\DeathKnight-Frame.lua
 Classes\DeathKnight\DeathKnight-Macro.lua
 Classes\DeathKnight\DeathKnight-Frost.lua
+Classes\DeathKnight\DeathKnight-Action.lua
 Classes\DeathKnight\DeathKnight-Unholy.lua
 Classes\DeathKnight\DeathKnight-Blood.lua
 
