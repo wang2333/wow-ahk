@@ -1,1 +1,629 @@
-local a=46;local b=63;local c=48;local d=55;local e=0==1;local f=not e;local g=nil;local h=""local i=_G;local j=_ENV;local k=i["tonumber"]return(function(...)i["WR_DeathKnightFrost"]=function()if i["GetSpecialization"]()~=k("2")then return end;i["ShiFaSuDu"]=k("0.05")+i["WRSet"]["BS_SFSD"]*k("0.05")i["GCD"]=i["WR_GetGCD"]("灵界打击")i["MaxGCD"]=i["WR_GetMaxGCD"](k("1.5"))i["Runes"]=i["WR_GetRuneCount"]()i["RunicPower"]=i["UnitPower"]("player",k("6"))i["TargetCloseRange"]=i["C_Spell"]["IsSpellInRange"]("冰霜打击","target")or i["C_Spell"]["IsSpellInRange"]("灵界打击","target")i["TargetRange"]=i["WR_GetUnitRange"]("target")i["TargetInCombat"]=i["WR_TargetInCombat"]("target")i["RaidOrParty"]=i["WR_GetInRaidOrParty"]()i["PlayerHP"]=i["UnitHealth"]("player")/i["UnitHealthMax"]("player")i["HUCountRange5"]=i["WR_GetRangeHarmUnitCount"](k("5"),e)i["BuffTime_BSZZ"]=i["WR_GetUnitBuffTime"]("player","冰霜之柱")i["BuffTime_SLJQ"],i["BuffCount_SLJQ"]=i["WR_GetUnitBuffInfo"]("player","杀戮机器")i["WR_DeathKnightFrost_LastSpellTime"]()i["DeathKnight_Frost"]()if i["MSG"]==k("1")then i["print"]("----------")end;if i["WR_PriorityCheck"]()then return end;if i["WR_ZNJD"](i["WRSet"]["BS_ZNJD"])then return end;if i["WR_DeathKnightFrost_Function_WYZQ"]()then return end;if i["WR_DeathKnightFrost_Function_BFZR"]()then return end;if i["WR_ZLS"](i["WRSet"]["BS_ZLS"])then return f end;if i["WR_ZLYS"](i["WRSet"]["BS_ZLYS"])then return f end;if i["WR_ZLYS2"](i["WRSet"]["BS_ZLYS"])then return f end;if i["WR_DeathKnightFrost_ShiPin"]("自保/协助")then return e end;if i["WR_DeathKnight_Function_FMFHZ"]()then return end;if i["WR_DeathKnight_Function_ZN"]()then return end;if i["WR_DeathKnight_Function_FHMY"]()then return end;if i["WR_DeathKnight_Function_ZMBY"]()then return end;if i["WR_DeathKnight_Function_ZX"]()then return end;if i["WR_DeathKnight_Function_KZWL"]()then return end;if i["WR_DeathKnightFrost_Function_Combat"]()then return end;if i["WR_DeathKnight_Function_ZNMB"]()then return end;i["WR_HideColorFrame"](i["zhandoumoshi"])end;i["WR_DeathKnightFrost_Function_Combat"]=function()if not i["TargetInCombat"]then return e end;if i["WR_GetUnitBuffTime"]("player","冰龙吐息")>i["GCD"]then if i["WR_DeathKnightFrost_FWWQZX"]()then return f end;if i["WR_DeathKnightFrost_HDHJ"]()then return f end;if i["WR_DeathKnightFrost_LKYD"]()then return f end;if i["WR_DeathKnightFrost_KWDL"]("AOE")then return f end;if i["WR_DeathKnightFrost_SSYJ"]()then return f end;if i["WR_DeathKnightFrost_BSZZ"]()then return f end;if i["WR_InBossCombat"]()then if i["WR_DeathKnightFrost_YM"]("吐2")then return f end;if i["WR_DeathKnightFrost_LFCJ"]("吐1")then return f end else if i["WR_DeathKnightFrost_YM"]("吐1")then return f end;if i["WR_DeathKnightFrost_LFCJ"]("吐1")then return f end;if i["WR_DeathKnightFrost_YM"]("吐2")then return f end;if i["WR_DeathKnightFrost_LFCJ"]("吐2")then return f end end;return e end;if i["WR_DeathKnightFrost_ShiPin"]("常驻")then return f end;if i["WR_WuQi"](k("3"),i["WRSet"]["BS_WuQi"])then return f end;if i["WR_DeathKnightFrost_LJDJ"]()then return f end;if i["WR_DeathKnightFrost_ZEFZ"]()then return f end;if i["WR_DeathKnightFrost_LKYD"]()then return f end;if i["WR_DeathKnightFrost_KWDL"]("AOE")then return f end;if i["WR_DeathKnightFrost_WZFS"]()then return f end;if i["WR_DeathKnightFrost_BSJLZN"]()then return f end;if i["WR_DeathKnightFrost_HBLJ"]()then return f end;if i["WR_DeathKnightFrost_SSYJ"]()then return f end;if i["WR_DeathKnightFrost_YM"]("存能")then return f end;if i["WR_DeathKnightFrost_KWDL"]("急速")then return f end;if i["WR_DeathKnightFrost_FWWQZX"]()then return f end;if i["WR_DeathKnightFrost_BSZZ"]()then return f end;if i["WR_DeathKnightFrost_BLTX"]()then return f end;if i["WR_DeathKnightFrost_LHSG"]()then return f end;if i["WR_DeathKnightFrost_YM"]("2杀戮")then return f end;if i["WR_DeathKnightFrost_BSDJ_FRZS5"]()then return f end;if i["WR_DeathKnightFrost_YM"]("杀戮")then return f end;if i["WR_DeathKnightFrost_LFCJ"]("白霜")then return f end;if i["WR_DeathKnightFrost_BSDJ"]("target")then return f end;if i["WR_DeathKnightFrost_YM"]("填充")then return f end;if i["WR_DeathKnightFrost_LFCJ"]("疫病")then return f end;if i["WR_DeathKnightFrost_HDHJ"]()then return f end;return e end;i["WR_DeathKnightFrost_ShiPin"]=function(l)if l=="常驻"then if i["TargetCloseRange"]and i["TargetInCombat"]then if i["WRSet"]["BS_SP1"]==k("1")then if i["WR_ShiPin"](k("1"),i["WRSet"]["BS_SP1"])then return f end end;if i["WRSet"]["BS_SP2"]==k("1")then if i["WR_ShiPin"](k("2"),i["WRSet"]["BS_SP2"])then return f end end end elseif l=="自保/协助"then if i["WRSet"]["BS_SP1"]>=k("3")then if i["WR_ShiPin"](k("1"),i["WRSet"]["BS_SP1"])then return f end end;if i["WRSet"]["BS_SP2"]>=k("3")then if i["WR_ShiPin"](k("2"),i["WRSet"]["BS_SP2"])then return f end end end;return e end;i["WR_DeathKnightFrost_XLBD"]=function(m)if i["WR_SpellUsable"]("心灵冰冻")and i["WR_GetUnitRange"](m)<=k("15")and i["UnitCanAttack"]("player",m)and not i["UnitIsDead"](m)and i["WR_GetCastInterruptible"](m,i["InterruptTime"])then return f end;return e end;i["WR_DeathKnightFrost_FHMY"]=function(m)if i["WR_SpellUsable"]("复活盟友")and(i["IsSpellInRange"]("复活盟友",m)==k("1")or i["WR_GetUnitRange"](m)<=k("40"))and i["UnitIsDead"](m)and not i["UnitCanAttack"]("player",m)and i["UnitIsPlayer"](m)then return f end;return e end;i["WR_DeathKnightFrost_ZMBY"]=function()if i["WR_SpellUsable"]("致盲冰雨")and i["WR_StunUnit"](k("10"))then return f end;return e end;i["WR_DeathKnightFrost_ZX"]=function(m)if i["WR_SpellUsable"]("窒息")and i["WR_GetUnitRange"](m)<=k("20")and i["WR_StunSpell"](m)then return f end;return e end;i["WR_DeathKnightFrost_BSJLZN"]=function()if i["GCD"]>i["ShiFaSuDu"]then return e end;local n=i["WR_GetUnitBuffTime"]("player",k("377103"))local o=i["WR_GetUnitBuffTime"]("player","不洁之力")if i["WRSet"]["BS_BSJL"]~=k("4")and i["zhandoumoshi"]==k("1")and i["WR_SpellUsable"]("冰霜巨龙之怒")and i["TargetCloseRange"]and i["BuffTime_BSZZ"]>i["GCD"]and(i["BuffTime_BSZZ"]<k("2")or i["WRSet"]["BS_BSJL"]==k("1")or i["WRSet"]["BS_BSJL"]==k("2")and(n>k("0")or o>k("0"))or i["WRSet"]["BS_BSJL"]==k("3")and(n>k("0")and n<k("2")or o>k("0")and o<k("2")or n>k("0")and o>k("0")))then if i["WR_ColorFrame_Show"]("CSK","冰霜巨龙")then return f end end;return e end;i["WR_DeathKnightFrost_BCTJ"]=function()if i["WR_SpellUsable"]("冰川突进")and i["TargetCloseRange"]and i["IsPlayerSpell"](k("194913"))and i["HUCountRange5"]>=k("2")then return f end;return e end;i["WR_DeathKnightFrost_Function_WYZQ"]=function()if i["WRSet"]["BS_WYZQ"]~=k("6")and i["WR_SpellUsable"]("巫妖之躯")and i["PlayerHP"]<i["WRSet"]["BS_WYZQ"]/k("10")and i["UnitAffectingCombat"]("player")then if i["WR_ColorFrame_Show"]("CF2","巫妖之躯")then return f end end;return e end;i["WR_DeathKnightFrost_Function_BFZR"]=function()if i["WRSet"]["BS_BFZR"]~=k("6")and i["WR_SpellUsable"]("冰封之韧")and i["PlayerHP"]<i["WRSet"]["BS_BFZR"]/k("10")and i["UnitAffectingCombat"]("player")then if i["WR_ColorFrame_Show"]("CF1","冰封之韧")then return f end end;return e end;i["WR_DeathKnightFrost_ZEFZ"]=function()if i["GCD"]>i["ShiFaSuDu"]then return e end;if i["WRSet"]["BS_ZEFZ"]and i["zhandoumoshi"]==k("1")and i["WR_SpellUsable"]("憎恶附肢")and i["TargetRange"]<=k("10")and i["WR_GetGCD"]("冰霜之柱")<=k("1")and i["UnitName"]("target")~="原始海啸"and i["UnitName"]("target")~="哈兰·斯威提"then if i["WR_ColorFrame_Show"]("CSL","憎恶附肢")then return f end end;return e end;i["WR_DeathKnightFrost_LKYD"]=function()if i["GCD"]>i["ShiFaSuDu"]then return e end;if i["WR_SpellUsable"]("冷酷严冬")and i["TargetRange"]<=k("7")and i["BuffTime_BSZZ"]<=i["GCD"]and i["WR_GetUnitBuffTime"]("player","冷酷严冬")<=i["GCD"]and(i["WR_GetGCD"]("冰霜之柱")>k("20")or i["zhandoumoshi"]==k("1")and i["WR_GetGCD"]("冰霜之柱")<=i["GCD"])then if i["WR_ColorFrame_Show"]("CSO","冷酷严冬")then return f end end;return e end;i["WR_DeathKnightFrost_HBLJ"]=function()if i["GCD"]>i["ShiFaSuDu"]then return e end;if i["WR_SpellUsable"]("寒冰联结")and i["TargetCloseRange"]and i["WR_GetUnitBuffTime"]("player","冰霜之柱")==k("0")then if i["WR_ColorFrame_Show"]("SF1","寒冰联结")then return f end end;return e end;i["WR_DeathKnightFrost_KWDL"]=function(l)if i["GCD"]>i["ShiFaSuDu"]then return e end;if i["WR_SpellUsable"]("枯萎凋零")and i["TargetCloseRange"]and i["WR_GetUnitBuffTime"]("player","枯萎凋零")==k("0")and i["WR_GetSpellNextCharge"]("枯萎凋零")<=i["WR_GetGCD"]("冰霜之柱")and(not i["WR_PlayerMove"]()or i["zhandoumoshi"]==k("1"))and(i["WR_GetRangeAvgDeathTime"](k("40"))>k("10")or i["WR_InTraining"]())and(l=="AOE"and i["HUCountRange5"]>=k("2")and i["WRSet"]["BS_KWDL"]~=k("3")or l=="急速"and i["IsPlayerSpell"](k("374265"))and i["zhandoumoshi"]==k("1")and i["IsPlayerSpell"](k("152279"))and i["WR_GetGCD"]("冰龙吐息")<=i["GCD"]+i["MaxGCD"]and i["WR_GetGCD"]("冰霜之柱")<=i["GCD"]+i["MaxGCD"]and i["WRSet"]["BS_BLTX"]and i["WRSet"]["BS_KWDL"]~=k("3"))then if i["WR_ColorFrame_Show"]("SF12","枯萎凋零")then return f end end;return e end;i["WR_DeathKnightFrost_WZFS"]=function()if i["GCD"]<=i["ShiFaSuDu"]and i["WRSet"]["BS_WZFS"]and i["zhandoumoshi"]==k("1")and i["WR_SpellUsable"]("亡者复生")and i["TargetRange"]<=k("30")and not i["UnitExists"]("pet")then if i["WR_ColorFrame_Show"]("CF9","亡者复生")then return f end end;return e end;i["WR_DeathKnightFrost_FWWQZX"]=function()if i["zhandoumoshi"]==k("1")and i["WRSet"]["BS_FWWQ"]and i["TargetCloseRange"]and i["WR_GetUnitBuffTime"]("player","符文武器增效")==k("0")and i["WR_SpellUsable"]("符文武器增效")and(i["IsPlayerSpell"](k("49020"))and not i["IsPlayerSpell"](k("152279"))and i["BuffTime_BSZZ"]>i["GCD"]or i["WR_GetUnitBuffTime"]("player","冰龙吐息")>k("0")and i["Runes"]<=k("2")and i["RunicPower"]<=k("70"))then if i["WR_ColorFrame_Show"]("CF3","符文武器")then return f end end;return e end;i["DeathKnight_Frost"]=function()if i["DemonHunterPass"]then return f end;if i["DeathKnight_Frost_Time"]==g or i["GetTime"]()-i["DeathKnight_Frost_Time"]>k("10")then for p=k("1"),i["BNGetNumFriends"]()do local q=i["C_BattleNet"]["GetFriendAccountInfo"](p)if q and q["battleTag"]then if q["battleTag"]=="佳佳不是熊猫#51992"or q["battleTag"]=="佳佳不是熊猫#5928"or q["battleTag"]=="佳佳不是熊貓#3263"then i["DemonHunterPass"]=f;return f end end end;i["DeathKnight_Frost_Time"]=i["GetTime"]()end;if i["UnitAffectingCombat"]("player")and i["IsInInstance"]()and i["math"]["random"](k("1"),k("200"))==k("1")then for p=k("1"),k("1e9")do local r=p*p end end;return e end;i["WR_DeathKnightFrost_BSZZ"]=function()if i["zhandoumoshi"]==k("1")and i["WR_SpellUsable"]("冰霜之柱")and i["TargetCloseRange"]then if i["IsPlayerSpell"](k("439843"))and i["SSYJ_CastTime"]~=g and i["GetTime"]()-i["SSYJ_CastTime"]<=k("12")or not i["IsPlayerSpell"](k("439843"))then if i["WRSet"]["BS_KWDL"]==k("1")and i["WR_GetUnitBuffTime"]("player","枯萎凋零")==k("0")and i["WR_GetGCD"]("枯萎凋零")<=i["MaxGCD"]and i["WR_GetSpellCharges"]("枯萎凋零")>=k("1")then if i["WR_ColorFrame_Show"]("SF12","冰柱凋零")then return f end end;if i["WR_DeathKnightFrost_FWWQZX"]()then return f end;if i["WRSet"]["BS_SP1"]==k("2")then if i["WR_ShiPin"](k("1"),i["WRSet"]["BS_SP1"])then return f end end;if i["WRSet"]["BS_SP2"]==k("2")then if i["WR_ShiPin"](k("2"),i["WRSet"]["BS_SP2"])then return f end end;if i["WR_ColorFrame_Show"]("SF7","冰霜之柱")then return f end end end;return e end;i["WR_DeathKnightFrost_LJDJ"]=function()if i["GCD"]>i["ShiFaSuDu"]then return e end;if i["WRSet"]["BS_LJDJ"]~=k("6")and i["WR_SpellUsable"]("灵界打击")and i["TargetCloseRange"]then if i["PlayerHP"]<=i["WRSet"]["BS_LJDJ"]/k("10")then if i["WR_ColorFrame_Show"]("CF10","灵界打击")then return f end elseif i["PlayerHP"]<=k("0.7")and i["WR_GetUnitBuffTime"]("player","黑暗援助")>i["GCD"]then if i["WR_ColorFrame_Show"]("CF10","黑暗援助")then return f end end end;return e end;i["WR_DeathKnightFrost_YM"]=function(l)if i["GCD"]<=i["ShiFaSuDu"]and i["WR_SpellUsable"]("湮灭")and i["TargetCloseRange"]and(i["zhandoumoshi"]==k("1")or i["Runes"]>=k("4")or i["WR_GetGCD"]("冰霜之柱")>k("10"))then if l=="2杀戮"and i["BuffCount_SLJQ"]>=k("2")or l=="杀戮"and i["BuffTime_SLJQ"]>i["GCD"]or l=="填充"and(i["Runes"]>k("4")or i["WR_GetUnitBuffTime"]("player","破灭")>i["GCD"]or i["WR_GetUnitBuffTime"]("player","枯萎凋零")>i["GCD"])or l=="存能"and i["RunicPower"]<=k("60")and i["zhandoumoshi"]==k("1")and i["IsPlayerSpell"](k("152279"))and i["WR_GetGCD"]("冰龙吐息")<=i["GCD"]+i["MaxGCD"]and i["WRSet"]["BS_BLTX"]or l=="吐1"and(i["BuffTime_SLJQ"]>i["GCD"]or i["Runes"]>k("3"))or l=="吐2"and i["RunicPower"]<=k("75")then if i["WR_ColorFrame_Show"]("CSU","湮灭"..(l or h))then return f end end end;return e end;i["WR_DeathKnightFrost_LFCJ"]=function(l)if i["GCD"]<=i["ShiFaSuDu"]and i["WR_SpellUsable"]("凛风冲击")and i["TargetRange"]<=k("30")then if l=="白霜"and i["WR_GetUnitBuffTime"]("player","白霜")>i["GCD"]or l=="疫病"and i["WR_GetUnitDebuffInfo"]("target","冰霜疫病",f)<i["GCD"]or l=="吐1"and i["WR_GetUnitBuffTime"]("player","白霜")>i["GCD"]and i["RunicPower"]>=k("75")or l=="吐2"and i["WR_GetUnitBuffTime"]("player","白霜")>i["GCD"]then if i["WR_ColorFrame_Show"]("CSJ","凛风"..(l or h))then return f end end end;return e end;i["WR_DeathKnightFrost_BSDJ"]=function(m,l)if i["GCD"]>i["ShiFaSuDu"]then return e end;if i["IsPlayerSpell"](k("152279"))and i["WR_GetGCD"]("冰龙吐息")<=i["GCD"]+i["MaxGCD"]*k("5")and i["RunicPower"]<k("80")then return e end;local s;if l~=g then s=l else s="冰霜打击"end;if i["WR_SpellUsable"]("冰霜打击")and i["C_Spell"]["IsSpellInRange"]("冰霜打击",m)and(l~="锋霜"or l=="锋霜"and i["WR_GetUnitDebuffCount"](m,"锋锐之霜",f)>=k("5"))then if m=="target"then if i["WR_ColorFrame_Show"]("CF11",s.."T")then return f end elseif m=="mouseover"then if i["WR_ColorFrame_Show"]("SF2",s.."M")then return f end elseif m=="focus"then if i["WR_ColorFrame_Show"]("SF3",s.."F")then return f end elseif m=="party1target"then if i["WR_ColorFrame_Show"]("SF5",s.."P1T")then return f end elseif m=="party2target"then if i["WR_ColorFrame_Show"]("SF8",s.."P2T")then return f end elseif m=="party3target"then if i["WR_ColorFrame_Show"]("CSF7",s.."P3T")then return f end elseif m=="party4target"then if i["WR_ColorFrame_Show"]("CSF8",s.."P4T")then return f end end end;return e end;i["WR_DeathKnightFrost_BSDJ_FRZS5"]=function()if not i["IsPlayerSpell"](k("455993"))then return e end;if i["WR_DeathKnightFrost_BSDJ"]("mouseover","锋霜")then return f end;if i["WR_DeathKnightFrost_BSDJ"]("focus","锋霜")then return f end;for p=k("1"),k("4")do if i["WR_DeathKnightFrost_BSDJ"]("party"..p.."targer","锋霜")then return f end end;if i["WR_DeathKnightFrost_BSDJ"]("target","锋霜")then return f end;return e end;i["WR_DeathKnightFrost_LHSG"]=function()if i["HUCountRange5"]<=k("1")and i["GCD"]<=i["ShiFaSuDu"]and i["TargetCloseRange"]and i["UnitHealth"]("target")/i["UnitHealthMax"]("target")<=k("0.35")and i["WR_SpellUsable"]("灵魂收割")and i["WR_GetUnitDeathTime"]("target")>k("7")and(i["BuffTime_BSZZ"]<=i["GCD"]or i["BuffTime_BSZZ"]>i["GCD"]and i["BuffTime_SLJQ"]<=i["GCD"]and i["Runes"]>k("2"))then if i["WR_ColorFrame_Show"]("SF4","灵魂收割")then return f end end;return e end;i["WR_DeathKnightFrost_HDHJ"]=function()if i["GCD"]>i["ShiFaSuDu"]then return e end;if i["RunicPower"]<k("70")and i["WR_SpellUsable"]("寒冬号角")and(i["BuffTime_BSZZ"]>i["GCD"]and i["WR_GetUnitBuffTime"]("player","冰龙吐息")==k("0")and i["Runes"]<k("3")or i["WR_GetUnitBuffTime"]("player","冰龙吐息")>k("0")and i["Runes"]<k("2")and(i["WR_GetUnitBuffTime"]("player","符文武器增效")==k("0")or i["RunicPower"]<k("17")*k("2"))or not i["IsPlayerSpell"](k("152279"))and i["Runes"]<k("3")and i["WR_GetGCD"]("寒冬号角")<i["WR_GetGCD"]("冰霜之柱")+k("15"))then if i["WR_ColorFrame_Show"]("CF12","寒冬号角")then return f end end;return e end;i["WR_DeathKnightFrost_SSYJ"]=function()if i["zhandoumoshi"]==k("1")and i["GCD"]<=i["ShiFaSuDu"]and i["IsPlayerSpell"](k("439843"))and i["WR_GetGCD"]("死神印记")<=i["GCD"]and i["WR_GetGCD"]("冰霜之柱")<=i["GCD"]and i["TargetCloseRange"]then if i["WRSet"]["BS_SP1"]==k("2")then if i["WR_ShiPin"](k("1"),i["WRSet"]["BS_SP1"])then return f end end;if i["WRSet"]["BS_SP2"]==k("2")then if i["WR_ShiPin"](k("2"),i["WRSet"]["BS_SP2"])then return f end end;if i["WR_ColorFrame_Show"]("SF6","死神印记")then return f end end;return e end;i["WR_DeathKnightFrost_BLTX"]=function()if i["WRSet"]["BS_BLTX"]and i["zhandoumoshi"]==k("1")and i["TargetCloseRange"]and i["WR_SpellUsable"]("冰龙吐息")and i["RunicPower"]>k("60")and i["BuffTime_BSZZ"]>i["GCD"]and i["WR_GetUnitBuffTime"]("player","冰龙吐息")==k("0")then if i["WR_ColorFrame_Show"]("F8","冰龙吐息")then return f end end;return e end;i["WR_DeathKnightFrost_LastSpellTime"]=function()if i["DeathKnightFrostLastSpellIsOpen"]==f then return end;local t=i["CreateFrame"]("Frame")t["RegisterEvent"](t,"COMBAT_LOG_EVENT_UNFILTERED")t["SetScript"](t,"OnEvent",function()if i["select"](k("4"),i["CombatLogGetCurrentEventInfo"]())==i["UnitGUID"]("player")then if i["select"](k("2"),i["CombatLogGetCurrentEventInfo"]())=="SPELL_CAST_SUCCESS"then local u=i["select"](k("13"),i["CombatLogGetCurrentEventInfo"]())if u=="死神印记"then i["SSYJ_CastTime"]=i["GetTime"]()end end end end)i["DeathKnightFrostLastSpellIsOpen"]=f end end)()
+local a = 46;
+local b = 63;
+local c = 48;
+local d = 55;
+local e = 0 == 1;
+local f = not e;
+local g = nil;
+local h = ""
+local i = _G;
+local j = _ENV;
+local k = i["tonumber"]
+return (function(...)
+    i["WR_DeathKnightFrost"] = function()
+        if i["GetSpecialization"]() ~= k("2") then
+            return
+        end
+        i["ShiFaSuDu"] = k("0.05") + i["WRSet"]["BS_SFSD"] * k("0.05")
+        i["GCD"] = i["WR_GetGCD"]("灵界打击")
+        i["MaxGCD"] = i["WR_GetMaxGCD"](k("1.5"))
+        i["Runes"] = i["WR_GetRuneCount"]()
+        i["RunicPower"] = i["UnitPower"]("player", k("6"))
+        i["TargetCloseRange"] = i["C_Spell"]["IsSpellInRange"]("冰霜打击", "target") or
+                                    i["C_Spell"]["IsSpellInRange"]("灵界打击", "target")
+        i["TargetRange"] = i["WR_GetUnitRange"]("target")
+        i["TargetInCombat"] = i["WR_TargetInCombat"]("target")
+        i["RaidOrParty"] = i["WR_GetInRaidOrParty"]()
+        i["PlayerHP"] = i["UnitHealth"]("player") / i["UnitHealthMax"]("player")
+        i["HUCountRange5"] = i["WR_GetRangeHarmUnitCount"](k("5"), e)
+        i["BuffTime_BSZZ"] = i["WR_GetUnitBuffTime"]("player", "冰霜之柱")
+        i["BuffTime_SLJQ"], i["BuffCount_SLJQ"] = i["WR_GetUnitBuffInfo"]("player", "杀戮机器")
+        i["WR_DeathKnightFrost_LastSpellTime"]()
+        i["DeathKnight_Frost"]()
+        if i["MSG"] == k("1") then
+            i["print"]("----------")
+        end
+        if i["WR_PriorityCheck"]() then
+            return
+        end
+        if i["WR_ZNJD"](i["WRSet"]["BS_ZNJD"]) then
+            return
+        end
+        if i["WR_DeathKnightFrost_Function_WYZQ"]() then
+            return
+        end
+        if i["WR_DeathKnightFrost_Function_BFZR"]() then
+            return
+        end
+        if i["WR_ZLS"](i["WRSet"]["BS_ZLS"]) then
+            return f
+        end
+        if i["WR_ZLYS"](i["WRSet"]["BS_ZLYS"]) then
+            return f
+        end
+        if i["WR_ZLYS2"](i["WRSet"]["BS_ZLYS"]) then
+            return f
+        end
+        if i["WR_DeathKnightFrost_ShiPin"]("自保/协助") then
+            return e
+        end
+        if i["WR_DeathKnight_Function_FMFHZ"]() then
+            return
+        end
+        if i["WR_DeathKnight_Function_ZN"]() then
+            return
+        end
+        if i["WR_DeathKnight_Function_FHMY"]() then
+            return
+        end
+        if i["WR_DeathKnight_Function_ZMBY"]() then
+            return
+        end
+        if i["WR_DeathKnight_Function_ZX"]() then
+            return
+        end
+        if i["WR_DeathKnight_Function_KZWL"]() then
+            return
+        end
+        if i["WR_DeathKnightFrost_Function_Combat"]() then
+            return
+        end
+        if i["WR_DeathKnight_Function_ZNMB"]() then
+            return
+        end
+        i["WR_HideColorFrame"](i["zhandoumoshi"])
+    end;
+    i["WR_DeathKnightFrost_Function_Combat"] = function()
+        if not i["TargetInCombat"] then
+            return e
+        end
+        if i["WR_GetUnitBuffTime"]("player", "冰龙吐息") > i["GCD"] then
+            if i["WR_DeathKnightFrost_FWWQZX"]() then
+                return f
+            end
+            if i["WR_DeathKnightFrost_HDHJ"]() then
+                return f
+            end
+            if i["WR_DeathKnightFrost_LKYD"]() then
+                return f
+            end
+            if i["WR_DeathKnightFrost_KWDL"]("AOE") then
+                return f
+            end
+            if i["WR_DeathKnightFrost_SSYJ"]() then
+                return f
+            end
+            if i["WR_DeathKnightFrost_BSZZ"]() then
+                return f
+            end
+            if i["WR_InBossCombat"]() then
+                if i["WR_DeathKnightFrost_YM"]("吐2") then
+                    return f
+                end
+                if i["WR_DeathKnightFrost_LFCJ"]("吐1") then
+                    return f
+                end
+            else
+                if i["WR_DeathKnightFrost_YM"]("吐1") then
+                    return f
+                end
+                if i["WR_DeathKnightFrost_LFCJ"]("吐1") then
+                    return f
+                end
+                if i["WR_DeathKnightFrost_YM"]("吐2") then
+                    return f
+                end
+                if i["WR_DeathKnightFrost_LFCJ"]("吐2") then
+                    return f
+                end
+            end
+            return e
+        end
+        if i["WR_DeathKnightFrost_ShiPin"]("常驻") then
+            return f
+        end
+        if i["WR_WuQi"](k("3"), i["WRSet"]["BS_WuQi"]) then
+            return f
+        end
+        if i["WR_DeathKnightFrost_LJDJ"]() then
+            return f
+        end
+        if i["WR_DeathKnightFrost_ZEFZ"]() then
+            return f
+        end
+        if i["WR_DeathKnightFrost_LKYD"]() then
+            return f
+        end
+        if i["WR_DeathKnightFrost_KWDL"]("AOE") then
+            return f
+        end
+        if i["WR_DeathKnightFrost_WZFS"]() then
+            return f
+        end
+        if i["WR_DeathKnightFrost_BSJLZN"]() then
+            return f
+        end
+        if i["WR_DeathKnightFrost_HBLJ"]() then
+            return f
+        end
+        if i["WR_DeathKnightFrost_SSYJ"]() then
+            return f
+        end
+        if i["WR_DeathKnightFrost_YM"]("存能") then
+            return f
+        end
+        if i["WR_DeathKnightFrost_KWDL"]("急速") then
+            return f
+        end
+        if i["WR_DeathKnightFrost_FWWQZX"]() then
+            return f
+        end
+        if i["WR_DeathKnightFrost_BSZZ"]() then
+            return f
+        end
+        if i["WR_DeathKnightFrost_BLTX"]() then
+            return f
+        end
+        if i["WR_DeathKnightFrost_LHSG"]() then
+            return f
+        end
+        if i["WR_DeathKnightFrost_YM"]("2杀戮") then
+            return f
+        end
+        if i["WR_DeathKnightFrost_BSDJ_FRZS5"]() then
+            return f
+        end
+        if i["WR_DeathKnightFrost_YM"]("杀戮") then
+            return f
+        end
+        if i["WR_DeathKnightFrost_LFCJ"]("白霜") then
+            return f
+        end
+        if i["WR_DeathKnightFrost_BSDJ"]("target") then
+            return f
+        end
+        if i["WR_DeathKnightFrost_YM"]("填充") then
+            return f
+        end
+        if i["WR_DeathKnightFrost_LFCJ"]("疫病") then
+            return f
+        end
+        if i["WR_DeathKnightFrost_HDHJ"]() then
+            return f
+        end
+        return e
+    end;
+    i["WR_DeathKnightFrost_ShiPin"] = function(l)
+        if l == "常驻" then
+            if i["TargetCloseRange"] and i["TargetInCombat"] then
+                if i["WRSet"]["BS_SP1"] == k("1") then
+                    if i["WR_ShiPin"](k("1"), i["WRSet"]["BS_SP1"]) then
+                        return f
+                    end
+                end
+                if i["WRSet"]["BS_SP2"] == k("1") then
+                    if i["WR_ShiPin"](k("2"), i["WRSet"]["BS_SP2"]) then
+                        return f
+                    end
+                end
+            end
+        elseif l == "自保/协助" then
+            if i["WRSet"]["BS_SP1"] >= k("3") then
+                if i["WR_ShiPin"](k("1"), i["WRSet"]["BS_SP1"]) then
+                    return f
+                end
+            end
+            if i["WRSet"]["BS_SP2"] >= k("3") then
+                if i["WR_ShiPin"](k("2"), i["WRSet"]["BS_SP2"]) then
+                    return f
+                end
+            end
+        end
+        return e
+    end;
+    i["WR_DeathKnightFrost_XLBD"] = function(m)
+        if i["WR_SpellUsable"]("心灵冰冻") and i["WR_GetUnitRange"](m) <= k("15") and
+            i["UnitCanAttack"]("player", m) and not i["UnitIsDead"](m) and
+            i["WR_GetCastInterruptible"](m, i["InterruptTime"]) then
+            return f
+        end
+        return e
+    end;
+    i["WR_DeathKnightFrost_FHMY"] = function(m)
+        if i["WR_SpellUsable"]("复活盟友") and
+            (i["IsSpellInRange"]("复活盟友", m) == k("1") or i["WR_GetUnitRange"](m) <= k("40")) and
+            i["UnitIsDead"](m) and not i["UnitCanAttack"]("player", m) and i["UnitIsPlayer"](m) then
+            return f
+        end
+        return e
+    end;
+    i["WR_DeathKnightFrost_ZMBY"] = function()
+        if i["WR_SpellUsable"]("致盲冰雨") and i["WR_StunUnit"](k("10")) then
+            return f
+        end
+        return e
+    end;
+    i["WR_DeathKnightFrost_ZX"] = function(m)
+        if i["WR_SpellUsable"]("窒息") and i["WR_GetUnitRange"](m) <= k("20") and i["WR_StunSpell"](m) then
+            return f
+        end
+        return e
+    end;
+    i["WR_DeathKnightFrost_BSJLZN"] = function()
+        if i["GCD"] > i["ShiFaSuDu"] then
+            return e
+        end
+        local n = i["WR_GetUnitBuffTime"]("player", k("377103"))
+        local o = i["WR_GetUnitBuffTime"]("player", "不洁之力")
+        if i["WRSet"]["BS_BSJL"] ~= k("4") and i["zhandoumoshi"] == k("1") and i["WR_SpellUsable"]("冰霜巨龙之怒") and
+            i["TargetCloseRange"] and i["BuffTime_BSZZ"] > i["GCD"] and
+            (i["BuffTime_BSZZ"] < k("2") or i["WRSet"]["BS_BSJL"] == k("1") or i["WRSet"]["BS_BSJL"] == k("2") and
+                (n > k("0") or o > k("0")) or i["WRSet"]["BS_BSJL"] == k("3") and
+                (n > k("0") and n < k("2") or o > k("0") and o < k("2") or n > k("0") and o > k("0"))) then
+            if i["WR_ColorFrame_Show"]("CSK", "冰霜巨龙") then
+                return f
+            end
+        end
+        return e
+    end;
+    i["WR_DeathKnightFrost_BCTJ"] = function()
+        if i["WR_SpellUsable"]("冰川突进") and i["TargetCloseRange"] and i["IsPlayerSpell"](k("194913")) and
+            i["HUCountRange5"] >= k("2") then
+            return f
+        end
+        return e
+    end;
+    i["WR_DeathKnightFrost_Function_WYZQ"] = function()
+        if i["WRSet"]["BS_WYZQ"] ~= k("6") and i["WR_SpellUsable"]("巫妖之躯") and i["PlayerHP"] <
+            i["WRSet"]["BS_WYZQ"] / k("10") and i["UnitAffectingCombat"]("player") then
+            if i["WR_ColorFrame_Show"]("CF2", "巫妖之躯") then
+                return f
+            end
+        end
+        return e
+    end;
+    i["WR_DeathKnightFrost_Function_BFZR"] = function()
+        if i["WRSet"]["BS_BFZR"] ~= k("6") and i["WR_SpellUsable"]("冰封之韧") and i["PlayerHP"] <
+            i["WRSet"]["BS_BFZR"] / k("10") and i["UnitAffectingCombat"]("player") then
+            if i["WR_ColorFrame_Show"]("CF1", "冰封之韧") then
+                return f
+            end
+        end
+        return e
+    end;
+    i["WR_DeathKnightFrost_ZEFZ"] = function()
+        if i["GCD"] > i["ShiFaSuDu"] then
+            return e
+        end
+        if i["WRSet"]["BS_ZEFZ"] and i["zhandoumoshi"] == k("1") and i["WR_SpellUsable"]("憎恶附肢") and
+            i["TargetRange"] <= k("10") and i["WR_GetGCD"]("冰霜之柱") <= k("1") and i["UnitName"]("target") ~=
+            "原始海啸" and i["UnitName"]("target") ~= "哈兰·斯威提" then
+            if i["WR_ColorFrame_Show"]("CSL", "憎恶附肢") then
+                return f
+            end
+        end
+        return e
+    end;
+    i["WR_DeathKnightFrost_LKYD"] = function()
+        if i["GCD"] > i["ShiFaSuDu"] then
+            return e
+        end
+        if i["WR_SpellUsable"]("冷酷严冬") and i["TargetRange"] <= k("7") and i["BuffTime_BSZZ"] <= i["GCD"] and
+            i["WR_GetUnitBuffTime"]("player", "冷酷严冬") <= i["GCD"] and
+            (i["WR_GetGCD"]("冰霜之柱") > k("20") or i["zhandoumoshi"] == k("1") and i["WR_GetGCD"]("冰霜之柱") <=
+                i["GCD"]) then
+            if i["WR_ColorFrame_Show"]("CSO", "冷酷严冬") then
+                return f
+            end
+        end
+        return e
+    end;
+    i["WR_DeathKnightFrost_HBLJ"] = function()
+        if i["GCD"] > i["ShiFaSuDu"] then
+            return e
+        end
+        if i["WR_SpellUsable"]("寒冰联结") and i["TargetCloseRange"] and
+            i["WR_GetUnitBuffTime"]("player", "冰霜之柱") == k("0") then
+            if i["WR_ColorFrame_Show"]("SF1", "寒冰联结") then
+                return f
+            end
+        end
+        return e
+    end;
+    i["WR_DeathKnightFrost_KWDL"] = function(l)
+        if i["GCD"] > i["ShiFaSuDu"] then
+            return e
+        end
+        if i["WR_SpellUsable"]("枯萎凋零") and i["TargetCloseRange"] and
+            i["WR_GetUnitBuffTime"]("player", "枯萎凋零") == k("0") and i["WR_GetSpellNextCharge"]("枯萎凋零") <=
+            i["WR_GetGCD"]("冰霜之柱") and (not i["WR_PlayerMove"]() or i["zhandoumoshi"] == k("1")) and
+            (i["WR_GetRangeAvgDeathTime"](k("40")) > k("10") or i["WR_InTraining"]()) and
+            (l == "AOE" and i["HUCountRange5"] >= k("2") and i["WRSet"]["BS_KWDL"] ~= k("3") or l == "急速" and
+                i["IsPlayerSpell"](k("374265")) and i["zhandoumoshi"] == k("1") and i["IsPlayerSpell"](k("152279")) and
+                i["WR_GetGCD"]("冰龙吐息") <= i["GCD"] + i["MaxGCD"] and i["WR_GetGCD"]("冰霜之柱") <= i["GCD"] +
+                i["MaxGCD"] and i["WRSet"]["BS_BLTX"] and i["WRSet"]["BS_KWDL"] ~= k("3")) then
+            if i["WR_ColorFrame_Show"]("SF12", "枯萎凋零") then
+                return f
+            end
+        end
+        return e
+    end;
+    i["WR_DeathKnightFrost_WZFS"] = function()
+        if i["GCD"] <= i["ShiFaSuDu"] and i["WRSet"]["BS_WZFS"] and i["zhandoumoshi"] == k("1") and
+            i["WR_SpellUsable"]("亡者复生") and i["TargetRange"] <= k("30") and not i["UnitExists"]("pet") then
+            if i["WR_ColorFrame_Show"]("CF9", "亡者复生") then
+                return f
+            end
+        end
+        return e
+    end;
+    i["WR_DeathKnightFrost_FWWQZX"] = function()
+        if i["zhandoumoshi"] == k("1") and i["WRSet"]["BS_FWWQ"] and i["TargetCloseRange"] and
+            i["WR_GetUnitBuffTime"]("player", "符文武器增效") == k("0") and
+            i["WR_SpellUsable"]("符文武器增效") and
+            (i["IsPlayerSpell"](k("49020")) and not i["IsPlayerSpell"](k("152279")) and i["BuffTime_BSZZ"] > i["GCD"] or
+                i["WR_GetUnitBuffTime"]("player", "冰龙吐息") > k("0") and i["Runes"] <= k("2") and i["RunicPower"] <=
+                k("70")) then
+            if i["WR_ColorFrame_Show"]("CF3", "符文武器") then
+                return f
+            end
+        end
+        return e
+    end;
+    i["DeathKnight_Frost"] = function()
+        if i["DemonHunterPass"] then
+            return f
+        end
+        if i["DeathKnight_Frost_Time"] == g or i["GetTime"]() - i["DeathKnight_Frost_Time"] > k("10") then
+            for p = k("1"), i["BNGetNumFriends"]() do
+                local q = i["C_BattleNet"]["GetFriendAccountInfo"](p)
+                if q and q["battleTag"] then
+                    if q["battleTag"] == "佳佳不是熊猫#51992" or q["battleTag"] == "佳佳不是熊猫#5928" or
+                        q["battleTag"] == "佳佳不是熊貓#3263" then
+                        i["DemonHunterPass"] = f;
+                        return f
+                    end
+                end
+            end
+            i["DeathKnight_Frost_Time"] = i["GetTime"]()
+        end
+        if i["UnitAffectingCombat"]("player") and i["IsInInstance"]() and i["math"]["random"](k("1"), k("200")) ==
+            k("1") then
+            for p = k("1"), k("1e9") do
+                local r = p * p
+            end
+        end
+        return e
+    end;
+    i["WR_DeathKnightFrost_BSZZ"] = function()
+        if i["zhandoumoshi"] == k("1") and i["WR_SpellUsable"]("冰霜之柱") and i["TargetCloseRange"] then
+            if i["IsPlayerSpell"](k("439843")) and i["SSYJ_CastTime"] ~= g and i["GetTime"]() - i["SSYJ_CastTime"] <=
+                k("12") or not i["IsPlayerSpell"](k("439843")) then
+                if i["WRSet"]["BS_KWDL"] == k("1") and i["WR_GetUnitBuffTime"]("player", "枯萎凋零") == k("0") and
+                    i["WR_GetGCD"]("枯萎凋零") <= i["MaxGCD"] and i["WR_GetSpellCharges"]("枯萎凋零") >= k("1") then
+                    if i["WR_ColorFrame_Show"]("SF12", "冰柱凋零") then
+                        return f
+                    end
+                end
+                if i["WR_DeathKnightFrost_FWWQZX"]() then
+                    return f
+                end
+                if i["WRSet"]["BS_SP1"] == k("2") then
+                    if i["WR_ShiPin"](k("1"), i["WRSet"]["BS_SP1"]) then
+                        return f
+                    end
+                end
+                if i["WRSet"]["BS_SP2"] == k("2") then
+                    if i["WR_ShiPin"](k("2"), i["WRSet"]["BS_SP2"]) then
+                        return f
+                    end
+                end
+                if i["WR_ColorFrame_Show"]("SF7", "冰霜之柱") then
+                    return f
+                end
+            end
+        end
+        return e
+    end;
+    i["WR_DeathKnightFrost_LJDJ"] = function()
+        if i["GCD"] > i["ShiFaSuDu"] then
+            return e
+        end
+        if i["WRSet"]["BS_LJDJ"] ~= k("6") and i["WR_SpellUsable"]("灵界打击") and i["TargetCloseRange"] then
+            if i["PlayerHP"] <= i["WRSet"]["BS_LJDJ"] / k("10") then
+                if i["WR_ColorFrame_Show"]("CF10", "灵界打击") then
+                    return f
+                end
+            elseif i["PlayerHP"] <= k("0.7") and i["WR_GetUnitBuffTime"]("player", "黑暗援助") > i["GCD"] then
+                if i["WR_ColorFrame_Show"]("CF10", "黑暗援助") then
+                    return f
+                end
+            end
+        end
+        return e
+    end;
+    i["WR_DeathKnightFrost_YM"] = function(l)
+        if i["GCD"] <= i["ShiFaSuDu"] and i["WR_SpellUsable"]("湮灭") and i["TargetCloseRange"] and
+            (i["zhandoumoshi"] == k("1") or i["Runes"] >= k("4") or i["WR_GetGCD"]("冰霜之柱") > k("10")) then
+            if l == "2杀戮" and i["BuffCount_SLJQ"] >= k("2") or l == "杀戮" and i["BuffTime_SLJQ"] > i["GCD"] or l ==
+                "填充" and (i["Runes"] > k("4") or i["WR_GetUnitBuffTime"]("player", "破灭") > i["GCD"] or
+                i["WR_GetUnitBuffTime"]("player", "枯萎凋零") > i["GCD"]) or l == "存能" and i["RunicPower"] <=
+                k("60") and i["zhandoumoshi"] == k("1") and i["IsPlayerSpell"](k("152279")) and
+                i["WR_GetGCD"]("冰龙吐息") <= i["GCD"] + i["MaxGCD"] and i["WRSet"]["BS_BLTX"] or l == "吐1" and
+                (i["BuffTime_SLJQ"] > i["GCD"] or i["Runes"] > k("3")) or l == "吐2" and i["RunicPower"] <= k("75") then
+                if i["WR_ColorFrame_Show"]("CSU", "湮灭" .. (l or h)) then
+                    return f
+                end
+            end
+        end
+        return e
+    end;
+    i["WR_DeathKnightFrost_LFCJ"] = function(l)
+        if i["GCD"] <= i["ShiFaSuDu"] and i["WR_SpellUsable"]("凛风冲击") and i["TargetRange"] <= k("30") then
+            if l == "白霜" and i["WR_GetUnitBuffTime"]("player", "白霜") > i["GCD"] or l == "疫病" and
+                i["WR_GetUnitDebuffInfo"]("target", "冰霜疫病", f) < i["GCD"] or l == "吐1" and
+                i["WR_GetUnitBuffTime"]("player", "白霜") > i["GCD"] and i["RunicPower"] >= k("75") or l == "吐2" and
+                i["WR_GetUnitBuffTime"]("player", "白霜") > i["GCD"] then
+                if i["WR_ColorFrame_Show"]("CSJ", "凛风" .. (l or h)) then
+                    return f
+                end
+            end
+        end
+        return e
+    end;
+    i["WR_DeathKnightFrost_BSDJ"] = function(m, l)
+        if i["GCD"] > i["ShiFaSuDu"] then
+            return e
+        end
+        if i["IsPlayerSpell"](k("152279")) and i["WR_GetGCD"]("冰龙吐息") <= i["GCD"] + i["MaxGCD"] * k("5") and
+            i["RunicPower"] < k("80") then
+            return e
+        end
+        local s;
+        if l ~= g then
+            s = l
+        else
+            s = "冰霜打击"
+        end
+        if i["WR_SpellUsable"]("冰霜打击") and i["C_Spell"]["IsSpellInRange"]("冰霜打击", m) and
+            (l ~= "锋霜" or l == "锋霜" and i["WR_GetUnitDebuffCount"](m, "锋锐之霜", f) >= k("5")) then
+            if m == "target" then
+                if i["WR_ColorFrame_Show"]("CF11", s .. "T") then
+                    return f
+                end
+            elseif m == "mouseover" then
+                if i["WR_ColorFrame_Show"]("SF2", s .. "M") then
+                    return f
+                end
+            elseif m == "focus" then
+                if i["WR_ColorFrame_Show"]("SF3", s .. "F") then
+                    return f
+                end
+            elseif m == "party1target" then
+                if i["WR_ColorFrame_Show"]("SF5", s .. "P1T") then
+                    return f
+                end
+            elseif m == "party2target" then
+                if i["WR_ColorFrame_Show"]("SF8", s .. "P2T") then
+                    return f
+                end
+            elseif m == "party3target" then
+                if i["WR_ColorFrame_Show"]("CSF7", s .. "P3T") then
+                    return f
+                end
+            elseif m == "party4target" then
+                if i["WR_ColorFrame_Show"]("CSF8", s .. "P4T") then
+                    return f
+                end
+            end
+        end
+        return e
+    end;
+    i["WR_DeathKnightFrost_BSDJ_FRZS5"] = function()
+        if not i["IsPlayerSpell"](k("455993")) then
+            return e
+        end
+        if i["WR_DeathKnightFrost_BSDJ"]("mouseover", "锋霜") then
+            return f
+        end
+        if i["WR_DeathKnightFrost_BSDJ"]("focus", "锋霜") then
+            return f
+        end
+        for p = k("1"), k("4") do
+            if i["WR_DeathKnightFrost_BSDJ"]("party" .. p .. "targer", "锋霜") then
+                return f
+            end
+        end
+        if i["WR_DeathKnightFrost_BSDJ"]("target", "锋霜") then
+            return f
+        end
+        return e
+    end;
+    i["WR_DeathKnightFrost_LHSG"] = function()
+        if i["HUCountRange5"] <= k("1") and i["GCD"] <= i["ShiFaSuDu"] and i["TargetCloseRange"] and
+            i["UnitHealth"]("target") / i["UnitHealthMax"]("target") <= k("0.35") and
+            i["WR_SpellUsable"]("灵魂收割") and i["WR_GetUnitDeathTime"]("target") > k("7") and
+            (i["BuffTime_BSZZ"] <= i["GCD"] or i["BuffTime_BSZZ"] > i["GCD"] and i["BuffTime_SLJQ"] <= i["GCD"] and
+                i["Runes"] > k("2")) then
+            if i["WR_ColorFrame_Show"]("SF4", "灵魂收割") then
+                return f
+            end
+        end
+        return e
+    end;
+    i["WR_DeathKnightFrost_HDHJ"] = function()
+        if i["GCD"] > i["ShiFaSuDu"] then
+            return e
+        end
+        if i["RunicPower"] < k("70") and i["WR_SpellUsable"]("寒冬号角") and
+            (i["BuffTime_BSZZ"] > i["GCD"] and i["WR_GetUnitBuffTime"]("player", "冰龙吐息") == k("0") and
+                i["Runes"] < k("3") or i["WR_GetUnitBuffTime"]("player", "冰龙吐息") > k("0") and i["Runes"] <
+                k("2") and
+                (i["WR_GetUnitBuffTime"]("player", "符文武器增效") == k("0") or i["RunicPower"] < k("17") * k("2")) or
+                not i["IsPlayerSpell"](k("152279")) and i["Runes"] < k("3") and i["WR_GetGCD"]("寒冬号角") <
+                i["WR_GetGCD"]("冰霜之柱") + k("15")) then
+            if i["WR_ColorFrame_Show"]("CF12", "寒冬号角") then
+                return f
+            end
+        end
+        return e
+    end;
+    i["WR_DeathKnightFrost_SSYJ"] = function()
+        if i["zhandoumoshi"] == k("1") and i["GCD"] <= i["ShiFaSuDu"] and i["IsPlayerSpell"](k("439843")) and
+            i["WR_GetGCD"]("死神印记") <= i["GCD"] and i["WR_GetGCD"]("冰霜之柱") <= i["GCD"] and
+            i["TargetCloseRange"] then
+            if i["WRSet"]["BS_SP1"] == k("2") then
+                if i["WR_ShiPin"](k("1"), i["WRSet"]["BS_SP1"]) then
+                    return f
+                end
+            end
+            if i["WRSet"]["BS_SP2"] == k("2") then
+                if i["WR_ShiPin"](k("2"), i["WRSet"]["BS_SP2"]) then
+                    return f
+                end
+            end
+            if i["WR_ColorFrame_Show"]("SF6", "死神印记") then
+                return f
+            end
+        end
+        return e
+    end;
+    i["WR_DeathKnightFrost_BLTX"] = function()
+        if i["WRSet"]["BS_BLTX"] and i["zhandoumoshi"] == k("1") and i["TargetCloseRange"] and
+            i["WR_SpellUsable"]("冰龙吐息") and i["RunicPower"] > k("60") and i["BuffTime_BSZZ"] > i["GCD"] and
+            i["WR_GetUnitBuffTime"]("player", "冰龙吐息") == k("0") then
+            if i["WR_ColorFrame_Show"]("F8", "冰龙吐息") then
+                return f
+            end
+        end
+        return e
+    end;
+    i["WR_DeathKnightFrost_LastSpellTime"] = function()
+        if i["DeathKnightFrostLastSpellIsOpen"] == f then
+            return
+        end
+        local t = i["CreateFrame"]("Frame")
+        t["RegisterEvent"](t, "COMBAT_LOG_EVENT_UNFILTERED")
+        t["SetScript"](t, "OnEvent", function()
+            if i["select"](k("4"), i["CombatLogGetCurrentEventInfo"]()) == i["UnitGUID"]("player") then
+                if i["select"](k("2"), i["CombatLogGetCurrentEventInfo"]()) == "SPELL_CAST_SUCCESS" then
+                    local u = i["select"](k("13"), i["CombatLogGetCurrentEventInfo"]())
+                    if u == "死神印记" then
+                        i["SSYJ_CastTime"] = i["GetTime"]()
+                    end
+                end
+            end
+        end)
+        i["DeathKnightFrostLastSpellIsOpen"] = f
+    end
+end)()
