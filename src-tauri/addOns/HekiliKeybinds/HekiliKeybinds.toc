@@ -1,0 +1,9 @@
+## Interface: 110007
+## Title: HekiliKeybinds
+## Author: 黑色
+## Dependencies: Hekili
+## IconTexture: Interface\ICONS\Spell_Holy_SealOfWrath
+## SavedVariablesPerCharacter: HSPlugin_Settings
+
+UI.lua
+HekiliKeybinds.lua

@@ -14,6 +14,7 @@ import {
   color_mappings_ZHUZHU,
   rgbToHex
 } from './config';
+import { color_mappings_HEKILI } from './hekili';
 import styles from './index.module.css';
 
 interface ColorInfo {
@@ -21,7 +22,14 @@ interface ColorInfo {
   g: number;
   b: number;
 }
-type ColorMapping = 'JIAJIA' | 'JIAJIA_REAL' | 'ZHUZHU' | 'XIAOYI_SS' | 'XIAOYI_LR' | 'AH';
+type ColorMapping =
+  | 'JIAJIA'
+  | 'JIAJIA_REAL'
+  | 'ZHUZHU'
+  | 'XIAOYI_SS'
+  | 'XIAOYI_LR'
+  | 'AH'
+  | 'HEKILI';
 
 // 创建音频对象
 const mode1Audio = new Audio(mode1);
@@ -53,6 +61,7 @@ const colorMapDict = {
   ZHUZHU: color_mappings_ZHUZHU,
   XIAOYI_SS: color_mappings_XIAOYI_SS,
   XIAOYI_LR: color_mappings_XIAOYI_LR,
+  HEKILI: color_mappings_HEKILI,
   AH: null
 };
 
@@ -161,6 +170,7 @@ function WOW() {
         configs.push({ value: 'ZHUZHU', label: '猪猪一键宏' });
         configs.push({ value: 'JIAJIA', label: '佳佳一键宏-WLK' });
         configs.push({ value: 'JIAJIA_REAL', label: '佳佳一键宏-正式服' });
+        configs.push({ value: 'HEKILI', label: 'Hekili一键宏' });
         configs.push({ value: 'XIAOYI_SS', label: '小易一键宏-术士' });
         configs.push({ value: 'XIAOYI_LR', label: '小易一键宏-猎人' });
         configs.push({ value: 'AH', label: 'AH一键宏' });
@@ -173,6 +183,7 @@ function WOW() {
       }
       if (userType.includes('3')) {
         configs.push({ value: 'JIAJIA_REAL', label: '佳佳一键宏-正式服' });
+        configs.push({ value: 'HEKILI', label: 'Hekili一键宏' });
       }
       if (userType.includes('4')) {
         configs.push({ value: 'AH', label: 'AH一键宏' });
@@ -197,6 +208,23 @@ function WOW() {
     };
   }, [JSON.stringify(hotkeys)]); // 添加hotkeys作为依赖项，当热键改变时重新注册
 
+  const splitKeys = (keys: string) => {
+    // 处理特殊情况：将'--'替换为特殊标记
+    const processedKeys = keys.replace(/--/g, '--DOUBLE_DASH--');
+
+    // 使用'-'分割
+    const splitResult = processedKeys
+      .split('-')
+      .map(key => key.trim())
+      .filter(key => key !== '')
+      .map(key => {
+        // 还原特殊标记为'-'
+        if (key === 'DOUBLE_DASH') return '-';
+        return key.toUpperCase();
+      });
+
+    return splitResult;
+  };
   useEffect(() => {
     let isRunning = true;
     let currentIndex = 0;
@@ -210,13 +238,9 @@ function WOW() {
         if (newColor.r !== oldTemp && newColor.g !== 0 && newColor.b !== 0) {
           const keys = getKeyNum(newColor.g, newColor.b).filter(v => !!v);
           if (keys.length === 4) {
-            // let promises = [];
             for await (const key of keys) {
-              await invoke('send_keys_to_wow', { keys: [key] })
-              // promises.push(invoke('send_keys_to_wow', { keys: [key] }));
-              // promises.push(invoke('press_keys', { keys: [key] }));
+              await invoke('send_keys_to_wow', { keys: [key] });
             }
-            // await Promise.all(promises);
             oldTemp = newColor.r;
             time = new Date();
           }
@@ -240,12 +264,12 @@ function WOW() {
 
       const keyCombo1 = color_mappings?.[hexColor.toLowerCase()];
       if (keyCombo1) {
-        await invoke('press_keys', { keys: keyCombo1.split('-') });
+        await invoke('press_keys', { keys: splitKeys(keyCombo1) });
         return;
       }
       const keyCombo2 = color_mappings?.[hexColor.toUpperCase()];
       if (keyCombo2) {
-        await invoke('press_keys', { keys: keyCombo2.split('-') });
+        await invoke('press_keys', { keys: splitKeys(keyCombo2) });
         return;
       }
     };
