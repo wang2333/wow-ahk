@@ -123,17 +123,17 @@ local MacroButton
     
     MacroButton = CreateFrame("Button", "AN6", UIParent, "SecureActionButtonTemplate");
     MacroButton:SetAttribute("type", "macro")
-    MacroButton:SetAttribute("macrotext", "/cast [nochanneling:精神灼烧] 精神灼烧")    
+    MacroButton:SetAttribute("macrotext", "/cast [nochanneling:精神灼烧] 精神灼烧")    --双子
     
     MacroButton = CreateFrame("Button", "AN7", UIParent, "SecureActionButtonTemplate");
     MacroButton:SetAttribute("type", "macro")
-    MacroButton:SetAttribute("macrotext", "")    
+    MacroButton:SetAttribute("macrotext", "/cast [target=focus] 精神鞭笞(等级 8)")    --双子
     
     
     
     MacroButton = CreateFrame("Button", "AN8", UIParent, "SecureActionButtonTemplate");
     MacroButton:SetAttribute("type", "macro")
-    MacroButton:SetAttribute("macrotext", "")    
+    MacroButton:SetAttribute("macrotext", "/cast 精神鞭笞")    
     
     
     MacroButton = CreateFrame("Button", "AN9", UIParent, "SecureActionButtonTemplate");

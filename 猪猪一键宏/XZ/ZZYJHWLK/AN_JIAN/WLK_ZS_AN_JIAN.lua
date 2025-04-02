@@ -225,7 +225,7 @@ SetCVar("Contrast",50)
     
     MacroButton = CreateFrame("Button", "N10", UIParent, "SecureActionButtonTemplate");
     MacroButton:SetAttribute("type", "macro")
-    MacroButton:SetAttribute("macrotext", "")   
+    MacroButton:SetAttribute("macrotext", "/cast [target=focus] 破甲攻击")   
     
     
     MacroButton = CreateFrame("Button", "S1", UIParent, "SecureActionButtonTemplate");
@@ -302,11 +302,11 @@ SetCVar("Contrast",50)
     
     MacroButton = CreateFrame("Button", "C9", UIParent, "SecureActionButtonTemplate");
     MacroButton:SetAttribute("type", "macro")
-    MacroButton:SetAttribute("macrotext", "/target 黑暗邪使艾蒂丝")    
+    MacroButton:SetAttribute("macrotext", "/target 光明邪使菲奥拉\n/focus\n/target 黑暗邪使艾蒂丝")    
     
     MacroButton = CreateFrame("Button", "C10", UIParent, "SecureActionButtonTemplate");
     MacroButton:SetAttribute("type", "macro")
-    MacroButton:SetAttribute("macrotext", "/target 光明邪使菲奥拉")         
+    MacroButton:SetAttribute("macrotext", "/target 黑暗邪使艾蒂丝\n/focus\n/target 光明邪使菲奥拉")        
 
 
     

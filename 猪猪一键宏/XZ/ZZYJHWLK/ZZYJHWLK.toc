@@ -1,6 +1,7 @@
-﻿## Interface: 30403
+﻿## Interface: 30404
 ## Title: !pigtogo!
-## Title-zhCN:|cff00adf0猪猪|cff00ff00[80级WLK]|r
+## Title-zhCN: |cffFF69B4TellMeWhen 猪猪|cff00ff00[80级WLK]|r
+## Notes-zhCN: 猪猪正版微信chengjnuu
 ## Author: PP
 ## Version: 1.01
 ## SavedVariables: pigtogoDB
@@ -51,6 +52,7 @@ WLK_SHAMAN/WLK_yuan_su_zhang_wo.lua
 
 
 WLK_HUNTER/WLK_bao_zha_kai_guan.lua
+WLK_HUNTER/yi_dong_she_ji.lua
 
 
 
