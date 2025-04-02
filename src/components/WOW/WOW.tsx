@@ -128,6 +128,7 @@ function WOW() {
     gameSettings,
     updateHotkeySettings,
     updateCustomColorBlock,
+    updateSelectedMacro,
     checkUser
   } = useAuth();
   const [color, setColor] = useState<string | null>(null);
@@ -136,7 +137,9 @@ function WOW() {
   const [moveInterval, setMoveInterval] = useState(500);
   const [moveKeys, setMoveKeys] = useState('T');
   const [configs, setConfigs] = useState<{ value: string; label: string }[]>([]);
-  const [selectedMapping, setSelectedMapping] = useState<ColorMapping>('JIAJIA');
+  const [selectedMapping, setSelectedMapping] = useState<ColorMapping>(
+    gameSettings?.selectedMacro || 'JIAJIA'
+  );
 
   // 添加自定义热键状态，从游戏设置中加载
   const [hotkeys, setHotkeys] = useState({
@@ -185,6 +188,7 @@ function WOW() {
     if (configs.length) {
       setConfigs(configs);
       setSelectedMapping(configs[0].value as ColorMapping);
+      updateSelectedMacro(configs[0].value as ColorMapping);
     }
   }, [userInfo, isLoading]);
 
@@ -425,6 +429,13 @@ function WOW() {
     }
   };
 
+  // 移动间隔
+  const handleIntervalChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(e.target.value) || 500;
+    setMoveInterval(Math.max(100, value));
+  };
+
+  // 热键设置
   const handleHotkeyChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
     const newHotkeys = {
@@ -437,11 +448,7 @@ function WOW() {
     updateHotkeySettings(newHotkeys);
   };
 
-  const handleIntervalChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value) || 500;
-    setMoveInterval(Math.max(100, value));
-  };
-
+  // 自定义色块坐标
   const handleCustomColorBlockChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     type: 'isCustomColorBlock' | 'x' | 'y'
@@ -463,6 +470,12 @@ function WOW() {
       setIsCustomColorBlock(value == '1');
     }
     updateCustomColorBlock(newConfig);
+  };
+
+  // 配置选择
+  const handleConfigChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedMapping(e.target.value as ColorMapping);
+    updateSelectedMacro(e.target.value as ColorMapping);
   };
 
   return (
@@ -490,7 +503,7 @@ function WOW() {
             <label className={styles.label}>配置选择</label>
             <select
               value={selectedMapping}
-              onChange={e => setSelectedMapping(e.target.value as ColorMapping)}
+              onChange={handleConfigChange}
               className={styles.input}
             >
               {configs.map(config => (

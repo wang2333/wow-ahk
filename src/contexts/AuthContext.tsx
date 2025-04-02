@@ -16,10 +16,13 @@ interface ColorBlock {
   x: number;
   y: number;
 }
+type ColorMapping = 'JIAJIA' | 'JIAJIA_REAL' | 'ZHUZHU' | 'XIAOYI_SS' | 'XIAOYI_LR' | 'AH' | '';
+
 // 游戏设置接口
 interface GameSettings {
   hotkeySettings: HotkeySettings;
   customColorBlock: ColorBlock;
+  selectedMacro: ColorMapping;
   // 可以在这里添加更多游戏设置
 }
 
@@ -41,6 +44,7 @@ interface AuthContextType {
   logout: () => Promise<void>;
   updateHotkeySettings: (hotkeys: HotkeySettings) => Promise<void>;
   updateCustomColorBlock: (colorBlock: ColorBlock) => Promise<void>;
+  updateSelectedMacro: (selectedMacro: ColorMapping) => Promise<void>;
   checkUser: () => Promise<void>;
   checkUser2: () => Promise<void>;
   checkUser3: () => Promise<void>;
@@ -51,7 +55,8 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 // 默认游戏设置
 const DEFAULT_GAME_SETTINGS: GameSettings = {
   hotkeySettings: { mode1Key: 'F1', mode2Key: 'F2', pauseKey: 'F3' },
-  customColorBlock: { isCustomColorBlock: false, x: 0, y: 0 }
+  customColorBlock: { isCustomColorBlock: false, x: 0, y: 0 },
+  selectedMacro: ''
 };
 
 // 创建存储实例
@@ -233,23 +238,33 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     });
   }, []);
 
+  const updateGameSettings = async (settings: GameSettings): Promise<void> => {
+    setGameSettings(settings);
+    await saveGameSettings(settings);
+  };
   // 更新热键设置
   const updateHotkeySettings = async (hotkeys: HotkeySettings): Promise<void> => {
     const newSettings = {
       ...gameSettings,
       hotkeySettings: hotkeys
     };
-    setGameSettings(newSettings);
-    await saveGameSettings(newSettings);
+    updateGameSettings(newSettings);
   };
-
+  // 更新颜色块设置
   const updateCustomColorBlock = async (colorBlock: ColorBlock): Promise<void> => {
     const newSettings = {
       ...gameSettings,
       customColorBlock: colorBlock
     };
-    setGameSettings(newSettings);
-    await saveGameSettings(newSettings);
+    updateGameSettings(newSettings);
+  };
+  // 更新一键宏选择
+  const updateSelectedMacro = async (selectedMacro: string): Promise<void> => {
+    const newSettings = {
+      ...gameSettings,
+      selectedMacro
+    };
+    updateGameSettings(newSettings);
   };
 
   const login = async (keyCode: string) => {
@@ -336,6 +351,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         logout,
         updateHotkeySettings,
         updateCustomColorBlock,
+        updateSelectedMacro,
         checkUser,
         checkUser2,
         checkUser3

@@ -87,7 +87,7 @@ fn get_current_position_color() -> Option<PositionColorInfo> {
 #[tauri::command]
 fn press_keys(keys: Vec<String>) {
     let mut enigo = Enigo::new();
-    // let delay = Duration::from_millis(10);
+    let delay = Duration::from_millis(10);
 
     // 按下所有修饰键
     for key in &keys {
@@ -97,7 +97,7 @@ fn press_keys(keys: Vec<String>) {
             "SHIFT" => enigo.key_down(Key::Shift),
             _ => {}
         }
-        // thread::sleep(delay);
+        thread::sleep(delay);
     }
 
     // 按下主键
@@ -205,7 +205,7 @@ fn press_keys(keys: Vec<String>) {
             }
             _ => {}
         }
-        // thread::sleep(delay);
+        thread::sleep(delay);
     }
 
     // 释放所有修饰键
@@ -356,9 +356,6 @@ fn install_addon(app_handle: tauri::AppHandle, plugin_type: &str, target_dir: &s
 
     println!("找到源目录: {:?}", source_path);
     println!("目标目录: {:?}", target_dir);
-
-    // 清空目标目录
-    fs::remove_dir_all(target_dir).map_err(|e| format!("清空目标目录失败: {}", e))?;
 
     // 创建一个用于复制目录的函数
     fn copy_dir_all(src: &Path, dst: &Path) -> std::io::Result<()> {
