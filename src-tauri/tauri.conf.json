@@ -36,7 +36,11 @@
     "resources": ["addOns/**/*"],
     "windows": {
       "wix": {
+        "language": "zh-CN",
         "enableElevatedUpdateTask": true
+      },
+      "nsis": {
+        "languages": ["SimpChinese"]
       }
     }
   }
