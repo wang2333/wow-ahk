@@ -161,34 +161,34 @@ function WOW() {
     const userType = userInfo && userInfo.userType ? userInfo.userType.toString() : '';
     if (userType) {
       if (userType === '0' || userType === '99') {
-        configs.push({ value: 'ZHUZHU', label: '猪猪一键宏' });
-        configs.push({ value: 'JIAJIA', label: '佳佳一键宏-WLK' });
-        configs.push({ value: 'JIAJIA_REAL', label: '佳佳一键宏-正式服' });
-        configs.push({ value: 'XIAOYI_SS', label: '小易一键宏-术士' });
-        configs.push({ value: 'XIAOYI_LR', label: '小易一键宏-猎人' });
-        configs.push({ value: 'AH', label: 'AH一键宏' });
+        configs.push({ value: 'ZHUZHU', label: '猪猪' });
+        configs.push({ value: 'JIAJIA', label: '佳佳-WLK' });
+        configs.push({ value: 'JIAJIA_REAL', label: '佳佳-正式服' });
+        configs.push({ value: 'XIAOYI_SS', label: '小易-术士' });
+        configs.push({ value: 'XIAOYI_LR', label: '小易-猎人' });
+        configs.push({ value: 'AH', label: 'AutoHelp' });
       }
       if (userType.includes('1')) {
-        configs.push({ value: 'ZHUZHU', label: '猪猪一键宏' });
+        configs.push({ value: 'ZHUZHU', label: '猪猪' });
       }
       if (userType.includes('2')) {
-        configs.push({ value: 'JIAJIA', label: '佳佳一键宏-WLK' });
+        configs.push({ value: 'JIAJIA', label: '佳佳-WLK' });
       }
       if (userType.includes('3')) {
-        configs.push({ value: 'JIAJIA_REAL', label: '佳佳一键宏-正式服' });
+        configs.push({ value: 'JIAJIA_REAL', label: '佳佳-正式服' });
       }
       if (userType.includes('4')) {
-        configs.push({ value: 'AH', label: 'AH一键宏' });
+        configs.push({ value: 'AH', label: 'AutoHelp' });
       }
       if (userType.includes('5')) {
-        configs.push({ value: 'XIAOYI_SS', label: '小易一键宏-术士' });
-        configs.push({ value: 'XIAOYI_LR', label: '小易一键宏-猎人' });
+        configs.push({ value: 'XIAOYI_SS', label: '小易-术士' });
+        configs.push({ value: 'XIAOYI_LR', label: '小易-猎人' });
       }
     }
     if (configs.length) {
       setConfigs(configs);
       if (gameSettings?.selectedMacro) {
-        setSelectedMapping(gameSettings?.selectedMacro as ColorMapping);
+        setSelectedMapping(gameSettings?.selectedMacro);
       } else {
         setSelectedMapping(configs[0].value as ColorMapping);
         updateSelectedMacro(configs[0].value as ColorMapping);
@@ -505,11 +505,7 @@ function WOW() {
         <div className={styles.controlSection}>
           <div className={styles.inputGroupCompact}>
             <label className={styles.label}>配置选择</label>
-            <select
-              value={selectedMapping}
-              onChange={handleConfigChange}
-              className={styles.input}
-            >
+            <select value={selectedMapping} onChange={handleConfigChange} className={styles.input}>
               {configs.map(config => (
                 <option key={config.value} value={config.value}>
                   {config.label}
