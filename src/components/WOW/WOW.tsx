@@ -187,8 +187,12 @@ function WOW() {
     }
     if (configs.length) {
       setConfigs(configs);
-      setSelectedMapping(configs[0].value as ColorMapping);
-      updateSelectedMacro(configs[0].value as ColorMapping);
+      if (gameSettings?.selectedMacro) {
+        setSelectedMapping(gameSettings?.selectedMacro as ColorMapping);
+      } else {
+        setSelectedMapping(configs[0].value as ColorMapping);
+        updateSelectedMacro(configs[0].value as ColorMapping);
+      }
     }
   }, [userInfo, isLoading]);
 

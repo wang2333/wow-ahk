@@ -259,7 +259,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     updateGameSettings(newSettings);
   };
   // 更新一键宏选择
-  const updateSelectedMacro = async (selectedMacro: string): Promise<void> => {
+  const updateSelectedMacro = async (selectedMacro: ColorMapping): Promise<void> => {
     const newSettings = {
       ...gameSettings,
       selectedMacro
