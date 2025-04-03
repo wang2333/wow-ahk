@@ -9,7 +9,10 @@ use std::fs;
 use std::path::Path;
 use std::path::PathBuf;
 use std::collections::HashMap;
+use std::sync::{Arc, Mutex};
 use tauri::Manager;
+use tauri::Emitter;
+use rdev::{listen, Event, EventType, Key as RdevKey};
 use windows_sys::Win32::Foundation::{BOOL, HWND, LPARAM, RECT};
 use windows_sys::Win32::UI::WindowsAndMessaging::{
     EnumWindows, GetWindowTextW, IsWindowVisible, GetWindowRect, GetForegroundWindow,
@@ -44,6 +47,95 @@ struct WindowInfo {
     height: i32,
     is_foreground: bool,
     is_fullscreen: bool,
+}
+
+// 全局热键监听器的状态结构体
+#[derive(Clone)]
+struct HotkeyListener {
+    mode1_key: Option<String>,
+    mode2_key: Option<String>,
+    pause_key: Option<String>,
+    running: bool,
+    last_key_time: std::time::Instant, // 添加上次按键时间
+}
+
+// 全局静态变量
+struct HotkeyState {
+    listener: Mutex<Option<Arc<Mutex<HotkeyListener>>>>,
+}
+
+// 实现Send + Sync使其可以安全地在线程间共享
+unsafe impl Send for HotkeyState {}
+unsafe impl Sync for HotkeyState {}
+
+// 全局单例
+lazy_static::lazy_static! {
+    static ref HOTKEY_STATE: HotkeyState = HotkeyState {
+        listener: Mutex::new(None),
+    };
+}
+
+// 将字符串键名转换为rdev的Key
+fn string_to_rdev_key(key_str: &str) -> Option<RdevKey> {
+    match key_str {
+        "`" => Some(RdevKey::BackQuote),
+        "鼠标左键" => Some(RdevKey::Unknown(1)),
+        "鼠标中键" => Some(RdevKey::Unknown(2)),
+        "鼠标右键" => Some(RdevKey::Unknown(3)),
+        "鼠标前进" => Some(RdevKey::Unknown(4)),
+        "鼠标后退" => Some(RdevKey::Unknown(5)),
+        "F1" => Some(RdevKey::F1),
+        "F2" => Some(RdevKey::F2),
+        "F3" => Some(RdevKey::F3),
+        "F5" => Some(RdevKey::F5),
+        "F6" => Some(RdevKey::F6),
+        "F7" => Some(RdevKey::F7),
+        "F8" => Some(RdevKey::F8),
+        "F9" => Some(RdevKey::F9),
+        "F10" => Some(RdevKey::F10),
+        "F11" => Some(RdevKey::F11),
+        "F12" => Some(RdevKey::F12),
+        "1" => Some(RdevKey::Num1),
+        "2" => Some(RdevKey::Num2),
+        "3" => Some(RdevKey::Num3),
+        "4" => Some(RdevKey::Num4),
+        "5" => Some(RdevKey::Num5),
+        "6" => Some(RdevKey::Num6),
+        "7" => Some(RdevKey::Num7),
+        "8" => Some(RdevKey::Num8),
+        "9" => Some(RdevKey::Num9),
+        "0" => Some(RdevKey::Num0),
+        "Q" => Some(RdevKey::KeyQ),
+        "W" => Some(RdevKey::KeyW),
+        "E" => Some(RdevKey::KeyE),
+        "R" => Some(RdevKey::KeyR),
+        "T" => Some(RdevKey::KeyT),
+        "Y" => Some(RdevKey::KeyY),
+        "U" => Some(RdevKey::KeyU),
+        "I" => Some(RdevKey::KeyI),
+        "O" => Some(RdevKey::KeyO),
+        "P" => Some(RdevKey::KeyP),
+        "A" => Some(RdevKey::KeyA),
+        "S" => Some(RdevKey::KeyS),
+        "D" => Some(RdevKey::KeyD),
+        "F" => Some(RdevKey::KeyF),
+        "G" => Some(RdevKey::KeyG),
+        "H" => Some(RdevKey::KeyH),
+        "J" => Some(RdevKey::KeyJ),
+        "K" => Some(RdevKey::KeyK),
+        "L" => Some(RdevKey::KeyL),
+        "Z" => Some(RdevKey::KeyZ),
+        "X" => Some(RdevKey::KeyX),
+        "C" => Some(RdevKey::KeyC),
+        "V" => Some(RdevKey::KeyV),
+        "B" => Some(RdevKey::KeyB),
+        "N" => Some(RdevKey::KeyN),
+        "M" => Some(RdevKey::KeyM),
+        _ => {
+            println!("未知的键: {}", key_str);
+            None
+        },
+    }
 }
 
 #[tauri::command]
@@ -354,8 +446,6 @@ fn install_addon(app_handle: tauri::AppHandle, plugin_type: &str, target_dir: &s
                 .join("\n")
         ))?;
 
-    println!("找到源目录: {:?}", source_path);
-    println!("目标目录: {:?}", target_dir);
 
     // 创建一个用于复制目录的函数
     fn copy_dir_all(src: &Path, dst: &Path) -> std::io::Result<()> {
@@ -369,8 +459,6 @@ fn install_addon(app_handle: tauri::AppHandle, plugin_type: &str, target_dir: &s
             let src_path = entry.path();
             let dst_path = dst.join(entry.file_name());
 
-            println!("复制: {:?} -> {:?}", src_path, dst_path);
-
             if ty.is_dir() {
                 copy_dir_all(&src_path, &dst_path)?;
             } else {
@@ -379,19 +467,14 @@ fn install_addon(app_handle: tauri::AppHandle, plugin_type: &str, target_dir: &s
         }
         Ok(())
     }
-
     // 直接将整个插件目录复制到目标位置
     let dst_path = Path::new(target_dir).join(plugin_type);
-    println!("安装插件: {:?} -> {:?}", source_path, dst_path);
-
     // 如果目标目录已存在，先删除
     if dst_path.exists() {
         fs::remove_dir_all(&dst_path).map_err(|e| format!("删除已存在的目录失败: {}", e))?;
     }
-
     // 复制目录
     copy_dir_all(&source_path, &dst_path).map_err(|e| format!("复制目录失败: {}", e))?;
-
     Ok(format!("插件安装成功!", ))
 }
 
@@ -499,11 +582,185 @@ fn send_keys_to_wow(keys: Vec<String>) -> Result<String, String> {
     Ok("按键已发送到魔兽世界窗口".to_string())
 }
 
+// 添加用于设置全局热键并发送事件到前端的函数
+#[tauri::command]
+fn setup_global_shortcuts(app: tauri::AppHandle, mode1_key: Option<String>, mode2_key: Option<String>, pause_key: Option<String>) -> Result<(), String> {
+    // 停止现有的监听器
+    let _ = clear_global_shortcuts();
+
+    // 转换热键为rdev Key类型并提前检查有效性
+    let mode1_rdev_key = mode1_key.as_ref().and_then(|k| string_to_rdev_key(k));
+    let mode2_rdev_key = mode2_key.as_ref().and_then(|k| string_to_rdev_key(k));
+    let pause_rdev_key = pause_key.as_ref().and_then(|k| string_to_rdev_key(k));
+
+    // 如果没有有效的热键，就不启动监听
+    if mode1_rdev_key.is_none() && mode2_rdev_key.is_none() && pause_rdev_key.is_none() {
+        return Ok(());
+    }
+
+    // 初始化新的监听器，添加当前时间
+    let listener = Arc::new(Mutex::new(HotkeyListener {
+        mode1_key,
+        mode2_key,
+        pause_key,
+        running: true,
+        last_key_time: std::time::Instant::now(),
+    }));
+
+    // 保存监听器状态到全局变量
+    {
+        let mut hotkey_lock = HOTKEY_STATE.listener.lock().map_err(|e| e.to_string())?;
+        *hotkey_lock = Some(listener.clone());
+    }
+
+    // 启动键盘监听线程
+    let app_handle = app.clone();
+    std::thread::spawn(move || {
+        // 使用 Cell 来避免可变借用问题
+        use std::cell::Cell;
+        let is_modifier_pressed = Cell::new(false);
+
+        // 键盘事件处理函数
+        let callback = move |event: Event| {
+            // 获取当前键或按钮
+            let current_key = match event.event_type {
+                EventType::KeyPress(key) => {
+                    // 检查是否是修饰键
+                    if matches!(key,
+                        RdevKey::ShiftLeft | RdevKey::ShiftRight |
+                        RdevKey::ControlLeft | RdevKey::ControlRight |
+                        RdevKey::Alt | RdevKey::AltGr) {
+                        is_modifier_pressed.set(true);
+                    }
+                    None  // 键盘按下不处理
+                },
+                EventType::KeyRelease(key) => {
+                    // 检查是否是修饰键
+                    if matches!(key,
+                        RdevKey::ShiftLeft | RdevKey::ShiftRight |
+                        RdevKey::ControlLeft | RdevKey::ControlRight |
+                        RdevKey::Alt | RdevKey::AltGr) {
+                        is_modifier_pressed.set(false);
+                        return;
+                    }
+
+                    // 如果有修饰键按下，不处理其他键的释放事件
+                    if is_modifier_pressed.get() {
+                        return;
+                    }
+
+                    Some(key)
+                },
+                EventType::ButtonPress(_) => {
+                    None  // 鼠标按下不处理
+                },
+                EventType::ButtonRelease(button) => {
+                    // 转换鼠标按钮到对应的键值
+                    // rdev 0.5.3中，Button枚举只有 Left, Right, Middle, Unknown
+                    match button {
+                        rdev::Button::Left => Some(RdevKey::Unknown(1)),
+                        rdev::Button::Middle => Some(RdevKey::Unknown(2)),
+                        rdev::Button::Right => Some(RdevKey::Unknown(3)),
+                        // 处理其他按钮(鼠标侧键等)，用val作为键值
+                        rdev::Button::Unknown(val) => {
+                            // 常见的侧键是按钮4和5
+                            match val {
+                                4 => Some(RdevKey::Unknown(4)), // 通常是前侧键
+                                5 => Some(RdevKey::Unknown(5)), // 通常是后侧键
+                                _ => Some(RdevKey::Unknown(val.into())), // 其他未知按钮
+                            }
+                        }
+                    }
+                },
+                _ => None,
+            };
+
+            // 如果没有有效的键或按钮，直接返回
+            if current_key.is_none() {
+                return;
+            }
+
+            let key = current_key.unwrap();
+            // 获取热键设置并检查是否需要处理
+            let hotkey_lock = match HOTKEY_STATE.listener.lock() {
+                Ok(lock) => lock,
+                Err(_) => return,
+            };
+
+            let listener_arc = match hotkey_lock.as_ref() {
+                Some(arc) => arc,
+                None => return,
+            };
+
+            let mut listener = match listener_arc.lock() {
+                Ok(l) => l,
+                Err(_) => return,
+            };
+
+            // 防抖处理
+            let now = std::time::Instant::now();
+            let duration = now.duration_since(listener.last_key_time);
+            if duration.as_millis() < 200 || !listener.running {
+                return;
+            }
+
+            // 更新上次按键时间
+            listener.last_key_time = now;
+
+            // 检查并发送事件
+            let check_and_emit = |config_key: &Option<String>, event_name: &str| {
+                if let Some(k) = config_key.as_ref().and_then(|k| string_to_rdev_key(k)) {
+                    if key == k {
+                        if let Err(e) = app_handle.emit("hotkey-event", event_name) {
+                            println!("Failed to emit {} event: {:?}", event_name, e);
+                        } else {
+                            println!("Successfully emitted {} event", event_name);
+                        }
+                        return true;
+                    }
+                }
+                false
+            };
+
+            // 依次检查各种热键
+            if check_and_emit(&listener.mode1_key, "mode1")
+                || check_and_emit(&listener.mode2_key, "mode2")
+                || check_and_emit(&listener.pause_key, "pause") {
+                return;
+            }
+        };
+
+        // 启动键盘监听
+        match listen(callback) {
+            Ok(_) => println!("Keyboard listening completed normally"),
+            Err(error) => println!("Keyboard monitoring error: {:?}", error),
+        }
+    });
+
+    Ok(())
+}
+
+// 清除全局热键函数
+#[tauri::command]
+fn clear_global_shortcuts() -> Result<(), String> {
+    // 获取锁并设置running为false，终止监听
+    let mut hotkey_lock = HOTKEY_STATE.listener.lock().map_err(|e| e.to_string())?;
+    if let Some(listener_arc) = hotkey_lock.as_ref() {
+        if let Ok(mut listener) = listener_arc.lock() {
+            listener.running = false;
+        }
+    }
+
+    // 清除监听器
+    *hotkey_lock = None;
+
+    Ok(())
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_store::Builder::default().build())
-        .plugin(tauri_plugin_global_shortcut::Builder::default().build())
         .plugin(tauri_plugin_fs::init())
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_opener::init())
@@ -515,7 +772,9 @@ pub fn run() {
             move_mouse_to_point,
             get_hostname,
             get_wow_window_info,
-            install_addon
+            install_addon,
+            setup_global_shortcuts,
+            clear_global_shortcuts
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

@@ -35,6 +35,7 @@ interface User {
 
 interface AuthContextType {
   userAccount: string | null;
+  machineCode: string;
   userInfo: User | null;
   gameSettings: GameSettings;
   isLoading: boolean;
@@ -48,6 +49,7 @@ interface AuthContextType {
   checkUser: () => Promise<void>;
   checkUser2: () => Promise<void>;
   checkUser3: () => Promise<void>;
+  clearUserState: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -134,7 +136,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     const userAccountStore = await userAccountStorePromise;
     const savedUserAccount = await userAccountStore.get<string>('userAccount');
-    if (!savedUserAccount) {
+    if (!savedUserAccount || savedUserAccount.length !== 10) {
+      setUserInfo(null);
       await clearUserState();
       setIsLoading(false);
       setIsLoading2(false);
@@ -144,7 +147,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     await request('/api/verify', {
       method: 'GET',
       params: {
-        keyCode: savedUserAccount
+        keyCode: savedUserAccount,
+        machineCode
       }
     })
       .then(async () => {
@@ -153,6 +157,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setIsLoading3(false);
       })
       .catch(async () => {
+        setUserInfo(null);
         await clearUserState();
       });
   };
@@ -164,7 +169,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setIsLoading3(true);
     const userAccountStore = await userAccountStorePromise;
     const savedUserAccount = await userAccountStore.get<string>('userAccount');
-    if (!savedUserAccount) {
+    if (!savedUserAccount || savedUserAccount.length !== 10) {
+      setUserInfo(null);
       await clearUserState();
       setIsLoading(false);
       setIsLoading2(false);
@@ -174,7 +180,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     await request('/api/verify', {
       method: 'GET',
       params: {
-        keyCode: savedUserAccount
+        keyCode: savedUserAccount,
+        machineCode
       }
     })
       .then(async () => {
@@ -183,6 +190,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setIsLoading3(false);
       })
       .catch(async () => {
+        setUserInfo(null);
         await clearUserState();
       });
   };
@@ -194,7 +202,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setIsLoading3(true);
     const userAccountStore = await userAccountStorePromise;
     const savedUserAccount = await userAccountStore.get<string>('userAccount');
-    if (!savedUserAccount) {
+    if (!savedUserAccount || savedUserAccount.length !== 10) {
+      setUserInfo(null);
       await clearUserState();
       setIsLoading(false);
       setIsLoading2(false);
@@ -204,7 +213,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     await request('/api/verify', {
       method: 'GET',
       params: {
-        keyCode: savedUserAccount
+        keyCode: savedUserAccount,
+        machineCode
       }
     })
       .then(async () => {
@@ -213,6 +223,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setIsLoading3(false);
       })
       .catch(async () => {
+        setUserInfo(null);
         await clearUserState();
       });
   };
@@ -342,6 +353,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     <AuthContext.Provider
       value={{
         userAccount,
+        machineCode,
         userInfo,
         gameSettings,
         isLoading,
@@ -354,7 +366,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         updateSelectedMacro,
         checkUser,
         checkUser2,
-        checkUser3
+        checkUser3,
+        clearUserState
       }}
     >
       {children}

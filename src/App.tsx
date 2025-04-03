@@ -1,7 +1,5 @@
 import './App.css';
-
 import { useEffect, useState } from 'react';
-
 import Login from '@/components/Login';
 import WOW from '@/components/WOW';
 // import ZXSJ from '@/components/ZXSJ';
@@ -9,10 +7,20 @@ import { useAuth } from './contexts/AuthContext';
 import Help from './components/Help';
 import Install from './components/Install';
 import Loading from './components/Loading';
+import { Window } from '@tauri-apps/api/window';
 
 function App() {
   const [activeTab, setActiveTab] = useState<'wow' | 'zxsj' | 'help' | 'install'>('help');
-  const { userInfo, userAccount, isLoading, isLoading2, isLoading3, login, logout } = useAuth();
+  const {
+    userInfo,
+    userAccount,
+    isLoading,
+    isLoading2,
+    isLoading3,
+    login,
+    logout,
+    clearUserState
+  } = useAuth();
 
   useEffect(() => {
     const disableRefresh = (e: KeyboardEvent) => {
@@ -43,7 +51,6 @@ function App() {
         e.preventDefault();
         return false;
       }
-
     };
     // 禁用鼠标右键
     const disabledRightClick = (e: MouseEvent) => {
@@ -59,6 +66,20 @@ function App() {
     };
   }, []);
 
+  // 监听窗口关闭事件
+  useEffect(() => {
+    // 设置窗口关闭前的回调函数，清理用户状态
+    const setupCloseHandler = async () => {
+      const appWindow = Window.getCurrent();
+      await appWindow.onCloseRequested(async () => {
+        // 在窗口关闭前调用clearUserState清理用户状态
+        await clearUserState();
+      });
+    };
+
+    setupCloseHandler().catch(console.error);
+  }, [clearUserState]);
+
   if (!userAccount) {
     return (
       <>
@@ -67,7 +88,14 @@ function App() {
       </>
     );
   }
-
+  if (userAccount.length !== 10) {
+    return (
+      <>
+        <Loading isLoading={isLoading || isLoading2 || isLoading3} />
+        <Login onLogin={login} isLoading={isLoading} />
+      </>
+    );
+  }
   if (!userInfo) {
     return (
       <>
