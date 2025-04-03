@@ -82,8 +82,8 @@ fn string_to_rdev_key(key_str: &str) -> Option<RdevKey> {
         "鼠标左键" => Some(RdevKey::Unknown(1)),
         "鼠标中键" => Some(RdevKey::Unknown(2)),
         "鼠标右键" => Some(RdevKey::Unknown(3)),
-        "鼠标前进" => Some(RdevKey::Unknown(4)),
-        "鼠标后退" => Some(RdevKey::Unknown(5)),
+        "鼠标后退" => Some(RdevKey::Unknown(8)),
+        "鼠标前进" => Some(RdevKey::Unknown(9)),
         "F1" => Some(RdevKey::F1),
         "F2" => Some(RdevKey::F2),
         "F3" => Some(RdevKey::F3),
@@ -131,10 +131,7 @@ fn string_to_rdev_key(key_str: &str) -> Option<RdevKey> {
         "B" => Some(RdevKey::KeyB),
         "N" => Some(RdevKey::KeyN),
         "M" => Some(RdevKey::KeyM),
-        _ => {
-            println!("未知的键: {}", key_str);
-            None
-        },
+        _ => None,
     }
 }
 
@@ -616,71 +613,41 @@ fn setup_global_shortcuts(app: tauri::AppHandle, mode1_key: Option<String>, mode
     // 启动键盘监听线程
     let app_handle = app.clone();
     std::thread::spawn(move || {
-        // 使用 Cell 来避免可变借用问题
-        use std::cell::Cell;
-        let is_modifier_pressed = Cell::new(false);
-
-        // 键盘事件处理函数
+        // 键盘和鼠标事件处理函数
         let callback = move |event: Event| {
             // 获取当前键或按钮
-            let current_key = match event.event_type {
-                EventType::KeyPress(key) => {
-                    // 检查是否是修饰键
-                    if matches!(key,
-                        RdevKey::ShiftLeft | RdevKey::ShiftRight |
-                        RdevKey::ControlLeft | RdevKey::ControlRight |
-                        RdevKey::Alt | RdevKey::AltGr) {
-                        is_modifier_pressed.set(true);
-                    }
-                    None  // 键盘按下不处理
-                },
-                EventType::KeyRelease(key) => {
-                    // 检查是否是修饰键
-                    if matches!(key,
-                        RdevKey::ShiftLeft | RdevKey::ShiftRight |
-                        RdevKey::ControlLeft | RdevKey::ControlRight |
-                        RdevKey::Alt | RdevKey::AltGr) {
-                        is_modifier_pressed.set(false);
-                        return;
-                    }
-
-                    // 如果有修饰键按下，不处理其他键的释放事件
-                    if is_modifier_pressed.get() {
-                        return;
-                    }
-
-                    Some(key)
-                },
-                EventType::ButtonPress(_) => {
-                    None  // 鼠标按下不处理
-                },
-                EventType::ButtonRelease(button) => {
-                    // 转换鼠标按钮到对应的键值
-                    // rdev 0.5.3中，Button枚举只有 Left, Right, Middle, Unknown
-                    match button {
-                        rdev::Button::Left => Some(RdevKey::Unknown(1)),
-                        rdev::Button::Middle => Some(RdevKey::Unknown(2)),
-                        rdev::Button::Right => Some(RdevKey::Unknown(3)),
-                        // 处理其他按钮(鼠标侧键等)，用val作为键值
+            match event.event_type {
+                EventType::ButtonPress(button) => {
+                    // 转换为RdevKey，特殊处理前进和后退按钮
+                    let key = match button {
+                        rdev::Button::Left => RdevKey::Unknown(1),
+                        rdev::Button::Middle => RdevKey::Unknown(2),
+                        rdev::Button::Right => RdevKey::Unknown(3),
                         rdev::Button::Unknown(val) => {
-                            // 常见的侧键是按钮4和5
+                            // 特殊处理前进和后退按钮
                             match val {
-                                4 => Some(RdevKey::Unknown(4)), // 通常是前侧键
-                                5 => Some(RdevKey::Unknown(5)), // 通常是后侧键
-                                _ => Some(RdevKey::Unknown(val.into())), // 其他未知按钮
+                                1 => RdevKey::Unknown(8), // 鼠标前进键
+                                2 => RdevKey::Unknown(9), // 鼠标后退键
+                                _ => RdevKey::Unknown(val.into()),
                             }
-                        }
-                    }
+                        },
+                    };
+
+                    // 检查是否匹配设置的热键，如果匹配则触发事件
+                    process_key(key, &app_handle);
                 },
-                _ => None,
-            };
-
-            // 如果没有有效的键或按钮，直接返回
-            if current_key.is_none() {
-                return;
+                EventType::KeyPress(key) => {
+                    // 检查是否匹配设置的热键，如果匹配则触发事件
+                    process_key(key, &app_handle);
+                },
+                _ => {
+                    // 其他事件类型不处理
+                }
             }
+        };
 
-            let key = current_key.unwrap();
+        // 处理按键函数
+        fn process_key(key: RdevKey, app_handle: &tauri::AppHandle) {
             // 获取热键设置并检查是否需要处理
             let hotkey_lock = match HOTKEY_STATE.listener.lock() {
                 Ok(lock) => lock,
@@ -711,11 +678,7 @@ fn setup_global_shortcuts(app: tauri::AppHandle, mode1_key: Option<String>, mode
             let check_and_emit = |config_key: &Option<String>, event_name: &str| {
                 if let Some(k) = config_key.as_ref().and_then(|k| string_to_rdev_key(k)) {
                     if key == k {
-                        if let Err(e) = app_handle.emit("hotkey-event", event_name) {
-                            println!("Failed to emit {} event: {:?}", event_name, e);
-                        } else {
-                            println!("Successfully emitted {} event", event_name);
-                        }
+                        let _ = app_handle.emit("hotkey-event", event_name);
                         return true;
                     }
                 }
@@ -728,13 +691,10 @@ fn setup_global_shortcuts(app: tauri::AppHandle, mode1_key: Option<String>, mode
                 || check_and_emit(&listener.pause_key, "pause") {
                 return;
             }
-        };
+        }
 
         // 启动键盘监听
-        match listen(callback) {
-            Ok(_) => println!("Keyboard listening completed normally"),
-            Err(error) => println!("Keyboard monitoring error: {:?}", error),
-        }
+        let _ = listen(callback);
     });
 
     Ok(())

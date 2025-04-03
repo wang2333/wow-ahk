@@ -78,7 +78,7 @@ const Login = ({ onLogin, isLoading }: LoginProps) => {
           </button>
 
           <button type='button' className='unbind-button' onClick={handleUnbindSubmit}>
-            自助解绑机器码
+            自助解绑机器码（一天一次）
           </button>
         </form>
       </div>
