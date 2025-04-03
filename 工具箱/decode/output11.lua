@@ -218,7 +218,6 @@ return (function(...)
 	end
   for i, v in ipairs(Ill) do
     print( i, v)
-
   end
 	local function lll()
 		local lll = bit

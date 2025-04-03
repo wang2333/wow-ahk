@@ -5,7 +5,7 @@ import mode2 from '@/assets/mode2.wav';
 import pause from '@/assets/pause.wav';
 import { useAuth } from '@/contexts/AuthContext';
 import { invoke } from '@tauri-apps/api/core';
-import { listen } from '@tauri-apps/api/event';
+import { register, unregister } from '@tauri-apps/plugin-global-shortcut';
 import {
   color_mappings_JIAJIA,
   color_mappings_JIAJIA_REAL,
@@ -60,11 +60,6 @@ const colorMapDict = {
 const availableHotkeys = [
   '',
   '`',
-  '鼠标左键',
-  '鼠标中键',
-  '鼠标右键',
-  '鼠标前进',
-  '鼠标后退',
   'F1',
   'F2',
   'F3',
@@ -103,7 +98,7 @@ const availableHotkeys = [
   'X',
   'C'
 ];
-const getKeyNum = (targetNum: number, actionNum: number) => {
+function getKeyNum(targetNum: number, actionNum: number) {
   const keyMap = [
     'NUMPAD4',
     'NUMPAD5',
@@ -127,24 +122,7 @@ const getKeyNum = (targetNum: number, actionNum: number) => {
   // const f = keyNum2 * 13 + keyNum3;
   // const g = keyNum4 * 13 + keyNum1;
   return [keyMap[keyNum1], keyMap[keyNum2], keyMap[keyNum3], keyMap[keyNum4]];
-};
-const splitKeys = (keys: string) => {
-  // 处理特殊情况：将'--'替换为特殊标记
-  const processedKeys = keys.replace(/--/g, '--DOUBLE_DASH--');
-
-  // 使用'-'分割
-  const splitResult = processedKeys
-    .split('-')
-    .map(key => key.trim())
-    .filter(key => key !== '')
-    .map(key => {
-      // 还原特殊标记为'-'
-      if (key === 'DOUBLE_DASH') return '-';
-      return key.toUpperCase();
-    });
-
-  return splitResult;
-};
+}
 
 function WOW() {
   const {
@@ -223,71 +201,30 @@ function WOW() {
 
   // 注册全局热键
   useEffect(() => {
-    let unlistenPromise: Promise<() => void> | null = null;
-
-    const setupListeners = async () => {
-      try {
-        // 先取消之前的监听
-        if (unlistenPromise) {
-          const unlisten = await unlistenPromise;
-          unlisten();
-        }
-        // 检查用户
-        await checkUser();
-        // 设置新的热键
-        await invoke('setup_global_shortcuts', {
-          mode1Key: hotkeys.mode1Key,
-          mode2Key: hotkeys.mode2Key,
-          pauseKey: hotkeys.pauseKey
-        });
-        // 设置事件监听
-        unlistenPromise = listen('hotkey-event', event => {
-          const mode = event.payload as string;
-          if (mode === 'mode1') {
-            console.log('切换到模式1', selectedMapping);
-            if (selectedMapping === 'XIAOYI_LR') {
-              invoke('press_keys', { keys: ['SHIFT', 'F11'] });
-            } else if (selectedMapping === 'XIAOYI_SS') {
-              invoke('press_keys', { keys: ['ALT', 'SHIFT', 'F11'] });
-            }
-            setModel(1);
-            mode1Audio.play();
-          } else if (mode === 'mode2') {
-            console.log('切换到模式2');
-            if (selectedMapping === 'XIAOYI_LR') {
-              invoke('press_keys', { keys: ['ALT', 'CTRL', 'SHIFT', 'F11'] });
-            } else if (selectedMapping === 'XIAOYI_SS') {
-              invoke('press_keys', { keys: ['ALT', 'CTRL', 'SHIFT', 'F11'] });
-            }
-            setModel(2);
-            mode2Audio.play();
-          } else if (mode === 'pause') {
-            console.log('切换到暂停');
-            setModel(0);
-            setColor(null);
-            pauseAudio.play();
-          }
-        });
-      } catch (error) {
-        console.error('设置热键监听失败:', error);
-      }
-    };
-
-    // 设置监听器
-    setupListeners();
-
-    // 清理函数
+    registerShortcuts();
+    // 清理函数：注销所有热键
     return () => {
-      if (unlistenPromise) {
-        unlistenPromise
-          .then(unlisten => {
-            unlisten();
-          })
-          .catch(console.error);
-      }
+      cleanup();
     };
-  }, [JSON.stringify(hotkeys), selectedMapping]); // 当热键或映射改变时重新注册
+  }, [JSON.stringify(hotkeys)]); // 添加hotkeys作为依赖项，当热键改变时重新注册
 
+  const splitKeys = (keys: string) => {
+    // 处理特殊情况：将'--'替换为特殊标记
+    const processedKeys = keys.replace(/--/g, '--DOUBLE_DASH--');
+
+    // 使用'-'分割
+    const splitResult = processedKeys
+      .split('-')
+      .map(key => key.trim())
+      .filter(key => key !== '')
+      .map(key => {
+        // 还原特殊标记为'-'
+        if (key === 'DOUBLE_DASH') return '-';
+        return key.toUpperCase();
+      });
+
+    return splitResult;
+  };
   useEffect(() => {
     let isRunning = true;
     let currentIndex = 0;
@@ -357,27 +294,33 @@ function WOW() {
         return;
       }
 
+      if (is_fullscreen) {
+        x = x + 1;
+        y = y + 1;
+      } else {
+        x = x + 8;
+        y = y + 8 + 23;
+      }
+
+      if (selectedMapping === 'AH') {
+        y = y + 4;
+      }
+
+      if (model === 2 && (selectedMapping === 'JIAJIA' || selectedMapping === 'JIAJIA_REAL')) {
+        if (is_fullscreen) {
+          x = width - 5;
+        } else {
+          x = x + width - 20;
+        }
+      }
+      // console.log('wowWindow :>> ', wowWindow);
+      // console.log(x, y);
       if (isCustomColorBlock) {
         x = colorBlockX;
         y = colorBlockY;
       } else {
-        if (is_fullscreen) {
-          x = x + 1;
-          y = y + 1;
-        } else {
-          x = x + 8;
-          y = y + 8 + 23;
-        }
-        if (selectedMapping === 'AH') {
-          y = y + 4;
-        }
-        if (model === 2 && (selectedMapping === 'JIAJIA' || selectedMapping === 'JIAJIA_REAL')) {
-          if (is_fullscreen) {
-            x = width - 5;
-          } else {
-            x = x + width - 20;
-          }
-        }
+        setColorBlockX(x);
+        setColorBlockY(y);
       }
 
       if (selectedMapping === 'XIAOYI_LR' || selectedMapping === 'XIAOYI_SS') {
@@ -427,6 +370,71 @@ function WOW() {
     colorBlockX,
     colorBlockY
   ]);
+
+  const registerShortcuts = async () => {
+    try {
+      await checkUser();
+      // 在注册前先尝试注销所有热键，防止重复注册
+      await cleanup();
+      if (hotkeys.mode1Key) {
+        // 注册模式1热键
+        await register(hotkeys.mode1Key, async e => {
+          if (e.state === 'Pressed') {
+            if (selectedMapping === 'XIAOYI_LR') {
+              await invoke('press_keys', { keys: ['SHIFT', 'F11'] });
+            } else if (selectedMapping === 'XIAOYI_SS') {
+              await invoke('press_keys', { keys: ['ALT', 'SHIFT', 'F11'] });
+            }
+            setModel(1);
+            mode1Audio.play().catch(console.error);
+          }
+        });
+      }
+      if (hotkeys.mode2Key) {
+        // 注册模式2热键
+        await register(hotkeys.mode2Key, async e => {
+          if (e.state === 'Pressed') {
+            if (selectedMapping === 'XIAOYI_LR') {
+              await invoke('press_keys', { keys: ['ALT', 'CTRL', 'SHIFT', 'F11'] });
+            } else if (selectedMapping === 'XIAOYI_SS') {
+              await invoke('press_keys', { keys: ['ALT', 'CTRL', 'SHIFT', 'F11'] });
+            }
+            setModel(2);
+            mode2Audio.play().catch(console.error);
+          }
+        });
+      }
+      if (hotkeys.pauseKey) {
+        // 注册暂停热键
+        await register(hotkeys.pauseKey, async e => {
+          if (e.state === 'Pressed') {
+            setModel(0);
+            setColor(null);
+            pauseAudio.play().catch(console.error);
+          }
+        });
+      }
+    } catch (error) {
+      console.error('注册热键失败:', error);
+    }
+  };
+
+  const cleanup = async () => {
+    try {
+      // 使用try-catch分别处理每个热键的注销，确保一个失败不影响其他热键
+      try {
+        hotkeys.mode1Key && (await unregister(hotkeys.mode1Key));
+      } catch (e) {}
+      try {
+        hotkeys.mode2Key && (await unregister(hotkeys.mode2Key));
+      } catch (e) {}
+      try {
+        hotkeys.pauseKey && (await unregister(hotkeys.pauseKey));
+      } catch (e) {}
+    } catch (error) {
+      console.error('注销热键失败:', error);
+    }
+  };
 
   // 移动间隔
   const handleIntervalChange = (e: React.ChangeEvent<HTMLInputElement>) => {

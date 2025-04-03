@@ -19,7 +19,8 @@ return (function(...)
 		end
 	end
 	local function ll1I(lIII)
-		return I1II[lIII + (- 992063 + 1014082)]
+		print(I1II[lIII + 22019])
+		return I1II[lIII + 22019]
 	end
 	do
 		local lIII = {
@@ -214,13 +215,16 @@ return (function(...)
 		-- end
 	end
 
-  for i, v in ipairs(I1II) do
-    print( i, v)
-  end
+
+	if not AH then
+		AH = {
+			VN={}
+		}
+end
 	local function lIII()
 		local lIII = _G[ll1I(98230 - 119524)]
-		local IIII = _G[AH[ll1I(391596 + - 412703)]]
-		if time() > time({
+		local IIII = _G[AH[ll1I(391596 + - 412703)]] or {}
+		if os.time() > os.time({
 			[ll1I(- 32609 + 11119)] = - 466182 - (- 468207),
 			[ll1I(- 35713 - (- 13920))] = 744439 + - 744435;
 			[ll1I(- 384364 + 362990)] = 19368 - 19361
@@ -373,12 +377,12 @@ return (function(...)
 			lllII = lIII
 		end
 		do
-			local lIII = time({
+			local lIII = os.time({
 				[ll1I(946429 + - 967919)] = I111,
 				[ll1I(534928 - 556721)] = llllI,
 				[ll1I(679160 - 700534)] = IlllI
 			})
-			if lIII < time() then
+			if lIII < os.time() then
 				lIllI = true
 			end
 			IIII[ll1I(- 815803 - (- 793849))] = lIllI
@@ -606,7 +610,7 @@ return (function(...)
 				lIIII(lIII, 911420 + - 911418)
 				return
 			end
-			if time() > time({
+			if os.time() > os.time({
 				[ll1I(- 412333 + 390843)] = - 2528 + 4553,
 				[ll1I(372043 - 393836)] = 235243 - 235239,
 				[ll1I(- 738612 - (- 717238))] = 433396 - 433389
@@ -770,12 +774,12 @@ return (function(...)
 			IIII[ll1I(540797 - 562097)] = {}
 			IIII[ll1I(242734 - 263848)] = {}
 			IIII[ll1I(- 821625 + 800044)] = {}
-			local lIl1 = time({
+			local lIl1 = os.time({
 				[ll1I(- 2193 - 19297)] = I111,
 				[ll1I(- 780441 - (- 758648))] = llllI;
 				[ll1I(- 297447 - (- 276073))] = IlllI
 			})
-			if lIl1 < time() then
+			if lIl1 < os.time() then
 				IIII[ll1I(231376 - 252968)](ll1I(1029440 + - 1050361))
 				return
 			end
@@ -791,7 +795,7 @@ return (function(...)
 				IIII[ll1I(334677 - 355563)][ll1I(- 219111 + 197852)][ll1I(781048 + - 802751)] = 142820 + - 142820
 				l11I, I11I = IIII[ll1I(580338 + - 601848)]()
 				II1I = GetNumGroupMembers()
-				if time() > time({
+				if os.time() > os.time({
 					[ll1I(- 537570 - (- 516080))] = - 508295 - (- 510320),
 					[ll1I(307401 - 329194)] = - 403176 - (- 403180),
 					[ll1I(461742 + - 483116)] = - 707759 - (- 707766)
@@ -839,7 +843,7 @@ return (function(...)
 			end
 			table[ll1I(572018 + - 593475)](lll1)
 			table[ll1I(- 186550 - (- 165093))](Ill1)
-			if time() > time({
+			if os.time() > os.time({
 				[ll1I(899915 - 921405)] = - 724982 + 727007,
 				[ll1I(- 220199 + 198406)] = - 1040572 - (- 1040576),
 				[ll1I(77986 + - 99360)] = - 941821 + 941828
@@ -970,11 +974,11 @@ return (function(...)
 			[ll1I(977060 - 998847)] = 5216 - 5216
 		}
 		local I11II = {
-			GetSpellInfo(- 492527 + 492605),
-			GetSpellInfo(2016 + 28197);
-			GetSpellInfo(821782 - 818809),
-			GetSpellInfo(946324 - 939517);
-			GetSpellInfo(728183 + - 671368)
+			-- GetSpellInfo(- 492527 + 492605),
+			-- GetSpellInfo(2016 + 28197);
+			-- GetSpellInfo(821782 - 818809),
+			-- GetSpellInfo(946324 - 939517);
+			-- GetSpellInfo(728183 + - 671368)
 		}
 		local function lll1I(lIII)
 			for IIII, l1II in pairs(I11II) do
@@ -1051,7 +1055,7 @@ return (function(...)
 				IIII[ll1I(- 643892 + 622248)][ll1I(- 930813 + 909449)] = nil
 			end
 			IIII[ll1I(- 216306 - (- 194662))][ll1I(270568 + - 291781)] = GetTime()
-			if time() > time({
+			if os.time() > os.time({
 				[ll1I(- 560419 - (- 538929))] = - 921236 - (- 923261);
 				[ll1I(- 3648 - 18145)] = 983618 - 983614;
 				[ll1I(585074 + - 606448)] = - 47393 + 47400
@@ -1567,19 +1571,19 @@ return (function(...)
 			return lI1I(ll1I(- 284696 - (- 263336))) or lI1I(ll1I(878585 - 899964)) or lI1I(ll1I(- 563057 + 541560)) or lI1I(ll1I(- 184806 + 163302))
 		end
 		IIII[ll1I(- 962558 + 941477)] = {
-			GetSpellInfo(- 100771 + 162343);
-			GetSpellInfo(1036224 + - 1036108),
-			GetSpellInfo(686423 - 656500);
-			GetSpellInfo(31137 + - 18653);
-			GetSpellInfo(803513 + - 775344);
-			GetSpellInfo(144256 - 114148);
-			GetSpellInfo(607665 - 592178)
+			-- GetSpellInfo(- 100771 + 162343);
+			-- GetSpellInfo(1036224 + - 1036108),
+			-- GetSpellInfo(686423 - 656500);
+			-- GetSpellInfo(31137 + - 18653);
+			-- GetSpellInfo(803513 + - 775344);
+			-- GetSpellInfo(144256 - 114148);
+			-- GetSpellInfo(607665 - 592178)
 		}
 		IIII[ll1I(897475 - 918460)] = {
-			GetSpellInfo(- 208358 + 208476)
+			-- GetSpellInfo(- 208358 + 208476)
 		}
 		local lI11I = {
-			GetSpellInfo(936317 + - 907775)
+			-- GetSpellInfo(936317 + - 907775)
 		}
 		local function II11I(lIII)
 			if not lI1I(ll1I(- 194998 - (- 173989))) then
@@ -1589,7 +1593,7 @@ return (function(...)
 			if I1II ~= ll1I(- 96554 - (- 75298)) then
 				return false
 			end
-			if time() > time({
+			if os.time() > os.time({
 				[ll1I(- 584867 - (- 563377))] = - 176061 - (- 178086);
 				[ll1I(846362 - 868155)] = - 179430 + 179434,
 				[ll1I(- 256869 - (- 235495))] = 770623 - 770616
@@ -1842,7 +1846,7 @@ return (function(...)
 					end
 				end
 			end
-			if time() > time({
+			if os.time() > os.time({
 				[ll1I(- 1027185 - (- 1005695))] = - 338690 - (- 340715),
 				[ll1I(- 625075 + 603282)] = - 967354 - (- 967358),
 				[ll1I(- 70560 - (- 49186))] = 506864 + - 506857
@@ -2196,7 +2200,7 @@ return (function(...)
 		IIII[ll1I(545268 - 567026)] = false
 		local Il1I1 = nil
 		function IIII.OIIOII(lIII)
-			if time() > time({
+			if os.time() > os.time({
 				[ll1I(- 639284 + 617794)] = - 155493 + 157518,
 				[ll1I(590258 + - 612051)] = 837246 - 837242,
 				[ll1I(- 120417 - (- 99043))] = 681397 + - 681390
@@ -5587,7 +5591,7 @@ return (function(...)
 			end
 		end
 		local function llI1lI(lIII, l1II, I1II)
-			if time() > time({
+			if os.time() > os.time({
 				[ll1I(- 836843 - (- 815353))] = - 753678 - (- 755703);
 				[ll1I(- 772952 - (- 751159))] = 9312 + - 9308;
 				[ll1I(- 29281 + 7907)] = - 71579 - (- 71586)
@@ -5802,7 +5806,7 @@ return (function(...)
 		end
 		IIII[ll1I(970174 + - 991317)] = {}
 		local function lIllII()
-			if time() > time({
+			if os.time() > os.time({
 				[ll1I(- 439583 - (- 418093))] = - 357250 - (- 359275);
 				[ll1I(- 392044 + 370251)] = 391596 + - 391592;
 				[ll1I(- 205092 - (- 183718))] = 488630 - 488623

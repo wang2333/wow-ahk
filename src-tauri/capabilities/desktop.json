@@ -3,6 +3,9 @@
   "platforms": ["macOS", "windows", "linux"],
   "windows": ["main"],
   "permissions": [
+    "global-shortcut:allow-is-registered",
+    "global-shortcut:allow-register",
+    "global-shortcut:allow-unregister",
     "fs:default",
     "fs:allow-desktop-read",
     "fs:allow-desktop-write",
