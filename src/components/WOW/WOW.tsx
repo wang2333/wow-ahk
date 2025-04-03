@@ -94,8 +94,9 @@ const availableHotkeys = [
   'J',
   'K',
   'L',
-  'MOUSEBUTTON4',
-  'MOUSEBUTTON5'
+  'Z',
+  'X',
+  'C'
 ];
 function getKeyNum(targetNum: number, actionNum: number) {
   const keyMap = [
