@@ -1,0 +1,11 @@
+## Interface: 30404
+## Title: AH
+## SavedVariablesPerCharacter:MySettings
+
+LibStub.lua
+CallbackHandler-1.0.lua
+ChatThrottleLib.lua
+LibRangeCheck-3.0.lua
+LibClassicSwingTimerAPI.lua
+AH.lua
+LibHealComm-4.0.lua
